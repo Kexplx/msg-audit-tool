@@ -6,11 +6,9 @@ name: Java Backend Build
 on:
   push:
     paths:
-      - "java-backend/**
-
+      - "java-backend/**"
 jobs:
-  build:
-
+  ubuntu-build:
     runs-on: ubuntu-latest
 
     steps:
