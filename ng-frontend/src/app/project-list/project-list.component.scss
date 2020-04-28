@@ -1,0 +1,18 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 5px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+    & .header-title {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.project-cards {
+  display: grid;
+  gap: 10px;
+}
