@@ -8,7 +8,7 @@ jobs:
   ubuntu-build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./project1
+      working-directory: ./ng-frontend
 
     strategy:
       matrix:
