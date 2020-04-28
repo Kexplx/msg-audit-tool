@@ -1,4 +1,4 @@
-name: Angular Frontend build
+name: Angular Frontend Build
 
 on:
   push:
