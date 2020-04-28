@@ -8,11 +8,16 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NebularModule } from './nebular/nebular.module';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { ProjectCardComponent } from './project-list/project-card/project-card.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'projekte' },
+  { path: 'projekte', component: ProjectListComponent },
+];
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, ProjectListComponent, ProjectCardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
