@@ -15,6 +15,7 @@ import {
   NbSpinnerModule,
   NbContextMenuModule,
 } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ import {
     NbRadioModule,
     NbCheckboxModule,
     NbCardModule,
+    NbEvaIconsModule,
     NbIconModule,
     NbSpinnerModule,
     NbInputModule,
@@ -33,20 +35,24 @@ import {
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
     NbSidebarModule.forRoot(),
+    NbThemeModule.forRoot(),
   ],
   exports: [
     NbThemeModule,
     NbLayoutModule,
     NbButtonModule,
     NbSelectModule,
+    NbLayoutModule,
     NbRadioModule,
     NbMenuModule,
+    NbThemeModule,
     NbCardModule,
     NbIconModule,
+    NbEvaIconsModule,
     NbContextMenuModule,
     NbSidebarModule,
     NbInputModule,
     NbCheckboxModule,
   ],
 })
-export class NebularModule {}
+export class AppNebularModule {}
