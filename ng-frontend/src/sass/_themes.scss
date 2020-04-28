@@ -1,0 +1,14 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+@import 'colors';
+
+$nb-themes: nb-register-theme(
+  (
+    // msg colors
+      color-info-400: #890f42,
+    color-info-500: #7a0d3b,
+    color-info-600: #7a0d3b
+  ),
+  default,
+  default
+);

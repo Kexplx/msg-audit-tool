@@ -1,0 +1,7 @@
+@import 'themes';
+@import 'reset';
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+}

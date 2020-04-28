@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+<nb-layout>
+  <nb-sidebar style="top: 60px;" collapsedBreakpoints="lg, md, sm, is, xs" responsive>
+    <div class="sidebar-container">
+      <div class="sidebar-container-content">
+        <h5>Sidebar</h5>
+      </div>
+
+      <span class="sidebar-container-version label">
+        Version 1.2.x
+      </span>
+    </div>
+  </nb-sidebar>
+  <nb-layout-column>
+    <header class="header">
+      <h3>Audit Projekte</h3>
+      <button size="medium" nbButton>
+        <nb-icon icon="plus"></nb-icon>
+        Neues Projekt
+      </button>
+      <button hero size="medium" nbButton [status]="'primary'">
+        <nb-icon icon="download"></nb-icon>
+        (4) Exportieren
+      </button>
+    </header>
+
+    <nb-card accent="primary">
+      <!-- Make card component -->
+      <nb-card-header>
+        <nb-checkbox>
+          Agentur für Arbeit: Projekt 1
+        </nb-checkbox>
+        <button size="small" nbButton [nbContextMenu]="items">
+          <nb-icon icon="more-vertical-outline"></nb-icon>
+        </button>
+      </nb-card-header>
+      <nb-card-body>
+        A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases.
+        Originally, nebula was a name for any diffuse astronomical object, including galaxies beyond
+        the Milky Way.
+      </nb-card-body>
+      <nb-card-footer>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum enim nesciunt id minus
+        impedit sit laborum corporis odit sunt soluta!
+      </nb-card-footer>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>

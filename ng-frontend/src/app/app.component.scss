@@ -1,0 +1,25 @@
+.sidebar-container {
+  height: 80%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+
+  & .sidebar-container-version {
+    text-align: center;
+  }
+}
+
+nb-layout-column {
+  margin-top: 60px;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+nb-card-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
