@@ -3,11 +3,11 @@ import { NbMenuService } from '@nebular/theme';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-project-card',
-  templateUrl: './project-card.component.html',
-  styleUrls: ['./project-card.component.scss'],
+  selector: 'app-audit-card',
+  templateUrl: './audit-card.component.html',
+  styleUrls: ['./audit-card.component.scss'],
 })
-export class ProjectCardComponent implements OnInit {
+export class AuditCardComponent implements OnInit {
   items = [{ title: 'Löschen' }, { title: 'Infos' }];
 
   constructor(private nbMenuService: NbMenuService) {}

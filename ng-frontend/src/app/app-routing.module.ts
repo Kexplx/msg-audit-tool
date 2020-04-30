@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProjectListComponent } from './project-list/project-list.component';
+import { AuditListComponent } from './audit-list/audit-list.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'projekte' },
-  { path: 'projekte', component: ProjectListComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'audits' },
+  { path: 'audits', component: AuditListComponent },
 ];
 
 @NgModule({
