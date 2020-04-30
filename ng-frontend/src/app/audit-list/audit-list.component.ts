@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
 
 @Component({
   selector: 'app-audit-list',
@@ -6,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./audit-list.component.scss'],
 })
 export class AuditListComponent implements OnInit {
-  constructor() {}
+  constructor(private dialogService: NbDialogService) {}
 
   ngOnInit(): void {}
+
+  onAddAuditClick() {
+    this.dialogService.open(AddAuditDialogComponent);
+  }
 }
