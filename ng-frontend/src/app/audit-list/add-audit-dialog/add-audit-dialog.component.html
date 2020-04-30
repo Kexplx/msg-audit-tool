@@ -1,0 +1,62 @@
+<form class="form-container">
+  <nb-card>
+    <nb-card-header>
+      Neuen Audit hinzufügen
+    </nb-card-header>
+    <nb-card-body>
+      <section id="project">
+        <div class="form-item">
+          <label class="label">Projektname</label>
+          <input nbInput type="text" fullWidth />
+        </div>
+        <div class="data-wrapper">
+          <div class="form-item">
+            <label class="label">Startdatum</label>
+            <input [nbDatepicker]="start" nbInput />
+            <nb-datepicker #start></nb-datepicker>
+          </div>
+          <div class="form-item">
+            <label class="label">Enddatum</label>
+            <input [nbDatepicker]="end" nbInput />
+            <nb-datepicker #end></nb-datepicker>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section id="customer">
+        <div class="form-item">
+          <label class="label">Branche</label>
+          <input nbInput type="text" fullWidth />
+        </div>
+        <div class="form-item">
+          <label class="label">Unternehmen</label>
+          <input nbInput type="text" fullWidth />
+        </div>
+        <div class="form-item">
+          <label class="label">Abteilung</label>
+          <input nbInput type="text" fullWidth />
+        </div>
+      </section>
+      <hr />
+      <section id="contact-person">
+        <div class="person-title-name-wrapper">
+          <div class="form-item">
+            <label class="label">Titel</label>
+            <input nbInput type="text" fullWidth />
+          </div>
+          <div class="form-item">
+            <label class="label">Name</label>
+            <input nbInput type="text" fullWidth />
+          </div>
+        </div>
+        <div class="form-item">
+          <label class="label">Kotaktinformationen</label>
+          <input nbInput type="text" fullWidth />
+        </div>
+      </section>
+    </nb-card-body>
+    <nb-card-footer>
+      My footer
+    </nb-card-footer>
+  </nb-card>
+</form>

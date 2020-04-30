@@ -1,0 +1,29 @@
+.form-item {
+  display: grid;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.data-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-container {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.person-title-name-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+form {
+  max-width: 600px;
+}

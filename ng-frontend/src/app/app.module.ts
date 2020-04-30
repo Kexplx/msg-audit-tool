@@ -8,9 +8,16 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuditListComponent } from './audit-list/audit-list.component';
 import { AuditCardComponent } from './audit-list/audit-card/audit-card.component';
 import { AppRouterModule } from './app-routing.module';
+import { AddAuditDialogComponent } from './audit-list/add-audit-dialog/add-audit-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, AuditListComponent, AuditCardComponent],
+  declarations: [
+    AppComponent,
+    AddAuditDialogComponent,
+    NavbarComponent,
+    AuditListComponent,
+    AuditCardComponent,
+  ],
   imports: [BrowserModule, BrowserAnimationsModule, AppNebularModule, AppRouterModule],
   bootstrap: [AppComponent],
 })
