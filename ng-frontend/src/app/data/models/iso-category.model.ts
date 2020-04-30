@@ -1,5 +1,5 @@
-export interface Category {
+export interface IsoCategory {
   title: string;
   questions?: string[];
-  subcategories?: Category[];
+  subcategories?: IsoCategory[];
 }
