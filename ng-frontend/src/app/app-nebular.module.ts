@@ -14,6 +14,8 @@ import {
   NbToastrModule,
   NbSpinnerModule,
   NbContextMenuModule,
+  NbDialogModule,
+  NbDatepickerModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -32,10 +34,12 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbSpinnerModule,
     NbInputModule,
     NbContextMenuModule,
+    NbDialogModule.forRoot(),
     NbMenuModule.forRoot(),
     NbToastrModule.forRoot(),
     NbSidebarModule.forRoot(),
     NbThemeModule.forRoot(),
+    NbDatepickerModule.forRoot(),
   ],
   exports: [
     NbThemeModule,
@@ -49,10 +53,12 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbCardModule,
     NbIconModule,
     NbEvaIconsModule,
+    NbDatepickerModule,
     NbContextMenuModule,
     NbSidebarModule,
     NbInputModule,
     NbCheckboxModule,
+    NbDialogModule,
   ],
 })
 export class AppNebularModule {}
