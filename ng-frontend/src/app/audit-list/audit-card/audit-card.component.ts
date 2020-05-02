@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -8,7 +8,10 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./audit-card.component.scss'],
 })
 export class AuditCardComponent implements OnInit {
-  items = [{ title: 'Löschen' }, { title: 'Infos' }];
+  items: NbMenuItem[] = [
+    { title: 'Bearbeiten', icon: 'edit-outline' },
+    { title: 'Löschen', icon: 'trash-outline' },
+  ];
 
   constructor(private nbMenuService: NbMenuService) {}
 
