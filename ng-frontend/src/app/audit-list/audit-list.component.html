@@ -1,9 +1,9 @@
 <header class="header">
   <h4 class="header-title">ISO 25010 Audits</h4>
-  <button (click)="onAddAuditClick()" hero size="medium" nbButton status="primary">
+  <a [routerLink]="['add']" hero size="medium" nbButton status="primary">
     <nb-icon icon="plus"></nb-icon>
     Neuer Audit
-  </button>
+  </a>
   <button size="medium" nbButton hero>
     <nb-icon icon="download"></nb-icon>
     (4) Exportieren
