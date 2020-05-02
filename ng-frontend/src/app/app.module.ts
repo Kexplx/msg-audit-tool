@@ -9,7 +9,7 @@ import { AuditListComponent } from './audit-list/audit-list.component';
 import { AuditCardComponent } from './audit-list/audit-card/audit-card.component';
 import { AppRouterModule } from './app-routing.module';
 import { AddAuditComponent } from './add-audit/add-audit.component';
-import { ErrorComponent } from './error/error.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { ErrorComponent } from './error/error.component';
     AuditListComponent,
     AddAuditComponent,
     AuditCardComponent,
-    ErrorComponent,
+    NotFoundComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppNebularModule, AppRouterModule],
   bootstrap: [AppComponent],

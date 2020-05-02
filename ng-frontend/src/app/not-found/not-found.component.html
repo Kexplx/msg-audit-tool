@@ -2,6 +2,6 @@
   <nb-card-header>Sorry!</nb-card-header>
   <nb-card-body>
     <p class="error-message">Diese Seite wurde nicht gefunden.</p>
-    <button (click)="onReturnHomeClick()" nbButton status="basic">zurück zur Startseite</button>
+    <a [routerLink]="['/audits']"><button nbButton status="basic">zurück zur Startseite</button></a>
   </nb-card-body>
 </nb-card>

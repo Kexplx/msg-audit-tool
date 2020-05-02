@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuditListComponent } from './audit-list/audit-list.component';
 import { AddAuditComponent } from './add-audit/add-audit.component';
-import { ErrorComponent } from './error/error.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
   { path: 'audits', component: AuditListComponent, children: [] },
   { path: 'audits/add', component: AddAuditComponent },
-  { path: '**', component: ErrorComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
