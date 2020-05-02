@@ -16,6 +16,7 @@ import {
   NbContextMenuModule,
   NbDialogModule,
   NbDatepickerModule,
+  NbStepperModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -32,6 +33,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbEvaIconsModule,
     NbIconModule,
     NbSpinnerModule,
+    NbStepperModule,
     NbInputModule,
     NbContextMenuModule,
     NbDialogModule.forRoot(),
@@ -47,6 +49,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbButtonModule,
     NbSelectModule,
     NbLayoutModule,
+    NbStepperModule,
     NbRadioModule,
     NbMenuModule,
     NbThemeModule,
