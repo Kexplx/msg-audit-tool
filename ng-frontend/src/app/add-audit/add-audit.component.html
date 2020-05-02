@@ -1,0 +1,84 @@
+<nb-card>
+  <nb-card-body>
+    <nb-stepper orientation="horizontal">
+      <nb-step [label]="isMobileScreen ? null : 'Audit Grunddaten'">
+        <form class="form">
+          <h6>Audit Grunddaten</h6>
+          <div class="grid-3-1-1">
+            <div class="form-item">
+              <label class="label">Auditname</label>
+              <input type="text" nbInput fullWidth />
+            </div>
+            <div class="form-item">
+              <label class="label">Startdatum</label>
+              <input [nbDatepicker]="start" nbInput fullWidth />
+              <nb-datepicker #start></nb-datepicker>
+            </div>
+            <div class="form-item">
+              <label class="label">Enddatum</label>
+              <input [nbDatepicker]="end" nbInput fullWidth />
+              <nb-datepicker #end></nb-datepicker>
+            </div>
+          </div>
+          <hr />
+          <h6>Kundendaten</h6>
+          <div class="grid-3-1-1">
+            <div class="form-item">
+              <label class="label">Unternehmen</label>
+              <input type="text" nbInput fullWidth />
+            </div>
+            <div class="form-item">
+              <label class="label">Abteilung</label>
+              <input type="text" nbInput fullWidth />
+            </div>
+            <div class="form-item">
+              <label class="label">Branche</label>
+              <input type="text" nbInput fullWidth />
+            </div>
+          </div>
+
+          <hr />
+          <h6>Kontaktdaten</h6>
+          <div class="grid-auto-1 mb-2">
+            <div class="form-item">
+              <label class="label">Titel</label>
+              <nb-select fullWidth>
+                <nb-option value="male">Herr</nb-option>
+                <nb-option value="female">Frau</nb-option>
+              </nb-select>
+            </div>
+            <div class="form-item">
+              <label class="label">Name</label>
+              <input type="text" nbInput fullWidth />
+            </div>
+          </div>
+          <div class="form-item">
+            <label class="label">Kontaktinformation</label>
+            <textarea nbInput type="text" fullWidth></textarea>
+          </div>
+        </form>
+        <div class="step-footer">
+          <button nbButton nbStepperNext>next</button>
+        </div>
+      </nb-step>
+      <nb-step label="ISO/IEC 25010">
+        <h4>Step content #2</h4>
+        <p class="lorem">
+          Proin varius accumsan semper. Praesent consequat tincidunt sagittis. Curabitur egestas sem
+          a ipsum bibendum, sit amet fringilla orci efficitur. Nam bibendum lectus ut viverra
+          tristique. Fusce eu pulvinar magna, quis viverra ex. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit. Praesent metus turpis, commodo vel placerat quis, lobortis in
+          ligula.
+        </p>
+        <p class="lorem">
+          Curabitur luctus mattis risus nec condimentum. Donec at dui turpis. Sed vehicula fringilla
+          rutrum. Nullam sed ornare magna. Mauris vitae laoreet diam. Mauris fermentum ligula at
+          lacinia semper. Nulla placerat dui eu sapien pellentesque, eu placerat leo luctus. Cras
+          pharetra blandit fermentum.
+        </p>
+        <button nbButton nbStepperPrevious>prev</button>
+        <button nbButton nbStepperNext>next</button>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

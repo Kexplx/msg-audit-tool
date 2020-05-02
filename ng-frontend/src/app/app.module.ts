@@ -8,14 +8,14 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuditListComponent } from './audit-list/audit-list.component';
 import { AuditCardComponent } from './audit-list/audit-card/audit-card.component';
 import { AppRouterModule } from './app-routing.module';
-import { AddAuditDialogComponent } from './audit-list/add-audit-dialog/add-audit-dialog.component';
+import { AddAuditComponent } from './add-audit/add-audit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddAuditDialogComponent,
     NavbarComponent,
     AuditListComponent,
+    AddAuditComponent,
     AuditCardComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppNebularModule, AppRouterModule],
