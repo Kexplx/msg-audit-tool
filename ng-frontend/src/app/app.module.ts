@@ -9,6 +9,7 @@ import { AuditListComponent } from './audit-list/audit-list.component';
 import { AuditCardComponent } from './audit-list/audit-card/audit-card.component';
 import { AppRouterModule } from './app-routing.module';
 import { AddAuditDialogComponent } from './audit-list/add-audit-dialog/add-audit-dialog.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AddAuditDialogComponent } from './audit-list/add-audit-dialog/add-audit
     NavbarComponent,
     AuditListComponent,
     AuditCardComponent,
+    ErrorComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppNebularModule, AppRouterModule],
   bootstrap: [AppComponent],
