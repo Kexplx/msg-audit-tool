@@ -1,0 +1,23 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 20px;
+}
+
+.category-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step-footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  margin-top: 20px;
+}
