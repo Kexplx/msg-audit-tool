@@ -18,3 +18,46 @@
     max-width: 1140px;
   }
 }
+
+.grid-1-auto {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.grid-2-1-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grid-auto-1 {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+
+    & .form-item:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.grid-auto-1-1 {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 20px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+
+    & .form-item:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+}
