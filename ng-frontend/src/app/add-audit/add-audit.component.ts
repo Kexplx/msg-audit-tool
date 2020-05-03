@@ -100,8 +100,6 @@ export class AddAuditComponent implements OnInit {
       categories,
     };
 
-    console.log(audit);
-
     this.store.dispatch(new AddAudit(audit)).subscribe(() => this.router.navigate(['/audits']));
   }
 }
