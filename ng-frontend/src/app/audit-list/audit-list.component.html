@@ -1,5 +1,5 @@
 <header class="header">
-  <h4 class="header-title">ISO 25010 Audits</h4>
+  <h4 class="header-title">Audits</h4>
   <a [routerLink]="['add']" hero size="medium" nbButton status="primary">
     <nb-icon icon="plus"></nb-icon>
     Neuer Audit
@@ -9,4 +9,7 @@
     (4) Exportieren
   </button>
 </header>
-<app-audit-card></app-audit-card>
+<app-audit-card [audit]="audit" *ngFor="let audit of audits$ | async"></app-audit-card>
+<aside class="hint-no-audits" *ngIf="(audits$ | async).length == 0">
+  <h6 class="text-hint">Noch keine Audits vorhanden</h6>
+</aside>
