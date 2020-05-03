@@ -1,11 +1,15 @@
 import { AuditListComponent } from './audit-list.component';
+import { TestBed } from '@angular/core/testing';
 
 describe('AuditListComponent', () => {
   let component: AuditListComponent;
 
   beforeEach(() => {
-    const dialogServiceStub = jasmine.createSpyObj('NbDialogService', ['open']);
-    component = new AuditListComponent(dialogServiceStub);
+    TestBed.configureTestingModule({
+      declarations: [AuditListComponent],
+    });
+
+    component = TestBed.createComponent(AuditListComponent).componentInstance;
   });
 
   it('should create', () => {
