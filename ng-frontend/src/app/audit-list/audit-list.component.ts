@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { Component } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { AuditRegistryState } from '../ngxs/audit-registry.state';
+import { Observable } from 'rxjs';
+import { Audit } from '../data/models/audit.model';
 
 @Component({
   selector: 'app-audit-list',
   templateUrl: './audit-list.component.html',
   styleUrls: ['./audit-list.component.scss'],
 })
-export class AuditListComponent implements OnInit {
+export class AuditListComponent {
   constructor() {}
 
-  ngOnInit(): void {}
+  @Select(AuditRegistryState.audits) audits$: Observable<Audit[]>;
 }
