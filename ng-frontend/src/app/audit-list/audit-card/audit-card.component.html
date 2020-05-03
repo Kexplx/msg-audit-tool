@@ -1,14 +1,17 @@
 <nb-accordion>
   <nb-accordion-item>
     <nb-accordion-item-header>
-      <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>
-      <div>
-        {{ audit.name }}<span *ngIf="audit.customerData.name">, {{ audit.customerData.name }} </span>
-        <span *ngIf="audit.start">
-          &nbsp;({{ audit.start | date: 'dd.MM.yyyy' }} -
-          <span *ngIf="audit.end">{{ audit.end | date: 'dd.MM.yyyy' }}</span
-          >)
-        </span>
+      <div class="nb-accordion-item-header-wrapper">
+        <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>
+        <div>
+          {{ audit.name }}
+          <span *ngIf="audit.customerData.name">, {{ audit.customerData.name }} </span>
+          <span class="label" *ngIf="audit.start">
+            &nbsp;({{ audit.start | date: 'dd.MM.yyyy' }} -
+            <span *ngIf="audit.end">{{ audit.end | date: 'dd.MM.yyyy' }}</span
+            >)
+          </span>
+        </div>
       </div>
     </nb-accordion-item-header>
     <nb-accordion-item-body>
