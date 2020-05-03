@@ -1,18 +1,48 @@
-<nb-card accent="primary">
-  <nb-card-header class="grid-1-auto">
-    <nb-checkbox>
-      Agentur für Arbeit: Projekt 1
-    </nb-checkbox>
-    <button size="small" nbButton [nbContextMenu]="items">
-      <nb-icon icon="more-vertical-outline"></nb-icon>
-    </button>
-  </nb-card-header>
-  <nb-card-body>
-    A nebula is an interstellar cloud of dust, hydrogen, helium and other ionized gases. Originally,
-    nebula was a name for any diffuse astronomical object, including galaxies beyond the Milky Way.
-  </nb-card-body>
-  <nb-card-footer>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum enim nesciunt id minus impedit
-    sit laborum corporis odit sunt soluta!
-  </nb-card-footer>
-</nb-card>
+<nb-accordion>
+  <nb-accordion-item>
+    <nb-accordion-item-header>
+      <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>
+      <div>
+        {{ audit.name }}<span *ngIf="audit.customerData.name">, {{ audit.customerData.name }} </span>
+        <span *ngIf="audit.start">
+          &nbsp;({{ audit.start | date: 'dd.MM.yyyy' }} -
+          <span *ngIf="audit.end">{{ audit.end | date: 'dd.MM.yyyy' }}</span
+          >)
+        </span>
+      </div>
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <nb-tabset>
+        <nb-tab tabTitle="Kontakt">
+          <div class="card-information-header">
+            Unternehmen
+          </div>
+          <div class="card-information-body">
+            {{ audit.customerData.name }}, {{ audit.customerData.department }} ({{
+              audit.customerData.sector
+            }})
+          </div>
+          <div class="card-information-header">
+            Kontaktperson
+          </div>
+          <div class="card-information-body">
+            {{ audit.contactPerson.title }} {{ audit.contactPerson.firstName }}
+            {{ audit.contactPerson.lastName }}
+          </div>
+          <div class="card-information-header">
+            Kontaktinformationen
+          </div>
+          <div class="card-information-body">
+            {{ audit.contactPerson.information }}
+          </div>
+        </nb-tab>
+      </nb-tabset>
+      <div class="card-options">
+        <button nbButton status="primary">zum Audit</button>
+        <button nbButton [nbContextMenu]="items">
+          <nb-icon icon="more-vertical-outline"></nb-icon>
+        </button>
+      </div>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>

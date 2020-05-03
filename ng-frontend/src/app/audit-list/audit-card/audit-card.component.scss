@@ -1,1 +1,22 @@
 @import 'src/sass/utils';
+.card-options {
+  float: right;
+  gap: 20px;
+}
+
+.card-information-header {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.card-information-body {
+  margin-top: 10px;
+}
+
+nb-accordion {
+  margin-bottom: 10px;
+}
+
+nb-accordion-item-header {
+  gap: 15px;
+}
