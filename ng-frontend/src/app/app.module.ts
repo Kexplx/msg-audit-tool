@@ -9,7 +9,14 @@ import { AuditListComponent } from './audit-list/audit-list.component';
 import { AuditCardComponent } from './audit-list/audit-card/audit-card.component';
 import { AppRouterModule } from './app-routing.module';
 import { AddAuditComponent } from './add-audit/add-audit.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryFormComponent } from './add-audit/category-form/category-form.component';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AuditRegistryState } from './ngxs/audit-registry.state';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -19,8 +26,20 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AddAuditComponent,
     AuditCardComponent,
     NotFoundComponent,
+    CategoryFormComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, AppNebularModule, AppRouterModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    AppNebularModule,
+    AppRouterModule,
+    NgxsModule.forRoot([AuditRegistryState], {
+      developmentMode: !environment.production,
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsLoggerPluginModule.forRoot(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
