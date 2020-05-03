@@ -1,5 +1,6 @@
 import { CustomerData } from './customer-data.model';
 import { ContactPerson } from './contact-person.model';
+import { IsoCategory } from './iso-category.model';
 
 export interface Audit {
   name: string;
@@ -7,5 +8,6 @@ export interface Audit {
   end?: number;
 
   customerData: CustomerData;
-  contactPereson: ContactPerson;
+  contactPerson: ContactPerson;
+  categories: IsoCategory[];
 }
