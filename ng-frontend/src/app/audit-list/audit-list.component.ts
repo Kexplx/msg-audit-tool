@@ -10,7 +10,7 @@ import { Audit } from '../data/models/audit.model';
   styleUrls: ['./audit-list.component.scss'],
 })
 export class AuditListComponent {
-  constructor() {}
-
   @Select(AuditRegistryState.audits) audits$: Observable<Audit[]>;
+
+  constructor() {}
 }
