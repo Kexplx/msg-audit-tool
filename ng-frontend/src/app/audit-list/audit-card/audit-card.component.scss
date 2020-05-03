@@ -1,7 +1,9 @@
 @import 'src/sass/utils';
 .card-options {
-  float: right;
-  gap: 20px;
+  display: grid;
+  gap: 0 10px;
+  grid-template-columns: 1fr auto;
+  justify-items: right;
 }
 
 .card-information-header {
@@ -19,4 +21,16 @@ nb-accordion {
 
 nb-accordion-item-header {
   gap: 15px;
+}
+
+nb-checkbox {
+  display: grid;
+  align-items: center;
+}
+
+.nb-accordion-item-header-wrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: 0 10px;
 }
