@@ -9,5 +9,5 @@ export interface Audit {
 
   customerData: CustomerData;
   contactPerson: ContactPerson;
-  categories: IsoCategory[];
+  categories?: IsoCategory[];
 }
