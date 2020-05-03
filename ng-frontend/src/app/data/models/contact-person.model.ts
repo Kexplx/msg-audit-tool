@@ -1,5 +1,6 @@
 export interface ContactPerson {
   title: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   information: string;
 }
