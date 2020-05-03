@@ -10,27 +10,27 @@ import { IsoCategory } from 'src/app/data/models/iso-category.model';
 export class CategoryFormComponent implements OnInit {
   @Output() categoriesSubmitted = new EventEmitter<IsoCategory[]>();
   categories: IsoCategory[];
-  selectedCategoriesTitles: IsoCategory[];
+  selectedCategories: IsoCategory[];
 
   ngOnInit(): void {
     this.categories = isoCategories;
-    this.selectedCategoriesTitles = [];
+    this.selectedCategories = [];
   }
 
   addParentCategory(parentCategory: IsoCategory) {
-    this.selectedCategoriesTitles.push({ ...parentCategory });
+    this.selectedCategories.push({ ...parentCategory });
   }
 
   removeParentCategory(parentCategory: IsoCategory) {
-    const index = this.selectedCategoriesTitles.indexOf(parentCategory);
-    this.selectedCategoriesTitles.splice(index, 1);
+    const index = this.selectedCategories.indexOf(parentCategory);
+    this.selectedCategories.splice(index, 1);
   }
 
   addChildCategory(childCategory: IsoCategory, parentCategory: IsoCategory) {
-    const parent = this.selectedCategoriesTitles.find(x => x.title == parentCategory.title);
+    const parent = this.selectedCategories.find(x => x.title == parentCategory.title);
 
     if (!parent) {
-      this.selectedCategoriesTitles.push({
+      this.selectedCategories.push({
         title: parentCategory.title,
         children: [childCategory],
       });
@@ -40,23 +40,31 @@ export class CategoryFormComponent implements OnInit {
   }
 
   removeChildCategory(childCategory: IsoCategory, parentCategory: IsoCategory) {
-    parentCategory = this.selectedCategoriesTitles.find(x => x.title == parentCategory.title);
+    parentCategory = this.selectedCategories.find(x => x.title == parentCategory.title);
     parentCategory.children = parentCategory.children.filter(x => x != childCategory);
   }
 
   isChecked(title: string) {
     return (
-      this.selectedCategoriesTitles.find(
+      this.selectedCategories.find(
         x => x.title == title || x.children?.map(x => x.title).includes(title),
       ) != undefined
     );
   }
 
   onSubmit() {
-    this.categoriesSubmitted.emit(
-      this.selectedCategoriesTitles.sort((a: IsoCategory, b: IsoCategory) =>
-        a.title > b.title ? 1 : -1,
-      ),
+    this.selectedCategories = this.selectedCategories.sort((a: IsoCategory, b: IsoCategory) =>
+      a.title > b.title ? 1 : -1,
     );
+
+    for (const category of this.selectedCategories) {
+      if (category.children) {
+        category.children = category.children.sort((a: IsoCategory, b: IsoCategory) =>
+          a.title > b.title ? 1 : -1,
+        );
+      }
+    }
+
+    this.categoriesSubmitted.emit(this.selectedCategories);
   }
 }
