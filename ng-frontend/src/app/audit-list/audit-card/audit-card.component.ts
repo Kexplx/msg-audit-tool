@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { map } from 'rxjs/operators';
+import { Audit } from 'src/app/data/models/audit.model';
 
 @Component({
   selector: 'app-audit-card',
@@ -8,6 +9,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./audit-card.component.scss'],
 })
 export class AuditCardComponent implements OnInit {
+  @Input() audit: Audit;
   items: NbMenuItem[] = [
     { title: 'Bearbeiten', icon: 'edit-outline' },
     { title: 'Löschen', icon: 'trash-outline' },
