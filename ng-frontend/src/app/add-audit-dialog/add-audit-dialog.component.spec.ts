@@ -8,9 +8,8 @@ describe('AddAuditDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddAuditDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [AddAuditDialogComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

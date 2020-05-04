@@ -9,12 +9,7 @@
           <div class="grid-2-1-1">
             <div class="form-item">
               <label class="label">Auditname</label>
-              <input
-                [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'"
-                formControlName="auditName"
-                nbInput
-                fullWidth
-              />
+              <input [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth />
               <div *ngIf="auditName.invalid && auditName.touched">
                 <label class="label text-danger">Auditnamen eintragen</label>
               </div>
@@ -39,37 +34,21 @@
           <div class="grid-2-1-1">
             <div class="form-item">
               <label class="label">Unternehmen</label>
-              <input
-                formControlName="companyName"
-                [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'"
-                nbInput
-                fullWidth
-              />
+              <input formControlName="companyName" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" nbInput fullWidth />
               <div *ngIf="companyName.invalid && companyName.touched">
                 <label class="label text-danger">Unternehmen eintragen</label>
               </div>
             </div>
             <div class="form-item">
               <label class="label">Abteilung</label>
-              <input
-                formControlName="department"
-                [status]="department.invalid && department.touched ? 'danger' : 'basic'"
-                nbInput
-                fullWidth
-              />
+              <input formControlName="department" [status]="department.invalid && department.touched ? 'danger' : 'basic'" nbInput fullWidth />
               <div *ngIf="department.invalid && department.touched">
                 <label class="label text-danger">Abteilung eintragen</label>
               </div>
             </div>
             <div class="form-item">
               <label class="label">Branche</label>
-              <input
-                formControlName="sector"
-                [status]="sector.invalid && sector.touched ? 'danger' : 'basic'"
-                nbInput
-                fullWidth
-                status="danger"
-              />
+              <input formControlName="sector" [status]="sector.invalid && sector.touched ? 'danger' : 'basic'" nbInput fullWidth status="danger" />
               <div *ngIf="sector.invalid && sector.touched">
                 <label class="label text-danger">Branche eintragen</label>
               </div>
@@ -86,11 +65,7 @@
           <div class="grid-auto-1-1 mb-2">
             <div class="form-item">
               <label class="label">Titel</label>
-              <nb-select
-                formControlName="title"
-                [status]="title.invalid && title.touched ? 'danger' : 'basic'"
-                fullWidth
-              >
+              <nb-select formControlName="title" [status]="title.invalid && title.touched ? 'danger' : 'basic'" fullWidth>
                 <nb-option value="Herr">Herr</nb-option>
                 <nb-option value="Frau">Frau</nb-option>
               </nb-select>
@@ -100,24 +75,14 @@
             </div>
             <div class="form-item">
               <label class="label">Vorname</label>
-              <input
-                formControlName="firstName"
-                [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'"
-                nbInput
-                fullWidth
-              />
+              <input formControlName="firstName" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" nbInput fullWidth />
               <div *ngIf="firstName.invalid && firstName.touched">
                 <label class="label text-danger">Vornamen eintragen</label>
               </div>
             </div>
             <div class="form-item">
               <label class="label">Nachname</label>
-              <input
-                formControlName="lastName"
-                [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'"
-                nbInput
-                fullWidth
-              />
+              <input formControlName="lastName" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" nbInput fullWidth />
               <div *ngIf="lastName.invalid && lastName.touched">
                 <label class="label text-danger">Nachnamen eintragen</label>
               </div>
@@ -129,9 +94,7 @@
               spellcheck="false"
               nbInput
               formControlName="contactInformation"
-              [status]="
-                contactInformation.invalid && contactInformation.touched ? 'danger' : 'basic'
-              "
+              [status]="contactInformation.invalid && contactInformation.touched ? 'danger' : 'basic'"
               placeholder="Erreichbar unter..."
               fullWidth
             ></textarea>
@@ -146,23 +109,11 @@
         <nb-accordion-item-body>
           <div class="category-container">
             <ul *ngFor="let parentCategory of categories">
-              <nb-checkbox
-                (checkedChange)="
-                  $event ? addParentCategory(parentCategory) : removeParentCategory(parentCategory)
-                "
-                [checked]="isChecked(parentCategory.title)"
-              >
+              <nb-checkbox (checkedChange)="$event ? addParentCategory(parentCategory) : removeParentCategory(parentCategory)" [checked]="isChecked(parentCategory.title)">
                 {{ parentCategory.title }}
               </nb-checkbox>
               <li *ngFor="let childCategory of parentCategory.children">
-                <nb-checkbox
-                  (checkedChange)="
-                    $event
-                      ? addChildCategory(childCategory, parentCategory)
-                      : removeChildCategory(childCategory, parentCategory)
-                  "
-                  [checked]="isChecked(childCategory.title)"
-                >
+                <nb-checkbox (checkedChange)="$event ? addChildCategory(childCategory, parentCategory) : removeChildCategory(childCategory, parentCategory)" [checked]="isChecked(childCategory.title)">
                   {{ childCategory.title }}
                 </nb-checkbox>
               </li>
