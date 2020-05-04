@@ -1,22 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
-import { NbSidebarService } from '@nebular/theme';
 import { DebugElement } from '@angular/core';
+import { AppNebularModule } from 'src/app/app-nebular.module';
+import { RouterModule } from '@angular/router';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
   let debugElement: DebugElement;
 
-  beforeEach(async(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
-      providers: [NbSidebarService],
-    }).compileComponents();
-  }));
+      imports: [AppNebularModule, RouterModule.forRoot([])],
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     debugElement = fixture.debugElement;
