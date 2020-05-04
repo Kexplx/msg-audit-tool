@@ -8,6 +8,7 @@ import { AuditRegistryState } from '../ngxs/audit-registry.state';
 import { NbDialogRef } from '@nebular/theme';
 import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('AddAuditDialogComponent', () => {
   let component: AddAuditDialogComponent;
@@ -33,6 +34,7 @@ describe('AddAuditDialogComponent', () => {
         BrowserAnimationsModule,
         RouterModule.forRoot([]),
         NgxsModule.forRoot([AuditRegistryState]),
+        ReactiveFormsModule,
       ],
       providers: [
         { provide: NbDialogRef, useValue: nbDialogRefStub },

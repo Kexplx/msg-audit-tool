@@ -1,10 +1,14 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AppNebularModule } from './app-nebular.module';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent, NavbarComponent],
+      imports: [AppNebularModule, RouterModule.forRoot([])],
     }).compileComponents();
   }));
 
