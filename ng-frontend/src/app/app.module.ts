@@ -16,6 +16,7 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
 import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
+import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/confirm-discard-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.com
     AddAuditDialogComponent,
     AuditCardComponent,
     NotFoundComponent,
+    ConfirmDiscardDialogComponent,
   ],
   imports: [
     BrowserModule,
