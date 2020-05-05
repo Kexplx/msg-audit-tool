@@ -8,25 +8,25 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { AuditListComponent } from './audit-list/audit-list.component';
 import { AuditCardComponent } from './audit-list/audit-card/audit-card.component';
 import { AppRouterModule } from './app-routing.module';
-import { AddAuditComponent } from './add-audit/add-audit.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CategoryFormComponent } from './add-audit/category-form/category-form.component';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
+import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
+import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/confirm-discard-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AuditListComponent,
-    AddAuditComponent,
+    AddAuditDialogComponent,
     AuditCardComponent,
     NotFoundComponent,
-    CategoryFormComponent,
+    ConfirmDiscardDialogComponent,
   ],
   imports: [
     BrowserModule,
