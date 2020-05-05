@@ -28,3 +28,11 @@ li {
     grid-template-columns: 1fr;
   }
 }
+
+.field-item-contact-information {
+  margin-top: 20px;
+
+  textarea {
+    resize: vertical;
+  }
+}
