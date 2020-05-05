@@ -1,6 +1,6 @@
 name: Java Backend Build
 
-on: 
+on:
   push:
     paths:
       - "java-backend/**"
