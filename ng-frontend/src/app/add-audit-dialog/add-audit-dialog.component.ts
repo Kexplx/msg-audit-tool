@@ -169,16 +169,18 @@ export class AddAuditDialogComponent implements OnInit {
 
   onCancel() {
     if (this.auditForm.touched && this.auditForm.dirty) {
-      const k = this.dialogService.open(ConfirmDiscardDialogComponent, {
+      const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
         autoFocus: false,
         closeOnBackdropClick: false,
       });
 
-      k.componentRef.instance.onDiscardConfirm.subscribe((cancelConfirmed: boolean) => {
-        if (cancelConfirmed) {
-          this.dialogRef.close();
-        }
-      });
+      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
+        (cancelConfirmed: boolean) => {
+          if (cancelConfirmed) {
+            this.dialogRef.close();
+          }
+        },
+      );
     } else {
       this.dialogRef.close();
     }
