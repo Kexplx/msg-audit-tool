@@ -31,6 +31,7 @@ jobs:
           working-directory: ${{env.working-directory}}
           start: ng serve
           wait-on: http://localhost:4200
+          wait-on-timeout: 300
       - name: Run Unit Tests
         run: ng test --watch=false --browsers=ChromeHeadless
         working-directory: ${{env.working-directory}}
