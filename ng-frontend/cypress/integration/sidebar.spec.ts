@@ -1,4 +1,4 @@
-describe('Navbar', () => {
+describe('AppNavbarComponent', () => {
   beforeEach(() => {
     cy.visit('http://localhost:4200');
   });
