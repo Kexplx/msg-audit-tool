@@ -6,6 +6,8 @@ import { AppNebularModule } from 'src/app/app-nebular.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
+import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 
 describe('AuditCardComponent', () => {
   let component: AuditCardComponent;
@@ -29,7 +31,12 @@ describe('AuditCardComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuditCardComponent],
-      imports: [RouterModule.forRoot([]), AppNebularModule, BrowserAnimationsModule],
+      imports: [
+        RouterModule.forRoot([]),
+        AppNebularModule,
+        NgxsModule.forRoot([AuditRegistryState]),
+        BrowserAnimationsModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AuditCardComponent);
