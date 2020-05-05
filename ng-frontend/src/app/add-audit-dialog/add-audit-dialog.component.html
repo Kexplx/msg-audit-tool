@@ -1,5 +1,5 @@
 <div class="scrollable-container">
-  <form [formGroup]="auditForm" (submit)="onSubmit()">
+  <form [formGroup]="auditForm">
     <nb-accordion multi>
       <nb-accordion-item expanded>
         <nb-accordion-item-header>
@@ -124,10 +124,15 @@
 
       <nb-accordion-item expanded>
         <nb-accordion-item-header style="display: none;"></nb-accordion-item-header>
-        <nb-accordion-item-body class="accordion-footer">
-          <button type="submit" [disabled]="auditForm.invalid" status="primary" hero nbButton>
-            Hinzufügen
-          </button>
+        <nb-accordion-item-body>
+          <div class="accordion-footer">
+            <button (click)="onCancel()" hero nbButton>
+              abbrechen
+            </button>
+            <button (click)="onSubmit()" [disabled]="auditForm.invalid" status="primary" hero nbButton>
+              hinzufügen
+            </button>
+          </div>
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
