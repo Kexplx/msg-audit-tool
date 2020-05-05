@@ -7,8 +7,8 @@
 }
 
 .accordion-footer {
-  display: grid;
-  justify-items: right;
+  display: flex;
+  justify-content: space-between;
 }
 
 ul {
