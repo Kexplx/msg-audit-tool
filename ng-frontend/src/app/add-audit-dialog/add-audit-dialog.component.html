@@ -16,11 +16,13 @@
             </div>
             <div class="form-item">
               <label class="label">Startdatum</label>
-              <input formControlName="start" type="date" nbInput fullWidth />
+              <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" />
+              <nb-datepicker #datePickerStart></nb-datepicker>
             </div>
             <div class="form-item">
               <label class="label">Enddatum</label>
-              <input formControlName="end" type="date" nbInput fullWidth />
+              <input formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" />
+              <nb-datepicker #datePickerEnd></nb-datepicker>
             </div>
           </div>
         </nb-accordion-item-body>
@@ -88,7 +90,7 @@
               </div>
             </div>
           </div>
-          <div style="margin-top: 10px;" class="form-item">
+          <div class="form-item field-item-contact-information">
             <label class="label">Kontaktinformation</label>
             <textarea
               spellcheck="false"
