@@ -51,8 +51,8 @@ public class QuestionEntity {
         return result;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "criteria_id" ,referencedColumnName = "id", nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "criteria_id", referencedColumnName = "id", nullable = false)
     public CriteriaEntity getCriteriaByCriteriaId() {
         return criteriaByCriteriaId;
     }
