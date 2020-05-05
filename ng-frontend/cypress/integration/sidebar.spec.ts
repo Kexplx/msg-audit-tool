@@ -3,7 +3,7 @@ describe('Navbar', () => {
     cy.visit('http://localhost:4200');
   });
 
-  it('Contains "Sidebar"', () => {
+  it('Contains "Sidebar" in sidebar content', () => {
     cy.get('.sidebar-container-content').contains('Sidebar');
   });
 
