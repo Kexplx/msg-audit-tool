@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NbDialogRef } from '@nebular/theme';
-import { Router } from '@angular/router';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
+import { Router, CanDeactivate } from '@angular/router';
 import { IsoCategory } from '../data/models/iso-category.model';
 import { isoCategories } from '../data/iso-categories';
 import { Audit } from '../data/models/audit.model';
 import { AddAudit } from '../ngxs/audit.actions';
 import { Store } from '@ngxs/store';
+import { ConfirmDiscardDialogComponent } from '../shared/confirm-discard-dialog/confirm-discard-dialog.component';
 
 @Component({
   selector: 'app-add-audit-dialog',
@@ -18,7 +19,12 @@ export class AddAuditDialogComponent implements OnInit {
   categories: IsoCategory[];
   selectedCategories: IsoCategory[];
 
-  constructor(private store: Store, private dialogRef: NbDialogRef<any>, private router: Router) {}
+  constructor(
+    private store: Store,
+    private dialogRef: NbDialogRef<any>,
+    private router: Router,
+    private dialogService: NbDialogService,
+  ) {}
 
   //#region Getters
   get auditName() {
@@ -159,5 +165,22 @@ export class AddAuditDialogComponent implements OnInit {
     };
 
     this.store.dispatch(new AddAudit(audit)).subscribe(() => this.dialogRef.close());
+  }
+
+  onCancel() {
+    if (this.auditForm.touched && this.auditForm.dirty) {
+      const k = this.dialogService.open(ConfirmDiscardDialogComponent, {
+        autoFocus: false,
+        closeOnBackdropClick: false,
+      });
+
+      k.componentRef.instance.onDiscardConfirm.subscribe((cancelConfirmed: boolean) => {
+        if (cancelConfirmed) {
+          this.dialogRef.close();
+        }
+      });
+    } else {
+      this.dialogRef.close();
+    }
   }
 }
