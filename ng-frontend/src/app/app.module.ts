@@ -17,6 +17,7 @@ import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
 import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
 import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/confirm-discard-dialog.component';
+import { ActionListenerDirective } from './audit-list/action-listener.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/c
     AuditListComponent,
     AddAuditDialogComponent,
     AuditCardComponent,
+    ActionListenerDirective,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
   ],
