@@ -1,5 +1,4 @@
 name: Angular Frontend Build
-
 on:
   push:
     paths:
@@ -8,7 +7,7 @@ jobs:
   ubuntu-build:
     runs-on: ubuntu-latest
     env:
-      working-directory: ./ng-frontend
+      working-directory: ./project1
 
     strategy:
       matrix:
@@ -26,7 +25,13 @@ jobs:
       - name: Install Angular CLI
         run: npm i -g @angular/cli
         working-directory: ${{env.working-directory}}
-      - name: Run Tests
+      - name: Run e2e Tests
+        uses: cypress-io/github-action@v1
+        with:
+          working-directory: ${{env.working-directory}}
+          start: ng serve
+          wait-on: http://localhost:4200
+      - name: Run Unit Tests
         run: ng test --watch=false --browsers=ChromeHeadless
         working-directory: ${{env.working-directory}}
         env:
