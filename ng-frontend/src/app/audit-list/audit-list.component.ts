@@ -20,7 +20,10 @@ export class AuditListComponent implements OnInit {
   ngOnInit() {
     this.route.url.subscribe(urlSegment => {
       if (urlSegment[1]?.path === 'neu') {
-        this.dialogService.open(AddAuditDialogComponent);
+        this.dialogService.open(AddAuditDialogComponent, {
+          autoFocus: false,
+          closeOnBackdropClick: false,
+        });
       }
     });
   }
