@@ -9,7 +9,10 @@ The following was discovered as part of building this project:
 * start mysql server
 * create a database named "msg_audit_database"
 * create a user "amos" with the password "MsgAuditTool2020!"
+    * CREATE USER 'amos'@'localhost' IDENTIFIED BY 'MsgAuditTool2020!';
 * grant user all privileges 
+    * GRANT ALL PRIVILEGES ON * . * TO 'amos'@'localhost';
+    * FLUSH PRIVILEGES;
 - the database will be created with the first build if it doesn't exist
 
 
