@@ -53,7 +53,7 @@ public class CriteriaEntity {
         return result;
     }
 
-    @ManyToOne( cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "factor_id", referencedColumnName = "id", nullable = false)
     public FactorEntity getFactorByFactorId() {
         return factorByFactorId;
@@ -63,7 +63,7 @@ public class CriteriaEntity {
         this.factorByFactorId = factorByFactorId;
     }
 
-    @OneToMany(mappedBy = "criteriaByCriteriaId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "criteriaByCriteriaId")
     public Collection<QuestionEntity> getQuestionsById() {
         return questionsById;
     }

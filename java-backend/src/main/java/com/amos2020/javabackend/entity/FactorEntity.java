@@ -66,7 +66,7 @@ public class FactorEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "factorByFactorId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "factorByFactorId")
     public Collection<CriteriaEntity> getCriteriaById() {
         return criteriaById;
     }

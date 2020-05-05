@@ -82,7 +82,7 @@ public class AuditProjectEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "auditProjectByAuditId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "auditProjectByAuditId")
     public Collection<AnswerEntity> getAnswersById() {
         return answersById;
     }
@@ -91,7 +91,7 @@ public class AuditProjectEntity {
         this.answersById = answersById;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     public CustomerEntity getCustomerByCustomerId() {
         return customerByCustomerId;
