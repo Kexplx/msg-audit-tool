@@ -78,7 +78,7 @@ public class AnswerEntity {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "audit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public AuditProjectEntity getAuditProjectByAuditId() {
         return auditProjectByAuditId;
@@ -88,7 +88,7 @@ public class AnswerEntity {
         this.auditProjectByAuditId = auditProjectByAuditId;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public QuestionEntity getQuestionByQuestionId() {
         return questionByQuestionId;

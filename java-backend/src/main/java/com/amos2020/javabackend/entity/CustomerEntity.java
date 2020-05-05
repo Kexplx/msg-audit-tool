@@ -79,7 +79,7 @@ public class CustomerEntity {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_person_id", referencedColumnName = "id", nullable = false)
     public ContactPersonEntity getContactPersonByContactPersonId() {
         return contactPersonByContactPersonId;
