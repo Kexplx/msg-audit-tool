@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
   { path: 'audits', component: AuditListComponent },
   { path: 'audits/neu', component: AuditListComponent },
+  { path: 'audits/:id/edit', component: AuditListComponent },
   { path: '**', component: NotFoundComponent },
 ];
 
