@@ -3,6 +3,7 @@ import { ContactPerson } from './contact-person.model';
 import { IsoCategory } from './iso-category.model';
 
 export interface Audit {
+  id?: string;
   name: string;
   start?: number;
   end?: number;
