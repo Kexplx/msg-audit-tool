@@ -13,7 +13,7 @@
           <ng-container [ngSwitch]="audit.status">
             <nb-badge *ngSwitchCase="auditStatus.IsPlanned" text="Geplant" status="danger" position="top right"></nb-badge>
             <nb-badge *ngSwitchCase="auditStatus.InAction" text="In Bearbeitung" status="warning" position="top right"></nb-badge>
-            <nb-badge *ngSwitchCase="auditStatus.IsFinished" text="Abgschlossen" status="success" position="top right"></nb-badge>
+            <nb-badge *ngSwitchCase="auditStatus.IsFinished" text="Abgeschlossen" status="success" position="top right"></nb-badge>
             <nb-badge *ngSwitchCase="auditStatus.IsCanceled" text="Abgebrochen" status="basic" position="top right"></nb-badge>
           </ng-container>
           <div *ngIf="audit.status === auditStatus.IsPlanned" then></div>

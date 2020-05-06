@@ -26,7 +26,7 @@ describe('AuditCardComponent', () => {
       name: 'b',
       sector: 'c',
     },
-    status : AuditStatus.IsPlanned,
+    status: AuditStatus.IsPlanned,
   };
 
   beforeEach(() => {
@@ -55,5 +55,26 @@ describe('AuditCardComponent', () => {
     const de: DebugElement = fixture.debugElement;
     const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
     expect(el.innerHTML).toContain(audit.name);
+  });
+
+  it('should render audit status tag with default case IsPlanned and change its statuses correctly', () => {
+    expect(
+      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+    ).toContain('Geplant');
+    component.audit.status = AuditStatus.InAction;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+    ).toContain('In Bearbeitung');
+    component.audit.status = AuditStatus.IsFinished;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+    ).toContain('Abgeschlossen');
+    component.audit.status = AuditStatus.IsCanceled;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+    ).toContain('Abgebrochen');
   });
 });
