@@ -42,4 +42,13 @@ export class AuditRegistryState {
       });
     }
   }
+
+  @Action(UpdateAudit)
+  updateAudit({ setState }: StateContext<AuditRegistryStateModel>, { id, audit }: UpdateAudit) {
+    setState(
+      patch({
+        audits: updateItem<Audit>(x => x.id === id, { ...audit, id: id }),
+      }),
+    );
+  }
 }
