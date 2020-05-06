@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Router, CanDeactivate } from '@angular/router';
-import { Category } from '../data/models/iso-category.model';
-import { isoCategories } from '../data/iso-categories';
+import { Category } from '../data/models/category.model';
 import { Audit } from '../data/models/audit.model';
 import { AddAudit } from '../ngxs/audit.actions';
 import { Store } from '@ngxs/store';
 import { ConfirmDiscardDialogComponent } from '../shared/confirm-discard-dialog/confirm-discard-dialog.component';
+import { categories } from '../data/categories';
 
 @Component({
   selector: 'app-add-audit-dialog',
@@ -69,7 +69,7 @@ export class AddAuditDialogComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
-    this.categories = isoCategories;
+    this.categories = categories;
     this.selectedCategories = [];
 
     this.auditForm = new FormGroup({

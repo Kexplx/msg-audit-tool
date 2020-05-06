@@ -1,6 +1,6 @@
 import { CustomerData } from './customer-data.model';
 import { ContactPerson } from './contact-person.model';
-import { Category } from './iso-category.model';
+import { Category } from './category.model';
 
 export interface Audit {
   id?: string;
