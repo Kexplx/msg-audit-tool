@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Router, CanDeactivate } from '@angular/router';
-import { IsoCategory } from '../data/models/iso-category.model';
+import { Category } from '../data/models/iso-category.model';
 import { isoCategories } from '../data/iso-categories';
 import { Audit } from '../data/models/audit.model';
 import { AddAudit } from '../ngxs/audit.actions';
@@ -16,8 +16,8 @@ import { ConfirmDiscardDialogComponent } from '../shared/confirm-discard-dialog/
 })
 export class AddAuditDialogComponent implements OnInit {
   auditForm: FormGroup;
-  categories: IsoCategory[];
-  selectedCategories: IsoCategory[];
+  categories: Category[];
+  selectedCategories: Category[];
 
   constructor(
     private store: Store,
@@ -90,16 +90,16 @@ export class AddAuditDialogComponent implements OnInit {
     });
   }
 
-  addParentCategory(parentCategory: IsoCategory) {
+  addParentCategory(parentCategory: Category) {
     this.selectedCategories.push({ ...parentCategory });
   }
 
-  removeParentCategory(parentCategory: IsoCategory) {
+  removeParentCategory(parentCategory: Category) {
     const index = this.selectedCategories.indexOf(parentCategory);
     this.selectedCategories.splice(index, 1);
   }
 
-  addChildCategory(childCategory: IsoCategory, parentCategory: IsoCategory) {
+  addChildCategory(childCategory: Category, parentCategory: Category) {
     const parent = this.selectedCategories.find(x => x.title == parentCategory.title);
 
     if (!parent) {
@@ -112,7 +112,7 @@ export class AddAuditDialogComponent implements OnInit {
     }
   }
 
-  removeChildCategory(childCategory: IsoCategory, parentCategory: IsoCategory) {
+  removeChildCategory(childCategory: Category, parentCategory: Category) {
     parentCategory = this.selectedCategories.find(x => x.title == parentCategory.title);
     parentCategory.children = parentCategory.children.filter(x => x != childCategory);
   }
@@ -131,12 +131,12 @@ export class AddAuditDialogComponent implements OnInit {
     }
   }
 
-  sortCategoriesByTitle(categories: IsoCategory[]) {
-    categories = categories.sort((a: IsoCategory, b: IsoCategory) => (a.title > b.title ? 1 : -1));
+  sortCategoriesByTitle(categories: Category[]) {
+    categories = categories.sort((a: Category, b: Category) => (a.title > b.title ? 1 : -1));
 
     for (const category of categories) {
       if (category.children) {
-        category.children = category.children.sort((a: IsoCategory, b: IsoCategory) =>
+        category.children = category.children.sort((a: Category, b: Category) =>
           a.title > b.title ? 1 : -1,
         );
       }

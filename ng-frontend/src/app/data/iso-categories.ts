@@ -1,6 +1,6 @@
-import { IsoCategory } from './models/iso-category.model';
+import { Category } from './models/iso-category.model';
 
-export const isoCategories: IsoCategory[] = [
+export const isoCategories: Category[] = [
   { title: '1. Effektivität' },
   { title: '2. Effizienz' },
   {
