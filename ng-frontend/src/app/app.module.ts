@@ -18,6 +18,7 @@ import { environment } from 'src/environments/environment';
 import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
 import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/confirm-discard-dialog.component';
 import { ActionListenerDirective } from './audit-list/action-listener.directive';
+import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ActionListenerDirective } from './audit-list/action-listener.directive'
     AuditListComponent,
     AddAuditDialogComponent,
     AuditCardComponent,
+    EditAuditDialogComponent,
     ActionListenerDirective,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
