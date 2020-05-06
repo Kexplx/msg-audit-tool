@@ -1,7 +1,9 @@
 import { Audit } from '../data/models/audit.model';
-import { State, Selector, Action, StateContext } from '@ngxs/store';
+import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
+import { patch, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import { AddAudit, DeleteAudit } from './audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit, GetAuditById } from './audit.actions';
+import * as shortid from 'shortid';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
@@ -10,7 +12,19 @@ export interface AuditRegistryStateModel {
 @State<AuditRegistryStateModel>({
   name: 'auditRegistry',
   defaults: {
-    audits: [],
+    audits: [
+      {
+        name: 'Oscar',
+        contactPerson: {
+          firstName: 'Oscar',
+          lastName: 'Rosner',
+          information: '01230',
+          title: 'Herr',
+        },
+        customerData: { department: 'asdd', name: 'dasds', sector: 'asds' },
+        id: shortid.generate(),
+      },
+    ],
   },
 })
 @Injectable()
@@ -25,13 +39,14 @@ export class AuditRegistryState {
       return state.audits.find(x => x.id === id);
     });
   }
+
   @Action(AddAudit)
   addAudit(context: StateContext<AuditRegistryStateModel>, { audit }: AddAudit) {
     const state = context.getState();
 
     context.setState({
       ...state,
-      audits: [...state.audits, audit],
+      audits: [...state.audits, { ...audit, id: shortid.generate() }],
     });
   }
 
