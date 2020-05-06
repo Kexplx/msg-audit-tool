@@ -19,6 +19,7 @@ import {
   NbStepperModule,
   NbAccordionModule,
   NbTabsetModule,
+  NbBadgeModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -70,6 +71,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbDialogModule,
     NbAccordionModule,
     NbTabsetModule,
+    NbBadgeModule,
   ],
 })
 export class AppNebularModule {}

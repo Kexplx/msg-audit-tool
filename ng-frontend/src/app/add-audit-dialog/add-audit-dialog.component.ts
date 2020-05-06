@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Router, CanDeactivate } from '@angular/router';
 import { Category } from '../data/models/category.model';
-import { Audit } from '../data/models/audit.model';
+import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AddAudit } from '../ngxs/audit.actions';
 import { Store } from '@ngxs/store';
 import { ConfirmDiscardDialogComponent } from '../shared/confirm-discard-dialog/confirm-discard-dialog.component';
@@ -162,6 +162,8 @@ export class AddAuditDialogComponent implements OnInit {
       start: this.parseDate(this.start.value),
       end: this.parseDate(this.end.value),
       categories: this.sortCategoriesByTitle(this.selectedCategories),
+
+      status: AuditStatus.IsPlanned,
     };
 
     this.store.dispatch(new AddAudit(audit)).subscribe(() => this.dialogRef.close());

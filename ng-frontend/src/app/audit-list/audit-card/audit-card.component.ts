@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NbMenuService, NbMenuItem, NbMenuBag } from '@nebular/theme';
 import { map, filter } from 'rxjs/operators';
-import { Audit } from 'src/app/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { Store } from '@ngxs/store';
 import { DeleteAudit } from 'src/app/ngxs/audit.actions';
 import * as shortid from 'shortid';
@@ -19,6 +19,7 @@ enum MenuOptions {
 export class AuditCardComponent implements OnInit {
   @Input() audit: Audit;
   nbMenuId: string;
+  auditStatus = AuditStatus;
   items: NbMenuItem[] = [
     { title: 'Bearbeiten', icon: 'edit-outline', data: MenuOptions.Edit },
     { title: 'Löschen', icon: 'trash-outline', data: MenuOptions.Delete },

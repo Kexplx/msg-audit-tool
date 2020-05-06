@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store, Action } from '@ngxs/store';
 import { AuditRegistryState } from './audit-registry.state';
-import { Audit } from '../data/models/audit.model';
+import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AddAudit, DeleteAudit } from './audit.actions';
 
 describe('AuditRegsitryState', () => {
@@ -28,6 +28,7 @@ describe('AuditRegsitryState', () => {
         name: 'b',
         sector: 'c',
       },
+      status: AuditStatus.IsPlanned,
     };
   });
 

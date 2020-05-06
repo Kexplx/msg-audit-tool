@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditCardComponent } from './audit-card.component';
-import { Audit } from 'src/app/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { AppNebularModule } from 'src/app/app-nebular.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,7 @@ describe('AuditCardComponent', () => {
       name: 'b',
       sector: 'c',
     },
+    status : AuditStatus.IsPlanned,
   };
 
   beforeEach(() => {
