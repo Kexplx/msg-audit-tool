@@ -20,6 +20,11 @@ export class AuditRegistryState {
     return state.audits;
   }
 
+  static audit(id: string) {
+    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+      return state.audits.find(x => x.id === id);
+    });
+  }
   @Action(AddAudit)
   addAudit(context: StateContext<AuditRegistryStateModel>, { audit }: AddAudit) {
     const state = context.getState();
