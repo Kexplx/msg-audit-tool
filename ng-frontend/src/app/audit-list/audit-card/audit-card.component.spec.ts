@@ -57,6 +57,12 @@ describe('AuditCardComponent', () => {
     expect(el.innerHTML).toContain(audit.name);
   });
 
+  it('should render the company name into nb-accordion-item-header-wrapper and nb-accordion-item-body', () => {
+    const de: DebugElement = fixture.debugElement;
+    const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
+    expect(el.innerHTML).toContain(audit.customerData.name);
+  });
+
   it('should render audit status tag with default case IsPlanned and change its statuses correctly', () => {
     expect(
       fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
