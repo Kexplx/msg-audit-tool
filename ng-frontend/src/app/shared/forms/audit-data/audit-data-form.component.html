@@ -26,7 +26,6 @@
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-
     <nb-accordion-item>
       <nb-accordion-item-header>
         2. Kundendaten
@@ -57,7 +56,6 @@
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-
     <nb-accordion-item>
       <nb-accordion-item-header>
         3. Kontaktdaten
@@ -109,20 +107,19 @@
       <nb-accordion-item-header>4. ISO/IEC 25010 Kategorien</nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="category-container">
-          <ul *ngFor="let parentCategory of categories">
-            <nb-checkbox (checkedChange)="$event ? addParentCategory(parentCategory) : removeParentCategory(parentCategory)" [checked]="isChecked(parentCategory.title)">
-              {{ parentCategory.title }}
+          <ul *ngFor="let factor of formFactors">
+            <nb-checkbox [checked]="factor['selected']" (checkedChange)="onFactorSelect(factor)">
+              {{ factor.title }}
             </nb-checkbox>
-            <li *ngFor="let childCategory of parentCategory.children">
-              <nb-checkbox (checkedChange)="$event ? addChildCategory(childCategory, parentCategory) : removeChildCategory(childCategory, parentCategory)" [checked]="isChecked(childCategory.title)">
-                {{ childCategory.title }}
+            <li *ngFor="let category of factor.categories">
+              <nb-checkbox [checked]="category['selected']" (checkedChange)="category['selected'] = !category['selected']">
+                {{ category.title }}
               </nb-checkbox>
             </li>
           </ul>
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-
     <nb-accordion-item expanded>
       <nb-accordion-item-header style="display: none;"></nb-accordion-item-header>
       <nb-accordion-item-body>
