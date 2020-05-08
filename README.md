@@ -38,7 +38,7 @@ Set up your development environment as described above. Then use the following i
 To run the unit tests do the following:
 
 1. (Linux only) Make sure to have Chrome/Chromium installed and the path to it in the `CHROME_BIN` environment variable.
-2. To start all unit tests use `ng test`.
+2. To start all unit tests use `npm run test`.
 
 Unit tests are written in the `.spec` files in each components directory.
 
