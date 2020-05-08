@@ -18,4 +18,6 @@ export interface Audit {
   customerData: CustomerData;
   contactPerson: ContactPerson;
   factors?: Factor[];
+
+  status: AuditStatus;
 }
