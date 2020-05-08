@@ -4,9 +4,9 @@ import { AuditRegistryState } from '../ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
 import { Audit } from '../data/models/audit.model';
 import { NbDialogService, NbDialogConfig } from '@nebular/theme';
-import { AddAuditDialogComponent } from '../add-audit-dialog/add-audit-dialog.component';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { EditAuditDialogComponent } from '../shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
+import { AddAuditDialogComponent } from '../shared/dialogs/add-audit-dialog/add-audit-dialog.component';
 
 const defaultDialogOptions: Partial<NbDialogConfig> = {
   autoFocus: false,

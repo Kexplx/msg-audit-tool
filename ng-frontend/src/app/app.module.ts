@@ -20,6 +20,7 @@ import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/c
 import { ActionListenerDirective } from './audit-list/action-listener.directive';
 import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 import { AuditDataFormComponent } from './shared/forms/audit-data/audit-data-form.component';
+import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
 
 @NgModule({
   declarations: [
