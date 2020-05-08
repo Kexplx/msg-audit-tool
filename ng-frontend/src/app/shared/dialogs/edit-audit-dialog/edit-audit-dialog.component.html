@@ -1,1 +1,3 @@
-<p>edit-audit-dialog works!</p>
+<div class="scrollable-container">
+  <app-audit-data-form (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" [audit]="audit$ | async" [submitButtonName]="'speichern'" cancelButtonName="abbrechen"> </app-audit-data-form>
+</div>
