@@ -7,6 +7,11 @@ import { NbDialogService } from '@nebular/theme';
 import { AddAuditDialogComponent } from '../add-audit-dialog/add-audit-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 
+const defaultDialogOptions: Partial<NbDialogConfig> = {
+  autoFocus: false,
+  closeOnBackdropClick: false,
+  closeOnEsc: false,
+};
 @Component({
   selector: 'app-audit-list',
   templateUrl: './audit-list.component.html',
