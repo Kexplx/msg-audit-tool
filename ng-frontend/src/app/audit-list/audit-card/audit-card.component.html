@@ -2,10 +2,10 @@
   <nb-accordion-item>
     <nb-accordion-item-header>
       <ng-container [ngSwitch]="audit.status">
-            <div *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned"></div>
-            <div *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action"></div>
-            <div *ngSwitchCase="auditStatus.IsFinished" class="banner-status banner-status-is-finished"></div>
-            <div *ngSwitchCase="auditStatus.IsCanceled" class="banner-status banner-status-is-canceled"></div>
+        <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned"></div>
+        <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action"></div>
+        <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsFinished" class="banner-status banner-status-is-finished"></div>
+        <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsCanceled" class="banner-status banner-status-is-canceled"></div>
       </ng-container>
       <div class="nb-accordion-item-header-wrapper">
         <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>
@@ -15,38 +15,28 @@
           <span class="label" *ngIf="audit.start">
             &nbsp;({{ audit.start | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.end">{{ audit.end | date: 'dd.MM.yyyy' }}</span
             >)
-            </span>
-          <ng-container [ngSwitch]="audit.status">
-            <nb-badge *ngSwitchCase="auditStatus.IsPlanned" text="Geplant" status="danger" position="top right"></nb-badge>
-            <nb-badge *ngSwitchCase="auditStatus.InAction" text="In Bearbeitung" status="warning" position="top right"></nb-badge>
-            <nb-badge *ngSwitchCase="auditStatus.IsFinished" text="Abgeschlossen" status="success" position="top right"></nb-badge>
-            <nb-badge *ngSwitchCase="auditStatus.IsCanceled" text="Abgebrochen" status="basic" position="top right"></nb-badge>
-          </ng-container>
+          </span>
         </div>
       </div>
     </nb-accordion-item-header>
     <nb-accordion-item-body>
-      <nb-tabset>
-        <nb-tab tabTitle="Kontakt">
-          <div class="card-information-header">
-            Unternehmen
-          </div>
-          <div class="card-information-body">{{ audit.customerData.name }}, {{ audit.customerData.department }} ({{ audit.customerData.sector }})</div>
-          <div class="card-information-header">
-            Kontaktperson
-          </div>
-          <div class="card-information-body">
-            {{ audit.contactPerson.title }} {{ audit.contactPerson.firstName }}
-            {{ audit.contactPerson.lastName }}
-          </div>
-          <div class="card-information-header">
-            Kontaktinformationen
-          </div>
-          <div class="card-information-body">
-            {{ audit.contactPerson.information }}
-          </div>
-        </nb-tab>
-      </nb-tabset>
+      <div class="card-information-header">
+        Unternehmen
+      </div>
+      <div class="card-information-body">{{ audit.customerData.name }}, {{ audit.customerData.department }} ({{ audit.customerData.sector }})</div>
+      <div class="card-information-header">
+        Kontaktperson
+      </div>
+      <div class="card-information-body">
+        {{ audit.contactPerson.title }} {{ audit.contactPerson.firstName }}
+        {{ audit.contactPerson.lastName }}
+      </div>
+      <div class="card-information-header">
+        Kontaktinformationen
+      </div>
+      <div class="card-information-body">
+        {{ audit.contactPerson.information }}
+      </div>
       <div class="card-options">
         <button nbButton status="primary">zum Audit</button>
         <button nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId">
