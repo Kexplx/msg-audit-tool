@@ -32,7 +32,7 @@ We use VS Code for development. To apply our coding guidelines use the following
 
 ### Testing
 
-Set up your development environment as described above.
+Set up your development environment as described above. Then use the following instructions to start the tests.
 
 #### Unit tests
 To run the unit tests do the following:
