@@ -14,6 +14,8 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./edit-audit-dialog.component.scss'],
 })
 export class EditAuditDialogComponent implements OnInit {
+  audit$: Observable<Audit>;
+  id: string;
 
   constructor(
     protected dialogRef: NbDialogRef<{ id: string }>,
@@ -22,6 +24,11 @@ export class EditAuditDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.id = this.dialogRef.componentRef.instance.id;
+    this.audit$ = this.store.select(AuditRegistryState.audit(this.id));
+    this.dialogRef.onClose.subscribe(() => {
+      this.router.navigate(['/audits']);
+    });
   }
 
   onCancel() {
