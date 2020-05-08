@@ -2,32 +2,33 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditAuditDialogComponent } from './edit-audit-dialog.component';
 import { of } from 'rxjs';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { AppNebularModule } from 'src/app/app-nebular.module';
 import { NgxsModule } from '@ngxs/store';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 
-describe('EditAuditDialogComponent', () => {
+fdescribe('EditAuditDialogComponent', () => {
   let component: EditAuditDialogComponent;
   let fixture: ComponentFixture<EditAuditDialogComponent>;
 
   beforeEach(() => {
-    const nbDialogRefStub = {
+    const nbDialogRefStub: Partial<NbDialogRef<any>> = {
       onClose: of(true),
       close: () => {},
-      componentRef: { instance: { id: '123' } },
     };
 
-    const routerStub = {
-      navigate: () => of(true).toPromise(),
+    const nbDialogServiceStub = {
+      open: (...k: any) => nbDialogRefStub,
     };
 
     TestBed.configureTestingModule({
       declarations: [EditAuditDialogComponent],
-      imports: [AppNebularModule, NgxsModule.forRoot([])],
+      imports: [AppNebularModule, NgxsModule.forRoot([AuditRegistryState]), RouterTestingModule],
       providers: [
         { provide: NbDialogRef, useValue: nbDialogRefStub },
-        { provide: Router, useValue: routerStub },
+        { provide: NbDialogService, useValue: nbDialogServiceStub },
       ],
     });
 
