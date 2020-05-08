@@ -14,7 +14,7 @@ public class CriteriaEntity {
     private Collection<QuestionEntity> questionsById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
