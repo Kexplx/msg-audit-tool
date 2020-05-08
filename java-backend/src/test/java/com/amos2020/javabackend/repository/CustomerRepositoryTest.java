@@ -296,7 +296,6 @@ public class CustomerRepositoryTest {
     public void tearDown() {
         repository.delete(toTest);
         contactPersonRepository.delete(contactPersonEntity);
-
     }
 
 }
