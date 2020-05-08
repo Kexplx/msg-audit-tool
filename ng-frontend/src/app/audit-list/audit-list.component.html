@@ -1,6 +1,6 @@
 <header class="grid-1-auto-auto">
   <h4 class="header-title">Audits</h4>
-  <a [routerLink]="['neu']" hero size="medium" nbButton status="primary">
+  <a [routerLink]="['new']" hero size="medium" nbButton status="primary">
     <nb-icon icon="plus"></nb-icon>
     Neuer Audit
   </a>
@@ -13,3 +13,4 @@
 <aside class="hint-no-audits" *ngIf="(audits$ | async).length == 0">
   <h6 class="text-hint">Noch keine Audits vorhanden</h6>
 </aside>
+<router-outlet></router-outlet>
