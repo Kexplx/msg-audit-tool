@@ -43,6 +43,10 @@ export class EditAuditDialogComponent implements OnInit {
       });
   }
 
+  onSubmit(audit: Audit) {
+    this.store.dispatch(new UpdateAudit(this.id, audit)).subscribe(() => this.dialogRef.close());
+  }
+
   onCancel() {
     this.dialogRef.close();
   }
