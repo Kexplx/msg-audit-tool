@@ -12,7 +12,7 @@ import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 import { EditAuditDialogComponent } from '../edit-audit-dialog/edit-audit-dialog.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
-fdescribe('AddAuditDialogComponent', () => {
+describe('AddAuditDialogComponent', () => {
   let component: AddAuditDialogComponent;
   let fixture: ComponentFixture<AddAuditDialogComponent>;
 
