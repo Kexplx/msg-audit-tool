@@ -1,6 +1,6 @@
 import { CustomerData } from './customer-data.model';
 import { ContactPerson } from './contact-person.model';
-import { Category } from './category.model';
+import { Factor } from './factor.model';
 
 export interface Audit {
   id?: string;
@@ -10,5 +10,5 @@ export interface Audit {
 
   customerData: CustomerData;
   contactPerson: ContactPerson;
-  categories?: Category[];
+  factors?: Factor[];
 }
