@@ -76,13 +76,23 @@ export class AuditDataFormComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
-    this.categories = categories;
-    this.selectedCategories = this.audit ? [...this.audit.categories] : [];
-    this.selectedCategories.forEach(x => {
-      x.children = x.children ? [...x.children] : null;
+    const categoryTitles = [];
+    if (this.audit) {
+      for (const factor of this.audit.factors) {
+        for (const category of factor.categories) {
+          categoryTitles.push(category.title);
+        }
+      }
+    }
+
+    this.formFactors = factors.map(factor => {
+      const formCategories = factor.categories.map(x => {
+        return { title: x.title, selected: categoryTitles.includes(x.title) };
     });
 
-    // this.formBuilder.group(new AuditFormObject());
+      const hasSelectedCategory = formCategories.find(x => x.selected) != undefined;
+      return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
+    });
 
     this.auditForm = this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
