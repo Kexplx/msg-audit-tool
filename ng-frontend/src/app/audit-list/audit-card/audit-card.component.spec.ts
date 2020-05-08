@@ -66,22 +66,22 @@ describe('AuditCardComponent', () => {
 
   it('should render audit status tag with default case IsPlanned and change its statuses correctly', () => {
     expect(
-      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+      fixture.debugElement.nativeElement.querySelector('.banner-status-is-planned').getAttribute('nbPopover'),
     ).toContain('Geplant');
     component.audit.status = AuditStatus.InAction;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+      fixture.debugElement.nativeElement.querySelector('.banner-status-in-action').getAttribute('nbPopover'),
     ).toContain('In Bearbeitung');
     component.audit.status = AuditStatus.IsFinished;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+      fixture.debugElement.nativeElement.querySelector('.banner-status-is-finished').getAttribute('nbPopover'),
     ).toContain('Abgeschlossen');
     component.audit.status = AuditStatus.IsCanceled;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('nb-badge').getAttribute('text'),
+      fixture.debugElement.nativeElement.querySelector('.banner-status-is-canceled').getAttribute('nbPopover'),
     ).toContain('Abgebrochen');
   });
 });
