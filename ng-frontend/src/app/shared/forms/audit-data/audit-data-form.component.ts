@@ -111,54 +111,12 @@ export class AuditDataFormComponent implements OnInit {
     this.selectedCategories.push({ ...parentCategory });
   }
 
-  removeParentCategory(parentCategory: Category) {
-    const index = this.selectedCategories.indexOf(parentCategory);
-    this.selectedCategories.splice(index, 1);
-  }
-
-  addChildCategory(childCategory: Category, parentCategory: Category) {
-    const parent = this.selectedCategories.find(x => x.title == parentCategory.title);
-
-    if (!parent) {
-      this.selectedCategories.push({
-        title: parentCategory.title,
-        children: [childCategory],
-      });
-    } else {
-      parent.children.push(childCategory);
-    }
-  }
-
-  removeChildCategory(childCategory: Category, parentCategory: Category) {
-    parentCategory = this.selectedCategories.find(x => x.title == parentCategory.title);
-    parentCategory.children = parentCategory.children.filter(x => x != childCategory);
-  }
-
-  isChecked(title: string) {
-    return (
-      this.selectedCategories.find(
-        x => x.title == title || x.children?.map(x => x.title).includes(title),
-      ) != undefined
-    );
-  }
-
-  parseDate(s: string) {
-    return s ? new Date(s).getTime() : undefined;
-  }
-
-  sortCategoriesByTitle(categories: Category[]) {
-    categories = categories.sort((a: Category, b: Category) => (a.title > b.title ? 1 : -1));
-
-    for (const category of categories) {
-      if (category.children) {
-        category.children = category.children.sort((a: Category, b: Category) =>
-          a.title > b.title ? 1 : -1,
+  onSubmit() {
+    const filteredFactors = this.formFactors.filter(
+      x => x.categories.findIndex(x => x['selected']) != -1,
         );
-      }
-    }
 
-    return categories;
-  }
+    filteredFactors.forEach(x => (x.categories = x.categories.filter(x => x['selected'])));
 
   onSubmit() {
     const audit: Audit = {
