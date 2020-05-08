@@ -1,18 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Audit } from 'src/app/data/models/audit.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { categories } from 'src/app/data/categories';
-import { Category } from 'src/app/data/models/category.model';
+import { factors } from 'src/app/data/categories';
 import { NbDialogService } from '@nebular/theme';
 import { ConfirmDiscardDialogComponent } from '../../confirm-discard-dialog/confirm-discard-dialog.component';
-import { CustomerData } from 'src/app/data/models/customer-data.model';
-import { ContactPerson } from 'src/app/data/models/contact-person.model';
-
-class CategoryFormObject implements Category {
-  title: string;
-  children?: CategoryFormObject[];
-  selected: boolean;
-}
+import { Factor } from 'src/app/data/models/factor.model';
 
 @Component({
   selector: 'app-audit-data-form',
@@ -27,8 +19,7 @@ export class AuditDataFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<Audit>();
   @Output() cancelled = new EventEmitter<any>();
 
-  categories: Category[];
-  selectedCategories: Category[];
+  formFactors: Factor[];
   auditForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
@@ -88,7 +79,7 @@ export class AuditDataFormComponent implements OnInit {
     this.formFactors = factors.map(factor => {
       const formCategories = factor.categories.map(x => {
         return { title: x.title, selected: categoryTitles.includes(x.title) };
-    });
+      });
 
       const hasSelectedCategory = formCategories.find(x => x.selected) != undefined;
       return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
@@ -107,18 +98,14 @@ export class AuditDataFormComponent implements OnInit {
       contactInformation: [this.audit?.contactPerson.information, Validators.required],
     });
   }
-  addParentCategory(parentCategory: Category) {
-    this.selectedCategories.push({ ...parentCategory });
-  }
 
   onSubmit() {
     const filteredFactors = this.formFactors.filter(
       x => x.categories.findIndex(x => x['selected']) != -1,
-        );
+    );
 
     filteredFactors.forEach(x => (x.categories = x.categories.filter(x => x['selected'])));
 
-  onSubmit() {
     const audit: Audit = {
       name: this.auditName.value,
       contactPerson: {
@@ -134,11 +121,10 @@ export class AuditDataFormComponent implements OnInit {
       },
       start: this.parseDate(this.start.value),
       end: this.parseDate(this.end.value),
-      categories: this.sortCategoriesByTitle(this.selectedCategories),
+      factors: [...filteredFactors],
     };
 
-    this.audit = audit;
-    this.formSubmitted.emit(this.audit);
+    this.formSubmitted.emit(audit);
   }
 
   onCancel() {
@@ -158,5 +144,14 @@ export class AuditDataFormComponent implements OnInit {
     } else {
       this.cancelled.emit();
     }
+  }
+
+  onFactorSelect(factor: Factor) {
+    factor['selected'] = !factor['selected'];
+    factor.categories.forEach(x => (x['selected'] = factor['selected']));
+  }
+
+  parseDate(s: string) {
+    return s ? new Date(s).getTime() : undefined;
   }
 }
