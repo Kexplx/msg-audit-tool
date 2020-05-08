@@ -29,6 +29,18 @@ export class EditAuditDialogComponent implements OnInit {
     this.dialogRef.onClose.subscribe(() => {
       this.router.navigate(['/audits']);
     });
+
+    this.audit$
+      .pipe(
+        tap(audit => {
+          if (!audit) {
+            throw Error(`Audit with id: ${this.id} not found`);
+          }
+        }),
+      )
+      .subscribe(null, () => {
+        this.dialogRef.close();
+      });
   }
 
   onCancel() {
