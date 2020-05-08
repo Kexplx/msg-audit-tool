@@ -1,7 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -25,7 +25,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "company_name")
     public String getCompanyName() {
         return companyName;
@@ -36,7 +36,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "sector")
     public String getSector() {
         return sector;
@@ -47,7 +47,7 @@ public class CustomerEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "department")
     public String getDepartment() {
         return department;

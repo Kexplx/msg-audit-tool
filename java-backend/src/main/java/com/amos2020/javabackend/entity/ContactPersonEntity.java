@@ -2,7 +2,7 @@ package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -26,7 +26,7 @@ public class ContactPersonEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "title")
     public String getTitle() {
         return title;
@@ -37,7 +37,7 @@ public class ContactPersonEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "name")
     public String getName() {
         return name;

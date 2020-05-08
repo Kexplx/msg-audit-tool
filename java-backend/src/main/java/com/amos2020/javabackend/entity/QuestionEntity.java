@@ -1,7 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -23,7 +23,7 @@ public class QuestionEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "question")
     public String getQuestion() {
         return question;

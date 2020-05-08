@@ -1,7 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -25,7 +25,7 @@ public class FactorEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "name")
     public String getName() {
         return name;
@@ -36,7 +36,7 @@ public class FactorEntity {
     }
 
     @Basic
-    @NotNull
+    @NotBlank
     @Column(name = "iso_name")
     public String getIsoName() {
         return isoName;
