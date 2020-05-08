@@ -2,10 +2,10 @@
   <nb-accordion-item>
     <nb-accordion-item-header>
       <ng-container [ngSwitch]="audit.status">
-            <div *ngSwitchCase="auditStatus.IsPlanned" class="banner banner-status-is-planned"></div>
-            <div *ngSwitchCase="auditStatus.InAction" class="banner banner-status-in-action"></div>
-            <div *ngSwitchCase="auditStatus.IsFinished" class="banner banner-status-is-finished"></div>
-            <div *ngSwitchCase="auditStatus.IsCanceled" class="banner banner-status-is-canceled"></div>
+            <div *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned"></div>
+            <div *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action"></div>
+            <div *ngSwitchCase="auditStatus.IsFinished" class="banner-status banner-status-is-finished"></div>
+            <div *ngSwitchCase="auditStatus.IsCanceled" class="banner-status banner-status-is-canceled"></div>
       </ng-container>
       <div class="nb-accordion-item-header-wrapper">
         <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>
