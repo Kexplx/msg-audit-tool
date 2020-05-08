@@ -1,6 +1,12 @@
 <nb-accordion>
   <nb-accordion-item>
     <nb-accordion-item-header>
+      <ng-container [ngSwitch]="audit.status">
+            <div *ngSwitchCase="auditStatus.IsPlanned" class="banner banner-status-is-planned"></div>
+            <div *ngSwitchCase="auditStatus.InAction" class="banner banner-status-in-action"></div>
+            <div *ngSwitchCase="auditStatus.IsFinished" class="banner banner-status-is-finished"></div>
+            <div *ngSwitchCase="auditStatus.IsCanceled" class="banner banner-status-is-canceled"></div>
+      </ng-container>
       <div class="nb-accordion-item-header-wrapper">
         <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>
         <div>
@@ -9,14 +15,13 @@
           <span class="label" *ngIf="audit.start">
             &nbsp;({{ audit.start | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.end">{{ audit.end | date: 'dd.MM.yyyy' }}</span
             >)
-          </span>
+            </span>
           <ng-container [ngSwitch]="audit.status">
             <nb-badge *ngSwitchCase="auditStatus.IsPlanned" text="Geplant" status="danger" position="top right"></nb-badge>
             <nb-badge *ngSwitchCase="auditStatus.InAction" text="In Bearbeitung" status="warning" position="top right"></nb-badge>
             <nb-badge *ngSwitchCase="auditStatus.IsFinished" text="Abgeschlossen" status="success" position="top right"></nb-badge>
             <nb-badge *ngSwitchCase="auditStatus.IsCanceled" text="Abgebrochen" status="basic" position="top right"></nb-badge>
           </ng-container>
-          <div *ngIf="audit.status === auditStatus.IsPlanned" then></div>
         </div>
       </div>
     </nb-accordion-item-header>

@@ -1,4 +1,6 @@
 @import 'src/sass/utils';
+@import 'src/sass/colors';
+
 .card-options {
   display: grid;
   gap: 0 10px;
@@ -33,4 +35,32 @@ nb-checkbox {
   align-items: center;
   grid-template-columns: auto 1fr;
   gap: 0 10px;
+}
+
+nb-accordion-header {
+  position: relative;
+}
+
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.banner-status-is-planned {
+  background-color: $status-is-planned;
+}
+
+.banner-status-in-action {
+  background-color: $status-in-action;
+}
+
+.banner-status-is-finished {
+  background-color: $status-is-finished;
+}
+
+.banner-status-is-canceled {
+  background-color: $status-is-canceled;
 }
