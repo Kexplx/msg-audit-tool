@@ -68,7 +68,7 @@ export class AuditDataFormComponent implements OnInit {
 
   ngOnInit(): void {
     const categoryTitles = [];
-    if (this.audit) {
+    if (this.audit?.factors) {
       for (const factor of this.audit.factors) {
         for (const category of factor.categories) {
           categoryTitles.push(category.title);
