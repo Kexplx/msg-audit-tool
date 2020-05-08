@@ -1,11 +1,11 @@
-import { Category } from './models/category.model';
+import { Factor } from './models/factor.model';
 
-export const categories: Category[] = [
-  { title: '1. Effektivität' },
-  { title: '2. Effizienz' },
+export const factors: Factor[] = [
+  { title: '1. Effektivität', categories: [{ title: '1. Effektivität' }] },
+  { title: '2. Effizienz', categories: [{ title: '2. Effizienz' }] },
   {
     title: '3. Zufriedenheit',
-    children: [
+    categories: [
       { title: '3.1 Nützlichkeit' },
       { title: '3.2 Vertrauen' },
       { title: '3.3 Wohlgefälligkeit' },
@@ -14,7 +14,7 @@ export const categories: Category[] = [
   },
   {
     title: '4. Risikofreiheit',
-    children: [
+    categories: [
       { title: '4.1 Verringerung der ökonomischen Risiken' },
       { title: '4.2 Verringerung der Risiken hinsichtlich Gesundheit und Sicherheit' },
       { title: '4.3 Verringerung der Umweltrisiken' },
@@ -22,14 +22,14 @@ export const categories: Category[] = [
   },
   {
     title: '5. Lieferbestandteile',
-    children: [
+    categories: [
       { title: '5.1 Komplette Abdeckung aller Umgebungsanforderungen' },
       { title: '5.2 Flexibilität' },
     ],
   },
   {
     title: '6. Funktionale Tauglichkeit',
-    children: [
+    categories: [
       { title: '6.1 Funktionale Vollständigkeit' },
       { title: '6.2 Funktionale Richtigkeit' },
       { title: '6.3 Funktionale Angemessenheit' },
@@ -37,7 +37,7 @@ export const categories: Category[] = [
   },
   {
     title: '7. Performanz, Effizienz',
-    children: [
+    categories: [
       { title: '7.1 Antwortzeitverhalten' },
       { title: '7.2 Ressourcenverbrauch' },
       { title: '7.3 Kapazität' },
@@ -45,11 +45,11 @@ export const categories: Category[] = [
   },
   {
     title: '8. Austauschbarkeit, Übertragbarkeit',
-    children: [{ title: '8.1 Koexistenz' }, { title: '8.2 Interoperabilität' }],
+    categories: [{ title: '8.1 Koexistenz' }, { title: '8.2 Interoperabilität' }],
   },
   {
     title: '9. Benutzbarkeit',
-    children: [
+    categories: [
       { title: '9.1 Angemessenheit Erkennbarkeit' },
       { title: '9.2 Erlernbarkeit' },
       { title: '9.3 Bedienbarkeit' },
@@ -60,7 +60,7 @@ export const categories: Category[] = [
   },
   {
     title: '10. Zuverlässigkeit',
-    children: [
+    categories: [
       { title: '10.1 Reife' },
       { title: '10.2 Verfügbarkeit' },
       { title: '10.3 Fehlertoleranz' },
@@ -69,7 +69,7 @@ export const categories: Category[] = [
   },
   {
     title: '11. Sicherheit',
-    children: [
+    categories: [
       { title: '11.1 Vertraulichkeit, Zugriffsrechte' },
       { title: '11.2 Integrität' },
       { title: '11.3 Nachweisbarkeit, Schutz vor fremden Zugriff' },
@@ -79,7 +79,7 @@ export const categories: Category[] = [
   },
   {
     title: '12. Wartbarkeit',
-    children: [
+    categories: [
       { title: '12.1 Modularität' },
       { title: '12.2 Wiederverwendbarkeit' },
       { title: '12.3 Analysierbarkeit' },
@@ -89,11 +89,11 @@ export const categories: Category[] = [
   },
   {
     title: '13. Portabilität',
-    children: [
+    categories: [
       { title: '13.1 Anpassbarkeit' },
       { title: '13.1 Installierbarkeit' },
       { title: '13.1 Austauschbarkeit' },
     ],
   },
-  { title: '14. Sonstige Anforderungen' },
+  { title: '14. Sonstige Anforderungen', categories: [{ title: '14. Sonstige Anforderungen' }] },
 ];
