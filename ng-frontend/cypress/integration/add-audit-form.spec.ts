@@ -3,7 +3,7 @@ describe('AddAuditForm', () => {
 
   it('Routing to audits/neu opens AddAuditForm', () => {
     cy.visit(baseUrl + 'neu');
-    cy.get('#cdk-overlay-0 > nb-dialog-container > app-add-audit-dialog > div > form');
+    cy.get('app-add-audit-dialog.ng-star-inserted > .scrollable-container');
   });
 
   it('Clicking abbrechen button closes form', () => {

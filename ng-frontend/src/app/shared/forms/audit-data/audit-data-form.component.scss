@@ -1,16 +1,4 @@
 @import 'src/sass/utils';
-
-.scrollable-container {
-  overflow-y: auto !important;
-  max-width: 95vw;
-  max-height: 95vh;
-}
-
-.accordion-footer {
-  display: flex;
-  justify-content: space-between;
-}
-
 ul {
   list-style-type: none;
 }
@@ -35,4 +23,9 @@ li {
   textarea {
     resize: vertical;
   }
+}
+
+.accordion-footer {
+  display: flex;
+  justify-content: space-between;
 }
