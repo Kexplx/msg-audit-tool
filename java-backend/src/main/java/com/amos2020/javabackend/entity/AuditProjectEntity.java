@@ -17,7 +17,7 @@ public class AuditProjectEntity {
     private CustomerEntity customerByCustomerId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

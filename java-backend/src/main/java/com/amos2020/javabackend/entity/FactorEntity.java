@@ -14,7 +14,7 @@ public class FactorEntity {
     private Collection<CriteriaEntity> criteriaById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;

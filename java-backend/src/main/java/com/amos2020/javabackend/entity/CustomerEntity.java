@@ -14,7 +14,7 @@ public class CustomerEntity {
     private ContactPersonEntity contactPersonByContactPersonId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     public int getId() {
         return id;
