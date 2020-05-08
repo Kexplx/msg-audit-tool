@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
+import * as jasmine from 'karma-jasmine';
 
 describe('AuditCardComponent', () => {
   let component: AuditCardComponent;

@@ -42,6 +42,7 @@
     "@types/chance": "^1.0.10",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/karma-jasmine": "^3.1.0",
     "@types/node": "^12.11.1",
     "@types/shortid": "0.0.29",
     "codelyzer": "^5.1.2",
