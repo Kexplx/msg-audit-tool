@@ -3,8 +3,8 @@ import { Audit } from 'src/app/data/models/audit.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { factors } from 'src/app/data/categories';
 import { NbDialogService } from '@nebular/theme';
-import { ConfirmDiscardDialogComponent } from '../../confirm-discard-dialog/confirm-discard-dialog.component';
 import { Factor } from 'src/app/data/models/factor.model';
+import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 
 @Component({
   selector: 'app-audit-data-form',
