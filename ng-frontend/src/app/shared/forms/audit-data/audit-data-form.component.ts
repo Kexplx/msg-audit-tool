@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Audit } from 'src/app/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { factors } from 'src/app/data/categories';
 import { NbDialogService } from '@nebular/theme';
@@ -64,6 +64,10 @@ export class AuditDataFormComponent implements OnInit {
   get contactInformation() {
     return this.auditForm.get('contactInformation');
   }
+
+  get status() {
+    return this.auditForm.get('status');
+  }
   //#endregion
 
   ngOnInit(): void {
@@ -89,6 +93,7 @@ export class AuditDataFormComponent implements OnInit {
       auditName: [this.audit?.name, Validators.required],
       start: [this.audit?.start],
       end: [this.audit?.end],
+      status: [this.audit?.status ?? AuditStatus.IsPlanned, Validators.required],
       companyName: [this.audit?.customerData.name, Validators.required],
       sector: [this.audit?.customerData.sector, Validators.required],
       department: [this.audit?.customerData.department, Validators.required],
@@ -108,6 +113,7 @@ export class AuditDataFormComponent implements OnInit {
 
     const audit: Audit = {
       name: this.auditName.value,
+      status: +this.status.value,
       contactPerson: {
         firstName: this.firstName.value,
         lastName: this.lastName.value,
