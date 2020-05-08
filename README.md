@@ -6,7 +6,10 @@ Developed in the context of the AMOS Project in summer of 2020 @ FAU for the com
 
 ## Frontend
 
-The frontend is built with Angular. To set it up locally for development and testing do the following:
+The frontend is built with Angular.
+
+### Development
+To set it up locally for development do the following:
 
 1. Install [node.js](https://nodejs.org/en/).
 2. Install the Angular CLI globally: `npm i -g @angular/cli`
@@ -19,3 +22,21 @@ We use VS Code for development. To apply our coding guidelines use the following
 - Angular Snippets
 - Angular Rename Tag
 - Prettier - Code Formatter (you have to manually enable it)
+
+### Testing
+
+Set up your development environment as described above.
+
+#### Unit tests
+To run the unit tests do the following:
+
+1. (Linux only) Make sure to have Chrome/Chromium installed and the path to it in the `CHROME_BIN` environment variable.
+2. To start all unit tests use `ng test`.
+
+Unit tests are written in the `.spec` files in each components directory.
+
+#### End-to-end tests
+We use cypress for our end-to-end-tests. To start all End-to-end tests use `npm run e2e`.
+
+End-to-end tests are written in the `cypress/` folder.
+
