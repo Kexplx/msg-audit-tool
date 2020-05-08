@@ -4,6 +4,7 @@ import { patch, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { AddAudit, DeleteAudit, UpdateAudit } from './audit.actions';
 import * as shortid from 'shortid';
+import { audits } from '../data/examples/audits';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
