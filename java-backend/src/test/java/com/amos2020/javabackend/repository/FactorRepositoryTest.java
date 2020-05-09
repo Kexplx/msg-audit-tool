@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
 
@@ -34,7 +35,7 @@ public class FactorRepositoryTest {
         testFactor.setName(TEST_NAME);
         testFactor.setIsoName(TEST_ISO);
         repository.save(testFactor);
-        Assert.assertTrue(testFactor.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(testFactor))));
     }
 
 
@@ -61,7 +62,7 @@ public class FactorRepositoryTest {
         testFactor.setName(TEST_NAME);
         testFactor.setIsoName(TEST_ISO);
         FactorEntity tmp = repository.save(testFactor);
-        Assert.assertTrue(testFactor.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(testFactor))));
         tmp.setName("update");
         repository.save(tmp);
         Assert.assertEquals(tmp.getName(), testFactor.getName());
@@ -73,7 +74,7 @@ public class FactorRepositoryTest {
         testFactor.setName(TEST_NAME);
         testFactor.setIsoName(TEST_ISO);
         FactorEntity tmp = repository.save(testFactor);
-        Assert.assertTrue(testFactor.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(testFactor))));
         tmp.setIsoName("99999");
         repository.save(tmp);
         Assert.assertEquals(tmp.getIsoName(), testFactor.getIsoName());
@@ -85,7 +86,7 @@ public class FactorRepositoryTest {
         testFactor.setName(TEST_NAME);
         testFactor.setIsoName(TEST_ISO);
         repository.save(testFactor);
-        Assert.assertTrue(testFactor.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(testFactor))));
         testFactor.setName(null);
         repository.save(testFactor);
     }
@@ -96,8 +97,19 @@ public class FactorRepositoryTest {
         testFactor.setName(TEST_NAME);
         testFactor.setIsoName(TEST_ISO);
         repository.save(testFactor);
-        Assert.assertTrue(testFactor.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(testFactor))));
         testFactor.setIsoName(null);
         repository.save(testFactor);
+    }
+
+    @Test
+    public void delete() {
+        testFactor = new FactorEntity();
+        testFactor.setName(TEST_NAME+"delete");
+        testFactor.setIsoName(TEST_ISO);
+        repository.save(testFactor);
+        Assert.assertTrue(repository.exists((Example.of(testFactor))));
+        repository.delete(testFactor);
+        Assert.assertFalse(repository.exists((Example.of(testFactor))));
     }
 }
