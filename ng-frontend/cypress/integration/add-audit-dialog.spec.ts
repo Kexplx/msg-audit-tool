@@ -1,9 +1,9 @@
-describe('AddAuditForm', () => {
+describe('AddAuditDialog', () => {
   let baseUrl = 'http://localhost:4200/audits/';
 
-  it('Routing to audits/neu opens AddAuditForm', () => {
-    cy.visit(baseUrl + 'neu');
-    cy.get('app-add-audit-dialog.ng-star-inserted > .scrollable-container');
+  it('Routing to audits/new opens AddAuditForm', () => {
+    cy.visit(baseUrl + 'new');
+    cy.get('nb-dialog-container');
   });
 
   it('Clicking abbrechen button closes form', () => {
