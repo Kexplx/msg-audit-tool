@@ -25,10 +25,7 @@ To set it up locally for development do the following:
 4. To serve and open the application, run `ng s -o`. The application will open under [http://localhost:4200](http://localhost:4200).
 
 We use VS Code for development. To apply our coding guidelines use the following plugins:
-- Angular Language Service
-- Angular Snippets
-- Angular Rename Tag
-- Prettier - Code Formatter (you have to manually enable it)
+- Prettier - Code Formatter (enable it as the default formatter)
 
 ### Testing
 
