@@ -1,6 +1,8 @@
+import { AddAuditDialogComponent } from 'src/app/shared/dialogs/add-audit-dialog/add-audit-dialog.component';
+
 describe('OverviewDialog', () => {
   let baseUrl = Cypress.config().baseUrl;
-  let testAudit = {
+  const testAudit = {
     name: 'Auditname 1',
     contactPerson: {
       firstName: 'Max',
@@ -11,7 +13,7 @@ describe('OverviewDialog', () => {
     customerData: { department: 'HR', name: 'TestBank', sector: 'Banking' },
   };
 
-  let testAuditEdited = {
+  const testAuditEdited = {
     name: 'Auditname 2',
     contactPerson: {
       firstName: 'Max2',
@@ -22,17 +24,23 @@ describe('OverviewDialog', () => {
     customerData: { department: 'HR2', name: 'TestBank2', sector: 'Banking2' },
   };
 
-  it('Overview dialog shows no audits on initialization', () => {
-    cy.visit(baseUrl);
-    cy.get('.text-hint').should('exist');
-  });
-
-  it('Opens the window to add an audit with a click on the new audits button', () => {
-    cy.get('.grid-1-auto-auto > .status-primary').click();
-    cy.get('nb-dialog-container').should('exist');
-  });
-
-  it('Shows an audit entry on the overwiev page when added by an user', () => {
+  function inputAudit(testAudit: {
+    name: string;
+    start?: Date;
+    end?: Date;
+    contactPerson: {
+      firstName: string;
+      lastName: string;
+      information: string;
+      title: string;
+    };
+    customerData: {
+      department: string;
+      name: string;
+      sector: string;
+    };
+    status?: string;
+  }) {
     // Input Audit name and open next collapsed accordeon through click
     cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').type(testAudit.name);
     cy.get(':nth-child(2) > .accordion-item-header-collapsed').click();
@@ -47,7 +55,7 @@ describe('OverviewDialog', () => {
 
     // Input Contact Information and open next collapsed accordeon through click
     cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
-    cy.get('#nb-option-4').click();
+    cy.get('nb-option').contains(testAudit.contactPerson.title).click();
     cy.get('.grid-auto-1-1 > :nth-child(2) > .input-full-width').type(
       testAudit.contactPerson.firstName,
     );
@@ -58,7 +66,20 @@ describe('OverviewDialog', () => {
       testAudit.contactPerson.information,
     );
     cy.get('.accordion-footer > .status-primary').click();
+  }
 
+  it('Overview dialog shows no audits on initialization', () => {
+    cy.visit(baseUrl);
+    cy.get('.text-hint').should('exist');
+  });
+
+  it('Opens the window to add an audit with a click on the new audits button', () => {
+    cy.get('.grid-1-auto-auto > .status-primary').click();
+    cy.get('nb-dialog-container').should('exist');
+  });
+
+  it('Shows an audit entry on the overview page when added by an user', () => {
+    inputAudit(testAudit);
     // Verify that an Audit exists
     cy.get('.accordion-item-header-collapsed').should('exist');
   });
@@ -106,5 +127,11 @@ describe('OverviewDialog', () => {
 
   it('Shows an edit popup', () => {
     cy.url().should('include', '/edit');
+  });
+
+  it('Shows an audit entry on the overwiev page when added by an user', () => {
+    inputAudit(testAuditEdited);
+    // Verify that an Audit still exists
+    cy.get('.accordion-item-header-collapsed').should('exist');
   });
 });
