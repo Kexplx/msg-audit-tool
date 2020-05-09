@@ -1,5 +1,16 @@
 ![Angular Frontend Build](https://github.com/Kexplx/msg-audit-tool/workflows/Angular%20Frontend%20Build/badge.svg)
 
+<a href="https://badges.mit-license.org/" alt="MIT Licence">
+    <img src="https://img.shields.io/badge/license-MIT-0677b7" />
+</a>
+<a href="https://github.com/Kexplx/msg-audit-tool/releases/tag/sprint_03_release"  alt="Sprint Release Link">
+    <img src="https://img.shields.io/badge/release-sprint_3-1abc9c" />
+</a>
+
+<a href="https://kexplx.github.io/msg-audit-tool/"  alt="Documentation Link">
+    <img src="https://img.shields.io/badge/documentation-compodoc-e74c3c" />
+</a>
+
 # MSG Audit Tool
 
 An audit tool for software projects based on the ISO/IEC 25010 specification.
