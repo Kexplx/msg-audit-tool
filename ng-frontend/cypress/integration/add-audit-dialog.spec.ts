@@ -1,5 +1,5 @@
 describe('AddAuditDialog', () => {
-  let baseUrl = 'http://localhost:4200/audits/';
+  let baseUrl = Cypress.config().baseUrl + '/audits/';
 
   it('Routing to audits/new opens AddAuditForm', () => {
     cy.visit(baseUrl + 'new');

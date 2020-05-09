@@ -1,7 +1,7 @@
 import { Chance } from 'chance';
 
 describe('AddAuditForm', () => {
-  let baseUrl = 'http://localhost:4200';
+  let baseUrl = Cypress.config().baseUrl;
   const chance = new Chance();
 
   beforeEach(() => {

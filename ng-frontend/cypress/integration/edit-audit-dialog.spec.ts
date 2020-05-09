@@ -1,5 +1,5 @@
 describe('EditAuditDialog', () => {
-  let baseUrl = 'http://localhost:4200/audits/';
+  let baseUrl = Cypress.config().baseUrl + '/audits/';
 
   it('Routing to audits/edit on invalid id closes dialog', () => {
     cy.visit(baseUrl + '123/edit');
