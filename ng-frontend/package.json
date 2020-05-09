@@ -7,6 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "compodoc": "compodoc -p tsconfig.json -w -s --name=\"MSG Audit Tool Documentation\"",
     "e2e": "cypress open",
     "e2e-headless": "cypress run"
   },
