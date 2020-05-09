@@ -1,5 +1,3 @@
-import { AddAuditDialogComponent } from 'src/app/shared/dialogs/add-audit-dialog/add-audit-dialog.component';
-
 describe('OverviewDialog', () => {
   let baseUrl = Cypress.config().baseUrl;
   const testAudit = {
