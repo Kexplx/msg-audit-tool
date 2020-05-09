@@ -11,6 +11,8 @@ describe('AddAuditForm', () => {
   it('Redirects to an 404 error page when a unknown route is requested', () => {
     const testString = chance.string({ alpha: true, numeric: true });
     cy.visit(baseUrl + '/' + testString);
-    cy.get('nb-card > nb-card-header').and('contain', 'Sorry');
+    cy.get(
+      'body > app-root > nb-layout > div > div > div > div > div > nb-layout-column > app-not-found > div',
+    ).contains(/Route .* wurde nicht gefunden/);
   });
 });
