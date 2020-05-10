@@ -71,45 +71,59 @@ export class AuditDataFormComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
-    const categoryTitles = [];
     if (this.audit?.factors) {
+      // Get all category titles in audit
+      const categoryTitles = [];
       for (const factor of this.audit.factors) {
         for (const category of factor.categories) {
           categoryTitles.push(category.title);
         }
       }
-    }
 
-    this.formFactors = factors.map(factor => {
-      const formCategories = factor.categories.map(x => {
-        return { title: x.title, selected: categoryTitles.includes(x.title) };
+      // Set selected property of category to true if contained in categoryTitles
+      this.formFactors = factors.map(factor => {
+        const formCategories = factor.categories.map(x => {
+          return { title: x.title, selected: categoryTitles.includes(x.title) };
+        });
+
+        const hasSelectedCategory = formCategories.find(x => x.selected) != undefined;
+        return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
       });
-
-      const hasSelectedCategory = formCategories.find(x => x.selected) != undefined;
-      return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
-    });
+    } else {
+      // Select every factor and category
+      this.formFactors = factors.map(x => ({ ...x, selected: true }));
+      this.formFactors.forEach(x => {
+        x.categories = x.categories.map(x => ({ ...x, selected: true }));
+      });
+    }
 
     this.auditForm = this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
       start: [this.audit?.start],
       end: [this.audit?.end],
-      status: [this.audit?.status ?? AuditStatus.IsPlanned, Validators.required],
-      companyName: [this.audit?.customerData.name, Validators.required],
-      sector: [this.audit?.customerData.sector, Validators.required],
-      department: [this.audit?.customerData.department, Validators.required],
-      title: [this.audit?.contactPerson.title, Validators.required],
-      firstName: [this.audit?.contactPerson.firstName, Validators.required],
-      lastName: [this.audit?.contactPerson.lastName, Validators.required],
-      contactInformation: [this.audit?.contactPerson.information, Validators.required],
+      status: [this.audit?.status ?? AuditStatus.IsPlanned],
+      companyName: [this.audit?.customerData.name],
+      sector: [this.audit?.customerData.sector],
+      department: [this.audit?.customerData.department],
+      title: [this.audit?.contactPerson.title],
+      firstName: [this.audit?.contactPerson.firstName],
+      lastName: [this.audit?.contactPerson.lastName],
+      contactInformation: [this.audit?.contactPerson.information],
     });
   }
 
   onSubmit() {
+    // Remove factors that don't contain a selected category
     const filteredFactors = this.formFactors.filter(
       x => x.categories.findIndex(x => x['selected']) != -1,
     );
 
+    // Remove categories that aren't selected
     filteredFactors.forEach(x => (x.categories = x.categories.filter(x => x['selected'])));
+
+    // Remove "selected" property from factors and categories
+    filteredFactors.forEach(x => delete x['selected']);
+    filteredFactors.forEach(x => x.categories.forEach(x => delete x['selected']));
 
     const audit: Audit = {
       name: this.auditName.value,
