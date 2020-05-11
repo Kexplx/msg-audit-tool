@@ -1,9 +1,31 @@
-# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
-# For additional information regarding the format and rule options, please see:
-# https://github.com/browserslist/browserslist#queries
-
-# You can see what browsers were selected by your queries by running:
-#   npx browserslist
+# and_chr 80       
+# and_ff 68        
+# and_qq 1.2       
+# and_uc 12.12
+# android 80
+# baidu 7.12
+# chrome 81
+# chrome 80
+# chrome 79
+# edge 80
+# edge 79
+# edge 18
+# firefox 75
+# firefox 74
+# firefox 73
+# firefox 68
+# ios_saf 13.3
+# ios_saf 13.2
+# ios_saf 12.2-12.4
+# kaios 2.5
+# op_mini all
+# op_mob 46
+# opera 67
+# opera 66
+# safari 13
+# safari 12.1
+# samsung 11.1
+# samsung 10.1
 
 > 0.5%
 last 2 versions
