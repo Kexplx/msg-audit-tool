@@ -113,17 +113,7 @@ export class AuditDataFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // Remove factors that don't contain a selected category
-    const filteredFactors = this.formFactors.filter(
-      x => x.categories.findIndex(x => x['selected']) != -1,
-    );
-
-    // Remove categories that aren't selected
-    filteredFactors.forEach(x => (x.categories = x.categories.filter(x => x['selected'])));
-
-    // Remove "selected" property from factors and categories
-    filteredFactors.forEach(x => delete x['selected']);
-    filteredFactors.forEach(x => x.categories.forEach(x => delete x['selected']));
+    const filteredFactors = this.filterFactors(this.formFactors);
 
     const audit: Audit = {
       name: this.auditName.value,
@@ -145,6 +135,24 @@ export class AuditDataFormComponent implements OnInit {
     };
 
     this.formSubmitted.emit(audit);
+  }
+
+  /**
+   * Removes factors that don't contain a selected category
+   * and removes "selected" property from factors and categories
+   *
+   * @param factors The factors to filter
+   */
+  filterFactors(factors: Factor[]) {
+    const filteredFactors = factors.filter(x => x.categories.findIndex(x => x['selected']) != -1);
+
+    filteredFactors.forEach(x => {
+      x.categories = x.categories.filter(x => x['selected']);
+      delete x['selected'];
+      x.categories.forEach(x => delete x['selected']);
+    });
+
+    return filteredFactors;
   }
 
   onCancel() {
