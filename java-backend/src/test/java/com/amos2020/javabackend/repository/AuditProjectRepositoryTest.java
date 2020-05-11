@@ -11,11 +11,11 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
 
 import java.sql.Date;
-import java.util.Optional;
 
 /**
  * Test class for the ContactPersonRepository
@@ -62,7 +62,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         repository.save(toTest);
-        Assert.assertTrue(toTest.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -131,14 +131,11 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         repository.save(toTest);
-
-        Optional<AuditProjectEntity> optional = repository.findById(toTest.getId());
-        Assert.assertTrue(optional.isPresent());
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         repository.delete(toTest);
+        Assert.assertFalse(repository.exists((Example.of(toTest))));
 
-        optional = repository.findById(toTest.getId());
-        Assert.assertFalse(optional.isPresent());
     }
 
     @Test
@@ -149,7 +146,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.setName("New Name");
         repository.save(auditProjectEntity);
@@ -164,7 +161,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.setName("  ");
         repository.save(auditProjectEntity);
@@ -179,7 +176,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.setStartDate(Date.valueOf("2019-10-12"));
         repository.save(auditProjectEntity);
@@ -194,7 +191,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.setStartDate(null);
         repository.save(auditProjectEntity);
@@ -208,7 +205,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.setEndDate(Date.valueOf("2012-04-04"));
         repository.save(auditProjectEntity);
@@ -223,7 +220,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.setEndDate(null);
         repository.save(auditProjectEntity);
@@ -237,7 +234,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.getCustomerByCustomerId().setCompanyName("NewCompanyName");
         repository.save(auditProjectEntity);
@@ -252,7 +249,7 @@ public class AuditProjectRepositoryTest {
         toTest.setEndDate(TEST_END_DATE);
         toTest.setCustomerByCustomerId(customerEntity);
         AuditProjectEntity auditProjectEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         auditProjectEntity.getCustomerByCustomerId().setCompanyName("");
         repository.save(auditProjectEntity);

@@ -7,10 +7,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
-
-import java.util.Optional;
 
 /**
  * Test class for the ContactPersonRepository
@@ -33,7 +32,7 @@ public class ContactPersonRepositoryTest {
         toTest.setName("Jon Doe");
         ContactPersonEntity entity = repository.save(toTest);
 
-        Assert.assertTrue(entity.getId() > 0);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
         Assert.assertEquals(entity.getEmail(), toTest.getEmail());
         Assert.assertEquals(entity.getName(), toTest.getName());
         Assert.assertEquals(entity.getPhoneNumber(), toTest.getPhoneNumber());
@@ -115,13 +114,13 @@ public class ContactPersonRepositoryTest {
         toTest.setPhoneNumber("0123456789");
         toTest.setEmail("valid@email.com");
         toTest.setName("Jon Doe");
-        ContactPersonEntity entity = repository.save(toTest);
+        repository.save(toTest);
 
-        Assert.assertNotNull(entity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        repository.delete(entity);
-        Optional<ContactPersonEntity> optional = repository.findById(entity.getId());
-        Assert.assertFalse(optional.isPresent());
+        repository.delete(toTest);
+        Assert.assertFalse(repository.exists((Example.of(toTest))));
+
     }
 
     @Test
@@ -133,7 +132,7 @@ public class ContactPersonRepositoryTest {
         toTest.setName("Jon Doe");
         ContactPersonEntity entity = repository.save(toTest);
 
-        Assert.assertNotNull(entity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setTitle("newTitle");
         ContactPersonEntity changedEntity = repository.save(entity);
@@ -148,7 +147,7 @@ public class ContactPersonRepositoryTest {
         toTest.setEmail("valid@email.com");
         toTest.setName("Jon Doe");
         ContactPersonEntity entity = repository.save(toTest);
-        Assert.assertNotNull(entity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setTitle("  ");
         repository.save(entity);
@@ -163,7 +162,7 @@ public class ContactPersonRepositoryTest {
         toTest.setName("Jon Doe");
         ContactPersonEntity entity = repository.save(toTest);
 
-        Assert.assertNotNull(entity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setName("New Jon");
         ContactPersonEntity changedEntity = repository.save(entity);
@@ -178,7 +177,7 @@ public class ContactPersonRepositoryTest {
         toTest.setEmail("valid@email.com");
         toTest.setName(" ");
         ContactPersonEntity entity = repository.save(toTest);
-        Assert.assertNotNull(entity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setName("  ");
         repository.save(entity);

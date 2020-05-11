@@ -10,10 +10,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
-
-import java.util.Optional;
 
 /**
  * Test class for the CustomerRepository
@@ -47,8 +46,8 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
-        Assert.assertTrue(customerEntity.getId() > 0);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
         Assert.assertEquals(customerEntity.getCompanyName(), toTest.getCompanyName());
         Assert.assertEquals(customerEntity.getSector(), toTest.getSector());
         Assert.assertEquals(customerEntity.getDepartment(), toTest.getDepartment());
@@ -161,14 +160,11 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         repository.save(toTest);
-
-        Optional<CustomerEntity> optional = repository.findById(toTest.getId());
-        Assert.assertTrue(optional.isPresent());
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         repository.delete(toTest);
+        Assert.assertFalse(repository.exists((Example.of(toTest))));
 
-        optional = repository.findById(toTest.getId());
-        Assert.assertFalse(optional.isPresent());
     }
 
     @Test
@@ -179,7 +175,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         customerEntity.setDepartment("HR");
         repository.save(customerEntity);
@@ -194,7 +190,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         customerEntity.setDepartment(" ");
         repository.save(customerEntity);
@@ -208,7 +204,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         customerEntity.setCompanyName("NewCompanyName");
         repository.save(customerEntity);
@@ -223,7 +219,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         customerEntity.setCompanyName(" ");
         repository.save(customerEntity);
@@ -237,7 +233,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         customerEntity.setSector("Tech");
         repository.save(customerEntity);
@@ -252,7 +248,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         customerEntity.setSector(" ");
         repository.save(customerEntity);
@@ -266,7 +262,7 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         contactPersonEntity.setName("Jona Doe");
         contactPersonEntity.setTitle("Mister");
@@ -286,7 +282,8 @@ public class CustomerRepositoryTest {
         toTest.setSector("Finance");
         toTest.setContactPersonByContactPersonId(contactPersonEntity);
         CustomerEntity customerEntity = repository.save(toTest);
-        Assert.assertNotNull(customerEntity);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+
         contactPersonEntity.setName(" ");
         customerEntity.setContactPersonByContactPersonId(contactPersonEntity);
         repository.save(customerEntity);
