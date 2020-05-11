@@ -148,6 +148,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#filterFactors">filterFactors</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
@@ -438,6 +441,84 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="filterFactors"></a>
+                    <span class="name">
+                        <b>
+                            filterFactors
+                        </b>
+                        <a href="#filterFactors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterFactors(factors: <a href="../interfaces/Factor.html">Factor[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:146</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes factors that don&#39;t contain a selected category
+and removes &quot;selected&quot; property from factors and categories</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>factors</td>
+                                    <td>
+                                                <code><a href="../interfaces/Factor.html" target="_self" >Factor[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The factors to filter</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <b>
@@ -495,8 +576,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:158</a></div>
                 </td>
             </tr>
 
@@ -534,8 +615,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="155"
-                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:155</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="177"
+                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:177</a></div>
                 </td>
             </tr>
 
@@ -604,8 +685,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:115</a></div>
                 </td>
             </tr>
 
@@ -643,8 +724,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="160"
-                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:160</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="182"
+                            class="link-to-prism">src/app/shared/forms/audit-data/audit-data-form.component.ts:182</a></div>
                 </td>
             </tr>
 
@@ -1077,45 +1158,49 @@ export class AuditDataFormComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
-    const categoryTitles &#x3D; [];
     if (this.audit?.factors) {
+      // Get all category titles in audit
+      const categoryTitles &#x3D; [];
       for (const factor of this.audit.factors) {
         for (const category of factor.categories) {
           categoryTitles.push(category.title);
         }
       }
-    }
 
-    this.formFactors &#x3D; factors.map(factor &#x3D;&gt; {
-      const formCategories &#x3D; factor.categories.map(x &#x3D;&gt; {
-        return { title: x.title, selected: categoryTitles.includes(x.title) };
+      // Set selected property of category to true if contained in categoryTitles
+      this.formFactors &#x3D; factors.map(factor &#x3D;&gt; {
+        const formCategories &#x3D; factor.categories.map(x &#x3D;&gt; {
+          return { title: x.title, selected: categoryTitles.includes(x.title) };
+        });
+
+        const hasSelectedCategory &#x3D; formCategories.find(x &#x3D;&gt; x.selected) !&#x3D; undefined;
+        return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
       });
-
-      const hasSelectedCategory &#x3D; formCategories.find(x &#x3D;&gt; x.selected) !&#x3D; undefined;
-      return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
-    });
+    } else {
+      // Select every factor and category
+      this.formFactors &#x3D; factors.map(x &#x3D;&gt; ({ ...x, selected: true }));
+      this.formFactors.forEach(x &#x3D;&gt; {
+        x.categories &#x3D; x.categories.map(x &#x3D;&gt; ({ ...x, selected: true }));
+      });
+    }
 
     this.auditForm &#x3D; this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
       start: [this.audit?.start],
       end: [this.audit?.end],
-      status: [this.audit?.status ?? AuditStatus.IsPlanned, Validators.required],
-      companyName: [this.audit?.customerData.name, Validators.required],
-      sector: [this.audit?.customerData.sector, Validators.required],
-      department: [this.audit?.customerData.department, Validators.required],
-      title: [this.audit?.contactPerson.title, Validators.required],
-      firstName: [this.audit?.contactPerson.firstName, Validators.required],
-      lastName: [this.audit?.contactPerson.lastName, Validators.required],
-      contactInformation: [this.audit?.contactPerson.information, Validators.required],
+      status: [this.audit?.status ?? AuditStatus.IsPlanned],
+      companyName: [this.audit?.customerData.name],
+      sector: [this.audit?.customerData.sector],
+      department: [this.audit?.customerData.department],
+      title: [this.audit?.contactPerson.title],
+      firstName: [this.audit?.contactPerson.firstName],
+      lastName: [this.audit?.contactPerson.lastName],
+      contactInformation: [this.audit?.contactPerson.information],
     });
   }
 
   onSubmit() {
-    const filteredFactors &#x3D; this.formFactors.filter(
-      x &#x3D;&gt; x.categories.findIndex(x &#x3D;&gt; x[&#x27;selected&#x27;]) !&#x3D; -1,
-    );
-
-    filteredFactors.forEach(x &#x3D;&gt; (x.categories &#x3D; x.categories.filter(x &#x3D;&gt; x[&#x27;selected&#x27;])));
+    const filteredFactors &#x3D; this.filterFactors(this.formFactors);
 
     const audit: Audit &#x3D; {
       name: this.auditName.value,
@@ -1137,6 +1222,24 @@ export class AuditDataFormComponent implements OnInit {
     };
 
     this.formSubmitted.emit(audit);
+  }
+
+  /**
+   * Removes factors that don&#x27;t contain a selected category
+   * and removes &quot;selected&quot; property from factors and categories
+   *
+   * @param factors The factors to filter
+   */
+  filterFactors(factors: Factor[]) {
+    const filteredFactors &#x3D; factors.filter(x &#x3D;&gt; x.categories.findIndex(x &#x3D;&gt; x[&#x27;selected&#x27;]) !&#x3D; -1);
+
+    filteredFactors.forEach(x &#x3D;&gt; {
+      x.categories &#x3D; x.categories.filter(x &#x3D;&gt; x[&#x27;selected&#x27;]);
+      delete x[&#x27;selected&#x27;];
+      x.categories.forEach(x &#x3D;&gt; delete x[&#x27;selected&#x27;]);
+    });
+
+    return filteredFactors;
   }
 
   onCancel() {
