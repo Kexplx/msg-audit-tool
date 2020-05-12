@@ -2,40 +2,16 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/default';
 
-nb-accordion {
-  margin-bottom: 20px;
-}
-
-nb-checkbox {
+nb-card-header {
   display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  gap: 0 10px;
 }
 
-nb-accordion-header {
+nb-card {
   position: relative;
-}
-
-.nb-accordion-item-header-wrapper {
-  display: grid;
-  align-items: center;
-  grid-template-columns: auto 1fr;
-  gap: 0 10px;
-}
-
-.card-options {
-  display: grid;
-  gap: 0 10px;
-  grid-template-columns: 1fr auto;
-  justify-items: right;
-}
-
-.card-information-header {
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.card-information-body {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .banner-status {
@@ -44,16 +20,12 @@ nb-accordion-header {
   left: 0;
   bottom: 0;
   height: 100%;
-  width: 10px;
+  width: 12px;
   -webkit-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
   -moz-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
   box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
-  border-bottom-left-radius: nb-theme(accordion-border-radius);
-  border-top-left-radius: nb-theme(accordion-border-radius);
-}
-
-.accordion-item-header-expanded .banner-status {
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: nb-theme(card-border-radius);
+  border-top-left-radius: nb-theme(card-border-radius);
 }
 
 .banner-status-is-planned {
