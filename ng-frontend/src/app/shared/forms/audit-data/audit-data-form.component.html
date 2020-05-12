@@ -15,7 +15,7 @@
           </div>
           <div class="form-item">
             <label class="label">Status</label>
-            <nb-select formControlName="status" [status]="status.invalid && status.touched ? 'danger' : 'basic'" fullWidth>
+            <nb-select formControlName="status" fullWidth>
               <nb-option [value]="0">Geplant</nb-option>
               <nb-option [value]="1">In Bearbeitung</nb-option>
               <nb-option [value]="2">Abgeschlossen</nb-option>
@@ -45,18 +45,15 @@
         <div class="grid-2-1-1">
           <div class="form-item">
             <label class="label">Unternehmen</label>
-            <input formControlName="companyName" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" nbInput fullWidth />
+            <input formControlName="companyName" nbInput fullWidth />
           </div>
           <div class="form-item">
             <label class="label">Abteilung</label>
-            <input formControlName="department" [status]="department.invalid && department.touched ? 'danger' : 'basic'" nbInput fullWidth />
-            <div *ngIf="department.invalid && department.touched">
-              <label class="label text-danger">Abteilung eintragen</label>
-            </div>
+            <input formControlName="department" nbInput fullWidth />
           </div>
           <div class="form-item">
             <label class="label">Branche</label>
-            <input formControlName="sector" [status]="sector.invalid && sector.touched ? 'danger' : 'basic'" nbInput fullWidth status="danger" />
+            <input formControlName="sector" nbInput fullWidth />
           </div>
         </div>
       </nb-accordion-item-body>
@@ -66,33 +63,33 @@
         3. Kontaktdaten
       </nb-accordion-item-header>
       <nb-accordion-item-body>
-        <div class="grid-auto-1-1 mb-2">
+        <div class="grid-1-1 mb-2">
           <div class="form-item">
-            <label class="label">Titel</label>
-            <nb-select formControlName="title" [status]="title.invalid && title.touched ? 'danger' : 'basic'" fullWidth>
+            <label class="label">Anrede</label>
+            <nb-select formControlName="salutation" fullWidth>
               <nb-option value="Herr">Herr</nb-option>
               <nb-option value="Frau">Frau</nb-option>
+              <nb-option value="Divers">Divers</nb-option>
             </nb-select>
           </div>
           <div class="form-item">
+            <label class="label">Titel</label>
+            <input formControlName="title" nbInput fullWidth />
+          </div>
+        </div>
+        <div class="grid-1-1 mb-2">
+          <div class="form-item">
             <label class="label">Vorname</label>
-            <input formControlName="firstName" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" nbInput fullWidth />
+            <input formControlName="firstName" nbInput fullWidth />
           </div>
           <div class="form-item">
             <label class="label">Nachname</label>
-            <input formControlName="lastName" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" nbInput fullWidth />
+            <input formControlName="lastName" nbInput fullWidth />
           </div>
         </div>
         <div class="form-item field-item-contact-information">
           <label class="label">Kontaktinformation</label>
-          <textarea
-            spellcheck="false"
-            nbInput
-            formControlName="contactInformation"
-            [status]="contactInformation.invalid && contactInformation.touched ? 'danger' : 'basic'"
-            placeholder="Erreichbar unter..."
-            fullWidth
-          ></textarea>
+          <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth></textarea>
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
