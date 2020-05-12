@@ -21,9 +21,6 @@
               <nb-option [value]="2">Abgeschlossen</nb-option>
               <nb-option [value]="3">Abgebrochen</nb-option>
             </nb-select>
-            <div *ngIf="status.invalid && status.touched">
-              <label class="label text-danger">Status wählen</label>
-            </div>
           </div>
         </div>
         <div class="grid-1-1">
@@ -49,9 +46,6 @@
           <div class="form-item">
             <label class="label">Unternehmen</label>
             <input formControlName="companyName" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" nbInput fullWidth />
-            <div *ngIf="companyName.invalid && companyName.touched">
-              <label class="label text-danger">Unternehmen eintragen</label>
-            </div>
           </div>
           <div class="form-item">
             <label class="label">Abteilung</label>
@@ -63,9 +57,6 @@
           <div class="form-item">
             <label class="label">Branche</label>
             <input formControlName="sector" [status]="sector.invalid && sector.touched ? 'danger' : 'basic'" nbInput fullWidth status="danger" />
-            <div *ngIf="sector.invalid && sector.touched">
-              <label class="label text-danger">Branche eintragen</label>
-            </div>
           </div>
         </div>
       </nb-accordion-item-body>
@@ -82,23 +73,14 @@
               <nb-option value="Herr">Herr</nb-option>
               <nb-option value="Frau">Frau</nb-option>
             </nb-select>
-            <div *ngIf="title.invalid && title.touched">
-              <label class="label text-danger">Titel wählen</label>
-            </div>
           </div>
           <div class="form-item">
             <label class="label">Vorname</label>
             <input formControlName="firstName" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" nbInput fullWidth />
-            <div *ngIf="firstName.invalid && firstName.touched">
-              <label class="label text-danger">Vornamen eintragen</label>
-            </div>
           </div>
           <div class="form-item">
             <label class="label">Nachname</label>
             <input formControlName="lastName" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" nbInput fullWidth />
-            <div *ngIf="lastName.invalid && lastName.touched">
-              <label class="label text-danger">Nachnamen eintragen</label>
-            </div>
           </div>
         </div>
         <div class="form-item field-item-contact-information">
@@ -111,9 +93,6 @@
             placeholder="Erreichbar unter..."
             fullWidth
           ></textarea>
-          <div *ngIf="contactInformation.invalid && contactInformation.touched">
-            <label class="label text-danger">Kontaktinformationen eintragen</label>
-          </div>
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
