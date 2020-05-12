@@ -9,8 +9,20 @@
     (4) Exportieren
   </button>
 </header>
-<app-audit-card [audit]="audit" *ngFor="let audit of audits$ | async"></app-audit-card>
-<aside class="hint-no-audits" *ngIf="(audits$ | async).length == 0">
-  <h6 class="text-hint">Noch keine Audits vorhanden</h6>
-</aside>
+
+<nb-tabset>
+  <nb-tab tabTitle="Aktiv" tabIcon="activity-outline">
+    <aside class="hint-no-audits" *ngIf="(activeAudits$ | async).length == 0">
+      <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
+    </aside>
+    <app-audit-card *ngFor="let audit of activeAudits$ | async" [audit]="audit"></app-audit-card>
+  </nb-tab>
+  <nb-tab tabTitle="Archiv" tabIcon="archive-outline">
+    <aside class="hint-no-audits" *ngIf="(archivedAudits$ | async).length == 0">
+      <h6 class="text-hint">Keine Audits im Archiv</h6>
+    </aside>
+    <app-audit-card *ngFor="let audit of archivedAudits$ | async" [audit]="audit"></app-audit-card>
+  </nb-tab>
+</nb-tabset>
+
 <router-outlet></router-outlet>
