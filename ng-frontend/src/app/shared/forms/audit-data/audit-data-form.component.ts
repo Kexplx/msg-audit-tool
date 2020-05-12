@@ -49,6 +49,10 @@ export class AuditDataFormComponent implements OnInit {
     return this.auditForm.get('department');
   }
 
+  get salutation() {
+    return this.auditForm.get('salutation');
+  }
+
   get title() {
     return this.auditForm.get('title');
   }
@@ -105,6 +109,7 @@ export class AuditDataFormComponent implements OnInit {
       companyName: [this.audit?.customerData.name],
       sector: [this.audit?.customerData.sector],
       department: [this.audit?.customerData.department],
+      salutation: [this.audit?.contactPerson.salutation],
       title: [this.audit?.contactPerson.title],
       firstName: [this.audit?.contactPerson.firstName],
       lastName: [this.audit?.contactPerson.lastName],
@@ -119,9 +124,10 @@ export class AuditDataFormComponent implements OnInit {
       name: this.auditName.value,
       status: +this.status.value,
       contactPerson: {
+        salutation: this.salutation.value,
+        title: this.title.value,
         firstName: this.firstName.value,
         lastName: this.lastName.value,
-        title: this.title.value,
         information: this.contactInformation.value,
       },
       customerData: {
