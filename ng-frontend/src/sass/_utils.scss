@@ -91,16 +91,16 @@
   }
 }
 
-.max-740 {
+.max-500 {
   display: none;
-  @media screen and(max-width: 740px ) {
+  @media screen and(max-width: 500px ) {
     display: block;
   }
 }
 
-.min-740 {
+.min-500 {
   display: none;
-  @media screen and(min-width: 740px ) {
+  @media screen and(min-width: 500px ) {
     display: block;
   }
 }
