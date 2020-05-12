@@ -1,4 +1,4 @@
-import { Audit } from '../data/models/audit.model';
+import { Audit, AuditStatus } from '../data/models/audit.model';
 import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
 import { patch, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ export interface AuditRegistryStateModel {
 @State<AuditRegistryStateModel>({
   name: 'auditRegistry',
   defaults: {
-    audits: [],
+    audits: audits,
   },
 })
 @Injectable()
@@ -21,6 +21,12 @@ export class AuditRegistryState {
   @Selector()
   static audits(state: AuditRegistryStateModel) {
     return state.audits;
+  }
+
+  static auditByStatus(...statuses: AuditStatus[]) {
+    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+      return state.audits.filter(x => statuses.includes(x.status));
+    });
   }
 
   static audit(id: string) {
