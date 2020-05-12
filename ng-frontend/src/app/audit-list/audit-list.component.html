@@ -1,15 +1,25 @@
 <header class="grid-1-auto-auto">
   <h4 class="header-title">Audits</h4>
   <a [routerLink]="['new']" hero size="medium" nbButton status="primary">
-    <nb-icon icon="plus"></nb-icon>
-    Neuer Audit
+    <div class="min-740">
+      <nb-icon icon="plus"></nb-icon>
+      Neuer Audit
+    </div>
+    <div class="max-740">
+      <nb-icon icon="plus"></nb-icon>
+    </div>
   </a>
   <button size="medium" nbButton hero>
-    <nb-icon icon="download"></nb-icon>
-    (4) Exportieren
+    <div class="min-740">
+      <nb-icon icon="download"></nb-icon>
+      Neuer Audit
+    </div>
+
+    <div class="max-740">
+      <nb-icon icon="download"></nb-icon>
+    </div>
   </button>
 </header>
-
 <nb-tabset>
   <nb-tab tabTitle="Aktiv" tabIcon="activity-outline">
     <aside class="hint-no-audits" *ngIf="(activeAudits$ | async).length == 0">
