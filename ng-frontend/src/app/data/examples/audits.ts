@@ -11,7 +11,8 @@ export const audits: Audit[] = [
       firstName: 'Oscar',
       lastName: 'Rosner',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Herr',
+      title: 'Dr.',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'Personalabteilung',
@@ -30,7 +31,8 @@ export const audits: Audit[] = [
       firstName: 'Cathy',
       lastName: 'Hu',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Frau',
+      title: 'Dr.',
+      salutation: 'Frau',
     },
     customerData: {
       department: 'IT-Support',
@@ -49,7 +51,8 @@ export const audits: Audit[] = [
       firstName: 'David',
       lastName: 'Leicht',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Herr',
+      title: 'Dr. ',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'Kantine',
@@ -68,7 +71,8 @@ export const audits: Audit[] = [
       firstName: 'David',
       lastName: 'Leicht',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Herr',
+      title: 'Dr. ',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'Kantine',
