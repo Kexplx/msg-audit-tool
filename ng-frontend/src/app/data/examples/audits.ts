@@ -1,5 +1,5 @@
 import { Audit, AuditStatus } from '../models/audit.model';
-import { factors } from '../categories';
+import { factors } from '../factors';
 import * as shortid from 'shortid';
 
 export const audits: Audit[] = [
@@ -20,7 +20,7 @@ export const audits: Audit[] = [
       sector: 'Automobilindustrie',
     },
     status: AuditStatus.IsPlanned,
-    factors: factors.slice(0, 5),
+    factors: factors.slice(0, 2),
     id: shortid.generate(),
   },
   {
