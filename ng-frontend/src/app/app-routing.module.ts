@@ -4,6 +4,7 @@ import { AuditListComponent } from './audit-list/audit-list.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
+import { FactorListComponent } from './interview/factor-list/factor-list.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
@@ -14,6 +15,10 @@ const routes: Routes = [
       { path: 'new', component: AddAuditDialogComponent },
       { path: ':id/edit', component: EditAuditDialogComponent },
     ],
+  },
+  {
+    path: 'audits/:id',
+    component: FactorListComponent,
   },
   { path: '**', component: NotFoundComponent },
 ];
