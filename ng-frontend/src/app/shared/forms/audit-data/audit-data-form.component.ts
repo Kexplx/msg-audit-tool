@@ -103,7 +103,7 @@ export class AuditDataFormComponent implements OnInit {
 
     this.auditForm = this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
-      start: [this.audit?.start],
+      start: [this.audit?.start ?? Date.now()],
       end: [this.audit?.end],
       status: [this.audit?.status ?? AuditStatus.IsPlanned],
       companyName: [this.audit?.customerData.name],
