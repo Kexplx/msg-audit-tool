@@ -22,7 +22,10 @@ export class AddAuditDialogComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.dialogRef = this.dialogService.open(this.dialog, defaultDialogOptions);
+    this.dialogRef = this.dialogService.open(this.dialog, {
+      ...defaultDialogOptions,
+      autoFocus: true,
+    });
     this.dialogRef.onClose.subscribe(() => {
       this.router.navigate(['/audits']);
     });
