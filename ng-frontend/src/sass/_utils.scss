@@ -67,20 +67,6 @@
   grid-template-columns: 1fr auto auto;
   gap: 5px;
   margin-bottom: 20px;
-
-  @media screen and (max-width: 740px) {
-    grid-template-columns: 1fr 1fr;
-    & .header-title {
-      grid-column: 1 / -1;
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    grid-template-columns: 1fr;
-    & .header-title {
-      grid-column: 1 / -1;
-    }
-  }
 }
 
 .grid-3-1 {
@@ -102,5 +88,19 @@
 
   @media screen and (max-width: 500px) {
     grid-template-columns: 1fr;
+  }
+}
+
+.max-500 {
+  display: none;
+  @media screen and(max-width: 500px ) {
+    display: block;
+  }
+}
+
+.min-500 {
+  display: none;
+  @media screen and(min-width: 500px ) {
+    display: block;
   }
 }

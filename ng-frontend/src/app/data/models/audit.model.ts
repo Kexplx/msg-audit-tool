@@ -15,8 +15,8 @@ export interface Audit {
   start?: number;
   end?: number;
 
-  customerData: CustomerData;
-  contactPerson: ContactPerson;
+  customerData?: CustomerData;
+  contactPerson?: ContactPerson;
   factors?: Factor[];
 
   status: AuditStatus;

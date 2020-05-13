@@ -21,6 +21,7 @@ describe('AuditCardComponent', () => {
       lastName: 'Meier',
       information: '0192',
       title: 'Herr',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'a',
@@ -66,22 +67,30 @@ describe('AuditCardComponent', () => {
 
   it('should render audit status tag with default case IsPlanned and change its statuses correctly', () => {
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-is-planned').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-is-planned')
+        .getAttribute('nbPopover'),
     ).toContain('Geplant');
     component.audit.status = AuditStatus.InAction;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-in-action').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-in-action')
+        .getAttribute('nbPopover'),
     ).toContain('In Bearbeitung');
     component.audit.status = AuditStatus.IsFinished;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-is-finished').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-is-finished')
+        .getAttribute('nbPopover'),
     ).toContain('Abgeschlossen');
     component.audit.status = AuditStatus.IsCanceled;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-is-canceled').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-is-canceled')
+        .getAttribute('nbPopover'),
     ).toContain('Abgebrochen');
   });
 });

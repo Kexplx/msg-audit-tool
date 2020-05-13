@@ -1,0 +1,21 @@
+<header class="grid-1-auto-auto">
+  <h4 class="header-title">{{ (audit$ | async).name }}</h4>
+  <a [routerLink]="['new']" hero size="medium" nbButton status="primary">
+    <div class="min-500">
+      <nb-icon icon="plus"></nb-icon>
+      Neuer Audit
+    </div>
+    <div class="max-500">
+      <nb-icon icon="plus"></nb-icon>
+    </div>
+  </a>
+  <button size="medium" nbButton hero>
+    <div class="min-500">
+      <nb-icon icon="download"></nb-icon>
+      (4) Exportieren
+    </div>
+    <div class="max-500">
+      <nb-icon icon="download"></nb-icon>
+    </div>
+  </button>
+</header>

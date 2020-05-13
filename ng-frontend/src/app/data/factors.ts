@@ -1,15 +1,43 @@
 import { Factor } from './models/factor.model';
 
 export const factors: Factor[] = [
-  { title: '1. Effektivität', categories: [{ title: '1. Effektivität' }] },
-  { title: '2. Effizienz', categories: [{ title: '2. Effizienz' }] },
+  {
+    title: '1. Effektivität',
+    categories: [
+      {
+        title: '1. Effektivität',
+        questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
+      },
+    ],
+  },
+  {
+    title: '2. Effizienz',
+    categories: [
+      {
+        title: '2. Effizienz',
+        questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
+      },
+    ],
+  },
   {
     title: '3. Zufriedenheit',
     categories: [
-      { title: '3.1 Nützlichkeit' },
-      { title: '3.2 Vertrauen' },
-      { title: '3.3 Wohlgefälligkeit' },
-      { title: '3.4 Komfort' },
+      {
+        title: '3.1 Nützlichkeit',
+        questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
+      },
+      {
+        title: '3.2 Vertrauen',
+        questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
+      },
+      {
+        title: '3.3 Wohlgefälligkeit',
+        questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
+      },
+      {
+        title: '3.4 Komfort',
+        questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
+      },
     ],
   },
   {
