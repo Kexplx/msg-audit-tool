@@ -23,6 +23,7 @@ describe('AuditRegsitryState', () => {
         lastName: 'Meier',
         information: '0192',
         title: 'Herr',
+        salutation: 'Dr',
       },
       customerData: {
         department: 'a',
