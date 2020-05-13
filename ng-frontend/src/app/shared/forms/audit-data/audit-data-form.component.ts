@@ -162,7 +162,7 @@ export class AuditDataFormComponent implements OnInit {
   }
 
   onCancel() {
-    if (this.auditForm.dirty) {
+    if (this.auditForm.dirty && this.auditForm.touched) {
       const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
         autoFocus: false,
         closeOnBackdropClick: false,
