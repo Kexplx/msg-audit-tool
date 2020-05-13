@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card [routerLink]="[audit.id]">
   <ng-container [ngSwitch]="audit.status">
     <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned"></div>
     <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action"></div>
@@ -15,7 +15,7 @@
       </span>
     </div>
     <div></div>
-    <button nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId">
+    <button (click)="$event.stopPropagation()" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId">
       <nb-icon icon="more-vertical-outline"></nb-icon>
     </button>
   </nb-card-header>
