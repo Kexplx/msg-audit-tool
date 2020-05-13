@@ -1,4 +1,5 @@
 {
-  "projectId": "dasdjasiaods",
-  "video": false
+  "projectId": "msg-audit-tool",
+  "video": false,
+  "baseUrl": "http://localhost:4200"
 }

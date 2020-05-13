@@ -1,6 +1,6 @@
 describe('AppNavbarComponent', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:4200');
+    cy.visit(Cypress.config().baseUrl);
   });
 
   it('Contains "Sidebar" in sidebar content', () => {

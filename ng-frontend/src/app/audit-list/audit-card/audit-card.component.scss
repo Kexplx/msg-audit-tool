@@ -1,4 +1,27 @@
 @import 'src/sass/utils';
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+nb-accordion {
+  margin-bottom: 20px;
+}
+
+nb-checkbox {
+  display: grid;
+  align-items: center;
+}
+
+nb-accordion-header {
+  position: relative;
+}
+
+.nb-accordion-item-header-wrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: auto 1fr;
+  gap: 0 10px;
+}
+
 .card-options {
   display: grid;
   gap: 0 10px;
@@ -15,22 +38,36 @@
   margin-top: 10px;
 }
 
-nb-accordion {
-  margin-bottom: 10px;
+.banner-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 10px;
+  -webkit-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  -moz-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  border-bottom-left-radius: nb-theme(accordion-border-radius);
+  border-top-left-radius: nb-theme(accordion-border-radius);
 }
 
-nb-accordion-item-header {
-  gap: 15px;
+.accordion-item-header-expanded .banner-status {
+  border-bottom-left-radius: 0;
 }
 
-nb-checkbox {
-  display: grid;
-  align-items: center;
+.banner-status-is-planned {
+  background-color: nb-theme(color-danger-default);
 }
 
-.nb-accordion-item-header-wrapper {
-  display: grid;
-  align-items: center;
-  grid-template-columns: auto 1fr;
-  gap: 0 10px;
+.banner-status-in-action {
+  background-color: nb-theme(color-warning-default);
+}
+
+.banner-status-is-finished {
+  background-color: nb-theme(color-success-default);
+}
+
+.banner-status-is-canceled {
+  background-color: nb-theme(background-basic-color-2);
 }

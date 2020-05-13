@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store, Action } from '@ngxs/store';
 import { AuditRegistryState } from './audit-registry.state';
-import { Audit } from '../data/models/audit.model';
+import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AddAudit, DeleteAudit } from './audit.actions';
+import * as karma from 'karma-jasmine';
 
 describe('AuditRegsitryState', () => {
   let store: Store;
@@ -18,7 +19,7 @@ describe('AuditRegsitryState', () => {
     audit = {
       name: 'TestAudit',
       contactPerson: {
-        firstName: 'Max',
+        firstName: 'Peter',
         lastName: 'Meier',
         information: '0192',
         title: 'Herr',
@@ -28,21 +29,23 @@ describe('AuditRegsitryState', () => {
         name: 'b',
         sector: 'c',
       },
+      status: AuditStatus.IsPlanned,
     };
   });
 
   it('should add audit after AddAudit action was dispatched', () => {
     store.dispatch(new AddAudit(audit));
-    const selectedAudit = store.selectSnapshot(AuditRegistryState.audits).find(() => audit);
+    const selectedAudit = store.selectSnapshot(AuditRegistryState.audits)[0];
 
-    expect(selectedAudit).toBe(audit);
+    expect(selectedAudit).toEqual({ ...audit, id: selectedAudit.id });
   });
 
   it('should delete audit after DeleteAudit action was dispatched', () => {
     store.dispatch(new AddAudit(audit));
-    store.dispatch(new DeleteAudit(audit));
+    let auditToDelete = store.selectSnapshot(AuditRegistryState.audits)[0];
+    store.dispatch(new DeleteAudit(auditToDelete));
 
-    const selectedAudit = store.selectSnapshot(AuditRegistryState.audits).find(() => audit);
-    expect(selectedAudit).toBeUndefined();
+    auditToDelete = store.selectSnapshot(AuditRegistryState.audits)[0];
+    expect(auditToDelete).toBeUndefined();
   });
 });

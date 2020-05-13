@@ -15,9 +15,11 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
-import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
-import { ConfirmDiscardDialogComponent } from './shared/confirm-discard-dialog/confirm-discard-dialog.component';
 import { ActionListenerDirective } from './audit-list/action-listener.directive';
+import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
+import { AuditDataFormComponent } from './shared/forms/audit-data/audit-data-form.component';
+import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
+import { ConfirmDiscardDialogComponent } from './shared/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { ActionListenerDirective } from './audit-list/action-listener.directive'
     AuditListComponent,
     AddAuditDialogComponent,
     AuditCardComponent,
+    EditAuditDialogComponent,
     ActionListenerDirective,
+    AuditDataFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
   ],

@@ -19,12 +19,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install Packages
         run: npm i
         working-directory: ${{env.working-directory}}
+
       - name: Install Angular CLI
         run: npm i -g @angular/cli
         working-directory: ${{env.working-directory}}
+
       - name: Run e2e Tests
         uses: cypress-io/github-action@v1
         with:
@@ -32,8 +35,14 @@ jobs:
           start: ng serve
           wait-on: http://localhost:4200
           wait-on-timeout: 300
+
       - name: Run Unit Tests
         run: ng test --watch=false --browsers=ChromeHeadless
         working-directory: ${{env.working-directory}}
-        env:
-          CI: true
+
+      - name: Deploy Documentation to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.4.9
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: ng-frontend/documentation

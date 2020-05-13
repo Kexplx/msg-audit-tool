@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditCardComponent } from './audit-card.component';
-import { Audit } from 'src/app/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { AppNebularModule } from 'src/app/app-nebular.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
+import * as jasmine from 'karma-jasmine';
 
 describe('AuditCardComponent', () => {
   let component: AuditCardComponent;
@@ -26,6 +27,7 @@ describe('AuditCardComponent', () => {
       name: 'b',
       sector: 'c',
     },
+    status: AuditStatus.IsPlanned,
   };
 
   beforeEach(() => {
@@ -54,5 +56,32 @@ describe('AuditCardComponent', () => {
     const de: DebugElement = fixture.debugElement;
     const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
     expect(el.innerHTML).toContain(audit.name);
+  });
+
+  it('should render the company name into nb-accordion-item-header-wrapper and nb-accordion-item-body', () => {
+    const de: DebugElement = fixture.debugElement;
+    const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
+    expect(el.innerHTML).toContain(audit.customerData.name);
+  });
+
+  it('should render audit status tag with default case IsPlanned and change its statuses correctly', () => {
+    expect(
+      fixture.debugElement.nativeElement.querySelector('.banner-status-is-planned').getAttribute('nbPopover'),
+    ).toContain('Geplant');
+    component.audit.status = AuditStatus.InAction;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('.banner-status-in-action').getAttribute('nbPopover'),
+    ).toContain('In Bearbeitung');
+    component.audit.status = AuditStatus.IsFinished;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('.banner-status-is-finished').getAttribute('nbPopover'),
+    ).toContain('Abgeschlossen');
+    component.audit.status = AuditStatus.IsCanceled;
+    fixture.detectChanges();
+    expect(
+      fixture.debugElement.nativeElement.querySelector('.banner-status-is-canceled').getAttribute('nbPopover'),
+    ).toContain('Abgebrochen');
   });
 });

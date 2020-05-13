@@ -16,9 +16,11 @@ import {
   NbContextMenuModule,
   NbDialogModule,
   NbDatepickerModule,
+  NbPopoverModule,
   NbStepperModule,
   NbAccordionModule,
   NbTabsetModule,
+  NbBadgeModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -30,6 +32,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbButtonModule,
     NbSelectModule,
     NbRadioModule,
+    NbPopoverModule,
     NbAccordionModule,
     NbCheckboxModule,
     NbCardModule,
@@ -66,10 +69,12 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbContextMenuModule,
     NbSidebarModule,
     NbInputModule,
+    NbPopoverModule,
     NbCheckboxModule,
     NbDialogModule,
     NbAccordionModule,
     NbTabsetModule,
+    NbBadgeModule,
   ],
 })
 export class AppNebularModule {}

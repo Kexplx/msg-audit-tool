@@ -1,0 +1,7 @@
+@import 'src/sass/utils';
+
+.scrollable-container {
+  overflow-y: auto !important;
+  max-width: 95vw;
+  max-height: 95vh;
+}

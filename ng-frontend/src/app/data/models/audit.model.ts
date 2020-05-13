@@ -1,13 +1,23 @@
 import { CustomerData } from './customer-data.model';
 import { ContactPerson } from './contact-person.model';
-import { IsoCategory } from './iso-category.model';
+import { Factor } from './factor.model';
+
+export enum AuditStatus {
+  IsPlanned,
+  InAction,
+  IsFinished,
+  IsCanceled,
+}
 
 export interface Audit {
+  id?: string;
   name: string;
   start?: number;
   end?: number;
 
   customerData: CustomerData;
   contactPerson: ContactPerson;
-  categories?: IsoCategory[];
+  factors?: Factor[];
+
+  status: AuditStatus;
 }

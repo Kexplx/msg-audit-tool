@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NbMenuService, NbMenuItem, NbMenuBag } from '@nebular/theme';
 import { map, filter } from 'rxjs/operators';
-import { Audit } from 'src/app/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { Store } from '@ngxs/store';
 import { DeleteAudit } from 'src/app/ngxs/audit.actions';
 import * as shortid from 'shortid';
+import { Router } from '@angular/router';
 
 enum MenuOptions {
   Edit,
@@ -19,12 +20,13 @@ enum MenuOptions {
 export class AuditCardComponent implements OnInit {
   @Input() audit: Audit;
   nbMenuId: string;
+  auditStatus = AuditStatus;
   items: NbMenuItem[] = [
     { title: 'Bearbeiten', icon: 'edit-outline', data: MenuOptions.Edit },
     { title: 'Löschen', icon: 'trash-outline', data: MenuOptions.Delete },
   ];
 
-  constructor(private nbMenuService: NbMenuService, private store: Store) {}
+  constructor(private nbMenuService: NbMenuService, private store: Store, private router: Router) {}
 
   ngOnInit() {
     this.nbMenuId = shortid.generate();
@@ -38,7 +40,8 @@ export class AuditCardComponent implements OnInit {
       .subscribe((option: MenuOptions) => {
         switch (option) {
           case MenuOptions.Edit:
-            //
+            const urlTree = this.router.createUrlTree([`/audits/${this.audit.id}/edit`]);
+            this.router.navigateByUrl(urlTree);
             break;
           case MenuOptions.Delete:
             this.store.dispatch(new DeleteAudit(this.audit));
