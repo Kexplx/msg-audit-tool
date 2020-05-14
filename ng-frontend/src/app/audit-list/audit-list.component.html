@@ -24,13 +24,13 @@
     <aside class="hint-no-audits" *ngIf="(activeAudits$ | async).length == 0">
       <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
     </aside>
-    <app-audit-card *ngFor="let audit of activeAudits$ | async" [audit]="audit"></app-audit-card>
+    <app-audit-card *ngFor="let audit of ((activeAudits$ | async) | sortAudit)" [audit]="audit"></app-audit-card>
   </nb-tab>
   <nb-tab tabTitle="Archiv" tabIcon="archive-outline">
     <aside class="hint-no-audits" *ngIf="(archivedAudits$ | async).length == 0">
       <h6 class="text-hint">Keine Audits im Archiv</h6>
     </aside>
-    <app-audit-card *ngFor="let audit of archivedAudits$ | async" [audit]="audit"></app-audit-card>
+    <app-audit-card *ngFor="let audit of ((archivedAudits$ | async) | sortAudit)" [audit]="audit"></app-audit-card>
   </nb-tab>
 </nb-tabset>
 
