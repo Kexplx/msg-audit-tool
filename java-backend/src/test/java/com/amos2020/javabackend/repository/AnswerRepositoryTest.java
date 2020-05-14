@@ -180,6 +180,7 @@ public class AnswerRepositoryTest {
 
         answerRepository.save(testEntity);
         answerRepository.save(testEntity2);
+        answerRepository.flush();
     }
 
     /*
@@ -338,16 +339,17 @@ public class AnswerRepositoryTest {
     @After
     public void tearDown() {
         answerRepository.delete(testEntity);
-        auditProjectRepository.delete(auditProjectEntity);
-        auditProjectRepository.delete(auditProjectEntity1);
-        questionRepository.delete(questionEntity);
-        questionRepository.delete(questionEntity1);
-
         if(testEntity1 != null){
             answerRepository.delete(testEntity1);
         }
         if(testEntity2 != null){
             answerRepository.delete(testEntity2);
         }
+        auditProjectRepository.delete(auditProjectEntity);
+        auditProjectRepository.delete(auditProjectEntity1);
+        questionRepository.delete(questionEntity);
+        questionRepository.delete(questionEntity1);
+
+
     }
 }
