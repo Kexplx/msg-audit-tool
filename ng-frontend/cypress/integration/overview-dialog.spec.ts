@@ -1,7 +1,4 @@
 describe('OverviewDialog', () => {
-  beforeEach(() => {
-    cy.visit(baseUrl);
-  });
   let baseUrl = Cypress.config().baseUrl;
   const testAudit = {
     name: 'BankAudit',
@@ -38,6 +35,10 @@ describe('OverviewDialog', () => {
       corporateDivision: 'Alien Resources',
     },
   };
+
+  before(() => {
+    cy.visit(baseUrl);
+  });
 
   function inputAudit(testAudit) {
     // Input Audit name, start date, end date and open next collapsed accordeon through click
