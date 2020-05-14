@@ -21,6 +21,7 @@ import { AuditDataFormComponent } from './shared/forms/audit-data/audit-data-for
 import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { ConfirmDiscardDialogComponent } from './shared/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 import { FactorListComponent } from './interview/factor-list/factor-list.component';
+import { SortAuditPipe } from './pipes/sort-audit.pipe';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FactorListComponent } from './interview/factor-list/factor-list.compone
     AuditDataFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
+    SortAuditPipe,
   ],
   imports: [
     BrowserModule,
