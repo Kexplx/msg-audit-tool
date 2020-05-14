@@ -80,10 +80,14 @@ describe('OverviewDialog', () => {
     )
       .clear()
       .type(testAudit.contactPerson.salutation);
-    cy.get('.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width')
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
+    )
       .clear()
       .type(testAudit.contactPerson.firstName);
-    cy.get('.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width')
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
+    )
       .clear()
       .type(testAudit.contactPerson.lastName);
     cy.get('.field-item-contact-information > .input-full-width')
