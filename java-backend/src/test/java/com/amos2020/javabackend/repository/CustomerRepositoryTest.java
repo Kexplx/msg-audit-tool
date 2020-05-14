@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.repository;
 
+import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.ContactPersonEntity;
 import com.amos2020.javabackend.entity.CustomerEntity;
 import org.junit.After;
@@ -18,7 +19,7 @@ import org.springframework.transaction.TransactionSystemException;
  * Test class for the CustomerRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = JavaBackendApplication.class)
 public class CustomerRepositoryTest {
     @Autowired
     private CustomerRepository repository;

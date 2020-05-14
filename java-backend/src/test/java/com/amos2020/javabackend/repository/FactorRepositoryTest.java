@@ -1,6 +1,6 @@
 package com.amos2020.javabackend.repository;
 
-import com.amos2020.javabackend.entity.AuditProjectEntity;
+import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.FactorEntity;
 import org.junit.Assert;
 import org.junit.Before;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = JavaBackendApplication.class)
 public class FactorRepositoryTest {
 
     @Autowired

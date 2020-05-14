@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.repository;
 
+import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.AuditProjectEntity;
 import com.amos2020.javabackend.entity.ContactPersonEntity;
 import com.amos2020.javabackend.entity.CustomerEntity;
@@ -21,7 +22,7 @@ import java.sql.Date;
  * Test class for the ContactPersonRepository
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = JavaBackendApplication.class)
 public class AuditProjectRepositoryTest {
 
     @Autowired

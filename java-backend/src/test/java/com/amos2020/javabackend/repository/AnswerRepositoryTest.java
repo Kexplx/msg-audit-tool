@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.repository;
 
+import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.*;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,7 +17,7 @@ import java.sql.Date;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = JavaBackendApplication.class)
 public class AnswerRepositoryTest {
 
     private static final String PROOF = "RandomProof";
