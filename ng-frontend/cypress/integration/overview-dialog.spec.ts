@@ -120,13 +120,13 @@ describe('OverviewDialog', () => {
     cy.get('nb-card > nb-card-header').should('exist');
   });
 
-  it('Adds the correct audit name and company name entered by the user to the overview', () => {
-    checkAuditHeader(testAudit);
-  });
+  // it('Adds the correct audit name and company name entered by the user to the overview', () => {
+  //   checkAuditHeader(testAudit);
+  // });
 
-  it('Shows the audit status label', () => {
-    checkAuditStatusLabel(testAudit);
-  });
+  // it('Shows the audit status label', () => {
+  //   checkAuditStatusLabel(testAudit);
+  // });
 
   it('Shows a button to see further options to do with the audit', () => {
     cy.get(':nth-child(1) > nb-card > nb-card-header > .appearance-filled').should('exist');
