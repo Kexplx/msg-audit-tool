@@ -1,4 +1,7 @@
 describe('OverviewDialog', () => {
+  beforeEach(() => {
+    cy.visit(baseUrl);
+  });
   let baseUrl = Cypress.config().baseUrl;
   const testAudit = {
     name: 'BankAudit',
