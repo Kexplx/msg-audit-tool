@@ -22,6 +22,7 @@ export const audits: Audit[] = [
     status: AuditStatus.IsPlanned,
     factors: factors.slice(0, 2),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
   {
     name: 'Audi IT-Support',
@@ -42,6 +43,7 @@ export const audits: Audit[] = [
     status: AuditStatus.InAction,
     factors: factors.slice(3, 7),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
   {
     name: 'VW Kantine',
@@ -62,6 +64,7 @@ export const audits: Audit[] = [
     status: AuditStatus.IsCanceled,
     factors: factors.slice(6, 2),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
   {
     name: '3M Neu',
@@ -82,5 +85,6 @@ export const audits: Audit[] = [
     status: AuditStatus.IsFinished,
     factors: factors.slice(6, 2),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
 ];

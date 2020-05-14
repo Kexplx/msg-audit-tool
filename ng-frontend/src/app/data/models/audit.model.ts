@@ -20,4 +20,5 @@ export interface Audit {
   factors?: Factor[];
 
   status: AuditStatus;
+  creationDate: number;
 }

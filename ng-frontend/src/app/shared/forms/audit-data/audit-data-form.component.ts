@@ -76,6 +76,10 @@ export class AuditDataFormComponent implements OnInit {
   get status() {
     return this.auditForm.get('status');
   }
+
+  get creationDate() {
+    return this.auditForm.get('creationDate');
+  }
   //#endregion
 
   ngOnInit(): void {
@@ -124,6 +128,10 @@ export class AuditDataFormComponent implements OnInit {
 
   onSubmit() {
     const filteredFactors = this.filterFactors(this.formFactors);
+    let creationDate = this.audit?.creationDate;
+    if (!creationDate) {
+      creationDate = Date.now();
+    }
 
     const audit: Audit = {
       name: this.auditName.value,
@@ -144,6 +152,7 @@ export class AuditDataFormComponent implements OnInit {
       start: this.parseDate(this.start.value),
       end: this.parseDate(this.end.value),
       factors: [...filteredFactors],
+      creationDate: creationDate,
     };
 
     this.formSubmitted.emit(audit);
