@@ -68,8 +68,6 @@ End-to-end tests are written in the `cypress/` folder.
 ## Backend
 The Java-Backend uses the Spring Boot Framework and MySQL.
 
-## Development
-
 ### Getting Started
 1. Install mysql server:
 
