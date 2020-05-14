@@ -15,7 +15,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
-import { ActionListenerDirective } from './audit-list/action-listener.directive';
+import { ActionListenerDirective } from './shared/directives/action-listener.directive';
 import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 import { AuditDataFormComponent } from './shared/forms/audit-data/audit-data-form.component';
 import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
