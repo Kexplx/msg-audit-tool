@@ -1,4 +1,5 @@
 ![Angular Frontend Build](https://github.com/Kexplx/msg-audit-tool/workflows/Angular%20Frontend%20Build/badge.svg)
+![Angular Frontend Build](https://github.com/Kexplx/msg-audit-tool/workflows/Java%20Backend%20Build/badge.svg)
 
 <a href="https://badges.mit-license.org/" alt="MIT Licence">
     <img src="https://img.shields.io/badge/license-MIT-0677b7" />
@@ -63,3 +64,57 @@ Unit tests are written in the `.spec` files in each components directory.
 We use cypress for our end-to-end-tests. To start all End-to-end tests use `npm run e2e`.
 
 End-to-end tests are written in the `cypress/` folder.
+
+## Backend
+The Java-Backend uses the Spring Boot Framework and MySQL.
+
+## Development
+
+### Getting Started
+1. Install mysql server:
+
+   e.g. mariaDB on Arch Linux
+   ```
+   sudo pacman -S mariadb
+   mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+   ``` 
+
+2. Install Java
+
+### Establish database connection
+1. Start your mysql server:
+
+   e.g. `sudo systemctl start mysqld` on Arch Linux
+
+2. Connect to your Database:
+
+   `mysql -u root -p`
+   
+   If you forgot your mysql root password, you can reset it like [this](https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password).
+
+2. In your mysql shell create a database named `msg_audit_database`:
+
+   `CREATE DATABASE msg_audit_database;`
+   
+3. In your mysql shell create a user `amos` with the password `MsgAuditTool2020!`:
+
+   `CREATE USER 'amos'@'localhost' IDENTIFIED BY 'MsgAuditTool2020!';`
+   
+4. Grant user all privileges:
+
+   `GRANT ALL PRIVILEGES ON * . * TO 'amos'@'localhost';`
+   
+   `FLUSH PRIVILEGES;`
+
+### Run
+To start the server while developing you can use Eclipse or another IDE and run `com.amos2020.javabackend.JavaBackendApplication` as Java Application. 
+
+### Package and run 
+We use Maven to handle our dependencies and to package our source code.
+
+To package the backend server use `mvn package` in the `java-backend` folder. The output will be in `java-backend/target`.
+
+To run this package as a standalone server use `java -jar target/java-backend-0.0.1-SNAPSHOT.jar`.
+
+### Testing
+The tests can be started with `mvn test`
