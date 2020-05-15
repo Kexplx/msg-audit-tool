@@ -47,4 +47,26 @@ describe('AddAuditDialog', () => {
       'Unternehmen',
     );
   });
+
+  it('Form gives inputable element for company name', () => {
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(1) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.customerData.name);
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(1) > .input-full-width',
+    ).should('have.value', testAudit.customerData.name);
+  });
+
+  it('Form gives inputable element for company department', () => {
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.customerData.department);
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
+    ).should('have.value', testAudit.customerData.department);
+  });
 });
