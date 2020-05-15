@@ -160,4 +160,14 @@ describe('AddAuditDialog', () => {
       'not.exist',
     );
   });
+
+  it('Clicking hinzufügen should not be possible when no audit name was entered', () => {
+    cy.visit(baseUrl + 'new');
+    cy.get('.btn-disabled').should('exist');
+  });
+
+  it('Adding only a name should be sufficient to enable hinzufügen button', () => {
+    cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').clear().type(testAudit.name);
+    cy.get('.btn-disabled').should('not.exist');
+  });
 });
