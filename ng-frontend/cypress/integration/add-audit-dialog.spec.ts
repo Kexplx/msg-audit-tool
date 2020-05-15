@@ -121,4 +121,43 @@ describe('AddAuditDialog', () => {
       '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
     ).should('have.value', testAudit.contactPerson.salutation);
   });
+
+  it('Form gives inputable element for first name', () => {
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.contactPerson.firstName);
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
+    ).should('have.value', testAudit.contactPerson.firstName);
+  });
+
+  it('Form gives inputable element for last name', () => {
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.contactPerson.lastName);
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
+    ).should('have.value', testAudit.contactPerson.lastName);
+  });
+
+  it('Form gives inputable element for contact information', () => {
+    cy.get('.field-item-contact-information > .input-full-width')
+      .clear()
+      .type(testAudit.contactPerson.information);
+    cy.get('.field-item-contact-information > .input-full-width').should(
+      'have.value',
+      testAudit.contactPerson.information,
+    );
+  });
+
+  it('Clicking hinzufügen button closes window', () => {
+    cy.get('.accordion-footer > .status-primary').click();
+    cy.get('#cdk-overlay-0 > nb-dialog-container > app-add-audit-dialog > div > form').should(
+      'not.exist',
+    );
+  });
 });
