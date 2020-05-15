@@ -1,6 +1,6 @@
 import { FactorListComponent } from './factor-list.component';
 
-fdescribe('FactorListComponent', () => {
+describe('FactorListComponent', () => {
   it('should create', () => {
     const storeSpy = jasmine.createSpyObj('Store', ['dispatch']);
     const routeSpy = jasmine.createSpyObj('ActivatedRoute', ['dispatch']);

@@ -29,6 +29,7 @@ describe('AuditCardComponent', () => {
       sector: 'c',
     },
     status: AuditStatus.IsPlanned,
+    creationDate: Date.now(),
   };
 
   beforeEach(() => {
@@ -53,15 +54,15 @@ describe('AuditCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render audit name into nb-accordion-item-header-wrapper', () => {
+  it('should render audit name into nb-card-header', () => {
     const de: DebugElement = fixture.debugElement;
-    const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
+    const el: HTMLElement = de.nativeElement.querySelector('nb-card-header');
     expect(el.innerHTML).toContain(audit.name);
   });
 
-  it('should render the company name into nb-accordion-item-header-wrapper and nb-accordion-item-body', () => {
+  it('should render the company name into nb-card-header', () => {
     const de: DebugElement = fixture.debugElement;
-    const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
+    const el: HTMLElement = de.nativeElement.querySelector('nb-card-header');
     expect(el.innerHTML).toContain(audit.customerData.name);
   });
 
