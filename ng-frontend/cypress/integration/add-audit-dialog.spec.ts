@@ -91,4 +91,34 @@ describe('AddAuditDialog', () => {
       '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
     ).should('have.value', testAudit.customerData.sector);
   });
+
+  it('Clicking on contact information tab opens accordeon body', () => {
+    cy.get(':nth-child(3) > .accordion-item-header-collapsed').click();
+    cy.get('.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body').should(
+      'contain',
+      'Vorname',
+    );
+  });
+
+  it('Form gives the gendered salutations for Herr, Frau, Divers', () => {
+    cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
+    cy.get('nb-option').should('contain', 'Herr');
+    cy.get('nb-option').should('contain', 'Frau');
+    cy.get('nb-option').should('contain', 'Divers');
+  });
+
+  it('Form gives usable drop down for choosing a gendered salutation for the contact person', () => {
+    cy.get('nb-option').contains(testAudit.contactPerson.title).click();
+  });
+
+  it('Form gives inputable element for professional salutation', () => {
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.contactPerson.salutation);
+    cy.get(
+      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
+    ).should('have.value', testAudit.contactPerson.salutation);
+  });
 });
