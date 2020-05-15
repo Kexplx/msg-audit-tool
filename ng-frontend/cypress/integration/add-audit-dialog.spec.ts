@@ -69,4 +69,26 @@ describe('AddAuditDialog', () => {
       '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
     ).should('have.value', testAudit.customerData.department);
   });
+
+  it('Form gives inputable element for corporate division', () => {
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.customerData.corporateDivision);
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
+    ).should('have.value', testAudit.customerData.corporateDivision);
+  });
+
+  it('Form gives inputable element for company sector', () => {
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
+    )
+      .clear()
+      .type(testAudit.customerData.sector);
+    cy.get(
+      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
+    ).should('have.value', testAudit.customerData.sector);
+  });
 });
