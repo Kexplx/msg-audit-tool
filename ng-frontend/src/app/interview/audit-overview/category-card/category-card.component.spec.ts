@@ -8,14 +8,14 @@ describe('CategoryCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryCardComponent ]
-    })
-    .compileComponents();
+      declarations: [CategoryCardComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CategoryCardComponent);
     component = fixture.componentInstance;
+    component.category = { title: 'ayy' };
     fixture.detectChanges();
   });
 
