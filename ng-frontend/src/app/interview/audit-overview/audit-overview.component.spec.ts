@@ -1,11 +1,11 @@
-import { FactorListComponent } from './factor-list.component';
+import { AuditOverviewComponent } from './audit-overview.component';
 
-describe('FactorListComponent', () => {
+describe('AuditOverviewComponent', () => {
   it('should create', () => {
     const storeSpy = jasmine.createSpyObj('Store', ['dispatch']);
     const routeSpy = jasmine.createSpyObj('ActivatedRoute', ['dispatch']);
 
-    const component = new FactorListComponent(storeSpy, routeSpy);
+    const component = new AuditOverviewComponent(storeSpy, routeSpy);
 
     expect(component).toBeTruthy();
   });

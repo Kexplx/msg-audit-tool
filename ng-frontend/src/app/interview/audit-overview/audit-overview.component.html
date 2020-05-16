@@ -1,17 +1,17 @@
-<header class="grid-1-auto-auto">
-  <h4 class="header-title">
+<header class="mb-2">
+  <h4>
     {{ (audit$ | async).name }}
-    <span class="label" *ngIf="(audit$ | async).start">
-      {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
-    </span>
   </h4>
+  <p class="label" *ngIf="(audit$ | async).start">
+    {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+  </p>
 </header>
 <nb-tabset>
   <nb-tab tabTitle="Interviews" tabIcon="attach-2-outline">
-    <nb-card>
-      <nb-menu [items]="items"> </nb-menu>
-    </nb-card>
-    <!-- <app-audit-card *ngFor="let audit of ((activeAudits$ | async) | sortAudit)" [audit]="audit"></app-audit-card> -->
+    <div class="factor-container" *ngFor="let factor of (audit$ | async).factors">
+      <h6 class="text-hint mb-1">{{ factor.title }}</h6>
+      <app-category-card [category]="category" *ngFor="let category of factor.categories"></app-category-card>
+    </div>
   </nb-tab>
   <nb-tab tabTitle="Infos" tabIcon="info-outline">
     <nb-card>

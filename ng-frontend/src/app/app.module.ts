@@ -20,8 +20,9 @@ import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edi
 import { AuditDataFormComponent } from './shared/forms/audit-data/audit-data-form.component';
 import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { ConfirmDiscardDialogComponent } from './shared/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
-import { FactorListComponent } from './interview/factor-list/factor-list.component';
 import { SortAuditPipe } from './pipes/sort-audit.pipe';
+import { AuditOverviewComponent } from './interview/audit-overview/audit-overview.component';
+import { CategoryCardComponent } from './interview/audit-overview/category-card/category-card.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,9 @@ import { SortAuditPipe } from './pipes/sort-audit.pipe';
     AddAuditDialogComponent,
     AuditCardComponent,
     EditAuditDialogComponent,
-    FactorListComponent,
+    AuditOverviewComponent,
     ActionListenerDirective,
+    CategoryCardComponent,
     AuditDataFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
