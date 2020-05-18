@@ -6,6 +6,13 @@ import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbMenuItem } from '@nebular/theme';
 import { tap } from 'rxjs/operators';
+import * as shortid from 'shortid';
+
+enum MenuOptions {
+  Edit,
+  Delete,
+  Reactivate,
+}
 
 @Component({
   selector: 'app-audit-overview',
@@ -14,7 +21,8 @@ import { tap } from 'rxjs/operators';
 })
 export class AuditOverviewComponent implements OnInit {
   audit$: Observable<Audit>;
-
+  items: NbMenuItem[];
+  menuId: string;
   constructor(private store: Store, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -35,5 +43,15 @@ export class AuditOverviewComponent implements OnInit {
           this.router.navigate(['/audits']);
         },
       );
+
+    this.menuId = shortid.generate();
+    this.items = [
+      {
+        title: 'Bearbeiten',
+        icon: 'edit-outline',
+        data: MenuOptions.Edit,
+        link: `audits/${id}/overview/edit`,
+      },
+    ];
   }
 }
