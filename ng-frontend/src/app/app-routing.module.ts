@@ -17,8 +17,9 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'audits/:id',
+    path: 'audits/:id/overview',
     component: AuditOverviewComponent,
+    children: [{ path: 'edit', component: EditAuditDialogComponent }],
   },
   { path: '**', component: NotFoundComponent },
 ];
