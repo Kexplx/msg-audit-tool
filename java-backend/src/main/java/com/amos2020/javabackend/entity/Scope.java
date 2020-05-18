@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @IdClass(ScopePK.class)
@@ -61,11 +62,9 @@ public class Scope {
 
         if (scopeAuditId != scope.scopeAuditId) return false;
         if (scopeFaccritId != scope.scopeFaccritId) return false;
-        if (scopeChangeNote != null ? !scopeChangeNote.equals(scope.scopeChangeNote) : scope.scopeChangeNote != null)
+        if (!Objects.equals(scopeChangeNote, scope.scopeChangeNote))
             return false;
-        if (scopeRemoved != null ? !scopeRemoved.equals(scope.scopeRemoved) : scope.scopeRemoved != null) return false;
-
-        return true;
+        return Objects.equals(scopeRemoved, scope.scopeRemoved);
     }
 
     @Override

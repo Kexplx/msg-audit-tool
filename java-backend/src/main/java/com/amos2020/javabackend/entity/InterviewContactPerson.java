@@ -38,9 +38,7 @@ public class InterviewContactPerson {
         InterviewContactPerson that = (InterviewContactPerson) o;
 
         if (interviewcontactpersonInterviewId != that.interviewcontactpersonInterviewId) return false;
-        if (interviewcontactpersonContactpersonId != that.interviewcontactpersonContactpersonId) return false;
-
-        return true;
+        return interviewcontactpersonContactpersonId == that.interviewcontactpersonContactpersonId;
     }
 
     @Override

@@ -36,9 +36,7 @@ public class ScopePK implements Serializable {
         ScopePK scopePK = (ScopePK) o;
 
         if (scopeAuditId != scopePK.scopeAuditId) return false;
-        if (scopeFaccritId != scopePK.scopeFaccritId) return false;
-
-        return true;
+        return scopeFaccritId == scopePK.scopeFaccritId;
     }
 
     @Override

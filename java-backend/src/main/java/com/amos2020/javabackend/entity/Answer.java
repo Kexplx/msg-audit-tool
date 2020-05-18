@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @IdClass(AnswerPK.class)
@@ -118,19 +119,17 @@ public class Answer {
         if (answerFaccritId != answer.answerFaccritId) return false;
         if (answerQuestionId != answer.answerQuestionId) return false;
         if (answerInterviewId != answer.answerInterviewId) return false;
-        if (answerResult != null ? !answerResult.equals(answer.answerResult) : answer.answerResult != null)
+        if (!Objects.equals(answerResult, answer.answerResult))
             return false;
-        if (answerResponsible != null ? !answerResponsible.equals(answer.answerResponsible) : answer.answerResponsible != null)
+        if (!Objects.equals(answerResponsible, answer.answerResponsible))
             return false;
-        if (answerDocumentation != null ? !answerDocumentation.equals(answer.answerDocumentation) : answer.answerDocumentation != null)
+        if (!Objects.equals(answerDocumentation, answer.answerDocumentation))
             return false;
-        if (answerProcedure != null ? !answerProcedure.equals(answer.answerProcedure) : answer.answerProcedure != null)
+        if (!Objects.equals(answerProcedure, answer.answerProcedure))
             return false;
-        if (answerReason != null ? !answerReason.equals(answer.answerReason) : answer.answerReason != null)
+        if (!Objects.equals(answerReason, answer.answerReason))
             return false;
-        if (answerProof != null ? !answerProof.equals(answer.answerProof) : answer.answerProof != null) return false;
-
-        return true;
+        return Objects.equals(answerProof, answer.answerProof);
     }
 
     @Override

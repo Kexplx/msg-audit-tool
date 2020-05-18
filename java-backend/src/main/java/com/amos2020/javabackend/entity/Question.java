@@ -2,6 +2,7 @@ package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Question {
@@ -37,10 +38,7 @@ public class Question {
         Question question = (Question) o;
 
         if (questionId != question.questionId) return false;
-        if (questionTextDe != null ? !questionTextDe.equals(question.questionTextDe) : question.questionTextDe != null)
-            return false;
-
-        return true;
+        return Objects.equals(questionTextDe, question.questionTextDe);
     }
 
     @Override

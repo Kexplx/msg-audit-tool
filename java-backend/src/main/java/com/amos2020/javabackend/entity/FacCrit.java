@@ -2,6 +2,7 @@ package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class FacCrit {
@@ -51,11 +52,9 @@ public class FacCrit {
         FacCrit facCrit = (FacCrit) o;
 
         if (faccritId != facCrit.faccritId) return false;
-        if (faccritReferenceId != null ? !faccritReferenceId.equals(facCrit.faccritReferenceId) : facCrit.faccritReferenceId != null)
+        if (!Objects.equals(faccritReferenceId, facCrit.faccritReferenceId))
             return false;
-        if (faccritName != null ? !faccritName.equals(facCrit.faccritName) : facCrit.faccritName != null) return false;
-
-        return true;
+        return Objects.equals(faccritName, facCrit.faccritName);
     }
 
     @Override

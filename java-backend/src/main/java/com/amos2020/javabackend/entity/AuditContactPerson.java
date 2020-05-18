@@ -38,9 +38,7 @@ public class AuditContactPerson {
         AuditContactPerson that = (AuditContactPerson) o;
 
         if (auditcontactpersonAuditId != that.auditcontactpersonAuditId) return false;
-        if (auditcontactpersonContactpersonId != that.auditcontactpersonContactpersonId) return false;
-
-        return true;
+        return auditcontactpersonContactpersonId == that.auditcontactpersonContactpersonId;
     }
 
     @Override

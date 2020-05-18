@@ -48,9 +48,7 @@ public class AnswerPK implements Serializable {
 
         if (answerFaccritId != answerPK.answerFaccritId) return false;
         if (answerQuestionId != answerPK.answerQuestionId) return false;
-        if (answerInterviewId != answerPK.answerInterviewId) return false;
-
-        return true;
+        return answerInterviewId == answerPK.answerInterviewId;
     }
 
     @Override

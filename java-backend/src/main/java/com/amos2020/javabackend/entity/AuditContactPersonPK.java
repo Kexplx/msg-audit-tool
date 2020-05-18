@@ -36,9 +36,7 @@ public class AuditContactPersonPK implements Serializable {
         AuditContactPersonPK that = (AuditContactPersonPK) o;
 
         if (auditcontactpersonAuditId != that.auditcontactpersonAuditId) return false;
-        if (auditcontactpersonContactpersonId != that.auditcontactpersonContactpersonId) return false;
-
-        return true;
+        return auditcontactpersonContactpersonId == that.auditcontactpersonContactpersonId;
     }
 
     @Override

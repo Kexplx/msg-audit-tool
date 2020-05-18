@@ -3,6 +3,7 @@ package com.amos2020.javabackend.entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Audit {
@@ -73,14 +74,11 @@ public class Audit {
         Audit audit = (Audit) o;
 
         if (auditId != audit.auditId) return false;
-        if (auditName != null ? !auditName.equals(audit.auditName) : audit.auditName != null) return false;
-        if (auditStartDate != null ? !auditStartDate.equals(audit.auditStartDate) : audit.auditStartDate != null)
+        if (!Objects.equals(auditName, audit.auditName)) return false;
+        if (!Objects.equals(auditStartDate, audit.auditStartDate))
             return false;
-        if (auditEndDate != null ? !auditEndDate.equals(audit.auditEndDate) : audit.auditEndDate != null) return false;
-        if (auditExpectedEndDate != null ? !auditExpectedEndDate.equals(audit.auditExpectedEndDate) : audit.auditExpectedEndDate != null)
-            return false;
-
-        return true;
+        if (!Objects.equals(auditEndDate, audit.auditEndDate)) return false;
+        return Objects.equals(auditExpectedEndDate, audit.auditExpectedEndDate);
     }
 
     @Override

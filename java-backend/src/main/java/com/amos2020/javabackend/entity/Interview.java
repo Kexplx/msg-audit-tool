@@ -3,6 +3,7 @@ package com.amos2020.javabackend.entity;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Interview {
@@ -63,12 +64,9 @@ public class Interview {
 
         if (interviewId != interview.interviewId) return false;
         if (interviewAuditId != interview.interviewAuditId) return false;
-        if (interviewDate != null ? !interviewDate.equals(interview.interviewDate) : interview.interviewDate != null)
+        if (!Objects.equals(interviewDate, interview.interviewDate))
             return false;
-        if (interviewAnnotation != null ? !interviewAnnotation.equals(interview.interviewAnnotation) : interview.interviewAnnotation != null)
-            return false;
-
-        return true;
+        return Objects.equals(interviewAnnotation, interview.interviewAnnotation);
     }
 
     @Override

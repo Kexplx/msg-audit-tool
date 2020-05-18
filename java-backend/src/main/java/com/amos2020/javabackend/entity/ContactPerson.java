@@ -2,6 +2,7 @@ package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class ContactPerson {
@@ -104,22 +105,19 @@ public class ContactPerson {
         ContactPerson that = (ContactPerson) o;
 
         if (contactPersonId != that.contactPersonId) return false;
-        if (contactPersonTitle != null ? !contactPersonTitle.equals(that.contactPersonTitle) : that.contactPersonTitle != null)
+        if (!Objects.equals(contactPersonTitle, that.contactPersonTitle))
             return false;
-        if (contactPersonForename != null ? !contactPersonForename.equals(that.contactPersonForename) : that.contactPersonForename != null)
+        if (!Objects.equals(contactPersonForename, that.contactPersonForename))
             return false;
-        if (contactPersonSurname != null ? !contactPersonSurname.equals(that.contactPersonSurname) : that.contactPersonSurname != null)
+        if (!Objects.equals(contactPersonSurname, that.contactPersonSurname))
             return false;
-        if (contactPersonContactInformation != null ? !contactPersonContactInformation.equals(that.contactPersonContactInformation) : that.contactPersonContactInformation != null)
+        if (!Objects.equals(contactPersonContactInformation, that.contactPersonContactInformation))
             return false;
-        if (contactPersonCompanyName != null ? !contactPersonCompanyName.equals(that.contactPersonCompanyName) : that.contactPersonCompanyName != null)
+        if (!Objects.equals(contactPersonCompanyName, that.contactPersonCompanyName))
             return false;
-        if (contactPersonDepartment != null ? !contactPersonDepartment.equals(that.contactPersonDepartment) : that.contactPersonDepartment != null)
+        if (!Objects.equals(contactPersonDepartment, that.contactPersonDepartment))
             return false;
-        if (contactPersonSector != null ? !contactPersonSector.equals(that.contactPersonSector) : that.contactPersonSector != null)
-            return false;
-
-        return true;
+        return Objects.equals(contactPersonSector, that.contactPersonSector);
     }
 
     @Override
