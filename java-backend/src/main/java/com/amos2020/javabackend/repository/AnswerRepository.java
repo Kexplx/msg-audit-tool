@@ -1,7 +1,7 @@
 package com.amos2020.javabackend.repository;
 
-import com.amos2020.javabackend.entity.AnswerEntity;
+import com.amos2020.javabackend.entity.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AnswerRepository extends JpaRepository<AnswerEntity, Integer> {
+public interface AnswerRepository extends JpaRepository<Integer, Answer> {
 }
