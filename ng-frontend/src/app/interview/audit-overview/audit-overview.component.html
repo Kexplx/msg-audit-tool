@@ -15,7 +15,7 @@
       <h6 class="text-hint mb-1">{{ factor.title }}</h6>
       <app-category-card [category]="category" *ngFor="let category of factor.categories"></app-category-card>
     </div>
-    <aside class="hint-no-audits" *ngIf="(audit$ | async).factors.length == 0">
+    <aside class="hint-no-factors" *ngIf="(audit$ | async).factors.length == 0">
       <h6 class="text-hint">Keine ISO 25010 Kategorien ausgewählt</h6>
     </aside>
   </nb-tab>
