@@ -1,7 +1,10 @@
-<header class="mb-2">
+<header class="grid-1-auto mb-2">
   <h4>
     {{ (audit$ | async).name }}
   </h4>
+  <button nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton status="primary" hero [nbContextMenu]="items" [nbContextMenuTag]="menuId">
+    <nb-icon icon="more-vertical-outline"></nb-icon>
+  </button>
   <p class="label" *ngIf="(audit$ | async).start">
     {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
   </p>
