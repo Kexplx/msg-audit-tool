@@ -10,9 +10,6 @@ describe('OverviewDialog', () => {
     cy.fixture('example-audit').then(json => {
       testAudit = json;
     });
-    cy.fixture('example-audit2').then(json => {
-      testAuditEdited = json;
-    });
   });
 
   function checkAuditHeader(testAudit) {
