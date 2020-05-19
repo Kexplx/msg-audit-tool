@@ -1,6 +1,8 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
@@ -28,6 +30,7 @@ public class Audit {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "audit_name")
     public String getAuditName() {
         return auditName;
@@ -38,6 +41,7 @@ public class Audit {
     }
 
     @Basic
+    @NotNull
     @Column(name = "audit_start_date")
     public Date getAuditStartDate() {
         return auditStartDate;
@@ -58,6 +62,7 @@ public class Audit {
     }
 
     @Basic
+    @NotNull
     @Column(name = "audit_expected_end_date")
     public Date getAuditExpectedEndDate() {
         return auditExpectedEndDate;

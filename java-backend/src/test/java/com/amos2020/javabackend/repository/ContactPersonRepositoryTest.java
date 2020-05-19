@@ -72,6 +72,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSurnameIsNull_ThrowsException() {
         toTest = new ContactPerson();
@@ -84,6 +85,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithCompanyNameIsNull_ThrowsException() {
         toTest = new ContactPerson();
@@ -96,6 +98,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithDepartmentIsNull_ThrowsException() {
         toTest = new ContactPerson();
@@ -108,6 +111,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSectorIsNull_ThrowsException() {
         toTest = new ContactPerson();
@@ -148,6 +152,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSurnameIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
@@ -175,6 +180,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithDepartmentIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
@@ -188,6 +194,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSectorIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
@@ -201,6 +208,7 @@ public class ContactPersonRepositoryTest {
 
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithTitleIsBlank_ThrowsException() {
         toTest = new ContactPerson();
@@ -226,6 +234,7 @@ public class ContactPersonRepositoryTest {
         toTest.setContactPersonSector("testSector");
         repository.save(toTest);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSurnameIsBlank_ThrowsException() {
         toTest = new ContactPerson();
@@ -369,6 +378,7 @@ public class ContactPersonRepositoryTest {
         entity.setContactPersonForename("  ");
         repository.save(entity);
     }
+
     @Test
     public void changeContactPersonWithValidSurname_isSuccessfully() {
         toTest = new ContactPerson();
@@ -387,6 +397,7 @@ public class ContactPersonRepositoryTest {
         ContactPerson changedEntity = repository.save(entity);
         Assert.assertEquals(entity, changedEntity);
     }
+
     @Test(expected = TransactionSystemException.class)
     public void changeContactPersonWithInvalidSurname_throwsException() {
         toTest = new ContactPerson();
@@ -403,6 +414,7 @@ public class ContactPersonRepositoryTest {
         entity.setContactPersonSurname("  ");
         repository.save(entity);
     }
+
     @After
     public void tearDown() {
         repository.delete(toTest);
