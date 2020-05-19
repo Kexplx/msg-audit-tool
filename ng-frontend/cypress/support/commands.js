@@ -1,28 +1,4 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+import { Audit } from 'src/app/data/models/audit.model';
 
 function inputAudit(testAudit) {
   cy.on('uncaught:exception', (err, runnable) => {
@@ -31,6 +7,7 @@ function inputAudit(testAudit) {
     return false;
   });
   // Input Audit name, start date, end date and open next collapsed accordeon through click
+  cy.get(':nth-child(1) > .accordion-item-header-expanded').should('exist');
   cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').clear().type(testAudit.name);
   if (testAudit.start) {
     cy.get(
@@ -44,8 +21,8 @@ function inputAudit(testAudit) {
     ).click();
     cy.get('.today > .cell-content').click();
   }
-  cy.get(':nth-child(2) > .accordion-item-header-collapsed').click();
   cy.get(':nth-child(1) > .accordion-item-header-expanded').click();
+  cy.get(':nth-child(2) > .accordion-item-header-collapsed').click();
 
   // Input Customer data and open next collapsed accordeon through click
   cy.get('.ng-trigger > .item-body > :nth-child(1) > :nth-child(1) > .input-full-width')
