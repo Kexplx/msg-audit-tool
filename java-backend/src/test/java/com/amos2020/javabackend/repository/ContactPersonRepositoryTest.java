@@ -23,16 +23,25 @@ public class ContactPersonRepositoryTest {
 
     private ContactPerson toTest;
 
+    private static final String TEST_TITLE = "TestTitle";
+    private static final String TEST_INFORMATION = "0123456789, valid@email.com";
+    private static final String TEST_FORENAME = "Jon";
+    private static final String TEST_SURNAME = "Doe";
+    private static final String TEST_COMPANY = "testCompany";
+    private static final String TEST_DEPARTMENT = "testDepartment";
+    private static final String TEST_SECTOR = "testSector";
+
+
     @Test
     public void insertValidContactPersonEntity_isSuccessful() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         ContactPerson entity = repository.save(toTest);
 
@@ -50,12 +59,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithTitleIsNull_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
 
     }
@@ -63,12 +72,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithForenameIsNull_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -76,12 +85,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSurnameIsNull_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -89,12 +98,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithCompanyNameIsNull_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -102,12 +111,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithDepartmentIsNull_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -115,12 +124,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSectorIsNull_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
 
         repository.save(toTest);
     }
@@ -129,12 +138,12 @@ public class ContactPersonRepositoryTest {
     public void insertContactPersonWithTitleIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
         toTest.setContactPersonTitle("");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -142,13 +151,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithForenameIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
         toTest.setContactPersonForename("");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -156,13 +165,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSurnameIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
         toTest.setContactPersonSurname("");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -170,13 +179,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithCompanyNameIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
         toTest.setContactPersonCompanyName("");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -184,13 +193,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithDepartmentIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
         toTest.setContactPersonDepartment("");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         repository.save(toTest);
     }
@@ -198,12 +207,12 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSectorIsEmpty_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
         toTest.setContactPersonSector("");
 
         repository.save(toTest);
@@ -213,76 +222,76 @@ public class ContactPersonRepositoryTest {
     public void insertContactPersonWithTitleIsBlank_ThrowsException() {
         toTest = new ContactPerson();
         toTest.setContactPersonTitle("   ");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
     }
 
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithForenameIsBlank_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
         toTest.setContactPersonForename("   ");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
     }
 
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSurnameIsBlank_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
         toTest.setContactPersonSurname("  ");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
     }
 
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithCompanyNameIsBlank_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
         toTest.setContactPersonCompanyName("   ");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
     }
 
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithDepartmentIsBlank_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
         toTest.setContactPersonDepartment("   ");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
     }
 
     @Test(expected = TransactionSystemException.class)
     public void insertContactPersonWithSectorIsBlank_ThrowsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
         toTest.setContactPersonSector("   ");
         repository.save(toTest);
     }
@@ -290,13 +299,13 @@ public class ContactPersonRepositoryTest {
     @Test
     public void deleteExistingContactPerson_isSuccessful() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         repository.save(toTest);
 
         Assert.assertTrue(repository.exists((Example.of(toTest))));
@@ -309,13 +318,13 @@ public class ContactPersonRepositoryTest {
     @Test
     public void changeContactPersonWithValidTitle_isSuccessfully() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         ContactPerson entity = repository.save(toTest);
 
         Assert.assertTrue(repository.exists((Example.of(toTest))));
@@ -328,13 +337,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void changeContactPersonWithInvalidTitle_throwsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         ContactPerson entity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
@@ -345,13 +354,13 @@ public class ContactPersonRepositoryTest {
     @Test
     public void changeContactPersonWithValidForename_isSuccessfully() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         ContactPerson entity = repository.save(toTest);
 
         Assert.assertTrue(repository.exists((Example.of(toTest))));
@@ -364,13 +373,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void changeContactPersonWithInvalidForename_throwsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
 
         ContactPerson entity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
@@ -382,13 +391,13 @@ public class ContactPersonRepositoryTest {
     @Test
     public void changeContactPersonWithValidSurname_isSuccessfully() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         ContactPerson entity = repository.save(toTest);
 
         Assert.assertTrue(repository.exists((Example.of(toTest))));
@@ -401,13 +410,13 @@ public class ContactPersonRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void changeContactPersonWithInvalidSurname_throwsException() {
         toTest = new ContactPerson();
-        toTest.setContactPersonTitle("TestTitle");
-        toTest.setContactPersonContactInformation("0123456789, valid@email.com");
-        toTest.setContactPersonForename("Jon");
-        toTest.setContactPersonSurname("Doe");
-        toTest.setContactPersonCompanyName("testCompany");
-        toTest.setContactPersonDepartment("testDepartment");
-        toTest.setContactPersonSector("testSector");
+        toTest.setContactPersonTitle(TEST_TITLE);
+        toTest.setContactPersonContactInformation(TEST_INFORMATION);
+        toTest.setContactPersonForename(TEST_FORENAME);
+        toTest.setContactPersonSurname(TEST_SURNAME);
+        toTest.setContactPersonCompanyName(TEST_COMPANY);
+        toTest.setContactPersonDepartment(TEST_DEPARTMENT);
+        toTest.setContactPersonSector(TEST_SECTOR);
         ContactPerson entity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 

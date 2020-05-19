@@ -15,7 +15,7 @@ import org.springframework.transaction.TransactionSystemException;
 import java.sql.Date;
 
 /**
- * Test class for the ContactPersonRepository
+ * Test class for the AuditRepository
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
