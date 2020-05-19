@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
@@ -36,6 +37,7 @@ public class Interview {
         this.interviewAuditId = interviewAuditId;
     }
 
+    @NotNull
     @Basic
     @Column(name = "interview_date")
     public Date getInterviewDate() {

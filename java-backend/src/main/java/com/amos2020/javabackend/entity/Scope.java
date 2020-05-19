@@ -1,6 +1,8 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -43,6 +45,7 @@ public class Scope {
         this.scopeChangeNote = scopeChangeNote;
     }
 
+    @NotNull
     @Basic
     @Column(name = "scope_removed")
     public Boolean getScopeRemoved() {
