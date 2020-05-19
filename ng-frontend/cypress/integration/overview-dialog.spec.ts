@@ -47,4 +47,18 @@ describe('OverviewDialog', () => {
   it('Shows a button to see further options to do with the audit', () => {
     cy.get(':nth-child(1) > nb-card > nb-card-header > .appearance-filled').should('exist');
   });
+
+  it('Clicking on an audit redirects to audit page', () => {
+    cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header').click();
+    cy.url().should('contain', 'overview');
+  });
+
+  it('Clicking on an audit delete button should remove the audit', () => {
+    cy.get(':nth-child(2) > .appearance-hero').click();
+    cy.get(':nth-child(1) > nb-card > nb-card-header > .appearance-filled').click();
+    cy.get('.menu-title').filter(':visible').filter(':contains("Löschen")').click();
+    cy.get(
+      'app-audit-card.ng-star-inserted > nb-card > nb-card-header > .appearance-filled',
+    ).should('not.contain', testAudit.name);
+  });
 });
