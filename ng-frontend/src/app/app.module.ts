@@ -15,11 +15,14 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
-import { ActionListenerDirective } from './audit-list/action-listener.directive';
+import { ActionListenerDirective } from './shared/directives/action-listener.directive';
 import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 import { AuditDataFormComponent } from './shared/forms/audit-data/audit-data-form.component';
 import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { ConfirmDiscardDialogComponent } from './shared/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
+import { SortAuditPipe } from './pipes/sort-audit.pipe';
+import { AuditOverviewComponent } from './interview/audit-overview/audit-overview.component';
+import { CategoryCardComponent } from './interview/audit-overview/category-card/category-card.component';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,13 @@ import { ConfirmDiscardDialogComponent } from './shared/dialogs/confirm-discard-
     AddAuditDialogComponent,
     AuditCardComponent,
     EditAuditDialogComponent,
+    AuditOverviewComponent,
     ActionListenerDirective,
+    CategoryCardComponent,
     AuditDataFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
+    SortAuditPipe,
   ],
   imports: [
     BrowserModule,

@@ -21,6 +21,7 @@ describe('AuditCardComponent', () => {
       lastName: 'Meier',
       information: '0192',
       title: 'Herr',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'a',
@@ -28,6 +29,7 @@ describe('AuditCardComponent', () => {
       sector: 'c',
     },
     status: AuditStatus.IsPlanned,
+    creationDate: Date.now(),
   };
 
   beforeEach(() => {
@@ -52,36 +54,44 @@ describe('AuditCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render audit name into nb-accordion-item-header-wrapper', () => {
+  it('should render audit name into nb-card-header', () => {
     const de: DebugElement = fixture.debugElement;
-    const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
+    const el: HTMLElement = de.nativeElement.querySelector('nb-card-header');
     expect(el.innerHTML).toContain(audit.name);
   });
 
-  it('should render the company name into nb-accordion-item-header-wrapper and nb-accordion-item-body', () => {
+  it('should render the company name into nb-card-header', () => {
     const de: DebugElement = fixture.debugElement;
-    const el: HTMLElement = de.nativeElement.querySelector('.nb-accordion-item-header-wrapper');
+    const el: HTMLElement = de.nativeElement.querySelector('nb-card-header');
     expect(el.innerHTML).toContain(audit.customerData.name);
   });
 
   it('should render audit status tag with default case IsPlanned and change its statuses correctly', () => {
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-is-planned').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-is-planned')
+        .getAttribute('nbPopover'),
     ).toContain('Geplant');
     component.audit.status = AuditStatus.InAction;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-in-action').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-in-action')
+        .getAttribute('nbPopover'),
     ).toContain('In Bearbeitung');
     component.audit.status = AuditStatus.IsFinished;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-is-finished').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-is-finished')
+        .getAttribute('nbPopover'),
     ).toContain('Abgeschlossen');
     component.audit.status = AuditStatus.IsCanceled;
     fixture.detectChanges();
     expect(
-      fixture.debugElement.nativeElement.querySelector('.banner-status-is-canceled').getAttribute('nbPopover'),
+      fixture.debugElement.nativeElement
+        .querySelector('.banner-status-is-canceled')
+        .getAttribute('nbPopover'),
     ).toContain('Abgebrochen');
   });
 });

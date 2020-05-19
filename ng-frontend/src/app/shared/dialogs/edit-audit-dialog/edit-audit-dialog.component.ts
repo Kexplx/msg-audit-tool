@@ -5,7 +5,8 @@ import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/data/models/audit.model';
 import { UpdateAudit } from 'src/app/ngxs/audit.actions';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { defaultDialogOptions } from '../default-dialog-options';
 
@@ -25,14 +26,11 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
     private dialogService: NbDialogService,
     private store: Store,
     private router: Router,
-    private route: ActivatedRoute,
+    private location: Location,
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = params.id;
-    });
-
+    this.id = this.router.url.split('/')[2];
     this.audit$ = this.store.select(AuditRegistryState.audit(this.id));
   }
 
@@ -40,7 +38,7 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
     this.dialogRef = this.dialogService.open(this.dialog, defaultDialogOptions);
 
     this.dialogRef.onClose.subscribe(() => {
-      this.router.navigate(['/audits']);
+      this.location.back();
     });
 
     this.audit$

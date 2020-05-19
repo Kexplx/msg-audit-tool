@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { factors } from 'src/app/data/categories';
+import { factors } from 'src/app/data/factors';
 import { NbDialogService } from '@nebular/theme';
 import { Factor } from 'src/app/data/models/factor.model';
 import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
@@ -49,6 +49,14 @@ export class AuditDataFormComponent implements OnInit {
     return this.auditForm.get('department');
   }
 
+  get corporateDivision() {
+    return this.auditForm.get('corporateDivision');
+  }
+
+  get salutation() {
+    return this.auditForm.get('salutation');
+  }
+
   get title() {
     return this.auditForm.get('title');
   }
@@ -67,6 +75,10 @@ export class AuditDataFormComponent implements OnInit {
 
   get status() {
     return this.auditForm.get('status');
+  }
+
+  get creationDate() {
+    return this.auditForm.get('creationDate');
   }
   //#endregion
 
@@ -99,13 +111,15 @@ export class AuditDataFormComponent implements OnInit {
 
     this.auditForm = this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
-      start: [this.audit?.start],
+      start: [this.audit?.start ?? Date.now()],
       end: [this.audit?.end],
       status: [this.audit?.status ?? AuditStatus.IsPlanned],
       companyName: [this.audit?.customerData.name],
       sector: [this.audit?.customerData.sector],
       department: [this.audit?.customerData.department],
+      salutation: [this.audit?.contactPerson.salutation],
       title: [this.audit?.contactPerson.title],
+      corporateDivision: [this.audit?.customerData.corporateDivision],
       firstName: [this.audit?.contactPerson.firstName],
       lastName: [this.audit?.contactPerson.lastName],
       contactInformation: [this.audit?.contactPerson.information],
@@ -114,24 +128,31 @@ export class AuditDataFormComponent implements OnInit {
 
   onSubmit() {
     const filteredFactors = this.filterFactors(this.formFactors);
+    let creationDate = this.audit?.creationDate;
+    if (!creationDate) {
+      creationDate = Date.now();
+    }
 
     const audit: Audit = {
       name: this.auditName.value,
       status: +this.status.value,
       contactPerson: {
+        salutation: this.salutation.value,
+        title: this.title.value,
         firstName: this.firstName.value,
         lastName: this.lastName.value,
-        title: this.title.value,
         information: this.contactInformation.value,
       },
       customerData: {
         department: this.department.value,
         name: this.companyName.value,
         sector: this.sector.value,
+        corporateDivision: this.corporateDivision.value,
       },
       start: this.parseDate(this.start.value),
       end: this.parseDate(this.end.value),
       factors: [...filteredFactors],
+      creationDate: creationDate,
     };
 
     this.formSubmitted.emit(audit);
@@ -156,7 +177,7 @@ export class AuditDataFormComponent implements OnInit {
   }
 
   onCancel() {
-    if (this.auditForm.dirty) {
+    if (this.auditForm.dirty && this.auditForm.touched) {
       const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
         autoFocus: false,
         closeOnBackdropClick: false,
