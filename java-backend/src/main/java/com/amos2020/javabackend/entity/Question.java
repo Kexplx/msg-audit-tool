@@ -11,6 +11,7 @@ public class Question {
     private Collection<Answer> answersByQuestionId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "question_id")
     public int getQuestionId() {
         return questionId;

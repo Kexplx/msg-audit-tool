@@ -17,6 +17,7 @@ public class Audit {
     private Collection<Scope> scopesByAuditId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "audit_id")
     public int getAuditId() {
         return auditId;

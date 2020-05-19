@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class ContactPerson {
     private Collection<InterviewContactPerson> interviewContactPeopleByContactPersonId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "contact_person_id")
     public int getContactPersonId() {
         return contactPersonId;
@@ -28,6 +30,7 @@ public class ContactPerson {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "contact_person_title")
     public String getContactPersonTitle() {
         return contactPersonTitle;
@@ -38,6 +41,7 @@ public class ContactPerson {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "contact_person_forename")
     public String getContactPersonForename() {
         return contactPersonForename;
@@ -48,6 +52,7 @@ public class ContactPerson {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "contact_person_surname")
     public String getContactPersonSurname() {
         return contactPersonSurname;
@@ -68,6 +73,7 @@ public class ContactPerson {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "contact_person_company_name")
     public String getContactPersonCompanyName() {
         return contactPersonCompanyName;
@@ -78,6 +84,7 @@ public class ContactPerson {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "contact_person_department")
     public String getContactPersonDepartment() {
         return contactPersonDepartment;
@@ -88,6 +95,7 @@ public class ContactPerson {
     }
 
     @Basic
+    @NotBlank
     @Column(name = "contact_person_sector")
     public String getContactPersonSector() {
         return contactPersonSector;

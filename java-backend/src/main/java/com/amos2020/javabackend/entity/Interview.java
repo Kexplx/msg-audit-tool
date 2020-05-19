@@ -16,6 +16,7 @@ public class Interview {
     private Collection<InterviewContactPerson> interviewContactPeopleByInterviewId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "interview_id")
     public int getInterviewId() {
         return interviewId;
@@ -88,7 +89,7 @@ public class Interview {
     }
 
     @ManyToOne
-    @JoinColumn(name = "interview_audit_id", referencedColumnName = "audit_id", nullable = false)
+    @JoinColumn(name = "interview_audit_id", referencedColumnName = "audit_id", nullable = false, insertable = false, updatable = false)
     public Audit getAuditByInterviewAuditId() {
         return auditByInterviewAuditId;
     }

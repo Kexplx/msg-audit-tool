@@ -49,7 +49,7 @@ public class InterviewContactPerson {
     }
 
     @ManyToOne
-    @JoinColumn(name = "interviewcontactperson_interview_id", referencedColumnName = "interview_id", nullable = false)
+    @JoinColumn(name = "interviewcontactperson_interview_id", referencedColumnName = "interview_id", nullable = false, insertable = false, updatable = false)
     public Interview getInterviewByInterviewcontactpersonInterviewId() {
         return interviewByInterviewcontactpersonInterviewId;
     }
@@ -59,7 +59,7 @@ public class InterviewContactPerson {
     }
 
     @ManyToOne
-    @JoinColumn(name = "interviewcontactperson_contactperson_id", referencedColumnName = "contact_person_id", nullable = false)
+    @JoinColumn(name = "interviewcontactperson_contactperson_id", referencedColumnName = "contact_person_id", nullable = false, insertable = false, updatable = false)
     public ContactPerson getContactPersonByInterviewcontactpersonContactpersonId() {
         return contactPersonByInterviewcontactpersonContactpersonId;
     }

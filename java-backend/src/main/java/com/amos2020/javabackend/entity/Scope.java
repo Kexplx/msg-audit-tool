@@ -77,7 +77,7 @@ public class Scope {
     }
 
     @ManyToOne
-    @JoinColumn(name = "scope_audit_id", referencedColumnName = "audit_id", nullable = false)
+    @JoinColumn(name = "scope_audit_id", referencedColumnName = "audit_id", nullable = false, insertable = false, updatable = false)
     public Audit getAuditByScopeAuditId() {
         return auditByScopeAuditId;
     }
@@ -87,7 +87,7 @@ public class Scope {
     }
 
     @ManyToOne
-    @JoinColumn(name = "scope_faccrit_id", referencedColumnName = "faccrit_id", nullable = false)
+    @JoinColumn(name = "scope_faccrit_id", referencedColumnName = "faccrit_id", nullable = false, insertable = false, updatable = false)
     public FacCrit getFacCritByScopeFaccritId() {
         return facCritByScopeFaccritId;
     }

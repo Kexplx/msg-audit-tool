@@ -49,7 +49,7 @@ public class AuditContactPerson {
     }
 
     @ManyToOne
-    @JoinColumn(name = "auditcontactperson_audit_id", referencedColumnName = "audit_id", nullable = false)
+    @JoinColumn(name = "auditcontactperson_audit_id", referencedColumnName = "audit_id", nullable = false, insertable = false, updatable = false)
     public Audit getAuditByAuditcontactpersonAuditId() {
         return auditByAuditcontactpersonAuditId;
     }
@@ -59,7 +59,7 @@ public class AuditContactPerson {
     }
 
     @ManyToOne
-    @JoinColumn(name = "auditcontactperson_contactperson_id", referencedColumnName = "contact_person_id", nullable = false)
+    @JoinColumn(name = "auditcontactperson_contactperson_id", referencedColumnName = "contact_person_id", nullable = false, insertable = false, updatable = false)
     public ContactPerson getContactPersonByAuditcontactpersonContactpersonId() {
         return contactPersonByAuditcontactpersonContactpersonId;
     }

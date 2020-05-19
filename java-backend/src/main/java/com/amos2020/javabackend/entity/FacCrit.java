@@ -15,6 +15,7 @@ public class FacCrit {
     private Collection<Scope> scopesByFaccritId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "faccrit_id")
     public int getFaccritId() {
         return faccritId;
@@ -75,7 +76,7 @@ public class FacCrit {
     }
 
     @ManyToOne
-    @JoinColumn(name = "faccrit_reference_id", referencedColumnName = "faccrit_id")
+    @JoinColumn(name = "faccrit_reference_id", referencedColumnName = "faccrit_id", insertable = false, updatable = false)
     public FacCrit getFacCritByFaccritReferenceId() {
         return facCritByFaccritReferenceId;
     }

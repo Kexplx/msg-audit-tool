@@ -147,7 +147,7 @@ public class Answer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "answer_faccrit_id", referencedColumnName = "faccrit_id", nullable = false)
+    @JoinColumn(name = "answer_faccrit_id", referencedColumnName = "faccrit_id", nullable = false, insertable = false, updatable = false)
     public FacCrit getFacCritByAnswerFaccritId() {
         return facCritByAnswerFaccritId;
     }
@@ -157,7 +157,7 @@ public class Answer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "answer_question_id", referencedColumnName = "question_id", nullable = false)
+    @JoinColumn(name = "answer_question_id", referencedColumnName = "question_id", nullable = false, insertable = false, updatable = false)
     public Question getQuestionByAnswerQuestionId() {
         return questionByAnswerQuestionId;
     }
@@ -167,7 +167,7 @@ public class Answer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "answer_interview_id", referencedColumnName = "interview_id", nullable = false)
+    @JoinColumn(name = "answer_interview_id", referencedColumnName = "interview_id", nullable = false, insertable = false, updatable = false)
     public Interview getInterviewByAnswerInterviewId() {
         return interviewByAnswerInterviewId;
     }
