@@ -1,43 +1,18 @@
+import { Audit } from "src/app/data/models/audit.model";
+
 describe('OverviewDialog', () => {
   let baseUrl = Cypress.config().baseUrl;
-  const testAudit = {
-    name: 'BankAudit',
-    contactPerson: {
-      firstName: 'Max',
-      lastName: 'Mustermann',
-      information: '+123456789',
-      title: 'Herr',
-      salutation: 'Dr.',
-    },
-    customerData: {
-      department: 'HR',
-      name: 'TestBank',
-      sector: 'Banking',
-      corporateDivision: 'Human Resources',
-    },
-  };
-
-  const testAuditEdited = {
-    name: 'InvestmentBankAudit',
-    start: true,
-    end: true,
-    contactPerson: {
-      firstName: 'Anna',
-      lastName: 'Mustermann',
-      information: 'anna@investmentbank.o',
-      title: 'Frau',
-      salutation: 'Dr. Dr. hab.',
-    },
-    customerData: {
-      department: 'IT',
-      name: 'TestInvestmentBank',
-      sector: 'SuperBanking',
-      corporateDivision: 'Alien Resources',
-    },
-  };
+  let testAudit:Audit;
+  let testAuditEdited:Audit;
 
   before(() => {
     cy.visit(baseUrl);
+    cy.fixture('example-audit').then(json => {
+      testAudit = json;
+    });
+    cy.fixture('example-audit2').then(json => {
+      testAuditEdited = json;
+    });
   });
 
   function inputAudit(testAudit) {
