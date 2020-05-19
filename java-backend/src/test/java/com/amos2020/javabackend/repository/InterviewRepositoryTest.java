@@ -1,9 +1,7 @@
 package com.amos2020.javabackend.repository;
 
 import com.amos2020.javabackend.entity.Audit;
-import com.amos2020.javabackend.entity.FacCrit;
 import com.amos2020.javabackend.entity.Interview;
-import com.amos2020.javabackend.entity.Scope;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +14,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
 
-import javax.transaction.TransactionalException;
 import java.sql.Date;
 
 @RunWith(SpringRunner.class)
@@ -37,17 +34,17 @@ public class InterviewRepositoryTest {
         Date endDate = Date.valueOf("2000-01-02");
 
         audit = new Audit();
-        audit.setAuditName("TestAudit");
-        audit.setAuditStartDate(startDate);
-        audit.setAuditEndDate(endDate);
-        audit.setAuditExpectedEndDate(endDate);
+        audit.setName("TestAudit");
+        audit.setStartDate(startDate);
+        audit.setEndDate(endDate);
+        audit.setExpectedEndDate(endDate);
         auditRepository.save(audit);
     }
 
     @Test
     public void insertValidInterviewEntity(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
 
@@ -68,7 +65,7 @@ public class InterviewRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertInterviewWithDateNull(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewAnnotation("TestAnnotation");
 
         repository.save(interview);
@@ -77,7 +74,7 @@ public class InterviewRepositoryTest {
     @Test
     public void insertInterviewAnnotationWithNull(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
 
         repository.save(interview);
@@ -88,7 +85,7 @@ public class InterviewRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void changeInterviewWithAuditIdInvalid(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         Interview toTest = repository.save(interview);
@@ -100,7 +97,7 @@ public class InterviewRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void changeInterviewWithDateNull(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         Interview toTest = repository.save(interview);
@@ -111,7 +108,7 @@ public class InterviewRepositoryTest {
 
     public void changeInterviewDate(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         Interview interview1 = repository.save(interview);
@@ -125,7 +122,7 @@ public class InterviewRepositoryTest {
     @Test
     public void changeInterviewAnnotationWithNull(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         Interview interview1 = repository.save(interview);
@@ -139,7 +136,7 @@ public class InterviewRepositoryTest {
     @Test
     public void changeInterviewAnnotation(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         Interview interview1 = repository.save(interview);
@@ -153,7 +150,7 @@ public class InterviewRepositoryTest {
     @Test
     public void deleteInterviewEntity(){
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         Interview toTest = repository.save(interview);

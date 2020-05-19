@@ -52,21 +52,21 @@ public class AuditContactPersonRepositoryTest {
     @Before
     public void setUp() {
         audit = new Audit();
-        audit.setAuditName(TEST_NAME);
-        audit.setAuditStartDate(TEST_START_DATE);
-        audit.setAuditEndDate(TEST_END_DATE);
-        audit.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        audit.setName(TEST_NAME);
+        audit.setStartDate(TEST_START_DATE);
+        audit.setEndDate(TEST_END_DATE);
+        audit.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         auditRepository.save(audit);
         Assert.assertTrue(auditRepository.exists((Example.of(audit))));
 
         contactPerson = new ContactPerson();
-        contactPerson.setContactPersonTitle(TEST_TITLE);
-        contactPerson.setContactPersonContactInformation(TEST_INFORMATION);
-        contactPerson.setContactPersonForename(TEST_FORENAME);
-        contactPerson.setContactPersonSurname(TEST_SURNAME);
-        contactPerson.setContactPersonCompanyName(TEST_COMPANY);
-        contactPerson.setContactPersonDepartment(TEST_DEPARTMENT);
-        contactPerson.setContactPersonSector(TEST_SECTOR);
+        contactPerson.setTitle(TEST_TITLE);
+        contactPerson.setContactInformation(TEST_INFORMATION);
+        contactPerson.setForename(TEST_FORENAME);
+        contactPerson.setSurname(TEST_SURNAME);
+        contactPerson.setCompanyName(TEST_COMPANY);
+        contactPerson.setDepartment(TEST_DEPARTMENT);
+        contactPerson.setSector(TEST_SECTOR);
         contactPersonRepository.save(contactPerson);
         Assert.assertTrue(contactPersonRepository.exists((Example.of(contactPerson))));
     }
@@ -74,8 +74,8 @@ public class AuditContactPersonRepositoryTest {
     @Test
     public void insertAuditContactPersonWithValidData_isSuccessful() {
         toTest = new AuditContactPerson();
-        toTest.setAuditcontactpersonAuditId(audit.getAuditId());
-        toTest.setAuditcontactpersonContactpersonId(contactPerson.getContactPersonId());
+        toTest.setAuditId(audit.getId());
+        toTest.setContactPersonId(contactPerson.getId());
         repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
     }
@@ -83,13 +83,13 @@ public class AuditContactPersonRepositoryTest {
     @Test
     public void insertAuditContactPersonTwice_onlyOneIsInserted() {
         toTest = new AuditContactPerson();
-        toTest.setAuditcontactpersonAuditId(audit.getAuditId());
-        toTest.setAuditcontactpersonContactpersonId(contactPerson.getContactPersonId());
+        toTest.setAuditId(audit.getId());
+        toTest.setContactPersonId(contactPerson.getId());
         repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
         AuditContactPerson auditContactPerson = new AuditContactPerson();
-        auditContactPerson.setAuditcontactpersonAuditId(audit.getAuditId());
-        auditContactPerson.setAuditcontactpersonContactpersonId(contactPerson.getContactPersonId());
+        auditContactPerson.setAuditId(audit.getId());
+        auditContactPerson.setContactPersonId(contactPerson.getId());
         repository.save(auditContactPerson);
         Assert.assertTrue(repository.exists((Example.of(auditContactPerson))));
         Assert.assertEquals(1, repository.findAll().size());
@@ -98,30 +98,30 @@ public class AuditContactPersonRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertAuditContactPersonWithAuditIdIsNull_throwsException() {
         toTest = new AuditContactPerson();
-        toTest.setAuditcontactpersonContactpersonId(contactPerson.getContactPersonId());
+        toTest.setContactPersonId(contactPerson.getId());
         repository.save(toTest);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void insertAuditContactPersonWithContactPersonIdIsNull_throwsException() {
         toTest = new AuditContactPerson();
-        toTest.setAuditcontactpersonAuditId(audit.getAuditId());
+        toTest.setAuditId(audit.getId());
         repository.save(toTest);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void insertAuditContactPersonWithAuditIdIsNotExisting_throwsException() {
         toTest = new AuditContactPerson();
-        toTest.setAuditcontactpersonAuditId(audit.getAuditId()+1);
-        toTest.setAuditcontactpersonContactpersonId(contactPerson.getContactPersonId());
+        toTest.setAuditId(audit.getId()+1);
+        toTest.setContactPersonId(contactPerson.getId());
         repository.save(toTest);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void insertAuditContactPersonWithContactPersonIdIsNotExisting_throwsException() {
         toTest = new AuditContactPerson();
-        toTest.setAuditcontactpersonAuditId(audit.getAuditId());
-        toTest.setAuditcontactpersonContactpersonId(contactPerson.getContactPersonId()+1);
+        toTest.setAuditId(audit.getId());
+        toTest.setContactPersonId(contactPerson.getId()+1);
         repository.save(toTest);
     }
 

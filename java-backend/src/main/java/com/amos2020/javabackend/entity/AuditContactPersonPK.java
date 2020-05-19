@@ -10,21 +10,21 @@ public class AuditContactPersonPK implements Serializable {
 
     @Column(name = "auditcontactperson_audit_id")
     @Id
-    public int getAuditcontactpersonAuditId() {
+    public int getAuditId() {
         return auditcontactpersonAuditId;
     }
 
-    public void setAuditcontactpersonAuditId(int auditcontactpersonAuditId) {
+    public void setAuditId(int auditcontactpersonAuditId) {
         this.auditcontactpersonAuditId = auditcontactpersonAuditId;
     }
 
     @Column(name = "auditcontactperson_contactperson_id")
     @Id
-    public int getAuditcontactpersonContactpersonId() {
+    public int getContactPersonId() {
         return auditcontactpersonContactpersonId;
     }
 
-    public void setAuditcontactpersonContactpersonId(int auditcontactpersonContactpersonId) {
+    public void setContactPersonId(int auditcontactpersonContactpersonId) {
         this.auditcontactpersonContactpersonId = auditcontactpersonContactpersonId;
     }
 

@@ -7,102 +7,102 @@ import java.util.Objects;
 
 @Entity
 public class ContactPerson {
-    private int contactPersonId;
-    private String contactPersonTitle;
-    private String contactPersonForename;
-    private String contactPersonSurname;
-    private String contactPersonContactInformation;
-    private String contactPersonCompanyName;
-    private String contactPersonDepartment;
-    private String contactPersonSector;
+    private int id;
+    private String title;
+    private String forename;
+    private String surname;
+    private String contactInformation;
+    private String companyName;
+    private String department;
+    private String sector;
     private Collection<AuditContactPerson> auditContactPeopleByContactPersonId;
     private Collection<InterviewContactPerson> interviewContactPeopleByContactPersonId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "contact_person_id")
-    public int getContactPersonId() {
-        return contactPersonId;
+    public int getId() {
+        return id;
     }
 
-    public void setContactPersonId(int contactPersonId) {
-        this.contactPersonId = contactPersonId;
+    public void setId(int contactPersonId) {
+        this.id = contactPersonId;
     }
 
     @Basic
     @NotBlank
     @Column(name = "contact_person_title")
-    public String getContactPersonTitle() {
-        return contactPersonTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContactPersonTitle(String contactPersonTitle) {
-        this.contactPersonTitle = contactPersonTitle;
+    public void setTitle(String contactPersonTitle) {
+        this.title = contactPersonTitle;
     }
 
     @Basic
     @NotBlank
     @Column(name = "contact_person_forename")
-    public String getContactPersonForename() {
-        return contactPersonForename;
+    public String getForename() {
+        return forename;
     }
 
-    public void setContactPersonForename(String contactPersonForename) {
-        this.contactPersonForename = contactPersonForename;
+    public void setForename(String contactPersonForename) {
+        this.forename = contactPersonForename;
     }
 
     @Basic
     @NotBlank
     @Column(name = "contact_person_surname")
-    public String getContactPersonSurname() {
-        return contactPersonSurname;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setContactPersonSurname(String contactPersonSurname) {
-        this.contactPersonSurname = contactPersonSurname;
+    public void setSurname(String contactPersonSurname) {
+        this.surname = contactPersonSurname;
     }
 
     @Basic
     @Column(name = "contact_person_contact_information")
-    public String getContactPersonContactInformation() {
-        return contactPersonContactInformation;
+    public String getContactInformation() {
+        return contactInformation;
     }
 
-    public void setContactPersonContactInformation(String contactPersonContactInformation) {
-        this.contactPersonContactInformation = contactPersonContactInformation;
+    public void setContactInformation(String contactPersonContactInformation) {
+        this.contactInformation = contactPersonContactInformation;
     }
 
     @Basic
     @NotBlank
     @Column(name = "contact_person_company_name")
-    public String getContactPersonCompanyName() {
-        return contactPersonCompanyName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setContactPersonCompanyName(String contactPersonCompanyName) {
-        this.contactPersonCompanyName = contactPersonCompanyName;
+    public void setCompanyName(String contactPersonCompanyName) {
+        this.companyName = contactPersonCompanyName;
     }
 
     @Basic
     @NotBlank
     @Column(name = "contact_person_department")
-    public String getContactPersonDepartment() {
-        return contactPersonDepartment;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setContactPersonDepartment(String contactPersonDepartment) {
-        this.contactPersonDepartment = contactPersonDepartment;
+    public void setDepartment(String contactPersonDepartment) {
+        this.department = contactPersonDepartment;
     }
 
     @Basic
     @NotBlank
     @Column(name = "contact_person_sector")
-    public String getContactPersonSector() {
-        return contactPersonSector;
+    public String getSector() {
+        return sector;
     }
 
-    public void setContactPersonSector(String contactPersonSector) {
-        this.contactPersonSector = contactPersonSector;
+    public void setSector(String contactPersonSector) {
+        this.sector = contactPersonSector;
     }
 
     @Override
@@ -112,32 +112,32 @@ public class ContactPerson {
 
         ContactPerson that = (ContactPerson) o;
 
-        if (contactPersonId != that.contactPersonId) return false;
-        if (!Objects.equals(contactPersonTitle, that.contactPersonTitle))
+        if (id != that.id) return false;
+        if (!Objects.equals(title, that.title))
             return false;
-        if (!Objects.equals(contactPersonForename, that.contactPersonForename))
+        if (!Objects.equals(forename, that.forename))
             return false;
-        if (!Objects.equals(contactPersonSurname, that.contactPersonSurname))
+        if (!Objects.equals(surname, that.surname))
             return false;
-        if (!Objects.equals(contactPersonContactInformation, that.contactPersonContactInformation))
+        if (!Objects.equals(contactInformation, that.contactInformation))
             return false;
-        if (!Objects.equals(contactPersonCompanyName, that.contactPersonCompanyName))
+        if (!Objects.equals(companyName, that.companyName))
             return false;
-        if (!Objects.equals(contactPersonDepartment, that.contactPersonDepartment))
+        if (!Objects.equals(department, that.department))
             return false;
-        return Objects.equals(contactPersonSector, that.contactPersonSector);
+        return Objects.equals(sector, that.sector);
     }
 
     @Override
     public int hashCode() {
-        int result = contactPersonId;
-        result = 31 * result + (contactPersonTitle != null ? contactPersonTitle.hashCode() : 0);
-        result = 31 * result + (contactPersonForename != null ? contactPersonForename.hashCode() : 0);
-        result = 31 * result + (contactPersonSurname != null ? contactPersonSurname.hashCode() : 0);
-        result = 31 * result + (contactPersonContactInformation != null ? contactPersonContactInformation.hashCode() : 0);
-        result = 31 * result + (contactPersonCompanyName != null ? contactPersonCompanyName.hashCode() : 0);
-        result = 31 * result + (contactPersonDepartment != null ? contactPersonDepartment.hashCode() : 0);
-        result = 31 * result + (contactPersonSector != null ? contactPersonSector.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
+        result = 31 * result + (forename != null ? forename.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (contactInformation != null ? contactInformation.hashCode() : 0);
+        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
+        result = 31 * result + (department != null ? department.hashCode() : 0);
+        result = 31 * result + (sector != null ? sector.hashCode() : 0);
         return result;
     }
 

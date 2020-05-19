@@ -38,14 +38,14 @@ public class AnswerRepositoryTest {
     @Before
     public void setUp(){
         audit = new Audit();
-        audit.setAuditName("TEST_NAME");
-        audit.setAuditStartDate(Date.valueOf("2020-01-01"));
-        audit.setAuditEndDate(Date.valueOf("2020-01-02"));
-        audit.setAuditExpectedEndDate(Date.valueOf("2020-01-03"));
+        audit.setName("TEST_NAME");
+        audit.setStartDate(Date.valueOf("2020-01-01"));
+        audit.setEndDate(Date.valueOf("2020-01-02"));
+        audit.setExpectedEndDate(Date.valueOf("2020-01-03"));
         auditRepository.save(audit);
 
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getAuditId());
+        interview.setInterviewAuditId(audit.getId());
         interview.setInterviewDate(Date.valueOf("2020-01-01"));
         interview.setInterviewAnnotation("TestAnnotation");
         interviewRepository.save(interview);

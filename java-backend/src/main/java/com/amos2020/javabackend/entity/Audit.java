@@ -9,11 +9,11 @@ import java.util.Objects;
 
 @Entity
 public class Audit {
-    private int auditId;
-    private String auditName;
-    private Date auditStartDate;
-    private Date auditEndDate;
-    private Date auditExpectedEndDate;
+    private int id;
+    private String name;
+    private Date startDate;
+    private Date endDate;
+    private Date expectedEndDate;
     private Collection<AuditContactPerson> auditContactPeopleByAuditId;
     private Collection<Interview> interviewsByAuditId;
     private Collection<Scope> scopesByAuditId;
@@ -21,55 +21,55 @@ public class Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "audit_id")
-    public int getAuditId() {
-        return auditId;
+    public int getId() {
+        return id;
     }
 
-    public void setAuditId(int auditId) {
-        this.auditId = auditId;
+    public void setId(int auditId) {
+        this.id = auditId;
     }
 
     @Basic
     @NotBlank
     @Column(name = "audit_name")
-    public String getAuditName() {
-        return auditName;
+    public String getName() {
+        return name;
     }
 
-    public void setAuditName(String auditName) {
-        this.auditName = auditName;
+    public void setName(String auditName) {
+        this.name = auditName;
     }
 
     @Basic
     @NotNull
     @Column(name = "audit_start_date")
-    public Date getAuditStartDate() {
-        return auditStartDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setAuditStartDate(Date auditStartDate) {
-        this.auditStartDate = auditStartDate;
+    public void setStartDate(Date auditStartDate) {
+        this.startDate = auditStartDate;
     }
 
     @Basic
     @Column(name = "audit_end_date")
-    public Date getAuditEndDate() {
-        return auditEndDate;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setAuditEndDate(Date auditEndDate) {
-        this.auditEndDate = auditEndDate;
+    public void setEndDate(Date auditEndDate) {
+        this.endDate = auditEndDate;
     }
 
     @Basic
     @NotNull
     @Column(name = "audit_expected_end_date")
-    public Date getAuditExpectedEndDate() {
-        return auditExpectedEndDate;
+    public Date getExpectedEndDate() {
+        return expectedEndDate;
     }
 
-    public void setAuditExpectedEndDate(Date auditExpectedEndDate) {
-        this.auditExpectedEndDate = auditExpectedEndDate;
+    public void setExpectedEndDate(Date auditExpectedEndDate) {
+        this.expectedEndDate = auditExpectedEndDate;
     }
 
     @Override
@@ -79,21 +79,21 @@ public class Audit {
 
         Audit audit = (Audit) o;
 
-        if (auditId != audit.auditId) return false;
-        if (!Objects.equals(auditName, audit.auditName)) return false;
-        if (!Objects.equals(auditStartDate, audit.auditStartDate))
+        if (id != audit.id) return false;
+        if (!Objects.equals(name, audit.name)) return false;
+        if (!Objects.equals(startDate, audit.startDate))
             return false;
-        if (!Objects.equals(auditEndDate, audit.auditEndDate)) return false;
-        return Objects.equals(auditExpectedEndDate, audit.auditExpectedEndDate);
+        if (!Objects.equals(endDate, audit.endDate)) return false;
+        return Objects.equals(expectedEndDate, audit.expectedEndDate);
     }
 
     @Override
     public int hashCode() {
-        int result = auditId;
-        result = 31 * result + (auditName != null ? auditName.hashCode() : 0);
-        result = 31 * result + (auditStartDate != null ? auditStartDate.hashCode() : 0);
-        result = 31 * result + (auditEndDate != null ? auditEndDate.hashCode() : 0);
-        result = 31 * result + (auditExpectedEndDate != null ? auditExpectedEndDate.hashCode() : 0);
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
+        result = 31 * result + (expectedEndDate != null ? expectedEndDate.hashCode() : 0);
         return result;
     }
 

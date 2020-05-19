@@ -5,29 +5,29 @@ import javax.persistence.*;
 @Entity
 @IdClass(AuditContactPersonPK.class)
 public class AuditContactPerson {
-    private int auditcontactpersonAuditId;
-    private int auditcontactpersonContactpersonId;
+    private int auditId;
+    private int contactPersonId;
     private Audit auditByAuditcontactpersonAuditId;
     private ContactPerson contactPersonByAuditcontactpersonContactpersonId;
 
     @Id
     @Column(name = "auditcontactperson_audit_id")
-    public int getAuditcontactpersonAuditId() {
-        return auditcontactpersonAuditId;
+    public int getAuditId() {
+        return auditId;
     }
 
-    public void setAuditcontactpersonAuditId(int auditcontactpersonAuditId) {
-        this.auditcontactpersonAuditId = auditcontactpersonAuditId;
+    public void setAuditId(int auditcontactpersonAuditId) {
+        this.auditId = auditcontactpersonAuditId;
     }
 
     @Id
     @Column(name = "auditcontactperson_contactperson_id")
-    public int getAuditcontactpersonContactpersonId() {
-        return auditcontactpersonContactpersonId;
+    public int getContactPersonId() {
+        return contactPersonId;
     }
 
-    public void setAuditcontactpersonContactpersonId(int auditcontactpersonContactpersonId) {
-        this.auditcontactpersonContactpersonId = auditcontactpersonContactpersonId;
+    public void setContactPersonId(int auditcontactpersonContactpersonId) {
+        this.contactPersonId = auditcontactpersonContactpersonId;
     }
 
     @Override
@@ -37,14 +37,14 @@ public class AuditContactPerson {
 
         AuditContactPerson that = (AuditContactPerson) o;
 
-        if (auditcontactpersonAuditId != that.auditcontactpersonAuditId) return false;
-        return auditcontactpersonContactpersonId == that.auditcontactpersonContactpersonId;
+        if (auditId != that.auditId) return false;
+        return contactPersonId == that.contactPersonId;
     }
 
     @Override
     public int hashCode() {
-        int result = auditcontactpersonAuditId;
-        result = 31 * result + auditcontactpersonContactpersonId;
+        int result = auditId;
+        result = 31 * result + contactPersonId;
         return result;
     }
 

@@ -35,10 +35,10 @@ public class AuditRepositoryTest {
     @Test
     public void insertAuditWithValidData_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
     }
@@ -46,9 +46,9 @@ public class AuditRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertAuditWithNameIsNull_throwsException() {
         toTest = new Audit();
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         repository.save(toTest);
     }
@@ -56,10 +56,10 @@ public class AuditRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertAuditWithNameIsEmpty_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName("");
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName("");
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         repository.save(toTest);
     }
@@ -67,10 +67,10 @@ public class AuditRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertAuditWithNameIsBlank_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName("   ");
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName("   ");
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         repository.save(toTest);
     }
@@ -78,9 +78,9 @@ public class AuditRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertAuditWithStartDateIsNull_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         repository.save(toTest);
     }
@@ -88,19 +88,19 @@ public class AuditRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertAuditWithExpectedEndDateIsNull_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
         repository.save(toTest);
     }
 
     @Test
     public void deleteExistingAudit_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
@@ -112,31 +112,31 @@ public class AuditRepositoryTest {
     @Test
     public void changeAuditWithValidName_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditName("New Name");
+        AuditEntity.setName("New Name");
         repository.save(AuditEntity);
-        Assert.assertNotEquals(TEST_NAME, toTest.getAuditName());
+        Assert.assertNotEquals(TEST_NAME, toTest.getName());
     }
 
     @Test(expected = TransactionSystemException.class)
     public void changeAuditWithInvalidName_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditName("  ");
+        AuditEntity.setName("  ");
         repository.save(AuditEntity);
     }
 
@@ -144,94 +144,94 @@ public class AuditRepositoryTest {
 
     public void changeAuditWithValidStartDate_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditStartDate(Date.valueOf("2019-10-12"));
+        AuditEntity.setStartDate(Date.valueOf("2019-10-12"));
         repository.save(AuditEntity);
-        Assert.assertNotEquals(TEST_START_DATE, toTest.getAuditStartDate());
+        Assert.assertNotEquals(TEST_START_DATE, toTest.getStartDate());
     }
 
     @Test(expected = TransactionSystemException.class)
     public void changeAuditWithInvalidStartDate_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditStartDate(null);
+        AuditEntity.setStartDate(null);
         repository.save(AuditEntity);
     }
 
     @Test
     public void changeAuditWithValidEndDate_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditEndDate(Date.valueOf("2012-04-04"));
+        AuditEntity.setEndDate(Date.valueOf("2012-04-04"));
         repository.save(AuditEntity);
-        Assert.assertNotEquals(TEST_END_DATE, toTest.getAuditEndDate());
+        Assert.assertNotEquals(TEST_END_DATE, toTest.getEndDate());
     }
 
     @Test
     public void changeAuditWithInvalidEndDate_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditEndDate(null);
+        AuditEntity.setEndDate(null);
         repository.save(AuditEntity);
-        Assert.assertNotEquals(TEST_END_DATE, toTest.getAuditEndDate());
+        Assert.assertNotEquals(TEST_END_DATE, toTest.getEndDate());
     }
 
     @Test
     public void changeAuditWithValidExpectedEndDate_isSuccessful() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditExpectedEndDate(Date.valueOf("2012-04-04"));
+        AuditEntity.setExpectedEndDate(Date.valueOf("2012-04-04"));
         repository.save(AuditEntity);
-        Assert.assertNotEquals("TestCompany", toTest.getAuditExpectedEndDate());
+        Assert.assertNotEquals("TestCompany", toTest.getExpectedEndDate());
     }
 
     @Test(expected = TransactionSystemException.class)
     public void changeAuditWithInvalidExpectedEndDate_throwsException() {
         toTest = new Audit();
-        toTest.setAuditName(TEST_NAME);
-        toTest.setAuditStartDate(TEST_START_DATE);
-        toTest.setAuditEndDate(TEST_END_DATE);
-        toTest.setAuditExpectedEndDate(TEST_EXPECTED_END_DATE);
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
 
         Audit AuditEntity = repository.save(toTest);
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
-        AuditEntity.setAuditExpectedEndDate(null);
+        AuditEntity.setExpectedEndDate(null);
         repository.save(AuditEntity);
     }
 

@@ -38,10 +38,10 @@ public class ScopeRepositoryTest {
         Date endDate = Date.valueOf("2000-01-02");
 
         audit = new Audit();
-        audit.setAuditName("TestAudit");
-        audit.setAuditStartDate(startDate);
-        audit.setAuditEndDate(endDate);
-        audit.setAuditExpectedEndDate(endDate);
+        audit.setName("TestAudit");
+        audit.setStartDate(startDate);
+        audit.setEndDate(endDate);
+        audit.setExpectedEndDate(endDate);
         auditRepository.save(audit);
 
         facCrit = new FacCrit();
@@ -52,7 +52,7 @@ public class ScopeRepositoryTest {
     @Test
     public void insertValidScopeEntity(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -75,7 +75,7 @@ public class ScopeRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertScopeWithFaccritIdNull() {
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
 
@@ -85,7 +85,7 @@ public class ScopeRepositoryTest {
     @Test
     public void insertScopeWithChangeNoteNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote(null);
         scope.setScopeRemoved(false);
@@ -98,7 +98,7 @@ public class ScopeRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertScopeWithRemovedNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(null);
@@ -109,7 +109,7 @@ public class ScopeRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void changeScopeWithAuditIdInvalid(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -122,7 +122,7 @@ public class ScopeRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void changeScopeWithFaccritIdInvalid() {
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -135,7 +135,7 @@ public class ScopeRepositoryTest {
     @Test
     public void changeScopeChangeNote(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -150,7 +150,7 @@ public class ScopeRepositoryTest {
     @Test
     public void changeScopeWithChangeNoteNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -164,7 +164,7 @@ public class ScopeRepositoryTest {
 
     public void changeScopeRemoved(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -179,7 +179,7 @@ public class ScopeRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void changeScopeWithRemovedNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
@@ -192,7 +192,7 @@ public class ScopeRepositoryTest {
     @Test
     public void deleteScopeEntity(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getAuditId());
+        scope.setScopeAuditId(audit.getId());
         scope.setScopeFaccritId(facCrit.getFaccritId());
         scope.setScopeChangeNote("TestNote");
         scope.setScopeRemoved(false);
