@@ -65,4 +65,57 @@ function inputAudit(testAudit) {
   cy.get('.accordion-footer > .status-primary').click();
 }
 
+function testAuditInfoPage(testAudit) {
+  cy.get(':nth-child(3) > :nth-child(1) > .audit-params').should('contain.text', testAudit.name);
+  cy.get(':nth-child(5) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.customerData.name,
+  );
+  cy.get(':nth-child(5) > :nth-child(2) > .audit-params').should(
+    'contain.text',
+    testAudit.customerData.department,
+  );
+  cy.get(':nth-child(6) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.customerData.corporateDivision,
+  );
+  cy.get(':nth-child(6) > :nth-child(2) > .audit-params').should(
+    'contain.text',
+    testAudit.customerData.sector,
+  );
+  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.contactPerson.firstName,
+  );
+  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.contactPerson.lastName,
+  );
+  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.contactPerson.salutation,
+  );
+  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.contactPerson.title,
+  );
+  cy.get(':nth-child(9) > :nth-child(1) > .audit-params').should(
+    'contain.text',
+    testAudit.contactPerson.information,
+  );
+}
+
+function testAuditsOverviewPage(testAudit) {
+  cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header > :nth-child(1)').should(
+    'contain.text',
+    testAudit.name,
+  );
+  cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header > :nth-child(1)').should(
+    'contain.text',
+    testAudit.customerData.name,
+  );
+}
+
 Cypress.Commands.add('inputAudit', inputAudit);
+Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
+Cypress.Commands.add('testAuditsOverviewPage', testAuditsOverviewPage);

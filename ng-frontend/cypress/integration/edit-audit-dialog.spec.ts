@@ -15,60 +15,6 @@ describe('EditAuditDialog', () => {
     });
   });
 
-  function testAuditInfoPage(testAuditEdited) {
-    cy.get(':nth-child(3) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.name,
-    );
-    cy.get(':nth-child(5) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.customerData.name,
-    );
-    cy.get(':nth-child(5) > :nth-child(2) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.customerData.department,
-    );
-    cy.get(':nth-child(6) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.customerData.corporateDivision,
-    );
-    cy.get(':nth-child(6) > :nth-child(2) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.customerData.sector,
-    );
-    cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.contactPerson.firstName,
-    );
-    cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.contactPerson.lastName,
-    );
-    cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.contactPerson.salutation,
-    );
-    cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.contactPerson.title,
-    );
-    cy.get(':nth-child(9) > :nth-child(1) > .audit-params').should(
-      'contain.text',
-      testAuditEdited.contactPerson.information,
-    );
-  }
-
-  function testAuditsOverviewPage(testAuditEdited) {
-    cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header > :nth-child(1)').should(
-      'contain.text',
-      testAuditEdited.name,
-    );
-    cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header > :nth-child(1)').should(
-      'contain.text',
-      testAuditEdited.customerData.name,
-    );
-  }
-
   it('Routing to audits/edit on invalid id closes dialog', () => {
     cy.visit(auditsUrl);
     cy.visit(auditsUrl + '/123/edit');
@@ -93,7 +39,7 @@ describe('EditAuditDialog', () => {
   });
 
   it('Audit was edited in the audits overview', () => {
-    testAuditsOverviewPage(testAuditEdited);
+    cy.testAuditsOverviewPage(testAuditEdited);
   });
 
   it('Audit was edited in the concrete audit page', () => {
@@ -103,7 +49,7 @@ describe('EditAuditDialog', () => {
 
   it('Audit was edited in the concrete audit info page', () => {
     cy.get(':nth-child(2) > .tab-link').click();
-    testAuditInfoPage(testAuditEdited);
+    cy.testAuditInfoPage(testAuditEdited);
   });
 
   it('Audit edit formular redirects on button click on concrete audit page', () => {
@@ -119,11 +65,11 @@ describe('EditAuditDialog', () => {
   });
 
   it('Audit was edited in the concrete audit info page', () => {
-    testAuditInfoPage(testAudit);
+    cy.testAuditInfoPage(testAudit);
   });
 
   it('Audit was edited in the audits overview', () => {
     cy.get(':nth-child(2) > .appearance-hero').click();
-    testAuditsOverviewPage(testAudit);
+    cy.testAuditsOverviewPage(testAudit);
   });
 });
