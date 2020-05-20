@@ -5,22 +5,11 @@
         1. Audit Grunddaten
       </nb-accordion-item-header>
       <nb-accordion-item-body>
-        <div class="grid-3-1">
-          <div class="form-item">
-            <label class="label">Auditname</label>
-            <input [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth />
-            <div *ngIf="auditName.invalid && auditName.touched">
-              <label class="label text-danger">Auditnamen eintragen</label>
-            </div>
-          </div>
-          <div class="form-item">
-            <label class="label">Status</label>
-            <nb-select formControlName="status" fullWidth>
-              <nb-option [value]="0">Geplant</nb-option>
-              <nb-option [value]="1">In Bearbeitung</nb-option>
-              <nb-option [value]="2">Abgeschlossen</nb-option>
-              <nb-option [value]="3">Abgebrochen</nb-option>
-            </nb-select>
+        <div class="field-item-audit-name">
+          <label class="label">Auditname</label>
+          <input [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth />
+          <div *ngIf="auditName.invalid && auditName.touched">
+            <label class="label text-danger">Auditnamen eintragen</label>
           </div>
         </div>
         <div class="grid-1-1">
