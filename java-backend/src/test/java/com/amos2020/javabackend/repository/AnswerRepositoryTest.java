@@ -8,345 +8,539 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.TransactionSystemException;
 
 import java.sql.Date;
-
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AnswerRepositoryTest {
 
-    private static final String PROOF = "RandomProof";
-    private static final Boolean ANSWER = true;
+    @Autowired
+    AnswerRepository repository;
+    @Autowired
+    InterviewRepository interviewRepository;
+    @Autowired
+    FacCritRepository facCritRepository;
+    @Autowired
+    QuestionRepository questionRepository;
+    @Autowired
+    AuditRepository auditRepository;
 
-    @Autowired
-    private AnswerRepository answerRepository;
-    @Autowired
-    private QuestionRepository questionRepository;
-    @Autowired
-    private AuditProjectRepository auditProjectRepository;
-
-    private AnswerEntity testEntity;
-    private AnswerEntity testEntity1;
-    private AnswerEntity testEntity2;
-    private QuestionEntity questionEntity;
-    private QuestionEntity questionEntity1;
-    private CriteriaEntity criteriaEntity;
-    private CriteriaEntity criteriaEntity1;
-    private FactorEntity factorEntity;
-    private FactorEntity factorEntity1;
-    private AuditProjectEntity auditProjectEntity;
-    private AuditProjectEntity auditProjectEntity1;
-    private CustomerEntity customerEntity;
-    private CustomerEntity customerEntity1;
-    private ContactPersonEntity contactPersonEntity;
-    private ContactPersonEntity contactPersonEntity1;
+    private Answer answer;
+    private Interview interview;
+    private Question question;
+    private  FacCrit facCrit;
+    private Audit audit;
 
     @Before
-    public void setup(){
-        factorEntity = new FactorEntity();
-        factorEntity.setName("RandomFactor");
-        factorEntity.setIsoName("25010");
+    public void setUp(){
+        audit = new Audit();
+        audit.setName("TEST_NAME");
+        audit.setStartDate(Date.valueOf("2020-01-01"));
+        audit.setEndDate(Date.valueOf("2020-01-02"));
+        audit.setExpectedEndDate(Date.valueOf("2020-01-03"));
+        auditRepository.save(audit);
 
-        factorEntity1 = new FactorEntity();
-        factorEntity1.setName("RandomFactor1");
-        factorEntity1.setIsoName("25010");
+        interview = new Interview();
+        interview.setInterviewAuditId(audit.getId());
+        interview.setInterviewDate(Date.valueOf("2020-01-01"));
+        interview.setInterviewAnnotation("TestAnnotation");
+        interviewRepository.save(interview);
 
-        criteriaEntity = new CriteriaEntity();
-        criteriaEntity.setName("RandomCriteria");
-        criteriaEntity.setFactorByFactorId(factorEntity);
+        facCrit = new FacCrit();
+        facCrit.setFaccritName("TestFaccrit");
+        facCritRepository.save(facCrit);
 
-        criteriaEntity1 = new CriteriaEntity();
-        criteriaEntity1.setName("RandomCriteria1");
-        criteriaEntity1.setFactorByFactorId(factorEntity1);
+        question = new Question();
+        question.setQuestionTextDe("Testquestion?");
+        questionRepository.save(question);
+    }
 
-        questionEntity = new QuestionEntity();
-        questionEntity.setQuestion("RandomQuestion");
-        questionEntity.setCriteriaByCriteriaId(criteriaEntity);
+    public void insertValidAnswerEntity(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        questionEntity1 = new QuestionEntity();
-        questionEntity1.setQuestion("RandomQuestion2");
-        questionEntity1.setCriteriaByCriteriaId(criteriaEntity1);
+        Answer toTest = repository.save(answer);
 
-        questionRepository.save(questionEntity);
-        questionRepository.save(questionEntity1);
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
 
-        contactPersonEntity = new ContactPersonEntity();
-        contactPersonEntity.setTitle("RandomTitle");
-        contactPersonEntity.setName("RandomName");
-        contactPersonEntity.setEmail("test@test.de");
-        contactPersonEntity.setPhoneNumber("01761111111");
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithFaccritIdNull(){
+        answer = new Answer();
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        contactPersonEntity1 = new ContactPersonEntity();
-        contactPersonEntity1.setTitle("RandomTitle");
-        contactPersonEntity1.setName("RandomName");
-        contactPersonEntity1.setEmail("test@test.de");
-        contactPersonEntity1.setPhoneNumber("01761111111");
+        repository.save(answer);
+    }
 
-        customerEntity = new CustomerEntity();
-        customerEntity.setCompanyName("RandomCompanyName");
-        customerEntity.setSector("RandomSector");
-        customerEntity.setDepartment("RandomDepartment");
-        customerEntity.setContactPersonByContactPersonId(contactPersonEntity);
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithQuestionIdNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        customerEntity1 = new CustomerEntity();
-        customerEntity1.setCompanyName("RandomCompanyName");
-        customerEntity1.setSector("RandomSector");
-        customerEntity1.setDepartment("RandomDepartment");
-        customerEntity1.setContactPersonByContactPersonId(contactPersonEntity1);
+        repository.save(answer);
+    }
 
-        auditProjectEntity = new AuditProjectEntity();
-        auditProjectEntity.setName("RandomName");
-        auditProjectEntity.setStartDate(Date.valueOf("2000-01-01"));
-        auditProjectEntity.setEndDate(Date.valueOf("2001-01-01"));
-        auditProjectEntity.setCustomerByCustomerId(customerEntity);
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithInterviewIdNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        auditProjectEntity1 = new AuditProjectEntity();
-        auditProjectEntity1.setName("RandomName2");
-        auditProjectEntity1.setStartDate(Date.valueOf("2000-01-01"));
-        auditProjectEntity1.setEndDate(Date.valueOf("2001-01-01"));
-        auditProjectEntity1.setCustomerByCustomerId(customerEntity1);
-
-        auditProjectRepository.save(auditProjectEntity);
-        auditProjectRepository.save(auditProjectEntity1);
+        repository.save(answer);
     }
 
     @Test
-    public void testInsert(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(true);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
+    public void insertAnswerWithResultNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        AnswerEntity toTest = answerRepository.save(testEntity);
-        Assert.assertTrue(answerRepository.exists(Example.of(toTest)));
+        Answer toTest = repository.save(answer);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
     @Test
-    public void testInsertPrimaryKeyNull(){
-        boolean threwException = false;
-        boolean threwException1 = false;
-        boolean threwException2 = false;
-        testEntity = new AnswerEntity();
+    public void insertAnswerWithResponsibleNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        try{
-            testEntity.setAuditId(0);
-            testEntity.setQuestionId(0);
-            answerRepository.save(testEntity);
-        }catch (TransactionSystemException tse){
-            threwException = true;
-        }
-        try{
-            testEntity.setAuditId(auditProjectEntity.getId());
-            testEntity.setQuestionId(0);
-            answerRepository.save(testEntity);
-        }catch (TransactionSystemException tse){
-            threwException1 = true;
-        }
-        try{
-            testEntity.setAuditId(0);
-            testEntity.setQuestionId(questionEntity.getId());
-            answerRepository.save(testEntity);
-        }catch (TransactionSystemException tse){
-            threwException2 = true;
-        }
+        Answer toTest = repository.save(answer);
 
-        Assert.assertTrue(threwException);
-        Assert.assertTrue(threwException1);
-        Assert.assertTrue(threwException2);
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
     @Test
-    public void testInsertPrimaryKeyUnique(){
-        int auditId = auditProjectEntity.getId();
-        int questionId = questionEntity.getId();
+    public void insertAnswerWithDocumentationNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(ANSWER);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditId);
-        testEntity.setQuestionId(questionId);
+        Answer toTest = repository.save(answer);
 
-        testEntity2 = new AnswerEntity();
-        testEntity2.setAnswer(ANSWER);
-        testEntity2.setProof(PROOF+"2");
-        testEntity2.setAuditId(auditId);
-        testEntity2.setQuestionId(questionEntity1.getId());
-
-        answerRepository.save(testEntity);
-        answerRepository.save(testEntity2);
-    }
-
-    /*
-    @Test
-    public void testUpdatePrimaryKeyNull(){
-        boolean threwException = false;
-        boolean threwException1 = false;
-        boolean threwException2 = false;
-
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(ANSWER);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
-
-        AnswerEntity toTest = answerRepository.save(testEntity);
-        try{
-            toTest.setAuditId(-1);
-            toTest.setQuestionId(-1);
-            answerRepository.save(toTest);
-        }catch (DataIntegrityViolationException dive){
-            threwException = true;
-        }
-        try{
-            toTest.setQuestionId(-1);
-            answerRepository.save(toTest);
-        }catch (DataIntegrityViolationException dive){
-            threwException1 = true;
-        }
-        try{
-            toTest.setAuditId(-1);
-            answerRepository.save(testEntity);
-        }catch (DataIntegrityViolationException dive){
-            threwException2 = true;
-        }
-
-        Assert.assertTrue(threwException);
-        Assert.assertTrue(threwException1);
-        Assert.assertTrue(threwException2);
-    }
-
-     */
-
-    @Test(expected = TransactionSystemException.class)
-    public void testInsertAnswerNull(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(null);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
-
-        answerRepository.save(testEntity);
-    }
-
-    @Test(expected = TransactionSystemException.class)
-    public void testUpdateAnswerNull(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(ANSWER);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
-        AnswerEntity toTest = answerRepository.save(testEntity);
-        toTest.setAnswer(null);
-
-        answerRepository.save(toTest);
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
     @Test
-    public void testUpdateAnswer(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(true);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
-        boolean answerOld = testEntity.getAnswer();
+    public void insertAnswerWithProcedureNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
 
-        AnswerEntity toTest = answerRepository.save(testEntity);
-        toTest.setAnswer(false);
-        answerRepository.save(toTest);
-        boolean answerNew = toTest.getAnswer();
+        Answer toTest = repository.save(answer);
 
-        Assert.assertFalse(answerOld == answerNew);
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
     @Test
-    public void testUpdateProof(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(true);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
-        String proofOld = testEntity.getProof();
+    public void insertAnswerWithReasonNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerProof("TestProof");
 
-        AnswerEntity toTest = answerRepository.save(testEntity);
-        toTest.setProof("Random");
-        answerRepository.save(toTest);
-        String proofNew = toTest.getProof();
+        Answer toTest = repository.save(answer);
 
-        Assert.assertFalse(proofOld.equals(proofNew));
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
     @Test
-    public void testDeleteEntity(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(true);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
+    public void insertAnswerWithProofNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
 
-        answerRepository.save(testEntity);
-        answerRepository.delete(testEntity);
+        Answer toTest = repository.save(answer);
 
-        Assert.assertFalse(answerRepository.exists(Example.of(testEntity)));
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithFaccritIdInvalid(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer toTest = repository.save(answer);
+
+        toTest.setAnswerFaccritId(-1);
+        repository.save(toTest);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithQuestionIdInvalid(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer toTest = repository.save(answer);
+
+        toTest.setAnswerQuestionId(-1);
+        repository.save(toTest);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithInterviewIdInvalid(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer toTest = repository.save(answer);
+
+        toTest.setAnswerInterviewId(-1);
+        repository.save(toTest);
     }
 
     @Test
-    public void testHashCode(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(true);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
+    public void changeAnswerWithResultNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
 
-        testEntity1 = new AnswerEntity();
-        testEntity1.setAnswer(true);
-        testEntity1.setProof(PROOF);
-        testEntity1.setAuditId(auditProjectEntity1.getId());
-        testEntity1.setQuestionId(questionEntity1.getId());
+        answer1.setAnswerResult(null);
+        Answer toTest = repository.save(answer1);
 
-        testEntity2 = testEntity;
-
-        Assert.assertTrue(testEntity.hashCode()!=testEntity1.hashCode());
-        Assert.assertTrue(testEntity2.hashCode()==testEntity.hashCode());
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
     @Test
-    public void testEquals(){
-        testEntity = new AnswerEntity();
-        testEntity.setAnswer(true);
-        testEntity.setProof(PROOF);
-        testEntity.setAuditId(auditProjectEntity.getId());
-        testEntity.setQuestionId(questionEntity.getId());
+    public void changeAnswerWithResponsibleNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
 
-        testEntity1 = new AnswerEntity();
-        testEntity1.setAnswer(true);
-        testEntity1.setProof(PROOF);
-        testEntity1.setAuditId(auditProjectEntity1.getId());
-        testEntity1.setQuestionId(questionEntity1.getId());
+        answer1.setAnswerResponsible(null);
+        Answer toTest = repository.save(answer1);
 
-        testEntity2 = testEntity;
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
 
-        Assert.assertFalse(testEntity.equals(testEntity1));
-        Assert.assertTrue(testEntity2.equals(testEntity));
+    @Test
+    public void changeAnswerWithDocumentationNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerDocumentation(null);
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerWithProcedureNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerProcedure(null);
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerWithReasonNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerReason(null);
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerWithProofNull(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerProof(null);
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerResult(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerResult(!answer.getAnswerResult());
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerResponsible(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerResponsible(!answer.getAnswerResponsible());
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerDocumentation(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerDocumentation(!answer.getAnswerDocumentation());
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerProcedure(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerProcedure(!answer.getAnswerProcedure());
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerReason(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerReason("NewTestReason");
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void changeAnswerProof(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnswerProof("NewTestProof");
+        Answer toTest = repository.save(answer1);
+
+        Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test
+    public void deleteAnswerEntity(){
+        answer = new Answer();
+        answer.setAnswerFaccritId(facCrit.getFaccritId());
+        answer.setAnswerQuestionId(question.getQuestionId());
+        answer.setAnswerInterviewId(interview.getInterviewId());
+        answer.setAnswerResult(true);
+        answer.setAnswerResponsible(true);
+        answer.setAnswerDocumentation(true);
+        answer.setAnswerProcedure(true);
+        answer.setAnswerReason("TestReason");
+        answer.setAnswerProof("TestProof");
+
+        Answer toTest = repository.save(answer);
+        repository.delete(toTest);
+
+        Assert.assertFalse(repository.exists(Example.of(toTest)));
     }
 
     @After
-    public void tearDown() {
-        answerRepository.delete(testEntity);
-        auditProjectRepository.delete(auditProjectEntity);
-        auditProjectRepository.delete(auditProjectEntity1);
-        questionRepository.delete(questionEntity);
-        questionRepository.delete(questionEntity1);
-
-        if(testEntity1 != null){
-            answerRepository.delete(testEntity1);
-        }
-        if(testEntity2 != null){
-            answerRepository.delete(testEntity2);
-        }
+    public void tearDown(){
+        repository.delete(answer);
+        interviewRepository.delete(interview);
+        facCritRepository.delete(facCrit);
+        questionRepository.delete(question);
     }
 }

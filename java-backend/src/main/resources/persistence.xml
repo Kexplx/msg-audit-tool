@@ -1,19 +1,19 @@
-<?xml version='1.0' encoding='utf-8'?>
-<!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-<hibernate-configuration>
-    <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/msg_audit_database</property>
-        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <mapping class="com.amos2020.javabackend.entity.AnswerEntity"/>
-        <mapping class="com.amos2020.javabackend.entity.AuditProjectEntity"/>
-        <mapping class="com.amos2020.javabackend.entity.ContactPersonEntity"/>
-        <mapping class="com.amos2020.javabackend.entity.CriteriaEntity"/>
-        <mapping class="com.amos2020.javabackend.entity.CustomerEntity"/>
-        <mapping class="com.amos2020.javabackend.entity.FactorEntity"/>
-        <mapping class="com.amos2020.javabackend.entity.QuestionEntity"/>
-              <!-- DB schema will be updated if needed -->
-        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
-    </session-factory>
-</hibernate-configuration>
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="persistenceUnit">
+        <class>com.amos2020.javabackend.entity.Answer</class>
+        <class>com.amos2020.javabackend.entity.Audit</class>
+        <class>com.amos2020.javabackend.entity.AuditContactPerson</class>
+        <class>com.amos2020.javabackend.entity.ContactPerson</class>
+        <class>com.amos2020.javabackend.entity.FacCrit</class>
+        <class>com.amos2020.javabackend.entity.Interview</class>
+        <class>com.amos2020.javabackend.entity.InterviewContactPerson</class>
+        <class>com.amos2020.javabackend.entity.Question</class>
+        <class>com.amos2020.javabackend.entity.Scope</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/msg_audit_database"/>
+            <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>

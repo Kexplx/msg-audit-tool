@@ -1,5 +1,5 @@
 import { Audit, AuditStatus } from '../models/audit.model';
-import { factors } from '../categories';
+import { factors } from '../factors';
 import * as shortid from 'shortid';
 
 export const audits: Audit[] = [
@@ -11,7 +11,8 @@ export const audits: Audit[] = [
       firstName: 'Oscar',
       lastName: 'Rosner',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Herr',
+      title: 'Dr.',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'Personalabteilung',
@@ -19,8 +20,9 @@ export const audits: Audit[] = [
       sector: 'Automobilindustrie',
     },
     status: AuditStatus.IsPlanned,
-    factors: factors.slice(0, 5),
+    factors: factors.slice(0, 2),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
   {
     name: 'Audi IT-Support',
@@ -30,7 +32,8 @@ export const audits: Audit[] = [
       firstName: 'Cathy',
       lastName: 'Hu',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Frau',
+      title: 'Dr.',
+      salutation: 'Frau',
     },
     customerData: {
       department: 'IT-Support',
@@ -40,6 +43,7 @@ export const audits: Audit[] = [
     status: AuditStatus.InAction,
     factors: factors.slice(3, 7),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
   {
     name: 'VW Kantine',
@@ -49,7 +53,8 @@ export const audits: Audit[] = [
       firstName: 'David',
       lastName: 'Leicht',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Herr',
+      title: 'Dr. ',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'Kantine',
@@ -59,6 +64,7 @@ export const audits: Audit[] = [
     status: AuditStatus.IsCanceled,
     factors: factors.slice(6, 2),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
   {
     name: '3M Neu',
@@ -68,7 +74,8 @@ export const audits: Audit[] = [
       firstName: 'David',
       lastName: 'Leicht',
       information: 'test.test@web.de oder 01929/1293912',
-      title: 'Herr',
+      title: 'Dr. ',
+      salutation: 'Herr',
     },
     customerData: {
       department: 'Kantine',
@@ -78,5 +85,6 @@ export const audits: Audit[] = [
     status: AuditStatus.IsFinished,
     factors: factors.slice(6, 2),
     id: shortid.generate(),
+    creationDate: Date.now(),
   },
 ];

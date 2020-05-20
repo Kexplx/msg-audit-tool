@@ -1,0 +1,29 @@
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+nb-card {
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.banner-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 12px;
+  -webkit-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  -moz-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  border-bottom-left-radius: nb-theme(card-border-radius);
+  border-top-left-radius: nb-theme(card-border-radius);
+}
+
+.banner-status-is-open {
+  background-color: nb-theme(background-basic-color);
+}
+
+.banner-status-is-finished {
+  background-color: nb-theme(color-success-default);
+}

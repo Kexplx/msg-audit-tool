@@ -4,7 +4,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ AnswerRepositoryTest.class, AuditProjectRepositoryTest.class, ContactPersonRepositoryTest.class,
-CriteriaRepositoryTest.class, CustomerRepositoryTest.class, FactorRepositoryTest.class, QuestionRepositoryTest.class, })
+@Suite.SuiteClasses({AnswerRepositoryTest.class, AuditContactPersonRepositoryTest.class, AuditRepositoryTest.class, ContactPersonRepositoryTest.class,
+        FacCritRepositoryTest.class, InterviewContactPersonRepositoryTest.class, InterviewRepositoryTest.class, QuestionRepositoryTest.class, ScopeRepositoryTest.class,
+})
 public class RepositoryTests {
 }
