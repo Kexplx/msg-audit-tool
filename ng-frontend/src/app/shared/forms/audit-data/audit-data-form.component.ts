@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { factors } from 'src/app/data/factors';
 import { NbDialogService } from '@nebular/theme';
 import { Factor } from 'src/app/data/models/factor.model';
@@ -112,7 +112,7 @@ export class AuditDataFormComponent implements OnInit {
     this.auditForm = this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
       start: [this.audit?.start ?? Date.now()],
-      end: [this.audit?.end],
+      end: [this.audit?.end, [this.startGreaterThanEndValidator.bind(this)]],
       status: [this.audit?.status ?? AuditStatus.IsPlanned],
       companyName: [this.audit?.customerData.name],
       sector: [this.audit?.customerData.sector],
@@ -198,6 +198,11 @@ export class AuditDataFormComponent implements OnInit {
   onFactorSelect(factor: Factor) {
     factor['selected'] = !factor['selected'];
     factor.categories.forEach(x => (x['selected'] = factor['selected']));
+  }
+
+  startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
+    const start = this.audit?.start ?? new Date().getTime();
+    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
   }
 
   parseDate(s: string) {
