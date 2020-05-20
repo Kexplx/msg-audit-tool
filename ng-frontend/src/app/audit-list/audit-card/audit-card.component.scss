@@ -30,7 +30,7 @@ nb-card {
 }
 
 .banner-status-is-planned {
-  background-color: nb-theme(color-danger-default);
+  background-color: nb-theme(background-basic-color);
 }
 
 .banner-status-in-action {
@@ -42,7 +42,7 @@ nb-card {
 }
 
 .banner-status-is-canceled {
-  background-color: nb-theme(background-basic-color);
+  background-color: nb-theme(color-danger-default);
 }
 
 a {
