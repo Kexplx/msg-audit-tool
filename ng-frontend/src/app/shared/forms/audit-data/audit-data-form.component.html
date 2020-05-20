@@ -31,8 +31,11 @@
           </div>
           <div class="form-item">
             <label class="label">Enddatum</label>
-            <input formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" />
+            <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" />
             <nb-datepicker #datePickerEnd></nb-datepicker>
+            <div *ngIf="end.errors?.startGreaterThanEnd">
+              <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
+            </div>
           </div>
         </div>
       </nb-accordion-item-body>
