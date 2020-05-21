@@ -111,7 +111,7 @@ export class AuditDataFormComponent implements OnInit {
 
     this.auditForm = this.formBuilder.group({
       auditName: [this.audit?.name, Validators.required],
-      start: [this.audit?.start ?? Date.now()],
+      start: [this.audit?.start ?? new Date().setHours(0, 0, 0, 0)],
       end: [this.audit?.end, [this.startGreaterThanEndValidator.bind(this)]],
       status: [this.audit?.status ?? AuditStatus.IsPlanned],
       companyName: [this.audit?.customerData.name],
@@ -201,7 +201,7 @@ export class AuditDataFormComponent implements OnInit {
   }
 
   startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
-    const start = this.audit?.start ?? new Date().getTime();
+    const start = this.audit?.start ?? new Date().setHours(0, 0, 0, 0);
     return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
   }
 
