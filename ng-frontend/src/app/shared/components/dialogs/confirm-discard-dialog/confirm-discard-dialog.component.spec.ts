@@ -1,9 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmDiscardDialogComponent } from './confirm-discard-dialog.component';
 import { of } from 'rxjs';
 import { NbDialogRef } from '@nebular/theme';
-import { AppNebularModule } from 'src/app/app-nebular.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('ConfirmDiscardDialogComponent', () => {
   let component: ConfirmDiscardDialogComponent;
@@ -16,7 +16,7 @@ describe('ConfirmDiscardDialogComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ConfirmDiscardDialogComponent],
-      imports: [AppNebularModule],
+      imports: [SharedModule],
       providers: [{ provide: NbDialogRef, useValue: nbDialogRefStub }],
     });
 

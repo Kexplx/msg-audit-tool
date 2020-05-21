@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundComponent } from './not-found.component';
-import { AppNebularModule } from 'src/app/app-nebular.module';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared.module';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;
@@ -11,7 +11,7 @@ describe('NotFoundComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [NotFoundComponent],
-      imports: [AppNebularModule, RouterModule.forRoot([])],
+      imports: [SharedModule, RouterModule.forRoot([])],
     }).compileComponents();
   }));
 

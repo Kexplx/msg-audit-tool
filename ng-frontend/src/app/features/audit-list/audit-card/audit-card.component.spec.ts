@@ -2,12 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditCardComponent } from './audit-card.component';
 import { RouterModule } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
-import { NgxsModule } from '@ngxs/store';
 import * as jasmine from 'karma-jasmine';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 describe('AuditCardComponent', () => {
   let component: AuditCardComponent;
@@ -34,11 +33,7 @@ describe('AuditCardComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuditCardComponent],
-      imports: [
-        RouterModule.forRoot([]),
-        NgxsModule.forRoot([AuditRegistryState]),
-        BrowserAnimationsModule,
-      ],
+      imports: [RouterModule.forRoot([]), SharedModule, CoreModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AuditCardComponent);

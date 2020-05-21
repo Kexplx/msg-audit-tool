@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditDataFormComponent } from './audit-data-form.component';
 import { FormBuilder } from '@angular/forms';
-import { AppNebularModule } from 'src/app/app-nebular.module';
 import { NbDialogService } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('AuditDataComponent', () => {
   let component: AuditDataFormComponent;
@@ -13,7 +13,7 @@ describe('AuditDataComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuditDataFormComponent],
-      imports: [AppNebularModule, BrowserAnimationsModule],
+      imports: [SharedModule, BrowserAnimationsModule],
       providers: [NbDialogService, FormBuilder],
     });
 

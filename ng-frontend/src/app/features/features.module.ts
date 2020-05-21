@@ -6,6 +6,7 @@ import { AuditOverviewComponent } from './interview/audit-overview/audit-overvie
 import { FeaturesRoutingModule } from './features-routing.module';
 import { CategoryCardComponent } from './interview/audit-overview/category-card/category-card.component';
 import { SharedModule } from '../shared/shared.module';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   imports: [CommonModule, SharedModule, FeaturesRoutingModule],

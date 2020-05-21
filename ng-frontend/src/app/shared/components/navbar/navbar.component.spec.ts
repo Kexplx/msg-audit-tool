@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
 import { DebugElement } from '@angular/core';
-import { AppNebularModule } from 'src/app/app-nebular.module';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from '../../shared.module';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -13,7 +13,7 @@ describe('NavbarComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
-      imports: [AppNebularModule, RouterModule.forRoot([])],
+      imports: [SharedModule, RouterModule.forRoot([])],
     });
 
     fixture = TestBed.createComponent(NavbarComponent);

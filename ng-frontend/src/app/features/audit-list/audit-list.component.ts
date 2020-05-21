@@ -15,6 +15,6 @@ export class AuditListComponent implements OnInit {
 
   @Select(AuditRegistryState.auditByStatus(AuditStatus.IsCanceled, AuditStatus.IsFinished))
   archivedAudits$: Observable<Audit[]>;
-  d = new Date();
+
   ngOnInit() {}
 }

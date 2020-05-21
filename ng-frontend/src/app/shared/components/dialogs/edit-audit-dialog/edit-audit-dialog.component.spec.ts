@@ -1,13 +1,11 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditAuditDialogComponent } from './edit-audit-dialog.component';
 import { of } from 'rxjs';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { AppNebularModule } from 'src/app/app-nebular.module';
-import { NgxsModule } from '@ngxs/store';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 describe('EditAuditDialogComponent', () => {
   let component: EditAuditDialogComponent;
@@ -20,12 +18,12 @@ describe('EditAuditDialogComponent', () => {
     };
 
     const nbDialogServiceStub = {
-      open: (...k: any) => nbDialogRefStub,
+      open: () => nbDialogRefStub,
     };
 
     TestBed.configureTestingModule({
       declarations: [EditAuditDialogComponent],
-      imports: [AppNebularModule, NgxsModule.forRoot([AuditRegistryState]), RouterTestingModule],
+      imports: [SharedModule, CoreModule, RouterTestingModule],
       providers: [
         { provide: NbDialogRef, useValue: nbDialogRefStub },
         { provide: NbDialogService, useValue: nbDialogServiceStub },

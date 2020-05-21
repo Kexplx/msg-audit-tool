@@ -1,7 +1,6 @@
 import { SortAuditPipe } from './sort-audit.pipe';
-import { AuditStatus } from '../data/models/audit.model';
-import { factors } from '../data/factors';
-import * as shortid from 'shortid';
+import { AuditStatus } from 'src/app/core/data/models/audit.model';
+import { factors } from 'src/app/core/data/factors';
 
 describe('SortAuditPipe', () => {
   const audit0 = {
