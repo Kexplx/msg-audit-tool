@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Audit } from '../data/models/audit.model';
+import { Audit } from 'src/app/core/data/models/audit.model';
 
 @Pipe({
   name: 'sortAudit',

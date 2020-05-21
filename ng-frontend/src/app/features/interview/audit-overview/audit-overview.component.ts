@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Audit } from 'src/app/data/models/audit.model';
 import { Store } from '@ngxs/store';
-import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbMenuItem } from '@nebular/theme';
 import { tap } from 'rxjs/operators';
 import * as shortid from 'shortid';
+import { Audit } from 'src/app/core/data/models/audit.model';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
 
 enum MenuOptions {
   Edit,

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { AuditRegistryState } from '../ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
-import { Audit, AuditStatus } from '../data/models/audit.model';
-import { audits } from '../data/examples/audits';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditStatus, Audit } from 'src/app/core/data/models/audit.model';
 
 @Component({
   selector: 'app-audit-list',
@@ -16,6 +15,6 @@ export class AuditListComponent implements OnInit {
 
   @Select(AuditRegistryState.auditByStatus(AuditStatus.IsCanceled, AuditStatus.IsFinished))
   archivedAudits$: Observable<Audit[]>;
-
+  d = new Date();
   ngOnInit() {}
 }

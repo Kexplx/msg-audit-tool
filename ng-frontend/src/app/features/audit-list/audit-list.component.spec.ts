@@ -1,9 +1,7 @@
 import { AuditListComponent } from './audit-list.component';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { AppNebularModule } from '../app-nebular.module';
 import { RouterModule } from '@angular/router';
-import { AppComponent } from '../app.component';
-import { AppModule } from '../app.module';
+import { AppModule } from 'src/app/app.module';
 
 describe('AuditListComponent', () => {
   let component: AuditListComponent;
@@ -12,7 +10,7 @@ describe('AuditListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuditListComponent],
-      imports: [AppNebularModule, RouterModule.forRoot([]), AppModule],
+      imports: [RouterModule.forRoot([]), AppModule],
     });
 
     fixture = TestBed.createComponent(AuditListComponent);

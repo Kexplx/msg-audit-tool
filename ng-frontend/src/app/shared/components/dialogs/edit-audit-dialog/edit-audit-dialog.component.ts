@@ -1,14 +1,14 @@
 import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Store } from '@ngxs/store';
-import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
-import { Audit } from 'src/app/data/models/audit.model';
-import { UpdateAudit } from 'src/app/ngxs/audit.actions';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { defaultDialogOptions } from '../default-dialog-options';
+import { Audit } from 'src/app/core/data/models/audit.model';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { UpdateAudit } from 'src/app/core/ngxs/audit.actions';
 
 @Component({
   selector: 'app-edit-audit-dialog',

@@ -2,9 +2,9 @@ import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angul
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
-import { Audit } from 'src/app/data/models/audit.model';
-import { AddAudit } from 'src/app/ngxs/audit.actions';
 import { defaultDialogOptions } from '../default-dialog-options';
+import { Audit } from 'src/app/core/data/models/audit.model';
+import { AddAudit } from 'src/app/core/ngxs/audit.actions';
 
 @Component({
   selector: 'app-add-audit-dialog',

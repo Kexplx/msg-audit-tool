@@ -1,7 +1,7 @@
 import { Directive, OnInit } from '@angular/core';
 import { Actions, ofActionCompleted } from '@ngxs/store';
 import { NbToastrService } from '@nebular/theme';
-import { AddAudit, DeleteAudit, UpdateAudit } from '../../ngxs/audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/audit.actions';
 
 @Directive({
   selector: '[appActionListener]',

@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { factors } from 'src/app/data/factors';
-import { NbDialogService } from '@nebular/theme';
-import { Factor } from 'src/app/data/models/factor.model';
 import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
+import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
+import { Factor } from 'src/app/core/data/models/factor.model';
+import { NbDialogService } from '@nebular/theme';
+import { factors } from 'src/app/core/data/factors';
 
 @Component({
   selector: 'app-audit-data-form',

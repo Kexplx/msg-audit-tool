@@ -1,4 +1,4 @@
-import { AuditOverviewComponent } from './audit-overview.component';
+import { AuditOverviewComponent } from '../interview/audit-overview/audit-overview.component';
 
 describe('AuditOverviewComponent', () => {
   it('should create', () => {

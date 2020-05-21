@@ -77,4 +77,4 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbBadgeModule,
   ],
 })
-export class AppNebularModule {}
+export class NebularModule {}

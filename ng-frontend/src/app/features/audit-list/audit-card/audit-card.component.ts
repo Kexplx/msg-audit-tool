@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NbMenuService, NbMenuItem, NbMenuBag } from '@nebular/theme';
 import { map, filter } from 'rxjs/operators';
-import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
 import { Store } from '@ngxs/store';
-import { DeleteAudit, UpdateAudit } from 'src/app/ngxs/audit.actions';
 import * as shortid from 'shortid';
 import { Router } from '@angular/router';
+import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
+import { DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/audit.actions';
 
 enum MenuOptions {
   Edit,

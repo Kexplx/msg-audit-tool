@@ -1,14 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditCardComponent } from './audit-card.component';
-import { Audit, AuditStatus } from 'src/app/data/models/audit.model';
-import { AppNebularModule } from 'src/app/app-nebular.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
-import { AuditRegistryState } from 'src/app/ngxs/audit-registry.state';
 import * as jasmine from 'karma-jasmine';
+import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
 
 describe('AuditCardComponent', () => {
   let component: AuditCardComponent;
@@ -37,7 +36,6 @@ describe('AuditCardComponent', () => {
       declarations: [AuditCardComponent],
       imports: [
         RouterModule.forRoot([]),
-        AppNebularModule,
         NgxsModule.forRoot([AuditRegistryState]),
         BrowserAnimationsModule,
       ],
