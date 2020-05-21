@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuditListComponent } from './components/audit-list/audit-list.component';
 import { AddAuditDialogComponent } from 'src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { EditAuditDialogComponent } from 'src/app/shared/components/dialogs/edit-audit-dialog/edit-audit-dialog.component';
-import { AuditListComponent } from './audit-list/audit-list.component';
-import { AuditOverviewComponent } from './interview/audit-overview/audit-overview.component';
 
 const routes: Routes = [
   {
@@ -14,11 +13,6 @@ const routes: Routes = [
       { path: ':id/edit', component: EditAuditDialogComponent },
     ],
   },
-  {
-    path: ':id/overview',
-    component: AuditOverviewComponent,
-    children: [{ path: 'edit', component: EditAuditDialogComponent }],
-  },
 ];
 
 @NgModule({
@@ -26,4 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class FeaturesRoutingModule {}
+export class AuditListRoutingModule {}

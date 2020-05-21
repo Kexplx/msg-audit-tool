@@ -7,7 +7,15 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
   {
     path: 'audits',
-    loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule),
+    // pathMatch: 'full',
+    loadChildren: () =>
+      import('./features/audit-list/audit-list.module').then(m => m.AuditListModule),
+  },
+  {
+    path: 'audits/:id/overview',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('./features/audit-overview/audit-overview.module').then(m => m.AuditOverviewModule),
   },
   { path: '**', component: NotFoundComponent },
 ];
