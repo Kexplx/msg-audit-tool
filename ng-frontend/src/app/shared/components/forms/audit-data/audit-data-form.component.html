@@ -1,5 +1,5 @@
 <form [formGroup]="auditForm">
-  <nb-accordion multi>
+  <nb-accordion>
     <nb-accordion-item expanded>
       <nb-accordion-item-header>
         1. Audit Grunddaten
@@ -91,7 +91,7 @@
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-    <nb-accordion-item>
+    <nb-accordion-item style="border-radius: 0;">
       <nb-accordion-item-header>4. ISO/IEC 25010 Kategorien</nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="category-container">
@@ -108,18 +108,16 @@
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-    <nb-accordion-item expanded>
-      <nb-accordion-item-header style="display: none;"></nb-accordion-item-header>
-      <nb-accordion-item-body>
-        <div class="accordion-footer">
-          <button (click)="onCancel()" hero nbButton>
-            abbrechen
-          </button>
-          <button (click)="onSubmit()" [disabled]="auditForm.invalid" status="primary" hero nbButton>
-            {{ submitButtonName }}
-          </button>
-        </div>
-      </nb-accordion-item-body>
-    </nb-accordion-item>
   </nb-accordion>
+
+  <nb-card style="border-top-left-radius: 0; border-top-right-radius: 0;">
+    <div class="accordion-footer">
+      <button (click)="onCancel()" hero nbButton>
+        abbrechen
+      </button>
+      <button (click)="onSubmit()" [disabled]="auditForm.invalid" status="primary" hero nbButton>
+        {{ submitButtonName }}
+      </button>
+    </div>
+  </nb-card>
 </form>
