@@ -29,6 +29,27 @@ describe('AddAuditDialog', () => {
     cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
   });
 
+  it('End date cannot be before the start date', () => {
+    cy.get('[data-cy=audit-end-input]').click();
+    cy.get(
+      '[ng-reflect-row="Sun May 17 2020 00:00:00 GMT+0"] > :nth-child(1) > .cell-content',
+    ).click();
+    cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
+  });
+
+  it('Start and end date can be set', () => {
+    cy.on('uncaught:exception', (err, runnable) => {
+      expect(err.message).to.include('nebular issue: https://github.com/akveo/nebular/issues/2338');
+      done();
+      return false;
+    });
+    cy.get('[data-cy=audit-start-input]').click();
+    cy.get('.today > .cell-content').click();
+    cy.get('[data-cy=audit-end-input]').click();
+    cy.get('.today > .cell-content').click();
+    cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
+  });
+
   it('Clicking on company tab opens accordeon body', () => {
     cy.get('[data-cy=audit-customer-data-form]').click();
     cy.get('[data-cy=audit-customer-data-form]').should('contain', 'Unternehmen');
