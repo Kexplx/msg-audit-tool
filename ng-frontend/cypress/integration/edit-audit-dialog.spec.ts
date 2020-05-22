@@ -1,10 +1,8 @@
-import { Audit } from 'src/app/data/models/audit.model';
-
 describe('EditAuditDialog', () => {
   const baseUrl = Cypress.config().baseUrl;
   const auditsUrl = baseUrl + '/audits';
-  let testAudit: Audit;
-  let testAuditEdited: Audit;
+  let testAudit;
+  let testAuditEdited;
 
   before(() => {
     cy.fixture('example-audit').then(json => {
@@ -39,7 +37,7 @@ describe('EditAuditDialog', () => {
   });
 
   it('Audit was edited in the audits overview', () => {
-    cy.testAuditsOverviewPage(testAuditEdited);
+    cy.testAuditListEntry(testAuditEdited);
   });
 
   it('Audit was edited in the concrete audit page', () => {
@@ -70,6 +68,6 @@ describe('EditAuditDialog', () => {
 
   it('Audit was edited in the audits overview', () => {
     cy.get(':nth-child(2) > .appearance-hero').click();
-    cy.testAuditsOverviewPage(testAudit);
+    cy.testAuditListEntry(testAudit);
   });
 });

@@ -1,8 +1,6 @@
-import { Audit } from 'src/app/data/models/audit.model';
-
 describe('AddAuditDialog', () => {
   let baseUrl = Cypress.config().baseUrl + '/audits/';
-  let testAudit: Audit;
+  let testAudit;
 
   before(() => {
     cy.fixture('example-audit').then(json => {

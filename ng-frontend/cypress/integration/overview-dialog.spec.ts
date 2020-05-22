@@ -1,9 +1,7 @@
-import { Audit } from 'src/app/data/models/audit.model';
-
 describe('OverviewDialog', () => {
   let baseUrl = Cypress.config().baseUrl;
-  let testAudit: Audit;
-  let testAuditEdited: Audit;
+  let testAudit;
+  let testAuditEdited;
 
   before(() => {
     cy.visit(baseUrl);
@@ -12,14 +10,14 @@ describe('OverviewDialog', () => {
     });
   });
 
-  function checkAuditHeader(testAudit) {
-    // Verify that an Audit is showing and that it contains the correct Audit name and Company Name
-    cy.get('[data-cy=audit-short-infos]').contains(testAudit.name);
-    cy.get('[data-cy=audit-short-infos]').contains(testAudit.customerData.name);
-    if (testAudit.start || testAudit.end) {
-      cy.get('[data-cy=audit-short-infos]').should('exist');
-    }
-  }
+  // function checkAuditHeader(testAudit) {
+  //   // Verify that an Audit is showing and that it contains the correct Audit name and Company Name
+  //   cy.get('[data-cy=audit-short-infos]').contains(testAudit.name);
+  //   cy.get('[data-cy=audit-short-infos]').contains(testAudit.customerData.name);
+  //   if (testAudit.start || testAudit.end) {
+  //     cy.get('[data-cy=audit-short-infos]').should('exist');
+  //   }
+  // }
 
   function checkAuditStatusLabel(testAudit) {
     cy.get('[data-cy=audit-status]').first().should('exist');
@@ -36,7 +34,7 @@ describe('OverviewDialog', () => {
   });
 
   it('Adds the correct audit name and company name entered by the user to the overview', () => {
-    checkAuditHeader(testAudit);
+    cy.testAuditListEntry(testAudit);
   });
 
   it('Shows the audit status label', () => {

@@ -1,9 +1,8 @@
-import { Audit } from 'src/app/data/models/audit.model';
 import { factors } from '../../src/app/core/data/factors';
 
 describe('AuditPage', () => {
   let baseUrl = Cypress.config().baseUrl;
-  let testAudit: Audit;
+  let testAudit;
   let testAuditUrl;
 
   before(() => {
