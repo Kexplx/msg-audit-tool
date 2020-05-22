@@ -4,20 +4,20 @@ describe('Navbar', () => {
   });
 
   it('Contains Menu Icon Button', () => {
-    cy.get(':nth-child(1) > .appearance-ghost');
+    cy.get('[data-cy=toggle-sidebar]');
   });
 
   it('Contains "Audit"', () => {
-    cy.get(':nth-child(2) > .appearance-hero');
+    cy.get('[data-cy=home]');
   });
 
   it('Contains GitHub Icon Button', () => {
-    cy.get(':nth-child(4) > .appearance-ghost');
+    cy.get('[data-cy=github]');
   });
 
   it('Clicking the sidebar toggle button opens the sidebar', () => {
     cy.viewport('iphone-5');
-    cy.get(':nth-child(1) > .appearance-ghost').click();
-    cy.get('nb-sidebar').should('have.class', 'expanded');
+    cy.get('[data-cy=toggle-sidebar]').click();
+    cy.get('[data-cy=sidebar]').should('have.class', 'expanded');
   });
 });

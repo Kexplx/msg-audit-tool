@@ -12,162 +12,125 @@ describe('AddAuditDialog', () => {
 
   it('Routing to audits/new opens AddAuditForm', () => {
     cy.visit(baseUrl + 'new');
-    cy.get('nb-dialog-container');
+    cy.get('[data-cy=audit-data-form]');
   });
 
   it('Clicking abbrechen button opens warning message', () => {
-    cy.get('.accordion-footer > .status-basic').click();
-    cy.get('nb-dialog-container > .ng-star-inserted > nb-card > nb-card-header').should('exist');
+    cy.get('[data-cy=cancel-audit-data-form]').click();
+    cy.get('[data-cy=discard-back-dialog]').should('exist');
   });
 
   it('Clicking yes on warning message should close overlay', () => {
-    cy.get('.card-footer > :nth-child(2)').click();
-    cy.get('#cdk-overlay-0 > nb-dialog-container > app-add-audit-dialog > div > form').should(
-      'not.exist',
-    );
+    cy.get('[data-cy=discard]').click();
+    cy.get('[data-cy=discard-back-dialog]').should('not.exist');
   });
 
   it('Form gives inputable element for audit name', () => {
     cy.visit(baseUrl + 'new');
-    cy.get('.field-item-audit-name > .input-full-width').clear().type(testAudit.name);
-    cy.get('.field-item-audit-name > .input-full-width').should('have.value', testAudit.name);
+    cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
+    cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
   });
 
-  // it('Form gives choosable element for startdate and enddate', () => {
-  //   cy.get('.ng-tns-c155-1.ng-star-inserted > .ng-trigger > .item-body > .grid-1-1 > :nth-child(1) > .input-full-width').click();
-  //   cy.get('.today > .cell-content').click();
-  //   cy.get('.ng-tns-c155-1.ng-star-inserted > .ng-trigger > .item-body > .grid-1-1 > :nth-child(2) > .input-full-width').click();
-  //   cy.get('.today > .cell-content').click();
-  // });
-
   it('Clicking on company tab opens accordeon body', () => {
-    cy.get(':nth-child(2) > .accordion-item-header-collapsed').click();
-    cy.get('.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body').should(
-      'contain',
-      'Unternehmen',
-    );
+    cy.get('[data-cy=audit-customer-data-form]').click();
+    cy.get('[data-cy=audit-customer-data-form]').should('contain', 'Unternehmen');
   });
 
   it('Form gives inputable element for company name', () => {
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(1) > .input-full-width',
-    )
-      .clear()
-      .type(testAudit.customerData.name);
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(1) > .input-full-width',
-    ).should('have.value', testAudit.customerData.name);
+    cy.get('[data-cy=audit-customer-name-input]').clear().type(testAudit.customerData.name);
+    cy.get('[data-cy=audit-customer-name-input]').should('have.value', testAudit.customerData.name);
   });
 
   it('Form gives inputable element for company department', () => {
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
-    )
+    cy.get('[data-cy=audit-customer-department-input]')
       .clear()
       .type(testAudit.customerData.department);
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
-    ).should('have.value', testAudit.customerData.department);
-  });
-
-  it('Form gives inputable element for corporate division', () => {
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
-    )
-      .clear()
-      .type(testAudit.customerData.corporateDivision);
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
-    ).should('have.value', testAudit.customerData.corporateDivision);
-  });
-
-  it('Form gives inputable element for company sector', () => {
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
-    )
-      .clear()
-      .type(testAudit.customerData.sector);
-    cy.get(
-      '.ng-tns-c155-3.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
-    ).should('have.value', testAudit.customerData.sector);
-  });
-
-  it('Clicking on contact information tab opens accordeon body', () => {
-    cy.get(':nth-child(3) > .accordion-item-header-collapsed').click();
-    cy.get('.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body').should(
-      'contain',
-      'Vorname',
+    cy.get('[data-cy=audit-customer-department-input]').should(
+      'have.value',
+      testAudit.customerData.department,
     );
   });
 
+  it('Form gives inputable element for corporate division', () => {
+    cy.get('[data-cy=audit-customer-division-input]')
+      .clear()
+      .type(testAudit.customerData.corporateDivision);
+    cy.get('[data-cy=audit-customer-division-input]').should(
+      'have.value',
+      testAudit.customerData.corporateDivision,
+    );
+  });
+
+  it('Form gives inputable element for company sector', () => {
+    cy.get('[data-cy=audit-customer-sector-input]').clear().type(testAudit.customerData.sector);
+    cy.get('[data-cy=audit-customer-sector-input]').should(
+      'have.value',
+      testAudit.customerData.sector,
+    );
+  });
+
+  it('Clicking on contact information tab opens accordeon body', () => {
+    cy.get('[data-cy=audit-contact-data-form]').click();
+    cy.get('[data-cy=audit-contact-data-form]').should('contain', 'Kontaktdaten');
+  });
+
   it('Form gives the gendered salutations for Herr, Frau, Divers', () => {
-    cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
-    cy.get('nb-option').should('contain', 'Herr');
-    cy.get('nb-option').should('contain', 'Frau');
-    cy.get('nb-option').should('contain', 'Divers');
+    cy.get('[data-cy=audit-contact-salutation-input]').click();
+    cy.get('[data-cy=salutation-option]').should('contain', 'Herr');
+    cy.get('[data-cy=salutation-option]').should('contain', 'Frau');
+    cy.get('[data-cy=salutation-option]').should('contain', 'Divers');
   });
 
   it('Form gives usable drop down for choosing a gendered salutation for the contact person', () => {
-    cy.get('nb-option').contains(testAudit.contactPerson.title).click();
+    cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
   });
 
   it('Form gives inputable element for professional salutation', () => {
-    cy.get(
-      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
-    )
-      .clear()
-      .type(testAudit.contactPerson.salutation);
-    cy.get(
-      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width',
-    ).should('have.value', testAudit.contactPerson.salutation);
+    cy.get('[data-cy=audit-contact-title-input]').clear().type(testAudit.contactPerson.salutation);
+    cy.get('[data-cy=audit-contact-title-input]').should(
+      'have.value',
+      testAudit.contactPerson.salutation,
+    );
   });
 
   it('Form gives inputable element for first name', () => {
-    cy.get(
-      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
-    )
+    cy.get('[data-cy=audit-contact-firstname-input]')
       .clear()
       .type(testAudit.contactPerson.firstName);
-    cy.get(
-      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width',
-    ).should('have.value', testAudit.contactPerson.firstName);
+    cy.get('[data-cy=audit-contact-firstname-input]').should(
+      'have.value',
+      testAudit.contactPerson.firstName,
+    );
   });
 
   it('Form gives inputable element for last name', () => {
-    cy.get(
-      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
-    )
-      .clear()
-      .type(testAudit.contactPerson.lastName);
-    cy.get(
-      '.ng-tns-c155-5.ng-star-inserted > .ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width',
-    ).should('have.value', testAudit.contactPerson.lastName);
+    cy.get('[data-cy=audit-contact-lastname-input]').clear().type(testAudit.contactPerson.lastName);
+    cy.get('[data-cy=audit-contact-lastname-input]').should(
+      'have.value',
+      testAudit.contactPerson.lastName,
+    );
   });
 
   it('Form gives inputable element for contact information', () => {
-    cy.get('.field-item-contact-information > .input-full-width')
-      .clear()
-      .type(testAudit.contactPerson.information);
-    cy.get('.field-item-contact-information > .input-full-width').should(
+    cy.get('[data-cy=audit-contact-info-input]').clear().type(testAudit.contactPerson.information);
+    cy.get('[data-cy=audit-contact-info-input]').should(
       'have.value',
       testAudit.contactPerson.information,
     );
   });
 
   it('Clicking hinzufügen button closes window', () => {
-    cy.get('.accordion-footer > .status-primary').click();
-    cy.get('#cdk-overlay-0 > nb-dialog-container > app-add-audit-dialog > div > form').should(
-      'not.exist',
-    );
+    cy.get('[data-cy=submit-audit-data-form]').click();
+    cy.get('[data-cy=audit-data-form]').should('not.exist');
   });
 
   it('Clicking hinzufügen should not be possible when no audit name was entered', () => {
     cy.visit(baseUrl + 'new');
-    cy.get('.btn-disabled').should('exist');
+    cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
   });
 
   it('Adding only a name should be sufficient to enable hinzufügen button', () => {
-    cy.get('.field-item-audit-name > .input-full-width').clear().type(testAudit.name);
-    cy.get('.btn-disabled').should('not.exist');
+    cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
+    cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
   });
 });
