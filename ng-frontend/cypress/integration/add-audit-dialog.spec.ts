@@ -152,4 +152,15 @@ describe('AddAuditDialog', () => {
     cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
     cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
   });
+
+  it('A newly added audit should have the status Planned', () => {
+    cy.visit(baseUrl + 'new');
+    cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
+    cy.get('[data-cy=submit-audit-data-form]').click();
+    cy.get('[data-cy=audit-status]').first().should('have.attr', 'nbPopover');
+    cy.get('[data-cy=audit-status]')
+      .first()
+      .invoke('attr', 'nbPopover')
+      .should('contain', 'Geplant');
+  });
 });
