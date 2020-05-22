@@ -27,7 +27,7 @@ describe('EditAuditDialog', () => {
     cy.get('.grid-1-auto-auto > .status-primary').click();
     cy.inputAudit(testAudit);
     cy.get(':nth-child(1) > nb-card > nb-card-header > .appearance-filled').click();
-    cy.get('a.ng-tns-c118-11').click();
+    cy.get('.menu-title').contains('Bearbeiten').click();
     cy.url().should('contain', 'edit');
   });
 

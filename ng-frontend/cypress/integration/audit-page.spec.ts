@@ -1,5 +1,5 @@
 import { Audit } from 'src/app/data/models/audit.model';
-import { factors } from '../../src/app/data/factors';
+import { factors } from '../../src/app/core/data/factors';
 
 describe('AuditPage', () => {
   let baseUrl = Cypress.config().baseUrl;
@@ -29,7 +29,7 @@ describe('AuditPage', () => {
   it('Should display an overview with all chosen factors', () => {
     cy.get(':nth-child(1) > .tab-link').click();
     for (let i = 0; i < factors.length; i++) {
-      let factor_obj = `:nth-child(${i + 1}) > .text-hint`;
+      let factor_obj = `:nth-child(${i + 1}) > nb-card-header`;
       cy.get(factor_obj).should('contain.text', factors[i].title);
     }
   });
@@ -38,19 +38,10 @@ describe('AuditPage', () => {
     cy.get(':nth-child(1) > .tab-link').click();
     for (let i = 0; i < factors.length; i++) {
       const categories = factors[i].categories;
-      if (categories.length === 1) {
-        cy.get(`:nth-child(${i + 1}) > .ng-star-inserted > nb-card > nb-card-header`).should(
-          'contain.text',
-          categories[0].title,
-        );
-        continue;
-      }
-      for (let j = 0; j < categories.length; j++) {
-        cy.get(`:nth-child(${i + 1}) > :nth-child(${j + 2}) > nb-card > nb-card-header`).should(
-          'contain.text',
-          categories[j].title,
-        );
-      }
+      cy.get(`:nth-child(${i + 1}) > nb-list > nb-list-item`).should(
+        'contain.text',
+        categories[0].title,
+      );
     }
   });
 });

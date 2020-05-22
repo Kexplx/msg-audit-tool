@@ -8,7 +8,7 @@ function inputAudit(testAudit) {
   });
   // Input Audit name, start date, end date and open next collapsed accordeon through click
   cy.get(':nth-child(1) > .accordion-item-header-expanded').should('exist');
-  cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').clear().type(testAudit.name);
+  cy.get('.field-item-audit-name > .input-full-width').type(testAudit.name);
   if (testAudit.start) {
     cy.get(
       '.ng-tns-c155-1.ng-star-inserted > .ng-trigger > .item-body > .grid-1-1 > :nth-child(1) > .input-full-width',
@@ -41,8 +41,8 @@ function inputAudit(testAudit) {
     .filter(':visible')
     .clear()
     .type(testAudit.customerData.sector);
-  cy.get(':nth-child(3) > .accordion-item-header-collapsed').click();
   cy.get(':nth-child(2) > .accordion-item-header-expanded').click();
+  cy.get(':nth-child(3) > .accordion-item-header-collapsed').click();
 
   // Input Contact Information and open next collapsed accordeon through click
   cy.get(':nth-child(1) > .appearance-outline > .select-button').click();

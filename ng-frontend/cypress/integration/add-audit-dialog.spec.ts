@@ -29,8 +29,8 @@ describe('AddAuditDialog', () => {
 
   it('Form gives inputable element for audit name', () => {
     cy.visit(baseUrl + 'new');
-    cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').clear().type(testAudit.name);
-    cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').should('have.value', testAudit.name);
+    cy.get('.field-item-audit-name > .input-full-width').clear().type(testAudit.name);
+    cy.get('.field-item-audit-name > .input-full-width').should('have.value', testAudit.name);
   });
 
   // it('Form gives choosable element for startdate and enddate', () => {
@@ -167,7 +167,7 @@ describe('AddAuditDialog', () => {
   });
 
   it('Adding only a name should be sufficient to enable hinzufügen button', () => {
-    cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').clear().type(testAudit.name);
+    cy.get('.field-item-audit-name > .input-full-width').clear().type(testAudit.name);
     cy.get('.btn-disabled').should('not.exist');
   });
 });
