@@ -1,106 +1,108 @@
-<nb-layout>
-  <nb-layout-column style="padding: 0;">
-    <header class="grid-1-auto mb-2">
-      <h4>
-        {{ (audit$ | async).name }}
-      </h4>
-      <button nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton status="primary" hero [nbContextMenu]="items" [nbContextMenuTag]="menuId">
-        <nb-icon icon="more-vertical-outline"></nb-icon>
-      </button>
-      <p class="label" *ngIf="(audit$ | async).start">
-        {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
-      </p>
-    </header>
-    <nb-tabset>
-      <nb-tab tabTitle="Interviews" tabIcon="attach-2-outline">
-        <div class="factor-container" *ngFor="let factor of (audit$ | async).factors">
-          <h6 class="text-hint mb-1">{{ factor.title }}</h6>
-          <app-category-card [category]="category" *ngFor="let category of factor.categories"></app-category-card>
+<header class="grid-1-auto mb-2">
+  <h4>
+    {{ (audit$ | async).name }}
+  </h4>
+  <button nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton status="primary" hero [nbContextMenu]="items" [nbContextMenuTag]="menuId">
+    <nb-icon icon="more-vertical-outline"></nb-icon>
+  </button>
+  <p class="label" *ngIf="(audit$ | async).start">
+    {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+  </p>
+</header>
+<nb-tabset>
+  <nb-tab tabTitle="Interviews" tabIcon="attach-2-outline">
+    <nb-card *ngFor="let factor of (audit$ | async).factors">
+      <nb-card-header>{{ factor.title }}</nb-card-header>
+      <nb-list>
+        <nb-list-item *ngFor="let category of factor.categories">
+          {{ category.title }}
+        </nb-list-item>
+      </nb-list>
+    </nb-card>
+    <aside class="hint-no-factors" *ngIf="(audit$ | async).factors.length == 0">
+      <h6 class="text-hint">Keine ISO 25010 Kategorien ausgewählt</h6>
+    </aside>
+  </nb-tab>
+  <nb-tab tabTitle="Infos" tabIcon="info-outline">
+    <nb-card>
+      <nb-card-body>
+        <h6>Audit Grunddaten</h6>
+        <hr />
+        <div class="grid-1-1">
+          <div>
+            <label class="label">Auditname</label>
+            <div class="audit-params">{{ (audit$ | async).name }}</div>
+          </div>
+          <div>
+            <label class="label">Zeitraum</label>
+            <div class="audit-params">
+              {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+              <span *ngIf="!(audit$ | async).start">-</span>
+            </div>
+          </div>
         </div>
-        <aside class="hint-no-factors" *ngIf="(audit$ | async).factors.length == 0">
-          <h6 class="text-hint">Keine ISO 25010 Kategorien ausgewählt</h6>
-        </aside>
-      </nb-tab>
-      <nb-tab tabTitle="Infos" tabIcon="info-outline">
-        <nb-card>
-          <nb-card-body>
-            <h6>Audit Grunddaten</h6>
-            <hr />
-            <div class="grid-1-1">
-              <div>
-                <label class="label">Auditname</label>
-                <div class="audit-params">{{ (audit$ | async).name }}</div>
-              </div>
-              <div>
-                <label class="label">Zeitraum</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
-                  <span *ngIf="!(audit$ | async).start">-</span>
-                </div>
-              </div>
+        <hr />
+        <div class="grid-1-1">
+          <div>
+            <label class="label">Unternehmen</label>
+            <div class="audit-params">
+              {{ (audit$ | async).customerData.name }}
+              <span class="label" *ngIf="!(audit$ | async).customerData.name">-</span>
             </div>
-            <hr />
-            <div class="grid-1-1">
-              <div>
-                <label class="label">Unternehmen</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).customerData.name }}
-                  <span class="label" *ngIf="!(audit$ | async).customerData.name">-</span>
-                </div>
-              </div>
-              <div>
-                <label class="label">Abteilung</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).customerData.department }}
-                  <span class="label" *ngIf="!(audit$ | async).customerData.department">-</span>
-                </div>
-              </div>
+          </div>
+          <div>
+            <label class="label">Abteilung</label>
+            <div class="audit-params">
+              {{ (audit$ | async).customerData.department }}
+              <span class="label" *ngIf="!(audit$ | async).customerData.department">-</span>
             </div>
-            <div class="grid-1-1">
-              <div>
-                <label class="label">Unternehmensbereich</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).customerData.corporateDivision }}
-                  <span class="label" *ngIf="!(audit$ | async).customerData.corporateDivision">-</span>
-                </div>
-              </div>
-              <div>
-                <label class="label">Branche</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).customerData.sector }}
-                  <span class="label" *ngIf="!(audit$ | async).customerData.sector">-</span>
-                </div>
-              </div>
+          </div>
+        </div>
+        <div class="grid-1-1">
+          <div>
+            <label class="label">Unternehmensbereich</label>
+            <div class="audit-params">
+              {{ (audit$ | async).customerData.corporateDivision }}
+              <span class="label" *ngIf="!(audit$ | async).customerData.corporateDivision">-</span>
             </div>
-            <hr />
-            <div class="grid-1-1 mb-2">
-              <div>
-                <label class="label">Kontaktperson</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).contactPerson.title }} {{ (audit$ | async).contactPerson.salutation }} {{ (audit$ | async).contactPerson.firstName }}
-                  {{ (audit$ | async).contactPerson.lastName }}
-                  <span
-                    class="label"
-                    *ngIf="!(audit$ | async).contactPerson.title && !(audit$ | async).contactPerson.salutation && !(audit$ | async).contactPerson.firstName && !(audit$ | async).contactPerson.lastName"
-                    >-</span
-                  >
-                </div>
-              </div>
+          </div>
+          <div>
+            <label class="label">Branche</label>
+            <div class="audit-params">
+              {{ (audit$ | async).customerData.sector }}
+              <span class="label" *ngIf="!(audit$ | async).customerData.sector">-</span>
             </div>
-            <div class="grid-1-1 mb-2">
-              <div>
-                <label class="label">Kontaktinformationen</label>
-                <div class="audit-params">
-                  {{ (audit$ | async).contactPerson.information }}
-                  <span class="label" *ngIf="!(audit$ | async).contactPerson.information">-</span>
-                </div>
-              </div>
+          </div>
+        </div>
+        <hr />
+        <div class="grid-1-1 mb-2">
+          <div>
+            <label class="label">Kontaktperson</label>
+            <div class="audit-params">
+              {{ (audit$ | async).contactPerson.title }} {{ (audit$ | async).contactPerson.salutation }} {{ (audit$ | async).contactPerson.firstName }}
+              {{ (audit$ | async).contactPerson.lastName }}
+              <span
+                class="label"
+                *ngIf="!(audit$ | async).contactPerson.title && !(audit$ | async).contactPerson.salutation && !(audit$ | async).contactPerson.firstName && !(audit$ | async).contactPerson.lastName"
+                >-</span
+              >
             </div>
-            <hr />
-          </nb-card-body>
-        </nb-card>
-      </nb-tab>
-    </nb-tabset>
-    <router-outlet></router-outlet>
-  </nb-layout-column>
+          </div>
+        </div>
+        <div class="grid-1-1 mb-2">
+          <div>
+            <label class="label">Kontaktinformationen</label>
+            <div class="audit-params">
+              {{ (audit$ | async).contactPerson.information }}
+              <span class="label" *ngIf="!(audit$ | async).contactPerson.information">-</span>
+            </div>
+          </div>
+        </div>
+        <hr />
+      </nb-card-body>
+    </nb-card>
+  </nb-tab>
+</nb-tabset>
+<nb-layout>
+  <router-outlet></router-outlet>
 </nb-layout>
