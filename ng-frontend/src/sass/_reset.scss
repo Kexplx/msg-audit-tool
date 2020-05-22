@@ -125,6 +125,7 @@ q:after {
 a {
   margin: 0;
   padding: 0;
+  outline: none;
   font-size: 100%;
   vertical-align: baseline;
   background: transparent;
@@ -173,4 +174,8 @@ hr {
 input,
 select {
   vertical-align: middle;
+}
+
+nb-card {
+  outline: none;
 }
