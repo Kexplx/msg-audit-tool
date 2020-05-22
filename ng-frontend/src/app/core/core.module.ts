@@ -1,9 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
-  imports: [NgxsModule.forRoot([AuditRegistryState])],
+  imports: [NgxsModule.forRoot([AuditRegistryState], { developmentMode: !environment.production })],
   exports: [NgxsModule],
 })
 export class CoreModule {
