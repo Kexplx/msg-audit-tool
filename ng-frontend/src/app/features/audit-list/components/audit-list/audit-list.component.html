@@ -1,6 +1,6 @@
 <header class="grid-1-auto-auto">
   <h4 class="header-title">Audits</h4>
-  <a [routerLink]="['new']" hero size="medium" nbButton status="primary">
+  <a [routerLink]="['new']" hero size="medium" nbButton status="primary" data-cy="new-audit">
     <div class="min-500">
       <nb-icon icon="plus"></nb-icon>
       Neuer Audit
@@ -9,7 +9,7 @@
       <nb-icon icon="plus"></nb-icon>
     </div>
   </a>
-  <button size="medium" nbButton hero>
+  <button size="medium" nbButton hero data-cy="export-audits">
     <div class="min-500">
       <nb-icon icon="download"></nb-icon>
       (4) Exportieren
@@ -19,14 +19,14 @@
     </div>
   </button>
 </header>
-<nb-tabset>
-  <nb-tab tabTitle="Aktiv" tabIcon="activity-outline">
+<nb-tabset data-cy="audits-list">
+  <nb-tab tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
     <aside class="hint-no-audits" *ngIf="(activeAudits$ | async).length == 0">
       <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
     </aside>
     <app-audit-card *ngFor="let audit of activeAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
   </nb-tab>
-  <nb-tab tabTitle="Archiv" tabIcon="archive-outline">
+  <nb-tab tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
     <aside class="hint-no-audits" *ngIf="(archivedAudits$ | async).length == 0">
       <h6 class="text-hint">Keine Audits im Archiv</h6>
     </aside>

@@ -1,12 +1,19 @@
 <nb-card [routerLink]="[audit.id + '/overview']">
   <ng-container [ngSwitch]="audit.status">
-    <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned"></div>
-    <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action"></div>
-    <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsFinished" class="banner-status banner-status-is-finished"></div>
-    <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsCanceled" class="banner-status banner-status-is-canceled"></div>
+    <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned" data-cy="audit-status"></div>
+    <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action" data-cy="audit-status"></div>
+    <div
+      nbPopoverPlacement="left"
+      nbPopover="Abgeschlossen"
+      nbPopoverTrigger="hint"
+      *ngSwitchCase="auditStatus.IsFinished"
+      class="banner-status banner-status-is-finished"
+      data-cy="audit-status"
+    ></div>
+    <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsCanceled" class="banner-status banner-status-is-canceled" data-cy="audit-status"></div>
   </ng-container>
   <nb-card-header>
-    <div>
+    <div data-cy="audit-short-infos">
       {{ audit.name }}
       <span *ngIf="audit.customerData.name">| {{ audit.customerData.name }} </span>
       <br />
@@ -15,7 +22,7 @@
       </span>
     </div>
     <div></div>
-    <button (click)="$event.stopPropagation()" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId">
+    <button (click)="$event.stopPropagation()" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId" data-cy="audit-options">
       <nb-icon icon="more-vertical-outline"></nb-icon>
     </button>
   </nb-card-header>

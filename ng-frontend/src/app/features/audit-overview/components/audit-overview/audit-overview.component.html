@@ -1,8 +1,8 @@
-<header class="grid-1-auto mb-2">
+<header class="grid-1-auto mb-2" data-cy="audit-short-infos">
   <h4>
     {{ (audit$ | async).name }}
   </h4>
-  <button nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton status="primary" hero [nbContextMenu]="items" [nbContextMenuTag]="menuId">
+  <button nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton status="primary" hero [nbContextMenu]="items" [nbContextMenuTag]="menuId" data-cy="audit-options">
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>
   <p class="label" *ngIf="(audit$ | async).start">
@@ -10,7 +10,7 @@
   </p>
 </header>
 <nb-tabset>
-  <nb-tab tabTitle="Interviews" tabIcon="attach-2-outline">
+  <nb-tab tabTitle="Interviews" tabIcon="attach-2-outline" data-cy="audit-interviews">
     <nb-card *ngFor="let factor of (audit$ | async).factors">
       <nb-card-header>{{ factor.title }}</nb-card-header>
       <nb-list>
@@ -23,7 +23,7 @@
       <h6 class="text-hint">Keine ISO 25010 Kategorien ausgewählt</h6>
     </aside>
   </nb-tab>
-  <nb-tab tabTitle="Infos" tabIcon="info-outline">
+  <nb-tab tabTitle="Infos" tabIcon="info-outline" data-cy="audit-long-infos">
     <nb-card>
       <nb-card-body>
         <h6>Audit Grunddaten</h6>
@@ -31,11 +31,11 @@
         <div class="grid-1-1">
           <div>
             <label class="label">Auditname</label>
-            <div class="audit-params">{{ (audit$ | async).name }}</div>
+            <div class="audit-params" data-cy="audit-name">{{ (audit$ | async).name }}</div>
           </div>
           <div>
             <label class="label">Zeitraum</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-timeframe">
               {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
               <span *ngIf="!(audit$ | async).start">-</span>
             </div>
@@ -45,14 +45,14 @@
         <div class="grid-1-1">
           <div>
             <label class="label">Unternehmen</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-customer-name">
               {{ (audit$ | async).customerData.name }}
               <span class="label" *ngIf="!(audit$ | async).customerData.name">-</span>
             </div>
           </div>
           <div>
             <label class="label">Abteilung</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-customer-department">
               {{ (audit$ | async).customerData.department }}
               <span class="label" *ngIf="!(audit$ | async).customerData.department">-</span>
             </div>
@@ -61,14 +61,14 @@
         <div class="grid-1-1">
           <div>
             <label class="label">Unternehmensbereich</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-customer-division">
               {{ (audit$ | async).customerData.corporateDivision }}
               <span class="label" *ngIf="!(audit$ | async).customerData.corporateDivision">-</span>
             </div>
           </div>
           <div>
             <label class="label">Branche</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-customer-sector">
               {{ (audit$ | async).customerData.sector }}
               <span class="label" *ngIf="!(audit$ | async).customerData.sector">-</span>
             </div>
@@ -78,7 +78,7 @@
         <div class="grid-1-1 mb-2">
           <div>
             <label class="label">Kontaktperson</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-contact-person">
               {{ (audit$ | async).contactPerson.title }} {{ (audit$ | async).contactPerson.salutation }} {{ (audit$ | async).contactPerson.firstName }}
               {{ (audit$ | async).contactPerson.lastName }}
               <span
@@ -92,7 +92,7 @@
         <div class="grid-1-1 mb-2">
           <div>
             <label class="label">Kontaktinformationen</label>
-            <div class="audit-params">
+            <div class="audit-params" data-cy="audit-contact-info">
               {{ (audit$ | async).contactPerson.information }}
               <span class="label" *ngIf="!(audit$ | async).contactPerson.information">-</span>
             </div>
