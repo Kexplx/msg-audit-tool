@@ -1,13 +1,13 @@
-<form [formGroup]="auditForm">
+<form [formGroup]="auditForm" data-cy="audit-data-form">
   <nb-accordion>
-    <nb-accordion-item expanded>
+    <nb-accordion-item expanded data-cy="audit-basic-data-form">
       <nb-accordion-item-header>
         1. Audit Grunddaten
       </nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="field-item-audit-name">
           <label class="label">Auditname</label>
-          <input [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth />
+          <input [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth data-cy="audit-name-input" />
           <div *ngIf="auditName.invalid && auditName.touched">
             <label class="label text-danger">Auditnamen eintragen</label>
           </div>
@@ -15,12 +15,12 @@
         <div class="grid-1-1">
           <div class="form-item">
             <label class="label">Startdatum</label>
-            <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" />
+            <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="audit-start-input" />
             <nb-datepicker #datePickerStart></nb-datepicker>
           </div>
           <div class="form-item">
             <label class="label">Enddatum</label>
-            <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" />
+            <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
             <nb-datepicker #datePickerEnd></nb-datepicker>
             <div *ngIf="end.errors?.startGreaterThanEnd">
               <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
@@ -29,7 +29,7 @@
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-    <nb-accordion-item>
+    <nb-accordion-item data-cy="audit-customer-data-form">
       <nb-accordion-item-header>
         2. Kundendaten
       </nb-accordion-item-header>
@@ -37,26 +37,26 @@
         <div class="grid-1-1">
           <div class="form-item">
             <label class="label">Unternehmen</label>
-            <input formControlName="companyName" nbInput fullWidth />
+            <input formControlName="companyName" nbInput fullWidth data-cy="audit-customer-name-input" />
           </div>
           <div class="form-item">
             <label class="label">Abteilung</label>
-            <input formControlName="department" nbInput fullWidth />
+            <input formControlName="department" nbInput fullWidth data-cy="audit-customer-department-input" />
           </div>
         </div>
         <div class="grid-1-1">
           <div class="form-item">
             <label class="label">Unternehmensbereich</label>
-            <input formControlName="corporateDivision" nbInput fullWidth />
+            <input formControlName="corporateDivision" nbInput fullWidth data-cy="audit-customer-division-input" />
           </div>
           <div class="form-item">
             <label class="label">Branche</label>
-            <input formControlName="sector" nbInput fullWidth />
+            <input formControlName="sector" nbInput fullWidth data-cy="audit-customer-sector-input" />
           </div>
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-    <nb-accordion-item>
+    <nb-accordion-item data-cy="audit-contact-data-form">
       <nb-accordion-item-header>
         3. Kontaktdaten
       </nb-accordion-item-header>
@@ -64,30 +64,30 @@
         <div class="grid-1-1 mb-2">
           <div class="form-item">
             <label class="label">Anrede</label>
-            <nb-select formControlName="salutation" fullWidth>
-              <nb-option value="Herr">Herr</nb-option>
-              <nb-option value="Frau">Frau</nb-option>
-              <nb-option value="Divers">Divers</nb-option>
+            <nb-select formControlName="salutation" fullWidth data-cy="audit-contact-salutation-input">
+              <nb-option value="Herr" data-cy="salutation-option">Herr</nb-option>
+              <nb-option value="Frau" data-cy="salutation-option">Frau</nb-option>
+              <nb-option value="Divers" data-cy="salutation-option">Divers</nb-option>
             </nb-select>
           </div>
           <div class="form-item">
             <label class="label">Titel</label>
-            <input formControlName="title" nbInput fullWidth />
+            <input formControlName="title" nbInput fullWidth data-cy="audit-contact-title-input" />
           </div>
         </div>
         <div class="grid-1-1 mb-2">
           <div class="form-item">
             <label class="label">Vorname</label>
-            <input formControlName="firstName" nbInput fullWidth />
+            <input formControlName="firstName" nbInput fullWidth data-cy="audit-contact-firstname-input" />
           </div>
           <div class="form-item">
             <label class="label">Nachname</label>
-            <input formControlName="lastName" nbInput fullWidth />
+            <input formControlName="lastName" nbInput fullWidth data-cy="audit-contact-lastname-input" />
           </div>
         </div>
         <div class="form-item field-item-contact-information">
           <label class="label">Kontaktinformation</label>
-          <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth></textarea>
+          <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="audit-contact-info-input"></textarea>
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
@@ -112,10 +112,10 @@
 
   <nb-card style="border-top-left-radius: 0; border-top-right-radius: 0;">
     <div class="accordion-footer">
-      <button (click)="onCancel()" hero nbButton>
+      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
         abbrechen
       </button>
-      <button (click)="onSubmit()" [disabled]="auditForm.invalid" status="primary" hero nbButton>
+      <button (click)="onSubmit()" [disabled]="auditForm.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
         {{ submitButtonName }}
       </button>
     </div>
