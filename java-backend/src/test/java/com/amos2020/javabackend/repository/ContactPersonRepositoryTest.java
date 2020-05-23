@@ -316,7 +316,7 @@ public class ContactPersonRepositoryTest {
     }
 
     @Test
-    public void changeContactPersonWithValidTitle_isSuccessfully() {
+    public void updateContactPersonWithValidTitle_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setTitle(TEST_TITLE);
         toTest.setContactInformation(TEST_INFORMATION);
@@ -330,12 +330,12 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setTitle("newTitle");
-        ContactPerson changedEntity = repository.save(entity);
-        Assert.assertEquals(entity, changedEntity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void changeContactPersonWithInvalidTitle_throwsException() {
+    public void updateContactPersonWithInvalidTitle_throwsException() {
         toTest = new ContactPerson();
         toTest.setTitle(TEST_TITLE);
         toTest.setContactInformation(TEST_INFORMATION);
@@ -352,7 +352,7 @@ public class ContactPersonRepositoryTest {
     }
 
     @Test
-    public void changeContactPersonWithValidForename_isSuccessfully() {
+    public void updateContactPersonWithValidForename_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setTitle(TEST_TITLE);
         toTest.setContactInformation(TEST_INFORMATION);
@@ -366,12 +366,12 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setForename("Max");
-        ContactPerson changedEntity = repository.save(entity);
-        Assert.assertEquals(entity, changedEntity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void changeContactPersonWithInvalidForename_throwsException() {
+    public void updateContactPersonWithInvalidForename_throwsException() {
         toTest = new ContactPerson();
         toTest.setTitle(TEST_TITLE);
         toTest.setContactInformation(TEST_INFORMATION);
@@ -389,7 +389,7 @@ public class ContactPersonRepositoryTest {
     }
 
     @Test
-    public void changeContactPersonWithValidSurname_isSuccessfully() {
+    public void updateContactPersonWithValidSurname_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setTitle(TEST_TITLE);
         toTest.setContactInformation(TEST_INFORMATION);
@@ -403,12 +403,12 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setForename("Max");
-        ContactPerson changedEntity = repository.save(entity);
-        Assert.assertEquals(entity, changedEntity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void changeContactPersonWithInvalidSurname_throwsException() {
+    public void updateContactPersonWithInvalidSurname_throwsException() {
         toTest = new ContactPerson();
         toTest.setTitle(TEST_TITLE);
         toTest.setContactInformation(TEST_INFORMATION);

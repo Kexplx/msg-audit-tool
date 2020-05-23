@@ -2,6 +2,7 @@ package com.amos2020.javabackend.repository;
 
 import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.AuditContactPerson;
+import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.entity.ContactPerson;
 import org.junit.After;
 import org.junit.Assert;
@@ -15,6 +16,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * Test class for the AuditContactPersonRepository
@@ -56,6 +59,8 @@ public class AuditContactPersonRepositoryTest {
         audit.setStartDate(TEST_START_DATE);
         audit.setEndDate(TEST_END_DATE);
         audit.setExpectedEndDate(TEST_EXPECTED_END_DATE);
+        audit.setStatus(AuditStatus.ACTIVE);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
         auditRepository.save(audit);
         Assert.assertTrue(auditRepository.exists((Example.of(audit))));
 
@@ -112,7 +117,7 @@ public class AuditContactPersonRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertAuditContactPersonWithAuditIdIsNotExisting_throwsException() {
         toTest = new AuditContactPerson();
-        toTest.setAuditId(audit.getId()+1);
+        toTest.setAuditId(audit.getId() + 1);
         toTest.setContactPersonId(contactPerson.getId());
         repository.save(toTest);
     }
@@ -121,8 +126,20 @@ public class AuditContactPersonRepositoryTest {
     public void insertAuditContactPersonWithContactPersonIdIsNotExisting_throwsException() {
         toTest = new AuditContactPerson();
         toTest.setAuditId(audit.getId());
-        toTest.setContactPersonId(contactPerson.getId()+1);
+        toTest.setContactPersonId(contactPerson.getId() + 1);
         repository.save(toTest);
+    }
+
+    @Test
+    public void deleteAuditContactPersonWithValidData_isSuccessful() {
+        toTest = new AuditContactPerson();
+        toTest.setAuditId(audit.getId());
+        toTest.setContactPersonId(contactPerson.getId());
+        repository.save(toTest);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+
+        repository.delete(toTest);
+        Assert.assertFalse(repository.exists((Example.of(toTest))));
     }
 
     @After
