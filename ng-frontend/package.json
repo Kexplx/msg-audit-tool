@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "compodoc": "compodoc -p tsconfig.json -w -s --name=\"MSG Audit Tool Documentation\"",
     "e2e": "cypress open",
