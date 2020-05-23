@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class Audit {
     private String cancellationReason;
     private Integer cancellationContactPerson;
     private AuditStatus status;
+    private Timestamp creationDate;
     private ContactPerson contactPersonByCancellationContactPerson;
     private Collection<AuditContactPerson> auditContactPeopleById;
     private Collection<Interview> interviewsById;
@@ -117,8 +119,18 @@ public class Audit {
         this.status = status;
     }
 
+    @Basic
+    @Column(name = "creation_date")
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+    
     @ManyToOne
-    @JoinColumn(name = "cancellation_contact_person", referencedColumnName = "id")
+    @JoinColumn(name = "cancellation_contact_person", referencedColumnName = "id", insertable = false, updatable = false)
     public ContactPerson getContactPersonByCancellationContactPerson() {
         return contactPersonByCancellationContactPerson;
     }
@@ -173,6 +185,7 @@ public class Audit {
             return false;
         if (!Objects.equals(cancellationContactPerson, audit.cancellationContactPerson))
             return false;
+        if (!Objects.equals(creationDate, audit.creationDate)) return false;
         return Objects.equals(status, audit.status);
     }
 
@@ -187,6 +200,7 @@ public class Audit {
         result = 31 * result + (cancellationReason != null ? cancellationReason.hashCode() : 0);
         result = 31 * result + (cancellationContactPerson != null ? cancellationContactPerson.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (creationDate != null ? creationDate.hashCode() : 0);
         return result;
     }
 }
