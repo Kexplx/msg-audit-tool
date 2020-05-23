@@ -18,14 +18,14 @@ public class InterviewContactPersonPK implements Serializable {
         this.interviewId = interviewId;
     }
 
-    @Column(name = "contactperson_id")
+    @Column(name = "contact_person_id")
     @Id
-    public int getContactpersonId() {
+    public int getContactPersonId() {
         return contactpersonId;
     }
 
-    public void setContactpersonId(int contactpersonId) {
-        this.contactpersonId = contactpersonId;
+    public void setContactPersonId(int contactPersonId) {
+        this.contactpersonId = contactPersonId;
     }
 
     @Override

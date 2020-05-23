@@ -8,10 +8,10 @@ import java.util.Objects;
 @IdClass(InterviewContactPersonPK.class)
 public class InterviewContactPerson {
     private int interviewId;
-    private int contactpersonId;
+    private int contactPersonId;
     private String role;
     private Interview interviewByInterviewId;
-    private ContactPerson contactPersonByContactpersonId;
+    private ContactPerson contactPersonByContactPersonId;
 
     @Id
     @Column(name = "interview_id")
@@ -24,13 +24,13 @@ public class InterviewContactPerson {
     }
 
     @Id
-    @Column(name = "contactperson_id")
-    public int getContactpersonId() {
-        return contactpersonId;
+    @Column(name = "contact_person_id")
+    public int getContactPersonId() {
+        return contactPersonId;
     }
 
-    public void setContactpersonId(int contactpersonId) {
-        this.contactpersonId = contactpersonId;
+    public void setContactPersonId(int contactPersonId) {
+        this.contactPersonId = contactPersonId;
     }
 
     @Basic
@@ -55,13 +55,13 @@ public class InterviewContactPerson {
     }
 
     @ManyToOne
-    @JoinColumn(name = "contactperson_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public ContactPerson getContactPersonByContactpersonId() {
-        return contactPersonByContactpersonId;
+    @JoinColumn(name = "contact_person_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public ContactPerson getContactPersonByContactPersonId() {
+        return contactPersonByContactPersonId;
     }
 
-    public void setContactPersonByContactpersonId(ContactPerson contactPersonByContactpersonId) {
-        this.contactPersonByContactpersonId = contactPersonByContactpersonId;
+    public void setContactPersonByContactPersonId(ContactPerson contactPersonByContactPersonId) {
+        this.contactPersonByContactPersonId = contactPersonByContactPersonId;
     }
 
     @Override
@@ -72,14 +72,14 @@ public class InterviewContactPerson {
         InterviewContactPerson that = (InterviewContactPerson) o;
 
         if (interviewId != that.interviewId) return false;
-        if (contactpersonId != that.contactpersonId) return false;
+        if (contactPersonId != that.contactPersonId) return false;
         return Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
         int result = interviewId;
-        result = 31 * result + contactpersonId;
+        result = 31 * result + contactPersonId;
         result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }

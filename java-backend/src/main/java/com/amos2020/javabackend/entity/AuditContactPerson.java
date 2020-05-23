@@ -6,9 +6,9 @@ import javax.persistence.*;
 @IdClass(AuditContactPersonPK.class)
 public class AuditContactPerson {
     private int auditId;
-    private int contactpersonId;
+    private int contactPersonId;
     private Audit auditByAuditId;
-    private ContactPerson contactPersonByContactpersonId;
+    private ContactPerson contactPersonByContactPersonId;
 
     @Id
     @Column(name = "audit_id")
@@ -21,13 +21,31 @@ public class AuditContactPerson {
     }
 
     @Id
-    @Column(name = "contactperson_id")
-    public int getContactpersonId() {
-        return contactpersonId;
+    @Column(name = "contact_person_id")
+    public int getContactPersonId() {
+        return contactPersonId;
     }
 
-    public void setContactpersonId(int contactpersonId) {
-        this.contactpersonId = contactpersonId;
+    public void setContactPersonId(int contactPersonId) {
+        this.contactPersonId = contactPersonId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        com.amos2020.javabackend.entity.AuditContactPerson that = (com.amos2020.javabackend.entity.AuditContactPerson) o;
+
+        if (auditId != that.auditId) return false;
+        return contactPersonId == that.contactPersonId;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = auditId;
+        result = 31 * result + contactPersonId;
+        return result;
     }
 
     @ManyToOne
@@ -41,30 +59,12 @@ public class AuditContactPerson {
     }
 
     @ManyToOne
-    @JoinColumn(name = "contactperson_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
-    public ContactPerson getContactPersonByContactpersonId() {
-        return contactPersonByContactpersonId;
+    @JoinColumn(name = "contact_person_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public ContactPerson getContactPersonByContactPersonId() {
+        return contactPersonByContactPersonId;
     }
 
-    public void setContactPersonByContactpersonId(ContactPerson contactPersonByContactpersonId) {
-        this.contactPersonByContactpersonId = contactPersonByContactpersonId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AuditContactPerson that = (AuditContactPerson) o;
-
-        if (auditId != that.auditId) return false;
-        return contactpersonId == that.contactpersonId;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = auditId;
-        result = 31 * result + contactpersonId;
-        return result;
+    public void setContactPersonByContactPersonId(ContactPerson contactPersonByContactPersonId) {
+        this.contactPersonByContactPersonId = contactPersonByContactPersonId;
     }
 }

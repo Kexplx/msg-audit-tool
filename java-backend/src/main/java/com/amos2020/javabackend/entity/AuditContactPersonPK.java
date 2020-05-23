@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class AuditContactPersonPK implements Serializable {
     private int auditId;
-    private int contactpersonId;
+    private int contactPersonId;
 
     @Column(name = "audit_id")
     @Id
@@ -18,14 +18,14 @@ public class AuditContactPersonPK implements Serializable {
         this.auditId = auditId;
     }
 
-    @Column(name = "contactperson_id")
+    @Column(name = "contact_person_id")
     @Id
-    public int getContactpersonId() {
-        return contactpersonId;
+    public int getContactPersonId() {
+        return contactPersonId;
     }
 
-    public void setContactpersonId(int contactpersonId) {
-        this.contactpersonId = contactpersonId;
+    public void setContactPersonId(int contactPersonId) {
+        this.contactPersonId = contactPersonId;
     }
 
     @Override
@@ -36,13 +36,13 @@ public class AuditContactPersonPK implements Serializable {
         AuditContactPersonPK that = (AuditContactPersonPK) o;
 
         if (auditId != that.auditId) return false;
-        return contactpersonId == that.contactpersonId;
+        return contactPersonId == that.contactPersonId;
     }
 
     @Override
     public int hashCode() {
         int result = auditId;
-        result = 31 * result + contactpersonId;
+        result = 31 * result + contactPersonId;
         return result;
     }
 }

@@ -10,8 +10,10 @@ import java.util.Objects;
 
 @Entity
 public class Audit {
+
     private int id;
     private String name;
+    private Timestamp creationDate;
     private Date startDate;
     private Date endDate;
     private Date expectedEndDate;
@@ -19,7 +21,7 @@ public class Audit {
     private String cancellationReason;
     private Integer cancellationContactPerson;
     private AuditStatus status;
-    private Timestamp creationDate;
+
     private ContactPerson contactPersonByCancellationContactPerson;
     private Collection<AuditContactPerson> auditContactPeopleById;
     private Collection<Interview> interviewsById;
@@ -110,6 +112,7 @@ public class Audit {
     }
 
     @Basic
+    @NotNull
     @Column(name = "status")
     public AuditStatus getStatus() {
         return status;
@@ -120,6 +123,7 @@ public class Audit {
     }
 
     @Basic
+    @NotNull
     @Column(name = "creation_date")
     public Timestamp getCreationDate() {
         return creationDate;
@@ -128,7 +132,7 @@ public class Audit {
     public void setCreationDate(Timestamp creationDate) {
         this.creationDate = creationDate;
     }
-    
+
     @ManyToOne
     @JoinColumn(name = "cancellation_contact_person", referencedColumnName = "id", insertable = false, updatable = false)
     public ContactPerson getContactPersonByCancellationContactPerson() {

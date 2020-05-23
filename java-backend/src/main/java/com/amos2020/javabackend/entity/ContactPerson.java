@@ -115,7 +115,7 @@ public class ContactPerson {
         this.auditsById = auditsById;
     }
 
-    @OneToMany(mappedBy = "contactPersonByContactpersonId")
+    @OneToMany(mappedBy = "contactPersonByContactPersonId")
     public Collection<AuditContactPerson> getAuditContactPeopleById() {
         return auditContactPeopleById;
     }
@@ -124,7 +124,7 @@ public class ContactPerson {
         this.auditContactPeopleById = auditContactPeopleById;
     }
 
-    @OneToMany(mappedBy = "contactPersonByContactpersonId")
+    @OneToMany(mappedBy = "contactPersonByContactPersonId")
     public Collection<InterviewContactPerson> getInterviewContactPeopleById() {
         return interviewContactPeopleById;
     }
