@@ -5,38 +5,27 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class AnswerPK implements Serializable {
-    private int answerFaccritId;
-    private int answerQuestionId;
-    private int answerInterviewId;
+    private int questionId;
+    private int interviewId;
 
-    @Column(name = "answer_faccrit_id")
+    @Column(name = "question_id")
     @Id
-    public int getAnswerFaccritId() {
-        return answerFaccritId;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setAnswerFaccritId(int answerFaccritId) {
-        this.answerFaccritId = answerFaccritId;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
     }
 
-    @Column(name = "answer_question_id")
+    @Column(name = "interview_id")
     @Id
-    public int getAnswerQuestionId() {
-        return answerQuestionId;
+    public int getInterviewId() {
+        return interviewId;
     }
 
-    public void setAnswerQuestionId(int answerQuestionId) {
-        this.answerQuestionId = answerQuestionId;
-    }
-
-    @Column(name = "answer_interview_id")
-    @Id
-    public int getAnswerInterviewId() {
-        return answerInterviewId;
-    }
-
-    public void setAnswerInterviewId(int answerInterviewId) {
-        this.answerInterviewId = answerInterviewId;
+    public void setInterviewId(int interviewId) {
+        this.interviewId = interviewId;
     }
 
     @Override
@@ -46,16 +35,14 @@ public class AnswerPK implements Serializable {
 
         AnswerPK answerPK = (AnswerPK) o;
 
-        if (answerFaccritId != answerPK.answerFaccritId) return false;
-        if (answerQuestionId != answerPK.answerQuestionId) return false;
-        return answerInterviewId == answerPK.answerInterviewId;
+        if (questionId != answerPK.questionId) return false;
+        return interviewId == answerPK.interviewId;
     }
 
     @Override
     public int hashCode() {
-        int result = answerFaccritId;
-        result = 31 * result + answerQuestionId;
-        result = 31 * result + answerInterviewId;
+        int result = questionId;
+        result = 31 * result + interviewId;
         return result;
     }
 }

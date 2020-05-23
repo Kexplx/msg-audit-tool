@@ -6,28 +6,48 @@ import javax.persistence.*;
 @IdClass(AuditContactPersonPK.class)
 public class AuditContactPerson {
     private int auditId;
-    private int contactPersonId;
-    private Audit auditByAuditcontactpersonAuditId;
-    private ContactPerson contactPersonByAuditcontactpersonContactpersonId;
+    private int contactpersonId;
+    private Audit auditByAuditId;
+    private ContactPerson contactPersonByContactpersonId;
 
     @Id
-    @Column(name = "auditcontactperson_audit_id")
+    @Column(name = "audit_id")
     public int getAuditId() {
         return auditId;
     }
 
-    public void setAuditId(int auditcontactpersonAuditId) {
-        this.auditId = auditcontactpersonAuditId;
+    public void setAuditId(int auditId) {
+        this.auditId = auditId;
     }
 
     @Id
-    @Column(name = "auditcontactperson_contactperson_id")
-    public int getContactPersonId() {
-        return contactPersonId;
+    @Column(name = "contactperson_id")
+    public int getContactpersonId() {
+        return contactpersonId;
     }
 
-    public void setContactPersonId(int auditcontactpersonContactpersonId) {
-        this.contactPersonId = auditcontactpersonContactpersonId;
+    public void setContactpersonId(int contactpersonId) {
+        this.contactpersonId = contactpersonId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "audit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Audit getAuditByAuditId() {
+        return auditByAuditId;
+    }
+
+    public void setAuditByAuditId(Audit auditByAuditId) {
+        this.auditByAuditId = auditByAuditId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "contactperson_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public ContactPerson getContactPersonByContactpersonId() {
+        return contactPersonByContactpersonId;
+    }
+
+    public void setContactPersonByContactpersonId(ContactPerson contactPersonByContactpersonId) {
+        this.contactPersonByContactpersonId = contactPersonByContactpersonId;
     }
 
     @Override
@@ -38,33 +58,13 @@ public class AuditContactPerson {
         AuditContactPerson that = (AuditContactPerson) o;
 
         if (auditId != that.auditId) return false;
-        return contactPersonId == that.contactPersonId;
+        return contactpersonId == that.contactpersonId;
     }
 
     @Override
     public int hashCode() {
         int result = auditId;
-        result = 31 * result + contactPersonId;
+        result = 31 * result + contactpersonId;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "auditcontactperson_audit_id", referencedColumnName = "audit_id", nullable = false, insertable = false, updatable = false)
-    public Audit getAuditByAuditcontactpersonAuditId() {
-        return auditByAuditcontactpersonAuditId;
-    }
-
-    public void setAuditByAuditcontactpersonAuditId(Audit auditByAuditcontactpersonAuditId) {
-        this.auditByAuditcontactpersonAuditId = auditByAuditcontactpersonAuditId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "auditcontactperson_contactperson_id", referencedColumnName = "contact_person_id", nullable = false, insertable = false, updatable = false)
-    public ContactPerson getContactPersonByAuditcontactpersonContactpersonId() {
-        return contactPersonByAuditcontactpersonContactpersonId;
-    }
-
-    public void setContactPersonByAuditcontactpersonContactpersonId(ContactPerson contactPersonByAuditcontactpersonContactpersonId) {
-        this.contactPersonByAuditcontactpersonContactpersonId = contactPersonByAuditcontactpersonContactpersonId;
     }
 }

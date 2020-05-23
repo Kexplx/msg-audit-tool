@@ -8,54 +8,106 @@ import java.util.Objects;
 
 @Entity
 public class Interview {
-    private int interviewId;
-    private int interviewAuditId;
-    private Date interviewDate;
-    private String interviewAnnotation;
-    private Collection<Answer> answersByInterviewId;
-    private Audit auditByInterviewAuditId;
-    private Collection<InterviewContactPerson> interviewContactPeopleByInterviewId;
+    private int id;
+    private int auditId;
+    private Date startDate;
+    private Date endDate;
+    private String annotation;
+    private InterviewStatus status;
+    private Collection<Answer> answersById;
+    private Audit auditByAuditId;
+    private Collection<InterviewContactPerson> interviewContactPeopleById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "interview_id")
-    public int getInterviewId() {
-        return interviewId;
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setInterviewId(int interviewId) {
-        this.interviewId = interviewId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "interview_audit_id")
-    public int getInterviewAuditId() {
-        return interviewAuditId;
-    }
-
-    public void setInterviewAuditId(int interviewAuditId) {
-        this.interviewAuditId = interviewAuditId;
-    }
-
     @NotNull
+    @Column(name = "audit_id")
+    public int getAuditId() {
+        return auditId;
+    }
+
+    public void setAuditId(int auditId) {
+        this.auditId = auditId;
+    }
+
     @Basic
-    @Column(name = "interview_date")
-    public Date getInterviewDate() {
-        return interviewDate;
+    @NotNull
+    @Column(name = "start_date")
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setInterviewDate(Date interviewDate) {
-        this.interviewDate = interviewDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @Basic
-    @Column(name = "interview_annotation")
-    public String getInterviewAnnotation() {
-        return interviewAnnotation;
+    @Column(name = "end_date")
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setInterviewAnnotation(String interviewAnnotation) {
-        this.interviewAnnotation = interviewAnnotation;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    @Basic
+    @Column(name = "annotation")
+    public String getAnnotation() {
+        return annotation;
+    }
+
+    public void setAnnotation(String annotation) {
+        this.annotation = annotation;
+    }
+
+    @Basic
+    @NotNull
+    @Column(name = "status")
+    public InterviewStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InterviewStatus status) {
+        this.status = status;
+    }
+
+    @OneToMany(mappedBy = "interviewByInterviewId")
+    public Collection<Answer> getAnswersById() {
+        return answersById;
+    }
+
+    public void setAnswersById(Collection<Answer> answersById) {
+        this.answersById = answersById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "audit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Audit getAuditByAuditId() {
+        return auditByAuditId;
+    }
+
+    public void setAuditByAuditId(Audit auditByAuditId) {
+        this.auditByAuditId = auditByAuditId;
+    }
+
+    @OneToMany(mappedBy = "interviewByInterviewId")
+    public Collection<InterviewContactPerson> getInterviewContactPeopleById() {
+        return interviewContactPeopleById;
+    }
+
+    public void setInterviewContactPeopleById(Collection<InterviewContactPerson> interviewContactPeopleById) {
+        this.interviewContactPeopleById = interviewContactPeopleById;
     }
 
     @Override
@@ -65,47 +117,22 @@ public class Interview {
 
         Interview interview = (Interview) o;
 
-        if (interviewId != interview.interviewId) return false;
-        if (interviewAuditId != interview.interviewAuditId) return false;
-        if (!Objects.equals(interviewDate, interview.interviewDate))
-            return false;
-        return Objects.equals(interviewAnnotation, interview.interviewAnnotation);
+        if (id != interview.id) return false;
+        if (auditId != interview.auditId) return false;
+        if (!Objects.equals(startDate, interview.startDate)) return false;
+        if (!Objects.equals(endDate, interview.endDate)) return false;
+        if (!Objects.equals(annotation, interview.annotation)) return false;
+        return Objects.equals(status, interview.status);
     }
 
     @Override
     public int hashCode() {
-        int result = interviewId;
-        result = 31 * result + interviewAuditId;
-        result = 31 * result + (interviewDate != null ? interviewDate.hashCode() : 0);
-        result = 31 * result + (interviewAnnotation != null ? interviewAnnotation.hashCode() : 0);
+        int result = id;
+        result = 31 * result + auditId;
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
+        result = 31 * result + (annotation != null ? annotation.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "interviewByAnswerInterviewId")
-    public Collection<Answer> getAnswersByInterviewId() {
-        return answersByInterviewId;
-    }
-
-    public void setAnswersByInterviewId(Collection<Answer> answersByInterviewId) {
-        this.answersByInterviewId = answersByInterviewId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "interview_audit_id", referencedColumnName = "audit_id", nullable = false, insertable = false, updatable = false)
-    public Audit getAuditByInterviewAuditId() {
-        return auditByInterviewAuditId;
-    }
-
-    public void setAuditByInterviewAuditId(Audit auditByInterviewAuditId) {
-        this.auditByInterviewAuditId = auditByInterviewAuditId;
-    }
-
-    @OneToMany(mappedBy = "interviewByInterviewcontactpersonInterviewId")
-    public Collection<InterviewContactPerson> getInterviewContactPeopleByInterviewId() {
-        return interviewContactPeopleByInterviewId;
-    }
-
-    public void setInterviewContactPeopleByInterviewId(Collection<InterviewContactPerson> interviewContactPeopleByInterviewId) {
-        this.interviewContactPeopleByInterviewId = interviewContactPeopleByInterviewId;
     }
 }

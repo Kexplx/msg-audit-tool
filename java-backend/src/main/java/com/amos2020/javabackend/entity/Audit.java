@@ -14,62 +14,144 @@ public class Audit {
     private Date startDate;
     private Date endDate;
     private Date expectedEndDate;
-    private Collection<AuditContactPerson> auditContactPeopleByAuditId;
-    private Collection<Interview> interviewsByAuditId;
-    private Collection<Scope> scopesByAuditId;
+    private Date cancellationDate;
+    private String cancellationReason;
+    private Integer cancellationContactPerson;
+    private AuditStatus status;
+    private ContactPerson contactPersonByCancellationContactPerson;
+    private Collection<AuditContactPerson> auditContactPeopleById;
+    private Collection<Interview> interviewsById;
+    private Collection<Scope> scopesById;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "audit_id")
+    @Column(name = "id")
     public int getId() {
         return id;
     }
 
-    public void setId(int auditId) {
-        this.id = auditId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
     @NotBlank
-    @Column(name = "audit_name")
+    @Column(name = "name")
     public String getName() {
         return name;
     }
 
-    public void setName(String auditName) {
-        this.name = auditName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
     @NotNull
-    @Column(name = "audit_start_date")
+    @Column(name = "start_date")
     public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date auditStartDate) {
-        this.startDate = auditStartDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     @Basic
-    @Column(name = "audit_end_date")
+    @Column(name = "end_date")
     public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date auditEndDate) {
-        this.endDate = auditEndDate;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     @Basic
     @NotNull
-    @Column(name = "audit_expected_end_date")
+    @Column(name = "expected_end_date")
     public Date getExpectedEndDate() {
         return expectedEndDate;
     }
 
-    public void setExpectedEndDate(Date auditExpectedEndDate) {
-        this.expectedEndDate = auditExpectedEndDate;
+    public void setExpectedEndDate(Date expectedEndDate) {
+        this.expectedEndDate = expectedEndDate;
+    }
+
+    @Basic
+    @Column(name = "cancellation_date")
+    public Date getCancellationDate() {
+        return cancellationDate;
+    }
+
+    public void setCancellationDate(Date cancellationDate) {
+        this.cancellationDate = cancellationDate;
+    }
+
+    @Basic
+    @Column(name = "cancellation_reason")
+    public String getCancellationReason() {
+        return cancellationReason;
+    }
+
+    public void setCancellationReason(String cancellationReason) {
+        this.cancellationReason = cancellationReason;
+    }
+
+    @Basic
+    @Column(name = "cancellation_contact_person")
+    public Integer getCancellationContactPerson() {
+        return cancellationContactPerson;
+    }
+
+    public void setCancellationContactPerson(Integer cancellationContactPerson) {
+        this.cancellationContactPerson = cancellationContactPerson;
+    }
+
+    @Basic
+    @Column(name = "status")
+    public AuditStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(AuditStatus status) {
+        this.status = status;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "cancellation_contact_person", referencedColumnName = "id")
+    public ContactPerson getContactPersonByCancellationContactPerson() {
+        return contactPersonByCancellationContactPerson;
+    }
+
+    public void setContactPersonByCancellationContactPerson(ContactPerson contactPersonByCancellationContactPerson) {
+        this.contactPersonByCancellationContactPerson = contactPersonByCancellationContactPerson;
+    }
+
+    @OneToMany(mappedBy = "auditByAuditId")
+    public Collection<AuditContactPerson> getAuditContactPeopleById() {
+        return auditContactPeopleById;
+    }
+
+    public void setAuditContactPeopleById(Collection<AuditContactPerson> auditContactPeopleById) {
+        this.auditContactPeopleById = auditContactPeopleById;
+    }
+
+    @OneToMany(mappedBy = "auditByAuditId")
+    public Collection<Interview> getInterviewsById() {
+        return interviewsById;
+    }
+
+    public void setInterviewsById(Collection<Interview> interviewsById) {
+        this.interviewsById = interviewsById;
+    }
+
+    @OneToMany(mappedBy = "auditByAuditId")
+    public Collection<Scope> getScopesById() {
+        return scopesById;
+    }
+
+    public void setScopesById(Collection<Scope> scopesById) {
+        this.scopesById = scopesById;
     }
 
     @Override
@@ -81,10 +163,17 @@ public class Audit {
 
         if (id != audit.id) return false;
         if (!Objects.equals(name, audit.name)) return false;
-        if (!Objects.equals(startDate, audit.startDate))
-            return false;
+        if (!Objects.equals(startDate, audit.startDate)) return false;
         if (!Objects.equals(endDate, audit.endDate)) return false;
-        return Objects.equals(expectedEndDate, audit.expectedEndDate);
+        if (!Objects.equals(expectedEndDate, audit.expectedEndDate))
+            return false;
+        if (!Objects.equals(cancellationDate, audit.cancellationDate))
+            return false;
+        if (!Objects.equals(cancellationReason, audit.cancellationReason))
+            return false;
+        if (!Objects.equals(cancellationContactPerson, audit.cancellationContactPerson))
+            return false;
+        return Objects.equals(status, audit.status);
     }
 
     @Override
@@ -94,33 +183,10 @@ public class Audit {
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         result = 31 * result + (expectedEndDate != null ? expectedEndDate.hashCode() : 0);
+        result = 31 * result + (cancellationDate != null ? cancellationDate.hashCode() : 0);
+        result = 31 * result + (cancellationReason != null ? cancellationReason.hashCode() : 0);
+        result = 31 * result + (cancellationContactPerson != null ? cancellationContactPerson.hashCode() : 0);
+        result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "auditByAuditcontactpersonAuditId")
-    public Collection<AuditContactPerson> getAuditContactPeopleByAuditId() {
-        return auditContactPeopleByAuditId;
-    }
-
-    public void setAuditContactPeopleByAuditId(Collection<AuditContactPerson> auditContactPeopleByAuditId) {
-        this.auditContactPeopleByAuditId = auditContactPeopleByAuditId;
-    }
-
-    @OneToMany(mappedBy = "auditByInterviewAuditId")
-    public Collection<Interview> getInterviewsByAuditId() {
-        return interviewsByAuditId;
-    }
-
-    public void setInterviewsByAuditId(Collection<Interview> interviewsByAuditId) {
-        this.interviewsByAuditId = interviewsByAuditId;
-    }
-
-    @OneToMany(mappedBy = "auditByScopeAuditId")
-    public Collection<Scope> getScopesByAuditId() {
-        return scopesByAuditId;
-    }
-
-    public void setScopesByAuditId(Collection<Scope> scopesByAuditId) {
-        this.scopesByAuditId = scopesByAuditId;
     }
 }

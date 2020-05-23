@@ -1,59 +1,80 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
 @IdClass(ScopePK.class)
 public class Scope {
-    private int scopeAuditId;
-    private int scopeFaccritId;
-    private String scopeChangeNote;
-    private Boolean scopeRemoved;
-    private Audit auditByScopeAuditId;
-    private FacCrit facCritByScopeFaccritId;
+    private int auditId;
+    private int faccritId;
+    private String changeNote;
+    private Boolean removed;
+    private Audit auditByAuditId;
+    private FacCrit facCritByFaccritId;
 
     @Id
-    @Column(name = "scope_audit_id")
-    public int getScopeAuditId() {
-        return scopeAuditId;
-    }
-
-    public void setScopeAuditId(int scopeAuditId) {
-        this.scopeAuditId = scopeAuditId;
-    }
-
-    @Id
-    @Column(name = "scope_faccrit_id")
-    public int getScopeFaccritId() {
-        return scopeFaccritId;
-    }
-
-    public void setScopeFaccritId(int scopeFaccritId) {
-        this.scopeFaccritId = scopeFaccritId;
-    }
-
-    @Basic
-    @Column(name = "scope_change_note")
-    public String getScopeChangeNote() {
-        return scopeChangeNote;
-    }
-
-    public void setScopeChangeNote(String scopeChangeNote) {
-        this.scopeChangeNote = scopeChangeNote;
-    }
-
     @NotNull
-    @Basic
-    @Column(name = "scope_removed")
-    public Boolean getScopeRemoved() {
-        return scopeRemoved;
+    @Column(name = "audit_id")
+    public int getAuditId() {
+        return auditId;
     }
 
-    public void setScopeRemoved(Boolean scopeRemoved) {
-        this.scopeRemoved = scopeRemoved;
+    public void setAuditId(int auditId) {
+        this.auditId = auditId;
+    }
+
+    @Id
+    @NotNull
+    @Column(name = "faccrit_id")
+    public int getFaccritId() {
+        return faccritId;
+    }
+
+    public void setFaccritId(int faccritId) {
+        this.faccritId = faccritId;
+    }
+
+    @Basic
+    @Column(name = "change_note")
+    public String getChangeNote() {
+        return changeNote;
+    }
+
+    public void setChangeNote(String changeNote) {
+        this.changeNote = changeNote;
+    }
+
+    @Basic
+    @NotNull
+    @Column(name = "removed")
+    public Boolean getRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(Boolean removed) {
+        this.removed = removed;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "audit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Audit getAuditByAuditId() {
+        return auditByAuditId;
+    }
+
+    public void setAuditByAuditId(Audit auditByAuditId) {
+        this.auditByAuditId = auditByAuditId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "faccrit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public FacCrit getFacCritByFaccritId() {
+        return facCritByFaccritId;
+    }
+
+    public void setFacCritByFaccritId(FacCrit facCritByFaccritId) {
+        this.facCritByFaccritId = facCritByFaccritId;
     }
 
     @Override
@@ -63,39 +84,18 @@ public class Scope {
 
         Scope scope = (Scope) o;
 
-        if (scopeAuditId != scope.scopeAuditId) return false;
-        if (scopeFaccritId != scope.scopeFaccritId) return false;
-        if (!Objects.equals(scopeChangeNote, scope.scopeChangeNote))
-            return false;
-        return Objects.equals(scopeRemoved, scope.scopeRemoved);
+        if (auditId != scope.auditId) return false;
+        if (faccritId != scope.faccritId) return false;
+        if (!Objects.equals(changeNote, scope.changeNote)) return false;
+        return Objects.equals(removed, scope.removed);
     }
 
     @Override
     public int hashCode() {
-        int result = scopeAuditId;
-        result = 31 * result + scopeFaccritId;
-        result = 31 * result + (scopeChangeNote != null ? scopeChangeNote.hashCode() : 0);
-        result = 31 * result + (scopeRemoved != null ? scopeRemoved.hashCode() : 0);
+        int result = auditId;
+        result = 31 * result + faccritId;
+        result = 31 * result + (changeNote != null ? changeNote.hashCode() : 0);
+        result = 31 * result + (removed != null ? removed.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "scope_audit_id", referencedColumnName = "audit_id", nullable = false, insertable = false, updatable = false)
-    public Audit getAuditByScopeAuditId() {
-        return auditByScopeAuditId;
-    }
-
-    public void setAuditByScopeAuditId(Audit auditByScopeAuditId) {
-        this.auditByScopeAuditId = auditByScopeAuditId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "scope_faccrit_id", referencedColumnName = "faccrit_id", nullable = false, insertable = false, updatable = false)
-    public FacCrit getFacCritByScopeFaccritId() {
-        return facCritByScopeFaccritId;
-    }
-
-    public void setFacCritByScopeFaccritId(FacCrit facCritByScopeFaccritId) {
-        this.facCritByScopeFaccritId = facCritByScopeFaccritId;
     }
 }

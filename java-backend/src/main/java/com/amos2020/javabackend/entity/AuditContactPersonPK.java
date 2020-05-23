@@ -5,27 +5,27 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class AuditContactPersonPK implements Serializable {
-    private int auditcontactpersonAuditId;
-    private int auditcontactpersonContactpersonId;
+    private int auditId;
+    private int contactpersonId;
 
-    @Column(name = "auditcontactperson_audit_id")
+    @Column(name = "audit_id")
     @Id
     public int getAuditId() {
-        return auditcontactpersonAuditId;
+        return auditId;
     }
 
-    public void setAuditId(int auditcontactpersonAuditId) {
-        this.auditcontactpersonAuditId = auditcontactpersonAuditId;
+    public void setAuditId(int auditId) {
+        this.auditId = auditId;
     }
 
-    @Column(name = "auditcontactperson_contactperson_id")
+    @Column(name = "contactperson_id")
     @Id
-    public int getContactPersonId() {
-        return auditcontactpersonContactpersonId;
+    public int getContactpersonId() {
+        return contactpersonId;
     }
 
-    public void setContactPersonId(int auditcontactpersonContactpersonId) {
-        this.auditcontactpersonContactpersonId = auditcontactpersonContactpersonId;
+    public void setContactpersonId(int contactpersonId) {
+        this.contactpersonId = contactpersonId;
     }
 
     @Override
@@ -35,14 +35,14 @@ public class AuditContactPersonPK implements Serializable {
 
         AuditContactPersonPK that = (AuditContactPersonPK) o;
 
-        if (auditcontactpersonAuditId != that.auditcontactpersonAuditId) return false;
-        return auditcontactpersonContactpersonId == that.auditcontactpersonContactpersonId;
+        if (auditId != that.auditId) return false;
+        return contactpersonId == that.contactpersonId;
     }
 
     @Override
     public int hashCode() {
-        int result = auditcontactpersonAuditId;
-        result = 31 * result + auditcontactpersonContactpersonId;
+        int result = auditId;
+        result = 31 * result + contactpersonId;
         return result;
     }
 }

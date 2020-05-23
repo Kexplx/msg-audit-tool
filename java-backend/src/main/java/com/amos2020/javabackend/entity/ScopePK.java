@@ -5,27 +5,27 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class ScopePK implements Serializable {
-    private int scopeAuditId;
-    private int scopeFaccritId;
+    private int auditId;
+    private int faccritId;
 
-    @Column(name = "scope_audit_id")
+    @Column(name = "audit_id")
     @Id
-    public int getScopeAuditId() {
-        return scopeAuditId;
+    public int getAuditId() {
+        return auditId;
     }
 
-    public void setScopeAuditId(int scopeAuditId) {
-        this.scopeAuditId = scopeAuditId;
+    public void setAuditId(int auditId) {
+        this.auditId = auditId;
     }
 
-    @Column(name = "scope_faccrit_id")
+    @Column(name = "faccrit_id")
     @Id
-    public int getScopeFaccritId() {
-        return scopeFaccritId;
+    public int getFaccritId() {
+        return faccritId;
     }
 
-    public void setScopeFaccritId(int scopeFaccritId) {
-        this.scopeFaccritId = scopeFaccritId;
+    public void setFaccritId(int faccritId) {
+        this.faccritId = faccritId;
     }
 
     @Override
@@ -35,14 +35,14 @@ public class ScopePK implements Serializable {
 
         ScopePK scopePK = (ScopePK) o;
 
-        if (scopeAuditId != scopePK.scopeAuditId) return false;
-        return scopeFaccritId == scopePK.scopeFaccritId;
+        if (auditId != scopePK.auditId) return false;
+        return faccritId == scopePK.faccritId;
     }
 
     @Override
     public int hashCode() {
-        int result = scopeAuditId;
-        result = 31 * result + scopeFaccritId;
+        int result = auditId;
+        result = 31 * result + faccritId;
         return result;
     }
 }

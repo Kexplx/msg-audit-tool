@@ -5,27 +5,27 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 public class InterviewContactPersonPK implements Serializable {
-    private int interviewcontactpersonInterviewId;
-    private int interviewcontactpersonContactpersonId;
+    private int interviewId;
+    private int contactpersonId;
 
-    @Column(name = "interviewcontactperson_interview_id")
+    @Column(name = "interview_id")
     @Id
-    public int getInterviewcontactpersonInterviewId() {
-        return interviewcontactpersonInterviewId;
+    public int getInterviewId() {
+        return interviewId;
     }
 
-    public void setInterviewcontactpersonInterviewId(int interviewcontactpersonInterviewId) {
-        this.interviewcontactpersonInterviewId = interviewcontactpersonInterviewId;
+    public void setInterviewId(int interviewId) {
+        this.interviewId = interviewId;
     }
 
-    @Column(name = "interviewcontactperson_contactperson_id")
+    @Column(name = "contactperson_id")
     @Id
-    public int getInterviewcontactpersonContactpersonId() {
-        return interviewcontactpersonContactpersonId;
+    public int getContactpersonId() {
+        return contactpersonId;
     }
 
-    public void setInterviewcontactpersonContactpersonId(int interviewcontactpersonContactpersonId) {
-        this.interviewcontactpersonContactpersonId = interviewcontactpersonContactpersonId;
+    public void setContactpersonId(int contactpersonId) {
+        this.contactpersonId = contactpersonId;
     }
 
     @Override
@@ -35,14 +35,14 @@ public class InterviewContactPersonPK implements Serializable {
 
         InterviewContactPersonPK that = (InterviewContactPersonPK) o;
 
-        if (interviewcontactpersonInterviewId != that.interviewcontactpersonInterviewId) return false;
-        return interviewcontactpersonContactpersonId == that.interviewcontactpersonContactpersonId;
+        if (interviewId != that.interviewId) return false;
+        return contactpersonId == that.contactpersonId;
     }
 
     @Override
     public int hashCode() {
-        int result = interviewcontactpersonInterviewId;
-        result = 31 * result + interviewcontactpersonContactpersonId;
+        int result = interviewId;
+        result = 31 * result + contactpersonId;
         return result;
     }
 }

@@ -1,33 +1,67 @@
 package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 @IdClass(InterviewContactPersonPK.class)
 public class InterviewContactPerson {
-    private int interviewcontactpersonInterviewId;
-    private int interviewcontactpersonContactpersonId;
-    private Interview interviewByInterviewcontactpersonInterviewId;
-    private ContactPerson contactPersonByInterviewcontactpersonContactpersonId;
+    private int interviewId;
+    private int contactpersonId;
+    private String role;
+    private Interview interviewByInterviewId;
+    private ContactPerson contactPersonByContactpersonId;
 
     @Id
-    @Column(name = "interviewcontactperson_interview_id")
-    public int getInterviewcontactpersonInterviewId() {
-        return interviewcontactpersonInterviewId;
+    @Column(name = "interview_id")
+    public int getInterviewId() {
+        return interviewId;
     }
 
-    public void setInterviewcontactpersonInterviewId(int interviewcontactpersonInterviewId) {
-        this.interviewcontactpersonInterviewId = interviewcontactpersonInterviewId;
+    public void setInterviewId(int interviewId) {
+        this.interviewId = interviewId;
     }
 
     @Id
-    @Column(name = "interviewcontactperson_contactperson_id")
-    public int getInterviewcontactpersonContactpersonId() {
-        return interviewcontactpersonContactpersonId;
+    @Column(name = "contactperson_id")
+    public int getContactpersonId() {
+        return contactpersonId;
     }
 
-    public void setInterviewcontactpersonContactpersonId(int interviewcontactpersonContactpersonId) {
-        this.interviewcontactpersonContactpersonId = interviewcontactpersonContactpersonId;
+    public void setContactpersonId(int contactpersonId) {
+        this.contactpersonId = contactpersonId;
+    }
+
+    @Basic
+    @NotNull
+    @Column(name = "role")
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "interview_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public Interview getInterviewByInterviewId() {
+        return interviewByInterviewId;
+    }
+
+    public void setInterviewByInterviewId(Interview interviewByInterviewId) {
+        this.interviewByInterviewId = interviewByInterviewId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "contactperson_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    public ContactPerson getContactPersonByContactpersonId() {
+        return contactPersonByContactpersonId;
+    }
+
+    public void setContactPersonByContactpersonId(ContactPerson contactPersonByContactpersonId) {
+        this.contactPersonByContactpersonId = contactPersonByContactpersonId;
     }
 
     @Override
@@ -37,34 +71,16 @@ public class InterviewContactPerson {
 
         InterviewContactPerson that = (InterviewContactPerson) o;
 
-        if (interviewcontactpersonInterviewId != that.interviewcontactpersonInterviewId) return false;
-        return interviewcontactpersonContactpersonId == that.interviewcontactpersonContactpersonId;
+        if (interviewId != that.interviewId) return false;
+        if (contactpersonId != that.contactpersonId) return false;
+        return Objects.equals(role, that.role);
     }
 
     @Override
     public int hashCode() {
-        int result = interviewcontactpersonInterviewId;
-        result = 31 * result + interviewcontactpersonContactpersonId;
+        int result = interviewId;
+        result = 31 * result + contactpersonId;
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "interviewcontactperson_interview_id", referencedColumnName = "interview_id", nullable = false, insertable = false, updatable = false)
-    public Interview getInterviewByInterviewcontactpersonInterviewId() {
-        return interviewByInterviewcontactpersonInterviewId;
-    }
-
-    public void setInterviewByInterviewcontactpersonInterviewId(Interview interviewByInterviewcontactpersonInterviewId) {
-        this.interviewByInterviewcontactpersonInterviewId = interviewByInterviewcontactpersonInterviewId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "interviewcontactperson_contactperson_id", referencedColumnName = "contact_person_id", nullable = false, insertable = false, updatable = false)
-    public ContactPerson getContactPersonByInterviewcontactpersonContactpersonId() {
-        return contactPersonByInterviewcontactpersonContactpersonId;
-    }
-
-    public void setContactPersonByInterviewcontactpersonContactpersonId(ContactPerson contactPersonByInterviewcontactpersonContactpersonId) {
-        this.contactPersonByInterviewcontactpersonContactpersonId = contactPersonByInterviewcontactpersonContactpersonId;
     }
 }
