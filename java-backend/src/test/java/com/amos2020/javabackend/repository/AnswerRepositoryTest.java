@@ -13,6 +13,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,23 +34,25 @@ public class AnswerRepositoryTest {
     private Answer answer;
     private Interview interview;
     private Question question;
-    private  FacCrit facCrit;
+    private FacCrit facCrit;
     private Audit audit;
 
     @Before
     public void setUp(){
         audit = new Audit();
-        audit.setName("TEST_NAME");
-        audit.setStartDate(Date.valueOf("2020-01-01"));
-        audit.setEndDate(Date.valueOf("2020-01-02"));
-        audit.setExpectedEndDate(Date.valueOf("2020-01-03"));
+        audit.setName("TestAudit");
+        audit.setStartDate(Date.valueOf("2000-01-02"));
+        audit.setExpectedEndDate(Date.valueOf("2000-01-03"));
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.ACTIVE);
         auditRepository.save(audit);
 
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
-        interview.setEndDate(Date.valueOf("2020-01-01"));
+        interview.setEndDate(Date.valueOf("2020-01-02"));
         interview.setAnnotation("TestAnnotation");
+        interview.setStatus(InterviewStatus.ACTIVE);
         interviewRepository.save(interview);
 
         facCrit = new FacCrit();
@@ -56,7 +60,8 @@ public class AnswerRepositoryTest {
         facCritRepository.save(facCrit);
 
         question = new Question();
-        question.setTextDe("Testquestion?");
+        question.setTextDe("Testquestion");
+        question.setFaccritId(facCrit.getId());
         questionRepository.save(question);
     }
 
@@ -563,7 +568,7 @@ public class AnswerRepositoryTest {
     public void tearDown(){
         repository.delete(answer);
         interviewRepository.delete(interview);
-        facCritRepository.delete(facCrit);
         questionRepository.delete(question);
+        facCritRepository.delete(facCrit);
     }
 }

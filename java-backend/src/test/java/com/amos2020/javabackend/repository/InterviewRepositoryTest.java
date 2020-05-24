@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.repository;
 
 import com.amos2020.javabackend.entity.Audit;
+import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.entity.Interview;
 import com.amos2020.javabackend.entity.InterviewStatus;
 import org.junit.After;
@@ -16,6 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -31,14 +34,12 @@ public class InterviewRepositoryTest {
 
     @Before
     public void setUp(){
-        Date startDate = Date.valueOf("2000-01-01");
-        Date endDate = Date.valueOf("2000-01-02");
-
         audit = new Audit();
         audit.setName("TestAudit");
-        audit.setStartDate(startDate);
-        audit.setEndDate(endDate);
-        audit.setExpectedEndDate(endDate);
+        audit.setStartDate(Date.valueOf("2000-01-02"));
+        audit.setExpectedEndDate(Date.valueOf("2000-01-03"));
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.ACTIVE);
         auditRepository.save(audit);
     }
 
@@ -232,7 +233,6 @@ public class InterviewRepositoryTest {
         repository.save(interview1);
     }
 
-    @Test(expected = TransactionSystemException.class)
     public void changeInterviewStatus(){
         interview = new Interview();
         interview.setAuditId(audit.getId());
