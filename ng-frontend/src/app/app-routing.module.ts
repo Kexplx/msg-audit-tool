@@ -11,7 +11,7 @@ const routes: Routes = [
       import('./features/audit-list/audit-list.module').then(m => m.AuditListModule),
   },
   {
-    path: 'audits/:id/overview',
+    path: 'audits/:id',
     loadChildren: () =>
       import('./features/audit-overview/audit-overview.module').then(m => m.AuditOverviewModule),
   },
