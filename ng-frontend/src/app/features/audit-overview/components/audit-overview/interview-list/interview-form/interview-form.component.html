@@ -1,0 +1,54 @@
+<form [formGroup]="interviewForm">
+  <nb-card>
+    <nb-card-header>Neues Interview</nb-card-header>
+    <nb-card-body>
+      <div class="grid-1-1">
+        <div class="form-item">
+          <label class="label">Startdatum</label>
+          <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" />
+          <nb-datepicker #datePickerStart></nb-datepicker>
+        </div>
+        <div class="form-item">
+          <label class="label">Enddatum</label>
+          <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" -end-input" />
+          <nb-datepicker #datePickerEnd></nb-datepicker>
+          <div *ngIf="end.errors?.startGreaterThanEnd">
+            <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="button-add-person-wrapper">
+        <div></div>
+        <button *ngIf="this.persons.controls.length > 1" (click)="onRemovePerson()" class="justify-content-end" nbButton>
+          <nb-icon icon="minus"></nb-icon>
+        </button>
+        <button (click)="onAddPerson()" class="justify-content-end" nbButton>
+          <nb-icon icon="plus"></nb-icon>
+        </button>
+      </div>
+      <div formArrayName="persons">
+        <div *ngFor="let group of this.persons.controls; let i = index">
+          <div class="grid-1-1" [formGroup]="group">
+            <div class="form-item">
+              <label class="label">Kontakt</label>
+              <input placeholder="Max Mustermann" formControlName="contactInformation" nbInput fullWidth />
+            </div>
+            <div class="form-item">
+              <label class="label">Rolle</label>
+              <input placeholder="Entwickler" formControlName="role" nbInput fullWidth />
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="accordion-footer">
+      <button hero nbButton>
+        abbrechen
+      </button>
+      <button status="primary" hero nbButton>
+        Hello
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</form>
