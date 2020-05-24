@@ -42,7 +42,6 @@ public class AnswerRepositoryTest {
         audit = new Audit();
         audit.setName("TestAudit");
         audit.setStartDate(Date.valueOf("2000-01-02"));
-        audit.setExpectedEndDate(Date.valueOf("2000-01-03"));
         audit.setCreationDate(Timestamp.from(Instant.now()));
         audit.setStatus(AuditStatus.ACTIVE);
         auditRepository.save(audit);
@@ -51,7 +50,6 @@ public class AnswerRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         interviewRepository.save(interview);
 

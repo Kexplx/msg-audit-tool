@@ -40,7 +40,6 @@ public class ScopeRepositoryTest {
         audit = new Audit();
         audit.setName("TestAudit");
         audit.setStartDate(Date.valueOf("2000-01-02"));
-        audit.setExpectedEndDate(Date.valueOf("2000-01-03"));
         audit.setCreationDate(Timestamp.from(Instant.now()));
         audit.setStatus(AuditStatus.ACTIVE);
 

@@ -1,7 +1,6 @@
 package com.amos2020.javabackend.repository;
 
 import com.amos2020.javabackend.entity.FacCrit;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.TransactionSystemException;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,12 +44,11 @@ public class FacCritRepositoryTest {
 
     }
 
-    @Test
+    @Test(expected = TransactionSystemException.class)
     public void insertFactorNameNull() {
         factor = new FacCrit();
         factor.setName(null);
         repository.save(factor);
-        Assert.assertTrue(repository.exists((Example.of(factor))));
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -76,7 +75,7 @@ public class FacCritRepositoryTest {
     }
 
 
-    @Test
+    @Test(expected = TransactionSystemException.class)
     public void changeNameNull() {
         factor = new FacCrit();
         factor.setName("TestFaktor");
@@ -84,8 +83,6 @@ public class FacCritRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(factor))));
         tmp.setName(null);
         repository.save(tmp);
-        Assert.assertTrue(repository.exists((Example.of(tmp))));
-        Assert.assertNull(factor.getName());
     }
 
     @Test

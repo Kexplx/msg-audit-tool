@@ -58,7 +58,6 @@ public class AuditContactPersonRepositoryTest {
         audit.setName(TEST_NAME);
         audit.setStartDate(TEST_START_DATE);
         audit.setEndDate(TEST_END_DATE);
-        audit.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         audit.setStatus(AuditStatus.ACTIVE);
         audit.setCreationDate(Timestamp.from(Instant.now()));
         auditRepository.save(audit);

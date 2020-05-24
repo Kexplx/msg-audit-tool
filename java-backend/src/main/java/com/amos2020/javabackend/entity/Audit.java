@@ -16,7 +16,6 @@ public class Audit {
     private Timestamp creationDate;
     private Date startDate;
     private Date endDate;
-    private Date expectedEndDate;
     private Date cancellationDate;
     private String cancellationReason;
     private Integer cancellationContactPerson;
@@ -68,17 +67,6 @@ public class Audit {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    @Basic
-    @NotNull
-    @Column(name = "expected_end_date")
-    public Date getExpectedEndDate() {
-        return expectedEndDate;
-    }
-
-    public void setExpectedEndDate(Date expectedEndDate) {
-        this.expectedEndDate = expectedEndDate;
     }
 
     @Basic
@@ -181,8 +169,6 @@ public class Audit {
         if (!Objects.equals(name, audit.name)) return false;
         if (!Objects.equals(startDate, audit.startDate)) return false;
         if (!Objects.equals(endDate, audit.endDate)) return false;
-        if (!Objects.equals(expectedEndDate, audit.expectedEndDate))
-            return false;
         if (!Objects.equals(cancellationDate, audit.cancellationDate))
             return false;
         if (!Objects.equals(cancellationReason, audit.cancellationReason))
@@ -199,7 +185,6 @@ public class Audit {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-        result = 31 * result + (expectedEndDate != null ? expectedEndDate.hashCode() : 0);
         result = 31 * result + (cancellationDate != null ? cancellationDate.hashCode() : 0);
         result = 31 * result + (cancellationReason != null ? cancellationReason.hashCode() : 0);
         result = 31 * result + (cancellationContactPerson != null ? cancellationContactPerson.hashCode() : 0);

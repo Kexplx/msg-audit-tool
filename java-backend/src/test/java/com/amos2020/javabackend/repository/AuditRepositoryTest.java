@@ -35,7 +35,6 @@ public class AuditRepositoryTest {
 
     private static final String TEST_NAME = "TestName";
     private static final Date TEST_START_DATE = Date.valueOf("2019-10-10");
-    private static final Date TEST_EXPECTED_END_DATE = Date.valueOf("2020-02-02");
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
     private static final Date TEST_CANCELLATION_DATE = Date.valueOf("2020-02-10");
     private static final String TEST_CANCELLATION_REASON = "Test Reason";
@@ -67,7 +66,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         repository.save(toTest);
@@ -79,7 +77,6 @@ public class AuditRepositoryTest {
         toTest = new Audit();
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         repository.save(toTest);
@@ -91,7 +88,6 @@ public class AuditRepositoryTest {
         toTest.setName("");
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         repository.save(toTest);
@@ -103,7 +99,6 @@ public class AuditRepositoryTest {
         toTest.setName("   ");
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         repository.save(toTest);
@@ -113,18 +108,6 @@ public class AuditRepositoryTest {
     public void insertAuditWithStartDateIsNull_throwsException() {
         toTest = new Audit();
         toTest.setName(TEST_NAME);
-        toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
-        toTest.setStatus(AuditStatus.ACTIVE);
-        toTest.setCreationDate(Timestamp.from(Instant.now()));
-        repository.save(toTest);
-    }
-
-    @Test(expected = TransactionSystemException.class)
-    public void insertAuditWithExpectedEndDateIsNull_throwsException() {
-        toTest = new Audit();
-        toTest.setName(TEST_NAME);
-        toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
@@ -137,7 +120,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         repository.save(toTest);
     }
@@ -148,7 +130,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         repository.save(toTest);
     }
@@ -159,7 +140,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.CANCELED);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         toTest.setCancellationContactPerson(cancellationContactPerson.getId());
@@ -176,7 +156,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         repository.save(toTest);
@@ -193,7 +172,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -210,7 +188,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -226,7 +203,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -243,7 +219,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -259,7 +234,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -276,7 +250,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -288,45 +261,11 @@ public class AuditRepositoryTest {
     }
 
     @Test
-    public void updateAuditWithValidExpectedEndDate_isSuccessful() {
-        toTest = new Audit();
-        toTest.setName(TEST_NAME);
-        toTest.setStartDate(TEST_START_DATE);
-        toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
-        toTest.setStatus(AuditStatus.ACTIVE);
-        toTest.setCreationDate(Timestamp.from(Instant.now()));
-        Audit AuditEntity = repository.save(toTest);
-        Assert.assertTrue(repository.exists((Example.of(toTest))));
-
-        AuditEntity.setExpectedEndDate(Date.valueOf("2012-04-04"));
-        repository.save(AuditEntity);
-        Assert.assertNotEquals("TestCompany", toTest.getExpectedEndDate());
-    }
-
-    @Test(expected = TransactionSystemException.class)
-    public void updateAuditWithInvalidExpectedEndDate_throwsException() {
-        toTest = new Audit();
-        toTest.setName(TEST_NAME);
-        toTest.setStartDate(TEST_START_DATE);
-        toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
-        toTest.setStatus(AuditStatus.ACTIVE);
-        toTest.setCreationDate(Timestamp.from(Instant.now()));
-        Audit AuditEntity = repository.save(toTest);
-        Assert.assertTrue(repository.exists((Example.of(toTest))));
-
-        AuditEntity.setExpectedEndDate(null);
-        repository.save(AuditEntity);
-    }
-
-    @Test
     public void updateAuditWithValidStatus_isSuccessful() {
         toTest = new Audit();
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);
@@ -343,7 +282,6 @@ public class AuditRepositoryTest {
         toTest.setName(TEST_NAME);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
-        toTest.setExpectedEndDate(TEST_EXPECTED_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
         toTest.setCreationDate(Timestamp.from(Instant.now()));
         Audit AuditEntity = repository.save(toTest);

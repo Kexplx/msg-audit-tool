@@ -12,7 +12,6 @@ public class Interview {
     private int auditId;
     private Date startDate;
     private Date endDate;
-    private String annotation;
     private InterviewStatus status;
     private Collection<Answer> answersById;
     private Audit auditByAuditId;
@@ -59,16 +58,6 @@ public class Interview {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-
-    @Basic
-    @Column(name = "annotation")
-    public String getAnnotation() {
-        return annotation;
-    }
-
-    public void setAnnotation(String annotation) {
-        this.annotation = annotation;
     }
 
     @Basic
@@ -121,7 +110,6 @@ public class Interview {
         if (auditId != interview.auditId) return false;
         if (!Objects.equals(startDate, interview.startDate)) return false;
         if (!Objects.equals(endDate, interview.endDate)) return false;
-        if (!Objects.equals(annotation, interview.annotation)) return false;
         return Objects.equals(status, interview.status);
     }
 
@@ -131,7 +119,6 @@ public class Interview {
         result = 31 * result + auditId;
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
-        result = 31 * result + (annotation != null ? annotation.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
         return result;
     }

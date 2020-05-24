@@ -37,7 +37,6 @@ public class InterviewRepositoryTest {
         audit = new Audit();
         audit.setName("TestAudit");
         audit.setStartDate(Date.valueOf("2000-01-02"));
-        audit.setExpectedEndDate(Date.valueOf("2000-01-03"));
         audit.setCreationDate(Timestamp.from(Instant.now()));
         audit.setStatus(AuditStatus.ACTIVE);
         auditRepository.save(audit);
@@ -49,7 +48,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
 
         repository.save(interview);
@@ -62,7 +60,6 @@ public class InterviewRepositoryTest {
         interview = new Interview();
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
 
         repository.save(interview);
@@ -73,7 +70,6 @@ public class InterviewRepositoryTest {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
 
         repository.save(interview);
@@ -83,7 +79,6 @@ public class InterviewRepositoryTest {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
 
         repository.save(interview);
@@ -96,22 +91,8 @@ public class InterviewRepositoryTest {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
-        interview.setAnnotation("TestAnnotation");
 
         repository.save(interview);
-    }
-
-    @Test
-    public void insertInterviewAnnotationWithNull(){
-        interview = new Interview();
-        interview.setAuditId(audit.getId());
-        interview.setStartDate(Date.valueOf("2020-01-01"));
-        interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setStatus(InterviewStatus.ACTIVE);
-
-        repository.save(interview);
-
-        Assert.assertTrue(repository.exists(Example.of(interview)));
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -120,7 +101,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview toTest = repository.save(interview);
 
@@ -134,7 +114,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview toTest = repository.save(interview);
 
@@ -147,7 +126,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview interview1 = repository.save(interview);
 
@@ -162,7 +140,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview interview1 = repository.save(interview);
 
@@ -177,43 +154,10 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview interview1 = repository.save(interview);
 
         interview1.setEndDate(Date.valueOf("2020-01-05"));
-        Interview toTest = repository.save(interview1);
-
-        Assert.assertTrue(repository.exists(Example.of(toTest)));
-    }
-
-    @Test
-    public void changeInterviewAnnotationWithNull(){
-        interview = new Interview();
-        interview.setAuditId(audit.getId());
-        interview.setStartDate(Date.valueOf("2020-01-01"));
-        interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
-        interview.setStatus(InterviewStatus.ACTIVE);
-        Interview interview1 = repository.save(interview);
-
-        interview1.setAnnotation(null);
-        Interview toTest = repository.save(interview1);
-
-        Assert.assertTrue(repository.exists(Example.of(toTest)));
-    }
-
-    @Test
-    public void changeInterviewAnnotation(){
-        interview = new Interview();
-        interview.setAuditId(audit.getId());
-        interview.setStartDate(Date.valueOf("2020-01-01"));
-        interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
-        interview.setStatus(InterviewStatus.ACTIVE);
-        Interview interview1 = repository.save(interview);
-
-        interview1.setAnnotation("NewTestAnnotation");
         Interview toTest = repository.save(interview1);
 
         Assert.assertTrue(repository.exists(Example.of(toTest)));
@@ -225,7 +169,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview interview1 = repository.save(interview);
 
@@ -238,7 +181,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview interview1 = repository.save(interview);
 
@@ -254,7 +196,6 @@ public class InterviewRepositoryTest {
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
-        interview.setAnnotation("TestAnnotation");
         interview.setStatus(InterviewStatus.ACTIVE);
         Interview toTest = repository.save(interview);
 
