@@ -1,7 +1,7 @@
-import { Category } from './category.model';
+import { Criteria } from './criteria.model';
 
 export interface Factor {
   id?: number;
   title: string;
-  categories: Category[];
+  categories: Criteria[];
 }

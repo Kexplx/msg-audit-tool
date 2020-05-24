@@ -84,25 +84,25 @@ export class AuditDataFormComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.audit?.factors) {
-      // Get all category titles in audit
-      const categoryTitles = [];
+      // Get all criteria titles in audit
+      const criteriaTitles = [];
       for (const factor of this.audit.factors) {
-        for (const category of factor.categories) {
-          categoryTitles.push(category.title);
+        for (const criteria of factor.categories) {
+          criteriaTitles.push(criteria.title);
         }
       }
 
-      // Set selected property of category to true if contained in categoryTitles
+      // Set selected property of criteria to true if contained in criteriaTitles
       this.formFactors = factors.map(factor => {
         const formCategories = factor.categories.map(x => {
-          return { title: x.title, selected: categoryTitles.includes(x.title) };
+          return { title: x.title, selected: criteriaTitles.includes(x.title) };
         });
 
         const hasSelectedCategory = formCategories.find(x => x.selected) != undefined;
         return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
       });
     } else {
-      // Select every factor and category
+      // Select every factor and criteria
       this.formFactors = factors.map(x => ({ ...x, selected: true }));
       this.formFactors.forEach(x => {
         x.categories = x.categories.map(x => ({ ...x, selected: true }));
@@ -159,7 +159,7 @@ export class AuditDataFormComponent implements OnInit {
   }
 
   /**
-   * Removes factors that don't contain a selected category
+   * Removes factors that don't contain a selected criteria
    * and removes "selected" property from factors and categories
    *
    * @param factors The factors to filter

@@ -14,8 +14,8 @@
     <nb-card *ngFor="let factor of (audit$ | async).factors">
       <nb-card-header>{{ factor.title }}</nb-card-header>
       <nb-list>
-        <nb-list-item *ngFor="let category of factor.categories">
-          {{ category.title }}
+        <nb-list-item *ngFor="let criteria of factor.categories">
+          {{ criteria.title }}
         </nb-list-item>
       </nb-list>
     </nb-card>
