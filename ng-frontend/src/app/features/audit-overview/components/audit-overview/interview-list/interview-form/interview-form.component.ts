@@ -43,3 +43,26 @@ export class InterviewFormComponent implements OnInit {
 
     console.log(this.persons);
   }
+
+  onAddPerson() {
+    this.persons.push(
+      this.fb.group({
+        role: new FormControl(null),
+        contactInformation: new FormControl(null),
+      }),
+    );
+  }
+
+  onRemovePerson() {
+    this.persons.removeAt(this.persons.length - 1);
+  }
+
+  parseDate(s: string) {
+    return s ? new Date(s).getTime() : undefined;
+  }
+
+  startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
+    const start = this.interview?.start ?? new Date().setHours(0, 0, 0, 0);
+    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
+  }
+}
