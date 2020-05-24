@@ -21,7 +21,7 @@ export const audits: Audit[] = [
     },
     status: AuditStatus.IsPlanned,
     factors: factors.slice(0, 2),
-    id: shortid.generate(),
+    id: '123',
     creationDate: Date.now(),
   },
   {

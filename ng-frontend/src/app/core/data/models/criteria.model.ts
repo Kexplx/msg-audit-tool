@@ -1,4 +1,4 @@
-export interface Category {
+export interface Criteria {
   title: string;
   questions?: string[];
 }
