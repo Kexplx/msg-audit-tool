@@ -15,8 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class FacCritRepositoryTest {
 
-
-
     @Autowired
     private FacCritRepository repository;
 
@@ -25,8 +23,8 @@ public class FacCritRepositoryTest {
     @Test
     public void insertFactor() {
         factor = new FacCrit();
-        factor.setFaccritName("TestFaktor");
-        factor.setFaccritReferenceId(null);
+        factor.setName("TestFaktor");
+        factor.setReferenceId(null);
         repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
     }
@@ -34,13 +32,13 @@ public class FacCritRepositoryTest {
     @Test
     public void insertCriteria() {
         factor = new FacCrit();
-        factor.setFaccritName("TestFaktor");
+        factor.setName("TestFaktor");
         repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
 
         criteria = new FacCrit();
-        criteria.setFaccritName("TestKriterium");
-        criteria.setFaccritReferenceId(factor.getFaccritId());
+        criteria.setName("TestKriterium");
+        criteria.setReferenceId(factor.getId());
         repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
 
@@ -49,7 +47,7 @@ public class FacCritRepositoryTest {
     @Test
     public void insertFactorNameNull() {
         factor = new FacCrit();
-        factor.setFaccritName(null);
+        factor.setName(null);
         repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
     }
@@ -57,8 +55,8 @@ public class FacCritRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertCriteriaInvalidFactor() {
         criteria = new FacCrit();
-        criteria.setFaccritName("TestKriterium");
-        criteria.setFaccritReferenceId(9999);
+        criteria.setName("TestKriterium");
+        criteria.setReferenceId(9999);
         repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
 
@@ -68,59 +66,59 @@ public class FacCritRepositoryTest {
     @Test
     public void changeValidName() {
         factor = new FacCrit();
-        factor.setFaccritName("TestFaktor");
+        factor.setName("TestFaktor");
         FacCrit tmp = repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
-        tmp.setFaccritName("TestFaktorNeu");
+        tmp.setName("TestFaktorNeu");
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
-        Assert.assertEquals(tmp.getFaccritName(), factor.getFaccritName());
+        Assert.assertEquals(tmp.getName(), factor.getName());
     }
 
 
     @Test
     public void changeNameNull() {
         factor = new FacCrit();
-        factor.setFaccritName("TestFaktor");
+        factor.setName("TestFaktor");
         FacCrit tmp = repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
-        tmp.setFaccritName(null);
+        tmp.setName(null);
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
-        Assert.assertNull(factor.getFaccritName());
+        Assert.assertNull(factor.getName());
     }
 
     @Test
     public void changeValidReference() {
         factor = new FacCrit();
-        factor.setFaccritName("TestFaktor");
+        factor.setName("TestFaktor");
         repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
 
         criteria = new FacCrit();
-        criteria.setFaccritName("TestKriterium");
+        criteria.setName("TestKriterium");
         FacCrit tmp =  repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
-        tmp.setFaccritReferenceId(factor.getFaccritId());
+        tmp.setReferenceId(factor.getId());
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
-        Assert.assertEquals(tmp.getFaccritReferenceId(), criteria.getFaccritReferenceId());
-        Assert.assertEquals((Integer)factor.getFaccritId(), tmp.getFaccritReferenceId());
+        Assert.assertEquals(tmp.getReferenceId(), criteria.getReferenceId());
+        Assert.assertEquals((Integer)factor.getId(), tmp.getReferenceId());
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void changeInvalidReference() {
         factor = new FacCrit();
-        factor.setFaccritName("TestFaktor");
+        factor.setName("TestFaktor");
         repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
 
         criteria = new FacCrit();
-        criteria.setFaccritName("TestKriterium");
-        criteria.setFaccritReferenceId(factor.getFaccritId());
+        criteria.setName("TestKriterium");
+        criteria.setReferenceId(factor.getId());
         FacCrit tmp =  repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
-        tmp.setFaccritReferenceId(9999);
+        tmp.setReferenceId(9999);
         repository.save(tmp);
 
     }

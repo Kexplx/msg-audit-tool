@@ -45,17 +45,17 @@ public class ScopeRepositoryTest {
         auditRepository.save(audit);
 
         facCrit = new FacCrit();
-        facCrit.setFaccritName("TestFaccrit");
+        facCrit.setName("TestFaccrit");
         facCritRepository.save(facCrit);
     }
 
     @Test
     public void insertValidScopeEntity(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
 
         Scope toTest = repository.save(scope);
 
@@ -65,9 +65,9 @@ public class ScopeRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertScopeWithAuditIdNull(){
         scope = new Scope();
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
 
         repository.save(scope);
     }
@@ -75,9 +75,9 @@ public class ScopeRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertScopeWithFaccritIdNull() {
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
 
         repository.save(scope);
     }
@@ -85,10 +85,10 @@ public class ScopeRepositoryTest {
     @Test
     public void insertScopeWithChangeNoteNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote(null);
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote(null);
+        scope.setRemoved(false);
 
         Scope toTest = repository.save(scope);
 
@@ -98,10 +98,10 @@ public class ScopeRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void insertScopeWithRemovedNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(null);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(null);
 
         repository.save(scope);
     }
@@ -109,39 +109,39 @@ public class ScopeRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void changeScopeWithAuditIdInvalid(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
         Scope toTest = repository.save(scope);
 
-        toTest.setScopeAuditId(-1);
+        toTest.setAuditId(-1);
         repository.save(toTest);
     }
 
     @Test(expected = DataIntegrityViolationException.class)
     public void changeScopeWithFaccritIdInvalid() {
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
         Scope toTest = repository.save(scope);
 
-        toTest.setScopeFaccritId(-1);
+        toTest.setFaccritId(-1);
         repository.save(toTest);
     }
 
     @Test
     public void changeScopeChangeNote(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
         Scope scope1 = repository.save(scope);
 
-        scope1.setScopeChangeNote("OtherTestNote");
+        scope1.setChangeNote("OtherTestNote");
         Scope toTest = repository.save(scope1);
 
         Assert.assertTrue(repository.exists(Example.of(toTest)));
@@ -150,13 +150,13 @@ public class ScopeRepositoryTest {
     @Test
     public void changeScopeWithChangeNoteNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
         Scope scope1 = repository.save(scope);
 
-        scope1.setScopeChangeNote(null);
+        scope1.setChangeNote(null);
         Scope toTest = repository.save(scope1);
 
         Assert.assertTrue(repository.exists(Example.of(toTest)));
@@ -164,13 +164,13 @@ public class ScopeRepositoryTest {
 
     public void changeScopeRemoved(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
         Scope scope1 = repository.save(scope);
 
-        scope1.setScopeRemoved(true);
+        scope1.setRemoved(true);
         Scope toTest = repository.save(scope1);
 
         Assert.assertTrue(repository.exists(Example.of(toTest)));
@@ -179,23 +179,23 @@ public class ScopeRepositoryTest {
     @Test(expected = TransactionSystemException.class)
     public void changeScopeWithRemovedNull(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
         Scope scope1 = repository.save(scope);
 
-        scope1.setScopeRemoved(null);
+        scope1.setRemoved(null);
         repository.save(scope1);
     }
 
     @Test
     public void deleteScopeEntity(){
         scope = new Scope();
-        scope.setScopeAuditId(audit.getId());
-        scope.setScopeFaccritId(facCrit.getFaccritId());
-        scope.setScopeChangeNote("TestNote");
-        scope.setScopeRemoved(false);
+        scope.setAuditId(audit.getId());
+        scope.setFaccritId(facCrit.getId());
+        scope.setChangeNote("TestNote");
+        scope.setRemoved(false);
 
         Scope toTest = repository.save(scope);
         repository.delete(toTest);
