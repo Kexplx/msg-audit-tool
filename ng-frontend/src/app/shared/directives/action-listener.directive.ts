@@ -9,6 +9,9 @@ import { AddAudit, DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/audit.acti
 export class ActionListenerDirective implements OnInit {
   constructor(private actions$: Actions, private toastrService: NbToastrService) {}
 
+  /**
+   * Listens to completed NGXS Actions and shows a Toast at the bottom right
+   */
   ngOnInit() {
     this.actions$.pipe(ofActionCompleted(AddAudit)).subscribe(x => {
       this.showToast(`Neuen Audit: ${x.action.audit.name} erstellt`, 'checkmark-circle-2-outline');
