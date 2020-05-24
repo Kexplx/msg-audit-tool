@@ -10,8 +10,6 @@ import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
 
 enum MenuOptions {
   Edit,
-  Delete,
-  Reactivate,
 }
 
 @Component({
@@ -23,6 +21,26 @@ export class AuditOverviewComponent implements OnInit {
   audit$: Observable<Audit>;
   items: NbMenuItem[];
   menuId: string;
+  tabs: any[] = [
+    {
+      title: 'Users',
+      icon: 'person',
+      route: './tab1',
+    },
+    {
+      title: 'Orders',
+      icon: 'paper-plane-outline',
+      responsive: true,
+      route: ['./tab2'],
+    },
+    {
+      title: 'Transaction',
+      icon: 'flash-outline',
+      responsive: true,
+      disabled: true,
+    },
+  ];
+
   constructor(private store: Store, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
