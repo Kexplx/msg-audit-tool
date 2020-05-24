@@ -1,13 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuditOverviewComponent } from './components/audit-overview/audit-overview.component';
-import { EditAuditDialogComponent } from 'src/app/shared/components/dialogs/edit-audit-dialog/edit-audit-dialog.component';
+import { NewInterviewDialogComponent } from './components/audit-overview/interview-list/new-interview-dialog/new-interview-dialog.component';
+import { InterviewListComponent } from './components/audit-overview/interview-list/interview-list.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AuditOverviewComponent,
-    children: [{ path: 'edit', component: EditAuditDialogComponent }],
+    children: [
+      {
+        path: 'interviews',
+        component: InterviewListComponent,
+        children: [{ path: 'new', component: NewInterviewDialogComponent }],
+      },
+    ],
   },
 ];
 
