@@ -2,7 +2,17 @@
   <h4>
     {{ (audit$ | async).name }}
   </h4>
-  <button nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton status="primary" hero [nbContextMenu]="items" [nbContextMenuTag]="menuId" data-cy="audit-options">
+  <button
+    style="visibility: hidden;"
+    nbContextMenuPlacement="left"
+    nbContextMenuTrigger="focus"
+    nbButton
+    status="primary"
+    hero
+    [nbContextMenu]="items"
+    [nbContextMenuTag]="menuId"
+    data-cy="audit-options"
+  >
     <nb-icon icon="more-vertical-outline"></nb-icon>
   </button>
   <p class="label" *ngIf="(audit$ | async).start">
@@ -11,19 +21,9 @@
 </header>
 <nb-tabset>
   <nb-tab tabTitle="Interviews" tabIcon="attach-2-outline" data-cy="audit-interviews">
-    <nb-card *ngFor="let factor of (audit$ | async).factors">
-      <nb-card-header>{{ factor.title }}</nb-card-header>
-      <nb-list>
-        <nb-list-item *ngFor="let criteria of factor.categories">
-          {{ criteria.title }}
-        </nb-list-item>
-      </nb-list>
-    </nb-card>
-    <aside class="hint-no-factors" *ngIf="(audit$ | async).factors.length == 0">
-      <h6 class="text-hint">Keine ISO 25010 Kategorien ausgewählt</h6>
-    </aside>
+    <router-outlet></router-outlet>
   </nb-tab>
-  <nb-tab tabTitle="Infos" tabIcon="info-outline" data-cy="audit-long-infos">
+  <nb-tab tabTitle="Grunddaten" tabIcon="info-outline" data-cy="audit-long-infos">
     <nb-card>
       <nb-card-body>
         <h6>Audit Grunddaten</h6>
@@ -103,6 +103,3 @@
     </nb-card>
   </nb-tab>
 </nb-tabset>
-<nb-layout>
-  <router-outlet></router-outlet>
-</nb-layout>
