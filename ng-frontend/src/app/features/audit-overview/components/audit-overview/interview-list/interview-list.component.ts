@@ -14,4 +14,9 @@ export class InterviewListComponent implements OnInit {
   audit$: Observable<Audit>;
   constructor(private router: Router, private store: Store) {}
 
+  ngOnInit() {
+    const idRegex = /\/audits\/(.*)\//gm;
+    const id = idRegex.exec(this.router.url)[1];
+    this.audit$ = this.store.select(AuditRegistryState.audit(id));
+  }
 }
