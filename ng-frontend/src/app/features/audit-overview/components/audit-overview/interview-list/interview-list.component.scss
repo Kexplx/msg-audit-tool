@@ -1,0 +1,21 @@
+.hint-no-factors {
+  max-width: 900px;
+  margin: 100px auto 0 auto;
+  text-align: center;
+}
+
+.btn-new-interview {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+}
+
+.wrapper-factor-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+nb-card {
+  margin-bottom: 0px;
+}
