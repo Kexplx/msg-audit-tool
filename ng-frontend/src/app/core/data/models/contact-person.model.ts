@@ -4,4 +4,5 @@ export interface ContactPerson {
   firstName?: string;
   lastName?: string;
   information?: string;
+  role?: string;
 }
