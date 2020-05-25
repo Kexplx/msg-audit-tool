@@ -10,6 +10,11 @@ const routes: Routes = [
     component: AuditOverviewComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'interviews',
+        pathMatch: 'full',
+      },
+      {
         path: 'interviews',
         component: InterviewListComponent,
         children: [{ path: 'new', component: NewInterviewDialogComponent }],
