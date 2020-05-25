@@ -24,6 +24,9 @@ export class ActionListenerDirective implements OnInit {
     this.actions$.pipe(ofActionCompleted(UpdateAudit)).subscribe(x => {
       this.showToast(`Audit: ${x.action.audit.name} bearbeitet`, 'edit-outline');
     });
+    this.actions$.pipe(ofActionCompleted(AddInterview)).subscribe(x => {
+      this.showToast(`Neues Interview erstellt`, 'checkmark-circle-2-outline');
+    });
   }
 
   showToast(text: string, icon: string) {
