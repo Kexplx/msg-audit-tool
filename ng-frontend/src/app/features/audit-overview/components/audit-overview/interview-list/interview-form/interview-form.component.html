@@ -10,7 +10,7 @@
         </div>
         <div class="form-item">
           <label class="label">Enddatum</label>
-          <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" -end-input" />
+          <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" />
           <nb-datepicker #datePickerEnd></nb-datepicker>
           <div *ngIf="end.errors?.startGreaterThanEnd">
             <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
@@ -54,11 +54,11 @@
       </div>
     </nb-card-body>
     <nb-card-footer class="accordion-footer">
-      <button hero nbButton>
+      <button (click)="onCancel()" hero nbButton>
         abbrechen
       </button>
-      <button status="primary" hero nbButton>
-        Hello
+      <button [disabled]="interviewForm.invalid" (click)="onSubmit()" status="primary" hero nbButton>
+        Hinzufügen
       </button>
     </nb-card-footer>
   </nb-card>
