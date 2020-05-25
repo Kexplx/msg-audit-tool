@@ -31,8 +31,18 @@ export class NewInterviewDialogComponent implements AfterViewInit {
     });
   }
 
-  onSubmit() {
-    // this.store.dispatch(new AddAudit(audit)).subscribe(() => this.dialogRef.close());
+  /**
+   * Dispatches AddInterview action to add the submitted interview
+   *
+   * @param interview The interview filled out in the form
+   */
+  onSubmit(interview: Interview) {
+    let audit: Audit;
+    this.audit$.subscribe(x => (audit = x));
+
+    this.store.dispatch(new AddInterview(audit, interview)).subscribe(() => {
+      this.dialogRef.close();
+    });
   }
 
   onCancel() {
