@@ -2,21 +2,17 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.FacCrit;
 import com.amos2020.javabackend.repository.FacCritRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FacCritService {
-    private static FacCritService instance;
 
-    @Autowired
-    FacCritRepository repository;
+    final FacCritRepository repository;
 
-    public static FacCritService getInstance() {
-        if (instance == null) {
-            instance = new FacCritService();
-        }
-        return instance;
+    public FacCritService(FacCritRepository repository) {
+        this.repository = repository;
     }
 
     public List<FacCrit> getAllById(List<Integer> factorCriteriaIds) {

@@ -9,18 +9,9 @@ import java.util.List;
 @Service
 public class ContactPersonService {
 
-    private static ContactPersonService instance;
+    final ContactPersonRepository repository;
 
-    ContactPersonRepository repository;
-
-    public static ContactPersonService getInstance(ContactPersonRepository repository) {
-        if (instance == null) {
-            instance = new ContactPersonService(repository);
-        }
-        return instance;
-    }
-
-    private ContactPersonService(ContactPersonRepository repository) {
+    public ContactPersonService(ContactPersonRepository repository) {
         this.repository = repository;
     }
 

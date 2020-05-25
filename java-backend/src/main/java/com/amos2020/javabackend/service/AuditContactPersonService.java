@@ -2,22 +2,17 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.AuditContactPerson;
 import com.amos2020.javabackend.repository.AuditContactPersonRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AuditContactPersonService {
 
-    private static AuditContactPersonService instance;
+    private final AuditContactPersonRepository repository;
 
-    @Autowired
-    private AuditContactPersonRepository repository;
-
-    public static AuditContactPersonService getInstance() {
-        if (instance == null) {
-            instance = new AuditContactPersonService();
-        }
-        return instance;
+    public AuditContactPersonService(AuditContactPersonRepository repository) {
+        this.repository = repository;
     }
 
     public void createAuditContactPersons(int auditId, List<Integer> contactPersons) {
