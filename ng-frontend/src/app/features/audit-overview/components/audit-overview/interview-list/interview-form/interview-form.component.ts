@@ -65,6 +65,20 @@ export class InterviewFormComponent implements OnInit {
     const start = this.interview?.start ?? new Date().setHours(0, 0, 0, 0);
     return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
   }
+
+  onSubmit() {
+    const interview: Interview = {
+      start: this.parseDate(this.start.value),
+      end: this.parseDate(this.end.value),
+      persons: this.persons.controls.map((x: FormGroup) => {
+        return { information: x.controls.contactInformation.value, role: x.controls.role.value };
+      }),
+      criteria: this.criteria.value,
+      factorTitle: this.factorTitle.value,
+    };
+
+    this.formSubmitted.emit(interview);
+  }
   onCancel() {
     if (this.interviewForm.dirty && this.interviewForm.touched) {
       const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
