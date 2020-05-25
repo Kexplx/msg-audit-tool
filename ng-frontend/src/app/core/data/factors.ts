@@ -3,7 +3,7 @@ import { Factor } from './models/factor.model';
 export const factors: Factor[] = [
   {
     title: '1. Effektivität',
-    categories: [
+    criterias: [
       {
         title: '1. Effektivität',
         questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
@@ -12,7 +12,7 @@ export const factors: Factor[] = [
   },
   {
     title: '2. Effizienz',
-    categories: [
+    criterias: [
       {
         title: '2. Effizienz',
         questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
@@ -21,7 +21,7 @@ export const factors: Factor[] = [
   },
   {
     title: '3. Zufriedenheit',
-    categories: [
+    criterias: [
       {
         title: '3.1 Nützlichkeit',
         questions: ['Question 1?', 'Question 2?', 'Question 3?', 'Question 4?', 'Question 5?'],
@@ -42,7 +42,7 @@ export const factors: Factor[] = [
   },
   {
     title: '4. Risikofreiheit',
-    categories: [
+    criterias: [
       { title: '4.1 Verringerung der ökonomischen Risiken' },
       { title: '4.2 Verringerung der Risiken hinsichtlich Gesundheit und Sicherheit' },
       { title: '4.3 Verringerung der Umweltrisiken' },
@@ -50,14 +50,14 @@ export const factors: Factor[] = [
   },
   {
     title: '5. Lieferbestandteile',
-    categories: [
+    criterias: [
       { title: '5.1 Komplette Abdeckung aller Umgebungsanforderungen' },
       { title: '5.2 Flexibilität' },
     ],
   },
   {
     title: '6. Funktionale Tauglichkeit',
-    categories: [
+    criterias: [
       { title: '6.1 Funktionale Vollständigkeit' },
       { title: '6.2 Funktionale Richtigkeit' },
       { title: '6.3 Funktionale Angemessenheit' },
@@ -65,7 +65,7 @@ export const factors: Factor[] = [
   },
   {
     title: '7. Performanz, Effizienz',
-    categories: [
+    criterias: [
       { title: '7.1 Antwortzeitverhalten' },
       { title: '7.2 Ressourcenverbrauch' },
       { title: '7.3 Kapazität' },
@@ -73,11 +73,11 @@ export const factors: Factor[] = [
   },
   {
     title: '8. Austauschbarkeit, Übertragbarkeit',
-    categories: [{ title: '8.1 Koexistenz' }, { title: '8.2 Interoperabilität' }],
+    criterias: [{ title: '8.1 Koexistenz' }, { title: '8.2 Interoperabilität' }],
   },
   {
     title: '9. Benutzbarkeit',
-    categories: [
+    criterias: [
       { title: '9.1 Angemessenheit Erkennbarkeit' },
       { title: '9.2 Erlernbarkeit' },
       { title: '9.3 Bedienbarkeit' },
@@ -88,7 +88,7 @@ export const factors: Factor[] = [
   },
   {
     title: '10. Zuverlässigkeit',
-    categories: [
+    criterias: [
       { title: '10.1 Reife' },
       { title: '10.2 Verfügbarkeit' },
       { title: '10.3 Fehlertoleranz' },
@@ -97,7 +97,7 @@ export const factors: Factor[] = [
   },
   {
     title: '11. Sicherheit',
-    categories: [
+    criterias: [
       { title: '11.1 Vertraulichkeit, Zugriffsrechte' },
       { title: '11.2 Integrität' },
       { title: '11.3 Nachweisbarkeit, Schutz vor fremden Zugriff' },
@@ -107,7 +107,7 @@ export const factors: Factor[] = [
   },
   {
     title: '12. Wartbarkeit',
-    categories: [
+    criterias: [
       { title: '12.1 Modularität' },
       { title: '12.2 Wiederverwendbarkeit' },
       { title: '12.3 Analysierbarkeit' },
@@ -117,11 +117,11 @@ export const factors: Factor[] = [
   },
   {
     title: '13. Portabilität',
-    categories: [
+    criterias: [
       { title: '13.1 Anpassbarkeit' },
       { title: '13.1 Installierbarkeit' },
       { title: '13.1 Austauschbarkeit' },
     ],
   },
-  { title: '14. Sonstige Anforderungen', categories: [{ title: '14. Sonstige Anforderungen' }] },
+  { title: '14. Sonstige Anforderungen', criterias: [{ title: '14. Sonstige Anforderungen' }] },
 ];
