@@ -1,7 +1,7 @@
 import { Directive, OnInit } from '@angular/core';
 import { Actions, ofActionCompleted } from '@ngxs/store';
 import { NbToastrService } from '@nebular/theme';
-import { AddAudit, DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from 'src/app/core/ngxs/audit.actions';
 
 @Directive({
   selector: '[appActionListener]',
@@ -24,13 +24,14 @@ export class ActionListenerDirective implements OnInit {
     this.actions$.pipe(ofActionCompleted(UpdateAudit)).subscribe(x => {
       this.showToast(`Audit: ${x.action.audit.name} bearbeitet`, 'edit-outline');
     });
+
     this.actions$.pipe(ofActionCompleted(AddInterview)).subscribe(x => {
       this.showToast(`Neues Interview erstellt`, 'checkmark-circle-2-outline');
     });
   }
 
   showToast(text: string, icon: string) {
-    const position: any = 'bottom-end';
-    this.toastrService.show(text, 'Erfolg', { position, icon });
+    const position: any = 'top-right';
+    this.toastrService.show(text, 'Erfolg', { position, icon, status: 'basic' });
   }
 }
