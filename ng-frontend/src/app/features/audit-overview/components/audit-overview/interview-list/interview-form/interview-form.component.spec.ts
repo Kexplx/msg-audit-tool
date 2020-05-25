@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { InterviewFormComponent } from './interview-form.component';
+import { FormBuilder } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('InterviewFormComponent', () => {
   let component: InterviewFormComponent;
@@ -11,9 +13,10 @@ describe('InterviewFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ InterviewFormComponent ]
-    })
-    .compileComponents();
+      declarations: [InterviewFormComponent],
+      imports: [SharedModule],
+      providers: [FormBuilder],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
-import { NgxsModule, Store, Action } from '@ngxs/store';
+import { NgxsModule, Store } from '@ngxs/store';
 import { AuditRegistryState } from './audit-registry.state';
 import { Audit, AuditStatus } from '../data/models/audit.model';
-import { AddAudit, DeleteAudit } from './audit.actions';
-import { CONSOLE_APPENDER } from 'karma/lib/constants';
+import { AddAudit, DeleteAudit, AddInterview } from './audit.actions';
 
-describe('AuditRegistryState', () => {
+fdescribe('AuditRegistryState', () => {
   let store: Store;
   let audit: Audit;
 
@@ -52,5 +51,18 @@ describe('AuditRegistryState', () => {
     store.dispatch(new DeleteAudit(auditToDelete));
     let updatedAudits = store.selectSnapshot(AuditRegistryState.audits);
     expect(updatedAudits[0]).not.toEqual(auditToDelete);
+  });
+
+  it('should add interview after AddInterview action was dispatched', () => {
+    let auditId: string;
+    store.dispatch(new AddAudit(audit)).subscribe((a: Audit) => (auditId = a.id));
+    const audit$ = store.select(AuditRegistryState.audit(auditId));
+    let a: Audit;
+    audit$.subscribe(x => (a = x));
+
+    store.dispatch(new AddInterview(a, { criteria: { title: '123' } }));
+    audit$.subscribe(x => {
+      expect(x.interviews.length).toEqual(1);
+    });
   });
 });

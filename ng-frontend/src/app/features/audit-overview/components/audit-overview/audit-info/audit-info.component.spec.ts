@@ -1,19 +1,21 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
+import { CoreModule } from 'src/app/core/core.module';
 import { AuditInfoComponent } from './audit-info.component';
+import { Router } from '@angular/router';
 
 describe('AuditInfoComponent', () => {
   let component: AuditInfoComponent;
   let fixture: ComponentFixture<AuditInfoComponent>;
 
   beforeEach(async(() => {
+    const routerStub = { url: '/audits/123/interviews' };
+
     TestBed.configureTestingModule({
-      declarations: [ AuditInfoComponent ]
-    })
-    .compileComponents();
+      declarations: [AuditInfoComponent],
+      imports: [CoreModule],
+      providers: [{ provide: Router, useValue: routerStub }],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
