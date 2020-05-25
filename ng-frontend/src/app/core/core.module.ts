@@ -2,9 +2,15 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
 import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 
 @NgModule({
-  imports: [NgxsModule.forRoot([AuditRegistryState], { developmentMode: !environment.production })],
+  imports: [
+    NgxsLoggerPluginModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsModule.forRoot([AuditRegistryState], { developmentMode: !environment.production }),
+  ],
   exports: [NgxsModule],
 })
 export class CoreModule {
