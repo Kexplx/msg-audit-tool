@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.Collection;
@@ -10,9 +12,14 @@ public class FacCrit {
     private int id;
     private Integer referenceId;
     private String name;
+
+    @JsonIgnore
     private FacCrit facCritByReferenceId;
+    @JsonIgnore
     private Collection<FacCrit> facCritsById;
+    @JsonIgnore
     private Collection<Question> questionsById;
+    @JsonIgnore
     private Collection<Scope> scopesById;
 
     @Id
