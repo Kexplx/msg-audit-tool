@@ -41,6 +41,17 @@
           </div>
         </div>
       </div>
+      <div class="form-item">
+        <label class="label">ISO/IEC 25010 Kriterium</label>
+        <nb-select [status]="criteria.invalid && criteria.touched ? 'danger' : 'basic'" formControlName="criteria" fullWidth placeholder="Select Groups">
+          <nb-option-group *ngFor="let factor of scope" [title]="factor.title">
+            <nb-option (selectionChange)="factorTitle.setValue(factor.title)" *ngFor="let category of factor.criterias" [value]="category">{{ category.title }}</nb-option>
+          </nb-option-group>
+        </nb-select>
+        <div *ngIf="criteria.invalid && criteria.touched">
+          <label class="label text-danger">ISO/IEC 25010 Kriterium wählen</label>
+        </div>
+      </div>
     </nb-card-body>
     <nb-card-footer class="accordion-footer">
       <button hero nbButton>
