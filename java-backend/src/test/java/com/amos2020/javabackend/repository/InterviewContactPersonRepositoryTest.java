@@ -1,9 +1,6 @@
 package com.amos2020.javabackend.repository;
 
-import com.amos2020.javabackend.entity.Audit;
-import com.amos2020.javabackend.entity.ContactPerson;
-import com.amos2020.javabackend.entity.Interview;
-import com.amos2020.javabackend.entity.InterviewContactPerson;
+import com.amos2020.javabackend.entity.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.PersistenceUnit;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class InterviewContactPersonRepositoryTest {
@@ -55,9 +55,11 @@ public class InterviewContactPersonRepositoryTest {
         audit.setName(TEST_NAME);
         audit.setStartDate(TEST_START_DATE);
         audit.setEndDate(TEST_END_DATE);
-        audit.setExpectedEndDate(TEST_EXPECTED_END_DATE);
+        audit.setStatus(AuditStatus.ACTIVE);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
         auditRepository.save(audit);
         Assert.assertTrue(auditRepository.exists((Example.of(audit))));
+
 
         contactPerson = new ContactPerson();
         contactPerson.setTitle(TEST_TITLE);
@@ -71,26 +73,36 @@ public class InterviewContactPersonRepositoryTest {
         Assert.assertTrue(contactPersonRepository.exists((Example.of(contactPerson))));
 
         interview = new Interview();
-        interview.setInterviewAuditId(audit.getId());
-        interview.setInterviewDate(Date.valueOf("2020-05-19"));
+        interview.setAuditId(audit.getId());
+        interview.setStartDate(Date.valueOf("2020-01-01"));
+        interview.setEndDate(Date.valueOf("2020-01-02"));
+        interview.setStatus(InterviewStatus.ACTIVE);
         interviewRepository.save(interview);
         Assert.assertTrue(interviewRepository.exists((Example.of(interview))));
+
     }
 
     @Test
     public void insertValid() {
+
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(contactPerson.getId());
-        interviewContactPerson.setInterviewcontactpersonInterviewId(interview.getInterviewId());
+        interviewContactPerson.setContactPersonId(contactPerson.getId());
+        interviewContactPerson.setInterviewId(interview.getId());
+        interviewContactPerson.setRole("TESTROLE");
+
         repository.save(interviewContactPerson);
         Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
+
     }
+
 
     @Test(expected = DataIntegrityViolationException.class)
     public void insertInvalidInterview() {
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(contactPerson.getId());
-        interviewContactPerson.setInterviewcontactpersonInterviewId(9999);
+        interviewContactPerson.setContactPersonId(contactPerson.getId());
+        interviewContactPerson.setRole("TESTROLE");
+
+        interviewContactPerson.setInterviewId(9999);
         repository.save(interviewContactPerson);
         Assert.assertFalse(repository.exists((Example.of(interviewContactPerson))));
     }
@@ -98,8 +110,9 @@ public class InterviewContactPersonRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void insertInvalidContactPerson() {
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(9999);
-        interviewContactPerson.setInterviewcontactpersonInterviewId(interview.getInterviewId());
+        interviewContactPerson.setContactPersonId(9999);
+        interviewContactPerson.setInterviewId(interview.getId());
+        interviewContactPerson.setRole("TESTROLE");
         repository.save(interviewContactPerson);
         Assert.assertFalse(repository.exists((Example.of(interviewContactPerson))));
     }
@@ -118,12 +131,13 @@ public class InterviewContactPersonRepositoryTest {
         Assert.assertTrue(contactPersonRepository.exists((Example.of(contactPerson_new))));
 
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(contactPerson.getId());
-        interviewContactPerson.setInterviewcontactpersonInterviewId(interview.getInterviewId());
+        interviewContactPerson.setContactPersonId(contactPerson.getId());
+        interviewContactPerson.setInterviewId(interview.getId());
+        interviewContactPerson.setRole("TESTROLE");
         InterviewContactPerson tmp = repository.save(interviewContactPerson);
         Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
 
-        tmp.setInterviewcontactpersonContactpersonId(contactPerson_new.getId());
+        tmp.setContactPersonId(contactPerson_new.getId());
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
     }
@@ -131,12 +145,13 @@ public class InterviewContactPersonRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void changeInvalidContactPerson() {
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(contactPerson.getId());
-        interviewContactPerson.setInterviewcontactpersonInterviewId(interview.getInterviewId());
+        interviewContactPerson.setContactPersonByContactPersonId(contactPerson);
+        interviewContactPerson.setRole("TESTROLE");
+        interviewContactPerson.setInterviewId(interview.getId());
         InterviewContactPerson tmp = repository.save(interviewContactPerson);
         Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
 
-        tmp.setInterviewcontactpersonContactpersonId(9999);
+        tmp.setInterviewId(9999);
         repository.save(tmp);
 
     }
@@ -145,18 +160,22 @@ public class InterviewContactPersonRepositoryTest {
     public void changeValidInterview() {
 
         Interview interview_new = new Interview();
-        interview_new.setInterviewAuditId(audit.getId());
-        interview_new.setInterviewDate(Date.valueOf("2020-05-20"));
+        interview_new.setAuditId(audit.getId());
+        interview_new.setStartDate(Date.valueOf("2020-05-20"));
+        interview_new.setEndDate(Date.valueOf("2020-07-02"));
+        interview_new.setStatus(InterviewStatus.ACTIVE);
+
         interviewRepository.save(interview_new);
         Assert.assertTrue(interviewRepository.exists((Example.of(interview_new))));
 
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(contactPerson.getId());
-        interviewContactPerson.setInterviewcontactpersonInterviewId(interview.getInterviewId());
+        interviewContactPerson.setContactPersonId(contactPerson.getId());
+        interviewContactPerson.setInterviewId(interview.getId());
+        interviewContactPerson.setRole("TESTROLE");
         InterviewContactPerson tmp = repository.save(interviewContactPerson);
         Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
 
-        tmp.setInterviewcontactpersonInterviewId(interview_new.getInterviewId());
+        tmp.setInterviewId(interview_new.getId());
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
 
@@ -165,12 +184,13 @@ public class InterviewContactPersonRepositoryTest {
     @Test(expected = DataIntegrityViolationException.class)
     public void changeInvalidInterview() {
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
-        interviewContactPerson.setInterviewcontactpersonContactpersonId(contactPerson.getId());
-        interviewContactPerson.setInterviewcontactpersonInterviewId(interview.getInterviewId());
+        interviewContactPerson.setContactPersonId(contactPerson.getId());
+        interviewContactPerson.setInterviewId(interview.getId());
+        interviewContactPerson.setRole("TESTROLE");
         InterviewContactPerson tmp = repository.save(interviewContactPerson);
         Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
 
-        tmp.setInterviewcontactpersonInterviewId(9999);
+        tmp.setInterviewId(9999);
         repository.save(tmp);
 
 
