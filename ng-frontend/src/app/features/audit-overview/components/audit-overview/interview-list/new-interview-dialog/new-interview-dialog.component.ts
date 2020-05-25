@@ -14,7 +14,12 @@ export class NewInterviewDialogComponent implements AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;
 
-  constructor(private dialogService: NbDialogService, private location: Location) {}
+  ngOnInit() {
+    const idRegex = /\/audits\/([^\/]*)\/.*/gm;
+    const id = idRegex.exec(this.router.url)[1];
+
+    this.audit$ = this.store.select(AuditRegistryState.audit(id));
+  }
 
   ngAfterViewInit() {
     this.dialogRef = this.dialogService.open(this.dialog, {
