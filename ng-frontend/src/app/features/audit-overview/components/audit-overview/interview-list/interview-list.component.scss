@@ -1,7 +1,12 @@
+@import 'src/sass/utils';
 .wrapper-factor-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 nb-card {
