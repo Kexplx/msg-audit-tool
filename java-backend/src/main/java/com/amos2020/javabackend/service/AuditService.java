@@ -3,28 +3,22 @@ package com.amos2020.javabackend.service;
 import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.repository.AuditRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 
+@Service
 public class AuditService {
 
-    @Autowired
-    AuditRepository repository;
+    final AuditRepository repository;
 
-
-    private static AuditService instance;
-
-    public static AuditService getInstance() {
-        if (instance == null) {
-            instance = new AuditService();
-        }
-        return instance;
+    public AuditService(AuditRepository repository) {
+        this.repository = repository;
     }
 
-    public Audit createAudit(String auditName, Date startDate, Date endDate)  {
+    public Audit createAudit(String auditName, Date startDate, Date endDate) {
         Audit audit = new Audit();
         audit.setName(auditName);
         audit.setStartDate(startDate);

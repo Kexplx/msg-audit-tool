@@ -2,21 +2,17 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Scope;
 import com.amos2020.javabackend.repository.ScopeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ScopeService {
-    private static ScopeService instance;
 
-    @Autowired
-    ScopeRepository repository;
+    final ScopeRepository repository;
 
-    public static ScopeService getInstance() {
-        if (instance == null) {
-            instance = new ScopeService();
-        }
-        return instance;
+    public ScopeService(ScopeRepository repository) {
+        this.repository = repository;
     }
 
     public void createScopeByFactorCriteriaList(int auditId, List<Integer> factorCriteriaList) {
