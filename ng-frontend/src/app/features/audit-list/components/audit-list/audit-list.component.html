@@ -20,13 +20,13 @@
   </button>
 </header>
 <nb-tabset data-cy="audits-list">
-  <nb-tab tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
+  <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
     <aside class="hint-no-audits" *ngIf="(activeAudits$ | async).length == 0">
       <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
     </aside>
     <app-audit-card *ngFor="let audit of activeAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
   </nb-tab>
-  <nb-tab tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
+  <nb-tab responsive tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
     <aside class="hint-no-audits" *ngIf="(archivedAudits$ | async).length == 0">
       <h6 class="text-hint">Keine Audits im Archiv</h6>
     </aside>
