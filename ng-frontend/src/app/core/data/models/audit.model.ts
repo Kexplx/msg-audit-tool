@@ -1,6 +1,7 @@
 import { CustomerData } from './customer-data.model';
 import { ContactPerson } from './contact-person.model';
 import { Factor } from './factor.model';
+import { Interview } from './interview.model';
 
 export enum AuditStatus {
   IsPlanned,
@@ -14,11 +15,10 @@ export interface Audit {
   name: string;
   start?: number;
   end?: number;
-
   customerData?: CustomerData;
   contactPerson?: ContactPerson;
-  factors?: Factor[];
-
+  scope?: Factor[];
   status: AuditStatus;
   creationDate: number;
+  interviews?: Interview[];
 }
