@@ -1,6 +1,16 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview } from 'src/app/core/data/models/interview.model';
-import { FormGroup, FormBuilder, FormControl, FormArray, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  FormArray,
+  AbstractControl,
+  Validators,
+} from '@angular/forms';
+import { Factor } from 'src/app/core/data/models/factor.model';
+import { NbDialogService } from '@nebular/theme';
+import { ConfirmDiscardDialogComponent } from 'src/app/shared/components/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 
 @Component({
   selector: 'app-interview-form',
@@ -9,9 +19,12 @@ import { FormGroup, FormBuilder, FormControl, FormArray, AbstractControl } from 
 })
 export class InterviewFormComponent implements OnInit {
   @Input() interview: Interview;
+  @Input() scope: Factor[];
+  @Output() formSubmitted = new EventEmitter<any>();
+  @Output() formCancelled = new EventEmitter<any>();
   interviewForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private dialogService: NbDialogService) {}
 
   get persons(): FormArray {
     return this.interviewForm.get('persons') as FormArray;
@@ -25,6 +38,14 @@ export class InterviewFormComponent implements OnInit {
     return this.interviewForm.get('end');
   }
 
+  get factorTitle() {
+    return this.interviewForm.get('factorTitle');
+  }
+
+  get criteria() {
+    return this.interviewForm.get('criteria');
+  }
+
   ngOnInit() {
     this.interviewForm = this.fb.group({
       start: [this.interview?.start ?? new Date()],
@@ -34,16 +55,15 @@ export class InterviewFormComponent implements OnInit {
           role: new FormControl(null),
           contactInformation: new FormControl(null),
         }),
-        this.fb.group({
-          role: new FormControl(null),
-          contactInformation: new FormControl(null),
-        }),
       ]),
+      criteria: [this.interview?.criteria, Validators.required],
+      factorTitle: [null],
     });
-
-    console.log(this.persons);
   }
 
+  /**
+   * Appends a new formgroup to the persons form array
+   */
   onAddPerson() {
     this.persons.push(
       this.fb.group({
@@ -53,6 +73,9 @@ export class InterviewFormComponent implements OnInit {
     );
   }
 
+  /**
+   * Removes the last formgroup from the persons form array
+   */
   onRemovePerson() {
     this.persons.removeAt(this.persons.length - 1);
   }
@@ -79,6 +102,7 @@ export class InterviewFormComponent implements OnInit {
 
     this.formSubmitted.emit(interview);
   }
+
   onCancel() {
     if (this.interviewForm.dirty && this.interviewForm.touched) {
       const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
