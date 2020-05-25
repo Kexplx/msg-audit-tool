@@ -22,6 +22,7 @@ import {
   NbAccordionModule,
   NbTabsetModule,
   NbBadgeModule,
+  NbRouteTabsetModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
@@ -43,6 +44,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbSpinnerModule,
     NbStepperModule,
     NbInputModule,
+    NbRouteTabsetModule,
     NbContextMenuModule,
     NbToastrModule.forRoot(),
     NbDialogModule.forRoot(),
@@ -56,6 +58,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbThemeModule,
     NbLayoutModule,
     NbButtonModule,
+    NbRouteTabsetModule,
     NbSelectModule,
     NbToastrModule,
     NbLayoutModule,
