@@ -65,4 +65,22 @@ export class InterviewFormComponent implements OnInit {
     const start = this.interview?.start ?? new Date().setHours(0, 0, 0, 0);
     return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
   }
+  onCancel() {
+    if (this.interviewForm.dirty && this.interviewForm.touched) {
+      const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
+        autoFocus: false,
+        closeOnBackdropClick: false,
+      });
+
+      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
+        (cancelConfirmed: boolean) => {
+          if (cancelConfirmed) {
+            this.formCancelled.emit();
+          }
+        },
+      );
+    } else {
+      this.formCancelled.emit();
+    }
+  }
 }
