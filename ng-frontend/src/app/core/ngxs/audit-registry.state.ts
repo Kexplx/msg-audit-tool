@@ -1,8 +1,8 @@
 import { Audit, AuditStatus } from '../data/models/audit.model';
 import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
-import { patch, updateItem } from '@ngxs/store/operators';
+import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import { AddAudit, DeleteAudit, UpdateAudit } from './audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './audit.actions';
 import * as shortid from 'shortid';
 import { audits } from '../data/examples/audits';
 
@@ -36,33 +36,41 @@ export class AuditRegistryState {
   }
 
   @Action(AddAudit)
-  addAudit(context: StateContext<AuditRegistryStateModel>, { audit }: AddAudit) {
-    const state = context.getState();
-
-    context.setState({
-      ...state,
-      audits: [...state.audits, { ...audit, id: shortid.generate() }],
-    });
+  addAudit({ setState }: StateContext<AuditRegistryStateModel>, { audit }: AddAudit) {
+    setState(
+      patch({
+        audits: append<Audit>([{ ...audit, id: shortid.generate() }]),
+      }),
+    );
   }
 
   @Action(DeleteAudit)
-  deleteAudit(context: StateContext<AuditRegistryStateModel>, { audit }: DeleteAudit) {
-    const state = context.getState();
-    const indexOfAudit = state.audits.indexOf(audit);
-
-    if (indexOfAudit != -1) {
-      context.setState({
-        ...state,
-        audits: [...state.audits.slice(0, indexOfAudit), ...state.audits.slice(indexOfAudit + 1)],
-      });
-    }
+  deleteAudit({ setState }: StateContext<AuditRegistryStateModel>, { audit }: DeleteAudit) {
+    setState(
+      patch({
+        audits: removeItem<Audit>(x => x === audit),
+      }),
+    );
   }
 
   @Action(UpdateAudit)
-  updateAudit({ setState }: StateContext<AuditRegistryStateModel>, { id, audit }: UpdateAudit) {
-    setState(
+  updateAudit(ctx: StateContext<AuditRegistryStateModel>, { id, audit }: UpdateAudit) {
+    const a = ctx.getState().audits.find(x => x.id == id);
+    ctx.setState(
       patch({
-        audits: updateItem<Audit>(x => x.id === id, { ...audit, id: id }),
+        audits: updateItem<Audit>(x => x.id === id, { ...a, ...audit, id: id }),
+      }),
+    );
+  }
+
+  @Action(AddInterview)
+  addInterview(context: StateContext<AuditRegistryStateModel>, { audit, interview }: AddInterview) {
+    context.setState(
+      patch({
+        audits: updateItem<Audit>(x => x === audit, {
+          ...audit,
+          interviews: [...(audit.interviews ?? []), interview],
+        }),
       }),
     );
   }
