@@ -99,7 +99,7 @@
             <nb-checkbox [checked]="factor['selected']" (checkedChange)="onFactorSelect(factor)">
               {{ factor.title }}
             </nb-checkbox>
-            <li *ngFor="let criteria of factor.categories">
+            <li *ngFor="let criteria of factor.criterias">
               <nb-checkbox [checked]="criteria['selected']" (checkedChange)="criteria['selected'] = !criteria['selected']">
                 {{ criteria.title }}
               </nb-checkbox>

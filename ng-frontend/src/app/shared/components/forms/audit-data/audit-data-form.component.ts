@@ -83,29 +83,29 @@ export class AuditDataFormComponent implements OnInit {
   //#endregion
 
   ngOnInit(): void {
-    if (this.audit?.factors) {
+    if (this.audit?.scope) {
       // Get all criteria titles in audit
       const criteriaTitles = [];
-      for (const factor of this.audit.factors) {
-        for (const criteria of factor.categories) {
+      for (const factor of this.audit.scope) {
+        for (const criteria of factor.criterias) {
           criteriaTitles.push(criteria.title);
         }
       }
 
       // Set selected property of criteria to true if contained in criteriaTitles
       this.formFactors = factors.map(factor => {
-        const formCategories = factor.categories.map(x => {
+        const formCategories = factor.criterias.map(x => {
           return { title: x.title, selected: criteriaTitles.includes(x.title) };
         });
 
         const hasSelectedCategory = formCategories.find(x => x.selected) != undefined;
-        return { categories: formCategories, title: factor.title, selected: hasSelectedCategory };
+        return { criterias: formCategories, title: factor.title, selected: hasSelectedCategory };
       });
     } else {
       // Select every factor and criteria
       this.formFactors = factors.map(x => ({ ...x, selected: true }));
       this.formFactors.forEach(x => {
-        x.categories = x.categories.map(x => ({ ...x, selected: true }));
+        x.criterias = x.criterias.map(x => ({ ...x, selected: true }));
       });
     }
 
@@ -151,7 +151,7 @@ export class AuditDataFormComponent implements OnInit {
       },
       start: this.parseDate(this.start.value),
       end: this.parseDate(this.end.value),
-      factors: [...filteredFactors],
+      scope: [...filteredFactors],
       creationDate: creationDate,
     };
 
@@ -165,12 +165,12 @@ export class AuditDataFormComponent implements OnInit {
    * @param factors The factors to filter
    */
   filterFactors(factors: Factor[]) {
-    const filteredFactors = factors.filter(x => x.categories.findIndex(x => x['selected']) != -1);
+    const filteredFactors = factors.filter(x => x.criterias.findIndex(x => x['selected']) != -1);
 
     filteredFactors.forEach(x => {
-      x.categories = x.categories.filter(x => x['selected']);
+      x.criterias = x.criterias.filter(x => x['selected']);
       delete x['selected'];
-      x.categories.forEach(x => delete x['selected']);
+      x.criterias.forEach(x => delete x['selected']);
     });
 
     return filteredFactors;
@@ -197,7 +197,7 @@ export class AuditDataFormComponent implements OnInit {
 
   onFactorSelect(factor: Factor) {
     factor['selected'] = !factor['selected'];
-    factor.categories.forEach(x => (x['selected'] = factor['selected']));
+    factor.criterias.forEach(x => (x['selected'] = factor['selected']));
   }
 
   startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
