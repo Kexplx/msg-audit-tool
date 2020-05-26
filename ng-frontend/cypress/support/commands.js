@@ -13,7 +13,7 @@ function inputAudit(testAudit) {
   });
   // Input Audit name, start date, end date and open next collapsed accordeon through click
   cy.get('[data-cy=audit-basic-data-form]').should('exist');
-  cy.get('[data-cy=audit-name-input]').type(testAudit.name);
+  cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
   if (testAudit.start) {
     cy.get('[data-cy=audit-start-input]').click();
     cy.get('.today > .cell-content').click();
@@ -94,7 +94,6 @@ function testAuditInfoPage(testAudit) {
 
 function testAuditListEntry(testAudit) {
   cy.get('[data-cy=audit-short-infos]').first().should('contain.text', testAudit.name);
-  cy.get('[data-cy=audit-short-infos]').first().should('contain.text', testAudit.customerData.name);
 }
 
 Cypress.Commands.add('addAudit', addAudit);

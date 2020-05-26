@@ -1,6 +1,5 @@
 describe('EditAuditDialog', () => {
-  const baseUrl = Cypress.config().baseUrl;
-  const auditsUrl = baseUrl + '/audits';
+  const auditsUrl = Cypress.config().baseUrl + '/audits';
   let testAudit;
   let testAuditEdited;
 
@@ -13,61 +12,79 @@ describe('EditAuditDialog', () => {
     });
   });
 
-  it('Routing to audits/edit on invalid id closes dialog', () => {
-    cy.visit(auditsUrl);
-    cy.visit(auditsUrl + '/123/edit');
+  beforeEach(() => {
+    cy.server();
+    cy.route(auditsUrl);
+  });
 
+  it('does not show an edit dialog when audit id is invalid', () => {
+    cy.visit(auditsUrl);
+    cy.visit(auditsUrl + '/kaputt/edit');
+    cy.get('[data-cy=audit-data-form]').should('not.exist');
+    cy.visit(auditsUrl + '/kaputt/infos/edit');
     cy.get('[data-cy=audit-data-form]').should('not.exist');
   });
 
-  it('Audit edit formular redirects on button click', () => {
-    cy.visit(auditsUrl);
-    cy.get('[data-cy=new-audit]').click();
-    cy.inputAudit(testAudit);
+  it('shows an edit formular that takes inputs and closes on button click', () => {
+    editAuditFromAuditsOverview(testAudit, testAuditEdited);
+    cy.get('[data-cy=audit-data-form]').should('not.exist');
+  });
+
+  /**
+   * Simulates an edit from the audits overview.
+   * 
+   * @param testAudit 
+   * @param testAuditEdited 
+   */
+  function editAuditFromAuditsOverview(testAudit, testAuditEdited) {
+    cy.addAudit(testAudit);
     cy.get('[data-cy=audit-options]').first().click();
     cy.contains('Bearbeiten').click();
     cy.url().should('contain', 'edit');
-  });
-
-  it('Audit edit formular takes inputs and closes on button click', () => {
-    cy.visit(auditsUrl);
-    cy.get('[data-cy=new-audit]').click();
     cy.inputAudit(testAuditEdited);
-    cy.get('[data-cy=audit-data-form]').should('not.exist');
-  });
+  }
 
-  it('Audit was edited in the audits overview', () => {
-    cy.testAuditListEntry(testAuditEdited);
-  });
-
-  it('Audit was edited in the concrete audit page', () => {
+  /**
+   * Simulates an edit from the audit information page.
+   * 
+   * @param testAudit 
+   * @param testAuditEdited 
+   */
+  function editAuditFromInfoPage(testAudit, testAuditEdited) {
+    cy.addAudit(testAudit);
     cy.get('[data-cy=audit-short-infos]').first().click();
-    cy.get('[data-cy=audit-short-infos]').should('contain.text', testAuditEdited.name);
-  });
-
-  it('Audit was edited in the concrete audit info page', () => {
-    cy.contains('Info').click();
-    cy.testAuditInfoPage(testAuditEdited);
-  });
-
-  it('Audit edit formular redirects on button click on concrete audit page', () => {
+    cy.contains('infos').click();
     cy.get('[data-cy=audit-options]').click();
-    cy.contains('Bearbeiten').click();
-    cy.url().should('contain', 'edit');
-  });
+    cy.inputAudit(testAuditEdited);
+  }
 
-  it('Audit edit formular takes inputs, closes on button click and redirects to concrete audit page', () => {
-    cy.inputAudit(testAudit);
-    cy.get('[data-cy=audit-data-form]').should('not.exist');
-    cy.url().should('not.contain', 'edit');
-  });
+  /**
+   *  Tests the consistency of audit information when edited at different pages
+   */
+  [
+    { text: 'from the audits list overview', func: editAuditFromAuditsOverview },
+    { text: 'from the audit info page', func: editAuditFromInfoPage },
+  ].forEach(beforeFunc => {
+    context('When an audit was edited ' + beforeFunc.text + ' it ...', () => {
+      before(() => {
+        beforeFunc.func(testAudit, testAuditEdited);
+      });
 
-  it('Audit was edited in the concrete audit info page', () => {
-    cy.testAuditInfoPage(testAudit);
-  });
+      beforeEach(() => {
+        cy.server();
+        cy.route(auditsUrl);
+      });
 
-  it('Audit was edited in the audits overview', () => {
-    cy.get(':nth-child(2) > .appearance-hero').click();
-    cy.testAuditListEntry(testAudit);
+      it('populates the audits list overview page with consistent edited information', () => {
+        cy.testAuditListEntry(testAuditEdited);
+      });
+
+      it('populates the concrete audit page with consistent edited information', () => {
+        cy.get('[data-cy=audit-short-infos]').first().click();
+        cy.get('[data-cy=audit-short-infos]').should('contain.text', testAuditEdited.name);
+        cy.contains('infos').click();
+        cy.testAuditInfoPage(testAuditEdited);
+      });
+    });
   });
 });
