@@ -1,0 +1,41 @@
+@import 'src/sass/utils';
+.wrapper-factor-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+nb-card {
+  margin-bottom: 0px;
+}
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 20px;
+}
+
+.criteria-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+header {
+  margin: 20px 0 10px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+nb-accordion {
+  margin-bottom: 15px;
+}

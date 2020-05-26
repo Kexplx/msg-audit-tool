@@ -1,32 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuditListComponent } from './audit-list/audit-list.component';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { AddAuditDialogComponent } from './shared/dialogs/add-audit-dialog/add-audit-dialog.component';
-import { EditAuditDialogComponent } from './shared/dialogs/edit-audit-dialog/edit-audit-dialog.component';
-import { AuditOverviewComponent } from './interview/audit-overview/audit-overview.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
   {
     path: 'audits',
-    component: AuditListComponent,
-    children: [
-      { path: 'new', component: AddAuditDialogComponent },
-      { path: ':id/edit', component: EditAuditDialogComponent },
-    ],
+    loadChildren: () =>
+      import('./features/audit-list/audit-list.module').then(m => m.AuditListModule),
   },
   {
-    path: 'audits/:id/overview',
-    component: AuditOverviewComponent,
-    children: [{ path: 'edit', component: EditAuditDialogComponent }],
+    path: 'audits/:id',
+    loadChildren: () =>
+      import('./features/audit-overview/audit-overview.module').then(m => m.AuditOverviewModule),
   },
   { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), SharedModule],
   exports: [RouterModule],
 })
 export class AppRouterModule {}

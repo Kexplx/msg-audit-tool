@@ -1,0 +1,10 @@
+<p class="subtitle">
+  {{ interview.criteria.title }}
+  <span class="label" *ngIf="interview.start"> {{ ' (' + (interview.start | date: 'dd.MM.yyyy') + ' - ' }} </span>
+  <span class="label" *ngIf="interview.end"> {{ (interview.end | date: 'dd.MM.yyyy') + ')' }} </span>
+</p>
+<br />
+<div *ngFor="let person of interview.persons">
+  <span class="label" *ngIf="person.information"> {{ person.information + ' | ' }} </span>
+  <span class="label" *ngIf="person.role"> {{ person.role }} </span>
+</div>

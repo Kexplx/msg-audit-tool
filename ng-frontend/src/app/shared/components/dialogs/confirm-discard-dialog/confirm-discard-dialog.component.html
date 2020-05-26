@@ -1,0 +1,10 @@
+<nb-card data-cy="discard-back-dialog">
+  <nb-card-header>Bestätigung</nb-card-header>
+  <nb-card-body>Wollen sie die Änderungen verwerfen?</nb-card-body>
+  <nb-card-footer>
+    <div class="card-footer">
+      <button (click)="onCancel()" nbButton data-cy="back">Nein</button>
+      <button (click)="onOk()" nbButton data-cy="discard">Ja</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

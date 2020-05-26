@@ -1,0 +1,67 @@
+<form [formGroup]="interviewForm" data-cy="add-interview-form">
+  <nb-card>
+    <nb-card-header>Neues Interview</nb-card-header>
+    <nb-card-body>
+      <div class="grid-1-1">
+        <div class="form-item">
+          <label class="label">Startdatum</label>
+          <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="interview-start-input" />
+          <nb-datepicker #datePickerStart></nb-datepicker>
+        </div>
+        <div class="form-item">
+          <label class="label">Enddatum</label>
+          <input [status]="end.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="interview-end-input" />
+          <nb-datepicker #datePickerEnd></nb-datepicker>
+          <div *ngIf="end.errors?.startGreaterThanEnd">
+            <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="button-add-person-wrapper">
+        <div></div>
+        <button *ngIf="this.persons.controls.length > 1" (click)="onRemovePerson()" class="justify-content-end" nbButton data-cy="interview-rm-contact-person">
+          <nb-icon icon="minus"></nb-icon>
+        </button>
+        <button (click)="onAddPerson()" class="justify-content-end" nbButton data-cy="interview-add-contact-person">
+          <nb-icon icon="plus"></nb-icon>
+        </button>
+      </div>
+      <div formArrayName="persons">
+        <div *ngFor="let group of this.persons.controls; let i = index">
+          <div class="grid-1-1" [formGroup]="group">
+            <div class="form-item">
+              <label class="label">Kontakt</label>
+              <input placeholder="Max Mustermann" formControlName="contactInformation" nbInput fullWidth data-cy="interview-contact-name-input" />
+            </div>
+            <div class="form-item">
+              <label class="label">Rolle</label>
+              <input placeholder="Entwickler" formControlName="role" nbInput fullWidth data-cy="interview-contact-role-input" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-item">
+        <label class="label">ISO/IEC 25010 Kriterium</label>
+        <nb-select [status]="criteria.invalid && criteria.touched ? 'danger' : 'basic'" formControlName="criteria" fullWidth placeholder="Select Groups" data-cy="interview-category-input">
+          <nb-option-group *ngFor="let factor of scope" [title]="factor.title">
+            <nb-option (selectionChange)="factorTitle.setValue(factor.title)" *ngFor="let category of factor.criterias" [value]="category" data-cy="interview-category-option">{{
+              category.title
+            }}</nb-option>
+          </nb-option-group>
+        </nb-select>
+        <div *ngIf="criteria.invalid && criteria.touched">
+          <label class="label text-danger">ISO/IEC 25010 Kriterium wählen</label>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="accordion-footer">
+      <button (click)="onCancel()" hero nbButton data-cy="cancel-interview-data-form">
+        abbrechen
+      </button>
+      <button [disabled]="interviewForm.invalid" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">
+        Hinzufügen
+      </button>
+    </nb-card-footer>
+  </nb-card>
+</form>

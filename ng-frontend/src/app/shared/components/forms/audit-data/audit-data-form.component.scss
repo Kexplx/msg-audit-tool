@@ -1,0 +1,37 @@
+@import 'src/sass/utils';
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 20px;
+}
+
+.criteria-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-item-contact-information {
+  margin-top: 20px;
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.accordion-footer {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0;
+  padding: 10px 20px 10px 20px;
+}
+
+.field-item-audit-name {
+  margin-bottom: 20px;
+}

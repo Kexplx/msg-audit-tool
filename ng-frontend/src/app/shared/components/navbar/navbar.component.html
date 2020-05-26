@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="navbar-item">
+    <button (click)="toggleSidebar()" ghost nbButton data-cy="toggle-sidebar">
+      <nb-icon icon="menu-2"></nb-icon>
+    </button>
+  </div>
+  <div class="navbar-item">
+    <button hero [routerLink]="['/audits']" nbButton status="primary" data-cy="home">
+      MSG Audit Tool
+    </button>
+  </div>
+  <div></div>
+  <div class="navbar-item">
+    <button ghost nbButton status="primary" data-cy="github">
+      <nb-icon icon="github"></nb-icon>
+    </button>
+  </div>
+</nav>

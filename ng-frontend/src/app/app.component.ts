@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { NbMenuService } from '@nebular/theme';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',

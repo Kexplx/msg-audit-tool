@@ -1,0 +1,9 @@
+<header class="grid-1 mb-2" data-cy="audit-short-infos">
+  <h4>
+    {{ (audit$ | async).name }}
+  </h4>
+  <p class="label" *ngIf="(audit$ | async).start">
+    {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+  </p>
+</header>
+<nb-route-tabset [tabs]="tabs"></nb-route-tabset>

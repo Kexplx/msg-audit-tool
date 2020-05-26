@@ -1,4 +1,9 @@
-import { Audit } from 'src/app/data/models/audit.model';
+const baseUrl = Cypress.config().baseUrl;
+
+function addAudit(testAudit) {
+  cy.visit(baseUrl + '/audits/new');
+  inputAudit(testAudit);
+}
 
 function inputAudit(testAudit) {
   cy.on('uncaught:exception', (err, runnable) => {
@@ -7,115 +12,91 @@ function inputAudit(testAudit) {
     return false;
   });
   // Input Audit name, start date, end date and open next collapsed accordeon through click
-  cy.get(':nth-child(1) > .accordion-item-header-expanded').should('exist');
-  cy.get('.grid-3-1 > :nth-child(1) > .input-full-width').clear().type(testAudit.name);
+  cy.get('[data-cy=audit-basic-data-form]').should('exist');
+  cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
   if (testAudit.start) {
-    cy.get(
-      '.ng-tns-c155-1.ng-star-inserted > .ng-trigger > .item-body > .grid-1-1 > :nth-child(1) > .input-full-width',
-    ).click();
+    cy.get('[data-cy=audit-start-input]').click();
     cy.get('.today > .cell-content').click();
   }
   if (testAudit.end) {
-    cy.get(
-      '.ng-tns-c155-1.ng-star-inserted > .ng-trigger > .item-body > .grid-1-1 > :nth-child(2) > .input-full-width',
-    ).click();
+    cy.get('[data-cy=audit-end-input]').click();
     cy.get('.today > .cell-content').click();
   }
-  cy.get(':nth-child(1) > .accordion-item-header-expanded').click();
-  cy.get(':nth-child(2) > .accordion-item-header-collapsed').click();
+  cy.get('[data-cy=audit-basic-data-form]').click();
+  cy.get('[data-cy=audit-customer-data-form]').click();
 
   // Input Customer data and open next collapsed accordeon through click
-  cy.get('.ng-trigger > .item-body > :nth-child(1) > :nth-child(1) > .input-full-width')
+  cy.get('[data-cy=audit-customer-name-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.customerData.name);
-  cy.get('.ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width')
+  cy.get('[data-cy=audit-customer-department-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.customerData.department);
-  cy.get('.ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width')
+  cy.get('[data-cy=audit-customer-division-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.customerData.corporateDivision);
-  cy.get('.ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width')
+  cy.get('[data-cy=audit-customer-sector-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.customerData.sector);
-  cy.get(':nth-child(3) > .accordion-item-header-collapsed').click();
-  cy.get(':nth-child(2) > .accordion-item-header-expanded').click();
+  cy.get('[data-cy=audit-customer-data-form]').click();
+  cy.get('[data-cy=audit-contact-data-form]').click();
 
   // Input Contact Information and open next collapsed accordeon through click
   cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
-  cy.get('nb-option').contains(testAudit.contactPerson.title).click();
-  cy.get('.ng-trigger > .item-body > :nth-child(1) > :nth-child(2) > .input-full-width')
+  cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
+  cy.get('[data-cy=audit-contact-title-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.contactPerson.salutation);
-  cy.get('.ng-trigger > .item-body > :nth-child(2) > :nth-child(1) > .input-full-width')
+  cy.get('[data-cy=audit-contact-firstname-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.contactPerson.firstName);
-  cy.get('.ng-trigger > .item-body > :nth-child(2) > :nth-child(2) > .input-full-width')
+  cy.get('[data-cy=audit-contact-lastname-input]')
     .filter(':visible')
     .clear()
     .type(testAudit.contactPerson.lastName);
-  cy.get('.field-item-contact-information > .input-full-width')
-    .clear()
-    .type(testAudit.contactPerson.information);
-  cy.get('.accordion-footer > .status-primary').click();
+  cy.get('[data-cy=audit-contact-info-input]').clear().type(testAudit.contactPerson.information);
+  cy.get('[data-cy=submit-audit-data-form]').click();
 }
 
 function testAuditInfoPage(testAudit) {
-  cy.get(':nth-child(3) > :nth-child(1) > .audit-params').should('contain.text', testAudit.name);
-  cy.get(':nth-child(5) > :nth-child(1) > .audit-params').should(
-    'contain.text',
-    testAudit.customerData.name,
-  );
-  cy.get(':nth-child(5) > :nth-child(2) > .audit-params').should(
+  cy.get('[data-cy=audit-name]').should('contain.text', testAudit.name);
+  cy.get('[data-cy=audit-customer-name]').should('contain.text', testAudit.customerData.name);
+  cy.get('[data-cy=audit-customer-department]').should(
     'contain.text',
     testAudit.customerData.department,
   );
-  cy.get(':nth-child(6) > :nth-child(1) > .audit-params').should(
+  cy.get('[data-cy=audit-customer-division]').should(
     'contain.text',
     testAudit.customerData.corporateDivision,
   );
-  cy.get(':nth-child(6) > :nth-child(2) > .audit-params').should(
-    'contain.text',
-    testAudit.customerData.sector,
-  );
-  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
+  cy.get('[data-cy=audit-customer-sector]').should('contain.text', testAudit.customerData.sector);
+  cy.get('[data-cy=audit-contact-person]').should(
     'contain.text',
     testAudit.contactPerson.firstName,
   );
-  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
-    'contain.text',
-    testAudit.contactPerson.lastName,
-  );
-  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
+  cy.get('[data-cy=audit-contact-person]').should('contain.text', testAudit.contactPerson.lastName);
+  cy.get('[data-cy=audit-contact-person]').should(
     'contain.text',
     testAudit.contactPerson.salutation,
   );
-  cy.get(':nth-child(8) > :nth-child(1) > .audit-params').should(
-    'contain.text',
-    testAudit.contactPerson.title,
-  );
-  cy.get(':nth-child(9) > :nth-child(1) > .audit-params').should(
+  cy.get('[data-cy=audit-contact-person]').should('contain.text', testAudit.contactPerson.title);
+  cy.get('[data-cy=audit-contact-info]').should(
     'contain.text',
     testAudit.contactPerson.information,
   );
 }
 
-function testAuditsOverviewPage(testAudit) {
-  cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header > :nth-child(1)').should(
-    'contain.text',
-    testAudit.name,
-  );
-  cy.get('app-audit-card.ng-star-inserted > nb-card > nb-card-header > :nth-child(1)').should(
-    'contain.text',
-    testAudit.customerData.name,
-  );
+function testAuditListEntry(testAudit) {
+  cy.get('[data-cy=audit-short-infos]').first().should('contain.text', testAudit.name);
 }
 
+Cypress.Commands.add('addAudit', addAudit);
 Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
-Cypress.Commands.add('testAuditsOverviewPage', testAuditsOverviewPage);
+Cypress.Commands.add('testAuditListEntry', testAuditListEntry);
