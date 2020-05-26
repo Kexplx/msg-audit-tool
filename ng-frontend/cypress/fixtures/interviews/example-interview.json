@@ -1,0 +1,15 @@
+{
+  "start": true,
+  "end": true,
+  "contacts": [
+    {
+      "name": "Max",
+      "role": "Softwareentwickler"
+    },
+    {
+      "name": "Maxi",
+      "role": "Testentwickler"
+    }
+  ],
+  "criteria": "1. Effektivität"
+}

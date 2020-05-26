@@ -1,3 +1,10 @@
+const baseUrl = Cypress.config().baseUrl;
+
+function addAudit(testAudit) {
+  cy.visit(baseUrl + '/audits/new');
+  inputAudit(testAudit);
+}
+
 function inputAudit(testAudit) {
   cy.on('uncaught:exception', (err, runnable) => {
     expect(err.message).to.include('nebular issue: https://github.com/akveo/nebular/issues/2338');
@@ -90,6 +97,7 @@ function testAuditListEntry(testAudit) {
   cy.get('[data-cy=audit-short-infos]').first().should('contain.text', testAudit.customerData.name);
 }
 
+Cypress.Commands.add('addAudit', addAudit);
 Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
 Cypress.Commands.add('testAuditListEntry', testAuditListEntry);
