@@ -7,7 +7,7 @@ describe('AuditPage', () => {
 
   before(() => {
     cy.visit(baseUrl);
-    cy.fixture('example-audit').then(json => {
+    cy.fixture('audits/example-audit').then(json => {
       testAudit = json;
     });
   });

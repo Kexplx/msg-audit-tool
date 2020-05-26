@@ -1,6 +1,6 @@
 import { Chance } from 'chance';
 
-describe('AddAuditForm', () => {
+describe('NotFoundPage', () => {
   let baseUrl = Cypress.config().baseUrl;
   const chance = new Chance();
 

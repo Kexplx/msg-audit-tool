@@ -5,10 +5,10 @@ describe('EditAuditDialog', () => {
   let testAuditEdited;
 
   before(() => {
-    cy.fixture('example-audit').then(json => {
+    cy.fixture('audits/example-audit').then(json => {
       testAudit = json;
     });
-    cy.fixture('example-audit2').then(json => {
+    cy.fixture('audits/example-audit2').then(json => {
       testAuditEdited = json;
     });
   });

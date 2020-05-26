@@ -1,11 +1,11 @@
-describe('OverviewDialog', () => {
+describe('OverviewPage', () => {
   let baseUrl = Cypress.config().baseUrl;
   let testAudit;
   let testAuditEdited;
 
   before(() => {
     cy.visit(baseUrl);
-    cy.fixture('example-audit').then(json => {
+    cy.fixture('audits/example-audit').then(json => {
       testAudit = json;
     });
   });
@@ -47,7 +47,7 @@ describe('OverviewDialog', () => {
 
   it('Clicking on an audit redirects to audit page', () => {
     cy.get('[data-cy=audit-short-infos]').first().click();
-    cy.url().should('contain', 'overview');
+    cy.url().should('contain', 'interview');
   });
 
   it('Clicking on an audit delete button should remove the audit', () => {
