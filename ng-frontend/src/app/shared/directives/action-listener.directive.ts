@@ -31,7 +31,7 @@ export class ActionListenerDirective implements OnInit {
   }
 
   showToast(text: string, icon: string) {
-    const position: any = 'top-right';
+    const position: any = 'bottom-end';
     this.toastrService.show(text, 'Erfolg', { position, icon, status: 'basic' });
   }
 }
