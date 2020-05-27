@@ -6,6 +6,7 @@ describe('AuditPage', () => {
   let testAuditUrl;
 
   before(() => {
+    // import testAudit that does not contain startdate nor enddate
     cy.fixture('audits/example-audit')
       .then(json => {
         testAudit = json;
@@ -75,6 +76,27 @@ describe('AuditPage', () => {
     it('shows a button to edit the audit information', () => {
       cy.get('[data-cy=audit-options]').click();
       cy.url().should('contain', 'edit');
+      cy.get('[data-cy=cancel-audit-data-form]').click();
+    });
+  });
+
+  context('When on either info page or interview page it ...', () => {
+    function testTitlebar(testDate) {
+      cy.get('[data-cy=audit-short-infos]').contains(testAudit.name);
+      cy.get('[data-cy=audit-short-infos]').contains(testDate);
+      cy.get('[data-cy=audit-short-infos]').contains('TBD');
+    }
+
+    it('displays a header with audit name and date', () => {
+      const testDate = new Date(Date.now()).toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+      cy.route(testAuditUrl);
+      testTitlebar(testDate);
+      cy.contains('info').click();
+      testTitlebar(testDate);
     });
   });
 });
