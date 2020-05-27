@@ -4,7 +4,7 @@ import { AuditRegistryState } from './audit-registry.state';
 import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AddAudit, DeleteAudit, AddInterview } from './audit.actions';
 
-fdescribe('AuditRegistryState', () => {
+describe('AuditRegistryState', () => {
   let store: Store;
   let audit: Audit;
 
