@@ -3,7 +3,8 @@
     {{ (audit$ | async).name }}
   </h4>
   <p class="label" *ngIf="(audit$ | async).start">
-    {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+    {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end; else tbd">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+    <ng-template #tbd>TBD</ng-template>
   </p>
 </header>
 <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
