@@ -66,6 +66,9 @@ function inputAudit(testAudit) {
 
 function testAuditInfoPage(testAudit) {
   cy.get('[data-cy=audit-name]').should('contain.text', testAudit.name);
+  if (!testAudit.end) {
+    cy.get('[data-cy=audit-timeframe]').contains('TBD');
+  }
   cy.get('[data-cy=audit-customer-name]').should('contain.text', testAudit.customerData.name);
   cy.get('[data-cy=audit-customer-department]').should(
     'contain.text',
@@ -94,6 +97,9 @@ function testAuditInfoPage(testAudit) {
 
 function testAuditListEntry(testAudit) {
   cy.get('[data-cy=audit-short-infos]').first().should('contain.text', testAudit.name);
+  if (!testAudit.end) {
+    cy.get('[data-cy=audit-short-infos]').contains('TBD');
+  }
 }
 
 Cypress.Commands.add('addAudit', addAudit);
