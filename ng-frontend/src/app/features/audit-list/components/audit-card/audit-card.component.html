@@ -18,7 +18,8 @@
       <span *ngIf="audit.customerData.name">| {{ audit.customerData.name }} </span>
       <br />
       <span class="label" *ngIf="audit.start">
-        &nbsp;{{ audit.start | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.end">{{ audit.end | date: 'dd.MM.yyyy' }}</span>
+        &nbsp;{{ audit.start | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.end; else tbd">{{ audit.end | date: 'dd.MM.yyyy' }}</span>
+        <ng-template #tbd>TBD</ng-template>
       </span>
     </div>
     <div></div>
