@@ -1,0 +1,32 @@
+@import 'src/sass/utils';
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+.banner-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 12px;
+  -webkit-box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
+  -moz-box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
+  box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
+  border-radius: 3px;
+}
+
+.banner-status-is-planned {
+  background-color: nb-theme(color-basic-100);
+}
+
+.banner-status-in-action {
+  background-color: nb-theme(color-warning-default);
+}
+
+.banner-status-is-finished {
+  background-color: nb-theme(color-success-default);
+}
+
+.banner-status-is-canceled {
+  background-color: nb-theme(color-danger-default);
+}
