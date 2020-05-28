@@ -10,28 +10,9 @@
     </div>
   </button>
 </header>
-<nb-accordion>
-  <nb-accordion-item>
-    <nb-accordion-item-header>Audit Scope</nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <div class="criteria-container">
-        <ul *ngFor="let factor of (audit$ | async).scope">
-          <nb-checkbox checked (click)="(false)">
-            {{ factor.title }}
-          </nb-checkbox>
-          <li *ngFor="let criteria of factor.criterias">
-            <nb-checkbox checked (click)="(false)">
-              {{ criteria.title }}
-            </nb-checkbox>
-          </li>
-        </ul>
-      </div>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-</nb-accordion>
 <div class="wrapper-factor-cards">
   <nb-card *ngFor="let factor of (audit$ | async).scope">
-    <nb-card-header>{{ factor.title }}</nb-card-header>
+    <nb-card-header class="subtitle">{{ factor.title }}</nb-card-header>
     <nb-list *ngIf="(audit$ | async).interviews | filterInterviews: factor.title as interviews">
       <nb-list-item *ngFor="let interview of interviews">
         <app-interview-card [interview]="interview"> </app-interview-card>
@@ -39,8 +20,8 @@
     </nb-list>
   </nb-card>
 </div>
-<aside class="hint-no-factors" *ngIf="(audit$ | async).scope.length == 0">
-  <h6 class="text-hint">Keine ISO 25010 Kategorien ausgewählt</h6>
+<aside class="hint-no-interviews" *ngIf="(audit$ | async).scope.length == 0">
+  <h6 class="text-hint">Keine Interviews vorhanden</h6>
 </aside>
 <nb-layout>
   <router-outlet></router-outlet>
