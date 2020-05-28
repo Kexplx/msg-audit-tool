@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Interview } from 'src/app/core/data/models/interview.model';
+import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 
 @Component({
   selector: 'app-interview-card',
@@ -8,6 +8,7 @@ import { Interview } from 'src/app/core/data/models/interview.model';
 })
 export class InterviewCardComponent implements OnInit {
   @Input() interview: Interview;
+  interviewStatuses = InterviewStatus;
 
   constructor() {}
 
