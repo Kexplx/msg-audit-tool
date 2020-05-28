@@ -1,6 +1,7 @@
 import { Audit, AuditStatus } from '../models/audit.model';
 import { factors } from '../factors';
 import * as shortid from 'shortid';
+import { InterviewStatus } from '../models/interview.model';
 
 export const audits: Audit[] = [
   {
@@ -21,21 +22,35 @@ export const audits: Audit[] = [
     },
     status: AuditStatus.IsPlanned,
     scope: factors.slice(0, 2),
-    id: '123',
+    id: 'fdgs345dfg',
     creationDate: Date.now(),
     interviews: [
       {
+        status: InterviewStatus.InAction,
         criteria: factors[0].criterias[0],
         factorTitle: '1. Effektivität',
         end: new Date().getTime(),
         start: Date.now(),
-        persons: [
-          { information: 'Oscar Rosner', role: 'Softwareentwickler' },
-          { information: 'Oscar Rosner', role: 'Softwareentwickler' },
-          { information: 'Oscar Rosner', role: 'Softwareentwickler' },
-        ],
+        persons: [{ information: 'Oscar Rosner', role: 'Softwareentwickler' }],
       },
       {
+        status: InterviewStatus.Finished,
+        criteria: factors[1].criterias[0],
+        factorTitle: '2. Effizienz',
+        end: new Date().getTime(),
+        start: Date.now(),
+        persons: [{ information: 'Oscar Rosner', role: 'Softwareentwickler' }],
+      },
+      {
+        status: InterviewStatus.InAction,
+        criteria: factors[0].criterias[0],
+        factorTitle: '1. Effektivität',
+        end: new Date().getTime(),
+        start: Date.now(),
+        persons: [{ information: 'Oscar Rosner', role: 'Softwareentwickler' }],
+      },
+      {
+        status: InterviewStatus.Finished,
         criteria: factors[1].criterias[0],
         factorTitle: '2. Effizienz',
         end: new Date().getTime(),
