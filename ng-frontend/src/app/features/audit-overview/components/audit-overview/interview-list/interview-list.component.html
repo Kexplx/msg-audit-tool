@@ -10,7 +10,7 @@
     </div>
   </button>
 </header>
-<div class="wrapper-factor-cards">
+<div class="wrapper-interviews">
   <nb-card *ngFor="let factor of (audit$ | async).scope">
     <nb-card-header class="subtitle">{{ factor.title }}</nb-card-header>
     <nb-list *ngIf="(audit$ | async).interviews | filterInterviews: factor.title as interviews">
