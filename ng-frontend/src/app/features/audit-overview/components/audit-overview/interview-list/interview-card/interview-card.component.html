@@ -1,9 +1,27 @@
-<p class="subtitle">
+<p class="subtitle-2">
   {{ interview.criteria.title }}
   <span class="label" *ngIf="interview.start"> {{ ' (' + (interview.start | date: 'dd.MM.yyyy') + ' - ' }} </span>
   <span class="label" *ngIf="interview.end"> {{ (interview.end | date: 'dd.MM.yyyy') + ')' }} </span>
 </p>
 <br />
+<ng-container [ngSwitch]="interview.status">
+  <div
+    nbPopoverPlacement="left"
+    nbPopover="In Bearbeitung"
+    nbPopoverTrigger="hint"
+    *ngSwitchCase="interviewStatuses.InAction"
+    class="banner-status banner-status-in-action"
+    data-cy="audit-status"
+  ></div>
+  <div
+    nbPopoverPlacement="left"
+    nbPopover="Abgeschlossen"
+    nbPopoverTrigger="hint"
+    *ngSwitchCase="interviewStatuses.Finished"
+    class="banner-status banner-status-is-finished"
+    data-cy="audit-status"
+  ></div>
+</ng-container>
 <div *ngFor="let person of interview.persons">
   <span class="label" *ngIf="person.information"> {{ person.information + ' | ' }} </span>
   <span class="label" *ngIf="person.role"> {{ person.role }} </span>
