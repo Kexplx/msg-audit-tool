@@ -35,11 +35,10 @@ public class AnswerRepositoryTest {
     private Interview interview;
     private Question question;
     private FacCrit facCrit;
-    private Audit audit;
 
     @Before
-    public void setUp(){
-        audit = new Audit();
+    public void setUp() {
+        Audit audit = new Audit();
         audit.setName("TestAudit");
         audit.setStartDate(Date.valueOf("2000-01-02"));
         audit.setCreationDate(Timestamp.from(Instant.now()));
@@ -63,7 +62,7 @@ public class AnswerRepositoryTest {
         questionRepository.save(question);
     }
 
-    public void insertValidAnswerEntity(){
+    public void insertValidAnswerEntity() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -81,7 +80,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void insertAnswerWithQuestionIdNull(){
+    public void insertAnswerWithQuestionIdNull() {
         answer = new Answer();
         answer.setInterviewId(interview.getId());
         answer.setResult(true);
@@ -96,7 +95,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void insertAnswerWithInterviewIdNull(){
+    public void insertAnswerWithInterviewIdNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setResult(true);
@@ -111,7 +110,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithResultNull(){
+    public void insertAnswerWithResultNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -128,7 +127,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithResponsibleNull(){
+    public void insertAnswerWithResponsibleNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -145,7 +144,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithDocumentationNull(){
+    public void insertAnswerWithDocumentationNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -162,7 +161,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithProcedureNull(){
+    public void insertAnswerWithProcedureNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -179,7 +178,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithReasonNull(){
+    public void insertAnswerWithReasonNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -196,7 +195,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithProofNull(){
+    public void insertAnswerWithProofNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -213,7 +212,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void insertAnswerWithAnnotationNull(){
+    public void insertAnswerWithAnnotationNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -229,7 +228,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void changeAnswerWithQuestionIdInvalid(){
+    public void changeAnswerWithQuestionIdInvalid() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -247,7 +246,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void changeAnswerWithInterviewIdInvalid(){
+    public void changeAnswerWithInterviewIdInvalid() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -265,7 +264,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithResultNull(){
+    public void changeAnswerWithResultNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -285,7 +284,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithResponsibleNull(){
+    public void changeAnswerWithResponsibleNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -305,7 +304,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithDocumentationNull(){
+    public void changeAnswerWithDocumentationNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -325,7 +324,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithProcedureNull(){
+    public void changeAnswerWithProcedureNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -345,7 +344,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithReasonNull(){
+    public void changeAnswerWithReasonNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -365,7 +364,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithProofNull(){
+    public void changeAnswerWithProofNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -385,7 +384,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerWithAnnotationNull(){
+    public void changeAnswerWithAnnotationNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -405,7 +404,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerResult(){
+    public void changeAnswerResult() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -425,7 +424,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerResponsible(){
+    public void changeAnswerResponsible() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -445,7 +444,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerDocumentation(){
+    public void changeAnswerDocumentation() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -465,7 +464,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerProcedure(){
+    public void changeAnswerProcedure() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -485,7 +484,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerReason(){
+    public void changeAnswerReason() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -505,7 +504,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerProof(){
+    public void changeAnswerProof() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -525,7 +524,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void changeAnswerAnnotation(){
+    public void changeAnswerAnnotation() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -545,7 +544,7 @@ public class AnswerRepositoryTest {
     }
 
     @Test
-    public void deleteAnswerEntity(){
+    public void deleteAnswerEntity() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
@@ -563,7 +562,7 @@ public class AnswerRepositoryTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         repository.delete(answer);
         interviewRepository.delete(interview);
         questionRepository.delete(question);

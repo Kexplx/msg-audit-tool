@@ -4,6 +4,7 @@ package com.amos2020.javabackend.repository;
 import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.entity.ContactPerson;
+import com.amos2020.javabackend.entity.Salutation;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -38,6 +39,7 @@ public class AuditRepositoryTest {
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
     private static final Date TEST_CANCELLATION_DATE = Date.valueOf("2020-02-10");
     private static final String TEST_CANCELLATION_REASON = "Test Reason";
+    private static final Salutation TEST_SALUTATION = Salutation.MANN;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
     private static final String TEST_FORENAME = "Jon";
@@ -45,10 +47,12 @@ public class AuditRepositoryTest {
     private static final String TEST_COMPANY = "testCompany";
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
+    private static final String TEST_CORPORATE_DIVISION = "testDivision";
 
     @Before
     public void setUp() {
         cancellationContactPerson = new ContactPerson();
+        cancellationContactPerson.setSalutation(TEST_SALUTATION);
         cancellationContactPerson.setTitle(TEST_TITLE);
         cancellationContactPerson.setContactInformation(TEST_INFORMATION);
         cancellationContactPerson.setForename(TEST_FORENAME);
@@ -56,6 +60,7 @@ public class AuditRepositoryTest {
         cancellationContactPerson.setCompanyName(TEST_COMPANY);
         cancellationContactPerson.setDepartment(TEST_DEPARTMENT);
         cancellationContactPerson.setSector(TEST_SECTOR);
+        cancellationContactPerson.setCorporateDivision(TEST_CORPORATE_DIVISION);
         contactPersonRepository.save(cancellationContactPerson);
     }
 
