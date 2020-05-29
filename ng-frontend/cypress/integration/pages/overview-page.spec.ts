@@ -1,59 +1,88 @@
+import { AddAudit } from "src/app/core/ngxs/audit.actions";
+
 describe('OverviewPage', () => {
-  let baseUrl = Cypress.config().baseUrl;
-  let testAudit;
-  let testAuditEdited;
+  let auditsUrl = Cypress.config().baseUrl + '/audits';
 
   before(() => {
-    cy.visit(baseUrl);
-    cy.fixture('audits/example-audit').then(json => {
-      testAudit = json;
+    cy.visit(auditsUrl);
+  });
+
+  it('redirects to /audits when visiting the baseUrl', () => {
+    cy.visit(Cypress.config().baseUrl).then(() => {
+      cy.url().should('contain', '/audits');
     });
   });
 
-  // function checkAuditHeader(testAudit) {
-  //   // Verify that an Audit is showing and that it contains the correct Audit name and Company Name
-  //   cy.get('[data-cy=audit-short-infos]').contains(testAudit.name);
-  //   cy.get('[data-cy=audit-short-infos]').contains(testAudit.customerData.name);
-  //   if (testAudit.start || testAudit.end) {
-  //     cy.get('[data-cy=audit-short-infos]').should('exist');
-  //   }
-  // }
+  /**
+   * Testing buttons and other triggable events
+   */
+  context('When focussing on events it...', () => {
+    before(() => {
+      cy.visit(auditsUrl);
+    });
 
-  function checkAuditStatusLabel(testAudit) {
-    cy.get('[data-cy=audit-status]').first().should('exist');
-  }
-
-  it('Opens the window to add an audit with a click on the new audits button', () => {
-    cy.get('[data-cy=new-audit]').click();
-    cy.get('[data-cy=audit-data-form]').should('exist');
+    it('opens the window to add an audit with a click on the new audits button', () => {
+      cy.get('[data-cy=new-audit]').click();
+      cy.get('[data-cy=audit-data-form]').should('exist');
+    });
   });
 
-  it('Shows an audit entry on the overview page when added by an user', () => {
-    cy.inputAudit(testAudit);
-    cy.get('[data-cy=audit-short-infos]').should('exist');
-  });
+  /**
+   * Testing an audit card layout
+   */
+  context('When an audit was added it ...', () => {
+    let testAudit = { name: 'Test' };
+    before(() => {
+      cy.visit(auditsUrl);
+      cy.addAudit(testAudit);
+    });
 
-  it('Adds the correct audit name and company name entered by the user to the overview', () => {
-    cy.testAuditListEntry(testAudit);
-  });
+    it('shows an audit entry on the overview page when added by an user', () => {
+      cy.get('[data-cy=audit-short-infos]').should('exist');
+    });
 
-  it('Shows the audit status label', () => {
-    checkAuditStatusLabel(testAudit);
-  });
+    it('shows a button to see further options to do with the audit', () => {
+      cy.get('[data-cy=audit-options]').should('exist');
+    });
 
-  it('Shows a button to see further options to do with the audit', () => {
-    cy.get('[data-cy=audit-options]').should('exist');
-  });
+    it('redirects to audit page when clicking on an audit ', () => {
+      cy.get('[data-cy=audit-short-infos]').first().click();
+      cy.url().should('contain', 'interview');
+      cy.get('[data-cy=home]').click();
+    });
 
-  it('Clicking on an audit redirects to audit page', () => {
-    cy.get('[data-cy=audit-short-infos]').first().click();
-    cy.url().should('contain', 'interview');
-  });
+    it('removes an audit by clicking on an audit delete button', () => {
+      let testAuditUrl;
+      cy.get('[data-cy=audit-short-infos]').first().click();
+      cy.url().then(url => {
+        testAuditUrl = url;
+      });
+      cy.get('[data-cy=home]').click();
+      cy.get('[data-cy=audit-options]').first().click();
+      cy.get('.menu-title').filter(':visible').filter(':contains("Löschen")').click();
+      cy.get('[data-cy=audits-list]').first().click();
+      cy.url().should('not.equal', testAuditUrl);
+    });
 
-  it('Clicking on an audit delete button should remove the audit', () => {
-    cy.get('[data-cy=home]').click();
-    cy.get('[data-cy=audit-options]').first().click();
-    cy.get('.menu-title').filter(':visible').filter(':contains("Löschen")').click();
-    cy.get('[data-cy=audits-list]').should('not.contain', testAudit.name);
+    it.only('sorts the audits descending by creationDate', () => {
+      let auditsToAdd = [
+        { name: 'Test1' },
+        { name: 'Test2' },
+        { name: 'Test3' },
+        { name: 'Test4' },
+      ];
+
+      auditsToAdd.forEach((audit) => {
+        cy.addAudit(audit);
+      });
+
+      auditsToAdd.reverse();
+
+      cy.get('[data-cy=audit-card]').each((el, index) => {
+        if (index < auditsToAdd.length) {
+          expect(el.contents()).to.contain(auditsToAdd[index].name)); 
+        }
+      });
+    });
   });
 });
