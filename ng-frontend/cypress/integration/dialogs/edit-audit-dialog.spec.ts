@@ -3,7 +3,7 @@
  *
  * Hint: Since the dialogs for editing and adding audits are the same, we don't test for the
  * form here explicitly. These explicit tests can be found in the add-audit-dialog-tests.
- * The form input is done the same way in both edit/add-testsgroups with 
+ * The form input is done the same way in both edit/add-testsgroups with
  * cy.addAudit() so it will implicitely guarantee the form is inputtable and working.
  */
 describe('EditAuditDialog', () => {
@@ -79,8 +79,7 @@ describe('EditAuditDialog', () => {
       });
 
       beforeEach(() => {
-        cy.server();
-        cy.route(auditsUrl);
+        cy.get('[data-cy=home]').click();
       });
 
       it('populates the audits list overview page with consistent edited information', () => {
