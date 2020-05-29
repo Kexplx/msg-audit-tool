@@ -1,7 +1,7 @@
 <form [formGroup]="auditForm" data-cy="audit-data-form">
   <nb-accordion>
     <nb-accordion-item expanded data-cy="audit-basic-data-form">
-      <nb-accordion-item-header>
+      <nb-accordion-item-header data-cy="audit-basic-header">
         1. Audit Grunddaten
       </nb-accordion-item-header>
       <nb-accordion-item-body>
@@ -9,7 +9,7 @@
           <label class="label">Auditname</label>
           <input [status]="auditName.invalid && auditName.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth data-cy="audit-name-input" />
           <div *ngIf="auditName.invalid && auditName.touched">
-            <label class="label text-danger">Auditnamen eintragen</label>
+            <label class="label text-danger" data-cy="auditname-missing-label">Auditnamen eintragen</label>
           </div>
         </div>
         <div class="grid-1-1">
@@ -30,7 +30,7 @@
       </nb-accordion-item-body>
     </nb-accordion-item>
     <nb-accordion-item data-cy="audit-customer-data-form">
-      <nb-accordion-item-header>
+      <nb-accordion-item-header data-cy="audit-customer-data-header">
         2. Kundendaten
       </nb-accordion-item-header>
       <nb-accordion-item-body>
@@ -57,7 +57,7 @@
       </nb-accordion-item-body>
     </nb-accordion-item>
     <nb-accordion-item data-cy="audit-contact-data-form">
-      <nb-accordion-item-header>
+      <nb-accordion-item-header data-cy="audit-contact-data-header">
         3. Kontaktdaten
       </nb-accordion-item-header>
       <nb-accordion-item-body>
@@ -91,8 +91,8 @@
         </div>
       </nb-accordion-item-body>
     </nb-accordion-item>
-    <nb-accordion-item style="border-radius: 0;">
-      <nb-accordion-item-header>4. ISO/IEC 25010 Kategorien</nb-accordion-item-header>
+    <nb-accordion-item style="border-radius: 0;" data-cy="audit-scope-form">
+      <nb-accordion-item-header data-cy="audit-scope-header">4. ISO/IEC 25010 Kategorien</nb-accordion-item-header>
       <nb-accordion-item-body>
         <div class="criteria-container">
           <ul *ngFor="let factor of formFactors">
@@ -111,7 +111,7 @@
   </nb-accordion>
 
   <nb-card style="border-top-left-radius: 0; border-top-right-radius: 0;">
-    <div class="accordion-footer">
+    <div class="accordion-footer" data-cy="audit-data-buttons">
       <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
         abbrechen
       </button>

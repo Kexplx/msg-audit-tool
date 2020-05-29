@@ -100,7 +100,16 @@ function testAuditListEntry(testAudit) {
   if (!testAudit.end) {
     cy.get('[data-cy=audit-short-infos]').contains('TBD');
   }
+  // A newly added audit always has the status 'Planned'
+  cy.get('[data-cy=audit-status]').first().should('have.attr', 'nbPopover');
+  cy.get('[data-cy=audit-status]').first().invoke('attr', 'nbPopover').should('contain', 'Geplant');
 }
+
+// TODO testAlertDialog
+// it('Clicking yes on warning message should close overlay', () => {
+//     cy.get('[data-cy=discard]').click();
+//     cy.get('[data-cy=discard-back-dialog]').should('not.exist');
+//   });
 
 Cypress.Commands.add('addAudit', addAudit);
 Cypress.Commands.add('inputAudit', inputAudit);
