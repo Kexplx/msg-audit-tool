@@ -94,13 +94,13 @@ public class FacCritRepositoryTest {
 
         criteria = new FacCrit();
         criteria.setName("TestKriterium");
-        FacCrit tmp =  repository.save(criteria);
+        FacCrit tmp = repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
         tmp.setReferenceId(factor.getId());
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
         Assert.assertEquals(tmp.getReferenceId(), criteria.getReferenceId());
-        Assert.assertEquals((Integer)factor.getId(), tmp.getReferenceId());
+        Assert.assertEquals((Integer) factor.getId(), tmp.getReferenceId());
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -113,7 +113,7 @@ public class FacCritRepositoryTest {
         criteria = new FacCrit();
         criteria.setName("TestKriterium");
         criteria.setReferenceId(factor.getId());
-        FacCrit tmp =  repository.save(criteria);
+        FacCrit tmp = repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
         tmp.setReferenceId(9999);
         repository.save(tmp);

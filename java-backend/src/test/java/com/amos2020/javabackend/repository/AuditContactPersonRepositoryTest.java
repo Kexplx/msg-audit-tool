@@ -1,9 +1,6 @@
 package com.amos2020.javabackend.repository;
 
-import com.amos2020.javabackend.entity.Audit;
-import com.amos2020.javabackend.entity.AuditContactPerson;
-import com.amos2020.javabackend.entity.AuditStatus;
-import com.amos2020.javabackend.entity.ContactPerson;
+import com.amos2020.javabackend.entity.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -42,8 +39,8 @@ public class AuditContactPersonRepositoryTest {
 
     private static final String TEST_NAME = "TestName";
     private static final Date TEST_START_DATE = Date.valueOf("2019-10-10");
-    private static final Date TEST_EXPECTED_END_DATE = Date.valueOf("2020-02-02");
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
+    private static final Salutation TEST_SALUTATION = Salutation.MANN;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
     private static final String TEST_FORENAME = "Jon";
@@ -51,6 +48,7 @@ public class AuditContactPersonRepositoryTest {
     private static final String TEST_COMPANY = "testCompany";
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
+    private static final String TEST_CORPORATE_DIVISION = "testDivision";
 
     @Before
     public void setUp() {
@@ -64,6 +62,7 @@ public class AuditContactPersonRepositoryTest {
         Assert.assertTrue(auditRepository.exists((Example.of(audit))));
 
         contactPerson = new ContactPerson();
+        contactPerson.setSalutation(TEST_SALUTATION);
         contactPerson.setTitle(TEST_TITLE);
         contactPerson.setContactInformation(TEST_INFORMATION);
         contactPerson.setForename(TEST_FORENAME);
@@ -71,6 +70,7 @@ public class AuditContactPersonRepositoryTest {
         contactPerson.setCompanyName(TEST_COMPANY);
         contactPerson.setDepartment(TEST_DEPARTMENT);
         contactPerson.setSector(TEST_SECTOR);
+        contactPerson.setCorporateDivision(TEST_CORPORATE_DIVISION);
         contactPersonRepository.save(contactPerson);
         Assert.assertTrue(contactPersonRepository.exists((Example.of(contactPerson))));
     }

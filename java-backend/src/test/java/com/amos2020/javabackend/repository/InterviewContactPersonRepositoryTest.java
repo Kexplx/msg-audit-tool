@@ -11,7 +11,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.persistence.PersistenceUnit;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -36,8 +35,8 @@ public class InterviewContactPersonRepositoryTest {
 
     private static final String TEST_NAME = "TestName";
     private static final Date TEST_START_DATE = Date.valueOf("2019-10-10");
-    private static final Date TEST_EXPECTED_END_DATE = Date.valueOf("2020-02-02");
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
+    private static final Salutation TEST_SALUTATION = Salutation.MANN;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
     private static final String TEST_FORENAME = "Jon";
@@ -45,8 +44,7 @@ public class InterviewContactPersonRepositoryTest {
     private static final String TEST_COMPANY = "testCompany";
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
-
-
+    private static final String TEST_CORPORATE_DIVISION = "testDivision";
 
     @Before
     public void before() {
@@ -62,6 +60,7 @@ public class InterviewContactPersonRepositoryTest {
 
 
         contactPerson = new ContactPerson();
+        contactPerson.setSalutation(TEST_SALUTATION);
         contactPerson.setTitle(TEST_TITLE);
         contactPerson.setContactInformation(TEST_INFORMATION);
         contactPerson.setForename(TEST_FORENAME);
@@ -69,6 +68,7 @@ public class InterviewContactPersonRepositoryTest {
         contactPerson.setCompanyName(TEST_COMPANY);
         contactPerson.setDepartment(TEST_DEPARTMENT);
         contactPerson.setSector(TEST_SECTOR);
+        contactPerson.setCorporateDivision(TEST_CORPORATE_DIVISION);
         contactPersonRepository.save(contactPerson);
         Assert.assertTrue(contactPersonRepository.exists((Example.of(contactPerson))));
 
@@ -120,6 +120,7 @@ public class InterviewContactPersonRepositoryTest {
     @Test
     public void changeValidContactPerson() {
         ContactPerson contactPerson_new = new ContactPerson();
+        contactPerson_new.setSalutation(TEST_SALUTATION);
         contactPerson_new.setTitle(TEST_TITLE);
         contactPerson_new.setContactInformation(TEST_INFORMATION);
         contactPerson_new.setForename(TEST_FORENAME + "new");
@@ -127,6 +128,7 @@ public class InterviewContactPersonRepositoryTest {
         contactPerson_new.setCompanyName(TEST_COMPANY + "new");
         contactPerson_new.setDepartment(TEST_DEPARTMENT + "new");
         contactPerson_new.setSector(TEST_SECTOR + "new");
+        contactPerson_new.setCorporateDivision(TEST_CORPORATE_DIVISION + "new");
         contactPersonRepository.save(contactPerson_new);
         Assert.assertTrue(contactPersonRepository.exists((Example.of(contactPerson_new))));
 

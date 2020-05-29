@@ -2,12 +2,14 @@ package com.amos2020.javabackend.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 public class ContactPerson {
     private int id;
+    private Salutation salutation;
     private String title;
     private String forename;
     private String surname;
@@ -15,6 +17,8 @@ public class ContactPerson {
     private String companyName;
     private String department;
     private String sector;
+    private String corporateDivision;
+
     private Collection<Audit> auditsById;
     private Collection<AuditContactPerson> auditContactPeopleById;
     private Collection<InterviewContactPerson> interviewContactPeopleById;
@@ -28,6 +32,17 @@ public class ContactPerson {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @NotNull
+    @Column(name = "salutation")
+    public Salutation getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(Salutation salutation) {
+        this.salutation = salutation;
     }
 
     @Basic
@@ -106,6 +121,17 @@ public class ContactPerson {
         this.sector = sector;
     }
 
+    @Basic
+    @NotBlank
+    @Column(name = "corporate_division")
+    public String getCorporateDivision() {
+        return corporateDivision;
+    }
+
+    public void setCorporateDivision(String corporateDivision) {
+        this.corporateDivision = corporateDivision;
+    }
+
     @OneToMany(mappedBy = "contactPersonByCancellationContactPerson")
     public Collection<Audit> getAuditsById() {
         return auditsById;
@@ -141,6 +167,7 @@ public class ContactPerson {
         ContactPerson that = (ContactPerson) o;
 
         if (id != that.id) return false;
+        if (!Objects.equals(salutation, that.salutation)) return false;
         if (!Objects.equals(title, that.title)) return false;
         if (!Objects.equals(forename, that.forename)) return false;
         if (!Objects.equals(surname, that.surname)) return false;
@@ -148,12 +175,14 @@ public class ContactPerson {
             return false;
         if (!Objects.equals(companyName, that.companyName)) return false;
         if (!Objects.equals(department, that.department)) return false;
-        return Objects.equals(sector, that.sector);
+        if (!Objects.equals(sector, that.sector)) return false;
+        return Objects.equals(corporateDivision, that.corporateDivision);
     }
 
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + (salutation != null ? salutation.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (forename != null ? forename.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
@@ -161,6 +190,7 @@ public class ContactPerson {
         result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         result = 31 * result + (department != null ? department.hashCode() : 0);
         result = 31 * result + (sector != null ? sector.hashCode() : 0);
+        result = 31 * result + (corporateDivision != null ? corporateDivision.hashCode() : 0);
         return result;
     }
 }
