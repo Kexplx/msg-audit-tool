@@ -1,7 +1,9 @@
 const baseUrl = Cypress.config().baseUrl;
 
 function addAudit(testAudit) {
-  cy.visit(baseUrl + '/audits/new');
+  //cy.visit(baseUrl + '/audits/new');
+  cy.get('[data-cy=home]');
+  cy.get('[data-cy=new-audit]').click();
   inputAudit(testAudit);
 }
 
@@ -23,44 +25,68 @@ function inputAudit(testAudit) {
     cy.get('.today > .cell-content').click();
   }
   cy.get('[data-cy=audit-basic-data-form]').click();
-  cy.get('[data-cy=audit-customer-data-form]').click();
-
   // Input Customer data and open next collapsed accordeon through click
-  cy.get('[data-cy=audit-customer-name-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.customerData.name);
-  cy.get('[data-cy=audit-customer-department-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.customerData.department);
-  cy.get('[data-cy=audit-customer-division-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.customerData.corporateDivision);
-  cy.get('[data-cy=audit-customer-sector-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.customerData.sector);
-  cy.get('[data-cy=audit-customer-data-form]').click();
-  cy.get('[data-cy=audit-contact-data-form]').click();
+  if (testAudit.customerData) {
+    cy.get('[data-cy=audit-customer-data-form]').click();
+    if (testAudit.customerData.name) {
+      cy.get('[data-cy=audit-customer-name-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.customerData.name);
+    }
+    if (testAudit.customerData.department) {
+      cy.get('[data-cy=audit-customer-department-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.customerData.department);
+    }
+    if (testAudit.customerData.corporateDivision) {
+      cy.get('[data-cy=audit-customer-division-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.customerData.corporateDivision);
+    }
+    if (testAudit.customerData.sector) {
+      cy.get('[data-cy=audit-customer-sector-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.customerData.sector);
+    }
+    cy.get('[data-cy=audit-customer-data-form]').click();
+  }
 
-  // Input Contact Information and open next collapsed accordeon through click
-  cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
-  cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
-  cy.get('[data-cy=audit-contact-title-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.contactPerson.salutation);
-  cy.get('[data-cy=audit-contact-firstname-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.contactPerson.firstName);
-  cy.get('[data-cy=audit-contact-lastname-input]')
-    .filter(':visible')
-    .clear()
-    .type(testAudit.contactPerson.lastName);
-  cy.get('[data-cy=audit-contact-info-input]').clear().type(testAudit.contactPerson.information);
+  if (testAudit.contactPerson) {
+    cy.get('[data-cy=audit-contact-data-form]').click();
+
+    // Input Contact Information and open next collapsed accordeon through click
+    cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
+    if (testAudit.contactPerson.title) {
+      cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
+    }
+    if (testAudit.contactPerson.salutation) {
+      cy.get('[data-cy=audit-contact-title-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.contactPerson.salutation);
+    }
+    if (testAudit.contactPerson.firstName) {
+      cy.get('[data-cy=audit-contact-firstname-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.contactPerson.firstName);
+    }
+    if (testAudit.contactPerson.lastName) {
+      cy.get('[data-cy=audit-contact-lastname-input]')
+        .filter(':visible')
+        .clear()
+        .type(testAudit.contactPerson.lastName);
+    }
+    if (testAudit.contactPerson.information) {
+      cy.get('[data-cy=audit-contact-info-input]')
+        .clear()
+        .type(testAudit.contactPerson.information);
+    }
+  }
   cy.get('[data-cy=submit-audit-data-form]').click();
 }
 

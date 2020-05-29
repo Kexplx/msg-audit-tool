@@ -31,6 +31,9 @@ describe('AuditPage', () => {
     cy.url().should('contain', 'interviews');
   });
 
+  /**
+   * Tests the interviews overview of an audit
+   */
   context('When in interview overview it ...', () => {
     before(() => {
       cy.server();
@@ -62,6 +65,9 @@ describe('AuditPage', () => {
     // });
   });
 
+  /**
+   * Tests the audit info page
+   */
   context('When on info page it ...', () => {
     before(() => {
       cy.server();
