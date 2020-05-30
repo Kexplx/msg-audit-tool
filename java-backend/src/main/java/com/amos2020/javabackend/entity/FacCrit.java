@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "fac_crit")
 public class FacCrit {
     private int id;
     private Integer referenceId;

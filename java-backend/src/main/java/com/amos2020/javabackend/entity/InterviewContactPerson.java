@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Entity
 @IdClass(InterviewContactPersonPK.class)
+@Table(name = "interview_contact_person")
 public class InterviewContactPerson {
     private int interviewId;
     private int contactPersonId;

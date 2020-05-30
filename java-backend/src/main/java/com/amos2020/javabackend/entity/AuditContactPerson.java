@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @IdClass(AuditContactPersonPK.class)
+@Table(name = "audit_contact_person")
 public class AuditContactPerson {
     private int auditId;
     private int contactPersonId;
@@ -48,7 +49,7 @@ public class AuditContactPerson {
         return result;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "audit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Audit getAuditByAuditId() {
         return auditByAuditId;
@@ -58,7 +59,7 @@ public class AuditContactPerson {
         this.auditByAuditId = auditByAuditId;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_person_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public ContactPerson getContactPersonByContactPersonId() {
         return contactPersonByContactPersonId;

@@ -62,6 +62,7 @@ public class Interview {
 
     @Basic
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     public InterviewStatus getStatus() {
         return status;
