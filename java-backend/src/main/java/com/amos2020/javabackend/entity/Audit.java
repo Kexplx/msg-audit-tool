@@ -101,6 +101,7 @@ public class Audit {
 
     @Basic
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     public AuditStatus getStatus() {
         return status;
@@ -131,7 +132,7 @@ public class Audit {
         this.contactPersonByCancellationContactPerson = contactPersonByCancellationContactPerson;
     }
 
-    @OneToMany(mappedBy = "auditByAuditId")
+    @OneToMany(mappedBy = "auditByAuditId", cascade = CascadeType.ALL)
     public Collection<AuditContactPerson> getAuditContactPeopleById() {
         return auditContactPeopleById;
     }
@@ -140,7 +141,7 @@ public class Audit {
         this.auditContactPeopleById = auditContactPeopleById;
     }
 
-    @OneToMany(mappedBy = "auditByAuditId")
+    @OneToMany(mappedBy = "auditByAuditId", cascade = CascadeType.ALL)
     public Collection<Interview> getInterviewsById() {
         return interviewsById;
     }
@@ -149,7 +150,7 @@ public class Audit {
         this.interviewsById = interviewsById;
     }
 
-    @OneToMany(mappedBy = "auditByAuditId")
+    @OneToMany(mappedBy = "auditByAuditId", cascade = CascadeType.ALL)
     public Collection<Scope> getScopesById() {
         return scopesById;
     }

@@ -3,6 +3,7 @@ package com.amos2020.javabackend.service;
 import com.amos2020.javabackend.entity.AuditContactPerson;
 import com.amos2020.javabackend.repository.AuditContactPersonRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,5 +27,10 @@ public class AuditContactPersonService {
         auditContactPerson.setAuditId(auditId);
         auditContactPerson.setContactPersonId(contactPersonId);
         repository.save(auditContactPerson);
+    }
+
+    @Transactional
+    public void deleteAllForAuditId(int id) {
+        repository.deleteByAuditId(id);
     }
 }

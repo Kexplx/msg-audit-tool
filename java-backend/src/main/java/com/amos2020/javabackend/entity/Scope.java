@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -11,7 +13,9 @@ public class Scope {
     private int faccritId;
     private String changeNote;
     private Boolean removed;
+    @JsonIgnore
     private Audit auditByAuditId;
+    @JsonIgnore
     private FacCrit facCritByFaccritId;
 
     @Id
@@ -57,7 +61,7 @@ public class Scope {
         this.removed = removed;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "audit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public Audit getAuditByAuditId() {
         return auditByAuditId;
@@ -67,7 +71,7 @@ public class Scope {
         this.auditByAuditId = auditByAuditId;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "faccrit_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     public FacCrit getFacCritByFaccritId() {
         return facCritByFaccritId;

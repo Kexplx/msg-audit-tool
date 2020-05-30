@@ -11,10 +11,9 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+public class BasicAuditResponse {
 
-public class CreateAuditResponse {
-
-    public CreateAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPeople) {
+    public BasicAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPeople) {
         this.auditId = audit.getId();
         this.auditName = audit.getName();
         this.startDate = audit.getStartDate();
@@ -22,6 +21,9 @@ public class CreateAuditResponse {
         this.status = audit.getStatus();
         this.scope = scope;
         this.contactPeople = contactPeople;
+        this.cancellationContactPerson = audit.getContactPersonByCancellationContactPerson();
+        this.cancellationDate = audit.getCancellationDate();
+        this.cancellationReason = audit.getCancellationReason();
     }
 
     @Getter
@@ -51,4 +53,17 @@ public class CreateAuditResponse {
     @Getter
     @Setter
     private List<ContactPerson> contactPeople;
+
+    @Getter
+    @Setter
+    private Date cancellationDate;
+
+    @Getter
+    @Setter
+    private String cancellationReason;
+
+    @Getter
+    @Setter
+    private ContactPerson cancellationContactPerson;
+
 }
