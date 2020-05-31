@@ -44,4 +44,20 @@ public class AuditService {
     public Audit updateAudit(Audit audit) {
         return repository.save(audit);
     }
+
+
+    public Audit cancelAudit(int auditId, Date cancelDate, int cancelPerson, String cancelReason) {
+        Optional<Audit> auditOptional = repository.findById(auditId);
+        if (!auditOptional.isPresent())
+            return null;
+
+        Audit audit = auditOptional.get();
+        audit.setStatus(AuditStatus.CANCELED);
+        audit.setCancellationDate(cancelDate);
+        audit.setCancellationContactPerson(cancelPerson);
+        audit.setCancellationReason(cancelReason);
+        return repository.save(audit);
+    }
+
+
 }
