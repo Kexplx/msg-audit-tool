@@ -8,6 +8,7 @@ describe('AddInterviewDialog', () => {
         testAudit = json;
       })
       .then(() => {
+        cy.visit(Cypress.config().baseUrl);
         cy.addAudit(testAudit);
         // go to specific audit interview page
         cy.get('[data-cy=audit-card]').first().click();

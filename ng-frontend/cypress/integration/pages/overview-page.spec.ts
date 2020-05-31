@@ -80,7 +80,7 @@ describe('OverviewPage', () => {
 
       cy.get('[data-cy=audit-card]').each((el, index) => {
         if (index < auditsToAdd.length) {
-          expect(el.contents()).to.contain(auditsToAdd[index].name)); 
+          cy.wrap(el).should('contain', auditsToAdd[index].name);
         }
       });
     });
