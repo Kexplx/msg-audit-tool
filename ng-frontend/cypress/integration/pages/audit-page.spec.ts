@@ -1,9 +1,8 @@
-import { factors } from '../../../src/app/core/data/factors';
-
 describe('AuditPage', () => {
   let baseUrl = Cypress.config().baseUrl;
   let testAudit;
   let testAuditUrl;
+  let factors;
 
   before(() => {
     // import testAudit that does not contain startdate nor enddate
@@ -20,6 +19,9 @@ describe('AuditPage', () => {
           testAuditUrl = url;
         });
       });
+    cy.fixture('iso-constants/factors-criteria').then(f => {
+      factors = f;
+    });
   });
 
   beforeEach(() => {
