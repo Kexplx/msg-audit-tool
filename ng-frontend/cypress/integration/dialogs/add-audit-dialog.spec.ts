@@ -1,10 +1,14 @@
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
+  let isoConstants;
   let testAudit;
 
   before(() => {
     cy.fixture('audits/example-audit').then(json => {
       testAudit = json;
+    });
+    cy.fixture('iso-constants/factors-criteria.json').then(json => {
+      isoConstants = json;
     });
   });
 
@@ -186,6 +190,16 @@ describe('AddAuditDialog', () => {
   });
 
   context('When focussing on the scope it...', () => {
+    let allCriteria = [];
+
+    before(() => {
+      isoConstants.forEach(factor => {
+        factor.criteria.forEach(c => {
+          allCriteria.push(c);
+        });
+      });
+    });
+
     beforeEach(() => {
       cy.visit(auditsUrl + '/new');
       cy.get('[data-cy=audit-scope-header]').click();
@@ -198,7 +212,47 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=audit-scope-header]').click();
     });
 
-    // TODO Add more tests to verify the Categories and Factors are displayed correctly
+    it('shows all factors and criteria from the ISO Norm', () => {
+      cy.get('[data-cy=factor-entry]').each((el, index) => {
+        cy.wrap(el).should('contain', isoConstants[index].title);
+      });
+      cy.get('[data-cy=criteria-entry]').each((el, index) => {
+        cy.wrap(el).should('contain', allCriteria[index].title);
+      });
+    });
+
+    it('checks all factors and criteria (default)', () => {
+      cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+      });
+      cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+      });
+    });
+
+    it('allows unchecking all entries', () => {
+      cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).click();
+        cy.wrap(el).should('not.have.class', 'checked');
+      });
+      cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).click();
+        cy.wrap(el).should('not.have.class', 'checked');
+      });
+    });
+
+    it('automatically checks/unchecks all criteria if factor was checked/unchecked', () => {
+      cy.get('[data-cy=factor-entry]').each((el, index) => {
+        cy.wrap(el).click();
+        cy.wrap(el)
+          .get('[data-cy=criteria-entry]')
+          .each(criteria => {
+            cy.wrap(criteria).should('not.have.class', 'checked');
+          });
+      });
+    });
   });
 
   /**
@@ -237,6 +291,8 @@ describe('AddAuditDialog', () => {
     it('Adding only a name should be sufficient to enable hinzufügen button', () => {
       cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
       cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
+      cy.get('[data-cy=cancel-audit-data-form]').click();
+      cy.get('[data-cy=discard]');
     });
   });
 
@@ -245,15 +301,15 @@ describe('AddAuditDialog', () => {
    */
   context('When an audit was added it ...', () => {
     before(() => {
+      cy.visit(auditsUrl);
       cy.addAudit(testAudit);
     });
 
     beforeEach(() => {
-      cy.server();
-      cy.route(auditsUrl);
+      cy.get('[data-cy=home]');
     });
 
-    it('populates the audits list overview page with consistent information', () => {
+    it.only('populates the audits list overview page with consistent information', () => {
       cy.testAuditListEntry(testAudit);
     });
 

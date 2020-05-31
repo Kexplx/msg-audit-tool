@@ -94,13 +94,13 @@
     <nb-accordion-item style="border-radius: 0;" data-cy="audit-scope-form">
       <nb-accordion-item-header data-cy="audit-scope-header">4. ISO/IEC 25010 Kategorien</nb-accordion-item-header>
       <nb-accordion-item-body>
-        <div class="criteria-container">
+        <div class="criteria-container" data-cy="facrit-entry">
           <ul *ngFor="let factor of formFactors">
-            <nb-checkbox [checked]="factor['selected']" (checkedChange)="onFactorSelect(factor)">
+            <nb-checkbox [checked]="factor['selected']" (checkedChange)="onFactorSelect(factor)" data-cy="factor-entry">
               {{ factor.title }}
             </nb-checkbox>
             <li *ngFor="let criteria of factor.criterias">
-              <nb-checkbox [checked]="criteria['selected']" (checkedChange)="criteria['selected'] = !criteria['selected']">
+              <nb-checkbox [checked]="criteria['selected']" (checkedChange)="criteria['selected'] = !criteria['selected']" data-cy="criteria-entry">
                 {{ criteria.title }}
               </nb-checkbox>
             </li>
