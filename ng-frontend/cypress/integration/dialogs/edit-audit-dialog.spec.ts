@@ -45,6 +45,7 @@ describe('EditAuditDialog', () => {
    * @param testAuditEdited
    */
   function editAuditFromAuditsOverview(testAudit, testAuditEdited) {
+    cy.get('[data-cy=home]').click();
     cy.addAudit(testAudit);
     cy.get('[data-cy=audit-options]').first().click();
     cy.contains('Bearbeiten').click();
@@ -59,6 +60,7 @@ describe('EditAuditDialog', () => {
    * @param testAuditEdited
    */
   function editAuditFromInfoPage(testAudit, testAuditEdited) {
+    cy.get('[data-cy=home]').click();
     cy.addAudit(testAudit);
     cy.get('[data-cy=audit-short-infos]').first().click();
     cy.contains('infos').click();
@@ -78,11 +80,8 @@ describe('EditAuditDialog', () => {
         beforeFunc.func(testAudit, testAuditEdited);
       });
 
-      beforeEach(() => {
-        cy.get('[data-cy=home]').click();
-      });
-
       it('populates the audits list overview page with consistent edited information', () => {
+        cy.get('[data-cy=home]').click();
         cy.testAuditListEntry(testAuditEdited);
       });
 
