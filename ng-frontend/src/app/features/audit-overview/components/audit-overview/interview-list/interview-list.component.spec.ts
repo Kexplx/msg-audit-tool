@@ -22,7 +22,6 @@ describe('InterviewListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InterviewListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
