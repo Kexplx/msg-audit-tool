@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.controller;
 
+import com.amos2020.javabackend.controller.request.CancelAuditRequest;
 import com.amos2020.javabackend.controller.request.CreateAuditRequest;
 import com.amos2020.javabackend.controller.response.CreateAuditResponse;
 import com.amos2020.javabackend.entity.Audit;
@@ -8,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 public class AuditController {
@@ -53,5 +56,26 @@ public class AuditController {
 
 
         return ResponseEntity.ok(response);
+    }
+
+
+
+    @PostMapping("/delete")
+    public ResponseEntity<CancelAuditRequest> cancelAudit(@RequestBody CancelAuditRequest request) {
+        CreateAuditResponse response;
+
+        try {
+            // Validate parameters for canceling an audit
+            request.isValid();
+
+            // Cancel Audit
+            auditService.cancelAudit(request.getAuditId(), request.getDate(), request.getContact(), request.getReason());
+
+        }catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+
+        return ResponseEntity.ok().build();
     }
 }

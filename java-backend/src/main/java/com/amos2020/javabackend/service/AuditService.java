@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 public class AuditService {
@@ -30,4 +31,20 @@ public class AuditService {
         repository.save(audit);
         return audit;
     }
+
+
+    public Audit cancelAudit(int auditId, Date cancelDate, int cancelPerson, String cancelReason) {
+        Optional<Audit> auditOptional = repository.findById(auditId);
+        if (!auditOptional.isPresent())
+            return null;
+
+        Audit audit = auditOptional.get();
+        audit.setStatus(AuditStatus.CANCELED);
+        audit.setCancellationDate(cancelDate);
+        audit.setCancellationContactPerson(cancelPerson);
+        audit.setCancellationReason(cancelReason);
+        return repository.save(audit);
+    }
+
+
 }
