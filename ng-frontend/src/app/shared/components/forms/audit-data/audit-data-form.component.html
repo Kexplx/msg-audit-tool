@@ -41,54 +41,6 @@
           </div>
         </div>
       </div>
-      <div class="grid-1-1">
-        <div class="form-item">
-          <label class="label">Unternehmen</label>
-          <input formControlName="companyName" nbInput fullWidth data-cy="audit-customer-name-input" />
-        </div>
-        <div class="form-item">
-          <label class="label">Abteilung</label>
-          <input formControlName="department" nbInput fullWidth data-cy="audit-customer-department-input" />
-        </div>
-      </div>
-      <div class="grid-1-1">
-        <div class="form-item">
-          <label class="label">Unternehmensbereich</label>
-          <input formControlName="corporateDivision" nbInput fullWidth data-cy="audit-customer-division-input" />
-        </div>
-        <div class="form-item">
-          <label class="label">Branche</label>
-          <input formControlName="sector" nbInput fullWidth data-cy="audit-customer-sector-input" />
-        </div>
-      </div>
-      <div class="grid-1-1 mb-2">
-        <div class="form-item">
-          <label class="label">Anrede</label>
-          <nb-select formControlName="salutation" fullWidth data-cy="audit-contact-salutation-input">
-            <nb-option value="Herr" data-cy="salutation-option">Herr</nb-option>
-            <nb-option value="Frau" data-cy="salutation-option">Frau</nb-option>
-            <nb-option value="Divers" data-cy="salutation-option">Divers</nb-option>
-          </nb-select>
-        </div>
-        <div class="form-item">
-          <label class="label">Titel</label>
-          <input formControlName="title" nbInput fullWidth data-cy="audit-contact-title-input" />
-        </div>
-      </div>
-      <div class="grid-1-1 mb-2">
-        <div class="form-item">
-          <label class="label">Vorname</label>
-          <input formControlName="firstName" nbInput fullWidth data-cy="audit-contact-firstname-input" />
-        </div>
-        <div class="form-item">
-          <label class="label">Nachname</label>
-          <input formControlName="lastName" nbInput fullWidth data-cy="audit-contact-lastname-input" />
-        </div>
-      </div>
-      <div class="form-item field-item-contact-information">
-        <label class="label">Kontaktinformation</label>
-        <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="audit-contact-info-input"></textarea>
-      </div>
     </nb-card-body>
     <nb-card-footer>
       <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
