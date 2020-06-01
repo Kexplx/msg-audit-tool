@@ -2,10 +2,12 @@ package com.amos2020.javabackend.controller;
 
 import com.amos2020.javabackend.controller.request.CreateAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditRequest;
+import com.amos2020.javabackend.controller.request.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.controller.response.BasicAuditResponse;
 import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.AuditContactPerson;
 import com.amos2020.javabackend.entity.ContactPerson;
+import com.amos2020.javabackend.entity.Scope;
 import com.amos2020.javabackend.service.*;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -64,12 +66,12 @@ public class AuditController {
     /**
      * PUT endpoint for changing the data (name, startDate, endDate) of an audit or the corresponding contact people
      *
-     * @param auditID int
+     * @param auditId int
      * @param request UpdateAuditRequest
      * @return BasicAuditResponse
      */
     @PutMapping("/audit/{id}")
-    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditID, @RequestBody UpdateAuditRequest request) {
+    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditId, @RequestBody UpdateAuditRequest request) {
         BasicAuditResponse response;
 
         try {
@@ -77,7 +79,7 @@ public class AuditController {
             request.isValid();
 
             // check if audit exists
-            Audit audit = auditService.getAuditById(auditID);
+            Audit audit = auditService.getAuditById(auditId);
             // check if all contactPerson ids are valid
             List<ContactPerson> contactPeople = contactPersonService.getAllByIds(request.getContactPeople());
             List<AuditContactPerson> auditContactPeople = new ArrayList<>();
@@ -95,11 +97,7 @@ public class AuditController {
             audit.setAuditContactPeopleById(auditContactPeople);
             audit = auditService.updateAudit(audit);
 
-            List<Integer> list = new ArrayList<>();
-            audit.getScopesById().forEach(item -> list.add(item.getFaccritId()));
-
-            // Create Response object
-            response = new BasicAuditResponse(audit, facCritService.getAllById(list), contactPeople);
+            response = buildBasicResponse(audit);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (NotFoundException e) {
@@ -107,5 +105,53 @@ public class AuditController {
         }
 
         return ResponseEntity.ok(response);
+    }
+
+    /**
+     * PUT endpoint for changing a faccrit in the scope of an audit or the corresponding contact people
+     *
+     * @param auditId int
+     * @param request UpdateAuditScopeRequest
+     * @return BasicAuditResponse
+     */
+    @PutMapping("/audit/{id}/scope")
+    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
+        BasicAuditResponse response;
+        try {
+            request.isValid();
+
+            Audit audit = auditService.getAuditById(auditId);
+
+            facCritService.exists(request.getFacCritId());
+
+            Scope scopeItem = scopeService.updateScopeItem(auditId, request.getFacCritId(), request.getChangeNote(), request.isRemoved());
+
+            // update scope of audit
+            audit.getScopesById().add(scopeItem);
+            audit = auditService.updateAudit(audit);
+
+            // create Response object
+            response = buildBasicResponse(audit);
+        } catch (
+                IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (
+                NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalAccessException e) {
+            return ResponseEntity.status(401).build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
+
+    private BasicAuditResponse buildBasicResponse(Audit audit) throws NotFoundException {
+        List<Integer> facCritIds = new ArrayList<>();
+        audit.getScopesById().stream().filter(item -> !item.getRemoved()).forEach(item -> facCritIds.add(item.getFaccritId()));
+
+        List<Integer> contactPeopleIds = new ArrayList<>();
+        audit.getAuditContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
+
+        return new BasicAuditResponse(audit, facCritService.getAllById(facCritIds), contactPersonService.getAllByIds(contactPeopleIds));
     }
 }

@@ -6,6 +6,7 @@ import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FacCritService {
@@ -22,5 +23,14 @@ public class FacCritService {
             throw new NotFoundException("Not all factor/criteria ids are valid");
         }
         return facCrits;
+    }
+
+
+    public FacCrit exists(int facCritId) throws NotFoundException {
+        Optional<FacCrit> facCrit = repository.findById(facCritId);
+        if (facCrit.isEmpty()){
+            throw new NotFoundException("FacCrit can not be found");
+        }
+        return facCrit.get();
     }
 }
