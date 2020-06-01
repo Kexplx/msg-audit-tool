@@ -28,7 +28,7 @@ public class FacCritService {
 
     public FacCrit exists(int facCritId) throws NotFoundException {
         Optional<FacCrit> facCrit = repository.findById(facCritId);
-        if (facCrit.isEmpty()){
+        if (!facCrit.isPresent()) {
             throw new NotFoundException("FacCrit can not be found");
         }
         return facCrit.get();
