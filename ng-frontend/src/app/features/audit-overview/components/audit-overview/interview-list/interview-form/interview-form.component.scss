@@ -7,6 +7,11 @@ li {
   margin-left: 20px;
 }
 
+hr {
+  border: none;
+  border-bottom: 1px solid #edf1f7;
+}
+
 .criteria-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -34,11 +39,6 @@ li {
 
 .field-item-audit-name {
   margin-bottom: 20px;
-}
-
-hr {
-  border: none;
-  border-bottom: 1px solid #edf1f7;
 }
 
 .button-add-person-wrapper {

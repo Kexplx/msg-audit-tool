@@ -1,12 +1,18 @@
 @import 'src/sass/utils';
-.wrapper-interviews {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
 
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
+header {
+  margin: 20px 0 10px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+nb-accordion {
+  margin-bottom: 15px;
+}
+
+app-interview-card {
+  position: relative;
+  padding-left: 30px;
 }
 
 nb-card {
@@ -30,23 +36,18 @@ li {
   }
 }
 
-header {
-  margin: 20px 0 10px 0;
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
-
-nb-accordion {
-  margin-bottom: 15px;
-}
-
-app-interview-card {
-  position: relative;
-  padding-left: 30px;
-}
-
 .hint-no-interviews {
   max-width: 900px;
   margin: 100px auto 0 auto;
   text-align: center;
+}
+
+.wrapper-interviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
 }
