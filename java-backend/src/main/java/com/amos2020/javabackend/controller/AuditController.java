@@ -177,6 +177,24 @@ public class AuditController {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * GET endpoint for fetching a specific audit by id
+     *
+     * @param auditId int
+     * @return BasicAuditResponse
+     */
+    @GetMapping("/audit/{id}")
+    public ResponseEntity<BasicAuditResponse> getAuditById(@PathVariable("id") int auditId) {
+        BasicAuditResponse response;
+        try {
+            Audit audit = auditService.getAuditById(auditId);
+            response = buildBasicResponse(audit);
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
 
     private BasicAuditResponse buildBasicResponse(Audit audit) throws NotFoundException {
         List<Integer> facCritIds = new ArrayList<>();
