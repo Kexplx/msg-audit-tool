@@ -2,6 +2,7 @@ package com.amos2020.javabackend.controller.request;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.junit.platform.commons.util.StringUtils;
 
 import java.sql.Date;
 import java.util.List;
@@ -36,7 +37,7 @@ public class UpdateAuditRequest {
     }
 
     private void assertName() {
-        if (auditName == null || auditName.isBlank() || auditName.length() < 3 || auditName.length() > 45) {
+        if (auditName == null || StringUtils.isBlank(auditName) || auditName.length() < 3 || auditName.length() > 45) {
             throw new IllegalArgumentException("audit name is invalid");
         }
     }
