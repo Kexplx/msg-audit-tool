@@ -35,7 +35,7 @@ public class AuditService {
 
     public Audit getAuditById(int auditId) throws NotFoundException {
         Optional<Audit> audit = repository.findById(auditId);
-        if (audit.isEmpty()) {
+        if (!audit.isPresent()) {
             throw new NotFoundException("No audit found with id " + audit);
         }
         return audit.get();
