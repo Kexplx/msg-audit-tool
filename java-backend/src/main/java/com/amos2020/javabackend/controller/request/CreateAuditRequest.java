@@ -35,7 +35,6 @@ public class CreateAuditRequest extends BasicRequest {
     public void isValid() throws IllegalArgumentException {
         assertNameIsValid(auditName);
         assertDateIsNotNull(startDate);
-        //assertDateIsNotNull(endDate);
         assertDatesAreValid(startDate, endDate);
         assertIdsAreValid(contactPeople);
         assertIdsAreValid(scope);
