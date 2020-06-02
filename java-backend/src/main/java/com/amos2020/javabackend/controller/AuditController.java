@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -143,6 +144,27 @@ public class AuditController {
             return ResponseEntity.notFound().build();
         } catch (IllegalAccessException e) {
             return ResponseEntity.status(401).build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
+
+    /**
+     * GET endpoint for fetching a list of all audits
+     *
+     * @return List<BasicAuditResponse>
+     */
+    @GetMapping("/audit/all")
+    public ResponseEntity<List<BasicAuditResponse>> getAuditAll() {
+        List<BasicAuditResponse> response = new ArrayList<BasicAuditResponse>();
+        try {
+            for(Audit a : auditService.getAll()) {
+
+                response.add(buildBasicResponse(a));
+            }
+
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(response);
     }
