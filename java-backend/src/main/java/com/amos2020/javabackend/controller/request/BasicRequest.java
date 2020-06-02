@@ -44,7 +44,7 @@ public abstract class BasicRequest {
      */
     public void assertDateIsNotNull(Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date is null null");
+            throw new IllegalArgumentException("date is null");
         }
     }
 
