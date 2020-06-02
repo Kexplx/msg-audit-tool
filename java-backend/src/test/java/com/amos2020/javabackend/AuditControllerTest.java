@@ -2,7 +2,6 @@ package com.amos2020.javabackend;
 
 import com.amos2020.javabackend.controller.AuditController;
 import com.amos2020.javabackend.controller.request.CreateAuditRequest;
-import com.amos2020.javabackend.controller.request.DeleteAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.entity.Audit;
@@ -15,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javassist.NotFoundException;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1024,152 +1022,6 @@ public class AuditControllerTest {
                 .content(requestAsJson))
                 .andExpect(status().isForbidden());
     }
-
-
-    @Test
-    public void deleteAuditValidRequest_returnsOK() throws Exception{
-        Audit audit = new Audit();
-        audit.setStatus(AuditStatus.ACTIVE);
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
-
-
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setContactPerson(1);
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("TestReason");
-
-        String requestAsJson = buildJson(request);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isOk());
-
-        Assert.assertEquals(audit.getStatus(), request.getStatus());
-        Assert.assertEquals(audit.getCancellationDate(), request.getDate());
-        Assert.assertEquals(audit.getCancellationReason(), request.getReason());
-        Assert.assertEquals(audit.getCancellationContactPerson(), request.getContactPerson());
-
-    }
-
-
-    @Test
-    public void deleteAuditValidRequestTwice_returnsOK() throws Exception{
-        Audit audit = new Audit();
-        audit.setStatus(AuditStatus.ACTIVE);
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
-
-
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setContactPerson(1);
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("TestReason");
-
-        String requestAsJson = buildJson(request);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isOk());
-
-        Assert.assertEquals(audit.getStatus(), request.getStatus());
-        Assert.assertEquals(audit.getCancellationDate(), request.getDate());
-        Assert.assertEquals(audit.getCancellationReason(), request.getReason());
-        Assert.assertEquals(audit.getCancellationContactPerson(), request.getContactPerson());
-
-        DeleteAuditRequest request2 = new DeleteAuditRequest();
-        request2.setContactPerson(2);
-        request2.setDate(Date.valueOf("2020-06-03"));
-        request2.setReason("TestReason2");
-
-        String requestAsJson2 = buildJson(request2);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson2))
-                .andExpect(status().isBadRequest());
-    }
-
-
-    @Test
-    public void deleteAuditReasonBlank__returns400() throws Exception {
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setContactPerson(1);
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("");
-
-        String requestAsJson = buildJson(request);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isBadRequest());
-    }
-
-
-    /*
-    @Test
-    public void deleteAuditDateNull__returns400() throws Exception {
-
-    }
-    */
-
-    @Test
-    public void deleteAuditContactPersonNull_returns400() throws Exception {
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("TestReason");
-
-        String requestAsJson = buildJson(request);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    public void deleteAuditContactPersonNegative_returns400() throws Exception {
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setContactPerson(-1);
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("TestReason");
-
-        String requestAsJson = buildJson(request);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    public void deleteAuditInvalidAuditId_returnsNotFound() throws Exception{
-        given(auditService.getAuditById(1)).willThrow(NotFoundException.class);
-
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setContactPerson(1);
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("TestReason");
-
-        String requestAsJson = buildJson(request);
-        controller.perform(delete("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isNotFound());
-
-    }
-
 
     private String buildJson(Object object) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
