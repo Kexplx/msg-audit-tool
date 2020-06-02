@@ -55,7 +55,7 @@ public abstract class BasicRequest {
      * @param endDate
      */
     public void assertDatesAreValid(Date startDate, Date endDate) {
-        if (endDate.before(startDate)) {
+        if (endDate!= null && endDate.before(startDate)) {
             throw new IllegalArgumentException("end date cannot be older than start date");
         }
     }
@@ -66,6 +66,10 @@ public abstract class BasicRequest {
      * @param ids
      */
     public void assertIdsAreValid(List<Integer> ids) {
+        if(ids == null){
+            return;
+        }
+
         for (Integer id : ids) {
             assertIdIsValid(id);
         }

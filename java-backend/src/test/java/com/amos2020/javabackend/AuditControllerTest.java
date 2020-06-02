@@ -1,9 +1,11 @@
 package com.amos2020.javabackend;
 
 import com.amos2020.javabackend.controller.AuditController;
+import com.amos2020.javabackend.controller.request.CreateAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.entity.Audit;
+import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.entity.FacCrit;
 import com.amos2020.javabackend.entity.Scope;
 import com.amos2020.javabackend.service.*;
@@ -22,13 +24,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -48,6 +52,404 @@ public class AuditControllerTest {
     private AuditContactPersonService auditContactPersonService;
     @MockBean
     private FacCritService facCritService;
+
+    @Test
+    public void createAuditWithValidRequest_returnsOk() throws Exception {
+        String auditName = "TestAuditName";
+        Date startDate = Date.valueOf("2000-01-02");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createAuditWithAuditNameNull_returns400() throws Exception {
+        String auditName = null;
+        Date startDate = Date.valueOf("2000-01-02");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithAuditNameBlank_returns400() throws Exception {
+        String auditName = "";
+        Date startDate = Date.valueOf("2000-01-02");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithAuditNameTooShort_returns400() throws Exception {
+        String auditName = "te";
+        Date startDate = Date.valueOf("2000-01-02");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithAuditNameTooLong_returns400() throws Exception {
+        char[] charArray = new char[46];
+        Arrays.fill(charArray, 't');
+        String auditName = new String(charArray);
+        Date startDate = Date.valueOf("2000-01-02");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithStartDateNull_returns400() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = null;
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithEndDateNull_returnsOk() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = Date.valueOf("2000-01-03");
+        Date endDate = null;
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createAuditWithInvalidDates_returns400() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = Date.valueOf("2000-01-03");
+        Date endDate = Date.valueOf("2000-01-01");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithScopesNull_returnsOk() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = Date.valueOf("2000-01-01");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = null;
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createAuditWithScopesInvalid_returns400() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = Date.valueOf("2000-01-01");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,-1,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithContactsInvalid_returns400() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = Date.valueOf("2000-01-01");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1,0,3,4,5);
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void createAuditWithcontactsNull_returnsOk() throws Exception {
+        String auditName = "testauditname";
+        Date startDate = Date.valueOf("2000-01-01");
+        Date endDate = Date.valueOf("2000-01-03");
+        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = null;
+
+        CreateAuditRequest request = new CreateAuditRequest();
+        request.setAuditName(auditName);
+        request.setStartDate(startDate);
+        request.setEndDate(endDate);
+        request.setScope(scopes);
+        request.setContactPeople(contacts);
+        String requestAsJson = buildJson(request);
+
+        Audit audit = new Audit();
+        audit.setName(auditName);
+        audit.setStartDate(startDate);
+        audit.setCreationDate(Timestamp.from(Instant.now()));
+        audit.setStatus(AuditStatus.OPEN);
+        if (endDate != null) {
+            audit.setEndDate(endDate);
+        }
+
+        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+
+        controller.perform(post("/audit")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
 
     @Test
     public void getAuditByIdWithValidId_returnsOk() throws Exception {
@@ -341,31 +743,6 @@ public class AuditControllerTest {
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("New Test Name");
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
-
-        String requestAsJson = buildJson(request);
-
-        controller.perform(put("/audit/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    public void updateAuditByIdWithEndDateIsNull_returns400() throws Exception {
-        Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
-
-        UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName("New Test Name");
-        request.setStartDate(Date.valueOf("2000-01-02"));
         request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
