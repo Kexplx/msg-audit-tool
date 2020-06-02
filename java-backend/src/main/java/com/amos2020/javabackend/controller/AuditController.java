@@ -31,6 +31,12 @@ public class AuditController {
         this.facCritService = facCritService;
     }
 
+    /**
+     * POST endpoint for creating an audit associated with a scope and audit_contact_person
+     *
+     * @param request CreateAuditRequest
+     * @return BasicAuditResponse
+     */
     @PostMapping("/audit")
     public ResponseEntity<BasicAuditResponse> createAudit(@RequestBody CreateAuditRequest request) {
         BasicAuditResponse response;
@@ -41,23 +47,20 @@ public class AuditController {
             // Create audit and save in database
             Audit audit = auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate());
             // Create Scope
-            if (!request.getScope().isEmpty()) {
-                scopeService.createScopeByFactorCriteriaList(audit.getId(), request.getScope());
-            }
+            //if (!request.getScope().isEmpty()) {
+            scopeService.createScopeByFactorCriteriaList(audit.getId(), request.getScope());
+            //}
             // Create AuditContactPerson if needed
-            if (!request.getContactPeople().isEmpty()) {
-                auditContactPersonService.createAuditContactPersons(audit.getId(), request.getContactPeople());
-            }
+            //if (!request.getContactPeople().isEmpty()) {
+            auditContactPersonService.createAuditContactPersons(audit.getId(), request.getContactPeople());
+            //}
             // Create Response object
-
             response = new BasicAuditResponse(audit, facCritService.getAllById(request.getScope()), contactPersonService.getAllByIds(request.getContactPeople()));
-
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(response);
     }
 
