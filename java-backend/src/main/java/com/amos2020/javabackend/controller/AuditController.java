@@ -113,7 +113,7 @@ public class AuditController {
      * @return BasicAuditResponse
      */
     @PutMapping("/audit/{id}/scope")
-    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
+    public ResponseEntity<BasicAuditResponse> updateAuditScope(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
         BasicAuditResponse response;
         try {
             request.isValid();
@@ -130,14 +130,12 @@ public class AuditController {
 
             // create Response object
             response = buildBasicResponse(audit);
-        } catch (
-                IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
-        } catch (
-                NotFoundException e) {
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalAccessException e) {
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(403).build();
         }
         return ResponseEntity.ok(response);
     }
