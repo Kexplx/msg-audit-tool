@@ -52,16 +52,14 @@ describe('OverviewPage', () => {
     });
 
     it('removes an audit by clicking on an audit delete button', () => {
-      let testAuditUrl;
       cy.get('[data-cy=audit-short-infos]').first().click();
-      cy.url().then(url => {
-        testAuditUrl = url;
-      });
+      let testAuditUrl = cy.url();
       cy.get('[data-cy=home]').click();
       cy.get('[data-cy=audit-options]').first().click();
       cy.get('.menu-title').filter(':visible').filter(':contains("Löschen")').click();
       cy.get('[data-cy=audits-list]').first().click();
       cy.url().should('not.equal', testAuditUrl);
+      cy.get('[data-cy=home]').click();
     });
 
     it('sorts the audits descending by creationDate', () => {
