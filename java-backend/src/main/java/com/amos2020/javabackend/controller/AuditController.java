@@ -31,6 +31,12 @@ public class AuditController {
         this.facCritService = facCritService;
     }
 
+    /**
+     * POST endpoint for creating an audit associated with a scope and audit_contact_person
+     *
+     * @param request CreateAuditRequest
+     * @return BasicAuditResponse
+     */
     @PostMapping("/audit")
     public ResponseEntity<BasicAuditResponse> createAudit(@RequestBody CreateAuditRequest request) {
         BasicAuditResponse response;
@@ -41,23 +47,16 @@ public class AuditController {
             // Create audit and save in database
             Audit audit = auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate());
             // Create Scope
-            if (!request.getScope().isEmpty()) {
-                scopeService.createScopeByFactorCriteriaList(audit.getId(), request.getScope());
-            }
+            scopeService.createScopeByFactorCriteriaList(audit.getId(), request.getScope());
             // Create AuditContactPerson if needed
-            if (!request.getContactPeople().isEmpty()) {
-                auditContactPersonService.createAuditContactPersons(audit.getId(), request.getContactPeople());
-            }
+            auditContactPersonService.createAuditContactPersons(audit.getId(), request.getContactPeople());
             // Create Response object
-
             response = new BasicAuditResponse(audit, facCritService.getAllById(request.getScope()), contactPersonService.getAllByIds(request.getContactPeople()));
-
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(response);
     }
 
@@ -113,7 +112,7 @@ public class AuditController {
      * @return BasicAuditResponse
      */
     @PutMapping("/audit/{id}/scope")
-    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
+    public ResponseEntity<BasicAuditResponse> updateAuditScope(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
         BasicAuditResponse response;
         try {
             request.isValid();
@@ -130,14 +129,12 @@ public class AuditController {
 
             // create Response object
             response = buildBasicResponse(audit);
-        } catch (
-                IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
-        } catch (
-                NotFoundException e) {
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalAccessException e) {
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(403).build();
         }
         return ResponseEntity.ok(response);
     }
