@@ -4,10 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CreateAuditRequest {
+public class CreateAuditRequest extends BasicRequest {
     // mandatory
     @Getter
     @Setter
@@ -33,14 +32,14 @@ public class CreateAuditRequest {
     @Setter
     private List<Integer> contactPeople;
 
-
     public void isValid() throws IllegalArgumentException {
-        // TODO Validation
-        if (scope == null) {
-            scope = new ArrayList<>();
-        }
-        if (contactPeople == null) {
-            contactPeople = new ArrayList<>();
-        }
+        assertAuditNameIsValid(auditName);
+        assertDateIsNotNull(startDate);
+        //assertDateIsNotNull(endDate);
+        assertDatesAreValid(startDate, endDate);
+        assertIdsAreValid(contactPeople);
+        assertIdsAreValid(scope);
     }
+
+
 }
