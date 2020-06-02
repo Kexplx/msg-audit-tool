@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,6 +41,10 @@ public class AuditService {
             throw new NotFoundException("No audit found with id " + audit);
         }
         return audit.get();
+    }
+
+    public List<Audit> getAll() {
+        return repository.findAll();
     }
 
     public Audit updateAudit(Audit audit) {
