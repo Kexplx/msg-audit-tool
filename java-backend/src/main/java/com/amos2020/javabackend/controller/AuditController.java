@@ -47,13 +47,9 @@ public class AuditController {
             // Create audit and save in database
             Audit audit = auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate());
             // Create Scope
-            //if (!request.getScope().isEmpty()) {
             scopeService.createScopeByFactorCriteriaList(audit.getId(), request.getScope());
-            //}
             // Create AuditContactPerson if needed
-            //if (!request.getContactPeople().isEmpty()) {
             auditContactPersonService.createAuditContactPersons(audit.getId(), request.getContactPeople());
-            //}
             // Create Response object
             response = new BasicAuditResponse(audit, facCritService.getAllById(request.getScope()), contactPersonService.getAllByIds(request.getContactPeople()));
         } catch (IllegalArgumentException e) {

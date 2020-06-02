@@ -4,6 +4,7 @@ import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.repository.AuditRepository;
 import javassist.NotFoundException;
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -29,8 +30,7 @@ public class AuditService {
         if (endDate != null) {
             audit.setEndDate(endDate);
         }
-        repository.save(audit);
-        return audit;
+        return repository.save(audit);
     }
 
     public Audit getAuditById(int auditId) throws NotFoundException {
