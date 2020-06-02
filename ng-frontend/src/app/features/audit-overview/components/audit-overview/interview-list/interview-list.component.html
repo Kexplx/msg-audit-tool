@@ -13,7 +13,7 @@
 <div class="wrapper-interviews">
   <nb-card *ngFor="let factor of (audit$ | async).scope">
     <nb-card-header class="subtitle">{{ factor.title }}</nb-card-header>
-    <nb-list *ngIf="(audit$ | async).interviews | filterInterviews: factor.title as interviews">
+    <nb-list *ngIf="(audit$ | async).interviews | filterInterviews: factor.title as interviews" data-cy="interview-factor-name">
       <nb-list-item *ngFor="let interview of interviews">
         <app-interview-card [interview]="interview"> </app-interview-card>
       </nb-list-item>

@@ -54,17 +54,6 @@ describe('AuditPage', () => {
       cy.get('[data-cy=add-interview-form]').should('exist');
       cy.get('[data-cy=cancel-interview-data-form]').click();
     });
-
-    // it('Should display an overview with all chosen categories', () => {
-    //   cy.get(':nth-child(1) > .tab-link').click();
-    //   for (let i = 0; i < factors.length; i++) {
-    //     const categories = factors[i].categories;
-    //     cy.get(`:nth-child(${i + 1}) > nb-list > nb-list-item`).should(
-    //       'contain.text',
-    //       categories[0].title,
-    //     );
-    //   }
-    // });
   });
 
   /**

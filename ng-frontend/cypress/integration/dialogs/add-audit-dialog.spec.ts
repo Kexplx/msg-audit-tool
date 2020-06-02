@@ -58,9 +58,7 @@ describe('AddAuditDialog', () => {
     it('disallows end date before the start date', () => {
       cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
       cy.get('[data-cy=audit-end-input]').click();
-      cy.get(
-        '[ng-reflect-row="Sun May 17 2020 00:00:00 GMT+0"] > :nth-child(1) > .cell-content',
-      ).click();
+      cy.get('.bounding-month').first().click();
       cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
     });
   });
@@ -309,7 +307,7 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=home]');
     });
 
-    it.only('populates the audits list overview page with consistent information', () => {
+    it('populates the audits list overview page with consistent information', () => {
       cy.testAuditListEntry(testAudit);
     });
 

@@ -1,4 +1,4 @@
-import { AddAudit } from "src/app/core/ngxs/audit.actions";
+import { AddAudit } from 'src/app/core/ngxs/audit.actions';
 
 describe('OverviewPage', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
@@ -64,7 +64,7 @@ describe('OverviewPage', () => {
       cy.url().should('not.equal', testAuditUrl);
     });
 
-    it.only('sorts the audits descending by creationDate', () => {
+    it('sorts the audits descending by creationDate', () => {
       let auditsToAdd = [
         { name: 'Test1' },
         { name: 'Test2' },
@@ -72,7 +72,7 @@ describe('OverviewPage', () => {
         { name: 'Test4' },
       ];
 
-      auditsToAdd.forEach((audit) => {
+      auditsToAdd.forEach(audit => {
         cy.addAudit(audit);
       });
 
