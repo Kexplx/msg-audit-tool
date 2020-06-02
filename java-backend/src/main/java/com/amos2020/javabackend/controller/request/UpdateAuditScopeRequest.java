@@ -3,7 +3,7 @@ package com.amos2020.javabackend.controller.request;
 import lombok.Getter;
 import lombok.Setter;
 
-public class UpdateAuditScopeRequest {
+public class UpdateAuditScopeRequest extends BasicRequest {
     @Getter
     @Setter
     private int facCritId;
@@ -17,10 +17,13 @@ public class UpdateAuditScopeRequest {
     private boolean removed;
 
     public void isValid() throws IllegalArgumentException {
-        assertId();
-        assertString();
+        assertChangeNoteIsValid(changeNote);
+        assertIdIsValid(facCritId);
+        //assertId();
+        //assertString();
     }
 
+    /*
     private void assertString() {
         if (changeNote != null && changeNote.length() > 256) {
             throw new IllegalArgumentException("Change note too long");
@@ -32,4 +35,6 @@ public class UpdateAuditScopeRequest {
             throw new IllegalArgumentException("Ids can not be negative or null");
         }
     }
+
+     */
 }
