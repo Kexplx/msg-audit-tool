@@ -1,13 +1,11 @@
 package com.amos2020.javabackend.controller;
 
 import com.amos2020.javabackend.controller.request.CreateAuditRequest;
+import com.amos2020.javabackend.controller.request.DeleteAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.controller.response.BasicAuditResponse;
-import com.amos2020.javabackend.entity.Audit;
-import com.amos2020.javabackend.entity.AuditContactPerson;
-import com.amos2020.javabackend.entity.ContactPerson;
-import com.amos2020.javabackend.entity.Scope;
+import com.amos2020.javabackend.entity.*;
 import com.amos2020.javabackend.service.*;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -140,6 +138,41 @@ public class AuditController {
             return ResponseEntity.notFound().build();
         } catch (IllegalAccessException e) {
             return ResponseEntity.status(401).build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * DELETE endpoint for deleting an audit
+     *
+     * @param auditId int
+     * @param request DeleteAuditRequest
+     * @return BasicAuditResponse
+     */
+    @DeleteMapping("/audit/{id}")
+    public ResponseEntity<BasicAuditResponse> deleteAudit(@PathVariable("id") int auditId, @RequestBody DeleteAuditRequest request) {
+        BasicAuditResponse response;
+        try {
+            request.isValid();
+            Audit audit = auditService.getAuditById(auditId);
+            if(audit.getStatus().equals(AuditStatus.CANCELED))
+                throw new IllegalArgumentException("Audit has been already canceled");
+            // set Status to canceled and add reason, date and contactperson
+            audit.setStatus(request.getStatus());
+            audit.setCancellationDate(request.getDate());
+            audit.setCancellationReason(request.getReason());
+            audit.setCancellationContactPerson(request.getContactPerson());
+
+            // update audit
+            audit = auditService.updateAudit(audit);
+
+
+            // create Response object
+            response = buildBasicResponse(audit);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(response);
     }
