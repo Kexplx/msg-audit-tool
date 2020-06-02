@@ -17,7 +17,8 @@
       <div>
         <label class="label">Zeitraum</label>
         <div class="audit-params" data-cy="audit-timeframe">
-          {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+          {{ (audit$ | async).start | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).end; else tbd">{{ (audit$ | async).end | date: 'dd.MM.yyyy' }}</span>
+          <ng-template #tbd>TBD</ng-template>
           <span *ngIf="!(audit$ | async).start">-</span>
         </div>
       </div>

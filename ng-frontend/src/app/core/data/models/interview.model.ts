@@ -1,6 +1,10 @@
 import { ContactPerson } from './contact-person.model';
 import { Criteria } from './criteria.model';
-import { Factor } from './factor.model';
+
+export enum InterviewStatus {
+  InAction,
+  Finished,
+}
 
 export interface Interview {
   id?: string;
@@ -8,5 +12,6 @@ export interface Interview {
   end?: number;
   persons?: ContactPerson[];
   criteria: Criteria;
+  status: InterviewStatus;
   factorTitle?: string;
 }

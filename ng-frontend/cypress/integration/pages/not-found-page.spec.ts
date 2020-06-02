@@ -8,7 +8,7 @@ describe('NotFoundPage', () => {
     cy.visit(baseUrl);
   });
 
-  it('Redirects to an 404 error page when a unknown route is requested', () => {
+  it('redirects to an 404 error page when a unknown route is requested', () => {
     const testString = chance.string({ alpha: true, numeric: true });
     cy.visit(baseUrl + '/' + testString);
     cy.get('[data-cy=not-found-hint]').contains(/Route .* wurde nicht gefunden/);

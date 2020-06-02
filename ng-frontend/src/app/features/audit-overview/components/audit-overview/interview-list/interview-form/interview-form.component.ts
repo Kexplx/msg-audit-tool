@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Interview } from 'src/app/core/data/models/interview.model';
+import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import {
   FormGroup,
   FormBuilder,
@@ -98,6 +98,7 @@ export class InterviewFormComponent implements OnInit {
       }),
       criteria: this.criteria.value,
       factorTitle: this.factorTitle.value,
+      status: InterviewStatus.InAction,
     };
 
     this.formSubmitted.emit(interview);

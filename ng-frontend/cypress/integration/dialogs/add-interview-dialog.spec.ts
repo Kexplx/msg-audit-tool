@@ -8,6 +8,7 @@ describe('AddInterviewDialog', () => {
         testAudit = json;
       })
       .then(() => {
+        cy.visit(Cypress.config().baseUrl);
         cy.addAudit(testAudit);
         // go to specific audit interview page
         cy.get('[data-cy=audit-card]').first().click();
@@ -102,5 +103,16 @@ describe('AddInterviewDialog', () => {
     cy.get('[data-cy=discard-back-dialog]').should('exist');
     // agree to discard changes
     cy.get('[data-cy=discard]').click();
+  });
+
+  // Test consistency of added interview information
+  context('When an interview was added it ...', () => {
+    beforeEach(() => {
+      cy.inputInterview(testInterview);
+    });
+
+    it('shows up on the interview overview', () => {
+      cy.testInterviewListEntry(testInterview);
+    });
   });
 });

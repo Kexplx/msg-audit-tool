@@ -1,11 +1,11 @@
-import { factors } from '../../../src/app/core/data/factors';
-
 describe('AuditPage', () => {
   let baseUrl = Cypress.config().baseUrl;
   let testAudit;
   let testAuditUrl;
+  let factors;
 
   before(() => {
+    // import testAudit that does not contain startdate nor enddate
     cy.fixture('audits/example-audit')
       .then(json => {
         testAudit = json;
@@ -19,6 +19,9 @@ describe('AuditPage', () => {
           testAuditUrl = url;
         });
       });
+    cy.fixture('iso-constants/factors-criteria').then(f => {
+      factors = f;
+    });
   });
 
   beforeEach(() => {
@@ -30,6 +33,9 @@ describe('AuditPage', () => {
     cy.url().should('contain', 'interviews');
   });
 
+  /**
+   * Tests the interviews overview of an audit
+   */
   context('When in interview overview it ...', () => {
     before(() => {
       cy.server();
@@ -48,19 +54,11 @@ describe('AuditPage', () => {
       cy.get('[data-cy=add-interview-form]').should('exist');
       cy.get('[data-cy=cancel-interview-data-form]').click();
     });
-
-    // it('Should display an overview with all chosen categories', () => {
-    //   cy.get(':nth-child(1) > .tab-link').click();
-    //   for (let i = 0; i < factors.length; i++) {
-    //     const categories = factors[i].categories;
-    //     cy.get(`:nth-child(${i + 1}) > nb-list > nb-list-item`).should(
-    //       'contain.text',
-    //       categories[0].title,
-    //     );
-    //   }
-    // });
   });
 
+  /**
+   * Tests the audit info page
+   */
   context('When on info page it ...', () => {
     before(() => {
       cy.server();
@@ -75,6 +73,27 @@ describe('AuditPage', () => {
     it('shows a button to edit the audit information', () => {
       cy.get('[data-cy=audit-options]').click();
       cy.url().should('contain', 'edit');
+      cy.get('[data-cy=cancel-audit-data-form]').click();
+    });
+  });
+
+  context('When on either info page or interview page it ...', () => {
+    function testTitlebar(testDate) {
+      cy.get('[data-cy=audit-short-infos]').contains(testAudit.name);
+      cy.get('[data-cy=audit-short-infos]').contains(testDate);
+      cy.get('[data-cy=audit-short-infos]').contains('TBD');
+    }
+
+    it('displays a header with audit name and date', () => {
+      const testDate = new Date(Date.now()).toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+      cy.route(testAuditUrl);
+      testTitlebar(testDate);
+      cy.contains('info').click();
+      testTitlebar(testDate);
     });
   });
 });

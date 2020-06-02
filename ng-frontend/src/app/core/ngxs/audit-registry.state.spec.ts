@@ -3,6 +3,7 @@ import { NgxsModule, Store } from '@ngxs/store';
 import { AuditRegistryState } from './audit-registry.state';
 import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AddAudit, DeleteAudit, AddInterview } from './audit.actions';
+import { InterviewStatus } from '../data/models/interview.model';
 
 describe('AuditRegistryState', () => {
   let store: Store;
@@ -60,7 +61,9 @@ describe('AuditRegistryState', () => {
     let a: Audit;
     audit$.subscribe(x => (a = x));
 
-    store.dispatch(new AddInterview(a, { criteria: { title: '123' } }));
+    store.dispatch(
+      new AddInterview(a, { criteria: { title: '123' }, status: InterviewStatus.InAction }),
+    );
     audit$.subscribe(x => {
       expect(x.interviews.length).toEqual(1);
     });

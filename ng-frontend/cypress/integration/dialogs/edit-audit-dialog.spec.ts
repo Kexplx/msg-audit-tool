@@ -1,3 +1,11 @@
+/**
+ * Tests the dialog to edit an audit.
+ *
+ * Hint: Since the dialogs for editing and adding audits are the same, we don't test for the
+ * form here explicitly. These explicit tests can be found in the add-audit-dialog-tests.
+ * The form input is done the same way in both edit/add-testsgroups with
+ * cy.addAudit() so it will implicitely guarantee the form is inputtable and working.
+ */
 describe('EditAuditDialog', () => {
   const auditsUrl = Cypress.config().baseUrl + '/audits';
   let testAudit;
@@ -32,11 +40,12 @@ describe('EditAuditDialog', () => {
 
   /**
    * Simulates an edit from the audits overview.
-   * 
-   * @param testAudit 
-   * @param testAuditEdited 
+   *
+   * @param testAudit
+   * @param testAuditEdited
    */
   function editAuditFromAuditsOverview(testAudit, testAuditEdited) {
+    cy.get('[data-cy=home]').click();
     cy.addAudit(testAudit);
     cy.get('[data-cy=audit-options]').first().click();
     cy.contains('Bearbeiten').click();
@@ -46,11 +55,12 @@ describe('EditAuditDialog', () => {
 
   /**
    * Simulates an edit from the audit information page.
-   * 
-   * @param testAudit 
-   * @param testAuditEdited 
+   *
+   * @param testAudit
+   * @param testAuditEdited
    */
   function editAuditFromInfoPage(testAudit, testAuditEdited) {
+    cy.get('[data-cy=home]').click();
     cy.addAudit(testAudit);
     cy.get('[data-cy=audit-short-infos]').first().click();
     cy.contains('infos').click();
@@ -70,12 +80,8 @@ describe('EditAuditDialog', () => {
         beforeFunc.func(testAudit, testAuditEdited);
       });
 
-      beforeEach(() => {
-        cy.server();
-        cy.route(auditsUrl);
-      });
-
       it('populates the audits list overview page with consistent edited information', () => {
+        cy.get('[data-cy=home]').click();
         cy.testAuditListEntry(testAuditEdited);
       });
 
