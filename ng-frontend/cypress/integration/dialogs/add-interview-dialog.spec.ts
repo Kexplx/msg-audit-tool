@@ -104,4 +104,15 @@ describe('AddInterviewDialog', () => {
     // agree to discard changes
     cy.get('[data-cy=discard]').click();
   });
+
+  // Test consistency of added interview information
+  context('When an interview was added it ...', () => {
+    beforeEach(() => {
+      cy.inputInterview(testInterview);
+    });
+
+    it('shows up on the interview overview', () => {
+      cy.testInterviewListEntry(testInterview);
+    });
+  });
 });
