@@ -203,6 +203,12 @@ export class AuditDataFormComponent implements OnInit {
     factor.criterias.forEach(x => (x['selected'] = factor['selected']));
   }
 
+  /**
+   * Validator for two dates: A start date has to be before the end date. 
+   * 
+   * @param startDate string of form group attribute for start date
+   * @param endDate string of form group attribute for end date
+   */
   dateRangeValidator(startDate: string, endDate: string) {
     return (group: FormGroup): { [key: string]: any } => {
       let start = group.get(startDate).value;
