@@ -27,6 +27,13 @@ describe('AddAuditDialog', () => {
 
     beforeEach(() => {
       cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
+      cy.on('uncaught:exception', (err, runnable) => {
+        expect(err.message).to.include(
+          'nebular issue: https://github.com/akveo/nebular/issues/2338',
+        );
+        done();
+        return false;
+      });
     });
 
     it('opens and closes accordeon body when clicking on company tab ', () => {
@@ -41,13 +48,6 @@ describe('AddAuditDialog', () => {
     });
 
     it('gives a possibility to set start and end date', () => {
-      cy.on('uncaught:exception', (err, runnable) => {
-        expect(err.message).to.include(
-          'nebular issue: https://github.com/akveo/nebular/issues/2338',
-        );
-        done();
-        return false;
-      });
       cy.get('[data-cy=audit-start-input]').click();
       cy.get('.today > .cell-content').click();
       cy.get('[data-cy=audit-end-input]').click();
@@ -56,8 +56,36 @@ describe('AddAuditDialog', () => {
     });
 
     it('disallows end date before the start date', () => {
+      cy.visit(auditsUrl + '/new');
+      cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
       cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
       cy.get('[data-cy=audit-end-input]').click();
+      cy.get('.prev-month').click();
+      cy.get('.bounding-month').first().click();
+      cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
+    });
+
+    it('disallows start date behind end date', () => {
+      cy.visit(auditsUrl + '/new');
+      cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
+      cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
+      cy.get('[data-cy=audit-end-input]').click();
+      cy.get('.today > .cell-content').click();
+      cy.get('[data-cy=audit-start-input]').click();
+      cy.get('.next-month').click();
+      cy.get('.bounding-month').last().click();
+      cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
+    });
+
+    it('allows start date and end date in the past', () => {
+      cy.visit(auditsUrl + '/new');
+      cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
+      cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
+      cy.get('[data-cy=audit-start-input]').click();
+      cy.get('.prev-month').click();
+      cy.get('.bounding-month').first().click();
+      cy.get('[data-cy=audit-end-input]').click();
+      cy.get('.prev-month').click();
       cy.get('.bounding-month').first().click();
       cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
     });
