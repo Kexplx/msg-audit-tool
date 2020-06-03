@@ -30,7 +30,7 @@ export class AuditCardComponent implements OnInit {
     const status = this.audit.status;
 
     this.items = [
-      status == AuditStatus.IsPlanned || status == AuditStatus.InAction
+      status == AuditStatus.Planned || status == AuditStatus.InAction
         ? {
             title: 'Bearbeiten',
             icon: 'edit-outline',

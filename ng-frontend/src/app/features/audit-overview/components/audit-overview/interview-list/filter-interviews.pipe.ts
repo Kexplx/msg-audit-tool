@@ -6,6 +6,6 @@ import { Interview } from 'src/app/core/data/models/interview.model';
 })
 export class FilterInterviewsPipe implements PipeTransform {
   transform(interviews: Interview[], factorTitle: string): any {
-    return interviews?.filter(x => x.factorTitle === factorTitle);
+    // return interviews?.filter(x => x. === factorTitle);
   }
 }

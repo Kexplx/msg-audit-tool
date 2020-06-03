@@ -5,8 +5,15 @@
     </button>
   </div>
   <div class="navbar-item">
-    <button hero [routerLink]="['/audits']" nbButton status="primary" data-cy="home">
-      MSG Audit Tool
+    <button hero routerLink="/audits" nbButton status="primary" data-cy="home">
+      <nb-icon icon="bar-chart-outline"> </nb-icon>
+      Audits
+    </button>
+  </div>
+  <div class="navbar-item">
+    <button hero routerLink="/audits" nbButton status="basic" data-cy="home">
+      <nb-icon icon="people-outline"> </nb-icon>
+      Contact
     </button>
   </div>
   <div></div>
