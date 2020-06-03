@@ -19,22 +19,5 @@ public class UpdateAuditScopeRequest extends BasicRequest {
     public void isValid() throws IllegalArgumentException {
         assertChangeNoteIsValid(changeNote);
         assertIdIsValid(facCritId);
-        //assertId();
-        //assertString();
     }
-
-    /*
-    private void assertString() {
-        if (changeNote != null && changeNote.length() > 256) {
-            throw new IllegalArgumentException("Change note too long");
-        }
-    }
-
-    private void assertId() {
-        if (facCritId < 1) {
-            throw new IllegalArgumentException("Ids can not be negative or null");
-        }
-    }
-
-     */
 }

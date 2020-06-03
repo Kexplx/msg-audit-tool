@@ -152,7 +152,7 @@ public class AuditController {
         try {
             request.isValid();
             Audit audit = auditService.getAuditById(auditId);
-            if(audit.getStatus().equals(AuditStatus.CANCELED))
+            if (audit.getStatus().equals(AuditStatus.CANCELED))
                 throw new IllegalArgumentException("Audit has been already canceled");
             // set Status to canceled and add reason, date and contactperson
             audit.setStatus(request.getStatus());
@@ -186,6 +186,25 @@ public class AuditController {
         try {
             Audit audit = auditService.getAuditById(auditId);
             response = buildBasicResponse(audit);
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
+
+    /**
+     * GET endpoint for fetching a list of all audits
+     *
+     * @return List<BasicAuditResponse>
+     */
+    @GetMapping("/audit/all")
+    public ResponseEntity<List<BasicAuditResponse>> getAuditAll() {
+        List<BasicAuditResponse> response = new ArrayList<>();
+        try {
+            for (Audit a : auditService.getAll()) {
+                response.add(buildBasicResponse(a));
+            }
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }

@@ -12,7 +12,7 @@ public abstract class BasicRequest {
     /**
      * Asserts that an audit name cannot be null, empty, shorter than 3 oder longer than 45 chars
      *
-     * @param auditName
+     * @param auditName String
      */
     public void assertAuditNameIsValid(String auditName) {
         if (auditName == null || StringUtils.isBlank(auditName)) {
@@ -29,9 +29,9 @@ public abstract class BasicRequest {
     /**
      * Asserts that a change note cannot be null or longer than 256 chars
      *
-     * @param changeNote
+     * @param changeNote String
      */
-    public void assertChangeNoteIsValid(String changeNote){
+    public void assertChangeNoteIsValid(String changeNote) {
         if (changeNote != null && changeNote.length() > 256) {
             throw new IllegalArgumentException("Change note too long");
         }
@@ -40,7 +40,7 @@ public abstract class BasicRequest {
     /**
      * Asserts that a date cannot be null
      *
-     * @param date
+     * @param date Date
      */
     public void assertDateIsNotNull(Date date) {
         if (date == null) {
@@ -51,11 +51,11 @@ public abstract class BasicRequest {
     /**
      * Asserts that enddate cannot be older than start date
      *
-     * @param startDate
-     * @param endDate
+     * @param startDate Date
+     * @param endDate   Date
      */
     public void assertDatesAreValid(Date startDate, Date endDate) {
-        if (endDate!= null && endDate.before(startDate)) {
+        if (endDate != null && endDate.before(startDate)) {
             throw new IllegalArgumentException("end date cannot be older than start date");
         }
     }
@@ -63,10 +63,10 @@ public abstract class BasicRequest {
     /**
      * Asserts that all ids in a list are valid
      *
-     * @param ids
+     * @param ids List<Integer>
      */
     public void assertIdsAreValid(List<Integer> ids) {
-        if(ids == null){
+        if (ids == null) {
             return;
         }
 
@@ -78,7 +78,7 @@ public abstract class BasicRequest {
     /**
      * Asserts that the given id is valid
      *
-     * @param id
+     * @param id Integer
      */
     public void assertIdIsValid(Integer id) {
         if (id == null || id < 1) {
