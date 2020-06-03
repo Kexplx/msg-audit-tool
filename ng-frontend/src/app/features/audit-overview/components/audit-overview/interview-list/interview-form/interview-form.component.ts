@@ -47,18 +47,21 @@ export class InterviewFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.interviewForm = this.fb.group({
-      start: [this.interview?.start ?? new Date()],
-      end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
-      persons: this.fb.array([
-        this.fb.group({
-          role: new FormControl(null),
-          contactInformation: new FormControl(null),
-        }),
-      ]),
-      criteria: [this.interview?.criteria, Validators.required],
-      factorTitle: [null],
-    });
+    this.interviewForm = this.fb.group(
+      {
+        start: [this.interview?.start ?? new Date()],
+        end: [this.interview?.end],
+        persons: this.fb.array([
+          this.fb.group({
+            role: new FormControl(null),
+            contactInformation: new FormControl(null),
+          }),
+        ]),
+        criteria: [this.interview?.criteria, Validators.required],
+        factorTitle: [null],
+      },
+      { validator: this.dateRangeValidator('start', 'end') },
+    );
   }
 
   /**
@@ -84,9 +87,19 @@ export class InterviewFormComponent implements OnInit {
     return s ? new Date(s).getTime() : undefined;
   }
 
-  startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
-    const start = this.interview?.start ?? new Date().setHours(0, 0, 0, 0);
-    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
+  dateRangeValidator(startDate: string, endDate: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      let start = group.get(startDate).value;
+      let end = group.get(endDate).value;
+      if (!start || !end) {
+        return null;
+      }
+      if (start > end) {
+        return {
+          dateRangeValidator: true,
+        };
+      }
+    };
   }
 
   onSubmit() {
