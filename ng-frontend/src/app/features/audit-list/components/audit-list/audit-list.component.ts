@@ -10,10 +10,10 @@ import { AuditStatus, Audit } from 'src/app/core/data/models/audit.model';
   styleUrls: ['./audit-list.component.scss'],
 })
 export class AuditListComponent implements OnInit {
-  @Select(AuditRegistryState.auditByStatus(AuditStatus.IsPlanned, AuditStatus.InAction))
+  @Select(AuditRegistryState.auditByStatus(AuditStatus.Planned, AuditStatus.InAction))
   activeAudits$: Observable<Audit[]>;
 
-  @Select(AuditRegistryState.auditByStatus(AuditStatus.IsCanceled, AuditStatus.IsFinished))
+  @Select(AuditRegistryState.auditByStatus(AuditStatus.Cancelled, AuditStatus.Finished))
   archivedAudits$: Observable<Audit[]>;
 
   ngOnInit() {}

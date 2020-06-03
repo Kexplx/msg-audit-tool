@@ -30,7 +30,7 @@ describe('AuditRegistryState', () => {
         name: 'b',
         sector: 'c',
       },
-      status: AuditStatus.IsPlanned,
+      status: AuditStatus.Planned,
       creationDate: new Date(2020, 6, 1).getTime(),
     };
   });

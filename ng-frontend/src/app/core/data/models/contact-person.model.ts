@@ -4,7 +4,7 @@ export interface ContactPerson {
   title: string;
   firstName: string;
   lastName: string;
-  information: string;
+  contactInformation: string;
   role: string;
   sector?: string;
   name?: string;

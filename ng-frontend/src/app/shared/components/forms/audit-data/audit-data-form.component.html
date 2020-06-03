@@ -4,7 +4,7 @@
     <nb-card-body>
       <div class="field-item-audit-name">
         <label class="label">Auditname</label>
-        <input [status]="name.invalid && name.touched ? 'danger' : 'basic'" formControlName="auditName" nbInput fullWidth data-cy="audit-name-input" />
+        <input [status]="name.invalid && name.touched ? 'danger' : 'basic'" formControlName="name" nbInput fullWidth data-cy="audit-name-input" />
         <div *ngIf="name.invalid && name.touched">
           <label class="label text-danger" data-cy="auditname-missing-label">Auditnamen eintragen</label>
         </div>
@@ -28,13 +28,13 @@
       <div class="grid-1-1">
         <div class="form-item">
           <label class="label">Startdatum</label>
-          <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="audit-start-input" />
+          <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="audit-start-input" />
           <nb-datepicker #datePickerStart></nb-datepicker>
 >>>>>>> e5f2d79... [REFACTOR] Remove nb-accordion with nb-card
         </div>
         <div class="form-item">
           <label class="label">Enddatum</label>
-          <input [status]="endDate.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="end" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
+          <input [status]="endDate.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="endDate" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
           <nb-datepicker #datePickerEnd></nb-datepicker>
           <div *ngIf="endDate.errors?.startGreaterThanEnd">
             <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
