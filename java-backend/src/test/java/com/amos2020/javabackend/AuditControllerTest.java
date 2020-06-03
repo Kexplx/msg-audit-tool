@@ -60,8 +60,8 @@ public class AuditControllerTest {
         String auditName = "TestAuditName";
         Date startDate = Date.valueOf("2000-01-02");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -90,14 +90,12 @@ public class AuditControllerTest {
 
     @Test
     public void createAuditWithAuditNameNull_returns400() throws Exception {
-        String auditName = null;
         Date startDate = Date.valueOf("2000-01-02");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
-        request.setAuditName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
@@ -105,7 +103,6 @@ public class AuditControllerTest {
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
-        audit.setName(auditName);
         audit.setStartDate(startDate);
         audit.setCreationDate(Timestamp.from(Instant.now()));
         audit.setStatus(AuditStatus.OPEN);
@@ -126,8 +123,8 @@ public class AuditControllerTest {
         String auditName = "";
         Date startDate = Date.valueOf("2000-01-02");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -159,8 +156,8 @@ public class AuditControllerTest {
         String auditName = "te";
         Date startDate = Date.valueOf("2000-01-02");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -194,8 +191,8 @@ public class AuditControllerTest {
         String auditName = new String(charArray);
         Date startDate = Date.valueOf("2000-01-02");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -225,14 +222,12 @@ public class AuditControllerTest {
     @Test
     public void createAuditWithStartDateNull_returns400() throws Exception {
         String auditName = "testauditname";
-        Date startDate = null;
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
-        request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
         request.setContactPeople(contacts);
@@ -240,12 +235,10 @@ public class AuditControllerTest {
 
         Audit audit = new Audit();
         audit.setName(auditName);
-        audit.setStartDate(startDate);
         audit.setCreationDate(Timestamp.from(Instant.now()));
         audit.setStatus(AuditStatus.OPEN);
-        if (endDate != null) {
-            audit.setEndDate(endDate);
-        }
+        audit.setEndDate(endDate);
+
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
@@ -259,14 +252,12 @@ public class AuditControllerTest {
     public void createAuditWithEndDateNull_returnsOk() throws Exception {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-03");
-        Date endDate = null;
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
         request.setStartDate(startDate);
-        request.setEndDate(endDate);
         request.setScope(scopes);
         request.setContactPeople(contacts);
         String requestAsJson = buildJson(request);
@@ -276,9 +267,7 @@ public class AuditControllerTest {
         audit.setStartDate(startDate);
         audit.setCreationDate(Timestamp.from(Instant.now()));
         audit.setStatus(AuditStatus.OPEN);
-        if (endDate != null) {
-            audit.setEndDate(endDate);
-        }
+
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
@@ -293,8 +282,8 @@ public class AuditControllerTest {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-03");
         Date endDate = Date.valueOf("2000-01-01");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -326,14 +315,12 @@ public class AuditControllerTest {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-01");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = null;
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
-        request.setScope(scopes);
         request.setContactPeople(contacts);
         String requestAsJson = buildJson(request);
 
@@ -359,8 +346,8 @@ public class AuditControllerTest {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-01");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,-1,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,2,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, -1, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -392,8 +379,8 @@ public class AuditControllerTest {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-01");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = Arrays.asList(1,0,3,4,5);
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> contacts = Arrays.asList(1, 0, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
@@ -425,15 +412,13 @@ public class AuditControllerTest {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-01");
         Date endDate = Date.valueOf("2000-01-03");
-        List<Integer> scopes = Arrays.asList(1,2,3,4,5);
-        List<Integer> contacts = null;
+        List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
 
         CreateAuditRequest request = new CreateAuditRequest();
         request.setAuditName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -1027,7 +1012,7 @@ public class AuditControllerTest {
 
 
     @Test
-    public void deleteAuditValidRequest_returnsOK() throws Exception{
+    public void deleteAuditValidRequest_returnsOK() throws Exception {
         Audit audit = new Audit();
         audit.setStatus(AuditStatus.ACTIVE);
         audit.setScopesById(new ArrayList<>());
@@ -1061,7 +1046,7 @@ public class AuditControllerTest {
 
 
     @Test
-    public void deleteAuditValidRequestTwice_returnsOK() throws Exception{
+    public void deleteAuditValidRequestTwice_returnsOK() throws Exception {
         Audit audit = new Audit();
         audit.setStatus(AuditStatus.ACTIVE);
         audit.setScopesById(new ArrayList<>());
@@ -1154,7 +1139,7 @@ public class AuditControllerTest {
     }
 
     @Test
-    public void deleteAuditInvalidAuditId_returnsNotFound() throws Exception{
+    public void deleteAuditInvalidAuditId_returnsNotFound() throws Exception {
         given(auditService.getAuditById(1)).willThrow(NotFoundException.class);
 
         DeleteAuditRequest request = new DeleteAuditRequest();

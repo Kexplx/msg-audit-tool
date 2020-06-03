@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 public class DeleteAuditRequest {
     @Getter
@@ -24,12 +23,12 @@ public class DeleteAuditRequest {
     final AuditStatus status = AuditStatus.CANCELED;
 
     public void isValid() throws IllegalArgumentException {
-        if(reason.isEmpty() || reason == null || reason.length() < 3) {
+        if (reason == null || reason.isEmpty() || reason.length() < 3) {
             throw new IllegalArgumentException("Invalid reason");
         }
 
-        if(contactPerson == null || contactPerson <= 0) {
-            throw new  IllegalArgumentException("Invalid contactPerson");
+        if (contactPerson == null || contactPerson <= 0) {
+            throw new IllegalArgumentException("Invalid contactPerson");
         }
 
         if (date == null) {
