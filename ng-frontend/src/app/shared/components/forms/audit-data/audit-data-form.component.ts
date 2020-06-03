@@ -109,21 +109,24 @@ export class AuditDataFormComponent implements OnInit {
       });
     }
 
-    this.auditForm = this.formBuilder.group({
-      auditName: [this.audit?.name, Validators.required],
-      start: [this.audit?.start ?? new Date().setHours(0, 0, 0, 0)],
-      end: [this.audit?.end, [this.startGreaterThanEndValidator.bind(this)]],
-      status: [this.audit?.status ?? AuditStatus.IsPlanned],
-      companyName: [this.audit?.customerData.name],
-      sector: [this.audit?.customerData.sector],
-      department: [this.audit?.customerData.department],
-      salutation: [this.audit?.contactPerson.salutation],
-      title: [this.audit?.contactPerson.title],
-      corporateDivision: [this.audit?.customerData.corporateDivision],
-      firstName: [this.audit?.contactPerson.firstName],
-      lastName: [this.audit?.contactPerson.lastName],
-      contactInformation: [this.audit?.contactPerson.information],
-    });
+    this.auditForm = this.formBuilder.group(
+      {
+        auditName: [this.audit?.name, Validators.required],
+        start: [this.audit?.start ?? new Date().setHours(0, 0, 0, 0)],
+        end: [this.audit?.end],
+        status: [this.audit?.status ?? AuditStatus.IsPlanned],
+        companyName: [this.audit?.customerData.name],
+        sector: [this.audit?.customerData.sector],
+        department: [this.audit?.customerData.department],
+        salutation: [this.audit?.contactPerson.salutation],
+        title: [this.audit?.contactPerson.title],
+        corporateDivision: [this.audit?.customerData.corporateDivision],
+        firstName: [this.audit?.contactPerson.firstName],
+        lastName: [this.audit?.contactPerson.lastName],
+        contactInformation: [this.audit?.contactPerson.information],
+      },
+      { validator: this.dateRangeValidator('start', 'end') },
+    );
   }
 
   onSubmit() {
@@ -200,9 +203,19 @@ export class AuditDataFormComponent implements OnInit {
     factor.criterias.forEach(x => (x['selected'] = factor['selected']));
   }
 
-  startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
-    const start = this.audit?.start ?? new Date().setHours(0, 0, 0, 0);
-    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
+  dateRangeValidator(startDate: string, endDate: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      let start = group.get(startDate).value;
+      let end = group.get(endDate).value;
+      if (!start || !end) {
+        return null;
+      }
+      if (start > end) {
+        return {
+          dateRangeValidator: true,
+        };
+      }
+    };
   }
 
   parseDate(s: string) {
