@@ -14,8 +14,8 @@ export interface Audit {
   status: AuditStatus;
   creationDate: number;
   name: string;
-  start: number;
-  end?: number;
+  startDate: number;
+  endDate?: number;
   contactPeople?: ContactPerson[];
   interviews?: Interview[];
   facCrits: FacCrit[];

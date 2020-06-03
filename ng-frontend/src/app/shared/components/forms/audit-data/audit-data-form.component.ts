@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
-import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
+import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbDialogService } from '@nebular/theme';
 
 @Component({
@@ -21,6 +21,7 @@ export class AuditDataFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
 
+  //#region Getters
   get name() {
     return this.auditForm.get('name');
   }
@@ -36,16 +37,14 @@ export class AuditDataFormComponent implements OnInit {
   get creationDate() {
     return this.auditForm.get('creationDate');
   }
+  //#endregion
 
   ngOnInit(): void {
-    this.auditForm = this.formBuilder.group(
-      {
-        name: [this.audit?.name, Validators.required],
-        startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
-        endDate: [this.audit?.endDate],
-      },
-      { validator: this.dateRangeValidator('start', 'end') },
-    );
+    this.auditForm = this.formBuilder.group({
+      name: [this.audit?.name, Validators.required],
+      startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
+      endDate: [this.audit?.endDate, [this.startGreaterEnd.bind(this)]],
+    });
   }
 
   onCancel() {
@@ -73,31 +72,14 @@ export class AuditDataFormComponent implements OnInit {
       creationDate: this.audit?.creationDate ?? Date.now(),
       endDate: this.parseDate(this.endDate.value),
       startDate: this.parseDate(this.startDate.value),
-      status: this.audit?.status ?? AuditStatus.Planned,
     };
 
     this.formSubmitted.emit(audit);
   }
 
-  /**
-   * Validator for two dates: A start date has to be before the end date.
-   *
-   * @param startDate string of form group attribute for start date
-   * @param endDate string of form group attribute for end date
-   */
-  dateRangeValidator(startDate: string, endDate: string) {
-    return (group: FormGroup): { [key: string]: any } => {
-      let start = group.get(startDate).value;
-      let end = group.get(endDate).value;
-      if (!start || !end) {
-        return null;
-      }
-      if (start > end) {
-        return {
-          dateRangeValidator: true,
-        };
-      }
-    };
+  startGreaterEnd(control: AbstractControl): { [s: string]: boolean } {
+    const start = this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0);
+    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
   }
 
   parseDate(s: string) {
