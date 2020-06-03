@@ -4,7 +4,6 @@ import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './audit.actions';
 import * as shortid from 'shortid';
-import { audits } from '../data/examples/audits';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
@@ -12,9 +11,6 @@ export interface AuditRegistryStateModel {
 
 @State<AuditRegistryStateModel>({
   name: 'auditRegistry',
-  defaults: {
-    audits: audits,
-  },
 })
 @Injectable()
 export class AuditRegistryState {

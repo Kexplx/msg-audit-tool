@@ -1,6 +1,6 @@
 import { SortAuditPipe } from './sort-audit.pipe';
 import { AuditStatus } from 'src/app/core/data/models/audit.model';
-import { factors } from 'src/app/core/data/factors';
+import { factors } from 'src/app/core/data/examples/fac-crits';
 
 describe('SortAuditPipe', () => {
   const audit0 = {
@@ -19,7 +19,7 @@ describe('SortAuditPipe', () => {
       name: 'BMW',
       sector: 'Automobilindustrie',
     },
-    status: AuditStatus.IsPlanned,
+    status: AuditStatus.Planned,
     factors: factors.slice(0, 2),
     id: '0',
     creationDate: new Date(2020, 3, 1).getTime(),
@@ -41,7 +41,7 @@ describe('SortAuditPipe', () => {
       name: 'BMW',
       sector: 'Automobilindustrie',
     },
-    status: AuditStatus.IsPlanned,
+    status: AuditStatus.Planned,
     factors: factors.slice(0, 2),
     id: '1',
     creationDate: new Date(2020, 1, 1).getTime(),
@@ -63,7 +63,7 @@ describe('SortAuditPipe', () => {
       name: 'BMW',
       sector: 'Automobilindustrie',
     },
-    status: AuditStatus.IsPlanned,
+    status: AuditStatus.Planned,
     factors: factors.slice(0, 2),
     id: '2',
     creationDate: new Date(2020, 2, 1).getTime(),

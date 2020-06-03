@@ -26,7 +26,7 @@ describe('AuditCardComponent', () => {
       name: 'b',
       sector: 'c',
     },
-    status: AuditStatus.IsPlanned,
+    status: AuditStatus.Planned,
     creationDate: Date.now(),
   };
 
@@ -72,14 +72,14 @@ describe('AuditCardComponent', () => {
         .querySelector('.banner-status-in-action')
         .getAttribute('nbPopover'),
     ).toContain('In Bearbeitung');
-    component.audit.status = AuditStatus.IsFinished;
+    component.audit.status = AuditStatus.Finished;
     fixture.detectChanges();
     expect(
       fixture.debugElement.nativeElement
         .querySelector('.banner-status-is-finished')
         .getAttribute('nbPopover'),
     ).toContain('Abgeschlossen');
-    component.audit.status = AuditStatus.IsCanceled;
+    component.audit.status = AuditStatus.Cancelled;
     fixture.detectChanges();
     expect(
       fixture.debugElement.nativeElement

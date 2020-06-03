@@ -8,7 +8,6 @@ import {
   AbstractControl,
   Validators,
 } from '@angular/forms';
-import { Factor } from 'src/app/core/data/models/factor.model';
 import { NbDialogService } from '@nebular/theme';
 import { ConfirmDiscardDialogComponent } from 'src/app/shared/components/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 
@@ -19,7 +18,7 @@ import { ConfirmDiscardDialogComponent } from 'src/app/shared/components/dialogs
 })
 export class InterviewFormComponent implements OnInit {
   @Input() interview: Interview;
-  @Input() scope: Factor[];
+  // @Input() scope: Factor[];
   @Output() formSubmitted = new EventEmitter<any>();
   @Output() formCancelled = new EventEmitter<any>();
   interviewForm: FormGroup;
@@ -47,18 +46,18 @@ export class InterviewFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.interviewForm = this.fb.group({
-      start: [this.interview?.start ?? new Date()],
-      end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
-      persons: this.fb.array([
-        this.fb.group({
-          role: new FormControl(null),
-          contactInformation: new FormControl(null),
-        }),
-      ]),
-      criteria: [this.interview?.criteria, Validators.required],
-      factorTitle: [null],
-    });
+    // this.interviewForm = this.fb.group({
+    //   start: [this.interview?.start ?? new Date()],
+    //   end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
+    //   persons: this.fb.array([
+    //     this.fb.group({
+    //       role: new FormControl(null),
+    //       contactInformation: new FormControl(null),
+    //     }),
+    //   ]),
+    //   criteria: [this.interview?.criteria, Validators.required],
+    //   factorTitle: [null],
+    // });
   }
 
   /**
@@ -90,18 +89,12 @@ export class InterviewFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const interview: Interview = {
-      start: this.parseDate(this.start.value),
-      end: this.parseDate(this.end.value),
-      persons: this.persons.controls.map((x: FormGroup) => {
-        return { information: x.controls.contactInformation.value, role: x.controls.role.value };
-      }),
-      criteria: this.criteria.value,
-      factorTitle: this.factorTitle.value,
-      status: InterviewStatus.InAction,
-    };
-
-    this.formSubmitted.emit(interview);
+    // const interview: Interview = {
+    //   start: this.parseDate(this.start.value),
+    //   end: this.parseDate(this.end.value),
+    //   status: InterviewStatus.InAction,
+    // };
+    // this.formSubmitted.emit(interview);
   }
 
   onCancel() {
