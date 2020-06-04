@@ -5,6 +5,7 @@ import { Store } from '@ngxs/store';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AddAudit } from 'src/app/core/ngxs/audit.actions';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-audit-dialog',
@@ -18,7 +19,7 @@ export class AddAuditDialogComponent implements AfterViewInit {
   constructor(
     private dialogService: NbDialogService,
     private store: Store,
-    private router: Router,
+    private location: Location,
   ) {}
 
   ngAfterViewInit() {
@@ -27,7 +28,7 @@ export class AddAuditDialogComponent implements AfterViewInit {
       autoFocus: true,
     });
     this.dialogRef.onClose.subscribe(() => {
-      this.router.navigate(['/audits']);
+      this.location.back();
     });
   }
 
