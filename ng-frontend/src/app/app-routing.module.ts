@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/audit-overview/audit-overview.module').then(m => m.AuditOverviewModule),
   },
+  {
+    path: 'contact-people',
+    loadChildren: () =>
+      import('./features/contact-people/contact-people.module').then(m => m.ContactPeopleModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 
