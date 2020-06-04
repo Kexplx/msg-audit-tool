@@ -124,8 +124,6 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { NbMenuService } from &#x27;@nebular/theme&#x27;;
-import { map } from &#x27;rxjs/operators&#x27;;
 
 @Component({
   selector: &#x27;app-root&#x27;,
@@ -139,12 +137,12 @@ export class AppComponent {}
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
 &lt;nb-layout&gt;
-  &lt;nb-sidebar style&#x3D;&quot;top: 60px; z-index: 1;&quot; collapsedBreakpoints&#x3D;&quot;lg, md, sm, is, xs&quot; responsive&gt;
+  &lt;nb-sidebar style&#x3D;&quot;top: 60px; z-index: 1;&quot; collapsedBreakpoints&#x3D;&quot;lg, md, sm, is, xs&quot; responsive data-cy&#x3D;&quot;sidebar&quot;&gt;
     &lt;div class&#x3D;&quot;sidebar-container&quot;&gt;
-      &lt;div class&#x3D;&quot;sidebar-container-content&quot;&gt;
+      &lt;div class&#x3D;&quot;sidebar-container-content&quot; data-cy&#x3D;&quot;sidebar-content&quot;&gt;
         &lt;h5&gt;Sidebar&lt;/h5&gt;
       &lt;/div&gt;
-      &lt;span class&#x3D;&quot;sidebar-container-version label&quot;&gt;
+      &lt;span class&#x3D;&quot;sidebar-container-version label&quot; data-cy&#x3D;&quot;sidebar-version-label&quot;&gt;
         Version 0.0.1
       &lt;/span&gt;
     &lt;/div&gt;
@@ -203,8 +201,8 @@ nb-layout-column {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><nb-layout>  <nb-sidebar style="top: 60px; z-index: 1;" collapsedBreakpoints="lg, md, sm, is, xs" responsive>    <div class="sidebar-container">      <div class="sidebar-container-content">        <h5>Sidebar</h5>      </div>      <span class="sidebar-container-version label">        Version 0.0.1      </span>    </div>  </nb-sidebar>  <nb-layout-column>    <router-outlet></router-outlet>  </nb-layout-column></nb-layout><ng-container appActionListener></ng-container></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><nb-layout>  <nb-sidebar style="top: 60px; z-index: 1;" collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">    <div class="sidebar-container">      <div class="sidebar-container-content" data-cy="sidebar-content">        <h5>Sidebar</h5>      </div>      <span class="sidebar-container-version label" data-cy="sidebar-version-label">        Version 0.0.1      </span>    </div>  </nb-sidebar>  <nb-layout-column>    <router-outlet></router-outlet>  </nb-layout-column></nb-layout><ng-container appActionListener></ng-container></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>

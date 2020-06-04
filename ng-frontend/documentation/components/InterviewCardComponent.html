@@ -1,0 +1,499 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MSG Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>InterviewCardComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/audit-overview/components/audit-overview/interview-list/interview-card/interview-card.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-interview-card</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./interview-card.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./interview-card.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#interviewStatuses">interviewStatuses</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#interview">interview</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-card/interview-card.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="interview"></a>
+                        <b>interview</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Interview.html" target="_self" >Interview</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-card/interview-card.component.ts:10</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-card/interview-card.component.ts:15</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="interviewStatuses"></a>
+                        <span class="name">
+                            <b>
+                            interviewStatuses</b>
+                            <a href="#interviewStatuses"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>InterviewStatus</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-card/interview-card.component.ts:11</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
+import { Interview, InterviewStatus } from &#x27;src/app/core/data/models/interview.model&#x27;;
+
+@Component({
+  selector: &#x27;app-interview-card&#x27;,
+  templateUrl: &#x27;./interview-card.component.html&#x27;,
+  styleUrls: [&#x27;./interview-card.component.scss&#x27;],
+})
+export class InterviewCardComponent implements OnInit {
+  @Input() interview: Interview;
+  interviewStatuses &#x3D; InterviewStatus;
+
+  constructor() {}
+
+  ngOnInit() {}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+&lt;p class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;interview-criteria&quot;&gt;
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&lt;!-- &lt;p class&#x3D;&quot;subtitle-2&quot;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; b0d3cea... [REFACTOR] Prepare refactor
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+&lt;!-- &lt;p class&#x3D;&quot;subtitle-2&quot;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
+  {{ interview.criteria.title }}
+  &lt;span class&#x3D;&quot;label&quot; *ngIf&#x3D;&quot;interview.start&quot; data-cy&#x3D;&quot;interview-timestamp&quot;&gt;
+    &amp;nbsp;({{ interview.start | date: &#x27;dd.MM.yyyy&#x27; }} - &lt;span *ngIf&#x3D;&quot;interview.end; else tbd&quot;&gt;{{ interview.end | date: &#x27;dd.MM.yyyy&#x27; }})&lt;/span&gt;
+    &lt;ng-template #tbd&gt;TBD)&lt;/ng-template&gt;
+  &lt;/span&gt;
+&lt;/p&gt;
+&lt;br /&gt;
+&lt;ng-container [ngSwitch]&#x3D;&quot;interview.status&quot;&gt;
+  &lt;div
+    nbPopoverPlacement&#x3D;&quot;left&quot;
+    nbPopover&#x3D;&quot;In Bearbeitung&quot;
+    nbPopoverTrigger&#x3D;&quot;hint&quot;
+    *ngSwitchCase&#x3D;&quot;interviewStatuses.InAction&quot;
+    class&#x3D;&quot;banner-status banner-status-in-action&quot;
+    data-cy&#x3D;&quot;interview-status&quot;
+  &gt;&lt;/div&gt;
+  &lt;div
+    nbPopoverPlacement&#x3D;&quot;left&quot;
+    nbPopover&#x3D;&quot;Abgeschlossen&quot;
+    nbPopoverTrigger&#x3D;&quot;hint&quot;
+    *ngSwitchCase&#x3D;&quot;interviewStatuses.Finished&quot;
+    class&#x3D;&quot;banner-status banner-status-is-finished&quot;
+    data-cy&#x3D;&quot;interview-status&quot;
+  &gt;&lt;/div&gt;
+&lt;/ng-container&gt;
+&lt;div *ngFor&#x3D;&quot;let person of interview.persons&quot; data-cy&#x3D;&quot;interview-contact-persons&quot;&gt;
+  &lt;span class&#x3D;&quot;label&quot; *ngIf&#x3D;&quot;person.information&quot;&gt; {{ person.information + &#x27; | &#x27; }} &lt;/span&gt;
+  &lt;span class&#x3D;&quot;label&quot; *ngIf&#x3D;&quot;person.role&quot;&gt; {{ person.role }} &lt;/span&gt;
+&lt;/div&gt; --&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./interview-card.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/sass/utils&#x27;;
+@import &#x27;~@nebular/theme/styles/theming&#x27;;
+@import &#x27;~@nebular/theme/styles/themes/default&#x27;;
+
+.banner-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 12px;
+  -webkit-box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
+  -moz-box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
+  box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
+  border-radius: 3px;
+}
+
+.banner-status-is-planned {
+  background-color: nb-theme(color-basic-100);
+}
+
+.banner-status-in-action {
+  background-color: nb-theme(color-warning-default);
+}
+
+.banner-status-is-finished {
+  background-color: nb-theme(color-success-default);
+}
+
+.banner-status-is-canceled {
+  background-color: nb-theme(color-danger-default);
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><<<<<<< HEAD<<<<<<< HEAD<p class="subtitle-2" data-cy="interview-criteria">=======<!-- <p class="subtitle-2">>>>>>>> b0d3cea... [REFACTOR] Prepare refactor=======<!-- <p class="subtitle-2">>>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d  {{ interview.criteria.title }}  <span class="label" *ngIf="interview.start" data-cy="interview-timestamp">    &nbsp;({{ interview.start | date: \'dd.MM.yyyy\' }} - <span *ngIf="interview.end; else tbd">{{ interview.end | date: \'dd.MM.yyyy\' }})</span>    <ng-template #tbd>TBD)</ng-template>  </span></p><br /><ng-container [ngSwitch]="interview.status">  <div    nbPopoverPlacement="left"    nbPopover="In Bearbeitung"    nbPopoverTrigger="hint"    *ngSwitchCase="interviewStatuses.InAction"    class="banner-status banner-status-in-action"    data-cy="interview-status"  ></div>  <div    nbPopoverPlacement="left"    nbPopover="Abgeschlossen"    nbPopoverTrigger="hint"    *ngSwitchCase="interviewStatuses.Finished"    class="banner-status banner-status-is-finished"    data-cy="interview-status"  ></div></ng-container><div *ngFor="let person of interview.persons" data-cy="interview-contact-persons">  <span class="label" *ngIf="person.information"> {{ person.information + \' | \' }} </span>  <span class="label" *ngIf="person.role"> {{ person.role }} </span></div> --></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+    var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
+    var ACTUAL_COMPONENT = {'name': 'InterviewCardComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InterviewCardComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

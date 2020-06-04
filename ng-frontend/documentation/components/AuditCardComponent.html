@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/audit-list/audit-card/audit-card.component.ts</code>
+    <code>src/app/features/audit-list/components/audit-card/audit-card.component.ts</code>
 </p>
 
 
@@ -175,6 +175,20 @@
 
 
 
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#contactPerson">contactPerson</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
         </tbody>
     </table>
 </section>
@@ -190,7 +204,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/audit-list/audit-card/audit-card.component.ts:27</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -270,7 +284,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/audit-list/audit-card/audit-card.component.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:22</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -306,8 +320,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/audit-list/audit-card/audit-card.component.ts:31</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:33</a></div>
                 </td>
             </tr>
 
@@ -348,7 +362,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/audit-list/audit-card/audit-card.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -373,17 +387,9 @@
 
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[
-    { title: &#x27;Bearbeiten&#x27;, icon: &#x27;edit-outline&#x27;, data: MenuOptions.Edit },
-    { title: &#x27;Löschen&#x27;, icon: &#x27;trash-outline&#x27;, data: MenuOptions.Delete },
-  ]</code>
-                        </td>
-                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/audit-list/audit-card/audit-card.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:25</a></div>
                             </td>
                         </tr>
 
@@ -410,7 +416,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/audit-list/audit-card/audit-card.component.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -419,6 +425,33 @@
         </table>
 </section>
 
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactPerson"></a>
+                        <span class="name"><b>contactPerson</b><a href="#contactPerson"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>contactPerson()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/features/audit-list/components/audit-card/audit-card.component.ts:29</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
 </div>
 
 
@@ -426,15 +459,16 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
 import { NbMenuService, NbMenuItem, NbMenuBag } from &#x27;@nebular/theme&#x27;;
 import { map, filter } from &#x27;rxjs/operators&#x27;;
-import { Audit, AuditStatus } from &#x27;src/app/data/models/audit.model&#x27;;
 import { Store } from &#x27;@ngxs/store&#x27;;
-import { DeleteAudit } from &#x27;src/app/ngxs/audit.actions&#x27;;
 import * as shortid from &#x27;shortid&#x27;;
 import { Router } from &#x27;@angular/router&#x27;;
+import { Audit, AuditStatus } from &#x27;src/app/core/data/models/audit.model&#x27;;
+import { DeleteAudit, UpdateAudit } from &#x27;src/app/core/ngxs/audit.actions&#x27;;
 
 enum MenuOptions {
   Edit,
   Delete,
+  Reactivate,
 }
 
 @Component({
@@ -446,14 +480,29 @@ export class AuditCardComponent implements OnInit {
   @Input() audit: Audit;
   nbMenuId: string;
   auditStatus &#x3D; AuditStatus;
-  items: NbMenuItem[] &#x3D; [
-    { title: &#x27;Bearbeiten&#x27;, icon: &#x27;edit-outline&#x27;, data: MenuOptions.Edit },
-    { title: &#x27;Löschen&#x27;, icon: &#x27;trash-outline&#x27;, data: MenuOptions.Delete },
-  ];
+  items: NbMenuItem[];
 
   constructor(private nbMenuService: NbMenuService, private store: Store, private router: Router) {}
 
+  get contactPerson() {
+    return this.audit.contactPeople ? this.audit.contactPeople[0] : null;
+  }
+
   ngOnInit() {
+    const status &#x3D; this.audit.status;
+
+    this.items &#x3D; [
+      status &#x3D;&#x3D; AuditStatus.Planned || status &#x3D;&#x3D; AuditStatus.InAction
+        ? {
+            title: &#x27;Bearbeiten&#x27;,
+            icon: &#x27;edit-outline&#x27;,
+            link: &#x60;/audits/${this.audit.id}/edit&#x60;,
+            data: MenuOptions.Edit,
+          }
+        : { title: &#x27;Reaktivieren&#x27;, icon: &#x27;activity-outline&#x27;, data: MenuOptions.Reactivate },
+      { title: &#x27;Löschen&#x27;, icon: &#x27;trash-outline&#x27;, data: MenuOptions.Delete },
+    ];
+
     this.nbMenuId &#x3D; shortid.generate();
 
     this.nbMenuService
@@ -464,13 +513,12 @@ export class AuditCardComponent implements OnInit {
       )
       .subscribe((option: MenuOptions) &#x3D;&gt; {
         switch (option) {
-          case MenuOptions.Edit:
-            const urlTree &#x3D; this.router.createUrlTree([&#x60;/audits/${this.audit.id}/edit&#x60;]);
-            this.router.navigateByUrl(urlTree);
-            break;
           case MenuOptions.Delete:
             this.store.dispatch(new DeleteAudit(this.audit));
             break;
+          case MenuOptions.Reactivate:
+            const audit &#x3D; { ...this.audit, status: AuditStatus.InAction };
+            this.store.dispatch(new UpdateAudit(this.audit.id, audit));
         }
       });
   }
@@ -479,54 +527,26 @@ export class AuditCardComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;nb-accordion&gt;
-  &lt;nb-accordion-item&gt;
-    &lt;nb-accordion-item-header&gt;
-      &lt;ng-container [ngSwitch]&#x3D;&quot;audit.status&quot;&gt;
-        &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;Geplant&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.IsPlanned&quot; class&#x3D;&quot;banner-status banner-status-is-planned&quot;&gt;&lt;/div&gt;
-        &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;In Bearbeitung&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.InAction&quot; class&#x3D;&quot;banner-status banner-status-in-action&quot;&gt;&lt;/div&gt;
-        &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;Abgeschlossen&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.IsFinished&quot; class&#x3D;&quot;banner-status banner-status-is-finished&quot;&gt;&lt;/div&gt;
-        &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;Abgebrochen&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.IsCanceled&quot; class&#x3D;&quot;banner-status banner-status-is-canceled&quot;&gt;&lt;/div&gt;
-      &lt;/ng-container&gt;
-      &lt;div class&#x3D;&quot;nb-accordion-item-header-wrapper&quot;&gt;
-        &lt;nb-checkbox (click)&#x3D;&quot;$event.stopPropagation()&quot;&gt;&lt;/nb-checkbox&gt;
-        &lt;div&gt;
-          {{ audit.name }}
-          &lt;span *ngIf&#x3D;&quot;audit.customerData.name&quot;&gt;, {{ audit.customerData.name }} &lt;/span&gt;
-          &lt;span class&#x3D;&quot;label&quot; *ngIf&#x3D;&quot;audit.start&quot;&gt;
-            &amp;nbsp;({{ audit.start | date: &#x27;dd.MM.yyyy&#x27; }} - &lt;span *ngIf&#x3D;&quot;audit.end&quot;&gt;{{ audit.end | date: &#x27;dd.MM.yyyy&#x27; }}&lt;/span
-            &gt;)
-          &lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/nb-accordion-item-header&gt;
-    &lt;nb-accordion-item-body&gt;
-      &lt;div class&#x3D;&quot;card-information-header&quot;&gt;
-        Unternehmen
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;card-information-body&quot;&gt;{{ audit.customerData.name }}, {{ audit.customerData.department }} ({{ audit.customerData.sector }})&lt;/div&gt;
-      &lt;div class&#x3D;&quot;card-information-header&quot;&gt;
-        Kontaktperson
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;card-information-body&quot;&gt;
-        {{ audit.contactPerson.title }} {{ audit.contactPerson.firstName }}
-        {{ audit.contactPerson.lastName }}
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;card-information-header&quot;&gt;
-        Kontaktinformationen
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;card-information-body&quot;&gt;
-        {{ audit.contactPerson.information }}
-      &lt;/div&gt;
-      &lt;div class&#x3D;&quot;card-options&quot;&gt;
-        &lt;button nbButton status&#x3D;&quot;primary&quot;&gt;zum Audit&lt;/button&gt;
-        &lt;button nbButton [nbContextMenu]&#x3D;&quot;items&quot; [nbContextMenuTag]&#x3D;&quot;nbMenuId&quot;&gt;
-          &lt;nb-icon icon&#x3D;&quot;more-vertical-outline&quot;&gt;&lt;/nb-icon&gt;
-        &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/nb-accordion-item-body&gt;
-  &lt;/nb-accordion-item&gt;
-&lt;/nb-accordion&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;nb-card [routerLink]&#x3D;&quot;[audit.id + &#x27;/interviews&#x27;]&quot; data-cy&#x3D;&quot;audit-card&quot;&gt;
+  &lt;ng-container [ngSwitch]&#x3D;&quot;audit.status&quot;&gt;
+    &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;Geplant&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.Planned&quot; class&#x3D;&quot;banner-status banner-status-is-planned&quot; data-cy&#x3D;&quot;audit-status&quot;&gt;&lt;/div&gt;
+    &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;In Bearbeitung&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.InAction&quot; class&#x3D;&quot;banner-status banner-status-in-action&quot; data-cy&#x3D;&quot;audit-status&quot;&gt;&lt;/div&gt;
+    &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;Abgeschlossen&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.Finished&quot; class&#x3D;&quot;banner-status banner-status-is-finished&quot; data-cy&#x3D;&quot;audit-status&quot;&gt;&lt;/div&gt;
+    &lt;div nbPopoverPlacement&#x3D;&quot;left&quot; nbPopover&#x3D;&quot;Abgebrochen&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; *ngSwitchCase&#x3D;&quot;auditStatus.Cancelled&quot; class&#x3D;&quot;banner-status banner-status-is-canceled&quot; data-cy&#x3D;&quot;audit-status&quot;&gt;&lt;/div&gt;
+  &lt;/ng-container&gt;
+  &lt;nb-card-header&gt;
+    &lt;div data-cy&#x3D;&quot;audit-short-infos&quot;&gt;
+      {{ audit.name }}
+      &lt;span *ngIf&#x3D;&quot;contactPerson&quot;&gt;| {{ contactPerson.companyName }} &lt;/span&gt;
+      &lt;br /&gt;
+      &lt;span class&#x3D;&quot;label&quot;&gt; &amp;nbsp;{{ audit.startDate | date: &#x27;dd.MM.yyyy&#x27; }} - {{ audit.endDate ? (audit.endDate | date: &#x27;dd.MM.yyyy&#x27;) : &#x27;TBD&#x27; }}&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div&gt;&lt;/div&gt;
+    &lt;button (click)&#x3D;&quot;$event.stopPropagation()&quot; nbContextMenuPlacement&#x3D;&quot;left&quot; nbContextMenuTrigger&#x3D;&quot;focus&quot; nbButton [nbContextMenu]&#x3D;&quot;items&quot; [nbContextMenuTag]&#x3D;&quot;nbMenuId&quot; data-cy&#x3D;&quot;audit-options&quot;&gt;
+      &lt;nb-icon icon&#x3D;&quot;more-vertical-outline&quot;&gt;&lt;/nb-icon&gt;
+    &lt;/button&gt;
+  &lt;/nb-card-header&gt;
+&lt;/nb-card&gt;
 </code></pre>
     </div>
 
@@ -538,40 +558,17 @@ export class AuditCardComponent implements OnInit {
 @import &#x27;~@nebular/theme/styles/theming&#x27;;
 @import &#x27;~@nebular/theme/styles/themes/default&#x27;;
 
-nb-accordion {
-  margin-bottom: 20px;
-}
-
-nb-checkbox {
+nb-card-header {
   display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  gap: 0 10px;
 }
 
-nb-accordion-header {
+nb-card {
   position: relative;
-}
-
-.nb-accordion-item-header-wrapper {
-  display: grid;
-  align-items: center;
-  grid-template-columns: auto 1fr;
-  gap: 0 10px;
-}
-
-.card-options {
-  display: grid;
-  gap: 0 10px;
-  grid-template-columns: 1fr auto;
-  justify-items: right;
-}
-
-.card-information-header {
-  margin-top: 20px;
-  font-weight: bold;
-}
-
-.card-information-body {
-  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .banner-status {
@@ -580,20 +577,16 @@ nb-accordion-header {
   left: 0;
   bottom: 0;
   height: 100%;
-  width: 10px;
+  width: 12px;
   -webkit-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
   -moz-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
   box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
-  border-bottom-left-radius: nb-theme(accordion-border-radius);
-  border-top-left-radius: nb-theme(accordion-border-radius);
-}
-
-.accordion-item-header-expanded .banner-status {
-  border-bottom-left-radius: 0;
+  border-bottom-left-radius: nb-theme(card-border-radius);
+  border-top-left-radius: nb-theme(card-border-radius);
 }
 
 .banner-status-is-planned {
-  background-color: nb-theme(color-danger-default);
+  background-color: nb-theme(color-basic-100);
 }
 
 .banner-status-in-action {
@@ -605,7 +598,11 @@ nb-accordion-header {
 }
 
 .banner-status-is-canceled {
-  background-color: nb-theme(background-basic-color-2);
+  background-color: nb-theme(color-danger-default);
+}
+
+a {
+  text-decoration: none;
 }
 </code></pre>
     </div>
@@ -635,8 +632,8 @@ nb-accordion-header {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nb-accordion>  <nb-accordion-item>    <nb-accordion-item-header>      <ng-container [ngSwitch]="audit.status">        <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsPlanned" class="banner-status banner-status-is-planned"></div>        <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action"></div>        <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsFinished" class="banner-status banner-status-is-finished"></div>        <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.IsCanceled" class="banner-status banner-status-is-canceled"></div>      </ng-container>      <div class="nb-accordion-item-header-wrapper">        <nb-checkbox (click)="$event.stopPropagation()"></nb-checkbox>        <div>          {{ audit.name }}          <span *ngIf="audit.customerData.name">, {{ audit.customerData.name }} </span>          <span class="label" *ngIf="audit.start">            &nbsp;({{ audit.start | date: \'dd.MM.yyyy\' }} - <span *ngIf="audit.end">{{ audit.end | date: \'dd.MM.yyyy\' }}</span            >)          </span>        </div>      </div>    </nb-accordion-item-header>    <nb-accordion-item-body>      <div class="card-information-header">        Unternehmen      </div>      <div class="card-information-body">{{ audit.customerData.name }}, {{ audit.customerData.department }} ({{ audit.customerData.sector }})</div>      <div class="card-information-header">        Kontaktperson      </div>      <div class="card-information-body">        {{ audit.contactPerson.title }} {{ audit.contactPerson.firstName }}        {{ audit.contactPerson.lastName }}      </div>      <div class="card-information-header">        Kontaktinformationen      </div>      <div class="card-information-body">        {{ audit.contactPerson.information }}      </div>      <div class="card-options">        <button nbButton status="primary">zum Audit</button>        <button nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId">          <nb-icon icon="more-vertical-outline"></nb-icon>        </button>      </div>    </nb-accordion-item-body>  </nb-accordion-item></nb-accordion></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><nb-card [routerLink]="[audit.id + \'/interviews\']" data-cy="audit-card">  <ng-container [ngSwitch]="audit.status">    <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Planned" class="banner-status banner-status-is-planned" data-cy="audit-status"></div>    <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action" data-cy="audit-status"></div>    <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Finished" class="banner-status banner-status-is-finished" data-cy="audit-status"></div>    <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Cancelled" class="banner-status banner-status-is-canceled" data-cy="audit-status"></div>  </ng-container>  <nb-card-header>    <div data-cy="audit-short-infos">      {{ audit.name }}      <span *ngIf="contactPerson">| {{ contactPerson.companyName }} </span>      <br />      <span class="label"> &nbsp;{{ audit.startDate | date: \'dd.MM.yyyy\' }} - {{ audit.endDate ? (audit.endDate | date: \'dd.MM.yyyy\') : \'TBD\' }}</span>    </div>    <div></div>    <button (click)="$event.stopPropagation()" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId" data-cy="audit-options">      <nb-icon icon="more-vertical-outline"></nb-icon>    </button>  </nb-card-header></nb-card></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'AuditCardComponent'};
 </script>

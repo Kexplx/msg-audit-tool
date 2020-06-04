@@ -1,0 +1,1105 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MSG Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ContactPersonFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-contact-person-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./contact-person-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./contact-person-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contactPersonForm">contactPersonForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel">onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contactPerson">contactPerson</a>
+                            </li>
+                            <li>
+                                <a href="#submitButtonName">submitButtonName</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelled">cancelled</a>
+                            </li>
+                            <li>
+                                <a href="#formSubmitted">formSubmitted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#firstName">firstName</a>
+                                </li>
+                                <li>
+                                    <a href="#lastName">lastName</a>
+                                </li>
+                                <li>
+                                    <a href="#salutation">salutation</a>
+                                </li>
+                                <li>
+                                    <a href="#title">title</a>
+                                </li>
+                                <li>
+                                    <a href="#companyName">companyName</a>
+                                </li>
+                                <li>
+                                    <a href="#department">department</a>
+                                </li>
+                                <li>
+                                    <a href="#sector">sector</a>
+                                </li>
+                                <li>
+                                    <a href="#corporateDivision">corporateDivision</a>
+                                </li>
+                                <li>
+                                    <a href="#contactInformation">contactInformation</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, dialogService: NbDialogService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NbDialogService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactPerson"></a>
+                        <b>contactPerson</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ContactPerson.html" target="_self" >ContactPerson</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="submitButtonName"></a>
+                        <b>submitButtonName</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:14</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelled"></a>
+                        <b>cancelled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:17</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formSubmitted"></a>
+                        <b>formSubmitted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:16</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:59</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <b>
+                            onCancel
+                        </b>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:89</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <b>
+                            onSubmit
+                        </b>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:73</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactPersonForm"></a>
+                        <span class="name">
+                            <b>
+                            contactPersonForm</b>
+                            <a href="#contactPersonForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="firstName"></a>
+                        <span class="name"><b>firstName</b><a href="#firstName"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>firstName()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:23</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lastName"></a>
+                        <span class="name"><b>lastName</b><a href="#lastName"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>lastName()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:27</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="salutation"></a>
+                        <span class="name"><b>salutation</b><a href="#salutation"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>salutation()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:31</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <span class="name"><b>title</b><a href="#title"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>title()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:35</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="companyName"></a>
+                        <span class="name"><b>companyName</b><a href="#companyName"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>companyName()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:39</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="department"></a>
+                        <span class="name"><b>department</b><a href="#department"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>department()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:43</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="sector"></a>
+                        <span class="name"><b>sector</b><a href="#sector"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>sector()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:47</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="corporateDivision"></a>
+                        <span class="name"><b>corporateDivision</b><a href="#corporateDivision"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>corporateDivision()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:51</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactInformation"></a>
+                        <span class="name"><b>contactInformation</b><a href="#contactInformation"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>contactInformation()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:55</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+import { ContactPerson } from &#x27;src/app/core/data/models/contact-person.model&#x27;;
+import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
+import { ConfirmDiscardDialogComponent } from &#x27;../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component&#x27;;
+import { NbDialogService } from &#x27;@nebular/theme&#x27;;
+
+@Component({
+  selector: &#x27;app-contact-person-form&#x27;,
+  templateUrl: &#x27;./contact-person-form.component.html&#x27;,
+  styleUrls: [&#x27;./contact-person-form.component.scss&#x27;],
+})
+export class ContactPersonFormComponent implements OnInit {
+  @Input() contactPerson: ContactPerson;
+  @Input() submitButtonName: string;
+
+  @Output() formSubmitted &#x3D; new EventEmitter&lt;Partial&lt;ContactPerson&gt;&gt;();
+  @Output() cancelled &#x3D; new EventEmitter&lt;any&gt;();
+
+  contactPersonForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
+
+  get firstName() {
+    return this.contactPersonForm.get(&#x27;firstName&#x27;);
+  }
+
+  get lastName() {
+    return this.contactPersonForm.get(&#x27;lastName&#x27;);
+  }
+
+  get salutation() {
+    return this.contactPersonForm.get(&#x27;salutation&#x27;);
+  }
+
+  get title() {
+    return this.contactPersonForm.get(&#x27;title&#x27;);
+  }
+
+  get companyName() {
+    return this.contactPersonForm.get(&#x27;companyName&#x27;);
+  }
+
+  get department() {
+    return this.contactPersonForm.get(&#x27;department&#x27;);
+  }
+
+  get sector() {
+    return this.contactPersonForm.get(&#x27;sector&#x27;);
+  }
+
+  get corporateDivision() {
+    return this.contactPersonForm.get(&#x27;corporateDivision&#x27;);
+  }
+
+  get contactInformation() {
+    return this.contactPersonForm.get(&#x27;contactInformation&#x27;);
+  }
+
+  ngOnInit() {
+    this.contactPersonForm &#x3D; this.formBuilder.group({
+      firstName: [null, Validators.required],
+      lastName: [null, Validators.required],
+      salutation: [null, Validators.required],
+      title: [null, Validators.required],
+      companyName: [null, Validators.required],
+      department: [null, Validators.required],
+      sector: [null, Validators.required],
+      corporateDivision: [null, Validators.required],
+      contactInformation: [null],
+    });
+  }
+
+  onSubmit() {
+    const contactPerson: Partial&lt;ContactPerson&gt; &#x3D; {
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
+      salutation: this.salutation.value,
+      title: this.title.value,
+      companyName: this.companyName.value,
+      department: this.department.value,
+      sector: this.sector.value,
+      corporateDivision: this.corporateDivision.value,
+      contactInformation: this.contactInformation.value,
+    };
+
+    this.formSubmitted.emit(contactPerson);
+  }
+
+  onCancel() {
+    if (this.contactPersonForm.dirty &amp;&amp; this.contactPersonForm.touched) {
+      const confirmDiscardComponentRef &#x3D; this.dialogService.open(ConfirmDiscardDialogComponent, {
+        autoFocus: false,
+        closeOnBackdropClick: false,
+      });
+
+      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
+        (cancelConfirmed: boolean) &#x3D;&gt; {
+          if (cancelConfirmed) {
+            this.cancelled.emit();
+          }
+        },
+      );
+    } else {
+      this.cancelled.emit();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;contactPersonForm&quot;&gt;
+  &lt;nb-card&gt;
+    &lt;nb-card-header&gt;
+      &lt;nb-icon icon&#x3D;&quot;person-outline&quot;&gt; &lt;/nb-icon&gt;
+      Neue Kontaktperson
+    &lt;/nb-card-header&gt;
+    &lt;nb-card-body&gt;
+      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Anrede&lt;/label&gt;
+          &lt;nb-select placeholder&#x3D;&quot;Herr&quot; formControlName&#x3D;&quot;salutation&quot; fullWidth data-cy&#x3D;&quot;audit-contact-salutation-input&quot;&gt;
+            &lt;nb-option value&#x3D;&quot;Herr&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Herr&lt;/nb-option&gt;
+            &lt;nb-option value&#x3D;&quot;Frau&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Frau&lt;/nb-option&gt;
+            &lt;nb-option value&#x3D;&quot;Divers&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Divers&lt;/nb-option&gt;
+          &lt;/nb-select&gt;
+          &lt;div *ngIf&#x3D;&quot;salutation.invalid &amp;&amp; salutation.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Anrede wählen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Titel&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Dr.&quot; [status]&#x3D;&quot;title.invalid &amp;&amp; title.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;title&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;title.invalid &amp;&amp; title.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Titel eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Vorname&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Max&quot; [status]&#x3D;&quot;firstName.invalid &amp;&amp; firstName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;firstName&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;firstName.invalid &amp;&amp; firstName.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Vornamen eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Nachname&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Mustermann&quot; [status]&#x3D;&quot;lastName.invalid &amp;&amp; lastName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;lastName&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;lastName.invalid &amp;&amp; lastName.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Nachnamen eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Unternehmen&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;BMW&quot; [status]&#x3D;&quot;companyName.invalid &amp;&amp; companyName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;companyName&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;companyName.invalid &amp;&amp; companyName.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Unternehmen eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Abteilung&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Personalabteilung&quot; [status]&#x3D;&quot;department.invalid &amp;&amp; department.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;department&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;department.invalid &amp;&amp; department.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Abteilung eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Unternehmensbereich&lt;/label&gt;
+          &lt;input
+            placeholder&#x3D;&quot;BMW Robotics&quot;
+            [status]&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot;
+            formControlName&#x3D;&quot;corporateDivision&quot;
+            nbInput
+            fullWidth
+            data-cy&#x3D;&quot;audit-name-input&quot;
+          /&gt;
+          &lt;div *ngIf&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Unternehmensbereich eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Branche&lt;/label&gt;
+          &lt;input
+            placeholder&#x3D;&quot;Automobilindustrie&quot;
+            [status]&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot;
+            formControlName&#x3D;&quot;sector&quot;
+            nbInput
+            fullWidth
+            data-cy&#x3D;&quot;audit-name-input&quot;
+          /&gt;
+          &lt;div *ngIf&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Branche eintragen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;label class&#x3D;&quot;label&quot;&gt;Kontaktinformation&lt;/label&gt;
+      &lt;textarea spellcheck&#x3D;&quot;false&quot; nbInput formControlName&#x3D;&quot;contactInformation&quot; placeholder&#x3D;&quot;Erreichbar unter...&quot; fullWidth data-cy&#x3D;&quot;audit-contact-info-input&quot;&gt;&lt;/textarea&gt;
+    &lt;/nb-card-body&gt;
+    &lt;nb-card-footer&gt;
+      &lt;button (click)&#x3D;&quot;onCancel()&quot; hero nbButton data-cy&#x3D;&quot;cancel-audit-data-form&quot;&gt;
+        abbrechen
+      &lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;contactPersonForm.invalid&quot; status&#x3D;&quot;primary&quot; hero nbButton data-cy&#x3D;&quot;submit-audit-data-form&quot;&gt;
+        {{ submitButtonName }}
+      &lt;/button&gt;
+    &lt;/nb-card-footer&gt;
+  &lt;/nb-card&gt;
+&lt;/form&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./contact-person-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/sass/utils&#x27;;
+
+nb-card {
+  margin: 0 10px;
+}
+
+nb-card-footer {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0;
+  padding: 10px 20px 10px 20px;
+}
+
+.criteria-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-item-audit-name {
+  margin-bottom: 20px;
+}
+
+textarea {
+  resize: vertical;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="contactPersonForm">  <nb-card>    <nb-card-header>      <nb-icon icon="person-outline"> </nb-icon>      Neue Kontaktperson    </nb-card-header>    <nb-card-body>      <div class="grid-1-1">        <div>          <label class="label">Anrede</label>          <nb-select placeholder="Herr" formControlName="salutation" fullWidth data-cy="audit-contact-salutation-input">            <nb-option value="Herr" data-cy="salutation-option">Herr</nb-option>            <nb-option value="Frau" data-cy="salutation-option">Frau</nb-option>            <nb-option value="Divers" data-cy="salutation-option">Divers</nb-option>          </nb-select>          <div *ngIf="salutation.invalid && salutation.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Anrede wählen</label>          </div>        </div>        <div>          <label class="label">Titel</label>          <input placeholder="Dr." [status]="title.invalid && title.touched ? \'danger\' : \'basic\'" formControlName="title" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="title.invalid && title.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Titel eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1">        <div>          <label class="label">Vorname</label>          <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? \'danger\' : \'basic\'" formControlName="firstName" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="firstName.invalid && firstName.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Vornamen eintragen</label>          </div>        </div>        <div>          <label class="label">Nachname</label>          <input placeholder="Mustermann" [status]="lastName.invalid && lastName.touched ? \'danger\' : \'basic\'" formControlName="lastName" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="lastName.invalid && lastName.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Nachnamen eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1">        <div>          <label class="label">Unternehmen</label>          <input placeholder="BMW" [status]="companyName.invalid && companyName.touched ? \'danger\' : \'basic\'" formControlName="companyName" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="companyName.invalid && companyName.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Unternehmen eintragen</label>          </div>        </div>        <div>          <label class="label">Abteilung</label>          <input placeholder="Personalabteilung" [status]="department.invalid && department.touched ? \'danger\' : \'basic\'" formControlName="department" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="department.invalid && department.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Abteilung eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1">        <div>          <label class="label">Unternehmensbereich</label>          <input            placeholder="BMW Robotics"            [status]="corporateDivision.invalid && corporateDivision.touched ? \'danger\' : \'basic\'"            formControlName="corporateDivision"            nbInput            fullWidth            data-cy="audit-name-input"          />          <div *ngIf="corporateDivision.invalid && corporateDivision.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Unternehmensbereich eintragen</label>          </div>        </div>        <div>          <label class="label">Branche</label>          <input            placeholder="Automobilindustrie"            [status]="corporateDivision.invalid && corporateDivision.touched ? \'danger\' : \'basic\'"            formControlName="sector"            nbInput            fullWidth            data-cy="audit-name-input"          />          <div *ngIf="corporateDivision.invalid && corporateDivision.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Branche eintragen</label>          </div>        </div>      </div>      <label class="label">Kontaktinformation</label>      <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="audit-contact-info-input"></textarea>    </nb-card-body>    <nb-card-footer>      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">        abbrechen      </button>      <button (click)="onSubmit()" [disabled]="contactPersonForm.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">        {{ submitButtonName }}      </button>    </nb-card-footer>  </nb-card></form></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+    var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
+    var ACTUAL_COMPONENT = {'name': 'ContactPersonFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ContactPersonFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
