@@ -1,0 +1,17 @@
+<header class="grid-1-auto-auto">
+  <h4 class="header-title">Kontaktpersonen</h4>
+  <a routerLink="new" hero size="medium" nbButton status="primary" data-cy="new-audit">
+    <nb-icon icon="plus"></nb-icon>
+    Neue Person
+  </a>
+</header>
+
+<div *ngIf="false; else noContactPersons"></div>
+<ng-template #noContactPersons>
+  <div class="hint-no-audits">
+    <h6 class="text-hint">Keine Kontaktpersonen vorhanden</h6>
+  </div>
+</ng-template>
+<nb-layout>
+  <router-outlet></router-outlet>
+</nb-layout>
