@@ -26,6 +26,10 @@ export class AuditCardComponent implements OnInit {
 
   constructor(private nbMenuService: NbMenuService, private store: Store, private router: Router) {}
 
+  get contactPerson() {
+    return this.audit.contactPeople ? this.audit.contactPeople[0] : null;
+  }
+
   ngOnInit() {
     const status = this.audit.status;
 
