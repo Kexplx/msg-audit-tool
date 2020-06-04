@@ -6,9 +6,9 @@
   </a>
 </header>
 
-<div *ngIf="contactPeople$ | async; else noContactPersons">
-  <nb-card>
-    <nb-card-header></nb-card-header>
+<div *ngIf="contactPeople$ | async as contactPeople; else noContactPersons">
+  <nb-card *ngFor="let contactPerson of contactPeople">
+    <nb-card-header>{{ contactPerson.firstName + ' ' + contactPerson.lastName }}</nb-card-header>
   </nb-card>
 </div>
 <ng-template #noContactPersons>
