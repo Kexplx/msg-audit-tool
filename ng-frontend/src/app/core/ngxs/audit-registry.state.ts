@@ -4,9 +4,11 @@ import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './audit.actions';
 import * as shortid from 'shortid';
+import { ContactPerson } from '../data/models/contact-person.model';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
+  contactPeople: ContactPerson[];
 }
 
 @State<AuditRegistryStateModel>({
