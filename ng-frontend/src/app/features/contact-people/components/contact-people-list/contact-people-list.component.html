@@ -6,7 +6,11 @@
   </a>
 </header>
 
-<div *ngIf="false; else noContactPersons"></div>
+<div *ngIf="contactPeople$ | async; else noContactPersons">
+  <nb-card>
+    <nb-card-header></nb-card-header>
+  </nb-card>
+</div>
 <ng-template #noContactPersons>
   <div class="hint-no-audits">
     <h6 class="text-hint">Keine Kontaktpersonen vorhanden</h6>
