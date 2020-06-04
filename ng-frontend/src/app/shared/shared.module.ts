@@ -11,6 +11,8 @@ import { ConfirmDiscardDialogComponent } from './components/dialogs/confirm-disc
 import { SortAuditPipe } from './pipes/sort-audit.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AddContactPersonDialogComponent } from './components/dialogs/add-contact-person-dialog/add-contact-person-dialog.component';
+import { ContactPersonFormComponent } from './components/forms/contact-person-form/contact-person-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { RouterModule } from '@angular/router';
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     ActionListenerDirective,
+    AddContactPersonDialogComponent,
+    ContactPersonFormComponent,
     AuditDataFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
@@ -29,9 +33,11 @@ import { RouterModule } from '@angular/router';
     NavbarComponent,
     AddAuditDialogComponent,
     EditAuditDialogComponent,
+    AddContactPersonDialogComponent,
     ActionListenerDirective,
     AuditDataFormComponent,
     NotFoundComponent,
+    ContactPersonFormComponent,
     ConfirmDiscardDialogComponent,
     SortAuditPipe,
   ],
