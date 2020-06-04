@@ -1,4 +1,23 @@
-<nb-card>
-  <nb-card-header>{{ contactPerson.salutation + ' ' + contactPerson.title + ' ' + contactPerson.firstName + ' ' + contactPerson.lastName }}</nb-card-header>
-  <nb-card-body> </nb-card-body>
-</nb-card>
+<p class="subtitle mb-2">
+  {{ contactPerson.firstName + ' ' + contactPerson.lastName }}
+  <span class="text-hint">{{ ' ' + contactPerson.role }}</span>
+</p>
+
+<div class="wrapper-contact-person-details">
+  <div>
+    <label class="label">Unternehmen</label>
+    <p class="subtitle-2">{{ contactPerson.companyName }}</p>
+  </div>
+  <div>
+    <label class="label">Abteilung</label>
+    <p class="subtitle-2">{{ contactPerson.department }}</p>
+  </div>
+  <div>
+    <label class="label">Unternehmensbereich</label>
+    <p class="subtitle-2">{{ contactPerson.corporateDivision }}</p>
+  </div>
+  <div>
+    <label class="label">Branche</label>
+    <p class="subtitle-2">{{ contactPerson.sector }}</p>
+  </div>
+</div>
