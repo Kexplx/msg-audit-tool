@@ -43,7 +43,7 @@ export class AuditDataFormComponent implements OnInit {
     this.auditForm = this.formBuilder.group(
       {
         name: [this.audit?.name, Validators.required],
-        startDate: [this.audit?.startDate ?? new Date(), Validators.required],
+        startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
         endDate: [this.audit?.endDate],
       },
       { validator: dateRangeValidator('startDate', 'endDate') },
