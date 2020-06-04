@@ -2,7 +2,13 @@ import { Audit, AuditStatus } from '../data/models/audit.model';
 import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './audit.actions';
+import {
+  AddAudit,
+  DeleteAudit,
+  UpdateAudit,
+  AddInterview,
+  AddContactPerson,
+} from './audit.actions';
 import * as shortid from 'shortid';
 import { ContactPerson } from '../data/models/contact-person.model';
 
@@ -69,6 +75,18 @@ export class AuditRegistryState {
           ...audit,
           interviews: [...(audit.interviews ?? []), interview],
         }),
+      }),
+    );
+  }
+
+  @Action(AddContactPerson)
+  addContactPerson(
+    { setState }: StateContext<AuditRegistryStateModel>,
+    { contactPerson }: AddContactPerson,
+  ) {
+    setState(
+      patch({
+        contactPeople: append<ContactPerson>([{ ...contactPerson, id: shortid.generate() }]),
       }),
     );
   }
