@@ -8,6 +8,8 @@ import {
   UpdateAudit,
   AddInterview,
   AddContactPerson,
+  DeleteContactPerson,
+  UpdateContactPerson,
 } from './audit.actions';
 import * as shortid from 'shortid';
 import { ContactPerson } from '../data/models/contact-person.model';
@@ -49,6 +51,12 @@ export class AuditRegistryState {
     });
   }
 
+  static contactPerson(id: string) {
+    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+      return state.contactPeople.find(x => x.id === id);
+    });
+  }
+
   @Action(AddAudit)
   addAudit({ setState }: StateContext<AuditRegistryStateModel>, { audit }: AddAudit) {
     setState(
@@ -72,7 +80,7 @@ export class AuditRegistryState {
     const a = ctx.getState().audits.find(x => x.id == id);
     ctx.setState(
       patch({
-        audits: updateItem<Audit>(x => x.id === id, { ...a, ...audit, id: id }),
+        audits: updateItem<Audit>(x => x.id === id, { ...a, ...audit }),
       }),
     );
   }
@@ -97,6 +105,30 @@ export class AuditRegistryState {
     setState(
       patch({
         contactPeople: append<ContactPerson>([{ ...contactPerson, id: shortid.generate() }]),
+      }),
+    );
+  }
+
+  @Action(DeleteContactPerson)
+  deleteContactPerson(
+    { setState }: StateContext<AuditRegistryStateModel>,
+    { contactPerson }: DeleteContactPerson,
+  ) {
+    setState(
+      patch({
+        contactPeople: removeItem<ContactPerson>(x => x === contactPerson),
+      }),
+    );
+  }
+
+  @Action(UpdateContactPerson)
+  updateContactPerson(
+    { setState }: StateContext<AuditRegistryStateModel>,
+    { id, contactPerson }: UpdateContactPerson,
+  ) {
+    setState(
+      patch({
+        contactPeople: updateItem<ContactPerson>(x => x.id === id, { id, ...contactPerson }),
       }),
     );
   }
