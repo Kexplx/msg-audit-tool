@@ -42,7 +42,7 @@ export class AuditDataFormComponent implements OnInit {
     this.auditForm = this.formBuilder.group(
       {
         name: [this.audit?.name, Validators.required],
-        startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
+        startDate: [this.audit?.startDate ?? new Date(), Validators.required],
         endDate: [this.audit?.endDate],
       },
       { validator: this.dateRangeValidator('startDate', 'endDate') },
@@ -72,8 +72,8 @@ export class AuditDataFormComponent implements OnInit {
     const audit: Partial<Audit> = {
       name: this.name.value,
       creationDate: this.audit?.creationDate ?? Date.now(),
-      endDate: this.parseDate(this.endDate.value),
-      startDate: this.parseDate(this.startDate.value),
+      endDate: this.endDate.value,
+      startDate: this.startDate.value,
       status: this.audit?.status ?? AuditStatus.Planned,
     };
 
@@ -90,6 +90,7 @@ export class AuditDataFormComponent implements OnInit {
     return (group: FormGroup): { [key: string]: any } => {
       const start = group.get(startDate).value;
       const end = group.get(endDate).value;
+
       if (!start || !end) {
         return null;
       }
@@ -99,9 +100,5 @@ export class AuditDataFormComponent implements OnInit {
         };
       }
     };
-  }
-
-  parseDate(s: string) {
-    return s ? new Date(s).getTime() : undefined;
   }
 }
