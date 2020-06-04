@@ -11,6 +11,7 @@ import {
 } from './audit.actions';
 import * as shortid from 'shortid';
 import { ContactPerson } from '../data/models/contact-person.model';
+import { contactPeople } from '../data/examples/contact-people';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
@@ -19,6 +20,10 @@ export interface AuditRegistryStateModel {
 
 @State<AuditRegistryStateModel>({
   name: 'auditRegistry',
+  defaults: {
+    audits: [],
+    contactPeople,
+  },
 })
 @Injectable()
 export class AuditRegistryState {
