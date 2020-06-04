@@ -2,7 +2,7 @@
   <nb-card>
     <nb-card-header>Audit Daten</nb-card-header>
     <nb-card-body>
-      <div class="field-item-audit-name">
+      <div class="mb-2">
         <label class="label">Auditname</label>
         <input [status]="name.invalid && name.touched ? 'danger' : 'basic'" formControlName="name" nbInput fullWidth data-cy="audit-name-input" />
         <div *ngIf="name.invalid && name.touched">
@@ -17,9 +17,9 @@
         </div>
         <div class="form-item">
           <label class="label">Enddatum</label>
-          <input [status]="endDate.errors?.startGreaterThanEnd ? 'danger' : 'basic'" formControlName="endDate" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
+          <input [status]="auditForm.errors?.dateRangeValidator ? 'danger' : 'basic'" formControlName="endDate" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
           <nb-datepicker #datePickerEnd></nb-datepicker>
-          <div *ngIf="endDate.errors?.startGreaterThanEnd">
+          <div *ngIf="auditForm.errors?.dateRangeValidator">
             <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
           </div>
         </div>

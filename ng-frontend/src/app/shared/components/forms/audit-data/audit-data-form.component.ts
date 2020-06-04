@@ -37,14 +37,16 @@ export class AuditDataFormComponent implements OnInit {
   get creationDate() {
     return this.auditForm.get('creationDate');
   }
-  //#endregion
 
   ngOnInit(): void {
-    this.auditForm = this.formBuilder.group({
-      name: [this.audit?.name, Validators.required],
-      startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
-      endDate: [this.audit?.endDate, [this.startGreaterEnd.bind(this)]],
-    });
+    this.auditForm = this.formBuilder.group(
+      {
+        name: [this.audit?.name, Validators.required],
+        startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
+        endDate: [this.audit?.endDate],
+      },
+      { validator: this.dateRangeValidator('startDate', 'endDate') },
+    );
   }
 
   onCancel() {
@@ -78,9 +80,25 @@ export class AuditDataFormComponent implements OnInit {
     this.formSubmitted.emit(audit);
   }
 
-  startGreaterEnd(control: AbstractControl): { [s: string]: boolean } {
-    const start = this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0);
-    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
+  /**
+   * Validator for two dates: A start date has to be before the end date.
+   *
+   * @param startDate string of form group attribute for start date
+   * @param endDate string of form group attribute for end date
+   */
+  dateRangeValidator(startDate: string, endDate: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      const start = group.get(startDate).value;
+      const end = group.get(endDate).value;
+      if (!start || !end) {
+        return null;
+      }
+      if (start > end) {
+        return {
+          dateRangeValidator: true,
+        };
+      }
+    };
   }
 
   parseDate(s: string) {

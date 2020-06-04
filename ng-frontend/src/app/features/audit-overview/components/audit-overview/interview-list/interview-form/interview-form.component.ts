@@ -83,9 +83,25 @@ export class InterviewFormComponent implements OnInit {
     return s ? new Date(s).getTime() : undefined;
   }
 
-  startGreaterThanEndValidator(control: AbstractControl): { [s: string]: boolean } {
-    const start = this.interview?.start ?? new Date().setHours(0, 0, 0, 0);
-    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
+  /**
+   * Validator for two dates: A start date has to be before the end date.
+   *
+   * @param startDate string of form group attribute for start date
+   * @param endDate string of form group attribute for end date
+   */
+  dateRangeValidator(startDate: string, endDate: string) {
+    return (group: FormGroup): { [key: string]: any } => {
+      let start = group.get(startDate).value;
+      let end = group.get(endDate).value;
+      if (!start || !end) {
+        return null;
+      }
+      if (start > end) {
+        return {
+          dateRangeValidator: true,
+        };
+      }
+    };
   }
 
   onSubmit() {
