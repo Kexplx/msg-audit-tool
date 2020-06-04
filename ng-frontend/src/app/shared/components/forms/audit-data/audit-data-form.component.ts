@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/fo
 import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
 import { NbDialogService } from '@nebular/theme';
+import { dateRangeValidator } from 'src/app/shared/helpers/form-helpers';
 
 @Component({
   selector: 'app-audit-data-form',
@@ -42,10 +43,10 @@ export class AuditDataFormComponent implements OnInit {
     this.auditForm = this.formBuilder.group(
       {
         name: [this.audit?.name, Validators.required],
-        startDate: [this.audit?.startDate ?? new Date(), Validators.required],
+        startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
         endDate: [this.audit?.endDate],
       },
-      { validator: this.dateRangeValidator('startDate', 'endDate') },
+      { validator: dateRangeValidator('startDate', 'endDate') },
     );
   }
 
@@ -78,27 +79,5 @@ export class AuditDataFormComponent implements OnInit {
     };
 
     this.formSubmitted.emit(audit);
-  }
-
-  /**
-   * Validator for two dates: A start date has to be before the end date.
-   *
-   * @param startDate string of form group attribute for start date
-   * @param endDate string of form group attribute for end date
-   */
-  dateRangeValidator(startDate: string, endDate: string) {
-    return (group: FormGroup): { [key: string]: any } => {
-      const start = group.get(startDate).value;
-      const end = group.get(endDate).value;
-
-      if (!start || !end) {
-        return null;
-      }
-      if (start > end) {
-        return {
-          dateRangeValidator: true,
-        };
-      }
-    };
   }
 }
