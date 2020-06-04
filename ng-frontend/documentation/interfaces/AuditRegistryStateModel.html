@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/ngxs/audit-registry.state.ts</code>
+            <code>src/app/core/ngxs/audit-registry.state.ts</code>
         </p>
 
 
@@ -80,6 +80,9 @@
                             <ul class="index-list">
                                 <li>
                                         <a href="#audits">audits</a>
+                                </li>
+                                <li>
+                                        <a href="#contactPeople">contactPeople</a>
                                 </li>
                             </ul>
                         </td>
@@ -121,27 +124,65 @@
 
                         </tbody>
                     </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="contactPeople"></a>
+                                        <span class="name"><b>contactPeople</b><a href="#contactPeople"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>contactPeople:         <code><a href="../interfaces/ContactPerson.html" target="_self" >ContactPerson[]</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../interfaces/ContactPerson.html" target="_self" >ContactPerson[]</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
             </section>
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Audit } from &#x27;../data/models/audit.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Audit, AuditStatus } from &#x27;../data/models/audit.model&#x27;;
 import { State, Selector, Action, StateContext, createSelector } from &#x27;@ngxs/store&#x27;;
-import { patch, updateItem } from &#x27;@ngxs/store/operators&#x27;;
+import { patch, updateItem, removeItem, append } from &#x27;@ngxs/store/operators&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import { AddAudit, DeleteAudit, UpdateAudit } from &#x27;./audit.actions&#x27;;
+import {
+  AddAudit,
+  DeleteAudit,
+  UpdateAudit,
+  AddInterview,
+  AddContactPerson,
+} from &#x27;./audit.actions&#x27;;
 import * as shortid from &#x27;shortid&#x27;;
-import { audits } from &#x27;../data/examples/audits&#x27;;
+import { ContactPerson } from &#x27;../data/models/contact-person.model&#x27;;
+import { contactPeople } from &#x27;../data/examples/contact-people&#x27;;
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
+  contactPeople: ContactPerson[];
 }
 
 @State&lt;AuditRegistryStateModel&gt;({
   name: &#x27;auditRegistry&#x27;,
   defaults: {
     audits: [],
+    contactPeople,
   },
 })
 @Injectable()
@@ -151,6 +192,17 @@ export class AuditRegistryState {
     return state.audits;
   }
 
+  @Selector()
+  static contactPeople(state: AuditRegistryStateModel) {
+    return state.contactPeople;
+  }
+
+  static auditByStatus(...statuses: AuditStatus[]) {
+    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) &#x3D;&gt; {
+      return state.audits.filter(x &#x3D;&gt; statuses.includes(x.status));
+    });
+  }
+
   static audit(id: string) {
     return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) &#x3D;&gt; {
       return state.audits.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id);
@@ -158,33 +210,53 @@ export class AuditRegistryState {
   }
 
   @Action(AddAudit)
-  addAudit(context: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: AddAudit) {
-    const state &#x3D; context.getState();
-
-    context.setState({
-      ...state,
-      audits: [...state.audits, { ...audit, id: shortid.generate() }],
-    });
+  addAudit({ setState }: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: AddAudit) {
+    setState(
+      patch({
+        audits: append&lt;Audit&gt;([{ ...audit, id: shortid.generate() }]),
+      }),
+    );
   }
 
   @Action(DeleteAudit)
-  deleteAudit(context: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: DeleteAudit) {
-    const state &#x3D; context.getState();
-    const indexOfAudit &#x3D; state.audits.indexOf(audit);
-
-    if (indexOfAudit !&#x3D; -1) {
-      context.setState({
-        ...state,
-        audits: [...state.audits.slice(0, indexOfAudit), ...state.audits.slice(indexOfAudit + 1)],
-      });
-    }
+  deleteAudit({ setState }: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: DeleteAudit) {
+    setState(
+      patch({
+        audits: removeItem&lt;Audit&gt;(x &#x3D;&gt; x &#x3D;&#x3D;&#x3D; audit),
+      }),
+    );
   }
 
   @Action(UpdateAudit)
-  updateAudit({ setState }: StateContext&lt;AuditRegistryStateModel&gt;, { id, audit }: UpdateAudit) {
+  updateAudit(ctx: StateContext&lt;AuditRegistryStateModel&gt;, { id, audit }: UpdateAudit) {
+    const a &#x3D; ctx.getState().audits.find(x &#x3D;&gt; x.id &#x3D;&#x3D; id);
+    ctx.setState(
+      patch({
+        audits: updateItem&lt;Audit&gt;(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id, { ...a, ...audit, id: id }),
+      }),
+    );
+  }
+
+  @Action(AddInterview)
+  addInterview(context: StateContext&lt;AuditRegistryStateModel&gt;, { audit, interview }: AddInterview) {
+    context.setState(
+      patch({
+        audits: updateItem&lt;Audit&gt;(x &#x3D;&gt; x &#x3D;&#x3D;&#x3D; audit, {
+          ...audit,
+          interviews: [...(audit.interviews ?? []), interview],
+        }),
+      }),
+    );
+  }
+
+  @Action(AddContactPerson)
+  addContactPerson(
+    { setState }: StateContext&lt;AuditRegistryStateModel&gt;,
+    { contactPerson }: AddContactPerson,
+  ) {
     setState(
       patch({
-        audits: updateItem&lt;Audit&gt;(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id, { ...audit, id: id }),
+        contactPeople: append&lt;ContactPerson&gt;([{ ...contactPerson, id: shortid.generate() }]),
       }),
     );
   }
