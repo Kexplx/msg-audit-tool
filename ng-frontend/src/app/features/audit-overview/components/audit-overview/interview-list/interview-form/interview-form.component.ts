@@ -46,26 +46,6 @@ export class InterviewFormComponent implements OnInit {
   }
 
   ngOnInit() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    this.interviewForm = this.fb.group(
-      {
-        start: [this.interview?.start ?? new Date()],
-        end: [this.interview?.end],
-        persons: this.fb.array([
-          this.fb.group({
-            role: new FormControl(null),
-            contactInformation: new FormControl(null),
-          }),
-        ]),
-        criteria: [this.interview?.criteria, Validators.required],
-        factorTitle: [null],
-      },
-      { validator: this.dateRangeValidator('start', 'end') },
-    );
-=======
-=======
->>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
     // this.interviewForm = this.fb.group({
     //   start: [this.interview?.start ?? new Date()],
     //   end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
@@ -78,10 +58,6 @@ export class InterviewFormComponent implements OnInit {
     //   criteria: [this.interview?.criteria, Validators.required],
     //   factorTitle: [null],
     // });
-<<<<<<< HEAD
->>>>>>> b0d3cea... [REFACTOR] Prepare refactor
-=======
->>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
   }
 
   /**
@@ -108,8 +84,8 @@ export class InterviewFormComponent implements OnInit {
   }
 
   /**
-   * Validator for two dates: A start date has to be before the end date. 
-   * 
+   * Validator for two dates: A start date has to be before the end date.
+   *
    * @param startDate string of form group attribute for start date
    * @param endDate string of form group attribute for end date
    */

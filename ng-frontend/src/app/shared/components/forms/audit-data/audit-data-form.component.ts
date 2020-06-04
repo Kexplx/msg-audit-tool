@@ -21,10 +21,7 @@ export class AuditDataFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
 
-<<<<<<< HEAD
-=======
   //#region Getters
->>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
   get name() {
     return this.auditForm.get('name');
   }
@@ -48,7 +45,7 @@ export class AuditDataFormComponent implements OnInit {
         startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
         endDate: [this.audit?.endDate],
       },
-      { validator: this.dateRangeValidator('start', 'end') },
+      { validator: this.dateRangeValidator('startDate', 'endDate') },
     );
   }
 
@@ -83,7 +80,6 @@ export class AuditDataFormComponent implements OnInit {
     this.formSubmitted.emit(audit);
   }
 
-<<<<<<< HEAD
   /**
    * Validator for two dates: A start date has to be before the end date.
    *
@@ -92,8 +88,8 @@ export class AuditDataFormComponent implements OnInit {
    */
   dateRangeValidator(startDate: string, endDate: string) {
     return (group: FormGroup): { [key: string]: any } => {
-      let start = group.get(startDate).value;
-      let end = group.get(endDate).value;
+      const start = group.get(startDate).value;
+      const end = group.get(endDate).value;
       if (!start || !end) {
         return null;
       }
@@ -103,11 +99,6 @@ export class AuditDataFormComponent implements OnInit {
         };
       }
     };
-=======
-  startGreaterEnd(control: AbstractControl): { [s: string]: boolean } {
-    const start = this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0);
-    return start > this.parseDate(control.value) ? { startGreaterThanEnd: true } : null;
->>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
   }
 
   parseDate(s: string) {
