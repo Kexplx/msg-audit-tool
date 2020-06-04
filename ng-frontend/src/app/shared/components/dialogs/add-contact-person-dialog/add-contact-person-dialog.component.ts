@@ -4,8 +4,9 @@ import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { AddAudit } from 'src/app/core/ngxs/audit.actions';
+import { AddAudit, AddContactPerson } from 'src/app/core/ngxs/audit.actions';
 import { Location } from '@angular/common';
+import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 
 @Component({
   selector: 'app-add-contact-person-dialog',
@@ -19,7 +20,6 @@ export class AddContactPersonDialogComponent {
   constructor(
     private dialogService: NbDialogService,
     private store: Store,
-    private router: Router,
     private location: Location,
   ) {}
 
@@ -30,8 +30,10 @@ export class AddContactPersonDialogComponent {
     });
   }
 
-  onSubmit(audit: Audit) {
-    this.store.dispatch(new AddAudit(audit)).subscribe(() => this.dialogRef.close());
+  onSubmit(contactPerson: ContactPerson) {
+    this.store
+      .dispatch(new AddContactPerson(contactPerson))
+      .subscribe(() => this.dialogRef.close());
   }
 
   onCancel() {
