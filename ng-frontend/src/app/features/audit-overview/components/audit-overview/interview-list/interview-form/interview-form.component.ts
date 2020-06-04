@@ -47,6 +47,7 @@ export class InterviewFormComponent implements OnInit {
 
   ngOnInit() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.interviewForm = this.fb.group(
       {
         start: [this.interview?.start ?? new Date()],
@@ -63,6 +64,8 @@ export class InterviewFormComponent implements OnInit {
       { validator: this.dateRangeValidator('start', 'end') },
     );
 =======
+=======
+>>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
     // this.interviewForm = this.fb.group({
     //   start: [this.interview?.start ?? new Date()],
     //   end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
@@ -75,7 +78,10 @@ export class InterviewFormComponent implements OnInit {
     //   criteria: [this.interview?.criteria, Validators.required],
     //   factorTitle: [null],
     // });
+<<<<<<< HEAD
 >>>>>>> b0d3cea... [REFACTOR] Prepare refactor
+=======
+>>>>>>> 8e3d6c1b2d11087e50d993a90bacd1ee2e725c6d
   }
 
   /**
