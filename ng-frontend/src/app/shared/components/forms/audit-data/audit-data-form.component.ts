@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
-import { Audit } from 'src/app/core/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
 import { NbDialogService } from '@nebular/theme';
 
 @Component({
@@ -73,6 +73,7 @@ export class AuditDataFormComponent implements OnInit {
       creationDate: this.audit?.creationDate ?? Date.now(),
       endDate: this.parseDate(this.endDate.value),
       startDate: this.parseDate(this.startDate.value),
+      status: this.audit?.status ?? AuditStatus.Planned,
     };
 
     this.formSubmitted.emit(audit);
