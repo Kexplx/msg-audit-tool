@@ -21,19 +21,23 @@
 </header>
 <nb-tabset data-cy="audits-list">
   <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
-    <aside class="hint-no-audits" *ngIf="!(activeAudits$ | async); else auditsActive">
-      <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
-    </aside>
-    <ng-template #auditsActive>
-      <app-audit-card *ngFor="let audit of activeAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
+    <div *ngIf="(activeAudits$ | async)?.length > 0; else noActiveAudits">
+      <app-audit-card *ngFor="let audit of activeAudits$ | async" [audit]="audit"></app-audit-card>
+    </div>
+    <ng-template #noActiveAudits>
+      <div class="hint-no-audits">
+        <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
+      </div>
     </ng-template>
   </nb-tab>
   <nb-tab responsive tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
-    <aside class="hint-no-audits" *ngIf="!(archivedAudits$ | async); else auditsArchive">
-      <h6 class="text-hint">Keine Audits im Archiv</h6>
-    </aside>
-    <ng-template #auditsArchive>
+    <div *ngIf="(archivedAudits$ | async)?.length > 0; else noArchivedAudits">
       <app-audit-card *ngFor="let audit of archivedAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
+    </div>
+    <ng-template #noArchivedAudits>
+      <div class="hint-no-audits">
+        <h6 class="text-hint">Keine archivierten Audits vorhanden</h6>
+      </div>
     </ng-template>
   </nb-tab>
 </nb-tabset>
