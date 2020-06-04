@@ -4,10 +4,10 @@ export interface ContactPerson {
   title: string;
   firstName: string;
   lastName: string;
-  contactInformation: string;
+  companyName: string;
   role: string;
-  sector?: string;
-  name?: string;
-  department?: string;
-  corporateDivision?: string;
+  sector: string;
+  department: string;
+  corporateDivision: string;
+  contactInformation?: string;
 }
