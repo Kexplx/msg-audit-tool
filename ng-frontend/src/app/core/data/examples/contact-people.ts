@@ -11,7 +11,7 @@ export const contactPeople: ContactPerson[] = [
     title: 'Dr. ',
     corporateDivision: 'BMW Robotics',
     department: 'IT-Abteilung',
-    id: '7891209sdkmlds9',
+    id: '12fadfsf',
     sector: 'Automobilindustrie',
   },
   {
@@ -24,7 +24,7 @@ export const contactPeople: ContactPerson[] = [
     title: 'Dr. ',
     corporateDivision: 'BMW Robotics',
     department: 'IT-Abteilung',
-    id: '7891209sdkmlds9',
+    id: '8932fiodja',
     sector: 'Automobilindustrie',
   },
 ];
