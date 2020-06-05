@@ -58,15 +58,15 @@ export class ContactPersonFormComponent implements OnInit {
 
   ngOnInit() {
     this.contactPersonForm = this.formBuilder.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      salutation: [null, Validators.required],
-      title: [null, Validators.required],
-      companyName: [null, Validators.required],
-      department: [null, Validators.required],
-      sector: [null, Validators.required],
-      corporateDivision: [null, Validators.required],
-      contactInformation: [null],
+      firstName: [this.contactPerson?.firstName, Validators.required],
+      lastName: [this.contactPerson?.lastName, Validators.required],
+      salutation: [this.contactPerson?.salutation, Validators.required],
+      title: [this.contactPerson?.title, Validators.required],
+      companyName: [this.contactPerson?.companyName, Validators.required],
+      department: [this.contactPerson?.department, Validators.required],
+      sector: [this.contactPerson?.sector, Validators.required],
+      corporateDivision: [this.contactPerson?.corporateDivision, Validators.required],
+      contactInformation: [this.contactPerson?.contactInformation],
     });
   }
 
