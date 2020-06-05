@@ -1,6 +1,5 @@
 <p class="subtitle mb-2">
   {{ contactPerson.firstName + ' ' + contactPerson.lastName }}
-  <span class="text-hint">{{ ' ' + contactPerson.role }}</span>
 </p>
 
 <div class="wrapper-contact-person-details">
@@ -23,10 +22,10 @@
 </div>
 
 <div class="action-bar">
-  <button nbPopover="Bearbeiten" nbPopoverTrigger="hint" status="primary" ghost nbButton>
+  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" status="primary" ghost nbButton>
     <nb-icon icon="edit-outline"></nb-icon>
-  </button>
-  <button nbPopover="Löschen" nbPopoverTrigger="hint" status="danger" ghost nbButton>
+  </a>
+  <button (click)="onDelete()" nbPopover="Löschen" nbPopoverTrigger="hint" status="danger" ghost nbButton>
     <nb-icon icon="trash-outline"></nb-icon>
   </button>
 </div>
