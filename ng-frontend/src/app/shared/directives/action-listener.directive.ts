@@ -1,7 +1,15 @@
 import { Directive, OnInit } from '@angular/core';
 import { Actions, ofActionCompleted } from '@ngxs/store';
 import { NbToastrService } from '@nebular/theme';
-import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from 'src/app/core/ngxs/audit.actions';
+import {
+  AddAudit,
+  DeleteAudit,
+  UpdateAudit,
+  AddInterview,
+  DeleteContactPerson,
+  AddContactPerson,
+  UpdateContactPerson,
+} from 'src/app/core/ngxs/audit.actions';
 
 @Directive({
   selector: '[appActionListener]',
@@ -27,6 +35,27 @@ export class ActionListenerDirective implements OnInit {
 
     this.actions$.pipe(ofActionCompleted(AddInterview)).subscribe(x => {
       this.showToast(`Neues Interview erstellt`, 'checkmark-circle-2-outline');
+    });
+
+    this.actions$.pipe(ofActionCompleted(DeleteContactPerson)).subscribe(x => {
+      this.showToast(
+        `Kontaktperson ${x.action.contactPerson.firstName} ${x.action.contactPerson.lastName} gelöscht`,
+        'trash-outline',
+      );
+    });
+
+    this.actions$.pipe(ofActionCompleted(UpdateContactPerson)).subscribe(x => {
+      this.showToast(
+        `Kontaktperson ${x.action.contactPerson.firstName} ${x.action.contactPerson.lastName} bearbeitet`,
+        'edit-outline',
+      );
+    });
+
+    this.actions$.pipe(ofActionCompleted(AddContactPerson)).subscribe(x => {
+      this.showToast(
+        `Kontaktperson ${x.action.contactPerson.firstName} ${x.action.contactPerson.lastName} erstellt`,
+        'checkmark-circle-2-outline',
+      );
     });
   }
 
