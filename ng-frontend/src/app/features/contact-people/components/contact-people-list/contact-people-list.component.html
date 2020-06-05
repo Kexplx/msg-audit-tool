@@ -1,12 +1,12 @@
 <header class="grid-1-auto-auto">
-  <h4>Kontaktpersonen</h4>
+  <h4>Kontakt</h4>
   <a routerLink="new" hero size="medium" nbButton status="primary" data-cy="new-audit">
     <nb-icon icon="plus"></nb-icon>
     Neue Person
   </a>
 </header>
 
-<div *ngIf="contactPeople$ | async as contactPeople; else noContactPersons">
+<div *ngIf="contactPeople$ | async as contactPeople">
   <nb-card fullWidth>
     <nb-card-header>Registrierte Kontaktpersonen ({{ contactPeople.length }})</nb-card-header>
     <nb-card-body>
@@ -18,11 +18,6 @@
     </nb-card-body>
   </nb-card>
 </div>
-<ng-template #noContactPersons>
-  <div class="hint-no-audits">
-    <h6 class="text-hint">Keine Kontaktpersonen vorhanden</h6>
-  </div>
-</ng-template>
 <nb-layout>
   <router-outlet></router-outlet>
 </nb-layout>
