@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AddContactPersonDialogComponent } from './components/dialogs/add-contact-person-dialog/add-contact-person-dialog.component';
 import { ContactPersonFormComponent } from './components/forms/contact-person-form/contact-person-form.component';
+import { EditContactPersonDialogComponent } from './components/dialogs/edit-contact-person-dialog/edit-contact-person-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ContactPersonFormComponent } from './components/forms/contact-person-fo
     ActionListenerDirective,
     AddContactPersonDialogComponent,
     ContactPersonFormComponent,
+    EditContactPersonDialogComponent,
     AuditDataFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
@@ -39,6 +41,7 @@ import { ContactPersonFormComponent } from './components/forms/contact-person-fo
     NotFoundComponent,
     ContactPersonFormComponent,
     ConfirmDiscardDialogComponent,
+    EditContactPersonDialogComponent,
     SortAuditPipe,
   ],
 })
