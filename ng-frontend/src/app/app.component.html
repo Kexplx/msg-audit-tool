@@ -1,6 +1,12 @@
-<app-navbar></app-navbar>
 <nb-layout>
-  <nb-sidebar style="top: 60px; z-index: 1;" collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">
+  <nb-layout-header fixed>
+    <nb-actions size="small">
+      <nb-action (click)="toggleSidebar()" icon="menu-2-outline">Hello</nb-action>
+      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async).length > 0 ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline"></nb-action>
+      <nb-action badgeStatus="info" [badgeText]="(contactPeople$ | async).length > 0 ? (contactPeople$ | async).length : '0'" routerLink="/contact-people" icon="people-outline"></nb-action>
+    </nb-actions>
+  </nb-layout-header>
+  <nb-sidebar collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">
     <div class="sidebar-container">
       <div class="sidebar-container-content" data-cy="sidebar-content">
         <h5>Sidebar</h5>
