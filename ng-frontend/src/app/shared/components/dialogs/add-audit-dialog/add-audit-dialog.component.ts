@@ -1,11 +1,13 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { Router } from '@angular/router';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AddAudit } from 'src/app/core/ngxs/audit.actions';
 import { Location } from '@angular/common';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { Observable } from 'rxjs';
+import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 
 @Component({
   selector: 'app-add-audit-dialog',
@@ -14,6 +16,7 @@ import { Location } from '@angular/common';
 })
 export class AddAuditDialogComponent implements AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
+  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
   dialogRef: NbDialogRef<any>;
 
   constructor(
