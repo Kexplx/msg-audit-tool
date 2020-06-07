@@ -1,15 +1,13 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
-import {
-  FormGroup,
-  FormBuilder,
-  FormControl,
-  FormArray,
-  AbstractControl,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
 import { ConfirmDiscardDialogComponent } from 'src/app/shared/components/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
+import { Select } from '@ngxs/store';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { Observable } from 'rxjs';
+import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
+import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 
 @Component({
   selector: 'app-interview-form',
@@ -18,78 +16,44 @@ import { ConfirmDiscardDialogComponent } from 'src/app/shared/components/dialogs
 })
 export class InterviewFormComponent implements OnInit {
   @Input() interview: Interview;
-  // @Input() scope: Factor[];
+  @Input() facCrits: FacCrit[];
   @Output() formSubmitted = new EventEmitter<any>();
   @Output() formCancelled = new EventEmitter<any>();
   interviewForm: FormGroup;
 
+  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+
   constructor(private fb: FormBuilder, private dialogService: NbDialogService) {}
 
-  get persons(): FormArray {
-    return this.interviewForm.get('persons') as FormArray;
+  get startDate() {
+    return this.interviewForm.get('startDate');
   }
 
-  get start() {
-    return this.interviewForm.get('start');
+  get facCrit() {
+    return this.interviewForm.get('facCrit');
   }
 
-  get end() {
-    return this.interviewForm.get('end');
-  }
-
-  get factorTitle() {
-    return this.interviewForm.get('factorTitle');
-  }
-
-  get criteria() {
-    return this.interviewForm.get('criteria');
+  get contactPeople() {
+    return this.interviewForm.get('contactPeople');
   }
 
   ngOnInit() {
-    // this.interviewForm = this.fb.group({
-    //   start: [this.interview?.start ?? new Date()],
-    //   end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
-    //   persons: this.fb.array([
-    //     this.fb.group({
-    //       role: new FormControl(null),
-    //       contactInformation: new FormControl(null),
-    //     }),
-    //   ]),
-    //   criteria: [this.interview?.criteria, Validators.required],
-    //   factorTitle: [null],
-    // });
-  }
-
-  /**
-   * Appends a new formgroup to the persons form array
-   */
-  onAddPerson() {
-    this.persons.push(
-      this.fb.group({
-        role: new FormControl(null),
-        contactInformation: new FormControl(null),
-      }),
-    );
-  }
-
-  /**
-   * Removes the last formgroup from the persons form array
-   */
-  onRemovePerson() {
-    this.persons.removeAt(this.persons.length - 1);
-  }
-
-  parseDate(s: string) {
-    return s ? new Date(s).getTime() : undefined;
+    this.interviewForm = this.fb.group({
+      startDate: [this.interview?.start ?? new Date()],
+      facCrit: [this.interview?.facCrit, Validators.required],
+      contactPeople: [this.interview?.contactPeople, Validators.required],
+    });
   }
 
   onSubmit() {
-    // const interview: Interview = {
-    //   start: this.parseDate(this.start.value),
-    //   end: this.parseDate(this.end.value),
-    //   status: InterviewStatus.InAction,
-    // };
-    // this.formSubmitted.emit(interview);
+    const interview: Interview = {
+      start: this.startDate.value,
+      status: InterviewStatus.InAction,
+      facCrit: this.facCrit.value,
+      contactPeople: this.contactPeople.value,
+    };
+
+    this.formSubmitted.emit(interview);
   }
 
   onCancel() {
