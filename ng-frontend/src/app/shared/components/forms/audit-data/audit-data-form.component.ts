@@ -80,4 +80,21 @@ export class AuditDataFormComponent implements OnInit {
 
     this.formSubmitted.emit(audit);
   }
+
+  checkedFacCrits() {
+    const result: FacCrit[] = [];
+
+    this.facCrits$.subscribe(facCrits => {
+      for (const facCrit of facCrits) {
+        const checked = this.formGroup.get(facCrit.id).value;
+
+        if (checked) {
+          const factor = facCrits.find(x => x.id === facCrit.referenceId);
+          result.push(facCrit, factor);
+        }
+      }
+    });
+
+    return result;
+  }
 }
