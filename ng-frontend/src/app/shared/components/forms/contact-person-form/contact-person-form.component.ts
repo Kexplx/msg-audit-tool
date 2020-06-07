@@ -3,61 +3,62 @@ import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 import { NbDialogService } from '@nebular/theme';
+import { extend } from 'cypress/types/lodash';
+import { AbstractFormComponent } from '../abstract-form-component';
 
 @Component({
   selector: 'app-contact-person-form',
   templateUrl: './contact-person-form.component.html',
   styleUrls: ['./contact-person-form.component.scss'],
 })
-export class ContactPersonFormComponent implements OnInit {
+export class ContactPersonFormComponent extends AbstractFormComponent implements OnInit {
   @Input() contactPerson: ContactPerson;
   @Input() submitButtonName: string;
 
   @Output() formSubmitted = new EventEmitter<Partial<ContactPerson>>();
-  @Output() cancelled = new EventEmitter<any>();
 
-  contactPersonForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
+  constructor(private formBuilder: FormBuilder, protected dialogService: NbDialogService) {
+    super(dialogService);
+  }
 
   get firstName() {
-    return this.contactPersonForm.get('firstName');
+    return this.formGroup.get('firstName');
   }
 
   get lastName() {
-    return this.contactPersonForm.get('lastName');
+    return this.formGroup.get('lastName');
   }
 
   get salutation() {
-    return this.contactPersonForm.get('salutation');
+    return this.formGroup.get('salutation');
   }
 
   get title() {
-    return this.contactPersonForm.get('title');
+    return this.formGroup.get('title');
   }
 
   get companyName() {
-    return this.contactPersonForm.get('companyName');
+    return this.formGroup.get('companyName');
   }
 
   get department() {
-    return this.contactPersonForm.get('department');
+    return this.formGroup.get('department');
   }
 
   get sector() {
-    return this.contactPersonForm.get('sector');
+    return this.formGroup.get('sector');
   }
 
   get corporateDivision() {
-    return this.contactPersonForm.get('corporateDivision');
+    return this.formGroup.get('corporateDivision');
   }
 
   get contactInformation() {
-    return this.contactPersonForm.get('contactInformation');
+    return this.formGroup.get('contactInformation');
   }
 
   ngOnInit() {
-    this.contactPersonForm = this.formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       firstName: [this.contactPerson?.firstName, Validators.required],
       lastName: [this.contactPerson?.lastName, Validators.required],
       salutation: [this.contactPerson?.salutation, Validators.required],
@@ -84,24 +85,5 @@ export class ContactPersonFormComponent implements OnInit {
     };
 
     this.formSubmitted.emit(contactPerson);
-  }
-
-  onCancel() {
-    if (this.contactPersonForm.dirty && this.contactPersonForm.touched) {
-      const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
-        autoFocus: false,
-        closeOnBackdropClick: false,
-      });
-
-      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
-        (cancelConfirmed: boolean) => {
-          if (cancelConfirmed) {
-            this.cancelled.emit();
-          }
-        },
-      );
-    } else {
-      this.cancelled.emit();
-    }
   }
 }

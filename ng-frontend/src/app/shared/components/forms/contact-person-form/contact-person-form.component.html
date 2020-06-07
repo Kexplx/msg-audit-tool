@@ -1,4 +1,4 @@
-<form [formGroup]="contactPersonForm">
+<form [formGroup]="formGroup">
   <nb-card>
     <nb-card-header>
       <nb-icon icon="person-outline"> </nb-icon>
@@ -94,7 +94,7 @@
       <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
         abbrechen
       </button>
-      <button (click)="onSubmit()" [disabled]="contactPersonForm.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
+      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
         {{ submitButtonName }}
       </button>
     </nb-card-footer>

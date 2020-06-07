@@ -1,27 +1,30 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
-import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
+import { Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
 import { NbDialogService } from '@nebular/theme';
 import { dateRangeValidator } from 'src/app/shared/helpers/form-helpers';
+import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
+import { FacCrit } from 'src/app/core/data/models/faccrit.model';
+import { Select } from '@ngxs/store';
+import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { Observable } from 'rxjs';
+import { AbstractFormComponent } from '../abstract-form-component';
 
 @Component({
   selector: 'app-audit-data-form',
   templateUrl: './audit-data-form.component.html',
   styleUrls: ['./audit-data-form.component.scss'],
 })
-export class AuditDataFormComponent implements OnInit {
+export class AuditDataFormComponent extends AbstractFormComponent implements OnInit {
   @Input() audit: Audit;
-  @Input() submitButtonName: string;
-  @Input() cancelButtonName: string;
-
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
-  @Output() cancelled = new EventEmitter<any>();
 
   @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
   @Select(AuditRegistryState.facCrits) facCrits$: Observable<FacCrit[]>;
 
-  constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
+  constructor(private formBuilder: FormBuilder, protected dialogService: NbDialogService) {
+    super(dialogService);
+  }
 
   get name() {
     return this.formGroup.get('name');
@@ -44,15 +47,15 @@ export class AuditDataFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.auditForm = this.formBuilder.group(
+    this.formGroup = this.formBuilder.group(
       {
         name: [this.audit?.name, Validators.required],
         startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
         endDate: [this.audit?.endDate],
+        contactPeople: [this.audit?.contactPeople],
       },
       { validator: dateRangeValidator('startDate', 'endDate') },
     );
-  }
 
     this.facCrits$.subscribe(facCrits => {
       for (const facCrit of facCrits) {
@@ -61,7 +64,8 @@ export class AuditDataFormComponent implements OnInit {
           : true;
 
         this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
-    }
+      }
+    });
   }
 
   onSubmit() {
@@ -71,6 +75,8 @@ export class AuditDataFormComponent implements OnInit {
       endDate: this.endDate.value,
       startDate: this.startDate.value,
       status: this.audit?.status ?? AuditStatus.Planned,
+      contactPeople: this.contactPeopleControl.value,
+      facCrits: this.checkedFacCrits(),
     };
 
     this.formSubmitted.emit(audit);
