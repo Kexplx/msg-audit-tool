@@ -7,40 +7,43 @@ import java.util.List;
 
 public abstract class BasicRequest {
 
+    public static final int MAX_NAME_LENGTH = 45;
+    public static final int MAX_NOTE_LENGTH = 256;
+
     public abstract void isValid();
 
     /**
-     * Asserts that an audit name cannot be null, empty, shorter than 3 oder longer than 45 chars
+     * Asserts that an attribute that represents a name cannot be null, empty or longer than 45 chars
      *
-     * @param auditName String
+     * @param name
      */
-    public void assertAuditNameIsValid(String auditName) {
-        if (auditName == null || StringUtils.isBlank(auditName)) {
-            throw new IllegalArgumentException("audit name is null or empty");
+    public void assertNameIsValid(String name) {
+        if (name == null || StringUtils.isBlank(name)) {
+            throw new IllegalArgumentException("name is null or empty");
         }
-        if (auditName.length() < 3) {
-            throw new IllegalArgumentException("audit name is too short");
-        }
-        if (auditName.length() > 45) {
-            throw new IllegalArgumentException("audit name is too long");
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(" name is too long");
         }
     }
 
     /**
-     * Asserts that a change note cannot be null or longer than 256 chars
+     * Asserts that an attribute that represent a note cannot be null, empty or longer than 256 chars
      *
-     * @param changeNote String
+     * @param note
      */
-    public void assertChangeNoteIsValid(String changeNote) {
-        if (changeNote != null && changeNote.length() > 256) {
-            throw new IllegalArgumentException("Change note too long");
+    public void assertNoteIsValid(String note){
+        if (note == null || StringUtils.isBlank(note)) {
+            throw new IllegalArgumentException("note is null or empty");
+        }
+        if (note.length() > MAX_NOTE_LENGTH) {
+            throw new IllegalArgumentException("note is too long");
         }
     }
 
     /**
      * Asserts that a date cannot be null
      *
-     * @param date Date
+     * @param date
      */
     public void assertDateIsNotNull(Date date) {
         if (date == null) {
@@ -49,13 +52,13 @@ public abstract class BasicRequest {
     }
 
     /**
-     * Asserts that enddate cannot be older than start date
+     * Asserts that end date cannot be older than start date
      *
-     * @param startDate Date
-     * @param endDate   Date
+     * @param startDate
+     * @param endDate
      */
     public void assertDatesAreValid(Date startDate, Date endDate) {
-        if (endDate != null && endDate.before(startDate)) {
+        if (endDate!= null && endDate.before(startDate)) {
             throw new IllegalArgumentException("end date cannot be older than start date");
         }
     }
@@ -63,10 +66,10 @@ public abstract class BasicRequest {
     /**
      * Asserts that all ids in a list are valid
      *
-     * @param ids List<Integer>
+     * @param ids
      */
     public void assertIdsAreValid(List<Integer> ids) {
-        if (ids == null) {
+        if(ids == null){
             return;
         }
 
@@ -78,7 +81,7 @@ public abstract class BasicRequest {
     /**
      * Asserts that the given id is valid
      *
-     * @param id Integer
+     * @param id
      */
     public void assertIdIsValid(Integer id) {
         if (id == null || id < 1) {
@@ -86,3 +89,4 @@ public abstract class BasicRequest {
         }
     }
 }
+
