@@ -54,22 +54,13 @@ export class AuditDataFormComponent implements OnInit {
     );
   }
 
-  onCancel() {
-    if (this.auditForm.dirty && this.auditForm.touched) {
-      const confirmDiscardComponentRef = this.dialogService.open(ConfirmDiscardDialogComponent, {
-        autoFocus: false,
-        closeOnBackdropClick: false,
-      });
+    this.facCrits$.subscribe(facCrits => {
+      for (const facCrit of facCrits) {
+        const inAudit = this.audit
+          ? this.audit.facCrits.findIndex(x => x.id === facCrit.id) != -1
+          : true;
 
-      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
-        (cancelConfirmed: boolean) => {
-          if (cancelConfirmed) {
-            this.cancelled.emit();
-          }
-        },
-      );
-    } else {
-      this.cancelled.emit();
+        this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
     }
   }
 
