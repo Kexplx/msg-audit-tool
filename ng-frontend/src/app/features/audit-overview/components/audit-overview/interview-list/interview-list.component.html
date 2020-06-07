@@ -1,4 +1,4 @@
-<!-- <header>
+<header>
   <div></div>
   <button [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
     <div class="min-500">
@@ -10,19 +10,12 @@
     </div>
   </button>
 </header>
-<div class="wrapper-interviews">
-  <nb-card *ngFor="let factor of (audit$ | async).scope">
-    <nb-card-header class="subtitle">{{ factor.title }}</nb-card-header>
-    <nb-list *ngIf="(audit$ | async).interviews | filterInterviews: factor.title as interviews" data-cy="interview-factor-name">
-      <nb-list-item *ngFor="let interview of interviews">
-        <app-interview-card [interview]="interview"> </app-interview-card>
-      </nb-list-item>
-    </nb-list>
-  </nb-card>
-</div>
-<aside class="hint-no-interviews" *ngIf="(audit$ | async).scope.length == 0">
-  <h6 class="text-hint">Keine Interviews vorhanden</h6>
-</aside>
+<div class="wrapper-interviews" *ngIf="(audit$ | async).interviews?.length == 0; else noInterviews"></div>
+<ng-template #noInterviews>
+  <div class="hint-no-interviews">
+    <h6 class="text-hint">Keine Interviews vorhanden</h6>
+  </div>
+</ng-template>
 <nb-layout>
   <router-outlet></router-outlet>
-</nb-layout> -->
+</nb-layout>
