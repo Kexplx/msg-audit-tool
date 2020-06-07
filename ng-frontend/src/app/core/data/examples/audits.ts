@@ -1,7 +1,6 @@
 import { Audit, AuditStatus } from '../models/audit.model';
-import { contactPeople } from './contact-people';
 
-export const audits: Audit[] = [
+export const AUDITS: Audit[] = [
   {
     id: '1gdfss23',
     creationDate: Date.now(),
@@ -9,7 +8,6 @@ export const audits: Audit[] = [
     startDate: Date.now(),
     facCrits: [],
     status: AuditStatus.InAction,
-    contactPeople,
   },
   {
     id: '12sgdfgfd3',
@@ -18,7 +16,6 @@ export const audits: Audit[] = [
     startDate: Date.now(),
     facCrits: [],
     status: AuditStatus.Finished,
-    contactPeople,
   },
   {
     id: '1s2sgdsdgffgfd3',
@@ -27,7 +24,6 @@ export const audits: Audit[] = [
     startDate: Date.now(),
     facCrits: [],
     status: AuditStatus.Finished,
-    contactPeople,
   },
   {
     id: '12sgdfggsdffd3',
@@ -36,6 +32,5 @@ export const audits: Audit[] = [
     startDate: Date.now(),
     facCrits: [],
     status: AuditStatus.Finished,
-    contactPeople,
   },
 ];
