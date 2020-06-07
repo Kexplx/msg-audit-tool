@@ -42,7 +42,6 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbCardModule,
     NbEvaIconsModule,
     NbIconModule,
-
     NbActionsModule,
     NbSpinnerModule,
     NbStepperModule,
