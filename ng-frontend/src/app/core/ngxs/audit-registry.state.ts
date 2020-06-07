@@ -43,6 +43,13 @@ export class AuditRegistryState {
   static facCrits(state: AuditRegistryStateModel) {
     return state.facCrits;
   }
+
+  static facCrit(id: string) {
+    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+      return state.facCrits.find(x => x.id === id);
+    });
+  }
+
   static auditByStatus(...statuses: AuditStatus[]) {
     return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
       return state.audits.filter(x => statuses.includes(x.status));
