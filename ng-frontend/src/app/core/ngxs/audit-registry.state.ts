@@ -1,5 +1,5 @@
 import { Audit, AuditStatus } from '../data/models/audit.model';
-import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
+import { State, Selector, Action, StateContext, createSelector, Select } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import {
@@ -13,18 +13,23 @@ import {
 } from './audit.actions';
 import * as shortid from 'shortid';
 import { ContactPerson } from '../data/models/contact-person.model';
-import { contactPeople } from '../data/examples/contact-people';
+import { CONTACT_PEOPLE } from '../data/examples/contact-people';
+import { FacCrit } from '../data/models/faccrit.model';
+import { FACCRITS } from '../data/examples/fac-crits';
+import { AUDITS } from '../data/examples/audits';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
   contactPeople: ContactPerson[];
+  facCrits: FacCrit[];
 }
 
 @State<AuditRegistryStateModel>({
   name: 'auditRegistry',
   defaults: {
-    audits: [],
-    contactPeople,
+    audits: AUDITS,
+    facCrits: FACCRITS,
+    contactPeople: CONTACT_PEOPLE,
   },
 })
 @Injectable()
