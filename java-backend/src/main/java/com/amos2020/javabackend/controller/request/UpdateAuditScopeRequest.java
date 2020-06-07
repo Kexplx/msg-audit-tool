@@ -17,7 +17,7 @@ public class UpdateAuditScopeRequest extends BasicRequest {
     private boolean removed;
 
     public void isValid() throws IllegalArgumentException {
-        assertChangeNoteIsValid(changeNote);
+        assertNoteIsValid(changeNote);
         assertIdIsValid(facCritId);
     }
 }

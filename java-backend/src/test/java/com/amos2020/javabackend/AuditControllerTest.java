@@ -153,7 +153,7 @@ public class AuditControllerTest {
 
     @Test
     public void createAuditWithAuditNameTooShort_returns400() throws Exception {
-        String auditName = "te";
+        String auditName = "";
         Date startDate = Date.valueOf("2000-01-02");
         Date endDate = Date.valueOf("2000-01-03");
         List<Integer> scopes = Arrays.asList(1, 2, 3, 4, 5);
@@ -702,7 +702,7 @@ public class AuditControllerTest {
 
 
         UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName("aa");
+        request.setAuditName("");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
         request.setContactPeople(new ArrayList<>());
