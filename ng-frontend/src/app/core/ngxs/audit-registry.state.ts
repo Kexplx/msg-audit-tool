@@ -39,6 +39,10 @@ export class AuditRegistryState {
     return state.contactPeople;
   }
 
+  @Selector()
+  static facCrits(state: AuditRegistryStateModel) {
+    return state.facCrits;
+  }
   static auditByStatus(...statuses: AuditStatus[]) {
     return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
       return state.audits.filter(x => statuses.includes(x.status));
