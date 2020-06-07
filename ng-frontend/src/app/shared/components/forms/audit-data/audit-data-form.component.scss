@@ -1,11 +1,4 @@
 @import 'src/sass/utils';
-ul {
-  list-style-type: none;
-}
-
-li {
-  margin-left: 20px;
-}
 
 nb-card-footer {
   display: flex;
@@ -14,16 +7,22 @@ nb-card-footer {
   padding: 10px 20px 10px 20px;
 }
 
-.criteria-container {
+.wrapper-faccrits {
+  max-width: 600px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and(max-width: 500px) {
     grid-template-columns: 1fr;
+
+    nb-checkbox {
+      margin: 0px 10px 0px 0px;
+    }
   }
 }
 
-.field-item-audit-name {
-  margin-bottom: 20px;
+nb-accordion {
+  box-shadow: none;
+  border: 1px solid rgb(228, 233, 242);
 }
