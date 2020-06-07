@@ -14,6 +14,8 @@ import { RouterModule } from '@angular/router';
 import { AddContactPersonDialogComponent } from './components/dialogs/add-contact-person-dialog/add-contact-person-dialog.component';
 import { ContactPersonFormComponent } from './components/forms/contact-person-form/contact-person-form.component';
 import { EditContactPersonDialogComponent } from './components/dialogs/edit-contact-person-dialog/edit-contact-person-dialog.component';
+import { FactorsPipe } from './pipes/factors.pipe';
+import { CriteriasPipe } from './pipes/criterias.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { EditContactPersonDialogComponent } from './components/dialogs/edit-cont
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     ActionListenerDirective,
+    CriteriasPipe,
+    FactorsPipe,
     AddContactPersonDialogComponent,
     ContactPersonFormComponent,
     EditContactPersonDialogComponent,
@@ -36,6 +40,8 @@ import { EditContactPersonDialogComponent } from './components/dialogs/edit-cont
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     AddContactPersonDialogComponent,
+    FactorsPipe,
+    CriteriasPipe,
     ActionListenerDirective,
     AuditDataFormComponent,
     NotFoundComponent,
