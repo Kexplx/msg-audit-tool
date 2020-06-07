@@ -17,7 +17,7 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 export class InterviewFormComponent implements OnInit {
   @Input() interview: Interview;
   @Input() facCrits: FacCrit[];
-  @Output() formSubmitted = new EventEmitter<any>();
+  @Output() formSubmitted = new EventEmitter<Interview>();
   @Output() formCancelled = new EventEmitter<any>();
   interviewForm: FormGroup;
 
