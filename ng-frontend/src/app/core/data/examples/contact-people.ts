@@ -1,6 +1,6 @@
 import { ContactPerson } from '../models/contact-person.model';
 
-export const contactPeople: ContactPerson[] = [
+export const CONTACT_PEOPLE: ContactPerson[] = [
   {
     companyName: 'BMW',
     contactInformation: 'Contact Information 123',
