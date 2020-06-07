@@ -66,14 +66,12 @@
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: 5px;
-  margin-bottom: 20px;
 }
 
 .grid-3-1 {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 20px;
-  margin-bottom: 20px;
 
   @media screen and (max-width: 500px) {
     grid-template-columns: 1fr;
@@ -84,7 +82,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  margin-bottom: 20px;
 
   @media screen and (max-width: 500px) {
     grid-template-columns: 1fr;
