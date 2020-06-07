@@ -22,21 +22,24 @@ export class AuditDataFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
 
-  //#region Getters
   get name() {
-    return this.auditForm.get('name');
+    return this.formGroup.get('name');
   }
 
   get startDate() {
-    return this.auditForm.get('startDate');
+    return this.formGroup.get('startDate');
   }
 
   get endDate() {
-    return this.auditForm.get('endDate');
+    return this.formGroup.get('endDate');
   }
 
   get creationDate() {
-    return this.auditForm.get('creationDate');
+    return this.formGroup.get('creationDate');
+  }
+
+  get contactPeopleControl() {
+    return this.formGroup.get('contactPeople');
   }
 
   ngOnInit(): void {
