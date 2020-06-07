@@ -18,7 +18,8 @@ export class AuditDataFormComponent implements OnInit {
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
   @Output() cancelled = new EventEmitter<any>();
 
-  auditForm: FormGroup;
+  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(AuditRegistryState.facCrits) facCrits$: Observable<FacCrit[]>;
 
   constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
 
