@@ -86,12 +86,19 @@ export class AuditDataFormComponent extends AbstractFormComponent implements OnI
     const result: FacCrit[] = [];
 
     this.facCrits$.subscribe(facCrits => {
-      for (const facCrit of facCrits) {
-        const checked = this.formGroup.get(facCrit.id).value;
+      for (const crit of facCrits.filter(x => x.referenceId)) {
+        const checked = this.formGroup.get(crit.id).value;
 
         if (checked) {
-          const factor = facCrits.find(x => x.id === facCrit.referenceId);
-          result.push(facCrit, factor);
+          result.push(crit);
+        }
+      }
+
+      for (const fac of facCrits.filter(x => !x.referenceId)) {
+        const hasCriteriaInResult = result.findIndex(x => x.referenceId === fac.id) != -1;
+
+        if (hasCriteriaInResult) {
+          result.push(fac);
         }
       }
     });
