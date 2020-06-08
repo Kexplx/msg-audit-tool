@@ -1,4 +1,4 @@
-<form [formGroup]="interviewForm" data-cy="add-interview-form">
+<form [formGroup]="formGroup" data-cy="add-interview-form">
   <nb-card>
     <nb-card-header>Neues Interview</nb-card-header>
     <nb-card-body>
@@ -29,7 +29,7 @@
       <button (click)="onCancel()" hero nbButton data-cy="cancel-interview-data-form">
         abbrechen
       </button>
-      <button [disabled]="interviewForm.invalid" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">
+      <button [disabled]="formGroup.invalid" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">
         Hinzufügen
       </button>
     </nb-card-footer>
