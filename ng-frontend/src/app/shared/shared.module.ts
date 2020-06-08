@@ -5,7 +5,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddAuditDialogComponent } from './components/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { EditAuditDialogComponent } from './components/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 import { ActionListenerDirective } from './directives/action-listener.directive';
-import { AuditDataFormComponent } from './components/forms/audit-data/audit-data-form.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ConfirmDiscardDialogComponent } from './components/dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
 import { SortAuditPipe } from './pipes/sort-audit.pipe';
@@ -16,6 +15,7 @@ import { ContactPersonFormComponent } from './components/forms/contact-person-fo
 import { EditContactPersonDialogComponent } from './components/dialogs/edit-contact-person-dialog/edit-contact-person-dialog.component';
 import { FactorsPipe } from './pipes/factors.pipe';
 import { CriteriasPipe } from './pipes/criterias.pipe';
+import { AuditFormComponent } from './components/forms/audit-form/audit-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { CriteriasPipe } from './pipes/criterias.pipe';
     AddContactPersonDialogComponent,
     ContactPersonFormComponent,
     EditContactPersonDialogComponent,
-    AuditDataFormComponent,
+    AuditFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
     SortAuditPipe,
@@ -43,7 +43,7 @@ import { CriteriasPipe } from './pipes/criterias.pipe';
     FactorsPipe,
     CriteriasPipe,
     ActionListenerDirective,
-    AuditDataFormComponent,
+    AuditFormComponent,
     NotFoundComponent,
     ContactPersonFormComponent,
     ConfirmDiscardDialogComponent,
