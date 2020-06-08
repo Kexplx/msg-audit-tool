@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ConfirmDiscardDialogComponent } from '../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
-import { extend } from 'cypress/types/lodash';
 import { AbstractFormComponent } from '../abstract-form-component';
 
 @Component({
