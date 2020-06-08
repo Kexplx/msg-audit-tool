@@ -40,9 +40,7 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dialogRef = this.dialogService.open(this.dialog, {
-      ...defaultDialogOptions,
-    });
+    this.dialogRef = this.dialogService.open(this.dialog, defaultDialogOptions);
 
     this.dialogRef.onClose.subscribe(() => {
       this.location.back();

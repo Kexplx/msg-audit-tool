@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuditOverviewComponent } from './components/audit-overview/audit-overview.component';
-import { NewInterviewDialogComponent } from './components/audit-overview/interview-list/new-interview-dialog/new-interview-dialog.component';
+import { NewInterviewDialogComponent } from '../../shared/components/dialogs/new-interview-dialog/new-interview-dialog.component';
 import { InterviewListComponent } from './components/audit-overview/interview-list/interview-list.component';
 import { AuditInfoComponent } from './components/audit-overview/audit-info/audit-info.component';
 import { EditAuditDialogComponent } from 'src/app/shared/components/dialogs/edit-audit-dialog/edit-audit-dialog.component';
