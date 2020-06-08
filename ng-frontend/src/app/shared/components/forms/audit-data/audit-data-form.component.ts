@@ -46,7 +46,7 @@ export class AuditDataFormComponent extends AbstractFormComponent implements OnI
     return this.formGroup.get('contactPeople');
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.formGroup = this.formBuilder.group(
       {
         name: [this.audit?.name, Validators.required],
@@ -60,7 +60,7 @@ export class AuditDataFormComponent extends AbstractFormComponent implements OnI
     this.facCrits$.subscribe(facCrits => {
       for (const facCrit of facCrits) {
         const inAudit = this.audit
-          ? this.audit.facCrits.findIndex(x => x.id === facCrit.id) != -1
+          ? this.audit.facCrits.findIndex(x => x.id === facCrit.id && x.referenceId) != -1
           : true;
 
         this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
