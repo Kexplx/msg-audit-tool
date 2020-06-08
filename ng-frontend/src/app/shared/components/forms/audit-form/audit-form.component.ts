@@ -11,11 +11,11 @@ import { Observable } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
 
 @Component({
-  selector: 'app-audit-data-form',
-  templateUrl: './audit-data-form.component.html',
-  styleUrls: ['./audit-data-form.component.scss'],
+  selector: 'app-audit-form',
+  templateUrl: './audit-form.component.html',
+  styleUrls: ['./audit-form.component.scss'],
 })
-export class AuditDataFormComponent extends AbstractFormComponent implements OnInit {
+export class AuditFormComponent extends AbstractFormComponent implements OnInit {
   @Input() audit: Audit;
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
 
