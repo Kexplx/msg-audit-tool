@@ -1,4 +1,5 @@
 import { Audit, AuditStatus } from '../models/audit.model';
+import { FACCRITS } from './fac-crits';
 
 export const AUDITS: Audit[] = [
   {
@@ -6,7 +7,7 @@ export const AUDITS: Audit[] = [
     creationDate: Date.now(),
     name: 'Audit 1',
     startDate: Date.now(),
-    facCrits: [],
+    facCrits: FACCRITS,
     status: AuditStatus.Planned,
   },
   {
