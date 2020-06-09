@@ -30,7 +30,7 @@ public class InterviewController {
      * GET Endpoint for receiving a interview by a specific id
      *
      * @param interviewId int
-     * @return ResponseEntity<BasicInterviewResponse>
+     * @return ResponseEntity with a BasicInterviewResponse that includes all information regarding the interview
      */
     @GetMapping("/interview/{id}")
     public ResponseEntity<BasicInterviewResponse> getInterviewById(@PathVariable("id") int interviewId) {
@@ -53,7 +53,7 @@ public class InterviewController {
     /**
      * GET Endpoint for receiving all existing interviews
      *
-     * @return ResponseEntity<List < BasicInterviewResponse>>
+     * @return ResponseEntity with a List of the Interviews as BasicInterviewResponses
      */
     @GetMapping("/interview")
     public ResponseEntity<List<BasicInterviewResponse>> getAllInterviews() {
