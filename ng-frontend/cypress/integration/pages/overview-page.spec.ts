@@ -27,60 +27,60 @@ describe('OverviewPage', () => {
     });
   });
 
-  /**
-   * Testing an audit card layout
-   */
-  context('When an audit was added it ...', () => {
-    let testAudit = { name: 'Test' };
-    before(() => {
-      cy.visit(auditsUrl);
-      cy.addAudit(testAudit);
-    });
+  // /**
+  //  * Testing an audit card layout
+  //  */
+  // context('When an audit was added it ...', () => {
+  //   let testAudit = { name: 'Test' };
+  //   before(() => {
+  //     cy.visit(auditsUrl);
+  //     cy.addAudit(testAudit);
+  //   });
 
-    it('shows an audit entry on the overview page when added by an user', () => {
-      cy.get('[data-cy=audit-short-infos]').should('exist');
-    });
+  //   it('shows an audit entry on the overview page when added by an user', () => {
+  //     cy.get('[data-cy=audit-short-infos]').should('exist');
+  //   });
 
-    it('shows a button to see further options to do with the audit', () => {
-      cy.get('[data-cy=audit-options]').should('exist');
-    });
+  //   it('shows a button to see further options to do with the audit', () => {
+  //     cy.get('[data-cy=audit-options]').should('exist');
+  //   });
 
-    it('redirects to audit page when clicking on an audit ', () => {
-      cy.get('[data-cy=audit-short-infos]').first().click();
-      cy.url().should('contain', 'interview');
-      cy.get('[data-cy=home]').click();
-    });
+  //   it('redirects to audit page when clicking on an audit ', () => {
+  //     cy.get('[data-cy=audit-short-infos]').first().click();
+  //     cy.url().should('contain', 'interview');
+  //     cy.get('[data-cy=home]').click();
+  //   });
 
-    it('removes an audit by clicking on an audit delete button', () => {
-      cy.get('[data-cy=audit-short-infos]').first().click();
-      let testAuditUrl = cy.url();
-      cy.get('[data-cy=home]').click();
-      cy.get('[data-cy=audit-options]').first().click();
-      cy.get('.menu-title').filter(':visible').filter(':contains("Löschen")').click();
-      cy.get('[data-cy=audits-list]').first().click();
-      cy.url().should('not.equal', testAuditUrl);
-      cy.get('[data-cy=home]').click();
-    });
+  //   it('removes an audit by clicking on an audit delete button', () => {
+  //     cy.get('[data-cy=audit-short-infos]').first().click();
+  //     let testAuditUrl = cy.url();
+  //     cy.get('[data-cy=home]').click();
+  //     cy.get('[data-cy=audit-options]').first().click();
+  //     cy.get('.menu-title').filter(':visible').filter(':contains("Löschen")').click();
+  //     cy.get('[data-cy=audits-list]').first().click();
+  //     cy.url().should('not.equal', testAuditUrl);
+  //     cy.get('[data-cy=home]').click();
+  //   });
 
-    it('sorts the audits descending by creationDate', () => {
-      let auditsToAdd = [
-        { name: 'Test1' },
-        { name: 'Test2' },
-        { name: 'Test3' },
-        { name: 'Test4' },
-      ];
+  //   it('sorts the audits descending by creationDate', () => {
+  //     let auditsToAdd = [
+  //       { name: 'Test1' },
+  //       { name: 'Test2' },
+  //       { name: 'Test3' },
+  //       { name: 'Test4' },
+  //     ];
 
-      auditsToAdd.forEach(audit => {
-        cy.addAudit(audit);
-      });
+  //     auditsToAdd.forEach(audit => {
+  //       cy.addAudit(audit);
+  //     });
 
-      auditsToAdd.reverse();
+  //     auditsToAdd.reverse();
 
-      cy.get('[data-cy=audit-card]').each((el, index) => {
-        if (index < auditsToAdd.length) {
-          cy.wrap(el).should('contain', auditsToAdd[index].name);
-        }
-      });
-    });
-  });
+  //     cy.get('[data-cy=audit-card]').each((el, index) => {
+  //       if (index < auditsToAdd.length) {
+  //         cy.wrap(el).should('contain', auditsToAdd[index].name);
+  //       }
+  //     });
+  //   });
+  // });
 });
