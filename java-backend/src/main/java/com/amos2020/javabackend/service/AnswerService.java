@@ -2,10 +2,12 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.repository.AnswerRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class AnswerService {
 
     private final AnswerRepository repository;
