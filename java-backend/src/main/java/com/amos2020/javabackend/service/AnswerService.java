@@ -2,6 +2,7 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.repository.AnswerRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 public class AnswerService {
 
@@ -39,5 +40,10 @@ public class AnswerService {
         answer.setAnnotation(annotation);
 
         return repository.save(answer);
+    }
+
+    @Transactional
+    public Answer findAnswerByIds(int questionId, int interviewId){
+        return repository.findFirstByQuestionIdAndInterviewId(questionId,interviewId);
     }
 }
