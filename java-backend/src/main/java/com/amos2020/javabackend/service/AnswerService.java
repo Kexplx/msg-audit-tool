@@ -2,6 +2,7 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.repository.AnswerRepository;
+import javassist.NotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -45,21 +46,22 @@ public class AnswerService {
     }
 
     /**
-     * finds an Answer by its question and interview id
+     * gets an Answer by its question and interview id
      * @param questionId
      * @param interviewId
      * @return Answer
      */
     @Transactional
-    public Answer getAnswerByIds(int questionId, int interviewId){
+    public Answer getAnswerByIds(int questionId, int interviewId) {
         return repository.findFirstByQuestionIdAndInterviewId(questionId,interviewId);
     }
 
     /**
-     *
+     * get all Answers belonging to a specific interview
      * @param interviewId
      * @return
      */
+    @Transactional
     public List<Answer> getAnswersByInterviewId(int interviewId){
         return repository.getAnswersByInterviewId(interviewId);
     }
