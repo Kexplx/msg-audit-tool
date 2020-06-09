@@ -5,6 +5,7 @@ import com.amos2020.javabackend.repository.InterviewRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,14 @@ public class InterviewService {
             throw new NotFoundException("No interview found with id " + interview);
         }
         return interview.get();
+    }
+
+    /**
+     * Returns all existing interviews
+     *
+     * @return List<Interview>
+     */
+    public List<Interview> getAllInterviews() {
+        return repository.findAll();
     }
 }
