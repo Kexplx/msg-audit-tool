@@ -36,13 +36,18 @@ li {
   }
 }
 
-.hint-no-facrit {
+.hint-no-facrits {
   max-width: 900px;
   margin: 100px auto 0 auto;
   text-align: center;
 }
 
-.wrapper-scope {
+.hint-no-interviews {
+  margin: 30px auto 30px auto;
+  text-align: center;
+}
+
+.wrapper-interviews {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -50,4 +55,8 @@ li {
   @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
   }
+}
+
+nb-list-item {
+  display: grid;
 }
