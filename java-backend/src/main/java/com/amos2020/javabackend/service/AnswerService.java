@@ -2,7 +2,6 @@ package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.repository.AnswerRepository;
-import javassist.NotFoundException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -19,28 +18,19 @@ public class AnswerService {
      * Creates and stores an Answer
      * @param questionId
      * @param interviewId
-     * @param result
-     * @param responsible
-     * @param documentation
-     * @param procedure
-     * @param reason
-     * @param proof
-     * @param annotation
      * @return Answer
      */
-    public Answer createAnswer(int questionId, int interviewId, boolean result,
-                               boolean responsible, boolean documentation,
-                               boolean procedure, String reason, String proof, String annotation) {
+    public Answer createAnswer(int questionId, int interviewId) {
         Answer answer = new Answer();
         answer.setQuestionId(questionId);
         answer.setInterviewId(interviewId);
-        answer.setResult(result);
-        answer.setResponsible(responsible);
-        answer.setDocumentation(documentation);
-        answer.setProcedure(procedure);
-        answer.setReason(reason);
-        answer.setProof(proof);
-        answer.setAnnotation(annotation);
+        answer.setResult(false);
+        answer.setResponsible(false);
+        answer.setDocumentation(false);
+        answer.setProcedure(false);
+        answer.setReason("");
+        answer.setProof("");
+        answer.setAnnotation("");
 
         return repository.save(answer);
     }
