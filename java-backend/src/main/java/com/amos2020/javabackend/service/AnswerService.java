@@ -4,6 +4,8 @@ import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.repository.AnswerRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public class AnswerService {
 
     private final AnswerRepository repository;
@@ -13,7 +15,7 @@ public class AnswerService {
     }
 
     /**
-     * Creates and stores and Answer
+     * Creates and stores an Answer
      * @param questionId
      * @param interviewId
      * @param result
@@ -42,8 +44,22 @@ public class AnswerService {
         return repository.save(answer);
     }
 
+    /**
+     * finds an Answer by its question and interview id
+     * @param questionId
+     * @param interviewId
+     * @return Answer
+     */
     @Transactional
-    public Answer findAnswerByIds(int questionId, int interviewId){
+    public Answer getAnswerByIds(int questionId, int interviewId){
         return repository.findFirstByQuestionIdAndInterviewId(questionId,interviewId);
+    }
+
+    /**
+     * get all existing Answer items
+     * @return Answer
+     */
+    public List<Answer> getAll(){
+        return repository.findAll();
     }
 }
