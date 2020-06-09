@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
@@ -13,8 +15,12 @@ public class Interview {
     private Date startDate;
     private Date endDate;
     private InterviewStatus status;
+
+    @JsonIgnore
     private Collection<Answer> answersById;
+    @JsonIgnore
     private Audit auditByAuditId;
+    @JsonIgnore
     private Collection<InterviewContactPerson> interviewContactPeopleById;
 
     @Id
