@@ -1,14 +1,14 @@
 package com.amos2020.javabackend.controller;
 
+import com.amos2020.javabackend.controller.request.answer.CreateAnswerRequest;
 import com.amos2020.javabackend.controller.response.BasicAnswerResponse;
 import com.amos2020.javabackend.entity.Answer;
 
 import com.amos2020.javabackend.service.AnswerService;
+import com.amos2020.javabackend.service.InterviewService;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +17,11 @@ import java.util.List;
 public class AnswerController {
 
     private final AnswerService answerService;
+    private final InterviewService interviewService;
 
-    public AnswerController(AnswerService answerService) {
+    public AnswerController(AnswerService answerService, InterviewService interviewService) {
         this.answerService = answerService;
+        this.interviewService = interviewService;
     }
 
     /**
@@ -57,6 +59,32 @@ public class AnswerController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * POST Endpoint for creating an empty Answer
+     *
+     * @return ResponseEntity with Answer
+     */
+    @PostMapping("/answer")
+    public ResponseEntity<BasicAnswerResponse> createAnswer(@RequestBody CreateAnswerRequest request) {
+        BasicAnswerResponse response;
+
+        try {
+            request.isValid();
+            // TODO check if question by id exists
+            // check interview exists
+            interviewService.getInterviewById(request.getInterviewId());
+            //create Answer
+            Answer answer = answerService.createAnswer(request.getQuestionId(), request.getInterviewId());
+            response = new BasicAnswerResponse(answer);
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().build();
+        }
+
         return ResponseEntity.ok(response);
     }
 
