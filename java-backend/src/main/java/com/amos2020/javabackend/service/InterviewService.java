@@ -1,10 +1,12 @@
 package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Interview;
+import com.amos2020.javabackend.entity.InterviewStatus;
 import com.amos2020.javabackend.repository.InterviewRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,5 +41,22 @@ public class InterviewService {
      */
     public List<Interview> getAllInterviews() {
         return repository.findAll();
+    }
+
+    /**
+     * Creates interview and returns the new interview
+     *
+     * @param auditId   int
+     * @param startDate Date
+     * @param endDate   Date
+     * @return Created interview
+     */
+    public Interview createInterview(int auditId, Date startDate, Date endDate) {
+        Interview interview = new Interview();
+        interview.setAuditId(auditId);
+        interview.setStartDate(startDate);
+        interview.setEndDate(endDate);
+        interview.setStatus(InterviewStatus.ACTIVE);
+        return repository.save(interview);
     }
 }

@@ -1,6 +1,5 @@
-package com.amos2020.javabackend;
+package com.amos2020.javabackend.controller;
 
-import com.amos2020.javabackend.controller.AuditController;
 import com.amos2020.javabackend.controller.request.CreateAuditRequest;
 import com.amos2020.javabackend.controller.request.DeleteAuditRequest;
 import com.amos2020.javabackend.controller.request.UpdateAuditRequest;
