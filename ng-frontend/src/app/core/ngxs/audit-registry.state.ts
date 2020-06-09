@@ -103,6 +103,7 @@ export class AuditRegistryState {
 
   @Action(AddInterview)
   addInterview(context: StateContext<AuditRegistryStateModel>, { audit, interview }: AddInterview) {
+    interview = { ...interview, id: shortid.generate() };
     context.setState(
       patch({
         audits: updateItem<Audit>(x => x === audit, {
