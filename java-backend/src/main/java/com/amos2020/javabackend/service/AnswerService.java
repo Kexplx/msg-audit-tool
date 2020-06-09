@@ -56,6 +56,15 @@ public class AnswerService {
     }
 
     /**
+     *
+     * @param interviewId
+     * @return
+     */
+    public List<Answer> getAnswersByInterviewId(int interviewId){
+        return repository.getAnswersByInterviewId(interviewId);
+    }
+
+    /**
      * get all existing Answer items
      * @return Answer
      */
