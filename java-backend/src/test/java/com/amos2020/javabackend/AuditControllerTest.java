@@ -408,7 +408,7 @@ public class AuditControllerTest {
     }
 
     @Test
-    public void createAuditWithcontactsNull_returnsOk() throws Exception {
+    public void createAuditWithContactsNull_returnsOk() throws Exception {
         String auditName = "testauditname";
         Date startDate = Date.valueOf("2000-01-01");
         Date endDate = Date.valueOf("2000-01-03");
@@ -1010,7 +1010,6 @@ public class AuditControllerTest {
                 .andExpect(status().isForbidden());
     }
 
-
     @Test
     public void deleteAuditValidRequest_returnsOK() throws Exception {
         Audit audit = new Audit();
@@ -1043,7 +1042,6 @@ public class AuditControllerTest {
         Assert.assertEquals(audit.getCancellationContactPerson(), request.getContactPerson());
 
     }
-
 
     @Test
     public void deleteAuditValidRequestTwice_returnsOK() throws Exception {
@@ -1088,7 +1086,6 @@ public class AuditControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     public void deleteAuditReasonBlank__returns400() throws Exception {
         DeleteAuditRequest request = new DeleteAuditRequest();
@@ -1102,14 +1099,6 @@ public class AuditControllerTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
-
-
-    /*
-    @Test
-    public void deleteAuditDateNull__returns400() throws Exception {
-
-    }
-    */
 
     @Test
     public void deleteAuditContactPersonNull_returns400() throws Exception {
