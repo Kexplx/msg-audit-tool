@@ -40,9 +40,7 @@ public class InterviewController {
             Interview interview = interviewService.getInterviewById(interviewId);
 
             // Get ContactPeople for interview
-            List<Integer> contactPeopleIds = new ArrayList<>();
-            interview.getInterviewContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
-            List<ContactPerson> interviewedContactPeople = contactPersonService.getAllByIds(contactPeopleIds);
+            List<ContactPerson> interviewedContactPeople = getContactPeopleForInterview(interview);
             // Build response
             response = new BasicInterviewResponse(interview, interviewedContactPeople);
         } catch (NotFoundException e) {
@@ -51,4 +49,31 @@ public class InterviewController {
 
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * GET Endpoint for receiving all existing interviews
+     *
+     * @return ResponseEntity<List < BasicInterviewResponse>>
+     */
+    @GetMapping("/interview")
+    public ResponseEntity<List<BasicInterviewResponse>> getAllInterviews() {
+        List<BasicInterviewResponse> responses = new ArrayList<>();
+
+        try {
+            for (Interview interview : interviewService.getAllInterviews()) {
+                responses.add(new BasicInterviewResponse(interview, getContactPeopleForInterview(interview)));
+            }
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(responses);
+    }
+
+    private List<ContactPerson> getContactPeopleForInterview(Interview interview) throws NotFoundException {
+        List<Integer> contactPeopleIds = new ArrayList<>();
+        interview.getInterviewContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
+        return contactPersonService.getAllByIds(contactPeopleIds);
+    }
+
 }
