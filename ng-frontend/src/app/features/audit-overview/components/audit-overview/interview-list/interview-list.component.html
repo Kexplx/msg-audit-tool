@@ -10,9 +10,34 @@
     </div>
   </button>
 </header>
-<div class="wrapper-scope" *ngIf="(audit$ | async).facCrits.length > 0; else noFacrits"></div>
+<div *ngIf="(audit$ | async).facCrits.length > 0; else noFacrits">
+  <div *ngFor="let factor of (audit$ | async).facCrits | factors">
+    <div>
+      <h5>{{ factor.name }}</h5>
+      <nb-card-body>
+        <div class="wrapper-interviews">
+          <nb-card *ngFor="let criteria of (audit$ | async).facCrits | criterias: factor.id">
+            <nb-card-header class="subtitle">{{ criteria.name }}</nb-card-header>
+            <ng-container *ngIf="(audit$ | async).interviews | sortInterview: criteria.id; let sortedInterviews; else: noInterviews">
+              <nb-list *ngIf="sortedInterviews.length > 0; else noInterviews" data-cy="interview-factor-name">
+                <nb-list-item *ngFor="let interview of sortedInterviews">
+                  <app-interview-card [interview]="interview"> </app-interview-card>
+                </nb-list-item>
+              </nb-list>
+            </ng-container>
+            <ng-template #noInterviews>
+              <div class="hint-no-interviews">
+                <h6 class="text-hint">Noch keine Interviews geplant</h6>
+              </div>
+            </ng-template>
+          </nb-card>
+        </div>
+      </nb-card-body>
+    </div>
+  </div>
+</div>
 <ng-template #noFacrits>
-  <div class="hint-no-facrit">
+  <div class="hint-no-facrits">
     <h6 class="text-hint">Keine ISO/IEC 25010 Faktoren/Kriterien für diesen Audit ausgewählt.</h6>
   </div>
 </ng-template>

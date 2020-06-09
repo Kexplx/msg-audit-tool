@@ -1,30 +1,29 @@
-<p class="subtitle-2" data-cy="interview-criteria">
-  {{ interview.facCrit.name }}
-  <span class="label" *ngIf="interview.start" data-cy="interview-timestamp">
-    &nbsp;({{ interview.start | date: 'dd.MM.yyyy' }} - <span *ngIf="interview.end; else tbd">{{ interview.end | date: 'dd.MM.yyyy' }})</span>
-    <ng-template #tbd>TBD)</ng-template>
-  </span>
-</p>
-<br />
-<ng-container [ngSwitch]="interview.status">
-  <div
-    nbPopoverPlacement="left"
-    nbPopover="In Bearbeitung"
-    nbPopoverTrigger="hint"
-    *ngSwitchCase="interviewStatuses.InAction"
-    class="banner-status banner-status-in-action"
-    data-cy="interview-status"
-  ></div>
-  <div
-    nbPopoverPlacement="left"
-    nbPopover="Abgeschlossen"
-    nbPopoverTrigger="hint"
-    *ngSwitchCase="interviewStatuses.Finished"
-    class="banner-status banner-status-is-finished"
-    data-cy="interview-status"
-  ></div>
-</ng-container>
-<div *ngFor="let person of interview.contactPeople" data-cy="interview-contact-persons">
-  <span class="label" *ngIf="person.contactInformation"> {{ person.contactInformation + ' | ' }} </span>
-  <span class="label" *ngIf="person.role"> {{ person.role }} </span>
-</div>
+<a [routerLink]="[interview.id]">
+  <ng-container [ngSwitch]="interview.status">
+    <div
+      nbPopoverPlacement="left"
+      nbPopover="In Bearbeitung"
+      nbPopoverTrigger="hint"
+      *ngSwitchCase="interviewStatuses.InAction"
+      class="banner-status banner-status-in-action"
+      data-cy="interview-status"
+    ></div>
+    <div
+      nbPopoverPlacement="left"
+      nbPopover="Abgeschlossen"
+      nbPopoverTrigger="hint"
+      *ngSwitchCase="interviewStatuses.Finished"
+      class="banner-status banner-status-is-finished"
+      data-cy="interview-status"
+    ></div>
+  </ng-container>
+  <nb-card-header>
+    <div class="subtitle-2" data-cy="interview-contact-persons">
+      <span> {{ interview.contactPeople[0].firstName + ' ' + interview.contactPeople[0].lastName + ' | ' }} </span>
+      <span> {{ interview.contactPeople[0].role }} </span>
+      <span *ngIf="interview.contactPeople.length > 1"> (+)</span>
+      <span class="label" *ngIf="interview.start" data-cy="interview-timestamp"> &nbsp;{{ interview.start | date: 'dd.MM.yyyy' }} </span>
+    </div>
+    <br />
+  </nb-card-header>
+</a>
