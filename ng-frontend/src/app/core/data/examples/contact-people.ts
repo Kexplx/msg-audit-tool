@@ -18,7 +18,7 @@ export const CONTACT_PEOPLE: ContactPerson[] = [
     companyName: 'BMW',
     contactInformation: 'Contact Information 123',
     firstName: 'Cathy',
-    lastName: 'Wu',
+    lastName: 'Hu',
     role: 'Software Developer',
     salutation: 'Frau',
     title: 'Dr. ',
