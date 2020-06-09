@@ -1,6 +1,6 @@
 <header>
   <div></div>
-  <button [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
+  <button *ngIf="(audit$ | async).facCrits.length > 0" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
     <div class="min-500">
       <nb-icon icon="plus"></nb-icon>
       Neues Interview
@@ -10,10 +10,10 @@
     </div>
   </button>
 </header>
-<div class="wrapper-interviews" *ngIf="(audit$ | async).interviews?.length == 0; else noInterviews"></div>
-<ng-template #noInterviews>
-  <div class="hint-no-interviews">
-    <h6 class="text-hint">Keine Interviews vorhanden</h6>
+<div class="wrapper-scope" *ngIf="(audit$ | async).facCrits.length > 0; else noFacrits"></div>
+<ng-template #noFacrits>
+  <div class="hint-no-facrit">
+    <h6 class="text-hint">Keine ISO/IEC 25010 Faktoren/Kriterien für diesen Audit ausgewählt.</h6>
   </div>
 </ng-template>
 <nb-layout>

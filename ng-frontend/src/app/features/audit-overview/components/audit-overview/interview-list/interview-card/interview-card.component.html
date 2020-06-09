@@ -1,7 +1,9 @@
-<!-- <p class="subtitle-2">
-  {{ interview.criteria.title }}
-  <span class="label" *ngIf="interview.start"> {{ ' (' + (interview.start | date: 'dd.MM.yyyy') + ' - ' }} </span>
-  <span class="label" *ngIf="interview.end"> {{ (interview.end | date: 'dd.MM.yyyy') + ')' }} </span>
+<p class="subtitle-2" data-cy="interview-criteria">
+  {{ interview.facCrit.name }}
+  <span class="label" *ngIf="interview.start" data-cy="interview-timestamp">
+    &nbsp;({{ interview.start | date: 'dd.MM.yyyy' }} - <span *ngIf="interview.end; else tbd">{{ interview.end | date: 'dd.MM.yyyy' }})</span>
+    <ng-template #tbd>TBD)</ng-template>
+  </span>
 </p>
 <br />
 <ng-container [ngSwitch]="interview.status">
@@ -11,7 +13,7 @@
     nbPopoverTrigger="hint"
     *ngSwitchCase="interviewStatuses.InAction"
     class="banner-status banner-status-in-action"
-    data-cy="audit-status"
+    data-cy="interview-status"
   ></div>
   <div
     nbPopoverPlacement="left"
@@ -19,10 +21,10 @@
     nbPopoverTrigger="hint"
     *ngSwitchCase="interviewStatuses.Finished"
     class="banner-status banner-status-is-finished"
-    data-cy="audit-status"
+    data-cy="interview-status"
   ></div>
 </ng-container>
-<div *ngFor="let person of interview.persons">
-  <span class="label" *ngIf="person.information"> {{ person.information + ' | ' }} </span>
+<div *ngFor="let person of interview.contactPeople" data-cy="interview-contact-persons">
+  <span class="label" *ngIf="person.contactInformation"> {{ person.contactInformation + ' | ' }} </span>
   <span class="label" *ngIf="person.role"> {{ person.role }} </span>
-</div> -->
+</div>
