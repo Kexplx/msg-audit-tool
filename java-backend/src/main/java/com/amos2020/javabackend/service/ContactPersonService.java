@@ -41,5 +41,9 @@ public class ContactPersonService {
 
         return contactPeople;
     }
+
+    public List<ContactPerson> getAll() {
+        return repository.findAll();
+    }
 }
 
