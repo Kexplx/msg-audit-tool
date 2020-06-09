@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -15,7 +17,10 @@ public class Answer {
     private String reason;
     private String proof;
     private String annotation;
+
+    @JsonIgnore
     private Question questionByQuestionId;
+    @JsonIgnore
     private Interview interviewByInterviewId;
 
     @Id
