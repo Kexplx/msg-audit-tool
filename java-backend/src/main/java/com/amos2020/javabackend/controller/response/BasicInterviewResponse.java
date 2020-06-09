@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,7 +20,10 @@ public class BasicInterviewResponse {
         this.startDate = interview.getStartDate();
         this.endDate = interview.getEndDate();
         this.status = interview.getStatus();
-        this.answers = interview.getAnswersById();
+        this.answers = new ArrayList<>();
+        if (interview.getAnswersById() != null) {
+            this.answers = interview.getAnswersById();
+        }
         this.interviewedPeople = interviewedPeople;
     }
 
