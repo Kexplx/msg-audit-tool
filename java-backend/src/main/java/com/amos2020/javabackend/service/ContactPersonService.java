@@ -7,6 +7,7 @@ import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ContactPersonService {
@@ -44,6 +45,14 @@ public class ContactPersonService {
 
     public List<ContactPerson> getAll() {
         return repository.findAll();
+    }
+
+    public ContactPerson getContactPersonById(int contactPersonId) throws NotFoundException {
+        Optional<ContactPerson> contactPerson = repository.findById(contactPersonId);
+        if (!contactPerson.isPresent()) {
+            throw new NotFoundException("No audit found with id " + contactPersonId);
+        }
+        return contactPerson.get();
     }
 }
 
