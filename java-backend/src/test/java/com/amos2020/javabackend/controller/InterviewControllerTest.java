@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -48,5 +49,16 @@ public class InterviewControllerTest {
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
         controller.perform(get("/interview/0")).andExpect(status().isOk());
+    }
+
+    @Test
+    public void getAllInterviews() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewService.getInterviewById(anyInt())).willReturn(interview);
+        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
+
+        controller.perform(get("/interview")).andExpect(status().isOk());
     }
 }
