@@ -11,7 +11,7 @@ import java.util.List;
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 
     @Modifying
-    @Query("select * from Answer a where a.interview_id=:interviewId")
+    @Query("select a from Answer a where a.interviewId=:interviewId")
     List<Answer> getAnswersByInterviewId(@Param("interviewId") int interviewId);
 
     Answer findFirstByQuestionIdAndInterviewId(int questionId, int interviewId);
