@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/audit-list/audit-list.component.ts</code>
+    <code>src/app/features/audit-list/components/audit-list/audit-list.component.ts</code>
 </p>
 
 
@@ -130,7 +130,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#audits$">audits$</a>
+                                <a href="#activeAudits$">activeAudits$</a>
+                            </li>
+                            <li>
+                                <a href="#archivedAudits$">archivedAudits$</a>
                             </li>
                         </ul>
                     </td>
@@ -191,8 +194,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/audit-list/audit-list.component.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="19"
+                            class="link-to-prism">src/app/features/audit-list/components/audit-list/audit-list.component.ts:19</a></div>
                 </td>
             </tr>
 
@@ -218,11 +221,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="audits$"></a>
+                        <a name="activeAudits$"></a>
                         <span class="name">
                             <b>
-                            audits$</b>
-                            <a href="#audits$"><span class="icon ion-ios-link"></span></a>
+                            activeAudits$</b>
+                            <a href="#activeAudits$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -237,13 +240,49 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @Select(AuditRegistryState.audits)<br />
+                                @Select(undefined)<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/audit-list/audit-list.component.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/audit-list/components/audit-list/audit-list.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="archivedAudits$"></a>
+                        <span class="name">
+                            <b>
+                            archivedAudits$</b>
+                            <a href="#archivedAudits$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Audit.html" target="_self" >Observable&lt;Audit[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(undefined)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/audit-list/components/audit-list/audit-list.component.ts:17</a></div>
                             </td>
                         </tr>
 
@@ -258,9 +297,9 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Select } from &#x27;@ngxs/store&#x27;;
-import { AuditRegistryState } from &#x27;../ngxs/audit-registry.state&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { Audit } from &#x27;../data/models/audit.model&#x27;;
+import { AuditRegistryState } from &#x27;src/app/core/ngxs/audit-registry.state&#x27;;
+import { AuditStatus, Audit } from &#x27;src/app/core/data/models/audit.model&#x27;;
 
 @Component({
   selector: &#x27;app-audit-list&#x27;,
@@ -268,7 +307,11 @@ import { Audit } from &#x27;../data/models/audit.model&#x27;;
   styleUrls: [&#x27;./audit-list.component.scss&#x27;],
 })
 export class AuditListComponent implements OnInit {
-  @Select(AuditRegistryState.audits) audits$: Observable&lt;Audit[]&gt;;
+  @Select(AuditRegistryState.auditByStatus(AuditStatus.Planned, AuditStatus.InAction))
+  activeAudits$: Observable&lt;Audit[]&gt;;
+
+  @Select(AuditRegistryState.auditByStatus(AuditStatus.Cancelled, AuditStatus.Finished))
+  archivedAudits$: Observable&lt;Audit[]&gt;;
 
   ngOnInit() {}
 }
@@ -278,20 +321,50 @@ export class AuditListComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;header class&#x3D;&quot;grid-1-auto-auto&quot;&gt;
   &lt;h4 class&#x3D;&quot;header-title&quot;&gt;Audits&lt;/h4&gt;
-  &lt;a [routerLink]&#x3D;&quot;[&#x27;new&#x27;]&quot; hero size&#x3D;&quot;medium&quot; nbButton status&#x3D;&quot;primary&quot;&gt;
-    &lt;nb-icon icon&#x3D;&quot;plus&quot;&gt;&lt;/nb-icon&gt;
-    Neuer Audit
+  &lt;a routerLink&#x3D;&quot;new&quot; hero size&#x3D;&quot;medium&quot; nbButton status&#x3D;&quot;primary&quot; data-cy&#x3D;&quot;new-audit&quot;&gt;
+    &lt;div class&#x3D;&quot;min-500&quot;&gt;
+      &lt;nb-icon icon&#x3D;&quot;plus&quot;&gt;&lt;/nb-icon&gt;
+      Neuer Audit
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;max-500&quot;&gt;
+      &lt;nb-icon icon&#x3D;&quot;plus&quot;&gt;&lt;/nb-icon&gt;
+    &lt;/div&gt;
   &lt;/a&gt;
-  &lt;button size&#x3D;&quot;medium&quot; nbButton hero&gt;
-    &lt;nb-icon icon&#x3D;&quot;download&quot;&gt;&lt;/nb-icon&gt;
-    (4) Exportieren
+  &lt;button size&#x3D;&quot;medium&quot; nbButton hero data-cy&#x3D;&quot;export-audits&quot;&gt;
+    &lt;div class&#x3D;&quot;min-500&quot;&gt;
+      &lt;nb-icon icon&#x3D;&quot;download&quot;&gt;&lt;/nb-icon&gt;
+      (4) Exportieren
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;max-500&quot;&gt;
+      &lt;nb-icon icon&#x3D;&quot;download&quot;&gt;&lt;/nb-icon&gt;
+    &lt;/div&gt;
   &lt;/button&gt;
 &lt;/header&gt;
-&lt;app-audit-card [audit]&#x3D;&quot;audit&quot; *ngFor&#x3D;&quot;let audit of audits$ | async&quot;&gt;&lt;/app-audit-card&gt;
-&lt;aside class&#x3D;&quot;hint-no-audits&quot; *ngIf&#x3D;&quot;(audits$ | async).length &#x3D;&#x3D; 0&quot;&gt;
-  &lt;h6 class&#x3D;&quot;text-hint&quot;&gt;Noch keine Audits vorhanden&lt;/h6&gt;
-&lt;/aside&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;nb-tabset data-cy&#x3D;&quot;audits-list&quot;&gt;
+  &lt;nb-tab responsive tabTitle&#x3D;&quot;Aktiv&quot; tabIcon&#x3D;&quot;activity-outline&quot; data-cy&#x3D;&quot;active-audits&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;(activeAudits$ | async)?.length &gt; 0; else noActiveAudits&quot;&gt;
+      &lt;app-audit-card *ngFor&#x3D;&quot;let audit of activeAudits$ | async&quot; [audit]&#x3D;&quot;audit&quot;&gt;&lt;/app-audit-card&gt;
+    &lt;/div&gt;
+    &lt;ng-template #noActiveAudits&gt;
+      &lt;div class&#x3D;&quot;hint-no-audits&quot;&gt;
+        &lt;h6 class&#x3D;&quot;text-hint&quot;&gt;Keine aktiven Audits vorhanden&lt;/h6&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &lt;/nb-tab&gt;
+  &lt;nb-tab responsive tabTitle&#x3D;&quot;Archiv&quot; tabIcon&#x3D;&quot;archive-outline&quot; data-cy&#x3D;&quot;archived-audits&quot;&gt;
+    &lt;div *ngIf&#x3D;&quot;(archivedAudits$ | async)?.length &gt; 0; else noArchivedAudits&quot;&gt;
+      &lt;app-audit-card *ngFor&#x3D;&quot;let audit of archivedAudits$ | async | sortAudit&quot; [audit]&#x3D;&quot;audit&quot;&gt;&lt;/app-audit-card&gt;
+    &lt;/div&gt;
+    &lt;ng-template #noArchivedAudits&gt;
+      &lt;div class&#x3D;&quot;hint-no-audits&quot;&gt;
+        &lt;h6 class&#x3D;&quot;text-hint&quot;&gt;Keine archivierten Audits vorhanden&lt;/h6&gt;
+      &lt;/div&gt;
+    &lt;/ng-template&gt;
+  &lt;/nb-tab&gt;
+&lt;/nb-tabset&gt;
+&lt;nb-layout&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;/nb-layout&gt;
 </code></pre>
     </div>
 
@@ -310,6 +383,11 @@ export class AuditListComponent implements OnInit {
   max-width: 900px;
   margin: 100px auto 0 auto;
   text-align: center;
+}
+
+.content-active {
+  padding-left: 0;
+  padding-right: 0;
 }
 </code></pre>
     </div>
@@ -339,8 +417,8 @@ export class AuditListComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><header class="grid-1-auto-auto">  <h4 class="header-title">Audits</h4>  <a [routerLink]="[\'new\']" hero size="medium" nbButton status="primary">    <nb-icon icon="plus"></nb-icon>    Neuer Audit  </a>  <button size="medium" nbButton hero>    <nb-icon icon="download"></nb-icon>    (4) Exportieren  </button></header><app-audit-card [audit]="audit" *ngFor="let audit of audits$ | async"></app-audit-card><aside class="hint-no-audits" *ngIf="(audits$ | async).length == 0">  <h6 class="text-hint">Noch keine Audits vorhanden</h6></aside><router-outlet></router-outlet></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><header class="grid-1-auto-auto">  <h4 class="header-title">Audits</h4>  <a routerLink="new" hero size="medium" nbButton status="primary" data-cy="new-audit">    <div class="min-500">      <nb-icon icon="plus"></nb-icon>      Neuer Audit    </div>    <div class="max-500">      <nb-icon icon="plus"></nb-icon>    </div>  </a>  <button size="medium" nbButton hero data-cy="export-audits">    <div class="min-500">      <nb-icon icon="download"></nb-icon>      (4) Exportieren    </div>    <div class="max-500">      <nb-icon icon="download"></nb-icon>    </div>  </button></header><nb-tabset data-cy="audits-list">  <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">    <div *ngIf="(activeAudits$ | async)?.length > 0; else noActiveAudits">      <app-audit-card *ngFor="let audit of activeAudits$ | async" [audit]="audit"></app-audit-card>    </div>    <ng-template #noActiveAudits>      <div class="hint-no-audits">        <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>      </div>    </ng-template>  </nb-tab>  <nb-tab responsive tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">    <div *ngIf="(archivedAudits$ | async)?.length > 0; else noArchivedAudits">      <app-audit-card *ngFor="let audit of archivedAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>    </div>    <ng-template #noArchivedAudits>      <div class="hint-no-audits">        <h6 class="text-hint">Keine archivierten Audits vorhanden</h6>      </div>    </ng-template>  </nb-tab></nb-tabset><nb-layout>  <router-outlet></router-outlet></nb-layout></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'AuditListComponent'};
 </script>
