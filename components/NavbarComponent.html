@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/shared/components/navbar/navbar.component.ts</code>
+    <code>src/app/shared/navbar/navbar.component.ts</code>
 </p>
 
 
@@ -150,7 +150,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/components/navbar/navbar.component.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/navbar/navbar.component.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -220,7 +220,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/shared/components/navbar/navbar.component.ts:12</a></div>
+                            class="link-to-prism">src/app/shared/navbar/navbar.component.ts:12</a></div>
                 </td>
             </tr>
 
@@ -242,8 +242,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { NbSidebarService } from &#x27;@nebular/theme&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { NbSidebarService, NbThemeService } from &#x27;@nebular/theme&#x27;;
 
 @Component({
   selector: &#x27;app-navbar&#x27;,
@@ -263,25 +263,18 @@ export class NavbarComponent {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;nav class&#x3D;&quot;navbar&quot;&gt;
   &lt;div class&#x3D;&quot;navbar-item&quot;&gt;
-    &lt;button (click)&#x3D;&quot;toggleSidebar()&quot; ghost nbButton data-cy&#x3D;&quot;toggle-sidebar&quot;&gt;
+    &lt;button (click)&#x3D;&quot;toggleSidebar()&quot; ghost nbButton&gt;
       &lt;nb-icon icon&#x3D;&quot;menu-2&quot;&gt;&lt;/nb-icon&gt;
     &lt;/button&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;navbar-item&quot;&gt;
-    &lt;button hero routerLink&#x3D;&quot;/audits&quot; nbButton status&#x3D;&quot;primary&quot; data-cy&#x3D;&quot;home&quot;&gt;
-      &lt;nb-icon icon&#x3D;&quot;bar-chart-outline&quot;&gt; &lt;/nb-icon&gt;
-      Audits
-    &lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div class&#x3D;&quot;navbar-item&quot;&gt;
-    &lt;button hero routerLink&#x3D;&quot;/contact-people&quot; nbButton status&#x3D;&quot;basic&quot; data-cy&#x3D;&quot;home&quot;&gt;
-      &lt;nb-icon icon&#x3D;&quot;people-outline&quot;&gt; &lt;/nb-icon&gt;
-      Contact
+    &lt;button hero [routerLink]&#x3D;&quot;[&#x27;/audits&#x27;]&quot; nbButton status&#x3D;&quot;primary&quot;&gt;
+      MSG Audit Tool
     &lt;/button&gt;
   &lt;/div&gt;
   &lt;div&gt;&lt;/div&gt;
   &lt;div class&#x3D;&quot;navbar-item&quot;&gt;
-    &lt;button ghost nbButton status&#x3D;&quot;primary&quot; data-cy&#x3D;&quot;github&quot;&gt;
+    &lt;button ghost nbButton status&#x3D;&quot;primary&quot;&gt;
       &lt;nb-icon icon&#x3D;&quot;github&quot;&gt;&lt;/nb-icon&gt;
     &lt;/button&gt;
   &lt;/div&gt;
@@ -296,7 +289,7 @@ export class NavbarComponent {
                 <pre class="line-numbers"><code class="language-scss">.navbar {
   height: 60px;
   display: grid;
-  grid-template-columns: auto auto auto 1fr auto;
+  grid-template-columns: auto auto 1fr auto;
   align-items: center;
   top: 0;
   width: 100%;
@@ -340,8 +333,8 @@ export class NavbarComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nav class="navbar">  <div class="navbar-item">    <button (click)="toggleSidebar()" ghost nbButton data-cy="toggle-sidebar">      <nb-icon icon="menu-2"></nb-icon>    </button>  </div>  <div class="navbar-item">    <button hero routerLink="/audits" nbButton status="primary" data-cy="home">      <nb-icon icon="bar-chart-outline"> </nb-icon>      Audits    </button>  </div>  <div class="navbar-item">    <button hero routerLink="/contact-people" nbButton status="basic" data-cy="home">      <nb-icon icon="people-outline"> </nb-icon>      Contact    </button>  </div>  <div></div>  <div class="navbar-item">    <button ghost nbButton status="primary" data-cy="github">      <nb-icon icon="github"></nb-icon>    </button>  </div></nav></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><nav class="navbar">  <div class="navbar-item">    <button (click)="toggleSidebar()" ghost nbButton>      <nb-icon icon="menu-2"></nb-icon>    </button>  </div>  <div class="navbar-item">    <button hero [routerLink]="[\'/audits\']" nbButton status="primary">      MSG Audit Tool    </button>  </div>  <div></div>  <div class="navbar-item">    <button ghost nbButton status="primary">      <nb-icon icon="github"></nb-icon>    </button>  </div></nav></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'NavbarComponent'};
 </script>

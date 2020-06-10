@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/shared/directives/action-listener.directive.ts</code>
+            <code>src/app/audit-list/action-listener.directive.ts</code>
         </p>
 
 
@@ -97,9 +97,6 @@
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
-                            <li>
-                                <a href="#showToast">showToast</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -123,7 +120,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/shared/directives/action-listener.directive.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/audit-list/action-listener.directive.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -204,102 +201,18 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app/shared/directives/action-listener.directive.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/app/audit-list/action-listener.directive.ts:12</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Listens to completed NGXS Actions and shows a Toast at the bottom right</p>
-</div>
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="showToast"></a>
-                    <span class="name">
-                        <b>
-                            showToast
-                        </b>
-                        <a href="#showToast"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>showToast(text: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, icon: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/shared/directives/action-listener.directive.ts:33</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>text</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>icon</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -315,7 +228,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Directive, OnInit } from &#x27;@angular/core&#x27;;
 import { Actions, ofActionCompleted } from &#x27;@ngxs/store&#x27;;
 import { NbToastrService } from &#x27;@nebular/theme&#x27;;
-import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from &#x27;src/app/core/ngxs/audit.actions&#x27;;
+import { AddAudit, DeleteAudit, UpdateAudit } from &#x27;../ngxs/audit.actions&#x27;;
 
 @Directive({
   selector: &#x27;[appActionListener]&#x27;,
@@ -323,30 +236,24 @@ import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from &#x27;src/app/c
 export class ActionListenerDirective implements OnInit {
   constructor(private actions$: Actions, private toastrService: NbToastrService) {}
 
-  /**
-   * Listens to completed NGXS Actions and shows a Toast at the bottom right
-   */
   ngOnInit() {
     this.actions$.pipe(ofActionCompleted(AddAudit)).subscribe(x &#x3D;&gt; {
-      this.showToast(&#x60;Neuen Audit: ${x.action.audit.name} erstellt&#x60;, &#x27;checkmark-circle-2-outline&#x27;);
+      const status &#x3D; &#x60;Neuen Audit &quot;${x.action.audit.name}&quot; erstellt&#x60;;
+      const position: any &#x3D; &#x27;bottom-end&#x27;;
+      this.toastrService.show(status, &#x27;Erfolg&#x27;, { position, icon: &#x27;checkmark-circle-2-outline&#x27; });
     });
 
     this.actions$.pipe(ofActionCompleted(DeleteAudit)).subscribe(x &#x3D;&gt; {
-      this.showToast(&#x60;Audit: ${x.action.audit.name} gelöscht&#x60;, &#x27;trash-outline&#x27;);
+      const status &#x3D; &#x60;Audit &quot;${x.action.audit.name}&quot; gelöscht&#x60;;
+      const position: any &#x3D; &#x27;bottom-end&#x27;;
+      this.toastrService.show(status, &#x27;Erfolg&#x27;, { position, icon: &#x27;trash-outline&#x27; });
     });
 
     this.actions$.pipe(ofActionCompleted(UpdateAudit)).subscribe(x &#x3D;&gt; {
-      this.showToast(&#x60;Audit: ${x.action.audit.name} bearbeitet&#x60;, &#x27;edit-outline&#x27;);
+      const status &#x3D; &#x60;Audit &quot;${x.action.audit.name}&quot; bearbeitet&#x60;;
+      const position: any &#x3D; &#x27;bottom-end&#x27;;
+      this.toastrService.show(status, &#x27;Erfolg&#x27;, { position, icon: &#x27;edit-outline&#x27; });
     });
-
-    this.actions$.pipe(ofActionCompleted(AddInterview)).subscribe(x &#x3D;&gt; {
-      this.showToast(&#x60;Neues Interview erstellt&#x60;, &#x27;checkmark-circle-2-outline&#x27;);
-    });
-  }
-
-  showToast(text: string, icon: string) {
-    const position: any &#x3D; &#x27;bottom-end&#x27;;
-    this.toastrService.show(text, &#x27;Erfolg&#x27;, { position, icon, status: &#x27;basic&#x27; });
   }
 }
 </code></pre>

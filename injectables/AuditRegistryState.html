@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/core/ngxs/audit-registry.state.ts</code>
+            <code>src/app/ngxs/audit-registry.state.ts</code>
         </p>
 
 
@@ -79,26 +79,12 @@
                                 <a href="#addAudit">addAudit</a>
                             </li>
                             <li>
-                                <a href="#addContactPerson">addContactPerson</a>
-                            </li>
-                            <li>
-                                <a href="#addInterview">addInterview</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Static</span>
                                 <a href="#audit">audit</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
-                                <a href="#auditByStatus">auditByStatus</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Static</span>
                                 <a href="#audits">audits</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Static</span>
-                                <a href="#contactPeople">contactPeople</a>
                             </li>
                             <li>
                                 <a href="#deleteAudit">deleteAudit</a>
@@ -139,7 +125,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>addAudit(undefined: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Audit.html">AddAudit</a>)</code>
+<code>addAudit(context: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Audit.html">AddAudit</a>)</code>
                 </td>
             </tr>
 
@@ -153,182 +139,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="53"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:53</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                                <code><a href="../injectables/AuditRegistryState.html" target="_self" >StateContext&lt;AuditRegistryStateModel&gt;</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../interfaces/Audit.html" target="_self" >AddAudit</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="addContactPerson"></a>
-                    <span class="name">
-                        <b>
-                            addContactPerson
-                        </b>
-                        <a href="#addContactPerson"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>addContactPerson(undefined: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/ContactPerson.html">AddContactPerson</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Action(AddContactPerson)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="93"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:93</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                                <code><a href="../injectables/AuditRegistryState.html" target="_self" >StateContext&lt;AuditRegistryStateModel&gt;</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                                <code><a href="../interfaces/ContactPerson.html" target="_self" >AddContactPerson</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="addInterview"></a>
-                    <span class="name">
-                        <b>
-                            addInterview
-                        </b>
-                        <a href="#addInterview"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>addInterview(context: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Interview.html">AddInterview</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Action(AddInterview)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="81"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:81</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/ngxs/audit-registry.state.ts:33</a></div>
                 </td>
             </tr>
 
@@ -361,7 +173,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                                <code><a href="../interfaces/Interview.html" target="_self" >AddInterview</a></code>
+                                                <code><a href="../interfaces/Audit.html" target="_self" >AddAudit</a></code>
                                     </td>
 
                                     <td>
@@ -410,8 +222,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="26"
+                            class="link-to-prism">src/app/ngxs/audit-registry.state.ts:26</a></div>
                 </td>
             </tr>
 
@@ -434,78 +246,6 @@
                                     <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="auditByStatus"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Static</span>
-                            auditByStatus
-                        </b>
-                        <a href="#auditByStatus"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>auditByStatus(statuses: <a href="../interfaces/Audit.html">AuditStatus[]</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:40</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>statuses</td>
-                                    <td>
-                                                <code><a href="../interfaces/Audit.html" target="_self" >AuditStatus[]</a></code>
                                     </td>
 
                                     <td>
@@ -561,87 +301,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="31"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:31</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>state</td>
-                                    <td>
-                                                <code><a href="../injectables/AuditRegistryState.html" target="_self" >AuditRegistryStateModel</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="contactPeople"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Static</span>
-                            contactPeople
-                        </b>
-                        <a href="#contactPeople"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>contactPeople(state: <a href="../injectables/AuditRegistryState.html">AuditRegistryStateModel</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Selector()<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="22"
+                            class="link-to-prism">src/app/ngxs/audit-registry.state.ts:22</a></div>
                 </td>
             </tr>
 
@@ -703,7 +364,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>deleteAudit(undefined: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Audit.html">DeleteAudit</a>)</code>
+<code>deleteAudit(context: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Audit.html">DeleteAudit</a>)</code>
                 </td>
             </tr>
 
@@ -717,8 +378,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/app/ngxs/audit-registry.state.ts:43</a></div>
                 </td>
             </tr>
 
@@ -738,6 +399,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>context</td>
                                     <td>
                                                 <code><a href="../injectables/AuditRegistryState.html" target="_self" >StateContext&lt;AuditRegistryStateModel&gt;</a></code>
                                     </td>
@@ -790,7 +452,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateAudit(ctx: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Audit.html">UpdateAudit</a>)</code>
+<code>updateAudit(undefined: <a href="../injectables/AuditRegistryState.html">StateContext<AuditRegistryStateModel></a>, undefined: <a href="../interfaces/Audit.html">UpdateAudit</a>)</code>
                 </td>
             </tr>
 
@@ -804,8 +466,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="71"
-                            class="link-to-prism">src/app/core/ngxs/audit-registry.state.ts:71</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/ngxs/audit-registry.state.ts:56</a></div>
                 </td>
             </tr>
 
@@ -825,7 +487,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>ctx</td>
                                     <td>
                                                 <code><a href="../injectables/AuditRegistryState.html" target="_self" >StateContext&lt;AuditRegistryStateModel&gt;</a></code>
                                     </td>
@@ -869,31 +530,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Audit, AuditStatus } from &#x27;../data/models/audit.model&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Audit } from &#x27;../data/models/audit.model&#x27;;
 import { State, Selector, Action, StateContext, createSelector } from &#x27;@ngxs/store&#x27;;
-import { patch, updateItem, removeItem, append } from &#x27;@ngxs/store/operators&#x27;;
+import { patch, updateItem } from &#x27;@ngxs/store/operators&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import {
-  AddAudit,
-  DeleteAudit,
-  UpdateAudit,
-  AddInterview,
-  AddContactPerson,
-} from &#x27;./audit.actions&#x27;;
+import { AddAudit, DeleteAudit, UpdateAudit } from &#x27;./audit.actions&#x27;;
 import * as shortid from &#x27;shortid&#x27;;
-import { ContactPerson } from &#x27;../data/models/contact-person.model&#x27;;
-import { contactPeople } from &#x27;../data/examples/contact-people&#x27;;
+import { audits } from &#x27;../data/examples/audits&#x27;;
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
-  contactPeople: ContactPerson[];
 }
 
 @State&lt;AuditRegistryStateModel&gt;({
   name: &#x27;auditRegistry&#x27;,
   defaults: {
     audits: [],
-    contactPeople,
   },
 })
 @Injectable()
@@ -903,17 +555,6 @@ export class AuditRegistryState {
     return state.audits;
   }
 
-  @Selector()
-  static contactPeople(state: AuditRegistryStateModel) {
-    return state.contactPeople;
-  }
-
-  static auditByStatus(...statuses: AuditStatus[]) {
-    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) &#x3D;&gt; {
-      return state.audits.filter(x &#x3D;&gt; statuses.includes(x.status));
-    });
-  }
-
   static audit(id: string) {
     return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) &#x3D;&gt; {
       return state.audits.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id);
@@ -921,53 +562,33 @@ export class AuditRegistryState {
   }
 
   @Action(AddAudit)
-  addAudit({ setState }: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: AddAudit) {
-    setState(
-      patch({
-        audits: append&lt;Audit&gt;([{ ...audit, id: shortid.generate() }]),
-      }),
-    );
+  addAudit(context: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: AddAudit) {
+    const state &#x3D; context.getState();
+
+    context.setState({
+      ...state,
+      audits: [...state.audits, { ...audit, id: shortid.generate() }],
+    });
   }
 
   @Action(DeleteAudit)
-  deleteAudit({ setState }: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: DeleteAudit) {
-    setState(
-      patch({
-        audits: removeItem&lt;Audit&gt;(x &#x3D;&gt; x &#x3D;&#x3D;&#x3D; audit),
-      }),
-    );
+  deleteAudit(context: StateContext&lt;AuditRegistryStateModel&gt;, { audit }: DeleteAudit) {
+    const state &#x3D; context.getState();
+    const indexOfAudit &#x3D; state.audits.indexOf(audit);
+
+    if (indexOfAudit !&#x3D; -1) {
+      context.setState({
+        ...state,
+        audits: [...state.audits.slice(0, indexOfAudit), ...state.audits.slice(indexOfAudit + 1)],
+      });
+    }
   }
 
   @Action(UpdateAudit)
-  updateAudit(ctx: StateContext&lt;AuditRegistryStateModel&gt;, { id, audit }: UpdateAudit) {
-    const a &#x3D; ctx.getState().audits.find(x &#x3D;&gt; x.id &#x3D;&#x3D; id);
-    ctx.setState(
-      patch({
-        audits: updateItem&lt;Audit&gt;(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id, { ...a, ...audit, id: id }),
-      }),
-    );
-  }
-
-  @Action(AddInterview)
-  addInterview(context: StateContext&lt;AuditRegistryStateModel&gt;, { audit, interview }: AddInterview) {
-    context.setState(
-      patch({
-        audits: updateItem&lt;Audit&gt;(x &#x3D;&gt; x &#x3D;&#x3D;&#x3D; audit, {
-          ...audit,
-          interviews: [...(audit.interviews ?? []), interview],
-        }),
-      }),
-    );
-  }
-
-  @Action(AddContactPerson)
-  addContactPerson(
-    { setState }: StateContext&lt;AuditRegistryStateModel&gt;,
-    { contactPerson }: AddContactPerson,
-  ) {
+  updateAudit({ setState }: StateContext&lt;AuditRegistryStateModel&gt;, { id, audit }: UpdateAudit) {
     setState(
       patch({
-        contactPeople: append&lt;ContactPerson&gt;([{ ...contactPerson, id: shortid.generate() }]),
+        audits: updateItem&lt;Audit&gt;(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; id, { ...audit, id: id }),
       }),
     );
   }
