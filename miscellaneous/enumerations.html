@@ -58,10 +58,13 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#AuditStatus" title="src/app/data/models/audit.model.ts"><b>AuditStatus</b>&nbsp;&nbsp;&nbsp;(src/.../audit.model.ts)</a>
+                            <a href="#AuditStatus" title="src/app/core/data/models/audit.model.ts"><b>AuditStatus</b>&nbsp;&nbsp;&nbsp;(src/.../audit.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#MenuOptions" title="src/app/audit-list/audit-card/audit-card.component.ts"><b>MenuOptions</b>&nbsp;&nbsp;&nbsp;(src/.../audit-card.component.ts)</a>
+                            <a href="#InterviewStatus" title="src/app/core/data/models/interview.model.ts"><b>InterviewStatus</b>&nbsp;&nbsp;&nbsp;(src/.../interview.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MenuOptions" title="src/app/features/audit-list/components/audit-card/audit-card.component.ts"><b>MenuOptions</b>&nbsp;&nbsp;&nbsp;(src/.../audit-card.component.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -70,7 +73,7 @@
     </table>
 </section>
 
-    <h3>src/app/data/models/audit.model.ts</h3>
+    <h3>src/app/core/data/models/audit.model.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -82,7 +85,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;IsPlanned
+                                &nbsp;Planned
                             </td>
                         </tr>
                         <tr>
@@ -92,18 +95,41 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;IsFinished
+                                &nbsp;Finished
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;IsCanceled
+                                &nbsp;Cancelled
                             </td>
                         </tr>
             </tbody>
         </table>
 </section>
-    <h3>src/app/audit-list/audit-card/audit-card.component.ts</h3>
+    <h3>src/app/core/data/models/interview.model.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="InterviewStatus"></a>
+                        <span class="name"><b>InterviewStatus</b><a href="#InterviewStatus"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;InAction
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;Finished
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/features/audit-list/components/audit-card/audit-card.component.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -121,6 +147,11 @@
                         <tr>
                             <td class="col-md-4">
                                 &nbsp;Delete
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;Reactivate
                             </td>
                         </tr>
             </tbody>

@@ -1,0 +1,1251 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>MSG Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>InterviewFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-interview-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./interview-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./interview-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#interviewForm">interviewForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dateRangeValidator">dateRangeValidator</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onAddPerson">onAddPerson</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel">onCancel</a>
+                            </li>
+                            <li>
+                                <a href="#onRemovePerson">onRemovePerson</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#parseDate">parseDate</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#interview">interview</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formCancelled">formCancelled</a>
+                            </li>
+                            <li>
+                                <a href="#formSubmitted">formSubmitted</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#persons">persons</a>
+                                </li>
+                                <li>
+                                    <a href="#start">start</a>
+                                </li>
+                                <li>
+                                    <a href="#end">end</a>
+                                </li>
+                                <li>
+                                    <a href="#factorTitle">factorTitle</a>
+                                </li>
+                                <li>
+                                    <a href="#criteria">criteria</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, dialogService: NbDialogService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NbDialogService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="interview"></a>
+                        <b>interview</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Interview.html" target="_self" >Interview</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:20</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formCancelled"></a>
+                        <b>formCancelled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:23</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formSubmitted"></a>
+                        <b>formSubmitted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:22</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dateRangeValidator"></a>
+                    <span class="name">
+                        <b>
+                            dateRangeValidator
+                        </b>
+                        <a href="#dateRangeValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dateRangeValidator(startDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, endDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:92</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Validator for two dates: A start date has to be before the end date.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>startDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>string of form group attribute for start date</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>endDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>string of form group attribute for end date</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>(group: any) &#x3D;&gt; { [key: string]: any; }</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:48</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAddPerson"></a>
+                    <span class="name">
+                        <b>
+                            onAddPerson
+                        </b>
+                        <a href="#onAddPerson"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onAddPerson()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="66"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:66</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Appends a new formgroup to the persons form array</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <b>
+                            onCancel
+                        </b>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="116"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:116</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRemovePerson"></a>
+                    <span class="name">
+                        <b>
+                            onRemovePerson
+                        </b>
+                        <a href="#onRemovePerson"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRemovePerson()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="78"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:78</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Removes the last formgroup from the persons form array</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <b>
+                            onSubmit
+                        </b>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseDate"></a>
+                    <span class="name">
+                        <b>
+                            parseDate
+                        </b>
+                        <a href="#parseDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parseDate(s: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="82"
+                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:82</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>s</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="interviewForm"></a>
+                        <span class="name">
+                            <b>
+                            interviewForm</b>
+                            <a href="#interviewForm"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="persons"></a>
+                        <span class="name"><b>persons</b><a href="#persons"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>persons()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:28</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="start"></a>
+                        <span class="name"><b>start</b><a href="#start"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>start()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:32</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="end"></a>
+                        <span class="name"><b>end</b><a href="#end"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>end()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:36</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="factorTitle"></a>
+                        <span class="name"><b>factorTitle</b><a href="#factorTitle"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>factorTitle()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:40</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="criteria"></a>
+                        <span class="name"><b>criteria</b><a href="#criteria"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>criteria()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts:44</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+import { Interview, InterviewStatus } from &#x27;src/app/core/data/models/interview.model&#x27;;
+import {
+  FormGroup,
+  FormBuilder,
+  FormControl,
+  FormArray,
+  AbstractControl,
+  Validators,
+} from &#x27;@angular/forms&#x27;;
+import { NbDialogService } from &#x27;@nebular/theme&#x27;;
+import { ConfirmDiscardDialogComponent } from &#x27;src/app/shared/components/dialogs/confirm-discard-dialog/confirm-discard-dialog.component&#x27;;
+
+@Component({
+  selector: &#x27;app-interview-form&#x27;,
+  templateUrl: &#x27;./interview-form.component.html&#x27;,
+  styleUrls: [&#x27;./interview-form.component.scss&#x27;],
+})
+export class InterviewFormComponent implements OnInit {
+  @Input() interview: Interview;
+  // @Input() scope: Factor[];
+  @Output() formSubmitted &#x3D; new EventEmitter&lt;any&gt;();
+  @Output() formCancelled &#x3D; new EventEmitter&lt;any&gt;();
+  interviewForm: FormGroup;
+
+  constructor(private fb: FormBuilder, private dialogService: NbDialogService) {}
+
+  get persons(): FormArray {
+    return this.interviewForm.get(&#x27;persons&#x27;) as FormArray;
+  }
+
+  get start() {
+    return this.interviewForm.get(&#x27;start&#x27;);
+  }
+
+  get end() {
+    return this.interviewForm.get(&#x27;end&#x27;);
+  }
+
+  get factorTitle() {
+    return this.interviewForm.get(&#x27;factorTitle&#x27;);
+  }
+
+  get criteria() {
+    return this.interviewForm.get(&#x27;criteria&#x27;);
+  }
+
+  ngOnInit() {
+    // this.interviewForm &#x3D; this.fb.group({
+    //   start: [this.interview?.start ?? new Date()],
+    //   end: [this.interview?.end, this.startGreaterThanEndValidator.bind(this)],
+    //   persons: this.fb.array([
+    //     this.fb.group({
+    //       role: new FormControl(null),
+    //       contactInformation: new FormControl(null),
+    //     }),
+    //   ]),
+    //   criteria: [this.interview?.criteria, Validators.required],
+    //   factorTitle: [null],
+    // });
+  }
+
+  /**
+   * Appends a new formgroup to the persons form array
+   */
+  onAddPerson() {
+    this.persons.push(
+      this.fb.group({
+        role: new FormControl(null),
+        contactInformation: new FormControl(null),
+      }),
+    );
+  }
+
+  /**
+   * Removes the last formgroup from the persons form array
+   */
+  onRemovePerson() {
+    this.persons.removeAt(this.persons.length - 1);
+  }
+
+  parseDate(s: string) {
+    return s ? new Date(s).getTime() : undefined;
+  }
+
+  /**
+   * Validator for two dates: A start date has to be before the end date.
+   *
+   * @param startDate string of form group attribute for start date
+   * @param endDate string of form group attribute for end date
+   */
+  dateRangeValidator(startDate: string, endDate: string) {
+    return (group: FormGroup): { [key: string]: any } &#x3D;&gt; {
+      let start &#x3D; group.get(startDate).value;
+      let end &#x3D; group.get(endDate).value;
+      if (!start || !end) {
+        return null;
+      }
+      if (start &gt; end) {
+        return {
+          dateRangeValidator: true,
+        };
+      }
+    };
+  }
+
+  onSubmit() {
+    // const interview: Interview &#x3D; {
+    //   start: this.parseDate(this.start.value),
+    //   end: this.parseDate(this.end.value),
+    //   status: InterviewStatus.InAction,
+    // };
+    // this.formSubmitted.emit(interview);
+  }
+
+  onCancel() {
+    if (this.interviewForm.dirty &amp;&amp; this.interviewForm.touched) {
+      const confirmDiscardComponentRef &#x3D; this.dialogService.open(ConfirmDiscardDialogComponent, {
+        autoFocus: false,
+        closeOnBackdropClick: false,
+      });
+
+      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
+        (cancelConfirmed: boolean) &#x3D;&gt; {
+          if (cancelConfirmed) {
+            this.formCancelled.emit();
+          }
+        },
+      );
+    } else {
+      this.formCancelled.emit();
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- &lt;form [formGroup]&#x3D;&quot;interviewForm&quot; data-cy&#x3D;&quot;add-interview-form&quot;&gt;
+  &lt;nb-card&gt;
+    &lt;nb-card-header&gt;Neues Interview&lt;/nb-card-header&gt;
+    &lt;nb-card-body&gt;
+      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+        &lt;div class&#x3D;&quot;form-item&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Startdatum&lt;/label&gt;
+          &lt;input formControlName&#x3D;&quot;start&quot; readonly nbInput fullWidth [nbDatepicker]&#x3D;&quot;datePickerStart&quot; data-cy&#x3D;&quot;interview-start-input&quot; /&gt;
+          &lt;nb-datepicker #datePickerStart&gt;&lt;/nb-datepicker&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-item&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Enddatum&lt;/label&gt;
+          &lt;input
+            [status]&#x3D;&quot;interviewForm.errors?.dateRangeValidator ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot;
+            formControlName&#x3D;&quot;end&quot;
+            readonly
+            nbInput
+            fullWidth
+            [nbDatepicker]&#x3D;&quot;datePickerEnd&quot;
+            data-cy&#x3D;&quot;interview-end-input&quot;
+          /&gt;
+          &lt;nb-datepicker #datePickerEnd&gt;&lt;/nb-datepicker&gt;
+          &lt;div *ngIf&#x3D;&quot;interviewForm.errors?.dateRangeValidator&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot;&gt;Startdatum muss vor Enddatum liegen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;hr /&gt;
+      &lt;div class&#x3D;&quot;button-add-person-wrapper&quot;&gt;
+        &lt;div&gt;&lt;/div&gt;
+        &lt;button *ngIf&#x3D;&quot;this.persons.controls.length &gt; 1&quot; (click)&#x3D;&quot;onRemovePerson()&quot; class&#x3D;&quot;justify-content-end&quot; nbButton data-cy&#x3D;&quot;interview-rm-contact-person&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;minus&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+        &lt;button (click)&#x3D;&quot;onAddPerson()&quot; class&#x3D;&quot;justify-content-end&quot; nbButton data-cy&#x3D;&quot;interview-add-contact-person&quot;&gt;
+          &lt;nb-icon icon&#x3D;&quot;plus&quot;&gt;&lt;/nb-icon&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div formArrayName&#x3D;&quot;persons&quot;&gt;
+        &lt;div *ngFor&#x3D;&quot;let group of this.persons.controls; let i &#x3D; index&quot;&gt;
+          &lt;div class&#x3D;&quot;grid-1-1&quot; [formGroup]&#x3D;&quot;group&quot;&gt;
+            &lt;div class&#x3D;&quot;form-item&quot;&gt;
+              &lt;label class&#x3D;&quot;label&quot;&gt;Kontakt&lt;/label&gt;
+              &lt;input placeholder&#x3D;&quot;Max Mustermann&quot; formControlName&#x3D;&quot;contactInformation&quot; nbInput fullWidth data-cy&#x3D;&quot;interview-contact-name-input&quot; /&gt;
+            &lt;/div&gt;
+            &lt;div class&#x3D;&quot;form-item&quot;&gt;
+              &lt;label class&#x3D;&quot;label&quot;&gt;Rolle&lt;/label&gt;
+              &lt;input placeholder&#x3D;&quot;Entwickler&quot; formControlName&#x3D;&quot;role&quot; nbInput fullWidth data-cy&#x3D;&quot;interview-contact-role-input&quot; /&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;form-item&quot;&gt;
+        &lt;label class&#x3D;&quot;label&quot;&gt;ISO/IEC 25010 Kriterium&lt;/label&gt;
+        &lt;nb-select [status]&#x3D;&quot;criteria.invalid &amp;&amp; criteria.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;criteria&quot; fullWidth placeholder&#x3D;&quot;Select Groups&quot; data-cy&#x3D;&quot;interview-category-input&quot;&gt;
+          &lt;nb-option-group *ngFor&#x3D;&quot;let factor of scope&quot; [title]&#x3D;&quot;factor.title&quot;&gt;
+            &lt;nb-option (selectionChange)&#x3D;&quot;factorTitle.setValue(factor.title)&quot; *ngFor&#x3D;&quot;let category of factor.criterias&quot; [value]&#x3D;&quot;category&quot; data-cy&#x3D;&quot;interview-category-option&quot;&gt;{{
+              category.title
+            }}&lt;/nb-option&gt;
+          &lt;/nb-option-group&gt;
+        &lt;/nb-select&gt;
+        &lt;div *ngIf&#x3D;&quot;criteria.invalid &amp;&amp; criteria.touched&quot;&gt;
+          &lt;label class&#x3D;&quot;label text-danger&quot;&gt;ISO/IEC 25010 Kriterium wählen&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/nb-card-body&gt;
+    &lt;nb-card-footer class&#x3D;&quot;accordion-footer&quot;&gt;
+      &lt;button (click)&#x3D;&quot;onCancel()&quot; hero nbButton data-cy&#x3D;&quot;cancel-interview-data-form&quot;&gt;
+        abbrechen
+      &lt;/button&gt;
+      &lt;button [disabled]&#x3D;&quot;interviewForm.invalid&quot; (click)&#x3D;&quot;onSubmit()&quot; status&#x3D;&quot;primary&quot; hero nbButton data-cy&#x3D;&quot;submit-interview-data-form&quot;&gt;
+        Hinzufügen
+      &lt;/button&gt;
+    &lt;/nb-card-footer&gt;
+  &lt;/nb-card&gt;
+&lt;/form&gt; --&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./interview-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/sass/utils&#x27;;
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-left: 20px;
+}
+
+.criteria-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field-item-contact-information {
+  margin-top: 20px;
+
+  textarea {
+    resize: vertical;
+  }
+}
+
+.accordion-footer {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0;
+  padding: 10px 20px 10px 20px;
+}
+
+.field-item-audit-name {
+  margin-bottom: 20px;
+}
+
+.button-add-person-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 5px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- <form [formGroup]="interviewForm" data-cy="add-interview-form">  <nb-card>    <nb-card-header>Neues Interview</nb-card-header>    <nb-card-body>      <div class="grid-1-1">        <div class="form-item">          <label class="label">Startdatum</label>          <input formControlName="start" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="interview-start-input" />          <nb-datepicker #datePickerStart></nb-datepicker>        </div>        <div class="form-item">          <label class="label">Enddatum</label>          <input            [status]="interviewForm.errors?.dateRangeValidator ? \'danger\' : \'basic\'"            formControlName="end"            readonly            nbInput            fullWidth            [nbDatepicker]="datePickerEnd"            data-cy="interview-end-input"          />          <nb-datepicker #datePickerEnd></nb-datepicker>          <div *ngIf="interviewForm.errors?.dateRangeValidator">            <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>          </div>        </div>      </div>      <hr />      <div class="button-add-person-wrapper">        <div></div>        <button *ngIf="this.persons.controls.length > 1" (click)="onRemovePerson()" class="justify-content-end" nbButton data-cy="interview-rm-contact-person">          <nb-icon icon="minus"></nb-icon>        </button>        <button (click)="onAddPerson()" class="justify-content-end" nbButton data-cy="interview-add-contact-person">          <nb-icon icon="plus"></nb-icon>        </button>      </div>      <div formArrayName="persons">        <div *ngFor="let group of this.persons.controls; let i = index">          <div class="grid-1-1" [formGroup]="group">            <div class="form-item">              <label class="label">Kontakt</label>              <input placeholder="Max Mustermann" formControlName="contactInformation" nbInput fullWidth data-cy="interview-contact-name-input" />            </div>            <div class="form-item">              <label class="label">Rolle</label>              <input placeholder="Entwickler" formControlName="role" nbInput fullWidth data-cy="interview-contact-role-input" />            </div>          </div>        </div>      </div>      <div class="form-item">        <label class="label">ISO/IEC 25010 Kriterium</label>        <nb-select [status]="criteria.invalid && criteria.touched ? \'danger\' : \'basic\'" formControlName="criteria" fullWidth placeholder="Select Groups" data-cy="interview-category-input">          <nb-option-group *ngFor="let factor of scope" [title]="factor.title">            <nb-option (selectionChange)="factorTitle.setValue(factor.title)" *ngFor="let category of factor.criterias" [value]="category" data-cy="interview-category-option">{{              category.title            }}</nb-option>          </nb-option-group>        </nb-select>        <div *ngIf="criteria.invalid && criteria.touched">          <label class="label text-danger">ISO/IEC 25010 Kriterium wählen</label>        </div>      </div>    </nb-card-body>    <nb-card-footer class="accordion-footer">      <button (click)="onCancel()" hero nbButton data-cy="cancel-interview-data-form">        abbrechen      </button>      <button [disabled]="interviewForm.invalid" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">        Hinzufügen      </button>    </nb-card-footer>  </nb-card></form> --></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+    var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
+    var ACTUAL_COMPONENT = {'name': 'InterviewFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'InterviewFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
