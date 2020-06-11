@@ -1,23 +1,21 @@
 package com.amos2020.javabackend.rest_service;
 
 
+import com.amos2020.javabackend.rest_service.controller.ContactPersonController;
 import com.amos2020.javabackend.rest_service.request.CreateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
-import com.amos2020.javabackend.entity.ContactPerson;
-import com.amos2020.javabackend.service.ContactPersonService;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class ContactPersonRestService {
-    private final ContactPersonService contactPersonService;
+    private final ContactPersonController contactPersonController;
 
-    public ContactPersonRestService(ContactPersonService contactPersonService) {
-        this.contactPersonService =  contactPersonService;
+    public ContactPersonRestService(ContactPersonController contactPersonController) {
+        this.contactPersonController = contactPersonController;
     }
 
     /**
@@ -32,10 +30,8 @@ public class ContactPersonRestService {
         try {
             // Validate parameters for creating a contact Person
             request.isValid();
-            // Create audit and save in database
-            ContactPerson contactPerson = contactPersonService.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(),
+            response = contactPersonController.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(),
                     request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision());
-            response = new BasicContactPersonResponse(contactPerson);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
@@ -50,11 +46,9 @@ public class ContactPersonRestService {
      */
     @GetMapping("/contactpersons")
     public ResponseEntity<List<BasicContactPersonResponse>> getAuditAll() {
-        List<BasicContactPersonResponse> response = new ArrayList<>();
+        List<BasicContactPersonResponse> response;
         try {
-            for (ContactPerson c : contactPersonService.getAll()) {
-                response.add(new BasicContactPersonResponse(c));
-            }
+            response = contactPersonController.getAllAudits();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
@@ -72,8 +66,7 @@ public class ContactPersonRestService {
     public ResponseEntity<BasicContactPersonResponse> getAuditById(@PathVariable("id") int contactPersonId) {
         BasicContactPersonResponse response;
         try {
-            ContactPerson contactPerson = contactPersonService.getContactPersonById(contactPersonId);
-            response = new BasicContactPersonResponse(contactPerson);
+            response = contactPersonController.getContactPersonById(contactPersonId);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
