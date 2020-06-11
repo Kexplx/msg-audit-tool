@@ -2,9 +2,9 @@ import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Store } from '@ngxs/store';
 import { defaultDialogOptions } from '../default-dialog-options';
-import { AddContactPerson } from 'src/app/core/ngxs/actions/audit.actions';
 import { Location } from '@angular/common';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
+import { AddContactPerson } from 'src/app/core/ngxs/actions/contact-person.action';
 
 @Component({
   selector: 'app-add-contact-person-dialog',

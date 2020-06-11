@@ -6,10 +6,12 @@ import {
   DeleteAudit,
   UpdateAudit,
   AddInterview,
-  DeleteContactPerson,
-  AddContactPerson,
-  UpdateContactPerson,
 } from 'src/app/core/ngxs/actions/audit.actions';
+import {
+  DeleteContactPerson,
+  UpdateContactPerson,
+  AddContactPerson,
+} from 'src/app/core/ngxs/actions/contact-person.action';
 
 @Directive({
   selector: '[appActionListener]',

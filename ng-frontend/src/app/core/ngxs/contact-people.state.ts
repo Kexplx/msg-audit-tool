@@ -1,14 +1,14 @@
 import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
+import * as shortid from 'shortid';
+import { ContactPerson } from '../data/models/contact-person.model';
+import { CONTACT_PEOPLE } from '../data/examples/contact-people';
 import {
   AddContactPerson,
   DeleteContactPerson,
   UpdateContactPerson,
-} from './actions/audit.actions';
-import * as shortid from 'shortid';
-import { ContactPerson } from '../data/models/contact-person.model';
-import { CONTACT_PEOPLE } from '../data/examples/contact-people';
+} from './actions/contact-person.action';
 
 export interface ContactPersonStateModel {
   contactPeople: ContactPerson[];

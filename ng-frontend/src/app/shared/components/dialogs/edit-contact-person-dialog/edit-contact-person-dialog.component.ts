@@ -8,8 +8,8 @@ import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
 import { tap } from 'rxjs/operators';
-import { UpdateContactPerson } from 'src/app/core/ngxs/actions/audit.actions';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { UpdateContactPerson } from 'src/app/core/ngxs/actions/contact-person.action';
 
 @Component({
   selector: 'app-edit-contact-person-dialog',
