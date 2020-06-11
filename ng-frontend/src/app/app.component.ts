@@ -5,6 +5,7 @@ import { AuditRegistryState } from './core/ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
 import { Audit } from './core/data/models/audit.model';
 import { ContactPerson } from './core/data/models/contact-person.model';
+import { ContactPersonState } from './core/ngxs/contact-people.state';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,6 @@ import { ContactPerson } from './core/data/models/contact-person.model';
 })
 export class AppComponent {
   @Select(AuditRegistryState.audits) audits$: Observable<Audit[]>;
-  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
 
   constructor(private sidebarService: NbSidebarService, private store: Store) {}
 
