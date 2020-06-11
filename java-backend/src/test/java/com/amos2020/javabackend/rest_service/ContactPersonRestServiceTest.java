@@ -1,15 +1,12 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
 
-import com.amos2020.javabackend.controller.request.*;
+import com.amos2020.javabackend.rest_service.request.*;
 import com.amos2020.javabackend.entity.*;
 import com.amos2020.javabackend.service.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import javassist.NotFoundException;
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +16,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ContactPersonController.class)
-public class ContactPersonControllerTest {
+@WebMvcTest(ContactPersonRestService.class)
+public class ContactPersonRestServiceTest {
     @Autowired
-    MockMvc controller;
+    MockMvc restService;
 
     @MockBean
     private ContactPersonService contactPersonService;
@@ -66,7 +55,7 @@ public class ContactPersonControllerTest {
 
         given(contactPersonService.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getCompanyName(), request.getDepartment(), request.getSector(),request.getCorporateDivision())).willReturn(cp);
 
-        controller.perform(post("/contactperson")
+        restService.perform(post("/contactperson")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -85,7 +74,7 @@ public class ContactPersonControllerTest {
         request.setSector("Test");
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/contactperson")
+        restService.perform(post("/contactperson")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -106,7 +95,7 @@ public class ContactPersonControllerTest {
         String requestAsJson = buildJson(request);
 
 
-        controller.perform(post("/contactperson")
+        restService.perform(post("/contactperson")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -128,7 +117,7 @@ public class ContactPersonControllerTest {
         String requestAsJson = buildJson(request);
 
 
-        controller.perform(post("/contactperson")
+        restService.perform(post("/contactperson")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -146,7 +135,7 @@ public class ContactPersonControllerTest {
         request.setSector("Test");
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/contactperson")
+        restService.perform(post("/contactperson")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());

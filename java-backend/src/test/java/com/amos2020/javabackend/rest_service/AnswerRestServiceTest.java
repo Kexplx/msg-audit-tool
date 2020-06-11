@@ -1,7 +1,6 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.controller.AnswerController;
-import com.amos2020.javabackend.controller.request.answer.CreateAnswerRequest;
+import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.entity.Interview;
 import com.amos2020.javabackend.service.AnswerService;
@@ -20,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
-import java.util.*;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -28,11 +26,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(AnswerController.class)
-public class AnswerControllerTest {
+@WebMvcTest(AnswerRestService.class)
+public class AnswerRestServiceTest {
 
     @Autowired
-    MockMvc controller;
+    MockMvc restService;
 
     @MockBean
     private AnswerService answerService;
@@ -46,14 +44,14 @@ public class AnswerControllerTest {
         answer.setQuestionId(1);
         given(answerService.getAnswerByIds(1, 1)).willReturn(answer);
 
-        controller.perform(get("/answer/interview/1/question/1")).andExpect(status().isOk());
+        restService.perform(get("/answer/interview/1/question/1")).andExpect(status().isOk());
     }
 
     @Test
     public void getAnswersByInterviewId_returnOK() throws Exception {
         given(answerService.getAnswersByInterviewId(1)).willReturn(new ArrayList<>());
 
-        controller.perform(get("/answer/interview/1")).andExpect(status().isOk());
+        restService.perform(get("/answer/interview/1")).andExpect(status().isOk());
     }
 
     @Test
@@ -65,7 +63,7 @@ public class AnswerControllerTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        controller.perform(post("/answer")
+        restService.perform(post("/answer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -80,7 +78,7 @@ public class AnswerControllerTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        controller.perform(post("/answer")
+        restService.perform(post("/answer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -95,7 +93,7 @@ public class AnswerControllerTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        controller.perform(post("/answer")
+        restService.perform(post("/answer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -110,7 +108,7 @@ public class AnswerControllerTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        controller.perform(post("/answer")
+        restService.perform(post("/answer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());

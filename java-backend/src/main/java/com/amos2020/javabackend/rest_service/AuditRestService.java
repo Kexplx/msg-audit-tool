@@ -1,10 +1,10 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.controller.request.CreateAuditRequest;
-import com.amos2020.javabackend.controller.request.DeleteAuditRequest;
-import com.amos2020.javabackend.controller.request.UpdateAuditRequest;
-import com.amos2020.javabackend.controller.request.UpdateAuditScopeRequest;
-import com.amos2020.javabackend.controller.response.BasicAuditResponse;
+import com.amos2020.javabackend.rest_service.request.CreateAuditRequest;
+import com.amos2020.javabackend.rest_service.request.DeleteAuditRequest;
+import com.amos2020.javabackend.rest_service.request.UpdateAuditRequest;
+import com.amos2020.javabackend.rest_service.request.UpdateAuditScopeRequest;
+import com.amos2020.javabackend.rest_service.response.BasicAuditResponse;
 import com.amos2020.javabackend.entity.*;
 import com.amos2020.javabackend.service.*;
 import javassist.NotFoundException;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class AuditController {
+public class AuditRestService {
 
     private final AuditService auditService;
     private final ScopeService scopeService;
@@ -23,7 +23,7 @@ public class AuditController {
     private final AuditContactPersonService auditContactPersonService;
     private final FacCritService facCritService;
 
-    public AuditController(AuditService auditService, ScopeService scopeService, ContactPersonService contactPersonService, AuditContactPersonService auditContactPersonService, FacCritService facCritService) {
+    public AuditRestService(AuditService auditService, ScopeService scopeService, ContactPersonService contactPersonService, AuditContactPersonService auditContactPersonService, FacCritService facCritService) {
         this.auditService = auditService;
         this.scopeService = scopeService;
         this.contactPersonService = contactPersonService;

@@ -1,7 +1,7 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.controller.request.answer.CreateAnswerRequest;
-import com.amos2020.javabackend.controller.response.BasicAnswerResponse;
+import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
+import com.amos2020.javabackend.rest_service.response.BasicAnswerResponse;
 import com.amos2020.javabackend.entity.Answer;
 
 import com.amos2020.javabackend.service.AnswerService;
@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class AnswerController {
+public class AnswerRestService {
 
     private final AnswerService answerService;
     private final InterviewService interviewService;
 
-    public AnswerController(AnswerService answerService, InterviewService interviewService) {
+    public AnswerRestService(AnswerService answerService, InterviewService interviewService) {
         this.answerService = answerService;
         this.interviewService = interviewService;
     }

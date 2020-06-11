@@ -1,8 +1,8 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
 
-import com.amos2020.javabackend.controller.request.CreateContactPersonRequest;
-import com.amos2020.javabackend.controller.response.BasicContactPersonResponse;
+import com.amos2020.javabackend.rest_service.request.CreateContactPersonRequest;
+import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import com.amos2020.javabackend.entity.ContactPerson;
 import com.amos2020.javabackend.service.ContactPersonService;
 import javassist.NotFoundException;
@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class ContactPersonController {
+public class ContactPersonRestService {
     private final ContactPersonService contactPersonService;
 
-    public ContactPersonController(ContactPersonService contactPersonService) {
+    public ContactPersonRestService(ContactPersonService contactPersonService) {
         this.contactPersonService =  contactPersonService;
     }
 

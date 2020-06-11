@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.controller.response;
+package com.amos2020.javabackend.rest_service.response;
 
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.entity.ContactPerson;

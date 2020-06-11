@@ -1,7 +1,7 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.controller.request.interview.CreateInterviewRequest;
-import com.amos2020.javabackend.controller.response.BasicInterviewResponse;
+import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.amos2020.javabackend.entity.ContactPerson;
 import com.amos2020.javabackend.entity.Interview;
 import com.amos2020.javabackend.service.AuditService;
@@ -16,14 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class InterviewController {
+public class InterviewRestService {
 
     final AuditService auditService;
     final ContactPersonService contactPersonService;
     final InterviewContactPersonService interviewContactPersonService;
     final InterviewService interviewService;
 
-    public InterviewController(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService) {
+    public InterviewRestService(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService) {
         this.interviewService = interviewService;
         this.contactPersonService = contactPersonService;
         this.auditService = auditService;

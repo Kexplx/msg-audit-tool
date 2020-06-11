@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.controller.request;
+package com.amos2020.javabackend.rest_service.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,8 +6,7 @@ import lombok.Setter;
 import java.sql.Date;
 import java.util.List;
 
-public class UpdateAuditRequest extends BasicRequest {
-
+public class CreateAuditRequest extends BasicRequest {
     // mandatory
     @Getter
     @Setter
@@ -26,6 +25,11 @@ public class UpdateAuditRequest extends BasicRequest {
     // Not mandatory
     @Getter
     @Setter
+    private List<Integer> scope;
+
+    // Not mandatory
+    @Getter
+    @Setter
     private List<Integer> contactPeople;
 
     public void isValid() throws IllegalArgumentException {
@@ -33,5 +37,8 @@ public class UpdateAuditRequest extends BasicRequest {
         assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);
         assertIdsAreValid(contactPeople);
+        assertIdsAreValid(scope);
     }
+
+
 }

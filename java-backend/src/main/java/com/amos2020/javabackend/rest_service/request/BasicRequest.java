@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.controller.request;
+package com.amos2020.javabackend.rest_service.request;
 
 import org.junit.platform.commons.util.StringUtils;
 

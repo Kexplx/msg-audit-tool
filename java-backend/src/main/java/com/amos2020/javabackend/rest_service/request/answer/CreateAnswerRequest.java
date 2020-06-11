@@ -1,6 +1,6 @@
-package com.amos2020.javabackend.controller.request.answer;
+package com.amos2020.javabackend.rest_service.request.answer;
 
-import com.amos2020.javabackend.controller.request.BasicRequest;
+import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import lombok.Getter;
 import lombok.Setter;
 

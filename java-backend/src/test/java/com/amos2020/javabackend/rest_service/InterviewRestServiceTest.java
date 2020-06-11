@@ -1,6 +1,6 @@
-package com.amos2020.javabackend.controller;
+package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.controller.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
 import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.Interview;
 import com.amos2020.javabackend.entity.InterviewContactPerson;
@@ -32,10 +32,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(InterviewController.class)
-public class InterviewControllerTest {
+@WebMvcTest(InterviewRestService.class)
+public class InterviewRestServiceTest {
     @Autowired
-    MockMvc controller;
+    MockMvc restService;
 
     @MockBean
     private ContactPersonService contactPersonService;
@@ -54,7 +54,7 @@ public class InterviewControllerTest {
         given(interviewService.getInterviewById(1)).willReturn(interview);
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        controller.perform(get("/interview/1")).andExpect(status().isOk());
+        restService.perform(get("/interview/1")).andExpect(status().isOk());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class InterviewControllerTest {
         given(interviewService.getInterviewById(0)).willReturn(interview);
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        controller.perform(get("/interview/0")).andExpect(status().isOk());
+        restService.perform(get("/interview/0")).andExpect(status().isOk());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class InterviewControllerTest {
         given(interviewService.getInterviewById(anyInt())).willReturn(interview);
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        controller.perform(get("/interview")).andExpect(status().isOk());
+        restService.perform(get("/interview")).andExpect(status().isOk());
     }
 
     @Test
@@ -97,7 +97,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -121,7 +121,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -144,7 +144,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -168,7 +168,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -192,7 +192,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -216,7 +216,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -243,7 +243,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -270,7 +270,7 @@ public class InterviewControllerTest {
 
         String requestAsJson = buildJson(request);
 
-        controller.perform(post("/interview")
+        restService.perform(post("/interview")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
