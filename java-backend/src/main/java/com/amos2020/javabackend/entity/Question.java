@@ -10,6 +10,7 @@ public class Question {
     private int id;
     private int faccritId;
     private String textDe;
+
     private Collection<Answer> answersById;
     private FacCrit facCritByFaccritId;
 

@@ -22,7 +22,7 @@ public class AnswerRestService {
      * GET Endpoint for receiving a list of Answers associated with a specific Interview
      *
      * @param interviewId int
-     * @return ResponseEntity containg a list with BasicAnswerResponses
+     * @return ResponseEntity containing a list with BasicAnswerResponses
      */
     @GetMapping("/answers/interview/{id}")
     public ResponseEntity<List<BasicAnswerResponse>> getAnswersByInterviewId(@PathVariable("id") int interviewId) {

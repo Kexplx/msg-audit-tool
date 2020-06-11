@@ -74,7 +74,7 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "procedure")
+    @Column(name = "\"procedure\"")
     public Boolean getProcedure() {
         return procedure;
     }
@@ -113,10 +113,8 @@ public class Answer {
         this.annotation = annotation;
     }
 
-
-
     @ManyToOne
-    @JoinColumn(name = "question_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "question_id", referencedColumnName = "id",  insertable = false, updatable = false)
     public Question getQuestionByQuestionId() {
         return questionByQuestionId;
     }
@@ -126,7 +124,7 @@ public class Answer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "interview_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
+    @JoinColumn(name = "interview_id", referencedColumnName = "id",  insertable = false, updatable = false)
     public Interview getInterviewByInterviewId() {
         return interviewByInterviewId;
     }

@@ -2,11 +2,9 @@ package com.amos2020.javabackend.rest_service.controller;
 
 import com.amos2020.javabackend.entity.ContactPerson;
 import com.amos2020.javabackend.entity.Interview;
+import com.amos2020.javabackend.entity.Question;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
-import com.amos2020.javabackend.service.AuditService;
-import com.amos2020.javabackend.service.ContactPersonService;
-import com.amos2020.javabackend.service.InterviewContactPersonService;
-import com.amos2020.javabackend.service.InterviewService;
+import com.amos2020.javabackend.service.*;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +20,16 @@ public class InterviewController {
     final ContactPersonService contactPersonService;
     final AuditService auditService;
     final InterviewContactPersonService interviewContactPersonService;
+    final AnswerService answerService;
+    final QuestionService questionService;
 
-    public InterviewController(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService) {
+    public InterviewController(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService, AnswerService answerService, QuestionService questionService) {
         this.interviewService = interviewService;
         this.contactPersonService = contactPersonService;
         this.auditService = auditService;
         this.interviewContactPersonService = interviewContactPersonService;
+        this.answerService = answerService;
+        this.questionService = questionService;
     }
 
     public BasicInterviewResponse getInterviewById(int interviewId) throws NotFoundException {
@@ -53,7 +55,7 @@ public class InterviewController {
         return contactPersonService.getAllByIds(contactPeopleIds);
     }
 
-    public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, HashMap<Integer, String> interviewedPeople) throws NotFoundException {
+    public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, HashMap<Integer, String> interviewedPeople, List<Integer> interviewScope) throws NotFoundException {
         // check if audit exists
         auditService.getAuditById(auditId);
         // check if all contactPersons exist
@@ -64,6 +66,15 @@ public class InterviewController {
         for (int contactPersonId : interviewedPeople.keySet()) {
             interviewContactPersonService.create(interview.getId(), contactPersonId, interviewedPeople.get(contactPersonId));
         }
+
+        // create empty Answers
+        for (int facCritId : interviewScope) {
+            List<Question> questions = questionService.getQuestionsByFacCritId(facCritId);
+            for (Question question : questions) {
+                answerService.createAnswer(question.getId(), interview.getId());
+            }
+        }
+        interview.setAnswersById(answerService.getAnswersByInterviewId(interview.getId()));
         return new BasicInterviewResponse(interview, contactPeople);
     }
 }

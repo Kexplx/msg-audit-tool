@@ -33,7 +33,6 @@ public class AnswerService {
         answer.setReason("");
         answer.setProof("");
         answer.setAnnotation("");
-
         return repository.save(answer);
     }
 

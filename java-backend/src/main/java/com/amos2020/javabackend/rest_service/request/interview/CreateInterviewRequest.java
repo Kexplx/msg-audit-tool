@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CreateInterviewRequest extends BasicRequest {
 
@@ -22,6 +23,9 @@ public class CreateInterviewRequest extends BasicRequest {
     @Getter
     @Setter
     private HashMap<Integer, String> interviewedPeople;
+    @Getter
+    @Setter
+    private List<Integer> interviewScope;
 
     @Override
     public void isValid() {
@@ -29,5 +33,6 @@ public class CreateInterviewRequest extends BasicRequest {
         assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);
         assertIdsAreValid(new ArrayList<>(interviewedPeople.keySet()));
+        assertIdsAreValid(interviewScope);
     }
 }
