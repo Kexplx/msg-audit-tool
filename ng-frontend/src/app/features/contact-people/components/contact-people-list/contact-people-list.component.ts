@@ -3,6 +3,7 @@ import { Select } from '@ngxs/store';
 import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 
 @Component({
   selector: 'app-contact-people-list',
@@ -10,7 +11,7 @@ import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
   styleUrls: ['./contact-people-list.component.scss'],
 })
 export class ContactPeopleListComponent implements OnInit {
-  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
 
   ngOnInit() {}
 }

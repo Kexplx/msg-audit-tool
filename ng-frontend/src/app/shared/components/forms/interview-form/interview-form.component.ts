@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { AbstractFormComponent } from '../abstract-form-component';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 
 @Component({
   selector: 'app-interview-form',
@@ -19,7 +20,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   @Input() facCrits: FacCrit[];
   @Output() formSubmitted = new EventEmitter<Interview>();
 
-  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
 
   constructor(private fb: FormBuilder, protected dialogService: NbDialogService) {
     super(dialogService);

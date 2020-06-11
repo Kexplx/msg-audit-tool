@@ -4,12 +4,15 @@ import { AuditRegistryState } from './ngxs/audit-registry.state';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { ContactPersonState } from './ngxs/contact-people.state';
 
 @NgModule({
   imports: [
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([AuditRegistryState], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([AuditRegistryState, ContactPersonState], {
+      developmentMode: !environment.production,
+    }),
   ],
   exports: [NgxsModule],
 })

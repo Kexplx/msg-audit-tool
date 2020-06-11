@@ -10,7 +10,7 @@ import {
   AddContactPerson,
   DeleteContactPerson,
   UpdateContactPerson,
-} from './audit.actions';
+} from './actions/audit.actions';
 import * as shortid from 'shortid';
 import { ContactPerson } from '../data/models/contact-person.model';
 import { CONTACT_PEOPLE } from '../data/examples/contact-people';
@@ -20,7 +20,6 @@ import { AUDITS } from '../data/examples/audits';
 
 export interface AuditRegistryStateModel {
   audits: Audit[];
-  contactPeople: ContactPerson[];
   facCrits: FacCrit[];
 }
 
@@ -29,7 +28,6 @@ export interface AuditRegistryStateModel {
   defaults: {
     audits: AUDITS,
     facCrits: FACCRITS,
-    contactPeople: CONTACT_PEOPLE,
   },
 })
 @Injectable()
@@ -37,11 +35,6 @@ export class AuditRegistryState {
   @Selector()
   static audits(state: AuditRegistryStateModel) {
     return state.audits;
-  }
-
-  @Selector()
-  static contactPeople(state: AuditRegistryStateModel) {
-    return state.contactPeople;
   }
 
   @Selector()
@@ -55,6 +48,12 @@ export class AuditRegistryState {
     });
   }
 
+  static criteriaByFactorId(id: string) {
+    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+      return state.facCrits.filter(x => x.referenceId === id);
+    });
+  }
+
   static auditByStatus(...statuses: AuditStatus[]) {
     return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
       return state.audits.filter(x => statuses.includes(x.status));
@@ -64,12 +63,6 @@ export class AuditRegistryState {
   static audit(id: string) {
     return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
       return state.audits.find(x => x.id === id);
-    });
-  }
-
-  static contactPerson(id: string) {
-    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
-      return state.contactPeople.find(x => x.id === id);
     });
   }
 
@@ -110,42 +103,6 @@ export class AuditRegistryState {
           ...audit,
           interviews: [...(audit.interviews ?? []), interview],
         }),
-      }),
-    );
-  }
-
-  @Action(AddContactPerson)
-  addContactPerson(
-    { setState }: StateContext<AuditRegistryStateModel>,
-    { contactPerson }: AddContactPerson,
-  ) {
-    setState(
-      patch({
-        contactPeople: append<ContactPerson>([{ ...contactPerson, id: shortid.generate() }]),
-      }),
-    );
-  }
-
-  @Action(DeleteContactPerson)
-  deleteContactPerson(
-    { setState }: StateContext<AuditRegistryStateModel>,
-    { contactPerson }: DeleteContactPerson,
-  ) {
-    setState(
-      patch({
-        contactPeople: removeItem<ContactPerson>(x => x === contactPerson),
-      }),
-    );
-  }
-
-  @Action(UpdateContactPerson)
-  updateContactPerson(
-    { setState }: StateContext<AuditRegistryStateModel>,
-    { id, contactPerson }: UpdateContactPerson,
-  ) {
-    setState(
-      patch({
-        contactPeople: updateItem<ContactPerson>(x => x.id === id, { id, ...contactPerson }),
       }),
     );
   }

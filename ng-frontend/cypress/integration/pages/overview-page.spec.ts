@@ -1,4 +1,4 @@
-import { AddAudit } from 'src/app/core/ngxs/audit.actions';
+import { AddAudit } from 'src/app/core/ngxs/actions/audit.actions';
 
 describe('OverviewPage', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';

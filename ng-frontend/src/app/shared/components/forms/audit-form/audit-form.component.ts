@@ -5,10 +5,11 @@ import { NbDialogService } from '@nebular/theme';
 import { dateRangeValidator } from 'src/app/shared/helpers/form-helpers';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 
 @Component({
   selector: 'app-audit-form',
@@ -19,10 +20,14 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   @Input() audit: Audit;
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
 
-  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
   @Select(AuditRegistryState.facCrits) facCrits$: Observable<FacCrit[]>;
 
-  constructor(private formBuilder: FormBuilder, protected dialogService: NbDialogService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    protected dialogService: NbDialogService,
+    private store: Store,
+  ) {
     super(dialogService);
   }
 
@@ -60,12 +65,14 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     this.facCrits$.subscribe(facCrits => {
       for (const facCrit of facCrits) {
         const inAudit = this.audit
-          ? this.audit.facCrits.findIndex(x => x.id === facCrit.id && x.referenceId) != -1
+          ? this.audit.facCrits.findIndex(x => x.id === facCrit.id) != -1
           : true;
 
         this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
       }
     });
+
+    console.log(this.formGroup);
   }
 
   onSubmit() {
@@ -104,5 +111,13 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     });
 
     return result;
+  }
+
+  toggleCriteriaChecked(factorId: string, checked: true) {
+    this.store.select(AuditRegistryState.criteriaByFactorId(factorId)).subscribe(x => {
+      for (const crit of x) {
+        this.formGroup.get(crit.id).setValue(checked);
+      }
+    });
   }
 }

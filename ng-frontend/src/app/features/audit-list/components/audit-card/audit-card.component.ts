@@ -5,7 +5,7 @@ import { Store } from '@ngxs/store';
 import * as shortid from 'shortid';
 import { Router } from '@angular/router';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
-import { DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/audit.actions';
+import { DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 
 enum MenuOptions {
   Edit,

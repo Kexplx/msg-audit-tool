@@ -1,6 +1,6 @@
-import { Audit } from '../data/models/audit.model';
-import { Interview } from '../data/models/interview.model';
-import { ContactPerson } from '../data/models/contact-person.model';
+import { Audit } from '../../data/models/audit.model';
+import { Interview } from '../../data/models/interview.model';
+import { ContactPerson } from '../../data/models/contact-person.model';
 
 export class AddAudit {
   static readonly type = '[AuditList] Add Audit';

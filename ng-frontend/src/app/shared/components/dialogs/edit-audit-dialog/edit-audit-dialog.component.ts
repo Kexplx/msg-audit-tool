@@ -8,8 +8,9 @@ import { tap } from 'rxjs/operators';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
-import { UpdateAudit } from 'src/app/core/ngxs/audit.actions';
+import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 
 @Component({
   selector: 'app-edit-audit-dialog',
@@ -18,7 +19,7 @@ import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 })
 export class EditAuditDialogComponent implements OnInit, AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
-  @Select(AuditRegistryState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
   dialogRef: NbDialogRef<any>;
 
   audit$: Observable<Audit>;

@@ -8,7 +8,7 @@ import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
-import { AddInterview } from 'src/app/core/ngxs/audit.actions';
+import { AddInterview } from 'src/app/core/ngxs/actions/audit.actions';
 
 @Component({
   selector: 'app-new-interview-dialog',

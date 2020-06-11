@@ -5,7 +5,7 @@
       Neue Kontaktperson
     </nb-card-header>
     <nb-card-body>
-      <div class="grid-1-1">
+      <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Anrede</label>
           <nb-select placeholder="Herr" formControlName="salutation" fullWidth data-cy="audit-contact-salutation-input">
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-      <div class="grid-1-1">
+      <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Vorname</label>
           <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" formControlName="firstName" nbInput fullWidth data-cy="audit-name-input" />
@@ -41,7 +41,7 @@
           </div>
         </div>
       </div>
-      <div class="grid-1-1">
+      <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Unternehmen</label>
           <input placeholder="BMW" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" formControlName="companyName" nbInput fullWidth data-cy="audit-name-input" />
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      <div class="grid-1-1">
+      <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Unternehmensbereich</label>
           <input

@@ -9,7 +9,7 @@ import {
   DeleteContactPerson,
   AddContactPerson,
   UpdateContactPerson,
-} from 'src/app/core/ngxs/audit.actions';
+} from 'src/app/core/ngxs/actions/audit.actions';
 
 @Directive({
   selector: '[appActionListener]',
