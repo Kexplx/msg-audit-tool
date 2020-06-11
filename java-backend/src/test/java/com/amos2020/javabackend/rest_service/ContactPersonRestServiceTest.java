@@ -1,9 +1,11 @@
 package com.amos2020.javabackend.rest_service;
 
 
-import com.amos2020.javabackend.rest_service.request.*;
-import com.amos2020.javabackend.entity.*;
-import com.amos2020.javabackend.service.*;
+import com.amos2020.javabackend.entity.ContactPerson;
+import com.amos2020.javabackend.entity.Salutation;
+import com.amos2020.javabackend.rest_service.controller.ContactPersonController;
+import com.amos2020.javabackend.rest_service.request.CreateContactPersonRequest;
+import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -17,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -27,7 +29,7 @@ public class ContactPersonRestServiceTest {
     MockMvc restService;
 
     @MockBean
-    private ContactPersonService contactPersonService;
+    private ContactPersonController contactPersonController;
 
     @Test
     public void createContactPersonWithValidRequest_returnsOK() throws Exception {
@@ -53,7 +55,7 @@ public class ContactPersonRestServiceTest {
         cp.setSector("Test");
 
 
-        given(contactPersonService.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getCompanyName(), request.getDepartment(), request.getSector(),request.getCorporateDivision())).willReturn(cp);
+        given(contactPersonController.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision())).willReturn(new BasicContactPersonResponse(cp));
 
         restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -81,9 +83,8 @@ public class ContactPersonRestServiceTest {
     }
 
 
-
     @Test
-    public void createContactPersonWithForenameNull_returns400() throws Exception{
+    public void createContactPersonWithForenameNull_returns400() throws Exception {
         CreateContactPersonRequest request = new CreateContactPersonRequest();
         request.setSalutation(Salutation.FRAU);
         request.setTitle("Dr");
@@ -100,7 +101,6 @@ public class ContactPersonRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
-
 
 
     @Test
@@ -124,7 +124,7 @@ public class ContactPersonRestServiceTest {
     }
 
     @Test
-    public void createContactPersonWithSurnameNull_returns400() throws Exception{
+    public void createContactPersonWithSurnameNull_returns400() throws Exception {
         CreateContactPersonRequest request = new CreateContactPersonRequest();
         request.setSalutation(Salutation.FRAU);
         request.setTitle("Dr");
