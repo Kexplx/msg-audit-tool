@@ -176,7 +176,7 @@ public class AuditRestServiceTest {
 
     @Test
     public void createAuditWithAuditNameTooLong_returns400() throws Exception {
-        char[] charArray = new char[46];
+        char[] charArray = new char[257];
         Arrays.fill(charArray, 't');
         String auditName = new String(charArray);
         Date startDate = Date.valueOf("2000-01-02");
@@ -553,7 +553,7 @@ public class AuditRestServiceTest {
         given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName(StringUtils.repeat("*", 46));
+        request.setAuditName(StringUtils.repeat("*", 257));
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
 
@@ -705,12 +705,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditScopeWithValidRequest_returnsOk() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
         request.setChangeNote("No longer needed");
         request.setRemoved(true);
+        request.setNote("");
 
         String requestAsJson = buildJson(request);
 
@@ -726,13 +727,15 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(10);
+        scope.setNote("");
 
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
-        request.setChangeNote(StringUtils.repeat("*", 257));
+        request.setChangeNote(StringUtils.repeat("*", 1025));
         request.setRemoved(true);
+        request.setNote("");
 
         String requestAsJson = buildJson(request);
 
@@ -749,12 +752,14 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(10);
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        scope.setNote("");
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
-        request.setChangeNote(StringUtils.repeat("*", 256));
+        request.setChangeNote(StringUtils.repeat("*", 1024));
         request.setRemoved(true);
+        request.setNote("");
 
         String requestAsJson = buildJson(request);
 
@@ -773,12 +778,12 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(-1);
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(-1);
-        request.setChangeNote(StringUtils.repeat("*", 256));
+        request.setChangeNote(StringUtils.repeat("*", 1024));
         request.setRemoved(true);
 
         String requestAsJson = buildJson(request);
@@ -794,13 +799,16 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(10);
+        scope.setNote("");
 
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(NotFoundException.class);
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willThrow(NotFoundException.class);
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
         request.setChangeNote("No longer needed");
         request.setRemoved(true);
+        request.setNote("");
+
 
         String requestAsJson = buildJson(request);
 
@@ -819,14 +827,16 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(1000);
+        scope.setNote("1000");
 
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(NotFoundException.class);
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willThrow(NotFoundException.class);
 
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(1000);
         request.setChangeNote("No longer needed");
         request.setRemoved(true);
+        request.setNote("");
 
         String requestAsJson = buildJson(request);
 
@@ -841,12 +851,14 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(1000);
-        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
+        scope.setNote("");
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean(), anyString())).willThrow(IllegalAccessException.class);
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(1000);
         request.setChangeNote("No longer needed");
         request.setRemoved(true);
+        request.setNote("");
 
         String requestAsJson = buildJson(request);
 

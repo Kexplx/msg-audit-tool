@@ -66,6 +66,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -83,6 +84,7 @@ public class AnswerRepositoryTest {
     public void insertAnswerWithQuestionIdNull() {
         answer = new Answer();
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -98,6 +100,23 @@ public class AnswerRepositoryTest {
     public void insertAnswerWithInterviewIdNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("TestReason");
+        answer.setProof("TestProof");
+        answer.setAnnotation("TestAnno");
+
+        repository.save(answer);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithFaccritIdNull() {
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -114,6 +133,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResponsible(true);
         answer.setDocumentation(true);
         answer.setProcedure(true);
@@ -131,6 +151,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setDocumentation(true);
         answer.setProcedure(true);
@@ -148,6 +169,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setProcedure(true);
@@ -165,6 +187,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -182,6 +205,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -199,6 +223,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -216,6 +241,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -232,6 +258,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -250,6 +277,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -263,11 +291,31 @@ public class AnswerRepositoryTest {
         repository.save(toTest);
     }
 
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithFaccritIdInvalid() {
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("TestReason");
+        answer.setProof("TestProof");
+        answer.setAnnotation("TestAnno");
+        Answer toTest = repository.save(answer);
+
+        toTest.setFaccritId(-1);
+        repository.save(toTest);
+    }
+
     @Test
     public void changeAnswerWithResultNull() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -288,6 +336,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -308,6 +357,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -328,6 +378,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -348,6 +399,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -368,6 +420,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -388,6 +441,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -408,6 +462,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -428,6 +483,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -448,6 +504,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -468,6 +525,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -488,6 +546,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -508,6 +567,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -528,6 +588,8 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
@@ -548,6 +610,7 @@ public class AnswerRepositoryTest {
         answer = new Answer();
         answer.setQuestionId(question.getId());
         answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(true);
         answer.setResponsible(true);
         answer.setDocumentation(true);
