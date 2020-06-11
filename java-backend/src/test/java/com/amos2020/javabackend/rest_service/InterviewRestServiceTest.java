@@ -1,13 +1,9 @@
 package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
-import com.amos2020.javabackend.entity.Audit;
 import com.amos2020.javabackend.entity.Interview;
-import com.amos2020.javabackend.entity.InterviewContactPerson;
-import com.amos2020.javabackend.service.AuditService;
-import com.amos2020.javabackend.service.ContactPersonService;
-import com.amos2020.javabackend.service.InterviewContactPersonService;
-import com.amos2020.javabackend.service.InterviewService;
+import com.amos2020.javabackend.rest_service.controller.InterviewController;
+import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -24,8 +20,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -38,21 +36,14 @@ public class InterviewRestServiceTest {
     MockMvc restService;
 
     @MockBean
-    private ContactPersonService contactPersonService;
-    @MockBean
-    private InterviewService interviewService;
-    @MockBean
-    private AuditService auditService;
-    @MockBean
-    private InterviewContactPersonService interviewContactPersonService;
+    private InterviewController interviewController;
 
     @Test
     public void getInterviewWithValidId_returnsOk() throws Exception {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.getInterviewById(1)).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
+        given(interviewController.getInterviewById(anyInt())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
         restService.perform(get("/interviews/1")).andExpect(status().isOk());
     }
@@ -62,8 +53,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.getInterviewById(0)).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
+        given(interviewController.getInterviewById(anyInt())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
         restService.perform(get("/interviews/0")).andExpect(status().isOk());
     }
@@ -73,8 +63,9 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.getInterviewById(anyInt())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
+        List<BasicInterviewResponse> list = new ArrayList<>();
+        list.add(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.getAllInterviews()).willReturn(list);
 
         restService.perform(get("/interviews")).andExpect(status().isOk());
     }
@@ -84,10 +75,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1);
@@ -108,10 +96,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(0);
@@ -132,10 +118,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setStartDate(Date.valueOf("2020-05-25"));
@@ -155,10 +139,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willThrow(new NotFoundException(""));
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willThrow(NotFoundException.class);
+
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1000);
@@ -179,10 +161,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1);
@@ -203,10 +183,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1);
@@ -227,10 +205,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
 
         HashMap<Integer, String> map = new HashMap<>();
         map.put(-1, "role");
@@ -254,10 +230,8 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewService.createInterview(anyInt(), any(), any())).willReturn(interview);
-        given(contactPersonService.getAllByIds(anyList())).willThrow(new NotFoundException(""));
-        given(auditService.getAuditById(anyInt())).willReturn(new Audit());
-        given(interviewContactPersonService.create(anyInt(), anyInt(), anyString())).willReturn(new InterviewContactPerson());
+        given(interviewController.createInterview(anyInt(), any(), any(), any())).willThrow(NotFoundException.class);
+
 
         HashMap<Integer, String> map = new HashMap<>();
         map.put(100000, "role");
