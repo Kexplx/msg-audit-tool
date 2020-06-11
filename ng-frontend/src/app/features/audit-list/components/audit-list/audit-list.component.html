@@ -22,7 +22,7 @@
 <nb-tabset data-cy="audits-list">
   <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
     <div *ngIf="(activeAudits$ | async)?.length > 0; else noActiveAudits">
-      <app-audit-card *ngFor="let audit of activeAudits$ | async" [audit]="audit"></app-audit-card>
+      <app-audit-card *ngFor="let audit of activeAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
     </div>
     <ng-template #noActiveAudits>
       <div class="hint-no-audits">

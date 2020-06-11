@@ -8,7 +8,7 @@
       <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Anrede</label>
-          <nb-select placeholder="Herr" formControlName="salutation" fullWidth data-cy="audit-contact-salutation-input">
+          <nb-select placeholder="Herr" formControlName="salutation" fullWidth data-cy="contact-salutation-input">
             <nb-option value="Herr" data-cy="salutation-option">Herr</nb-option>
             <nb-option value="Frau" data-cy="salutation-option">Frau</nb-option>
             <nb-option value="Divers" data-cy="salutation-option">Divers</nb-option>
@@ -19,7 +19,7 @@
         </div>
         <div>
           <label class="label">Titel</label>
-          <input placeholder="Dr." [status]="title.invalid && title.touched ? 'danger' : 'basic'" formControlName="title" nbInput fullWidth data-cy="audit-name-input" />
+          <input placeholder="Dr." [status]="title.invalid && title.touched ? 'danger' : 'basic'" formControlName="title" nbInput fullWidth data-cy="contact-title-input" />
           <div *ngIf="title.invalid && title.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Titel eintragen</label>
           </div>
@@ -28,14 +28,14 @@
       <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Vorname</label>
-          <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" formControlName="firstName" nbInput fullWidth data-cy="audit-name-input" />
+          <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" formControlName="firstName" nbInput fullWidth data-cy="contact-firstname-input" />
           <div *ngIf="firstName.invalid && firstName.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Vornamen eintragen</label>
           </div>
         </div>
         <div>
           <label class="label">Nachname</label>
-          <input placeholder="Mustermann" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" formControlName="lastName" nbInput fullWidth data-cy="audit-name-input" />
+          <input placeholder="Mustermann" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" formControlName="lastName" nbInput fullWidth data-cy="contact-lastname-input" />
           <div *ngIf="lastName.invalid && lastName.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Nachnamen eintragen</label>
           </div>
@@ -44,14 +44,21 @@
       <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Unternehmen</label>
-          <input placeholder="BMW" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" formControlName="companyName" nbInput fullWidth data-cy="audit-name-input" />
+          <input placeholder="BMW" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" formControlName="companyName" nbInput fullWidth data-cy="company-name-input" />
           <div *ngIf="companyName.invalid && companyName.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Unternehmen eintragen</label>
           </div>
         </div>
         <div>
           <label class="label">Abteilung</label>
-          <input placeholder="Personalabteilung" [status]="department.invalid && department.touched ? 'danger' : 'basic'" formControlName="department" nbInput fullWidth data-cy="audit-name-input" />
+          <input
+            placeholder="Personalabteilung"
+            [status]="department.invalid && department.touched ? 'danger' : 'basic'"
+            formControlName="department"
+            nbInput
+            fullWidth
+            data-cy="company-department-input"
+          />
           <div *ngIf="department.invalid && department.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Abteilung eintragen</label>
           </div>
@@ -66,7 +73,7 @@
             formControlName="corporateDivision"
             nbInput
             fullWidth
-            data-cy="audit-name-input"
+            data-cy="company-division-input"
           />
           <div *ngIf="corporateDivision.invalid && corporateDivision.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Unternehmensbereich eintragen</label>
@@ -80,7 +87,7 @@
             formControlName="sector"
             nbInput
             fullWidth
-            data-cy="audit-name-input"
+            data-cy="company-sector-input"
           />
           <div *ngIf="corporateDivision.invalid && corporateDivision.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Branche eintragen</label>
@@ -88,7 +95,7 @@
         </div>
       </div>
       <label class="label">Kontaktinformation</label>
-      <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="audit-contact-info-input"></textarea>
+      <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="contact-info-input"></textarea>
     </nb-card-body>
     <nb-card-footer>
       <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">

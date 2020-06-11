@@ -2,7 +2,7 @@
   <nb-layout-header fixed>
     <nb-actions size="small">
       <nb-action (click)="toggleSidebar()" icon="menu-2-outline">Hello</nb-action>
-      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async).length > 0 ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline"></nb-action>
+      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async).length > 0 ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>
       <nb-action routerLink="/contact-people" icon="people-outline"></nb-action>
     </nb-actions>
   </nb-layout-header>

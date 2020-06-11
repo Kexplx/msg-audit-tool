@@ -33,7 +33,7 @@
       <hr style="border-bottom: 3px dotted rgb(228, 233, 242);" />
       <nb-accordion>
         <nb-accordion-item>
-          <nb-accordion-item-header class="label">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
+          <nb-accordion-item-header class="label" data-cy="audit-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
           <nb-accordion-item-body>
             <div class="wrapper-faccrits mt-2">
               <div *ngFor="let factor of facCrits$ | async | factors">
@@ -45,7 +45,7 @@
         </nb-accordion-item>
       </nb-accordion>
     </nb-card-body>
-    <nb-card-footer>
+    <nb-card-footer data-cy="audit-data-buttons">
       <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
         abbrechen
       </button>

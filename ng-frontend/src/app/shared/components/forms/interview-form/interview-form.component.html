@@ -20,8 +20,8 @@
       </div>
       <div class="mb-2">
         <label class="label">Kontaktpersonen</label>
-        <nb-select formControlName="contactPeople" multiple fullWidth>
-          <nb-option *ngFor="let contactPerson of contactPeople$ | async" [value]="contactPerson">{{ contactPerson.firstName + ' ' + contactPerson.lastName }}</nb-option>
+        <nb-select formControlName="contactPeople" multiple fullWidth data-cy="interview-contacts">
+          <nb-option *ngFor="let contactPerson of contactPeople$ | async" [value]="contactPerson" data-cy="interview-contact">{{ contactPerson.firstName + ' ' + contactPerson.lastName }}</nb-option>
         </nb-select>
       </div>
     </nb-card-body>
