@@ -3,6 +3,7 @@ package com.amos2020.javabackend.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -10,6 +11,7 @@ import java.util.Objects;
 public class Answer {
     private int questionId;
     private int interviewId;
+    private int faccritId;
     private Boolean result;
     private Boolean responsible;
     private Boolean documentation;
@@ -18,6 +20,8 @@ public class Answer {
     private String proof;
     private String annotation;
 
+    @JsonIgnore
+    private FacCrit facCritByFaccritId;
     @JsonIgnore
     private Question questionByQuestionId;
     @JsonIgnore
@@ -41,6 +45,17 @@ public class Answer {
 
     public void setInterviewId(int interviewId) {
         this.interviewId = interviewId;
+    }
+
+    @Basic
+    @NotNull
+    @Column(name = "faccrit_id")
+    public int getFaccritId() {
+        return faccritId;
+    }
+
+    public void setFaccritId(int faccritId) {
+        this.faccritId = faccritId;
     }
 
     @Basic
@@ -114,7 +129,17 @@ public class Answer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "question_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    @JoinColumn(name = "faccrit_id", referencedColumnName = "id", insertable = false, updatable = false)
+    public FacCrit getFacCritByFaccritId() {
+        return facCritByFaccritId;
+    }
+
+    public void setFacCritByFaccritId(FacCrit facCritByFaccritId) {
+        this.facCritByFaccritId = facCritByFaccritId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "question_id", referencedColumnName = "id", insertable = false, updatable = false)
     public Question getQuestionByQuestionId() {
         return questionByQuestionId;
     }
@@ -124,7 +149,7 @@ public class Answer {
     }
 
     @ManyToOne
-    @JoinColumn(name = "interview_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    @JoinColumn(name = "interview_id", referencedColumnName = "id", insertable = false, updatable = false)
     public Interview getInterviewByInterviewId() {
         return interviewByInterviewId;
     }
@@ -132,6 +157,7 @@ public class Answer {
     public void setInterviewByInterviewId(Interview interviewByInterviewId) {
         this.interviewByInterviewId = interviewByInterviewId;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -141,6 +167,7 @@ public class Answer {
 
         if (questionId != answer.questionId) return false;
         if (interviewId != answer.interviewId) return false;
+        if (faccritId != answer.faccritId) return false;
         if (!Objects.equals(result, answer.result)) return false;
         if (!Objects.equals(responsible, answer.responsible)) return false;
         if (!Objects.equals(documentation, answer.documentation))
@@ -155,6 +182,7 @@ public class Answer {
     public int hashCode() {
         int result1 = questionId;
         result1 = 31 * result1 + interviewId;
+        result1 = 31 * result1 + faccritId;
         result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
         result1 = 31 * result1 + (responsible != null ? responsible.hashCode() : 0);
         result1 = 31 * result1 + (documentation != null ? documentation.hashCode() : 0);

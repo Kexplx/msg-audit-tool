@@ -80,10 +80,10 @@ public class AuditController {
         return buildBasicResponse(audit);
     }
 
-    public BasicAuditResponse updateAuditScope(int auditId, int facCritId, String changeNote, boolean removed) throws NotFoundException, IllegalAccessException {
+    public BasicAuditResponse updateAuditScope(int auditId, int facCritId, String changeNote, boolean removed, String note) throws NotFoundException, IllegalAccessException {
         Audit audit = auditService.getAuditById(auditId);
         facCritService.exists(facCritId);
-        Scope scopeItem = scopeService.updateScopeItem(auditId, facCritId, changeNote, removed);
+        Scope scopeItem = scopeService.updateScopeItem(auditId, facCritId, changeNote, removed, note);
 
         // update scope of audit
         audit.getScopesById().add(scopeItem);

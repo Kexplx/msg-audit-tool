@@ -121,7 +121,7 @@ public class AuditRestService {
         BasicAuditResponse response;
         try {
             request.isValid();
-            response = auditController.updateAuditScope(auditId, request.getFacCritId(), request.getChangeNote(), request.isRemoved());
+            response = auditController.updateAuditScope(auditId, request.getFacCritId(), request.getChangeNote(), request.isRemoved(), request.getNote());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (NotFoundException e) {

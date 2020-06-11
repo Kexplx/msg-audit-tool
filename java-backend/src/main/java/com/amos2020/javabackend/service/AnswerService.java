@@ -18,14 +18,17 @@ public class AnswerService {
 
     /**
      * Creates and stores an Answer
-     * @param questionId int
+     *
+     * @param questionId  int
      * @param interviewId int
+     * @param faccritId   int
      * @return Answer
      */
-    public Answer createAnswer(int questionId, int interviewId) {
+    public Answer createAnswer(int questionId, int interviewId, int faccritId) {
         Answer answer = new Answer();
         answer.setQuestionId(questionId);
         answer.setInterviewId(interviewId);
+        answer.setFaccritId(faccritId);
         answer.setResult(false);
         answer.setResponsible(false);
         answer.setDocumentation(false);
@@ -38,30 +41,33 @@ public class AnswerService {
 
     /**
      * gets an Answer by its question and interview id
-     * @param questionId int
+     *
+     * @param questionId  int
      * @param interviewId int
      * @return Answer
      */
     @Transactional
     public Answer getAnswerByIds(int questionId, int interviewId) {
-        return repository.findFirstByQuestionIdAndInterviewId(questionId,interviewId);
+        return repository.findFirstByQuestionIdAndInterviewId(questionId, interviewId);
     }
 
     /**
      * get all Answers belonging to a specific interview
+     *
      * @param interviewId int
      * @return List of all answers containing to an interview
      */
     @Transactional
-    public List<Answer> getAnswersByInterviewId(int interviewId){
+    public List<Answer> getAnswersByInterviewId(int interviewId) {
         return repository.getAnswersByInterviewId(interviewId);
     }
 
     /**
      * get all existing Answer items
+     *
      * @return Answer
      */
-    public List<Answer> getAll(){
+    public List<Answer> getAll() {
         return repository.findAll();
     }
 }

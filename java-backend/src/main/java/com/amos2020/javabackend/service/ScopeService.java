@@ -23,15 +23,16 @@ public class ScopeService {
     }
 
     public void createScope(int auditId, int factorCriteriaId) {
-        saveScope(auditId, factorCriteriaId, "", false);
+        saveScope(auditId, factorCriteriaId, "", false, "");
     }
 
-    private Scope saveScope(int auditId, int factorCriteriaId, String changeNote, boolean removed) {
+    private Scope saveScope(int auditId, int factorCriteriaId, String changeNote, boolean removed, String note) {
         Scope scope = new Scope();
         scope.setAuditId(auditId);
         scope.setFaccritId(factorCriteriaId);
         scope.setChangeNote(changeNote);
         scope.setRemoved(removed);
+        scope.setNote(note);
         return repository.save(scope);
     }
 
@@ -40,14 +41,14 @@ public class ScopeService {
         return repository.findFirstByAuditIdAndFaccritId(auditID, facCritId);
     }
 
-    public Scope updateScopeItem(int auditId, int facCritId, String changeNote, boolean isRemoved) throws IllegalAccessException {
+    public Scope updateScopeItem(int auditId, int facCritId, String changeNote, boolean isRemoved, String note) throws IllegalAccessException {
         Scope scopeItem = findScopeItemByIds(auditId, facCritId);
         if (scopeItem != null) {
             if (scopeItem.getRemoved()) {
                 throw new IllegalAccessException("No rights to change a deleted scope item");
             }
         }
-        scopeItem = saveScope(auditId, facCritId, changeNote, isRemoved);
+        scopeItem = saveScope(auditId, facCritId, changeNote, isRemoved, note);
 
         return scopeItem;
     }
