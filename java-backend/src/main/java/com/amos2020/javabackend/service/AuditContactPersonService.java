@@ -30,7 +30,12 @@ public class AuditContactPersonService {
     }
 
     @Transactional
-    public void deleteAllForAuditId(int id) {
-        repository.deleteByAuditId(id);
+    public void deleteByAuditIdAndContactPersonId(int auditId, int contactPersonId) {
+        repository.deleteByAuditIdAndContactPersonId(auditId, contactPersonId);
+    }
+
+    @Transactional
+    public AuditContactPerson exists(int auditId, int contactPersonId) {
+        return repository.findFirstByAuditIdAndContactPersonId(auditId, contactPersonId);
     }
 }

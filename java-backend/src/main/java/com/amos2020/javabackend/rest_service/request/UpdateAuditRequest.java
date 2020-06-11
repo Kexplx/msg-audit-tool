@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
-import java.util.List;
 
 public class UpdateAuditRequest extends BasicRequest {
 
@@ -23,15 +22,9 @@ public class UpdateAuditRequest extends BasicRequest {
     @Setter
     private Date endDate;
 
-    // Not mandatory
-    @Getter
-    @Setter
-    private List<Integer> contactPeople;
-
     public void isValid() throws IllegalArgumentException {
         assertNameIsValid(auditName);
         assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);
-        assertIdsAreValid(contactPeople);
     }
 }

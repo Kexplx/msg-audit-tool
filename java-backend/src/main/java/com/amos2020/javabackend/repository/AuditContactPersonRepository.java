@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface AuditContactPersonRepository extends JpaRepository<AuditContactPerson, Integer> {
     @Modifying
-    @Query("delete from AuditContactPerson a where a.auditId=:auditId")
-    void deleteByAuditId(@Param("auditId") int auditId);
+    @Query("delete from AuditContactPerson a where a.auditId=:auditId and a.contactPersonId=:contactPersonId")
+    void deleteByAuditIdAndContactPersonId(@Param("auditId") int auditId, @Param("auditId") int contactPersonId);
+
+    AuditContactPerson findFirstByAuditIdAndContactPersonId(int auditId, int contactPersonId);
 }
