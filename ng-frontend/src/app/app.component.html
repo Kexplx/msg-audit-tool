@@ -1,9 +1,9 @@
 <nb-layout>
   <nb-layout-header fixed>
     <nb-actions size="small">
-      <nb-action (click)="toggleSidebar()" icon="menu-2-outline">Hello</nb-action>
+      <nb-action (click)="toggleSidebar()" icon="menu-2-outline" data-cy="toggle-sidebar">Hello</nb-action>
       <nb-action badgeStatus="primary" [badgeText]="(audits$ | async).length > 0 ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>
-      <nb-action routerLink="/contact-people" icon="people-outline"></nb-action>
+      <nb-action routerLink="/contact-people" icon="people-outline" data-cy="contacts"></nb-action>
     </nb-actions>
   </nb-layout-header>
   <nb-sidebar collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">
