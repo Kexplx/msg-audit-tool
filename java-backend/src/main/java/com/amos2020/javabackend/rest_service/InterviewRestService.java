@@ -1,33 +1,21 @@
 package com.amos2020.javabackend.rest_service;
 
+import com.amos2020.javabackend.rest_service.controller.InterviewController;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
-import com.amos2020.javabackend.entity.ContactPerson;
-import com.amos2020.javabackend.entity.Interview;
-import com.amos2020.javabackend.service.AuditService;
-import com.amos2020.javabackend.service.ContactPersonService;
-import com.amos2020.javabackend.service.InterviewContactPersonService;
-import com.amos2020.javabackend.service.InterviewService;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class InterviewRestService {
 
-    final AuditService auditService;
-    final ContactPersonService contactPersonService;
-    final InterviewContactPersonService interviewContactPersonService;
-    final InterviewService interviewService;
+    final InterviewController interviewController;
 
-    public InterviewRestService(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService) {
-        this.interviewService = interviewService;
-        this.contactPersonService = contactPersonService;
-        this.auditService = auditService;
-        this.interviewContactPersonService = interviewContactPersonService;
+    public InterviewRestService(InterviewController interviewController) {
+        this.interviewController = interviewController;
     }
 
     /**
@@ -41,12 +29,7 @@ public class InterviewRestService {
         BasicInterviewResponse response;
 
         try {
-            Interview interview = interviewService.getInterviewById(interviewId);
-
-            // Get ContactPeople for interview
-            List<ContactPerson> interviewedContactPeople = getContactPeopleForInterview(interview);
-            // Build response
-            response = new BasicInterviewResponse(interview, interviewedContactPeople);
+            response = interviewController.getInterviewById(interviewId);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -61,12 +44,9 @@ public class InterviewRestService {
      */
     @GetMapping("/interviews")
     public ResponseEntity<List<BasicInterviewResponse>> getAllInterviews() {
-        List<BasicInterviewResponse> responses = new ArrayList<>();
-
+        List<BasicInterviewResponse> responses;
         try {
-            for (Interview interview : interviewService.getAllInterviews()) {
-                responses.add(new BasicInterviewResponse(interview, getContactPeopleForInterview(interview)));
-            }
+            responses = interviewController.getAllInterviews();
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -85,18 +65,7 @@ public class InterviewRestService {
 
         try {
             request.isValid();
-
-            // check if audit exists
-            auditService.getAuditById(request.getAuditId());
-            // check if all contactPersons exist
-            List<ContactPerson> contactPeople = contactPersonService.getAllByIds(new ArrayList<>(request.getInterviewedPeople().keySet()));
-            // create interview
-            Interview interview = interviewService.createInterview(request.getAuditId(), request.getStartDate(), request.getEndDate());
-            // create interviewContactPersons
-            for (int contactPersonId : request.getInterviewedPeople().keySet()) {
-                interviewContactPersonService.create(interview.getId(), contactPersonId, request.getInterviewedPeople().get(contactPersonId));
-            }
-            response = new BasicInterviewResponse(interview, contactPeople);
+            response = interviewController.createInterview(request.getAuditId(), request.getStartDate(), request.getEndDate(), request.getInterviewedPeople());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {
@@ -106,10 +75,5 @@ public class InterviewRestService {
         return ResponseEntity.ok(response);
     }
 
-    private List<ContactPerson> getContactPeopleForInterview(Interview interview) throws NotFoundException {
-        List<Integer> contactPeopleIds = new ArrayList<>();
-        interview.getInterviewContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
-        return contactPersonService.getAllByIds(contactPeopleIds);
-    }
 
 }
