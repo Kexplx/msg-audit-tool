@@ -22,8 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -75,13 +74,14 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -96,7 +96,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
 
         CreateInterviewRequest request = new CreateInterviewRequest();
@@ -104,6 +104,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -118,13 +119,14 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -139,7 +141,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willThrow(NotFoundException.class);
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willThrow(NotFoundException.class);
 
 
         CreateInterviewRequest request = new CreateInterviewRequest();
@@ -147,6 +149,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -161,7 +164,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
 
         CreateInterviewRequest request = new CreateInterviewRequest();
@@ -169,6 +172,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(null);
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -183,7 +187,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
 
         CreateInterviewRequest request = new CreateInterviewRequest();
@@ -191,6 +195,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-26"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -205,7 +210,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
 
         HashMap<Integer, String> map = new HashMap<>();
@@ -216,6 +221,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(map);
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -230,7 +236,7 @@ public class InterviewRestServiceTest {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
-        given(interviewController.createInterview(anyInt(), any(), any(), any())).willThrow(NotFoundException.class);
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willThrow(NotFoundException.class);
 
 
         HashMap<Integer, String> map = new HashMap<>();
@@ -241,6 +247,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-16"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedPeople(map);
+        request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -248,6 +255,30 @@ public class InterviewRestServiceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void createInterviewWithFaccritNotValid_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.createInterview(anyInt(), any(), any(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        CreateInterviewRequest request = new CreateInterviewRequest();
+        request.setAuditId(1);
+        request.setStartDate(Date.valueOf("2020-05-25"));
+        request.setEndDate(Date.valueOf("2020-05-25"));
+        request.setInterviewedPeople(new HashMap<>());
+        ArrayList<Integer> scope = new ArrayList<>();
+        scope.add(0);
+        request.setInterviewScope(scope);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(post("/interviews")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
     }
 
     private String buildJson(Object object) throws JsonProcessingException {
