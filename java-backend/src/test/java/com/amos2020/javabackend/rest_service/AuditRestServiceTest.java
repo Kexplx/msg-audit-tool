@@ -81,7 +81,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -111,7 +111,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -144,7 +144,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -177,7 +177,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -212,7 +212,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -241,7 +241,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -270,7 +270,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -303,7 +303,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -334,7 +334,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -367,7 +367,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -400,7 +400,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -431,7 +431,7 @@ public class AuditRestServiceTest {
 
         given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
 
-        restService.perform(post("/audit")
+        restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -446,13 +446,13 @@ public class AuditRestServiceTest {
         given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        restService.perform(get("/audit/1")).andExpect(status().isOk());
+        restService.perform(get("/audits/1")).andExpect(status().isOk());
     }
 
     @Test
     public void getAuditByIdWithInvalidId_returnsNotFound() throws Exception {
         given(auditService.getAuditById(0)).willThrow(NotFoundException.class);
-        restService.perform(get("/audit/0")).andExpect(status().isNotFound());
+        restService.perform(get("/audits/0")).andExpect(status().isNotFound());
     }
 
     @Test
@@ -475,7 +475,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -501,7 +501,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1000")
+        restService.perform(put("/audits/1000")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -527,7 +527,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -553,7 +553,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -578,7 +578,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -604,7 +604,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -630,7 +630,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -656,7 +656,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -682,7 +682,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -708,7 +708,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -733,7 +733,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -759,7 +759,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -786,7 +786,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1")
+        restService.perform(put("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -817,7 +817,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -848,7 +848,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -879,7 +879,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -910,7 +910,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -941,7 +941,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -972,7 +972,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -1003,7 +1003,7 @@ public class AuditRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(put("/audit/1/scope")
+        restService.perform(put("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isForbidden());
@@ -1030,7 +1030,7 @@ public class AuditRestServiceTest {
         request.setReason("TestReason");
 
         String requestAsJson = buildJson(request);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -1063,7 +1063,7 @@ public class AuditRestServiceTest {
         request.setReason("TestReason");
 
         String requestAsJson = buildJson(request);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -1079,7 +1079,7 @@ public class AuditRestServiceTest {
         request2.setReason("TestReason2");
 
         String requestAsJson2 = buildJson(request2);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson2))
                 .andExpect(status().isBadRequest());
@@ -1093,7 +1093,7 @@ public class AuditRestServiceTest {
         request.setReason("");
 
         String requestAsJson = buildJson(request);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -1106,7 +1106,7 @@ public class AuditRestServiceTest {
         request.setReason("TestReason");
 
         String requestAsJson = buildJson(request);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -1120,7 +1120,7 @@ public class AuditRestServiceTest {
         request.setReason("TestReason");
 
         String requestAsJson = buildJson(request);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -1136,7 +1136,7 @@ public class AuditRestServiceTest {
         request.setReason("TestReason");
 
         String requestAsJson = buildJson(request);
-        restService.perform(delete("/audit/1")
+        restService.perform(delete("/audits/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());

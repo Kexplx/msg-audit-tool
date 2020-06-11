@@ -27,10 +27,10 @@ public class AnswerRestService {
     /**
      * GET Endpoint for receiving a list of Answers associated with a specific Interview
      *
-     * @param interviewId
+     * @param interviewId int
      * @return ResponseEntity containg a list with BasicAnswerResponses
      */
-    @GetMapping("/answer/interview/{id}")
+    @GetMapping("/answers/interview/{id}")
     public ResponseEntity<List<BasicAnswerResponse>> getAnswersByInterviewId(@PathVariable("id") int interviewId) {
         List<BasicAnswerResponse> response = new ArrayList<>();
         try {
@@ -45,11 +45,11 @@ public class AnswerRestService {
     /**
      * GET Endpoint for receiving an Answers by its question and interview id
      *
-     * @param interviewId
-     * @param questionId
+     * @param interviewId int
+     * @param questionId int
      * @return ResponseEntity containing the Answer
      */
-    @GetMapping("/answer/interview/{id1}/question/{id2}")
+    @GetMapping("/answers/interview/{id1}/question/{id2}")
     public ResponseEntity<BasicAnswerResponse> getAnswerByIds(@PathVariable("id1") int interviewId,
                                                               @PathVariable("id2") int questionId) {
         BasicAnswerResponse response;
@@ -67,7 +67,7 @@ public class AnswerRestService {
      *
      * @return ResponseEntity with Answer
      */
-    @PostMapping("/answer")
+    @PostMapping("/answers")
     public ResponseEntity<BasicAnswerResponse> createAnswer(@RequestBody CreateAnswerRequest request) {
         BasicAnswerResponse response;
 

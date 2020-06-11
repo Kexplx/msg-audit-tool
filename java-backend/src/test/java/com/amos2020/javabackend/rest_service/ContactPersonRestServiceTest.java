@@ -55,7 +55,7 @@ public class ContactPersonRestServiceTest {
 
         given(contactPersonService.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getCompanyName(), request.getDepartment(), request.getSector(),request.getCorporateDivision())).willReturn(cp);
 
-        restService.perform(post("/contactperson")
+        restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -74,7 +74,7 @@ public class ContactPersonRestServiceTest {
         request.setSector("Test");
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/contactperson")
+        restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -95,7 +95,7 @@ public class ContactPersonRestServiceTest {
         String requestAsJson = buildJson(request);
 
 
-        restService.perform(post("/contactperson")
+        restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -117,7 +117,7 @@ public class ContactPersonRestServiceTest {
         String requestAsJson = buildJson(request);
 
 
-        restService.perform(post("/contactperson")
+        restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -135,7 +135,7 @@ public class ContactPersonRestServiceTest {
         request.setSector("Test");
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/contactperson")
+        restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());

@@ -44,14 +44,14 @@ public class AnswerRestServiceTest {
         answer.setQuestionId(1);
         given(answerService.getAnswerByIds(1, 1)).willReturn(answer);
 
-        restService.perform(get("/answer/interview/1/question/1")).andExpect(status().isOk());
+        restService.perform(get("/answers/interview/1/question/1")).andExpect(status().isOk());
     }
 
     @Test
     public void getAnswersByInterviewId_returnOK() throws Exception {
         given(answerService.getAnswersByInterviewId(1)).willReturn(new ArrayList<>());
 
-        restService.perform(get("/answer/interview/1")).andExpect(status().isOk());
+        restService.perform(get("/answers/interview/1")).andExpect(status().isOk());
     }
 
     @Test
@@ -63,7 +63,7 @@ public class AnswerRestServiceTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        restService.perform(post("/answer")
+        restService.perform(post("/answers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -78,7 +78,7 @@ public class AnswerRestServiceTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        restService.perform(post("/answer")
+        restService.perform(post("/answers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -93,7 +93,7 @@ public class AnswerRestServiceTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        restService.perform(post("/answer")
+        restService.perform(post("/answers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -108,7 +108,7 @@ public class AnswerRestServiceTest {
         given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
 
         String requestAsJson = buildJson(request);
-        restService.perform(post("/answer")
+        restService.perform(post("/answers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());

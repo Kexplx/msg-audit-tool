@@ -26,7 +26,7 @@ public class ContactPersonRestService {
      * @param request CreateContactPersonRequest
      * @return BasicContactPersonResponse
      */
-    @PostMapping("/contactperson")
+    @PostMapping("/contactpersons")
     public ResponseEntity<BasicContactPersonResponse> createAudit(@RequestBody CreateContactPersonRequest request) {
         BasicContactPersonResponse response;
         try {
@@ -48,7 +48,7 @@ public class ContactPersonRestService {
      *
      * @return List<BasicAuditResponse>
      */
-    @GetMapping("/contactperson/all")
+    @GetMapping("/contactpersons")
     public ResponseEntity<List<BasicContactPersonResponse>> getAuditAll() {
         List<BasicContactPersonResponse> response = new ArrayList<>();
         try {
@@ -68,7 +68,7 @@ public class ContactPersonRestService {
      * @param contactPersonId int
      * @return BasicAuditResponse
      */
-    @GetMapping("/contactperson/{id}")
+    @GetMapping("/contactpersons/{id}")
     public ResponseEntity<BasicContactPersonResponse> getAuditById(@PathVariable("id") int contactPersonId) {
         BasicContactPersonResponse response;
         try {

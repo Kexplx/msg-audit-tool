@@ -37,7 +37,7 @@ public class AuditRestService {
      * @param request CreateAuditRequest
      * @return BasicAuditResponse
      */
-    @PostMapping("/audit")
+    @PostMapping("/audits")
     public ResponseEntity<BasicAuditResponse> createAudit(@RequestBody CreateAuditRequest request) {
         BasicAuditResponse response;
 
@@ -67,7 +67,7 @@ public class AuditRestService {
      * @param request UpdateAuditRequest
      * @return BasicAuditResponse
      */
-    @PutMapping("/audit/{id}")
+    @PutMapping("/audits/{id}")
     public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditId, @RequestBody UpdateAuditRequest request) {
         BasicAuditResponse response;
 
@@ -111,7 +111,7 @@ public class AuditRestService {
      * @param request UpdateAuditScopeRequest
      * @return BasicAuditResponse
      */
-    @PutMapping("/audit/{id}/scope")
+    @PutMapping("/audits/{id}/scope")
     public ResponseEntity<BasicAuditResponse> updateAuditScope(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
         BasicAuditResponse response;
         try {
@@ -146,7 +146,7 @@ public class AuditRestService {
      * @param request DeleteAuditRequest
      * @return BasicAuditResponse
      */
-    @DeleteMapping("/audit/{id}")
+    @DeleteMapping("/audits/{id}")
     public ResponseEntity<BasicAuditResponse> deleteAudit(@PathVariable("id") int auditId, @RequestBody DeleteAuditRequest request) {
         BasicAuditResponse response;
         try {
@@ -180,7 +180,7 @@ public class AuditRestService {
      * @param auditId int
      * @return BasicAuditResponse
      */
-    @GetMapping("/audit/{id}")
+    @GetMapping("/audits/{id}")
     public ResponseEntity<BasicAuditResponse> getAuditById(@PathVariable("id") int auditId) {
         BasicAuditResponse response;
         try {
@@ -198,7 +198,7 @@ public class AuditRestService {
      *
      * @return List<BasicAuditResponse>
      */
-    @GetMapping("/audit/all")
+    @GetMapping("/audits")
     public ResponseEntity<List<BasicAuditResponse>> getAuditAll() {
         List<BasicAuditResponse> response = new ArrayList<>();
         try {

@@ -54,7 +54,7 @@ public class InterviewRestServiceTest {
         given(interviewService.getInterviewById(1)).willReturn(interview);
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        restService.perform(get("/interview/1")).andExpect(status().isOk());
+        restService.perform(get("/interviews/1")).andExpect(status().isOk());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class InterviewRestServiceTest {
         given(interviewService.getInterviewById(0)).willReturn(interview);
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        restService.perform(get("/interview/0")).andExpect(status().isOk());
+        restService.perform(get("/interviews/0")).andExpect(status().isOk());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class InterviewRestServiceTest {
         given(interviewService.getInterviewById(anyInt())).willReturn(interview);
         given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
 
-        restService.perform(get("/interview")).andExpect(status().isOk());
+        restService.perform(get("/interviews")).andExpect(status().isOk());
     }
 
     @Test
@@ -97,7 +97,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
@@ -121,7 +121,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -144,7 +144,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -168,7 +168,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
@@ -192,7 +192,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -216,7 +216,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -243,7 +243,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
@@ -270,7 +270,7 @@ public class InterviewRestServiceTest {
 
         String requestAsJson = buildJson(request);
 
-        restService.perform(post("/interview")
+        restService.perform(post("/interviews")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());

@@ -36,7 +36,7 @@ public class InterviewRestService {
      * @param interviewId int
      * @return ResponseEntity with a BasicInterviewResponse that includes all information regarding the interview
      */
-    @GetMapping("/interview/{id}")
+    @GetMapping("/interviews/{id}")
     public ResponseEntity<BasicInterviewResponse> getInterviewById(@PathVariable("id") int interviewId) {
         BasicInterviewResponse response;
 
@@ -59,7 +59,7 @@ public class InterviewRestService {
      *
      * @return ResponseEntity with a List of the Interviews as BasicInterviewResponses
      */
-    @GetMapping("/interview")
+    @GetMapping("/interviews")
     public ResponseEntity<List<BasicInterviewResponse>> getAllInterviews() {
         List<BasicInterviewResponse> responses = new ArrayList<>();
 
@@ -79,7 +79,7 @@ public class InterviewRestService {
      *
      * @return ResponseEntity with the new interview
      */
-    @PostMapping("/interview")
+    @PostMapping("/interviews")
     public ResponseEntity<BasicInterviewResponse> createInterview(@RequestBody CreateInterviewRequest request) {
         BasicInterviewResponse response;
 
