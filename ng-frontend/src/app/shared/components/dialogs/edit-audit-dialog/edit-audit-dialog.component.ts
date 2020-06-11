@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
@@ -34,7 +34,7 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.id = this.router.url.split('/')[2];
-    this.audit$ = this.store.select(AuditRegistryState.audit(this.id));
+    this.audit$ = this.store.select(AuditState.audit(this.id));
   }
 
   ngAfterViewInit() {

@@ -6,7 +6,7 @@ import { dateRangeValidator } from 'src/app/shared/helpers/form-helpers';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Select, Store } from '@ngxs/store';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
@@ -21,7 +21,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
 
   @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
-  @Select(AuditRegistryState.facCrits) facCrits$: Observable<FacCrit[]>;
+  @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -114,7 +114,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   }
 
   toggleCriteriaChecked(factorId: string, checked: true) {
-    this.store.select(AuditRegistryState.criteriaByFactorId(factorId)).subscribe(x => {
+    this.store.select(AuditState.criteriaByFactorId(factorId)).subscribe(x => {
       for (const crit of x) {
         this.formGroup.get(crit.id).setValue(checked);
       }

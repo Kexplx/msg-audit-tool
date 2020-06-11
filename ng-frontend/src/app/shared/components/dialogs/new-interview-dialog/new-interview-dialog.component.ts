@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { defaultDialogOptions } from 'src/app/shared/components/dialogs/default-dialog-options';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
@@ -36,7 +36,7 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
     const idRegex = /\/audits\/([^\/]*)\/.*/gm;
     const id = idRegex.exec(this.router.url)[1];
 
-    this.audit$ = this.store.select(AuditRegistryState.audit(id));
+    this.audit$ = this.store.select(AuditState.audit(id));
   }
 
   ngAfterViewInit() {

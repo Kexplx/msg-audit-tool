@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
-import { AuditRegistryState } from './ngxs/audit-registry.state';
+import { AuditState } from './ngxs/audit.state';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
@@ -10,7 +10,7 @@ import { ContactPersonState } from './ngxs/contact-people.state';
   imports: [
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([AuditRegistryState, ContactPersonState], {
+    NgxsModule.forRoot([AuditState, ContactPersonState], {
       developmentMode: !environment.production,
     }),
   ],

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { Store } from '@ngxs/store';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';

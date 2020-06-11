@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
 import { Store, Select } from '@ngxs/store';
-import { AuditRegistryState } from './core/ngxs/audit-registry.state';
+import { AuditState } from './core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from './core/data/models/audit.model';
 import { ContactPerson } from './core/data/models/contact-person.model';
@@ -13,7 +13,7 @@ import { ContactPersonState } from './core/ngxs/contact-people.state';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  @Select(AuditRegistryState.audits) audits$: Observable<Audit[]>;
+  @Select(AuditState.audits) audits$: Observable<Audit[]>;
 
   constructor(private sidebarService: NbSidebarService, private store: Store) {}
 

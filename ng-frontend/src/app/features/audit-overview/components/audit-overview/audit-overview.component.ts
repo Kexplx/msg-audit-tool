@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
 
 @Component({
   selector: 'app-audit-overview',
@@ -33,7 +33,7 @@ export class AuditOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.params.id;
-    this.audit$ = this.store.select(AuditRegistryState.audit(id));
+    this.audit$ = this.store.select(AuditState.audit(id));
 
     this.audit$
       .pipe(

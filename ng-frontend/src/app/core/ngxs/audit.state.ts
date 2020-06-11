@@ -1,73 +1,63 @@
 import { Audit, AuditStatus } from '../data/models/audit.model';
-import { State, Selector, Action, StateContext, createSelector, Select } from '@ngxs/store';
+import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import {
-  AddAudit,
-  DeleteAudit,
-  UpdateAudit,
-  AddInterview,
-  AddContactPerson,
-  DeleteContactPerson,
-  UpdateContactPerson,
-} from './actions/audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './actions/audit.actions';
 import * as shortid from 'shortid';
-import { ContactPerson } from '../data/models/contact-person.model';
-import { CONTACT_PEOPLE } from '../data/examples/contact-people';
 import { FacCrit } from '../data/models/faccrit.model';
 import { FACCRITS } from '../data/examples/fac-crits';
 import { AUDITS } from '../data/examples/audits';
 
-export interface AuditRegistryStateModel {
+export interface AuditStateModel {
   audits: Audit[];
   facCrits: FacCrit[];
 }
 
-@State<AuditRegistryStateModel>({
-  name: 'auditRegistry',
+@State<AuditStateModel>({
+  name: 'audit',
   defaults: {
     audits: AUDITS,
     facCrits: FACCRITS,
   },
 })
 @Injectable()
-export class AuditRegistryState {
+export class AuditState {
   @Selector()
-  static audits(state: AuditRegistryStateModel) {
+  static audits(state: AuditStateModel) {
     return state.audits;
   }
 
   @Selector()
-  static facCrits(state: AuditRegistryStateModel) {
+  static facCrits(state: AuditStateModel) {
     return state.facCrits;
   }
 
   static facCrit(id: string) {
-    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+    return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.find(x => x.id === id);
     });
   }
 
   static criteriaByFactorId(id: string) {
-    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+    return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.filter(x => x.referenceId === id);
     });
   }
 
   static auditByStatus(...statuses: AuditStatus[]) {
-    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+    return createSelector([AuditState], (state: AuditStateModel) => {
       return state.audits.filter(x => statuses.includes(x.status));
     });
   }
 
   static audit(id: string) {
-    return createSelector([AuditRegistryState], (state: AuditRegistryStateModel) => {
+    return createSelector([AuditState], (state: AuditStateModel) => {
       return state.audits.find(x => x.id === id);
     });
   }
 
   @Action(AddAudit)
-  addAudit({ setState }: StateContext<AuditRegistryStateModel>, { audit }: AddAudit) {
+  addAudit({ setState }: StateContext<AuditStateModel>, { audit }: AddAudit) {
     setState(
       patch({
         audits: append<Audit>([{ ...audit, id: shortid.generate() }]),
@@ -76,7 +66,7 @@ export class AuditRegistryState {
   }
 
   @Action(DeleteAudit)
-  deleteAudit({ setState }: StateContext<AuditRegistryStateModel>, { audit }: DeleteAudit) {
+  deleteAudit({ setState }: StateContext<AuditStateModel>, { audit }: DeleteAudit) {
     setState(
       patch({
         audits: removeItem<Audit>(x => x === audit),
@@ -85,7 +75,7 @@ export class AuditRegistryState {
   }
 
   @Action(UpdateAudit)
-  updateAudit(ctx: StateContext<AuditRegistryStateModel>, { id, audit }: UpdateAudit) {
+  updateAudit(ctx: StateContext<AuditStateModel>, { id, audit }: UpdateAudit) {
     const a = ctx.getState().audits.find(x => x.id == id);
     ctx.setState(
       patch({
@@ -95,7 +85,7 @@ export class AuditRegistryState {
   }
 
   @Action(AddInterview)
-  addInterview(context: StateContext<AuditRegistryStateModel>, { audit, interview }: AddInterview) {
+  addInterview(context: StateContext<AuditStateModel>, { audit, interview }: AddInterview) {
     interview = { ...interview, id: shortid.generate() };
     context.setState(
       patch({

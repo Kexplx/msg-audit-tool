@@ -3,7 +3,7 @@ import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.m
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
 import { Select } from '@ngxs/store';
-import { AuditRegistryState } from 'src/app/core/ngxs/audit-registry.state';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
