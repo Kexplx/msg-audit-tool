@@ -1,10 +1,9 @@
 package com.amos2020.javabackend.rest_service;
 
-import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
 import com.amos2020.javabackend.entity.Answer;
-import com.amos2020.javabackend.entity.Interview;
-import com.amos2020.javabackend.service.AnswerService;
-import com.amos2020.javabackend.service.InterviewService;
+import com.amos2020.javabackend.rest_service.controller.AnswerController;
+import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
+import com.amos2020.javabackend.rest_service.response.BasicAnswerResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -33,23 +32,21 @@ public class AnswerRestServiceTest {
     MockMvc restService;
 
     @MockBean
-    private AnswerService answerService;
-    @MockBean
-    private InterviewService interviewService;
+    private AnswerController answerController;
 
     @Test
     public void getAnswerByIds_returnsOk() throws Exception {
         Answer answer = new Answer();
         answer.setInterviewId(1);
         answer.setQuestionId(1);
-        given(answerService.getAnswerByIds(1, 1)).willReturn(answer);
+        given(answerController.getAnswerByIds(1, 1)).willReturn(new BasicAnswerResponse(answer));
 
         restService.perform(get("/answers/interview/1/question/1")).andExpect(status().isOk());
     }
 
     @Test
     public void getAnswersByInterviewId_returnOK() throws Exception {
-        given(answerService.getAnswersByInterviewId(1)).willReturn(new ArrayList<>());
+        given(answerController.getAllAnswers(1)).willReturn(new ArrayList<>());
 
         restService.perform(get("/answers/interview/1")).andExpect(status().isOk());
     }
@@ -59,8 +56,7 @@ public class AnswerRestServiceTest {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setInterviewId(1);
         request.setQuestionId(1);
-        given(interviewService.getInterviewById(request.getInterviewId())).willReturn(new Interview());
-        given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
 
         String requestAsJson = buildJson(request);
         restService.perform(post("/answers")
@@ -74,8 +70,7 @@ public class AnswerRestServiceTest {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setInterviewId(1);
 
-        given(interviewService.getInterviewById(request.getInterviewId())).willReturn(new Interview());
-        given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
 
         String requestAsJson = buildJson(request);
         restService.perform(post("/answers")
@@ -89,8 +84,7 @@ public class AnswerRestServiceTest {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setQuestionId(1);
 
-        given(interviewService.getInterviewById(request.getInterviewId())).willReturn(new Interview());
-        given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
 
         String requestAsJson = buildJson(request);
         restService.perform(post("/answers")
@@ -104,9 +98,7 @@ public class AnswerRestServiceTest {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setQuestionId(1);
         request.setInterviewId(1);
-        given(interviewService.getInterviewById(request.getInterviewId())).willThrow(new NotFoundException(""));
-        given(answerService.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new Answer());
-
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willThrow(NotFoundException.class);
         String requestAsJson = buildJson(request);
         restService.perform(post("/answers")
                 .contentType(MediaType.APPLICATION_JSON)
