@@ -18,8 +18,8 @@ public class AnswerService {
 
     /**
      * Creates and stores an Answer
-     * @param questionId
-     * @param interviewId
+     * @param questionId int
+     * @param interviewId int
      * @return Answer
      */
     public Answer createAnswer(int questionId, int interviewId) {
@@ -38,8 +38,8 @@ public class AnswerService {
 
     /**
      * gets an Answer by its question and interview id
-     * @param questionId
-     * @param interviewId
+     * @param questionId int
+     * @param interviewId int
      * @return Answer
      */
     @Transactional
@@ -49,8 +49,8 @@ public class AnswerService {
 
     /**
      * get all Answers belonging to a specific interview
-     * @param interviewId
-     * @return
+     * @param interviewId int
+     * @return List of all answers containing to an interview
      */
     @Transactional
     public List<Answer> getAnswersByInterviewId(int interviewId){
