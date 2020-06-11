@@ -1,20 +1,19 @@
 package com.amos2020.javabackend.rest_service;
 
+import com.amos2020.javabackend.entity.Audit;
+import com.amos2020.javabackend.entity.AuditStatus;
+import com.amos2020.javabackend.entity.Scope;
+import com.amos2020.javabackend.rest_service.controller.AuditController;
 import com.amos2020.javabackend.rest_service.request.CreateAuditRequest;
 import com.amos2020.javabackend.rest_service.request.DeleteAuditRequest;
 import com.amos2020.javabackend.rest_service.request.UpdateAuditRequest;
 import com.amos2020.javabackend.rest_service.request.UpdateAuditScopeRequest;
-import com.amos2020.javabackend.entity.Audit;
-import com.amos2020.javabackend.entity.AuditStatus;
-import com.amos2020.javabackend.entity.FacCrit;
-import com.amos2020.javabackend.entity.Scope;
-import com.amos2020.javabackend.service.*;
+import com.amos2020.javabackend.rest_service.response.BasicAuditResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javassist.NotFoundException;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,15 +43,7 @@ public class AuditRestServiceTest {
     MockMvc restService;
 
     @MockBean
-    private AuditService auditService;
-    @MockBean
-    private ScopeService scopeService;
-    @MockBean
-    private ContactPersonService contactPersonService;
-    @MockBean
-    private AuditContactPersonService auditContactPersonService;
-    @MockBean
-    private FacCritService facCritService;
+    private AuditController auditController;
 
     @Test
     public void createAuditWithValidRequest_returnsOk() throws Exception {
@@ -79,7 +70,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -109,7 +100,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -142,7 +133,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -175,7 +166,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -210,7 +201,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -239,7 +230,7 @@ public class AuditRestServiceTest {
         audit.setEndDate(endDate);
 
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -268,7 +259,7 @@ public class AuditRestServiceTest {
         audit.setStatus(AuditStatus.OPEN);
 
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -301,7 +292,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -332,7 +323,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -365,7 +356,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -398,7 +389,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -429,7 +420,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditService.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate())).willReturn(audit);
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -440,38 +431,25 @@ public class AuditRestServiceTest {
     @Test
     public void getAuditByIdWithValidId_returnsOk() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.getAuditById(anyInt())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
         restService.perform(get("/audits/1")).andExpect(status().isOk());
     }
 
     @Test
     public void getAuditByIdWithInvalidId_returnsNotFound() throws Exception {
-        given(auditService.getAuditById(0)).willThrow(NotFoundException.class);
+        given(auditController.getAuditById(0)).willThrow(new NotFoundException(""));
         restService.perform(get("/audits/0")).andExpect(status().isNotFound());
     }
 
     @Test
     public void updateAuditByIdWithValidRequest_returnsOk() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -483,21 +461,12 @@ public class AuditRestServiceTest {
 
     @Test
     public void updateAuditByIdWithAuditNotExisting_returnsNotFound() throws Exception {
-        Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1000)).willThrow(NotFoundException.class);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willThrow(NotFoundException.class);
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -508,48 +477,13 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void updateAuditByIdWithContactPersonNotExisting_returnsNotFound() throws Exception {
-        Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willThrow(NotFoundException.class);
-
-
-        UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName("New Test Name");
-        request.setStartDate(Date.valueOf("2000-01-02"));
-        request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
-
-        String requestAsJson = buildJson(request);
-
-        restService.perform(put("/audits/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
     public void updateAuditByIdWithFacCritNotExisting_returnsNotFound() throws Exception {
-        Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willThrow(NotFoundException.class);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willThrow(NotFoundException.class);
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -562,19 +496,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsNull_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -587,20 +514,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsBlank_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("   ");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -613,20 +532,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsMaximum_returnsIsOk() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName(StringUtils.repeat("*", 45));
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -639,20 +550,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsTooLong_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName(StringUtils.repeat("*", 46));
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -665,20 +568,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsMinimum_returnsIsOk() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("aaa");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -691,20 +586,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsTooShort_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -717,19 +604,11 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithStartDateIsNull_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("New Test Name");
         request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -742,20 +621,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithEndDateIsBeforeStartDate_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setAuditName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-01"));
-        request.setContactPeople(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
 
@@ -766,49 +637,75 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void updateAuditByIdWithContactPeopleIdIsInvalid_returns400() throws Exception {
+    public void addContactPersonToAuditWithValidIds_returns200() throws Exception {
         Audit audit = new Audit();
         audit.setScopesById(new ArrayList<>());
         audit.setAuditContactPeopleById(new ArrayList<>());
 
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
+        given(auditController.addContactPersonToAudit(anyInt(), anyInt())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        restService.perform(put("/audits/1/contactpersons/1"))
+                .andExpect(status().isOk());
+    }
 
-        List<Integer> contactPeople = new ArrayList<>();
-        contactPeople.add(-1);
-        UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName("New Test Name");
-        request.setStartDate(Date.valueOf("2000-01-02"));
-        request.setEndDate(Date.valueOf("2000-01-02"));
-        request.setContactPeople(contactPeople);
+    @Test
+    public void addContactPersonToAuditWithInvalidAuditId_returns400() throws Exception {
+        Audit audit = new Audit();
+        audit.setScopesById(new ArrayList<>());
+        audit.setAuditContactPeopleById(new ArrayList<>());
 
-        String requestAsJson = buildJson(request);
+        given(auditController.addContactPersonToAudit(eq(1000), anyInt())).willThrow(NotFoundException.class);
+        restService.perform(put("/audits/1000/contactpersons/1"))
+                .andExpect(status().isNotFound());
+    }
 
-        restService.perform(put("/audits/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isBadRequest());
+    @Test
+    public void addContactPersonToAuditWithInvalidContactPersonId_returns400() throws Exception {
+        Audit audit = new Audit();
+        audit.setScopesById(new ArrayList<>());
+        audit.setAuditContactPeopleById(new ArrayList<>());
+
+        given(auditController.addContactPersonToAudit(anyInt(), eq(1000))).willThrow(NotFoundException.class);
+        restService.perform(put("/audits/1/contactpersons/1000"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void removeContactPersonFromAuditWithValidIds_returns200() throws Exception {
+        Audit audit = new Audit();
+        audit.setScopesById(new ArrayList<>());
+        audit.setAuditContactPeopleById(new ArrayList<>());
+
+        given(auditController.removeContactPersonFromAudit(anyInt(), anyInt())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        restService.perform(delete("/audits/1/contactpersons/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void removeContactPersonFromAuditWithInvalidAuditId_returns400() throws Exception {
+        Audit audit = new Audit();
+        audit.setScopesById(new ArrayList<>());
+        audit.setAuditContactPeopleById(new ArrayList<>());
+
+        given(auditController.removeContactPersonFromAudit(eq(1000), anyInt())).willThrow(NotFoundException.class);
+        restService.perform(delete("/audits/1000/contactpersons/1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void removeContactPersonFromAuditWithInvalidContactPersonId_returns400() throws Exception {
+        Audit audit = new Audit();
+        audit.setScopesById(new ArrayList<>());
+        audit.setAuditContactPeopleById(new ArrayList<>());
+
+        given(auditController.removeContactPersonFromAudit(anyInt(), eq(1000))).willThrow(NotFoundException.class);
+        restService.perform(delete("/audits/1/contactpersons/1000"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
     public void updateAuditScopeWithValidRequest_returnsOk() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        Scope scope = new Scope();
-        scope.setRemoved(true);
-        scope.setFaccritId(10);
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(scope);
-
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
@@ -826,20 +723,11 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditScopeWithInvalidRequestChangeNoteIsTooLong_returns400() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(10);
 
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(scope);
-
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
@@ -857,20 +745,11 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditScopeWithInvalidRequestChangeNoteIsMaximum_returns200() throws Exception {
         Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
 
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(10);
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(scope);
-
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
@@ -894,13 +773,7 @@ public class AuditRestServiceTest {
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(-1);
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(scope);
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
@@ -918,21 +791,11 @@ public class AuditRestServiceTest {
 
     @Test
     public void updateAuditScopeWithAuditNotExisting_returnsNotFound() throws Exception {
-        Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(10);
 
-        given(auditService.getAuditById(1)).willThrow(NotFoundException.class);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(scope);
-
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(NotFoundException.class);
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(10);
@@ -957,12 +820,7 @@ public class AuditRestServiceTest {
         scope.setRemoved(true);
         scope.setFaccritId(1000);
 
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willThrow(NotFoundException.class);
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willReturn(scope);
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(NotFoundException.class);
 
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
@@ -980,21 +838,10 @@ public class AuditRestServiceTest {
 
     @Test
     public void updateAuditScopeWithScopeItemAlreadyDeleted_returnsIllegalAccess() throws Exception {
-        Audit audit = new Audit();
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
         Scope scope = new Scope();
         scope.setRemoved(true);
         scope.setFaccritId(1000);
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
-
+        given(auditController.updateAuditScope(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
 
         UpdateAuditScopeRequest request = new UpdateAuditScopeRequest();
         request.setFacCritId(1000);
@@ -1015,13 +862,7 @@ public class AuditRestServiceTest {
         audit.setStatus(AuditStatus.ACTIVE);
         audit.setScopesById(new ArrayList<>());
         audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
+        given(auditController.softDeleteAudit(anyInt(), any(), anyString(), anyInt())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
 
         DeleteAuditRequest request = new DeleteAuditRequest();
@@ -1034,55 +875,6 @@ public class AuditRestServiceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
-
-        Assert.assertEquals(audit.getStatus(), request.getStatus());
-        Assert.assertEquals(audit.getCancellationDate(), request.getDate());
-        Assert.assertEquals(audit.getCancellationReason(), request.getReason());
-        Assert.assertEquals(audit.getCancellationContactPerson(), request.getContactPerson());
-
-    }
-
-    @Test
-    public void deleteAuditValidRequestTwice_returnsOK() throws Exception {
-        Audit audit = new Audit();
-        audit.setStatus(AuditStatus.ACTIVE);
-        audit.setScopesById(new ArrayList<>());
-        audit.setAuditContactPeopleById(new ArrayList<>());
-
-        given(auditService.getAuditById(1)).willReturn(audit);
-        given(auditService.updateAudit(any())).willReturn(audit);
-        given(facCritService.getAllById(anyList())).willReturn(new ArrayList<>());
-        given(facCritService.exists(anyInt())).willReturn(new FacCrit());
-        given(contactPersonService.getAllByIds(anyList())).willReturn(new ArrayList<>());
-        given(scopeService.updateScopeItem(anyInt(), anyInt(), anyString(), anyBoolean())).willThrow(IllegalAccessException.class);
-
-
-        DeleteAuditRequest request = new DeleteAuditRequest();
-        request.setContactPerson(1);
-        request.setDate(Date.valueOf("2020-06-02"));
-        request.setReason("TestReason");
-
-        String requestAsJson = buildJson(request);
-        restService.perform(delete("/audits/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isOk());
-
-        Assert.assertEquals(audit.getStatus(), request.getStatus());
-        Assert.assertEquals(audit.getCancellationDate(), request.getDate());
-        Assert.assertEquals(audit.getCancellationReason(), request.getReason());
-        Assert.assertEquals(audit.getCancellationContactPerson(), request.getContactPerson());
-
-        DeleteAuditRequest request2 = new DeleteAuditRequest();
-        request2.setContactPerson(2);
-        request2.setDate(Date.valueOf("2020-06-03"));
-        request2.setReason("TestReason2");
-
-        String requestAsJson2 = buildJson(request2);
-        restService.perform(delete("/audits/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson2))
-                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -1128,7 +920,7 @@ public class AuditRestServiceTest {
 
     @Test
     public void deleteAuditInvalidAuditId_returnsNotFound() throws Exception {
-        given(auditService.getAuditById(1)).willThrow(NotFoundException.class);
+        given(auditController.softDeleteAudit(anyInt(), any(), anyString(), anyInt())).willThrow(NotFoundException.class);
 
         DeleteAuditRequest request = new DeleteAuditRequest();
         request.setContactPerson(1);
