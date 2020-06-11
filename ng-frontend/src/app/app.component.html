@@ -3,7 +3,7 @@
     <nb-actions size="small">
       <nb-action (click)="toggleSidebar()" icon="menu-2-outline">Hello</nb-action>
       <nb-action badgeStatus="primary" [badgeText]="(audits$ | async).length > 0 ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline"></nb-action>
-      <nb-action badgeStatus="info" [badgeText]="(contactPeople$ | async).length > 0 ? (contactPeople$ | async).length : '0'" routerLink="/contact-people" icon="people-outline"></nb-action>
+      <nb-action routerLink="/contact-people" icon="people-outline"></nb-action>
     </nb-actions>
   </nb-layout-header>
   <nb-sidebar collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">
