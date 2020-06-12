@@ -23,7 +23,7 @@ public abstract class BasicRequest {
             throw new IllegalArgumentException("name is null or empty");
         }
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(" name is too long");
+            throw new IllegalArgumentException("name is too long");
         }
     }
 
