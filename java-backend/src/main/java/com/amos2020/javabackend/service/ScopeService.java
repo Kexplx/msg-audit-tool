@@ -37,8 +37,8 @@ public class ScopeService {
     }
 
     @Transactional
-    public Scope findScopeItemByIds(int auditID, int facCritId) {
-        return repository.findFirstByAuditIdAndFaccritId(auditID, facCritId);
+    public Scope findScopeItemByIds(int auditId, int facCritId) {
+        return repository.findFirstByAuditIdAndFaccritId(auditId, facCritId);
     }
 
     public Scope updateScopeItem(int auditId, int facCritId, String changeNote, boolean isRemoved, String note) throws IllegalAccessException {
