@@ -41,6 +41,10 @@ public class ScopeService {
         return repository.findFirstByAuditIdAndFaccritId(auditId, facCritId);
     }
 
+    public List<Scope> getAll() {
+        return repository.findAll();
+    }
+
     public Scope updateScopeItem(int auditId, int facCritId, String changeNote, boolean isRemoved, String note) throws IllegalAccessException {
         Scope scopeItem = findScopeItemByIds(auditId, facCritId);
         if (scopeItem != null) {
