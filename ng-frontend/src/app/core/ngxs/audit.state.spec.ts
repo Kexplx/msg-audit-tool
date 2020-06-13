@@ -1,71 +1,60 @@
-// import { TestBed } from '@angular/core/testing';
-// import { NgxsModule, Store } from '@ngxs/store';
-// import { AuditRegistryState } from './audit-registry.state';
-// import { Audit, AuditStatus } from '../data/models/audit.model';
-// import { AddAudit, DeleteAudit, AddInterview } from './audit.actions';
-// import { InterviewStatus } from '../data/models/interview.model';
+import { TestBed } from '@angular/core/testing';
+import { NgxsModule, Store } from '@ngxs/store';
+import { Audit, AuditStatus } from '../data/models/audit.model';
+import { InterviewStatus } from '../data/models/interview.model';
+import { AuditState } from './audit.state';
+import * as jasmine from 'karma-jasmine';
+import { AddAudit, DeleteAudit, AddInterview } from './actions/audit.actions';
 
-// describe('AuditRegistryState', () => {
-//   let store: Store;
-//   let audit: Audit;
+describe('AuditState', () => {
+  let store: Store;
+  let audit: Audit;
 
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       imports: [NgxsModule.forRoot([AuditRegistryState])],
-//     });
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [NgxsModule.forRoot([AuditState])],
+    });
 
-//     store = TestBed.inject(Store);
+    store = TestBed.inject(Store);
 
-//     audit = {
-//       name: 'TestAudit',
-//       contactPerson: {
-//         firstName: 'Peter',
-//         lastName: 'Meier',
-//         information: '0192',
-//         title: 'Herr',
-//         salutation: 'Dr',
-//       },
-//       customerData: {
-//         department: 'a',
-//         name: 'b',
-//         sector: 'c',
-//       },
-//       status: AuditStatus.Planned,
-//       creationDate: new Date(2020, 6, 1).getTime(),
-//     };
-//   });
+    audit = {
+      name: 'TestAudit',
+      status: AuditStatus.Planned,
+      facCrits: [],
+      startDate: null,
+      creationDate: null,
+    };
+  });
 
-//   it('should add audit after AddAudit action was dispatched', () => {
-//     store.dispatch(new AddAudit(audit));
-//     const audits = store.selectSnapshot(AuditRegistryState.audits);
-//     const selectedAudit = audits[audits.length - 1];
+  it('should add audit after AddAudit action was dispatched', () => {
+    store.dispatch(new AddAudit(audit));
+    const audits = store.selectSnapshot(AuditState.audits);
+    const selectedAudit = audits[audits.length - 1];
 
-//     expect(selectedAudit).toEqual({ ...audit, id: selectedAudit.id });
-//   });
+    expect(selectedAudit).toEqual({ ...audit, id: selectedAudit.id });
+  });
 
-//   it('should delete audit after DeleteAudit action was dispatched', () => {
-//     let audits = store.selectSnapshot(AuditRegistryState.audits);
-//     if (!audits) {
-//       store.dispatch(new AddAudit(audit));
-//     }
-//     const auditToDelete = audits[0];
-//     store.dispatch(new DeleteAudit(auditToDelete));
-//     let updatedAudits = store.selectSnapshot(AuditRegistryState.audits);
-//     expect(updatedAudits[0]).not.toEqual(auditToDelete);
-//   });
+  it('should delete audit after DeleteAudit action was dispatched', () => {
+    let audits = store.selectSnapshot(AuditState.audits);
+    if (!audits) {
+      store.dispatch(new AddAudit(audit));
+    }
+    const auditToDelete = audits[0];
+    store.dispatch(new DeleteAudit(auditToDelete));
+    let updatedAudits = store.selectSnapshot(AuditState.audits);
+    expect(updatedAudits[0]).not.toEqual(auditToDelete);
+  });
 
-//   it('should add interview after AddInterview action was dispatched', () => {
-//     let auditId: string;
-//     store.dispatch(new AddAudit(audit)).subscribe((a: Audit) => (auditId = a.id));
-//     const audit$ = store.select(AuditRegistryState.audit(auditId));
-//     let a: Audit;
-//     audit$.subscribe(x => (a = x));
+  it('should add interview after AddInterview action was dispatched', () => {
+    let auditId: string;
+    store.dispatch(new AddAudit(audit)).subscribe((a: Audit) => (auditId = a.id));
+    const audit$ = store.select(AuditState.audit(auditId));
+    let a: Audit;
+    audit$.subscribe(x => (a = x));
 
-//     store.dispatch(
-//       new AddInterview(a, { criteria: { title: '123' }, status: InterviewStatus.InAction }),
-//     );
-//     audit$.subscribe(x => {
-//       expect(x.interviews.length).toEqual(1);
-//     });
-//   });
-// });
+    store.dispatch(new AddInterview(audit, { contactPeople: null, facCrits: null, status: null }));
+    audit$.subscribe(x => {
+      expect(x.interviews.length).toEqual(1);
+    });
+  });
+});
