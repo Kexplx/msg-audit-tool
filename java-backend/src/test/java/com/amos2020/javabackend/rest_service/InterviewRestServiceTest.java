@@ -1,8 +1,10 @@
 package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.entity.Interview;
+import com.amos2020.javabackend.entity.InterviewStatus;
 import com.amos2020.javabackend.rest_service.controller.InterviewController;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,8 +26,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -279,6 +280,105 @@ public class InterviewRestServiceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
+    }
+
+
+    @Test
+    public void updateInterviewWithValidRequest_returns200() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.updateInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        UpdateInterviewRequest request = new UpdateInterviewRequest();
+        request.setStartDate(Date.valueOf("2020-05-25"));
+        request.setEndDate(Date.valueOf("2020-05-25"));
+        request.setStatus(InterviewStatus.ACTIVE);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateInterviewWithStartDateIsNull_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.updateInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        UpdateInterviewRequest request = new UpdateInterviewRequest();
+        request.setEndDate(Date.valueOf("2020-05-25"));
+        request.setStatus(InterviewStatus.ACTIVE);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateInterviewWithEndDateIsBeforeStartDateIsNull_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.updateInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        UpdateInterviewRequest request = new UpdateInterviewRequest();
+        request.setStartDate(Date.valueOf("2020-05-26"));
+        request.setEndDate(Date.valueOf("2020-05-25"));
+        request.setStatus(InterviewStatus.ACTIVE);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateInterviewWithInterviewStatusIsNull_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.updateInterview(anyInt(), any(), any(), any())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        UpdateInterviewRequest request = new UpdateInterviewRequest();
+        request.setStartDate(Date.valueOf("2020-05-25"));
+        request.setEndDate(Date.valueOf("2020-05-25"));
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateInterviewWithNoInterviewExistingForInterviewId_returns404() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.updateInterview(eq(10000), any(), any(), any())).willThrow(NotFoundException.class);
+
+        UpdateInterviewRequest request = new UpdateInterviewRequest();
+        request.setStartDate(Date.valueOf("2020-05-25"));
+        request.setEndDate(Date.valueOf("2020-05-25"));
+        request.setStatus(InterviewStatus.ACTIVE);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/10000")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isNotFound());
     }
 
     private String buildJson(Object object) throws JsonProcessingException {
