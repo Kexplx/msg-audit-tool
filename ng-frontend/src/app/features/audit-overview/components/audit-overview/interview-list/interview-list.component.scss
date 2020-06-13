@@ -3,7 +3,7 @@
 header {
   margin: 20px 0 10px 0;
   display: grid;
-  grid-template-columns: 1fr auto;
+  justify-items: right;
 }
 
 nb-accordion {
@@ -26,35 +26,15 @@ li {
   margin-left: 20px;
 }
 
-.criteria-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.hint-no-facrits {
-  max-width: 900px;
-  margin: 100px auto 0 auto;
-  text-align: center;
-}
-
 .hint-no-interviews {
-  margin: 30px auto 30px auto;
+  margin: 0 auto;
   text-align: center;
 }
 
 .wrapper-interviews {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
+  gap: 10px 0;
+  margin-left: 50px;
 }
 
 nb-list-item {
