@@ -535,7 +535,7 @@ public class AuditRestServiceTest {
         given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName(StringUtils.repeat("*", 45));
+        request.setAuditName(StringUtils.repeat("*", 256));
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
 
