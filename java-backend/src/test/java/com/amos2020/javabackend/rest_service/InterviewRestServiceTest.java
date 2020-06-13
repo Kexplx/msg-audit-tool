@@ -4,12 +4,14 @@ import com.amos2020.javabackend.entity.Interview;
 import com.amos2020.javabackend.entity.InterviewStatus;
 import com.amos2020.javabackend.rest_service.controller.InterviewController;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.request.interview.InterviewAddContactPersonRequest;
 import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javassist.NotFoundException;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -376,6 +378,188 @@ public class InterviewRestServiceTest {
         String requestAsJson = buildJson(request);
 
         restService.perform(put("/interviews/10000")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithValidRequest_returns200() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+        request.setRole("New role");
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithInvalidInterviewId_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+        request.setRole("New role");
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/0/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithInvalidContactPersonId_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(0);
+        request.setRole("New role");
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithContactPersonIdIsNull_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setRole("New role");
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithRoleIsNull_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithRoleIsBlank_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+        request.setRole("     ");
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithRoleIsToLong_returns400() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+        request.setRole(StringUtils.repeat("*", 257));
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithRoleIsToMaximum_returns200() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), anyInt(), anyString())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+        request.setRole(StringUtils.repeat("*", 256));
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void addContactPersonToInterviewWithInterviewNotExisting_returns404() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(eq(10000), anyInt(), anyString())).willThrow(NotFoundException.class);
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(1);
+        request.setRole("test Role");
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/10000/add/person")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    public void addContactPersonToInterviewWithContactPersonNotExisting_returns404() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.addContactPersonToInterview(anyInt(), eq(100), anyString())).willThrow(NotFoundException.class);
+
+        InterviewAddContactPersonRequest request = new InterviewAddContactPersonRequest();
+        request.setContactPersonId(100);
+        request.setRole("test Role");
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/interviews/1/add/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
