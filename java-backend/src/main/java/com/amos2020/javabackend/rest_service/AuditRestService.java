@@ -70,7 +70,8 @@ public class AuditRestService {
     /**
      * PUT for adding a contactPerson to an audit
      *
-     * @param auditId int
+     * @param auditId         int
+     * @param contactPersonId int
      * @return BasicAuditResponse
      */
     @PutMapping("/audits/{id}/contactpersons/{contactPersonId}")
@@ -90,7 +91,8 @@ public class AuditRestService {
     /**
      * DELETE for removing a contactPerson from an audit
      *
-     * @param auditId int
+     * @param auditId         int
+     * @param contactPersonId int
      * @return BasicAuditResponse
      */
     @DeleteMapping("/audits/{id}/contactpersons/{contactPersonId}")
