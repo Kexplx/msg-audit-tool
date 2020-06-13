@@ -75,6 +75,7 @@ public class AuditController {
         if (auditContactPerson == null) {
             throw new NotFoundException("No Contact Person with " + contactPersonId + " found for audit!");
         }
+        auditContactPersonService.deleteByAuditIdAndContactPersonId(auditId, contactPersonId);
         audit.getAuditContactPeopleById().remove(auditContactPerson);
         audit = auditService.updateAudit(audit);
         return buildBasicResponse(audit);

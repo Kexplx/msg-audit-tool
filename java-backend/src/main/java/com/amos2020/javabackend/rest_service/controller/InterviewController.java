@@ -130,6 +130,27 @@ public class InterviewController {
     }
 
     /**
+     * Remove a ContactPerson from an existing interview
+     *
+     * @param interviewId     int
+     * @param contactPersonId int
+     * @return Updated Interview
+     * @throws NotFoundException If the if for the interview, contactPerson or the interviewContactPerson is not valid
+     */
+    public BasicInterviewResponse removeContactPersonFromInterview(int interviewId, int contactPersonId) throws NotFoundException {
+        Interview interview = interviewService.getInterviewById(interviewId);
+        contactPersonService.getContactPersonById(contactPersonId);
+        InterviewContactPerson interviewContactPerson = interviewContactPersonService.exists(interviewId, contactPersonId);
+        if (interviewContactPerson == null) {
+            throw new NotFoundException("No Contact Person with " + contactPersonId + " found for interview!");
+        }
+        interviewContactPersonService.delete(interviewId, contactPersonId);
+        interview.getInterviewContactPeopleById().remove(interviewContactPerson);
+        interview = interviewService.updateInterview(interview);
+        return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
+    }
+
+    /**
      * Helper method for receiving the List of ContactPeople associated with the Interview
      *
      * @param interview Interview
@@ -141,4 +162,6 @@ public class InterviewController {
         interview.getInterviewContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
         return contactPersonService.getAllByIds(contactPeopleIds);
     }
+
+
 }

@@ -121,4 +121,24 @@ public class InterviewRestService {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * PUT for removing a contactPerson from an interview
+     *
+     * @param interviewId     int
+     * @param contactPersonId int
+     * @return BasicInterviewResponse
+     */
+    @DeleteMapping("/interviews/{interviewId}/delete/person/{contactPersonId}")
+    public ResponseEntity<BasicInterviewResponse> removeContactPersonFromInterview(@PathVariable("interviewId") int interviewId, @PathVariable("contactPersonId") int contactPersonId) {
+        BasicInterviewResponse response;
+        try {
+            response = interviewController.removeContactPersonFromInterview(interviewId, contactPersonId);
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(response);
+    }
 }

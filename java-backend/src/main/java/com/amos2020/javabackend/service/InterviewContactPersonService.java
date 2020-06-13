@@ -30,8 +30,26 @@ public class InterviewContactPersonService {
         return repository.save(interviewContactPerson);
     }
 
+    /**
+     * Check if a InterviewContactPerson exists
+     *
+     * @param interviewId     int
+     * @param contactPersonId int
+     * @return InterviewContactPerson or null
+     */
     @Transactional
     public InterviewContactPerson exists(int interviewId, int contactPersonId) {
         return repository.findFirstByInterviewIdAndContactPersonId(interviewId, contactPersonId);
+    }
+
+    /**
+     * Delete a InterviewContactPerson by an interviewId and a contactPersonId
+     *
+     * @param interviewId     int
+     * @param contactPersonId int
+     */
+    @Transactional
+    public void delete(int interviewId, int contactPersonId) {
+        repository.deleteByInterviewIdAndContactPersonId(interviewId, contactPersonId);
     }
 }
