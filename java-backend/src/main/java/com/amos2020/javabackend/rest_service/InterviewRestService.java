@@ -2,6 +2,7 @@ package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.rest_service.controller.InterviewController;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.request.interview.InterviewAddContactPersonRequest;
 import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import javassist.NotFoundException;
@@ -28,7 +29,6 @@ public class InterviewRestService {
     @GetMapping("/interviews/{id}")
     public ResponseEntity<BasicInterviewResponse> getInterviewById(@PathVariable("id") int interviewId) {
         BasicInterviewResponse response;
-
         try {
             response = interviewController.getInterviewById(interviewId);
         } catch (NotFoundException e) {
@@ -87,7 +87,31 @@ public class InterviewRestService {
 
         try {
             request.isValid();
+            request.assertIdIsValid(interviewId);
             response = interviewController.updateInterview(interviewId, request.getStartDate(), request.getEndDate(), request.getStatus());
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * PUT for adding a contactPerson to an interview
+     *
+     * @param interviewId int
+     * @param request     InterviewAddContactPersonRequest
+     * @return BasicInterviewResponse
+     */
+    @PutMapping("/interviews/{interviewId}/add/person")
+    public ResponseEntity<BasicInterviewResponse> addContactPersonToInterview(@PathVariable("interviewId") int interviewId, @RequestBody InterviewAddContactPersonRequest request) {
+        BasicInterviewResponse response;
+        try {
+            request.isValid();
+            request.assertIdIsValid(interviewId);
+            response = interviewController.addContactPersonToInterview(interviewId, request.getContactPersonId(), request.getRole());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {

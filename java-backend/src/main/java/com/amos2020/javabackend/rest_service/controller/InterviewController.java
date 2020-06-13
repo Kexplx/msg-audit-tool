@@ -1,9 +1,6 @@
 package com.amos2020.javabackend.rest_service.controller;
 
-import com.amos2020.javabackend.entity.ContactPerson;
-import com.amos2020.javabackend.entity.Interview;
-import com.amos2020.javabackend.entity.InterviewStatus;
-import com.amos2020.javabackend.entity.Question;
+import com.amos2020.javabackend.entity.*;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.amos2020.javabackend.service.*;
 import javassist.NotFoundException;
@@ -102,7 +99,33 @@ public class InterviewController {
      */
     public BasicInterviewResponse updateInterview(int interviewId, Date startDate, Date endDate, InterviewStatus status) throws NotFoundException {
         Interview interview = interviewService.getInterviewById(interviewId);
-        interviewService.updateInterview(interview, startDate, endDate, status);
+        interview.setStartDate(startDate);
+        interview.setEndDate(endDate);
+        interview.setStatus(status);
+        interviewService.updateInterview(interview);
+        return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
+    }
+
+    /**
+     * Add a new ContactPerson to an interview if there does not already exists an InterviewContactPerson
+     *
+     * @param interviewId     int
+     * @param contactPersonId int
+     * @param role            String
+     * @return Updated Interview with the new ContactPerson
+     * @throws NotFoundException If interview or contactPerson does not exist
+     */
+    public BasicInterviewResponse addContactPersonToInterview(int interviewId, int contactPersonId, String role) throws NotFoundException {
+        Interview interview = interviewService.getInterviewById(interviewId);
+        contactPersonService.getContactPersonById(contactPersonId);
+        if (interviewContactPersonService.exists(interviewId, contactPersonId) == null) {
+            InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
+            interviewContactPerson.setInterviewId(interviewId);
+            interviewContactPerson.setContactPersonId(contactPersonId);
+            interviewContactPerson.setRole(role);
+            interview.getInterviewContactPeopleById().add(interviewContactPerson);
+            interviewService.updateInterview(interview);
+        }
         return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
     }
 

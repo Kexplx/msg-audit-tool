@@ -97,7 +97,7 @@ public class Interview {
         this.auditByAuditId = auditByAuditId;
     }
 
-    @OneToMany(mappedBy = "interviewByInterviewId")
+    @OneToMany(mappedBy = "interviewByInterviewId", cascade = CascadeType.ALL)
     public Collection<InterviewContactPerson> getInterviewContactPeopleById() {
         return interviewContactPeopleById;
     }

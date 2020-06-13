@@ -64,15 +64,9 @@ public class InterviewService {
      * Updates the data of an existing interview
      *
      * @param interview Interview
-     * @param startDate Date
-     * @param endDate   Date
-     * @param status    InterviewStatus
      * @return Updated interview
      */
-    public Interview updateInterview(Interview interview, Date startDate, Date endDate, InterviewStatus status) {
-        interview.setStartDate(startDate);
-        interview.setEndDate(endDate);
-        interview.setStatus(status);
+    public Interview updateInterview(Interview interview) {
         return repository.save(interview);
     }
 }
