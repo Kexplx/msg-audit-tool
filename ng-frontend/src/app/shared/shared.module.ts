@@ -16,7 +16,7 @@ import { EditContactPersonDialogComponent } from './components/dialogs/edit-cont
 import { FactorsPipe } from './pipes/factors.pipe';
 import { CriteriasPipe } from './pipes/criterias.pipe';
 import { AuditFormComponent } from './components/forms/audit-form/audit-form.component';
-import { SortInterviewPipe } from './pipes/sort-interview.pipe';
+import { FactorByIdPipe } from './pipes/factorById.pipe';
 
 @NgModule({
   declarations: [
@@ -27,13 +27,13 @@ import { SortInterviewPipe } from './pipes/sort-interview.pipe';
     CriteriasPipe,
     FactorsPipe,
     AddContactPersonDialogComponent,
+    FactorByIdPipe,
     ContactPersonFormComponent,
     EditContactPersonDialogComponent,
     AuditFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
     SortAuditPipe,
-    SortInterviewPipe,
   ],
   imports: [CommonModule, RouterModule, NebularModule, ReactiveFormsModule],
   exports: [
@@ -44,6 +44,7 @@ import { SortInterviewPipe } from './pipes/sort-interview.pipe';
     AddContactPersonDialogComponent,
     FactorsPipe,
     CriteriasPipe,
+    FactorByIdPipe,
     ActionListenerDirective,
     AuditFormComponent,
     NotFoundComponent,
@@ -51,7 +52,6 @@ import { SortInterviewPipe } from './pipes/sort-interview.pipe';
     ConfirmDiscardDialogComponent,
     EditContactPersonDialogComponent,
     SortAuditPipe,
-    SortInterviewPipe,
   ],
 })
 export class SharedModule {}

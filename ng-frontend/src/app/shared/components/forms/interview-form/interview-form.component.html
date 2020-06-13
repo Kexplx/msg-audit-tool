@@ -1,18 +1,27 @@
 <form [formGroup]="formGroup" data-cy="add-interview-form">
-  <nb-card>
+  <nb-card fullWidth>
     <nb-card-header>Neues Interview</nb-card-header>
     <nb-card-body>
       <div class="mb-2">
-        <label class="label">ISO/IEC 25010 Kriterium</label>
-        <nb-select [status]="facCrit.invalid && facCrit.touched ? 'danger' : 'basic'" formControlName="facCrit" fullWidth placeholder="Select Groups" data-cy="interview-category-input">
-          <nb-option-group *ngFor="let factor of facCrits | factors" [title]="factor.name">
-            <nb-option *ngFor="let criteria of facCrits | criterias: factor.id" [value]="criteria" data-cy="interview-category-option">{{ criteria.name }}</nb-option>
-          </nb-option-group>
-        </nb-select>
-        <div *ngIf="facCrit.invalid && facCrit.touched">
-          <label class="label text-danger">ISO/IEC 25010 Kriterium wählen</label>
-        </div>
+        <nb-accordion>
+          <nb-accordion-item>
+            <nb-accordion-item-header class="label" data-cy="audit-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="wrapper-faccrits mt-2">
+                <div class="wrapper-faccrits-inner" *ngFor="let factor of allFacCrits$ | async | factorsInScope: scope">
+                  <label class="label">{{ factor.name }}</label>
+                  <nb-checkbox status="info" [formControlName]="factor.id" *ngIf="scope | factorById: factor.id as factor">{{ factor.name }}</nb-checkbox>
+                  <nb-checkbox class="criteria" *ngIf="(scope | criterias: factor.id).length > 0" (checkedChange)="toggleCriteriaChecked(factor.id, $event)" status="warning"
+                    >Alle Kriterien</nb-checkbox
+                  >
+                  <nb-checkbox class="criteria" [formControlName]="criteria.id" *ngFor="let criteria of scope | criterias: factor.id">{{ criteria.name }}</nb-checkbox>
+                </div>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
       </div>
+      <hr style="border-bottom: 3px dotted rgb(228, 233, 242);" />
       <div class="mb-2">
         <label class="label">Startdatum</label>
         <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="interview-start-input" />

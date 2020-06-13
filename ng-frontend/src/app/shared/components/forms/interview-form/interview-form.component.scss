@@ -6,3 +6,27 @@ nb-card-footer {
   border-radius: 0;
   padding: 10px 20px 10px 20px;
 }
+
+.wrapper-faccrits {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+
+  @media screen and(max-width: 500px) {
+    grid-template-columns: 1fr;
+
+    nb-checkbox {
+      margin: 0px 10px 0px 0px;
+    }
+  }
+
+  & .criteria {
+    margin-left: 20px;
+  }
+}
+
+.wrapper-faccrits-inner {
+  display: grid;
+  gap: 10px;
+}

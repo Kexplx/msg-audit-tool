@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
@@ -17,12 +17,17 @@ import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 })
 export class InterviewFormComponent extends AbstractFormComponent implements OnInit {
   @Input() interview: Interview;
-  @Input() facCrits: FacCrit[];
+  @Input() scope: FacCrit[];
   @Output() formSubmitted = new EventEmitter<Interview>();
 
+  @Select(AuditState.facCrits) allFacCrits$: Observable<FacCrit[]>;
   @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
 
-  constructor(private fb: FormBuilder, protected dialogService: NbDialogService) {
+  constructor(
+    private fb: FormBuilder,
+    protected dialogService: NbDialogService,
+    private store: Store,
+  ) {
     super(dialogService);
   }
 
@@ -41,19 +46,45 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   ngOnInit() {
     this.formGroup = this.fb.group({
       startDate: [this.interview?.start ?? new Date()],
-      facCrit: [this.interview?.facCrit, Validators.required],
       contactPeople: [this.interview?.contactPeople, Validators.required],
     });
+
+    for (const facCrit of this.scope) {
+      this.formGroup.addControl(facCrit.id, new FormControl(false));
+    }
+  }
+
+  checkedFacCrits() {
+    const result: FacCrit[] = [];
+
+    this.allFacCrits$.subscribe(facCrits => {
+      for (const crit of facCrits) {
+        const checked = this.formGroup.get(crit.id).value;
+
+        if (checked) {
+          result.push(crit);
+        }
+      }
+    });
+
+    return result;
   }
 
   onSubmit() {
     const interview: Interview = {
       start: this.startDate.value,
       status: InterviewStatus.InAction,
-      facCrit: this.facCrit.value,
+      facCrits: this.checkedFacCrits(),
       contactPeople: this.contactPeople.value,
     };
-
     this.formSubmitted.emit(interview);
+  }
+
+  toggleCriteriaChecked(factorId: string, checked: true) {
+    this.store.select(AuditState.criteriaByFactorId(factorId)).subscribe(x => {
+      for (const crit of x) {
+        this.formGroup.get(crit.id).setValue(checked);
+      }
+    });
   }
 }

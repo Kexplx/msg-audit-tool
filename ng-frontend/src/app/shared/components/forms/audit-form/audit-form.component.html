@@ -38,7 +38,9 @@
             <div class="wrapper-faccrits mt-2">
               <div *ngFor="let factor of facCrits$ | async | factors">
                 <nb-checkbox [formControlName]="factor.id" (checkedChange)="toggleCriteriaChecked(factor.id, $event)">{{ factor.name }}</nb-checkbox>
-                <nb-checkbox style="margin-left: 20px;" [formControlName]="criteria.id" *ngFor="let criteria of facCrits$ | async | criterias: factor.id">{{ criteria.name }}</nb-checkbox>
+                <nb-checkbox (checkedChange)="formGroup.get(factor.id).setValue(true)" [formControlName]="criteria.id" *ngFor="let criteria of facCrits$ | async | criterias: factor.id">{{
+                  criteria.name
+                }}</nb-checkbox>
               </div>
             </div>
           </nb-accordion-item-body>

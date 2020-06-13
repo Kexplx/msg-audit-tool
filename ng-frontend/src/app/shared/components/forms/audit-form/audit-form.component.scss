@@ -10,7 +10,7 @@ nb-card-footer {
 .wrapper-faccrits {
   max-width: 600px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
 
   @media screen and(max-width: 500px) {
@@ -18,6 +18,14 @@ nb-card-footer {
 
     nb-checkbox {
       margin: 0px 10px 0px 0px;
+    }
+  }
+
+  & > div {
+    display: grid;
+
+    & nb-checkbox:not(:first-child) {
+      margin-left: 20px;
     }
   }
 }
