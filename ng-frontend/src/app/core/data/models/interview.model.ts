@@ -13,5 +13,5 @@ export interface Interview {
   // contactPeopleRoles?: { contactPerson: ContactPerson; role: string }[];
   contactPeople: ContactPerson[];
   status: InterviewStatus;
-  facCrit: FacCrit;
+  facCrits: FacCrit[];
 }
