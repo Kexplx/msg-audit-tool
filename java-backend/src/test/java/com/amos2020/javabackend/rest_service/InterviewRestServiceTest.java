@@ -547,6 +547,7 @@ public class InterviewRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
     }
+
     @Test
     public void addContactPersonToInterviewWithContactPersonNotExisting_returns404() throws Exception {
         Interview interview = new Interview();
@@ -562,6 +563,39 @@ public class InterviewRestServiceTest {
         restService.perform(put("/interviews/1/add/person")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void removeContactPersonFromInterviewWithValidParameters_returns200() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.removeContactPersonFromInterview(anyInt(), anyInt())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
+
+        restService.perform(delete("/interviews/1/delete/person/1"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void removeContactPersonFromInterviewWithInvalidInterviewId_returns404() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.removeContactPersonFromInterview(anyInt(), anyInt())).willThrow(NotFoundException.class);
+
+        restService.perform(delete("/interviews/1/delete/person/1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void removeContactPersonFromInterviewWithInvalidContactPersonId_returns404() throws Exception {
+        Interview interview = new Interview();
+        interview.setAnswersById(new ArrayList<>());
+        interview.setInterviewContactPeopleById(new ArrayList<>());
+        given(interviewController.removeContactPersonFromInterview(anyInt(), anyInt())).willThrow(NotFoundException.class);
+
+        restService.perform(delete("/interviews/1/delete/person/1"))
                 .andExpect(status().isNotFound());
     }
 
