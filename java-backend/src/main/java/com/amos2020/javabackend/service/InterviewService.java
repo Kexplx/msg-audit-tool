@@ -24,7 +24,7 @@ public class InterviewService {
      *
      * @param interviewId int
      * @return Interview
-     * @throws NotFoundException exception
+     * @throws NotFoundException If interviewId is invalid and no interview can be found
      */
     public Interview getInterviewById(int interviewId) throws NotFoundException {
         Optional<Interview> interview = repository.findById(interviewId);
@@ -57,6 +57,22 @@ public class InterviewService {
         interview.setStartDate(startDate);
         interview.setEndDate(endDate);
         interview.setStatus(InterviewStatus.ACTIVE);
+        return repository.save(interview);
+    }
+
+    /**
+     * Updates the data of an existing interview
+     *
+     * @param interview Interview
+     * @param startDate Date
+     * @param endDate   Date
+     * @param status    InterviewStatus
+     * @return Updated interview
+     */
+    public Interview updateInterview(Interview interview, Date startDate, Date endDate, InterviewStatus status) {
+        interview.setStartDate(startDate);
+        interview.setEndDate(endDate);
+        interview.setStatus(status);
         return repository.save(interview);
     }
 }
