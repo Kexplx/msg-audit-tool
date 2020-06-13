@@ -4,7 +4,7 @@ package com.amos2020.javabackend.rest_service;
 import com.amos2020.javabackend.entity.ContactPerson;
 import com.amos2020.javabackend.entity.Salutation;
 import com.amos2020.javabackend.rest_service.controller.ContactPersonController;
-import com.amos2020.javabackend.rest_service.request.CreateContactPersonRequest;
+import com.amos2020.javabackend.rest_service.request.contactPerson.CreateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

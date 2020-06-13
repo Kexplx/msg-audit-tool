@@ -1,6 +1,7 @@
-package com.amos2020.javabackend.rest_service.request;
+package com.amos2020.javabackend.rest_service.request.contactPerson;
 
 import com.amos2020.javabackend.entity.Salutation;
+import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import lombok.Getter;
 import lombok.Setter;
 

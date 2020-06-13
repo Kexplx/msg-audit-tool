@@ -1,10 +1,10 @@
 package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.rest_service.controller.AuditController;
-import com.amos2020.javabackend.rest_service.request.CreateAuditRequest;
-import com.amos2020.javabackend.rest_service.request.DeleteAuditRequest;
-import com.amos2020.javabackend.rest_service.request.UpdateAuditRequest;
-import com.amos2020.javabackend.rest_service.request.UpdateAuditScopeRequest;
+import com.amos2020.javabackend.rest_service.request.audit.CreateAuditRequest;
+import com.amos2020.javabackend.rest_service.request.audit.DeleteAuditRequest;
+import com.amos2020.javabackend.rest_service.request.audit.UpdateAuditRequest;
+import com.amos2020.javabackend.rest_service.request.audit.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.rest_service.response.BasicAuditResponse;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;

@@ -2,6 +2,7 @@ package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.rest_service.controller.InterviewController;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
+import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -75,5 +76,25 @@ public class InterviewRestService {
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * PUT Endpoint for updating the data of an existing interview
+     *
+     * @return ResponseEntity with the updated interview
+     */
+    @PutMapping("/interviews/{interviewId}")
+    public ResponseEntity<BasicInterviewResponse> updateInterview(@PathVariable("interviewId") int interviewId, @RequestBody UpdateInterviewRequest request) {
+        BasicInterviewResponse response;
+
+        try {
+            request.isValid();
+            response = interviewController.updateInterview(interviewId, request.getStartDate(), request.getEndDate(), request.getStatus());
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(response);
+    }
 
 }
