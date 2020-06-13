@@ -71,8 +71,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
         this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
       }
     });
-
-    console.log(this.formGroup);
   }
 
   onSubmit() {
