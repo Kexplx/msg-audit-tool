@@ -3,6 +3,7 @@ package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.rest_service.controller.ContactPersonController;
 import com.amos2020.javabackend.rest_service.request.contactPerson.CreateContactPersonRequest;
+import com.amos2020.javabackend.rest_service.request.contactPerson.UpdateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class ContactPersonRestService {
     /**
      * GET endpoint for fetching a list of all contact persons
      *
-     * @return List<BasicAuditResponse>
+     * @return List<BasicContactPersonResponse>
      */
     @GetMapping("/contactpersons")
     public ResponseEntity<List<BasicContactPersonResponse>> getAuditAll() {
@@ -60,7 +61,7 @@ public class ContactPersonRestService {
      * GET endpoint for fetching a specific contact person by id
      *
      * @param contactPersonId int
-     * @return BasicAuditResponse
+     * @return BasicContactPersonResponse
      */
     @GetMapping("/contactpersons/{id}")
     public ResponseEntity<BasicContactPersonResponse> getAuditById(@PathVariable("id") int contactPersonId) {
@@ -70,6 +71,28 @@ public class ContactPersonRestService {
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * PUT Endpoint for updating a contact person
+     *
+     * @return BasicContactPersonResponse
+     */
+    @PutMapping("/contactpersons/{id}")
+    public ResponseEntity<BasicContactPersonResponse> updateInterview(@PathVariable("id") int contactPersonId, @RequestBody UpdateContactPersonRequest request) {
+        BasicContactPersonResponse response;
+
+        try {
+            request.isValid();
+            request.assertIdIsValid(contactPersonId);
+            response = contactPersonController.updateContactPerson(contactPersonId, request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getContactInformation(), request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision());
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        }
+
         return ResponseEntity.ok(response);
     }
 }

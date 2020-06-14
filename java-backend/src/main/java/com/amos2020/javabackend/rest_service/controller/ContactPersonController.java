@@ -37,4 +37,18 @@ public class ContactPersonController {
         ContactPerson contactPerson = contactPersonService.getContactPersonById(contactPersonId);
         return new BasicContactPersonResponse(contactPerson);
     }
+
+    public BasicContactPersonResponse updateContactPerson(int contactPersonId, Salutation salutation, String title, String forename, String surname, String contactInformation, String companyName, String department, String sector, String corporate_division)  throws NotFoundException {
+        ContactPerson contactPerson = contactPersonService.getContactPersonById(contactPersonId);
+        contactPerson.setSalutation(salutation);
+        contactPerson.setTitle(title);
+        contactPerson.setForename(forename);
+        contactPerson.setSurname(surname);
+        contactPerson.setContactInformation(contactInformation);
+        contactPerson.setCompanyName(companyName);
+        contactPerson.setDepartment(department);
+        contactPerson.setSector(sector);
+        contactPerson.setCorporateDivision(corporate_division);
+        return  new BasicContactPersonResponse(contactPersonService.updateContactPerson(contactPerson));
+    }
 }

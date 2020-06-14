@@ -54,5 +54,10 @@ public class ContactPersonService {
         }
         return contactPerson.get();
     }
+
+    public ContactPerson updateContactPerson(ContactPerson contactPerson) {
+        return repository.save(contactPerson);
+    }
+
 }
 
