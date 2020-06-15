@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Interview } from 'src/app/core/data/models/interview.model';
-import { result } from 'cypress/types/lodash';
 
 @Pipe({
   name: 'interviewByFacCrit',
