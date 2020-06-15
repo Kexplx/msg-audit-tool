@@ -38,6 +38,16 @@ export class AuditState {
     });
   }
 
+  static interview(id: string) {
+    return createSelector([AuditState], (state: AuditStateModel) => {
+      const audit = state.audits.find(
+        x => x.interviews && x.interviews?.findIndex(x => x.id === id) != -1,
+      );
+
+      return audit.interviews.find(x => x.id === id);
+    });
+  }
+
   static criteriaByFactorId(id: string) {
     return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.filter(x => x.referenceId === id);
