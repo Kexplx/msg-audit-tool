@@ -84,71 +84,75 @@ describe('AddAuditDialog', () => {
     });
   });
 
-  // context('When focussing on the scope it...', () => {
-  //   let allCriteria = [];
+  context('When focussing on the scope it...', () => {
+    let allCriteria = [];
 
-  //   before(() => {
-  //     isoConstants.forEach(factor => {
-  //       factor.criteria.forEach(c => {
-  //         allCriteria.push(c);
-  //       });
-  //     });
-  //   });
+    before(() => {
+      isoConstants.forEach(factor => {
+        factor.criteria.forEach(c => {
+          allCriteria.push(c);
+        });
+      });
+    });
 
-  //   beforeEach(() => {
-  //     cy.visit(auditsUrl + '/new');
-  //     cy.get('[data-cy=audit-scope-header]').click();
-  //   });
+    beforeEach(() => {
+      cy.visit(auditsUrl + '/new');
+      cy.get('[data-cy=audit-scope-header]').click();
+    });
 
-  //   it('opens and closes accordeon body when clicking on scope tab ', () => {
-  //     cy.get('[data-cy=audit-scope-form]').should('contain', 'Effektivität');
-  //     cy.get('[data-cy=audit-scope-header]').click();
-  //     cy.get('[data-cy=audit-scope-form]').contains('Effektivität').should('not.be.visible');
-  //     cy.get('[data-cy=audit-scope-header]').click();
-  //   });
+    it('opens and closes accordeon body when clicking on scope tab ', () => {
+      cy.get('[data-cy=factor-entry]').should('be.visible');
+      cy.get('[data-cy=criteria-entry]').should('be.visible');
+      cy.get('[data-cy=audit-scope-header]').click();
+      cy.get('[data-cy=factor-entry]').should('not.be.visible');
+      cy.get('[data-cy=criteria-entry]').should('not.be.visible');
+      cy.get('[data-cy=audit-scope-header]').click();
+    });
 
-  //   it('shows all factors and criteria from the ISO Norm', () => {
-  //     cy.get('[data-cy=factor-entry]').each((el, index) => {
-  //       cy.wrap(el).should('contain', isoConstants[index].title);
-  //     });
-  //     cy.get('[data-cy=criteria-entry]').each((el, index) => {
-  //       cy.wrap(el).should('contain', allCriteria[index].title);
-  //     });
-  //   });
+    // it('shows all factors and criteria from the ISO Norm', () => {
+    //   cy.get('[data-cy=factor-entry]').each((el, index) => {
+    //     cy.wrap(el).should('contain', isoConstants[index].title);
+    //   });
+    //   cy.get('[data-cy=criteria-entry]').each((el, index) => {
+    //     cy.wrap(el).should('contain', allCriteria[index].title);
+    //   });
+    // });
 
-  //   it('checks all factors and criteria (default)', () => {
-  //     cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
-  //       cy.wrap(el).should('have.class', 'checked');
-  //     });
-  //     cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
-  //       cy.wrap(el).should('have.class', 'checked');
-  //     });
-  //   });
+    it('checks all factors and criteria (default)', () => {
+      cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+      });
+      cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+      });
+    });
 
-  //   it('allows unchecking all entries', () => {
-  //     cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
-  //       cy.wrap(el).should('have.class', 'checked');
-  //       cy.wrap(el).click();
-  //       cy.wrap(el).should('not.have.class', 'checked');
-  //     });
-  //     cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
-  //       cy.wrap(el).should('have.class', 'checked');
-  //       cy.wrap(el).click();
-  //       cy.wrap(el).should('not.have.class', 'checked');
-  //     });
-  //   });
+    it('allows unchecking all entries', () => {
+      cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).click();
+        cy.wrap(el).should('not.have.class', 'checked');
+      });
+      cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).click();
+        cy.wrap(el).should('not.have.class', 'checked');
+      });
+    });
 
-  //   it('automatically checks/unchecks all criteria if factor was checked/unchecked', () => {
-  //     cy.get('[data-cy=factor-entry]').each((el, index) => {
-  //       cy.wrap(el).click();
-  //       cy.wrap(el)
-  //         .get('[data-cy=criteria-entry]')
-  //         .each(criteria => {
-  //           cy.wrap(criteria).should('not.have.class', 'checked');
-  //         });
-  //     });
-  //   });
-  // });
+    it('automatically checks/unchecks all criteria if factor was checked/unchecked', () => {
+      cy.get('[data-cy=factor-entry]  > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).click();
+        cy.wrap(el).should('not.have.class', 'checked');
+        cy.wrap(el)
+          .get('[data-cy=criteria-entry]')
+          .each(criteria => {
+            cy.wrap(criteria).should('not.have.class', 'checked');
+          });
+      });
+    });
+  });
 
   /**
    * Tests the buttons and their status depending on different inputs
