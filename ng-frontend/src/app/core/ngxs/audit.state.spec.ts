@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { Audit, AuditStatus } from '../data/models/audit.model';
-import { InterviewStatus } from '../data/models/interview.model';
 import { AuditState } from './audit.state';
 import * as jasmine from 'karma-jasmine';
 import { AddAudit, DeleteAudit, AddInterview } from './actions/audit.actions';
 
-describe('AuditState', () => {
+fdescribe('AuditState', () => {
   let store: Store;
   let audit: Audit;
 
@@ -56,5 +55,14 @@ describe('AuditState', () => {
     audit$.subscribe(x => {
       expect(x.interviews.length).toEqual(1);
     });
+  });
+
+  it('returns a interview when searched by id', () => {
+    audit.interviews = [{ id: '123', contactPeople: null, facCrits: null, status: null }];
+    store.dispatch(new AddAudit(audit));
+
+    const interview = store.selectSnapshot(AuditState.interview('123'));
+
+    expect(interview).toBeTruthy();
   });
 });
