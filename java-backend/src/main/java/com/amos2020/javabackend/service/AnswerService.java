@@ -70,4 +70,13 @@ public class AnswerService {
     public List<Answer> getAll() {
         return repository.findAll();
     }
+
+    /**
+     *
+     * @param answer
+     * @return
+     */
+    public Answer updateAnswer(Answer answer) {
+        return repository.save(answer);
+    }
 }
