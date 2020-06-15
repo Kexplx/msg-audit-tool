@@ -17,7 +17,7 @@
       <nb-card-body>
         <nb-list *ngIf="(audit$ | async).interviews | interviewByFacCrit: facCrit.id as interviews; else noInterviews">
           <nb-list-item *ngFor="let interview of interviews">
-            {{ interview.id }}
+            <app-interview-card [interview]="interview" [facCritId]="facCrit.id"></app-interview-card>
           </nb-list-item>
         </nb-list>
         <ng-template #noInterviews>
