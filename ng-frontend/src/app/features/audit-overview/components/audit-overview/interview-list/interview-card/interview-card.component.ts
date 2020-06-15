@@ -8,6 +8,7 @@ import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.m
 })
 export class InterviewCardComponent implements OnInit {
   @Input() interview: Interview;
+  @Input() facCritId: string;
   interviewStatuses = InterviewStatus;
 
   constructor() {}
