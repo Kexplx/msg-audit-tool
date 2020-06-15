@@ -3,6 +3,7 @@ package com.amos2020.javabackend.rest_service;
 import com.amos2020.javabackend.entity.Answer;
 import com.amos2020.javabackend.rest_service.controller.AnswerController;
 import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
+import com.amos2020.javabackend.rest_service.request.answer.UpdateAnswerRequest;
 import com.amos2020.javabackend.rest_service.response.BasicAnswerResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,8 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -46,7 +46,7 @@ public class AnswerRestServiceTest {
 
     @Test
     public void getAnswersByInterviewId_returnOK() throws Exception {
-        given(answerController.getAllAnswers(1)).willReturn(new ArrayList<>());
+        given(answerController.getAllAnswersByInterviewId(1)).willReturn(new ArrayList<>());
 
         restService.perform(get("/answers/interview/1")).andExpect(status().isOk());
     }
@@ -83,10 +83,9 @@ public class AnswerRestServiceTest {
     public void createAnswerByInvalidInterviewId_return400() throws Exception {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setQuestionId(1);
-
         given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
-
         String requestAsJson = buildJson(request);
+
         restService.perform(post("/answers")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
@@ -100,7 +99,71 @@ public class AnswerRestServiceTest {
         request.setInterviewId(1);
         given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willThrow(NotFoundException.class);
         String requestAsJson = buildJson(request);
+
         restService.perform(post("/answers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void updateAnswerByValidRequest_returnOk() throws Exception {
+        UpdateAnswerRequest request = new UpdateAnswerRequest();
+        request.setInterviewId(1);
+        request.setQuestionId(1);
+        request.setFaccritId(1);
+        request.setAnnotation("test");
+        request.setProof("test");
+        request.setReason("test");
+        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(), request.getFaccritId(),
+                request.getResult(), request.getResponsible(),
+                request.getDocumentation(), request.getProcedure(), request.getReason(),
+                request.getProof(), request.getAnnotation())).willReturn(new BasicAnswerResponse(new Answer()));
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/answers/interview/1/question/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void updateAnswerByInvalidRequest_return400() throws Exception {
+        UpdateAnswerRequest request = new UpdateAnswerRequest();
+        request.setInterviewId(1);
+        request.setQuestionId(1);
+        request.setFaccritId(-1);
+        request.setAnnotation("test");
+        request.setProof("test");
+        request.setReason("test");
+        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(), request.getFaccritId(),
+                request.getResult(), request.getResponsible(),
+                request.getDocumentation(), request.getProcedure(), request.getReason(),
+                request.getProof(), request.getAnnotation())).willThrow(new IllegalArgumentException());
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/answers/interview/1/question/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateAnswerByInterviewNotFound_return404() throws Exception {
+        UpdateAnswerRequest request = new UpdateAnswerRequest();
+        request.setInterviewId(1);
+        request.setQuestionId(1);
+        request.setFaccritId(1);
+        request.setAnnotation("test");
+        request.setProof("test");
+        request.setReason("test");
+        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(), request.getFaccritId(),
+                request.getResult(), request.getResponsible(),
+                request.getDocumentation(), request.getProcedure(), request.getReason(),
+                request.getProof(), request.getAnnotation())).willThrow(new NotFoundException(""));
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/answers/interview/1/question/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
