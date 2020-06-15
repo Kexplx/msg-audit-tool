@@ -24,91 +24,83 @@ function inputAudit(testAudit) {
     cy.get('[data-cy=audit-end-input]').click();
     cy.get('.today > .cell-content').click();
   }
-  // cy.get('[data-cy=audit-basic-data-form]').click();
-  // // Input Customer data and open next collapsed accordeon through click
-  // if (testAudit.customerData) {
-  //   cy.get('[data-cy=audit-customer-data-form]').click();
-  //   if (testAudit.customerData.name) {
-  //     cy.get('[data-cy=audit-customer-name-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.customerData.name);
-  //   }
-  //   if (testAudit.customerData.department) {
-  //     cy.get('[data-cy=audit-customer-department-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.customerData.department);
-  //   }
-  //   if (testAudit.customerData.corporateDivision) {
-  //     cy.get('[data-cy=audit-customer-division-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.customerData.corporateDivision);
-  //   }
-  //   if (testAudit.customerData.sector) {
-  //     cy.get('[data-cy=audit-customer-sector-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.customerData.sector);
-  //   }
-  //   cy.get('[data-cy=audit-customer-data-form]').click();
-  // }
+  cy.get('[data-cy=submit-audit-data-form]').click();
+}
 
-  // if (testAudit.contactPerson) {
-  //   cy.get('[data-cy=audit-contact-data-form]').click();
-
-  //   // Input Contact Information and open next collapsed accordeon through click
-  //   cy.get(':nth-child(1) > .appearance-outline > .select-button').click();
-  //   if (testAudit.contactPerson.title) {
-  //     cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
-  //   }
-  //   if (testAudit.contactPerson.salutation) {
-  //     cy.get('[data-cy=audit-contact-title-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.contactPerson.salutation);
-  //   }
-  //   if (testAudit.contactPerson.firstName) {
-  //     cy.get('[data-cy=audit-contact-firstname-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.contactPerson.firstName);
-  //   }
-  //   if (testAudit.contactPerson.lastName) {
-  //     cy.get('[data-cy=audit-contact-lastname-input]')
-  //       .filter(':visible')
-  //       .clear()
-  //       .type(testAudit.contactPerson.lastName);
-  //   }
-  //   if (testAudit.contactPerson.information) {
-  //     cy.get('[data-cy=audit-contact-info-input]')
-  //       .clear()
-  //       .type(testAudit.contactPerson.information);
-  //   }
-  // }
+function inputPerson(testAudit) {
+  if (testAudit.customerData.name) {
+    cy.get('[data-cy=company-name-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.customerData.name);
+  }
+  if (testAudit.customerData.department) {
+    cy.get('[data-cy=company-department-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.customerData.department);
+  }
+  if (testAudit.customerData.corporateDivision) {
+    cy.get('[data-cy=company-division-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.customerData.corporateDivision);
+  }
+  if (testAudit.customerData.sector) {
+    cy.get('[data-cy=company-sector-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.customerData.sector);
+  }
+  if (testAudit.contactPerson.title) {
+    cy.get('[data-cy=contact-salutation-input]').click();
+    cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
+  }
+  if (testAudit.contactPerson.salutation) {
+    cy.get('[data-cy=contact-title-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.contactPerson.salutation);
+  }
+  if (testAudit.contactPerson.firstName) {
+    cy.get('[data-cy=contact-firstname-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.contactPerson.firstName);
+  }
+  if (testAudit.contactPerson.lastName) {
+    cy.get('[data-cy=contact-lastname-input]')
+      .filter(':visible')
+      .clear()
+      .type(testAudit.contactPerson.lastName);
+  }
+  if (testAudit.contactPerson.information) {
+    cy.get('[data-cy=contact-info-input]').clear().type(testAudit.contactPerson.information);
+  }
   cy.get('[data-cy=submit-audit-data-form]').click();
 }
 
 function inputInterview(testInterview) {
-  // if (testInterview.start) {
-  //   // pick a start date
-  //   cy.get('[data-cy=interview-start-input]').click();
-  //   cy.get('.today > .cell-content').first().click();
-  // }
-  // if (testInterview.contacts) {
-  //   // enter a contact name and a contact role
-  //   testInterview.contacts.forEach((element, index) => {
-  //     cy.get('[data-cy=interview-contact-name-input]').eq(index).clear().type(element.name);
-  //     cy.get('[data-cy=interview-contact-role-input]').eq(index).clear().type(element.role);
-  //     cy.get('[data-cy=interview-add-contact-person]').click();
-  //   });
-  // }
-  // // choose an iso criteria
-  // cy.get('[data-cy=interview-category-input]').click();
-  // cy.get('[data-cy=interview-category-option]').contains(testInterview.criteria).click();
-  // // submit form
-  // cy.get('[data-cy=submit-interview-data-form]').click({ force: true });
+  if (testInterview.start) {
+    // TODO pick a start date
+    cy.get('[data-cy=interview-start-input]').click();
+    cy.get('.today > .cell-content').first().click();
+  }
+  if (testInterview.contacts) {
+    // TODO enter a contact name and a contact role
+    cy.get('[data-cy=interview-contacts]').click();
+    cy.get('[data-cy=interview-contact]').each(contact => {
+      cy.wrap(contact).click();
+    });
+    cy.get('[data-cy=interview-contacts]').click();
+  }
+  // TODO choose an iso criteria
+  cy.get('[data-cy=interview-scope-radio] > .label > .custom-checkbox').each((el, index) => {
+    cy.wrap(el).click();
+  });
+  cy.get('[data-cy=interview-scope-header]').click();
+  // submit form
+  cy.get('[data-cy=submit-interview-data-form]').click({ force: true });
 }
 
 function testAuditInfoPage(testAudit) {
@@ -185,6 +177,7 @@ function testInterviewListEntry(testInterview) {
 Cypress.Commands.add('addAudit', addAudit);
 Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('inputInterview', inputInterview);
+Cypress.Commands.add('inputPerson', inputPerson);
 Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
 Cypress.Commands.add('testAuditListEntry', testAuditListEntry);
 Cypress.Commands.add('testInterviewListEntry', testInterviewListEntry);

@@ -212,13 +212,5 @@ describe('AddAuditDialog', () => {
     it('populates the audits list overview page with consistent information', () => {
       cy.testAuditListEntry(testAudit);
     });
-
-    //TODO Fix command.js if constraints are more settled and uncomment
-    // it('populates the concrete audit page with consistent information', () => {
-    //   cy.get('[data-cy=audit-short-infos]').first().click();
-    //   cy.get('[data-cy=audit-short-infos]').should('contain.text', testAudit.name);
-    //   cy.contains('infos').click();
-    //   cy.testAuditInfoPage(testAudit);
-    // });
   });
 });

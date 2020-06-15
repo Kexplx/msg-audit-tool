@@ -171,15 +171,15 @@ describe('AddInterviewDialog', () => {
     // });
   });
 
-  // TODO Fix command.js if constraints are more settled and uncomment
-  //   // Test consistency of added interview information
-  //   context('When an interview was added it ...', () => {
-  //     beforeEach(() => {
-  //       cy.inputInterview(testInterview);
-  //     });
+  // Test consistency of added interview information
+  context('When an interview was added it ...', () => {
+    beforeEach(() => {
+      cy.inputInterview(testInterview);
+    });
 
-  //     it('shows up on the interview overview', () => {
-  //       cy.testInterviewListEntry(testInterview);
-  //     });
-  //   });
+    // TODO Fix command.js if constraints are more settled and uncomment
+    // it('shows up on the interview overview', () => {
+    //   cy.testInterviewListEntry(testInterview);
+    // });
+  });
 });

@@ -84,14 +84,6 @@ describe('EditAuditDialog', () => {
         cy.get('[data-cy=home]').click();
         cy.testAuditListEntry(testAuditEdited);
       });
-
-      // TODO Fix command.js if constraints are more settled and uncomment
-      // it('populates the concrete audit page with consistent edited information', () => {
-      //   cy.get('[data-cy=audit-short-infos]').first().click();
-      //   cy.get('[data-cy=audit-short-infos]').should('contain.text', testAuditEdited.name);
-      //   cy.contains('infos').click();
-      //   cy.testAuditInfoPage(testAuditEdited);
-      // });
     });
   });
 });
