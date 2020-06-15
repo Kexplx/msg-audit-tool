@@ -4,7 +4,6 @@ import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
@@ -44,17 +43,7 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
       this.location.back();
     });
 
-    this.audit$
-      .pipe(
-        tap(audit => {
-          if (!audit) {
-            throw Error(`Audit with id: ${this.id} not found`);
-          }
-        }),
-      )
-      .subscribe(null, () => {
-        this.dialogRef.close();
-      });
+    this.audit$.subscribe(audit => audit ?? this.dialogRef.close());
   }
 
   onSubmit(audit: Audit) {
