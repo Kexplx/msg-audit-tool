@@ -13,6 +13,7 @@ import { AuditInfoComponent } from './components/audit-overview/audit-info/audit
 import { FactorsInScopePipe } from './components/audit-overview/interview-list/factorsInScope.pipe';
 import { FacCritByFactorPipe } from './components/audit-overview/interview-list/facCritByFactor.pipe';
 import { InterviewByFacCritPipe } from './components/audit-overview/interview-list/interviewByFacCrit.pipe';
+import { InterviewComponent } from './components/interview/interview.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { InterviewByFacCritPipe } from './components/audit-overview/interview-li
     InterviewByFacCritPipe,
     InterviewFormComponent,
     InterviewListComponent,
+    InterviewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, AuditOverviewRoutingModule, SharedModule],
 })
