@@ -1,22 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InterviewComponent } from './interview.component';
+import { RouterModule } from '@angular/router';
+import { CoreModule } from 'src/app/core/core.module';
 
 describe('InterviewComponent', () => {
   let component: InterviewComponent;
   let fixture: ComponentFixture<InterviewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ InterviewComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [InterviewComponent],
+      imports: [RouterModule.forRoot([]), CoreModule],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(InterviewComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
