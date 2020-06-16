@@ -1,0 +1,43 @@
+<header class="mt-2">
+  <div class="header-container-1">
+    <h6>
+      {{ (facCrit$ | async).name }} <span class="text-hint">{{ (interview$ | async).start | date: 'dd.MM.yyyy' }}</span>
+    </h6>
+    <div></div>
+    <button hero nbButton>speichern</button>
+    <button hero status="primary" nbButton>abschließen</button>
+  </div>
+  <div class="header-container-2 mt-2 subtitle-2">
+    <span *ngFor="let person of (interview$ | async).contactPeople">
+      {{ person.firstName + ', ' + person.lastName + ' | ' + person.role }}
+    </span>
+  </div>
+</header>
+
+<nb-accordion class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
+  <nb-accordion-item [expanded]="i === 0" class="mb-2">
+    <nb-accordion-item-header>{{ question.textDe }}</nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <form class="container-interview-form">
+        <div class="container-checkboxes">
+          <nb-checkbox>Ergebnis</nb-checkbox>
+          <nb-checkbox>Verantwortlicher</nb-checkbox>
+          <nb-checkbox>Dokumentation</nb-checkbox>
+          <nb-checkbox>Vorgehen</nb-checkbox>
+        </div>
+        <div class="container-inputs-item-1">
+          <label class="label">Begründung</label>
+          <textarea fullWidth nbInput></textarea>
+        </div>
+        <div class="container-inputs-item-2">
+          <label class="label">Bemerkung</label>
+          <textarea fullWidth nbInput></textarea>
+        </div>
+        <div class="container-inputs-item-3">
+          <label class="label">Nachweis</label>
+          <textarea fullWidth nbInput></textarea>
+        </div>
+      </form>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>
