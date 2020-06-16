@@ -40,3 +40,12 @@ li {
 nb-list-item {
   display: grid;
 }
+
+hr {
+  border-bottom: 3px solid #ffffff;
+  margin: 20px 50px;
+}
+
+.fac-crits div:last-child hr {
+  border-bottom: none;
+}
