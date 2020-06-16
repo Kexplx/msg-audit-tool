@@ -7,7 +7,7 @@ import { AuditOverviewComponent } from './components/audit-overview/audit-overvi
 import { InterviewCardComponent } from './components/audit-overview/interview-list/interview-card/interview-card.component';
 import { NewInterviewDialogComponent } from '../../shared/components/dialogs/new-interview-dialog/new-interview-dialog.component';
 import { InterviewFormComponent } from '../../shared/components/forms/interview-form/interview-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { InterviewListComponent } from './components/audit-overview/interview-list/interview-list.component';
 import { AuditInfoComponent } from './components/audit-overview/audit-info/audit-info.component';
 import { FacCritByFactorPipe } from './components/audit-overview/interview-list/facCritByFactor.pipe';
@@ -26,6 +26,12 @@ import { InterviewComponent } from './components/interview/interview.component';
     InterviewListComponent,
     InterviewComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, AuditOverviewRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AuditOverviewRoutingModule,
+    SharedModule,
+  ],
 })
 export class AuditOverviewModule {}
