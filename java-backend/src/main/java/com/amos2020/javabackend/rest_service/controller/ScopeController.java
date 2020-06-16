@@ -8,9 +8,11 @@ import com.amos2020.javabackend.rest_service.response.BasicScopeResponse;
 import com.amos2020.javabackend.service.AuditService;
 import com.amos2020.javabackend.service.ScopeService;
 import javassist.NotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class ScopeController {
 
     final ScopeService scopeService;

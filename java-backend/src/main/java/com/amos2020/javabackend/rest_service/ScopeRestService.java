@@ -3,7 +3,6 @@ package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.rest_service.controller.ScopeController;
 import com.amos2020.javabackend.rest_service.request.scope.AddScopeRequest;
-import com.amos2020.javabackend.rest_service.response.BasicAuditResponse;
 import com.amos2020.javabackend.rest_service.response.BasicScopeResponse;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +23,9 @@ public class ScopeRestService {
         this.scopeController = scopeController;
     }
 
-    @PostMapping("/audits/{id}/scope/")
+    @PostMapping("/audits/{id}/scope")
     public ResponseEntity<List<BasicScopeResponse>> addScope(@PathVariable("id") int auditId, @RequestBody AddScopeRequest request) {
         List<BasicScopeResponse> response;
-
         try {
             // Validate parameters for creating a audit
             request.isValid();
