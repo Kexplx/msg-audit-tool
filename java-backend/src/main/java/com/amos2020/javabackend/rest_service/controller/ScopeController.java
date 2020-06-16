@@ -35,4 +35,10 @@ public class ScopeController {
         }
         return result;
     }
+
+    public BasicScopeResponse updateScope(int auditId, int facCritId, boolean removed, String note, String change_note) throws IllegalAccessException, NotFoundException {
+        auditService.getAuditById(auditId);
+        scopeService.updateScopeItem(auditId, facCritId, change_note, removed, note);
+        return (new BasicScopeResponse(scopeService.findScopeItemByIds(auditId,facCritId)));
+    }
 }
