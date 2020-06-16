@@ -65,7 +65,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     this.facCrits$.subscribe(facCrits => {
       for (const facCrit of facCrits) {
         const inAudit = this.audit
-          ? this.audit.facCrits.findIndex(x => x.id === facCrit.id) != -1
+          ? this.audit.scope.findIndex(x => x.id === facCrit.id) != -1
           : true;
 
         this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
@@ -81,7 +81,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
       startDate: this.startDate.value,
       status: this.audit?.status ?? AuditStatus.Planned,
       contactPeople: this.contactPeopleControl.value,
-      facCrits: this.checkedFacCrits(),
+      scope: this.checkedFacCrits(),
     };
 
     this.formSubmitted.emit(audit);
@@ -91,19 +91,11 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     const result: FacCrit[] = [];
 
     this.facCrits$.subscribe(facCrits => {
-      for (const crit of facCrits.filter(x => x.referenceId)) {
+      for (const crit of facCrits) {
         const checked = this.formGroup.get(crit.id).value;
 
         if (checked) {
           result.push(crit);
-        }
-      }
-
-      for (const fac of facCrits.filter(x => !x.referenceId)) {
-        const hasCriteriaInResult = result.findIndex(x => x.referenceId === fac.id) != -1;
-
-        if (hasCriteriaInResult) {
-          result.push(fac);
         }
       }
     });
