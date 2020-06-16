@@ -20,9 +20,13 @@
   <nb-card-header>
     <div class="subtitle-2" data-cy="interview-contact-persons">
       <ng-container *ngIf="interview.contactPeople && interview.contactPeople.length > 0; else noContactPerson">
-      <span> {{ interview.contactPeople[0].firstName + ' ' + interview.contactPeople[0].lastName + ' | ' }} </span>
-      <span> {{ interview.contactPeople[0].role }} </span>
-      <span *ngIf="interview.contactPeople.length > 1"> (+)</span>
+        <span> {{ interview.contactPeople[0].firstName + ' ' + interview.contactPeople[0].lastName + ' | ' }} </span>
+        <span> {{ interview.contactPeople[0].role }} </span>
+        <span *ngIf="interview.contactPeople.length > 1"> (+)</span>
+      </ng-container>
+      <ng-template #noContactPerson>
+        <span class="text-danger">Keine Kontaktperson gewählt</span>
+      </ng-template>
       <span class="label" *ngIf="interview.start" data-cy="interview-timestamp"> &nbsp;{{ interview.start | date: 'dd.MM.yyyy' }} </span>
     </div>
     <br />
