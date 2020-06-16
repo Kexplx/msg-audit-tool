@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NebularModule } from './nebular/nebular.module';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddAuditDialogComponent } from './components/dialogs/add-audit-dialog/add-audit-dialog.component';
 import { EditAuditDialogComponent } from './components/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 import { ActionListenerDirective } from './directives/action-listener.directive';
@@ -20,7 +19,6 @@ import { FactorByIdPipe } from './pipes/factorById.pipe';
 
 @NgModule({
   declarations: [
-    NavbarComponent,
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     ActionListenerDirective,
@@ -38,7 +36,6 @@ import { FactorByIdPipe } from './pipes/factorById.pipe';
   imports: [CommonModule, RouterModule, NebularModule, ReactiveFormsModule],
   exports: [
     NebularModule,
-    NavbarComponent,
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     AddContactPersonDialogComponent,
