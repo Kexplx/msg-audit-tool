@@ -23,6 +23,8 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   @Select(AuditState.facCrits) allFacCrits$: Observable<FacCrit[]>;
   @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
 
+  facCritSelected = false;
+
   constructor(
     private fb: FormBuilder,
     protected dialogService: NbDialogService,
@@ -52,20 +54,28 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     for (const facCrit of this.scope) {
       this.formGroup.addControl(facCrit.id, new FormControl(false));
     }
+
+    this.formGroup.valueChanges.subscribe(x => {
+      for (const facCrit of this.scope) {
+        if (this.formGroup.get(facCrit.id).value === true) {
+          return (this.facCritSelected = true);
+        }
+      }
+
+      return (this.facCritSelected = false);
+    });
   }
 
   checkedFacCrits() {
     const result: FacCrit[] = [];
 
-    this.allFacCrits$.subscribe(facCrits => {
-      for (const crit of facCrits) {
-        const checked = this.formGroup.get(crit.id).value;
+    for (const crit of this.scope) {
+      const checked = this.formGroup.get(crit.id).value;
 
-        if (checked) {
-          result.push(crit);
-        }
+      if (checked) {
+        result.push(crit);
       }
-    });
+    }
 
     return result;
   }
@@ -81,10 +91,10 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   }
 
   toggleCriteriaChecked(factorId: string, checked: true) {
-    this.store.select(AuditState.criteriaByFactorId(factorId)).subscribe(x => {
-      for (const crit of x) {
-        this.formGroup.get(crit.id).setValue(checked);
-      }
-    });
+    const criteria = this.scope.filter(x => x.referenceId === factorId);
+
+    for (const crit of criteria) {
+      this.formGroup.get(crit.id)?.setValue(checked);
+    }
   }
 }
