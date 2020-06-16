@@ -45,6 +45,11 @@ public class ScopeService {
         return repository.findAll();
     }
 
+    @Transactional
+    public List<Scope> findScopeItemsByAuditId(int auditId) {
+        return  repository.findAllByAuditId(auditId);
+    }
+
     public Scope updateScopeItem(int auditId, int facCritId, String changeNote, boolean isRemoved, String note) throws IllegalAccessException {
         Scope scopeItem = findScopeItemByIds(auditId, facCritId);
         if (scopeItem != null) {
