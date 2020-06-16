@@ -9,7 +9,7 @@ export const AUDITS: Audit[] = [
     creationDate: Date.now(),
     name: 'Audit 1',
     startDate: Date.now(),
-    facCrits: FACCRITS,
+    scope: FACCRITS,
     status: AuditStatus.Planned,
     interviews: [
       {
@@ -26,7 +26,7 @@ export const AUDITS: Audit[] = [
     creationDate: Date.now(),
     name: 'Audit 2',
     startDate: Date.now(),
-    facCrits: [],
+    scope: [],
     status: AuditStatus.Planned,
   },
   {
@@ -34,7 +34,7 @@ export const AUDITS: Audit[] = [
     creationDate: Date.now(),
     name: 'Audit 3',
     startDate: Date.now(),
-    facCrits: [],
+    scope: [],
     status: AuditStatus.InAction,
   },
   {
@@ -42,7 +42,7 @@ export const AUDITS: Audit[] = [
     creationDate: Date.now(),
     name: 'Audit 4',
     startDate: Date.now(),
-    facCrits: [],
+    scope: [],
     status: AuditStatus.InAction,
   },
 ];

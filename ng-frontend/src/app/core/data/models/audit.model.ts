@@ -18,5 +18,5 @@ export interface Audit {
   endDate?: number;
   contactPeople?: ContactPerson[];
   interviews?: Interview[];
-  facCrits: FacCrit[];
+  scope: FacCrit[];
 }
