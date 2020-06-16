@@ -5,7 +5,7 @@ import { AuditState } from './audit.state';
 import * as jasmine from 'karma-jasmine';
 import { AddAudit, DeleteAudit, AddInterview } from './actions/audit.actions';
 
-fdescribe('AuditState', () => {
+describe('AuditState', () => {
   let store: Store;
   let audit: Audit;
 

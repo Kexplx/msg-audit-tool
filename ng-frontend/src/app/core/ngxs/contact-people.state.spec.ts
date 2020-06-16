@@ -3,7 +3,11 @@ import { NgxsModule, Store } from '@ngxs/store';
 import { ContactPersonState } from './contact-people.state';
 import { ContactPerson } from '../data/models/contact-person.model';
 import { CONTACT_PEOPLE } from '../data/examples/contact-people';
-import { AddContactPerson, DeleteContactPerson } from './actions/contact-person.action';
+import {
+  AddContactPerson,
+  DeleteContactPerson,
+  UpdateContactPerson,
+} from './actions/contact-person.action';
 
 const contactPeople = CONTACT_PEOPLE;
 
@@ -34,5 +38,22 @@ describe('ContactPersonState', () => {
     store.dispatch(new DeleteContactPerson(contactPerson));
     const lengthNow = store.selectSnapshot(ContactPersonState.contactPeople)?.length ?? 0;
     expect(lengthNow).toEqual(length - 1);
+  });
+
+  it('should update a contact-person when updateContactPerson is dispatched', () => {
+    store.dispatch(new AddContactPerson(contactPerson));
+    const updatedContactPerson: ContactPerson = { ...contactPerson, firstName: 'UPDATE' };
+
+    store.dispatch(new UpdateContactPerson(contactPerson.id, updatedContactPerson));
+
+    const name = store.selectSnapshot(ContactPersonState.contactPerson(contactPerson.id)).firstName;
+
+    expect(name).toEqual('UPDATE');
+  });
+
+  it('it should get a contactPerson by id when valid id is passed', () => {
+    store.dispatch(new AddContactPerson(contactPerson));
+    const cp = store.selectSnapshot(ContactPersonState.contactPerson(contactPerson.id));
+    expect(cp).toBeTruthy();
   });
 });

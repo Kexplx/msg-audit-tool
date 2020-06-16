@@ -6,6 +6,7 @@ import { DebugElement } from '@angular/core';
 import { InterviewFormComponent } from './interview-form.component';
 import { FormBuilder } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 describe('InterviewFormComponent', () => {
   let component: InterviewFormComponent;
@@ -14,7 +15,7 @@ describe('InterviewFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [InterviewFormComponent],
-      imports: [SharedModule],
+      imports: [SharedModule, CoreModule],
       providers: [FormBuilder],
     }).compileComponents();
   }));
@@ -22,10 +23,9 @@ describe('InterviewFormComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InterviewFormComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });
