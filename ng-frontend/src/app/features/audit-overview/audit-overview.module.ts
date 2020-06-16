@@ -10,7 +10,6 @@ import { InterviewFormComponent } from '../../shared/components/forms/interview-
 import { ReactiveFormsModule } from '@angular/forms';
 import { InterviewListComponent } from './components/audit-overview/interview-list/interview-list.component';
 import { AuditInfoComponent } from './components/audit-overview/audit-info/audit-info.component';
-import { FactorsInScopePipe } from './components/audit-overview/interview-list/factorsInScope.pipe';
 import { FacCritByFactorPipe } from './components/audit-overview/interview-list/facCritByFactor.pipe';
 import { InterviewByFacCritPipe } from './components/audit-overview/interview-list/interviewByFacCrit.pipe';
 import { InterviewComponent } from './components/interview/interview.component';
@@ -21,7 +20,6 @@ import { InterviewComponent } from './components/interview/interview.component';
     InterviewCardComponent,
     AuditInfoComponent,
     NewInterviewDialogComponent,
-    FactorsInScopePipe,
     FacCritByFactorPipe,
     InterviewByFacCritPipe,
     InterviewFormComponent,
