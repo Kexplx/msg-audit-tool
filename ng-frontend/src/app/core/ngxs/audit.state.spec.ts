@@ -19,7 +19,7 @@ fdescribe('AuditState', () => {
     audit = {
       name: 'TestAudit',
       status: AuditStatus.Planned,
-      facCrits: [],
+      scope: [],
       startDate: null,
       creationDate: null,
     };
