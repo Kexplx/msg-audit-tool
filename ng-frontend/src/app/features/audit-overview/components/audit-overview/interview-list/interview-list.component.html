@@ -1,5 +1,5 @@
 <header>
-  <button *ngIf="(audit$ | async).facCrits.length > 0" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
+  <button [disabled]="!(audit$ | async).scope.length" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
     <div class="min-500">
       <nb-icon icon="plus"></nb-icon>
       Neues Interview
