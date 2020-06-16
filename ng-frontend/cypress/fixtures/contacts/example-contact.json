@@ -1,0 +1,11 @@
+{
+  "firstName": "Max",
+  "lastName": "Mustermann",
+  "information": "+123456789",
+  "salutation": "Herr",
+  "title": "Dr.",
+  "department": "HR",
+  "companyName": "TestBank",
+  "sector": "Banking",
+  "corporateDivision": "Human Resources"
+}

@@ -153,22 +153,22 @@ describe('AddInterviewDialog', () => {
       cy.get('[data-cy=discard]').click();
     });
 
-    // it('requires iso criteria to be submittable', () => {
-    //   // submit button should be disabled by default
-    //   cy.get('[data-cy=submit-interview-data-form]').should('have.attr', 'disabled');
-    //   // choose an iso criteria
-    //   cy.get('[data-cy=interview-scope-header]').click();
-    //   cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
-    //     cy.wrap(el).should('not.have.class', 'checked');
-    //     cy.wrap(el).click();
-    //     cy.wrap(el).should('have.class', 'checked');
-    //   });
-    //   cy.get('[data-cy=interview-scope-header]').click();
-    //   // submit button should be enabled
-    //   cy.get('[data-cy=submit-interview-data-form]').should('be.enabled');
-    //   // submit button should be clickable, submit form
-    //   cy.get('[data-cy=submit-interview-data-form]').click();
-    // });
+    it('requires iso criteria to be submittable', () => {
+      // submit button should be disabled by default
+      cy.get('[data-cy=submit-interview-data-form]').should('have.attr', 'disabled');
+      // choose an iso criteria
+      cy.get('[data-cy=interview-scope-header]').click();
+      cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
+        cy.wrap(el).should('not.have.class', 'checked');
+        cy.wrap(el).click();
+        cy.wrap(el).should('have.class', 'checked');
+      });
+      cy.get('[data-cy=interview-scope-header]').click();
+      // submit button should be enabled
+      cy.get('[data-cy=submit-interview-data-form]').should('be.enabled');
+      // submit button should be clickable, submit form
+      cy.get('[data-cy=submit-interview-data-form]').click();
+    });
   });
 
   // Test consistency of added interview information
@@ -177,7 +177,6 @@ describe('AddInterviewDialog', () => {
       cy.inputInterview(testInterview);
     });
 
-    // TODO Fix command.js if constraints are more settled and uncomment
     // it('shows up on the interview overview', () => {
     //   cy.testInterviewListEntry(testInterview);
     // });

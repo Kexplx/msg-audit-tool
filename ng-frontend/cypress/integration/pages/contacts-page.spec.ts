@@ -41,7 +41,6 @@ describe('ContactsPage', () => {
     it('shows a button to edit the person and opens dialog to edit person when clicked', () => {
       cy.get('[data-cy=edit-person-button]').first().click();
       cy.get('[data-cy=contact-data-form]').should('be.visible');
-      //TODO check if entries are similar to added entry
     });
 
     it('removes an audit by clicking on an audit delete button', () => {

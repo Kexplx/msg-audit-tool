@@ -1,0 +1,11 @@
+{
+  "firstName": "Anna",
+  "lastName": "Mustermann",
+  "information": "anna@investmentbank.o",
+  "salutation": "Frau",
+  "title": "Dr. Dr. hab.",
+  "department": "IT",
+  "companyName": "TestInvestmentBank",
+  "sector": "SuperBanking",
+  "corporateDivision": "Alien Resources"
+}

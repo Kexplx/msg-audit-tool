@@ -27,55 +27,29 @@ function inputAudit(testAudit) {
   cy.get('[data-cy=submit-audit-data-form]').click();
 }
 
-function inputPerson(testAudit) {
-  if (testAudit.customerData.name) {
-    cy.get('[data-cy=company-name-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.customerData.name);
-  }
-  if (testAudit.customerData.department) {
-    cy.get('[data-cy=company-department-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.customerData.department);
-  }
-  if (testAudit.customerData.corporateDivision) {
-    cy.get('[data-cy=company-division-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.customerData.corporateDivision);
-  }
-  if (testAudit.customerData.sector) {
-    cy.get('[data-cy=company-sector-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.customerData.sector);
-  }
-  if (testAudit.contactPerson.title) {
-    cy.get('[data-cy=contact-salutation-input]').click();
-    cy.get('[data-cy=salutation-option]').contains(testAudit.contactPerson.title).click();
-  }
-  if (testAudit.contactPerson.salutation) {
-    cy.get('[data-cy=contact-title-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.contactPerson.salutation);
-  }
-  if (testAudit.contactPerson.firstName) {
-    cy.get('[data-cy=contact-firstname-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.contactPerson.firstName);
-  }
-  if (testAudit.contactPerson.lastName) {
-    cy.get('[data-cy=contact-lastname-input]')
-      .filter(':visible')
-      .clear()
-      .type(testAudit.contactPerson.lastName);
-  }
-  if (testAudit.contactPerson.information) {
-    cy.get('[data-cy=contact-info-input]').clear().type(testAudit.contactPerson.information);
+function addPerson(testPerson) {
+  cy.get('[data-cy=new-contact]').click();
+  inputPerson(testPerson);
+}
+
+function inputPerson(testPerson) {
+  cy.get('[data-cy=company-name-input]').filter(':visible').clear().type(testPerson.companyName);
+  cy.get('[data-cy=company-department-input]')
+    .filter(':visible')
+    .clear()
+    .type(testPerson.department);
+  cy.get('[data-cy=company-division-input]')
+    .filter(':visible')
+    .clear()
+    .type(testPerson.corporateDivision);
+  cy.get('[data-cy=company-sector-input]').filter(':visible').clear().type(testPerson.sector);
+  cy.get('[data-cy=contact-salutation-input]').click();
+  cy.get('[data-cy=salutation-option]').contains(testPerson.salutation).click();
+  cy.get('[data-cy=contact-title-input]').filter(':visible').clear().type(testPerson.title);
+  cy.get('[data-cy=contact-firstname-input]').filter(':visible').clear().type(testPerson.firstName);
+  cy.get('[data-cy=contact-lastname-input]').filter(':visible').clear().type(testPerson.lastName);
+  if (testPerson.information) {
+    cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
   }
   cy.get('[data-cy=submit-audit-data-form]').click();
 }
@@ -95,6 +69,7 @@ function inputInterview(testInterview) {
     cy.get('[data-cy=interview-contacts]').click();
   }
   // TODO choose an iso criteria
+  cy.get('[data-cy=interview-scope-header]').click();
   cy.get('[data-cy=interview-scope-radio] > .label > .custom-checkbox').each((el, index) => {
     cy.wrap(el).click();
   });
@@ -145,29 +120,27 @@ function testAuditListEntry(testAudit) {
 }
 
 function testInterviewListEntry(testInterview) {
-  // cy.get('[data-cy=interview-factor-name]')
-  //   .contains(testInterview.criteria)
-  //   .then(el => {
-  //     let testDate;
-  //     if (!testInterview.start) {
-  //       testDate = new Date(Date.now()).toLocaleDateString('de-DE', {
-  //         year: 'numeric',
-  //         month: '2-digit',
-  //         day: '2-digit',
-  //       });
-  //     }
-  //     cy.wrap(el).get('[data-cy=interview-timestamp]').contains(testDate);
-  //     if (!testInterview.end) {
-  //       cy.wrap(el).get('[data-cy=interview-timestamp]').contains('TBD');
-  //     }
-  //     if (testInterview.contacts) {
-  //       testInterview.contacts.forEach(contact => {
-  //         cy.wrap(el).get('[data-cy=interview-contact-persons]').contains(contact.name);
-  //         cy.wrap(el).get('[data-cy=interview-contact-persons]').contains(contact.role);
-  //       });
-  //     }
-  //   });
+  cy.get('[data-cy=interview]')
+    .contains(testInterview.name)
+    .then(el => {
+      let testDate;
+      if (!testInterview.start) {
+        testDate = new Date(Date.now()).toLocaleDateString('de-DE', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        });
+      }
+      cy.wrap(el).get('[data-cy=interview-timestamp]').contains(testDate);
+      if (testInterview.contacts) {
+        testInterview.contacts.forEach(contact => {
+          cy.wrap(el).get('[data-cy=interview-contact-persons]').contains(contact.name);
+          cy.wrap(el).get('[data-cy=interview-contact-persons]').contains(contact.role);
+        });
+      }
+    });
 }
+
 // TODO testAlertDialog
 // it('Clicking yes on warning message should close overlay', () => {
 //     cy.get('[data-cy=discard]').click();
@@ -175,6 +148,7 @@ function testInterviewListEntry(testInterview) {
 //   });
 
 Cypress.Commands.add('addAudit', addAudit);
+Cypress.Commands.add('addPerson', addPerson);
 Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('inputInterview', inputInterview);
 Cypress.Commands.add('inputPerson', inputPerson);

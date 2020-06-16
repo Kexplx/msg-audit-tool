@@ -1,16 +1,3 @@
 {
-  "name": "BankAudit",
-  "contactPerson": {
-    "firstName": "Max",
-    "lastName": "Mustermann",
-    "information": "+123456789",
-    "title": "Herr",
-    "salutation": "Dr."
-  },
-  "customerData": {
-    "department": "HR",
-    "name": "TestBank",
-    "sector": "Banking",
-    "corporateDivision": "Human Resources"
-  }
+  "name": "BankAudit"
 }

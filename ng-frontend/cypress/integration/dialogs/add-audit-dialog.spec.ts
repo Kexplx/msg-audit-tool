@@ -82,6 +82,15 @@ describe('AddAuditDialog', () => {
       cy.get('.bounding-month').first().click();
       cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
     });
+
+    it('allows choosing a contact person', () => {
+      cy.visit(auditsUrl + '/new');
+      cy.get('[data-cy=audit-contacts]').click();
+      cy.get('[data-cy=audit-contacts]').each(contact => {
+        cy.wrap(contact).click();
+      });
+      cy.get('[data-cy=audit-contacts]').click();
+    });
   });
 
   context('When focussing on the scope it...', () => {
