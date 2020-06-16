@@ -8,7 +8,6 @@ import { retry } from 'rxjs/operators';
 export class FacCritByFactorPipe implements PipeTransform {
   transform(facCrits: FacCrit[], factorId: string): FacCrit[] {
     const result = facCrits.filter(x => x.id === factorId || x.referenceId == factorId);
-    console.log(result);
     return result;
   }
 }
