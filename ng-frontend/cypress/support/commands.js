@@ -54,6 +54,11 @@ function inputPerson(testPerson) {
   cy.get('[data-cy=submit-audit-data-form]').click();
 }
 
+function addInterview(testInterview) {
+  cy.get('[data-cy=new-interview]').click();
+  inputInterview(testInterview);
+}
+
 function inputInterview(testInterview) {
   if (testInterview.start) {
     // TODO pick a start date
@@ -149,6 +154,7 @@ function testInterviewListEntry(testInterview) {
 
 Cypress.Commands.add('addAudit', addAudit);
 Cypress.Commands.add('addPerson', addPerson);
+Cypress.Commands.add('addInterview', addInterview);
 Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('inputInterview', inputInterview);
 Cypress.Commands.add('inputPerson', inputPerson);

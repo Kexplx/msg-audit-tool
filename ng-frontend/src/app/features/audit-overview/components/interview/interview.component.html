@@ -1,11 +1,11 @@
 <header class="mt-2">
   <div class="header-container-1">
-    <h6>
+    <h6 data-cy="faccrit">
       {{ (facCrit$ | async).name }} <span class="text-hint">{{ (interview$ | async).start | date: 'dd.MM.yyyy' }}</span>
     </h6>
     <div></div>
-    <button hero nbButton>speichern</button>
-    <button hero status="primary" nbButton>abschließen</button>
+    <button hero nbButton data-cy="save">speichern</button>
+    <button hero status="primary" nbButton data-cy="finish">abschließen</button>
   </div>
   <div class="header-container-2 mt-2 subtitle-2">
     <span *ngFor="let person of (interview$ | async).contactPeople">
@@ -16,24 +16,24 @@
 
 <nb-accordion class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
   <nb-accordion-item [expanded]="i === 0" class="mb-2">
-    <nb-accordion-item-header>{{ question.textDe }}</nb-accordion-item-header>
+    <nb-accordion-item-header data-cy="question-card-header">{{ question.textDe }}</nb-accordion-item-header>
     <nb-accordion-item-body>
-      <form class="container-interview-form">
+      <form class="container-interview-form" data-cy="question-form">
         <div class="container-checkboxes">
-          <nb-checkbox>Ergebnis</nb-checkbox>
-          <nb-checkbox>Verantwortlicher</nb-checkbox>
-          <nb-checkbox>Dokumentation</nb-checkbox>
-          <nb-checkbox>Vorgehen</nb-checkbox>
+          <nb-checkbox data-cy="question-result">Ergebnis</nb-checkbox>
+          <nb-checkbox data-cy="question-responsible">Verantwortlicher</nb-checkbox>
+          <nb-checkbox data-cy="question-documentation">Dokumentation</nb-checkbox>
+          <nb-checkbox data-cy="question-strategy">Vorgehen</nb-checkbox>
         </div>
-        <div class="container-inputs-item-1">
+        <div class="container-inputs-item-1" data-cy="question-reason">
           <label class="label">Begründung</label>
           <textarea fullWidth nbInput></textarea>
         </div>
-        <div class="container-inputs-item-2">
+        <div class="container-inputs-item-2" data-cy="question-note">
           <label class="label">Bemerkung</label>
           <textarea fullWidth nbInput></textarea>
         </div>
-        <div class="container-inputs-item-3">
+        <div class="container-inputs-item-3" data-cy="question-certificate">
           <label class="label">Nachweis</label>
           <textarea fullWidth nbInput></textarea>
         </div>
