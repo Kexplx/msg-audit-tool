@@ -9,10 +9,9 @@
     </div>
   </button>
 </header>
-<div *ngIf="(audit$ | async).facCrits.length > 0; else noFacrits">
-  <div class="mb-4" *ngFor="let factor of (audit$ | async).facCrits | factorsInScope: (facCrits$ | async)">
-    <h6 class="mb-2 text-hint">{{ factor.name }}</h6>
-    <nb-card class="mb-1" *ngFor="let facCrit of (audit$ | async).facCrits | facCritByFactor: factor.id">
+<div class="fac-crits" *ngIf="(audit$ | async).scope.length > 0; else noFacrits">
+  <div *ngFor="let factor of (audit$ | async).scope | factors">
+    <nb-card class="mb-1" *ngFor="let facCrit of (audit$ | async).scope | facCritByFactor: factor.id">
       <nb-card-header class="subtitle-2">{{ facCrit.name }}</nb-card-header>
       <nb-card-body>
         <nb-list *ngIf="(audit$ | async).interviews | interviewByFacCrit: facCrit.id as interviews; else noInterviews">
