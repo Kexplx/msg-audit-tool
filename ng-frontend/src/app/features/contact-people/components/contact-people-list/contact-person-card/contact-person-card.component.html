@@ -1,31 +1,31 @@
-<p class="subtitle-2 mb-2">
+<p class="subtitle-2 mb-2" data-cy="contact-name">
   {{ contactPerson.firstName + ' ' + contactPerson.lastName }}
 </p>
 
 <div class="wrapper-contact-person-details">
   <div>
-    <label class="label">Unternehmen</label>
+    <label class="label" data-cy="contact-companyname">Unternehmen</label>
     <p class="subtitle-2">{{ contactPerson.companyName }}</p>
   </div>
   <div>
-    <label class="label">Abteilung</label>
+    <label class="label" data-cy="contact-department">Abteilung</label>
     <p class="subtitle-2">{{ contactPerson.department }}</p>
   </div>
   <div>
-    <label class="label">Unternehmensbereich</label>
+    <label class="label" data-cy="contact-division">Unternehmensbereich</label>
     <p class="subtitle-2">{{ contactPerson.corporateDivision }}</p>
   </div>
   <div>
-    <label class="label">Branche</label>
+    <label class="label" data-cy="contact-sector">Branche</label>
     <p class="subtitle-2">{{ contactPerson.sector }}</p>
   </div>
 </div>
 
 <div class="action-bar">
-  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" status="primary" ghost nbButton>
+  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" status="primary" ghost nbButton data-cy="edit-person-button">
     <nb-icon icon="edit-outline"></nb-icon>
   </a>
-  <button (click)="onDelete()" nbPopover="Löschen" nbPopoverTrigger="hint" status="danger" ghost nbButton>
+  <button (click)="onDelete()" nbPopover="Löschen" nbPopoverTrigger="hint" status="danger" ghost nbButton data-cy="delete-person-button">
     <nb-icon icon="person-remove-outline"></nb-icon>
   </button>
 </div>

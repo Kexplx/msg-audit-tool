@@ -1,6 +1,6 @@
 <header class="grid-1-auto-auto mb-2">
   <h4>Kontakt</h4>
-  <a routerLink="new" hero size="medium" nbButton status="primary" data-cy="new-audit">
+  <a routerLink="new" hero size="medium" nbButton status="primary" data-cy="new-contact">
     <nb-icon icon="person-add-outline"></nb-icon>
     Neue Person
   </a>
@@ -12,7 +12,7 @@
     <nb-card-body>
       <nb-list>
         <nb-list-item *ngFor="let contactPerson of contactPeople">
-          <app-contact-person-card [contactPerson]="contactPerson"></app-contact-person-card>
+          <app-contact-person-card [contactPerson]="contactPerson" data-cy="contact-person-card"></app-contact-person-card>
         </nb-list-item>
       </nb-list>
     </nb-card-body>

@@ -33,28 +33,35 @@ describe('AuditPage', () => {
     cy.url().should('contain', 'interviews');
   });
 
-  //   /**
-  //    * Tests the interviews overview of an audit
-  //    */
-  //   context('When in interview overview it ...', () => {
-  //     before(() => {
-  //       cy.server();
-  //       cy.route(testAuditUrl);
-  //     });
+  /**
+   * Tests the interviews overview of an audit
+   */
+  context('When in interview overview it ...', () => {
+    before(() => {
+      cy.server();
+      cy.route(testAuditUrl);
+    });
 
-  //     it('displays an overview with all chosen factors', () => {
-  //       for (let i = 0; i < factors.length; i++) {
-  //         let factor_obj = `:nth-child(${i + 1}) > nb-card-header`;
-  //         cy.get(factor_obj).should('contain.text', factors[i].title);
-  //       }
-  //     });
+    //TODO
+    // it('displays an overview with all chosen factors', () => {
+    //   for (let i = 0; i < factors.length; i++) {
+    //     let factor_obj = `:nth-child(${i + 1}) > nb-card-header`;
+    //     cy.get(factor_obj).should('contain.text', factors[i].title);
+    //   }
+    // });
 
-  //     it('displays a button to new interviews', () => {
-  //       cy.get('[data-cy=new-interview]').click();
-  //       cy.get('[data-cy=add-interview-form]').should('exist');
-  //       cy.get('[data-cy=cancel-interview-data-form]').click();
-  //     });
-  //   });
+    it('shows message that no interview exists on creation', () => {
+      cy.get('[data-cy=faccrit-body]').each(body => {
+        cy.wrap(body).should('contain', 'Keine Interviews vorhanden');
+      });
+    });
+
+    it('displays a button to new interviews', () => {
+      cy.get('[data-cy=new-interview]').click();
+      cy.get('[data-cy=add-interview-form]').should('exist');
+      cy.get('[data-cy=cancel-interview-data-form]').click();
+    });
+  });
 
   //   /**
   //    * Tests the audit info page
