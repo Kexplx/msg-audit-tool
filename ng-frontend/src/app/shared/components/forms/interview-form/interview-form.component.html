@@ -8,9 +8,8 @@
             <nb-accordion-item-header class="label" data-cy="interview-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
             <nb-accordion-item-body data-cy="interview-scope-body">
               <div class="wrapper-faccrits mt-2">
-                <div class="wrapper-faccrits-inner" *ngFor="let factor of allFacCrits$ | async | factorsInScope: scope">
-                  <label class="label">{{ factor.name }}</label>
-                  <nb-checkbox status="info" [formControlName]="factor.id" *ngIf="scope | factorById: factor.id as factor" data-cy="interview-scope-factor">{{ factor.name }}</nb-checkbox>
+                <div class="wrapper-faccrits-inner" *ngFor="let factor of scope | factors">
+                  <nb-checkbox [formControlName]="factor.id" data-cy="interview-scope-factor">{{ factor.name }}</nb-checkbox>
                   <nb-checkbox
                     class="criteria"
                     *ngIf="(scope | criterias: factor.id).length > 0"
@@ -28,7 +27,7 @@
           </nb-accordion-item>
         </nb-accordion>
       </div>
-      <hr style="border-bottom: 3px dotted rgb(228, 233, 242);" />
+      <hr />
       <div class="mb-2">
         <label class="label">Startdatum</label>
         <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="interview-start-input" />
@@ -45,7 +44,7 @@
       <button (click)="onCancel()" hero nbButton data-cy="cancel-interview-data-form">
         abbrechen
       </button>
-      <button [disabled]="formGroup.invalid" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">
+      <button [disabled]="!facCritSelected" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">
         Hinzufügen
       </button>
     </nb-card-footer>
