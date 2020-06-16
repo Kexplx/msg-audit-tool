@@ -2,6 +2,7 @@ package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.rest_service.controller.AnswerController;
 import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
+import com.amos2020.javabackend.rest_service.request.answer.UpdateAnswerRequest;
 import com.amos2020.javabackend.rest_service.response.BasicAnswerResponse;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,11 @@ public class AnswerRestService {
     public ResponseEntity<List<BasicAnswerResponse>> getAnswersByInterviewId(@PathVariable("id") int interviewId) {
         List<BasicAnswerResponse> response;
         try {
-            response = answerController.getAllAnswers(interviewId);
-        } catch (Exception e) {
+            response = answerController.getAllAnswersByInterviewId(interviewId);
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(response);
     }
@@ -48,8 +51,10 @@ public class AnswerRestService {
         BasicAnswerResponse response;
         try {
             response = answerController.getAnswerByIds(interviewId, questionId);
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(response);
     }
@@ -62,18 +67,42 @@ public class AnswerRestService {
     @PostMapping("/answers")
     public ResponseEntity<BasicAnswerResponse> createAnswer(@RequestBody CreateAnswerRequest request) {
         BasicAnswerResponse response;
-
         try {
             request.isValid();
             response = answerController.createAnswer(request.getInterviewId(), request.getQuestionId());
-
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-
         return ResponseEntity.ok(response);
     }
 
+    /**
+     * PUT Endpoint for updating an Answer
+     *
+     * @param interviewId
+     * @param questionId
+     * @param request
+     * @return
+     */
+    @PutMapping("/answers/interview/{id1}/question/{id2}")
+    public ResponseEntity<BasicAnswerResponse> updateAnswer(@PathVariable("id1") int interviewId,
+                                                            @PathVariable("id2") int questionId,
+                                                            @RequestBody UpdateAnswerRequest request) {
+        BasicAnswerResponse response;
+
+        try {
+            // Validate parameters for updating answer
+            request.isValid();
+            response = answerController.updateAnswer(interviewId, questionId, request.getFaccritId(), request.getResult(),
+                    request.getResponsible(), request.getDocumentation(), request.getProcedure(),
+                    request.getReason(), request.getProof(), request.getAnnotation());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(response);
+    }
 }

@@ -25,14 +25,14 @@ public class AnswerController {
         this.questionService = questionService;
     }
 
-    public List<BasicAnswerResponse> getAllAnswers(int interviewId) {
+    public List<BasicAnswerResponse> getAllAnswersByInterviewId(int interviewId) throws NotFoundException {
         List<BasicAnswerResponse> response = new ArrayList<>();
         List<Answer> answers = answerService.getAnswersByInterviewId(interviewId);
         answers.forEach(a -> response.add(new BasicAnswerResponse(a)));
         return response;
     }
 
-    public BasicAnswerResponse getAnswerByIds(int interviewId, int questionId) {
+    public BasicAnswerResponse getAnswerByIds(int interviewId, int questionId) throws NotFoundException {
         Answer answer = answerService.getAnswerByIds(questionId, interviewId);
         return new BasicAnswerResponse(answer);
     }
@@ -42,6 +42,30 @@ public class AnswerController {
         Question question = questionService.getQuestionById(questionId);
         //create Answer
         Answer answer = answerService.createAnswer(questionId, interviewId, question.getFaccritId());
+        return new BasicAnswerResponse(answer);
+    }
+
+    public BasicAnswerResponse updateAnswer(int interviewId,
+                                            int questionId,
+                                            int faccritId,
+                                            Boolean result,
+                                            Boolean responsible,
+                                            Boolean documentation,
+                                            Boolean procedure,
+                                            String reason,
+                                            String proof,
+                                            String annotation) throws NotFoundException{
+        Answer answer = answerService.getAnswerByIds(questionId, interviewId);
+        answer.setFaccritId(faccritId);
+        answer.setResult(result);
+        answer.setResponsible(responsible);
+        answer.setDocumentation(documentation);
+        answer.setProcedure(procedure);
+        answer.setReason(reason);
+        answer.setProof(proof);
+        answer.setAnnotation(annotation);
+
+        answer = answerService.updateAnswer(answer);
         return new BasicAnswerResponse(answer);
     }
 
