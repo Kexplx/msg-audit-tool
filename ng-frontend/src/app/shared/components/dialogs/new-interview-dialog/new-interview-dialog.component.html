@@ -1,5 +1,5 @@
 <ng-template #dialog let-data let-ref="dialogRef">
   <div class="scrollable-container">
-    <app-interview-form (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" [scope]="(audit$ | async).facCrits" [interview]="{}"></app-interview-form>
+    <app-interview-form (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" [scope]="(audit$ | async).scope" [interview]="{}"></app-interview-form>
   </div>
 </ng-template>
