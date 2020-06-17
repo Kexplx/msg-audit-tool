@@ -22,7 +22,9 @@ nb-card-footer {
   }
 
   & > div {
-    display: grid;
+    nb-checkbox {
+      display: block;
+    }
 
     & nb-checkbox:not(:first-child) {
       margin-left: 20px;
