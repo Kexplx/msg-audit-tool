@@ -27,13 +27,6 @@ describe('AddAuditDialog', () => {
 
     beforeEach(() => {
       cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
-      cy.on('uncaught:exception', (err, runnable) => {
-        expect(err.message).to.include(
-          'nebular issue: https://github.com/akveo/nebular/issues/2338',
-        );
-        done();
-        return false;
-      });
     });
 
     it('gives an inputable element for audit name', () => {

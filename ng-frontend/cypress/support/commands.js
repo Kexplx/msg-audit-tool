@@ -8,11 +8,6 @@ function addAudit(testAudit) {
 }
 
 function inputAudit(testAudit) {
-  cy.on('uncaught:exception', (err, runnable) => {
-    expect(err.message).to.include('nebular issue: https://github.com/akveo/nebular/issues/2338');
-    done();
-    return false;
-  });
   // Input Audit name, start date, end date and open next collapsed accordeon through click
   cy.get('[data-cy=audit-data-form]').should('exist');
   cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
