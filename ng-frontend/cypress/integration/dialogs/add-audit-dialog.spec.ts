@@ -80,7 +80,7 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=audit-end-input]').click();
       cy.get('.prev-month').click();
       cy.get('.bounding-month').first().click();
-      cy.get('[data-cy=submit-audit-data-form]').should('be.disabled');
+      cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
     });
 
     it('allows choosing a contact person', () => {

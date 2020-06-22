@@ -52,10 +52,12 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   }
 
   ngOnInit() {
+    const defaultStartDate = new Date();
+    defaultStartDate.setHours(0, 0, 0, 0);
     this.formGroup = this.formBuilder.group(
       {
         name: [this.audit?.name, Validators.required],
-        startDate: [this.audit?.startDate ?? new Date().setHours(0, 0, 0, 0), Validators.required],
+        startDate: [this.audit?.startDate ?? defaultStartDate, Validators.required],
         endDate: [this.audit?.endDate],
         contactPeople: [this.audit?.contactPeople],
       },
