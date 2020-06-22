@@ -18,9 +18,6 @@ app-interview-card {
 nb-card {
   margin-bottom: 0px;
 }
-ul {
-  list-style-type: none;
-}
 
 li {
   margin-left: 20px;
@@ -31,21 +28,19 @@ li {
   text-align: center;
 }
 
-.wrapper-interviews {
-  display: grid;
-  gap: 10px 0;
-  margin-left: 50px;
-}
-
 nb-list-item {
   display: grid;
 }
 
-hr {
-  border-bottom: 3px solid #ffffff;
-  margin: 20px 50px;
+nb-accordion-item-header,
+nb-card-header {
+  background: #f7f9fc !important;
 }
 
-.fac-crits div:last-child hr {
-  border-bottom: none;
+nb-accordion-item-header {
+  border-radius: 0.25rem !important;
+}
+
+nb-accordion-item.expanded nb-accordion-item-header {
+  border-radius: 0.25rem 0.25rem 0 0 !important;
 }
