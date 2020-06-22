@@ -10,13 +10,13 @@
   </button>
 </header>
 <div class="fac-crits" *ngIf="(audit$ | async).scope.length > 0; else noFacrits">
-  <div *ngFor="let factor of (audit$ | async).scope | factors">
-    <nb-card class="mb-1" *ngFor="let facCrit of (audit$ | async).scope | facCritByFactor: factor.id">
-      <nb-card-header class="subtitle-2" data-cy="faccrit-header">{{ facCrit.name }}</nb-card-header>
-      <nb-card-body data-cy="faccrit-body">
-        <nb-list *ngIf="(audit$ | async).interviews | interviewByFacCrit: facCrit.id as interviews; else noInterviews">
+  <nb-accordion *ngFor="let factor of (audit$ | async).scope | factors">
+    <nb-accordion-item expanded>
+      <nb-accordion-item-header class="subtitle-2">{{ factor.name }}</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <nb-list *ngIf="(audit$ | async).interviews | interviewByFacCrit: factor.id as interviews; else noInterviews">
           <nb-list-item *ngFor="let interview of interviews">
-            <app-interview-card [interview]="interview" [facCritId]="facCrit.id" data-cy="interview"></app-interview-card>
+            <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
           </nb-list-item>
         </nb-list>
         <ng-template #noInterviews>
@@ -24,10 +24,28 @@
             Keine Interviews vorhanden
           </div>
         </ng-template>
-      </nb-card-body>
-    </nb-card>
-    <hr />
-  </div>
+
+        <nb-card class="mt-2" *ngFor="let criteria of (audit$ | async).scope | criteriaByFactor: factor.id">
+          <nb-card-header class="subtitle-2">
+            {{ criteria.name }}
+          </nb-card-header>
+          <nb-card-body>
+            <nb-list *ngIf="(audit$ | async).interviews | interviewByFacCrit: criteria.id as interviews; else noInterviews">
+              <nb-list-item *ngFor="let interview of interviews">
+                <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
+              </nb-list-item>
+            </nb-list>
+
+            <ng-template #noInterviews>
+              <div class="hint-no-interviews label">
+                Keine Interviews vorhanden
+              </div>
+            </ng-template>
+          </nb-card-body>
+        </nb-card>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
 </div>
 <ng-template #noFacrits>
   <div class="hint-no-interviews">
