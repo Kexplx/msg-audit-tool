@@ -16,39 +16,52 @@ import { FactorsPipe } from './pipes/factors.pipe';
 import { CriteriasPipe } from './pipes/criterias.pipe';
 import { AuditFormComponent } from './components/forms/audit-form/audit-form.component';
 import { FactorByIdPipe } from './pipes/factorById.pipe';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarInterviewListComponent } from './sidebar/sidebar-interview-list/sidebar-interview-list.component';
+import { CriteriaByFactorPipe } from './pipes/facCritByFactor.pipe';
+import { InterviewByFacCritPipe } from './pipes/interviewByFacCrit.pipe';
 
 @NgModule({
   declarations: [
+    CriteriasPipe,
+    FactorsPipe,
+    CriteriaByFactorPipe,
+    InterviewByFacCritPipe,
+    SortAuditPipe,
+    FactorByIdPipe,
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     ActionListenerDirective,
-    CriteriasPipe,
-    FactorsPipe,
+    SidebarComponent,
     AddContactPersonDialogComponent,
-    FactorByIdPipe,
     ContactPersonFormComponent,
     EditContactPersonDialogComponent,
+    SidebarInterviewListComponent,
     AuditFormComponent,
     NotFoundComponent,
     ConfirmDiscardDialogComponent,
-    SortAuditPipe,
   ],
   imports: [CommonModule, RouterModule, NebularModule, ReactiveFormsModule],
   exports: [
+    InterviewByFacCritPipe,
+    CriteriaByFactorPipe,
+    FactorsPipe,
+    CriteriasPipe,
+    FactorByIdPipe,
+    SortAuditPipe,
     NebularModule,
     AddAuditDialogComponent,
     EditAuditDialogComponent,
     AddContactPersonDialogComponent,
-    FactorsPipe,
-    CriteriasPipe,
-    FactorByIdPipe,
     ActionListenerDirective,
     AuditFormComponent,
+    SidebarComponent,
     NotFoundComponent,
     ContactPersonFormComponent,
     ConfirmDiscardDialogComponent,
     EditContactPersonDialogComponent,
-    SortAuditPipe,
   ],
+
+  providers: [FactorsPipe, CriteriaByFactorPipe],
 })
 export class SharedModule {}
