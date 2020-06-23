@@ -1,0 +1,22 @@
+<p class="subtitle-2 mb-2" data-cy="contact-name">
+  {{ contactPerson.firstName + ' ' + contactPerson.lastName }}
+</p>
+
+<div class="wrapper-contact-person-details">
+  <div>
+    <label class="label" data-cy="contact-companyname">Unternehmen</label>
+    <p class="subtitle-2">{{ contactPerson.companyName }}</p>
+  </div>
+  <div>
+    <label class="label" data-cy="contact-department">Abteilung</label>
+    <p class="subtitle-2">{{ contactPerson.department }}</p>
+  </div>
+  <div>
+    <label class="label" data-cy="contact-division">Unternehmensbereich</label>
+    <p class="subtitle-2">{{ contactPerson.corporateDivision }}</p>
+  </div>
+  <div>
+    <label class="label" data-cy="contact-sector">Branche</label>
+    <p class="subtitle-2">{{ contactPerson.sector }}</p>
+  </div>
+</div>

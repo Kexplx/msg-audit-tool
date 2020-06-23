@@ -22,9 +22,9 @@ export class AuditOverviewComponent implements OnInit {
       active: true,
     },
     {
-      title: 'infos',
-      icon: 'info-outline',
-      route: './infos',
+      title: 'Kontakte',
+      icon: 'person-outline',
+      route: './contact-people',
       responsive: true,
     },
   ];
