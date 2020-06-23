@@ -1,0 +1,1 @@
+insert into contact_person (ID, SALUTATION, TITLE, FORENAME, SURNAME, CONTACT_INFORMATION, COMPANY_NAME, DEPARTMENT, SECTOR, CORPORATE_DIVISION) values (1001, 'MANN', '', 'John', 'Doe', 'john@doe.com', 'msg', 'testDepartment', 'testSector', 'testDivision');
