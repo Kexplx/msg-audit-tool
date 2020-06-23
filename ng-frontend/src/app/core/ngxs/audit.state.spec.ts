@@ -35,7 +35,7 @@ describe('AuditState', () => {
 
   it('should delete audit after DeleteAudit action was dispatched', () => {
     let audits = store.selectSnapshot(AuditState.audits);
-    if (!audits) {
+    if (audits.length === 0) {
       store.dispatch(new AddAudit(audit));
     }
     const auditToDelete = audits[0];
