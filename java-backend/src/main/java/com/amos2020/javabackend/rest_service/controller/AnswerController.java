@@ -47,7 +47,6 @@ public class AnswerController {
 
     public BasicAnswerResponse updateAnswer(int interviewId,
                                             int questionId,
-                                            int faccritId,
                                             Boolean result,
                                             Boolean responsible,
                                             Boolean documentation,
@@ -56,7 +55,6 @@ public class AnswerController {
                                             String proof,
                                             String annotation) throws NotFoundException{
         Answer answer = answerService.getAnswerByIds(questionId, interviewId);
-        answer.setFaccritId(faccritId);
         answer.setResult(result);
         answer.setResponsible(responsible);
         answer.setDocumentation(documentation);
