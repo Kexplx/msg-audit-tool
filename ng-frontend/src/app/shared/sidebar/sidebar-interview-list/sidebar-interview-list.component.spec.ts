@@ -1,9 +1,10 @@
-/* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { SidebarInterviewListComponent } from './sidebar-interview-list.component';
+import { CoreModule } from 'src/app/core/core.module';
+import { FactorsPipe } from '../../pipes/factors.pipe';
+import { CriteriaByFactorPipe } from '../../pipes/facCritByFactor.pipe';
+import { SharedModule } from '../../shared.module';
 
 describe('SidebarInterviewListComponent', () => {
   let component: SidebarInterviewListComponent;
@@ -11,15 +12,15 @@ describe('SidebarInterviewListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarInterviewListComponent ]
-    })
-    .compileComponents();
+      declarations: [SidebarInterviewListComponent],
+      imports: [CoreModule, SharedModule],
+      providers: [FactorsPipe, CriteriaByFactorPipe],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SidebarInterviewListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

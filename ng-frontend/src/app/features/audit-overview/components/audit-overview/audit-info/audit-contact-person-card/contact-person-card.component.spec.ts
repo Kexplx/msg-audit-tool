@@ -15,7 +15,6 @@ describe('ContactPersonCardComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AuditContactPersonCardComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

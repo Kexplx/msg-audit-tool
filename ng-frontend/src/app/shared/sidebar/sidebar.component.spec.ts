@@ -1,9 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { SidebarComponent } from './sidebar.component';
+import { RouterModule } from '@angular/router';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -11,9 +10,9 @@ describe('SidebarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarComponent ]
-    })
-    .compileComponents();
+      declarations: [SidebarComponent],
+      imports: [RouterModule.forRoot([])],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
