@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CreateAuditRequest extends BasicRequest {
@@ -39,6 +40,12 @@ public class CreateAuditRequest extends BasicRequest {
         assertDatesAreValid(startDate, endDate);
         assertIdsAreValid(contactPeople);
         assertIdsAreValid(scope);
+        if (contactPeople == null) {
+            contactPeople = new ArrayList<>();
+        }
+        if (scope == null) {
+            scope = new ArrayList<>();
+        }
     }
 
 

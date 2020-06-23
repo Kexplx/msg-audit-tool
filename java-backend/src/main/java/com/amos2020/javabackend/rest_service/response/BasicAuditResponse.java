@@ -17,6 +17,7 @@ public class BasicAuditResponse {
         this.auditId = audit.getId();
         this.auditName = audit.getName();
         this.startDate = audit.getStartDate();
+        this.endDate = audit.getEndDate();
         this.creationDate = audit.getCreationDate();
         this.status = audit.getStatus();
         this.scope = scope;
@@ -37,7 +38,9 @@ public class BasicAuditResponse {
     @Getter
     @Setter
     private Date startDate;
-
+    @Getter
+    @Setter
+    private Date endDate;
     @Getter
     @Setter
     private Timestamp creationDate;

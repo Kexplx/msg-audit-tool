@@ -39,7 +39,7 @@ public class Audit {
 
     @Basic
     @NotBlank
-    @Column(name = "name")
+    @Column(name = "name", length = 256)
     public String getName() {
         return name;
     }
@@ -80,7 +80,7 @@ public class Audit {
     }
 
     @Basic
-    @Column(name = "cancellation_reason")
+    @Column(name = "cancellation_reason", length = 256)
     public String getCancellationReason() {
         return cancellationReason;
     }

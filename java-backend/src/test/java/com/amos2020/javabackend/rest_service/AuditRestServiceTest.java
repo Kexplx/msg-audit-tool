@@ -477,23 +477,6 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void updateAuditByIdWithFacCritNotExisting_returnsNotFound() throws Exception {
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willThrow(NotFoundException.class);
-
-        UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName("New Test Name");
-        request.setStartDate(Date.valueOf("2000-01-02"));
-        request.setEndDate(Date.valueOf("2000-01-02"));
-
-        String requestAsJson = buildJson(request);
-
-        restService.perform(put("/audits/1")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(requestAsJson))
-                .andExpect(status().isNotFound());
-    }
-
-    @Test
     public void updateAuditByIdWithNameIsNull_returns400() throws Exception {
         Audit audit = new Audit();
         given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
@@ -571,7 +554,7 @@ public class AuditRestServiceTest {
         given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName("aaa");
+        request.setAuditName("*");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
 
@@ -648,7 +631,7 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void addContactPersonToAuditWithInvalidAuditId_returns400() throws Exception {
+    public void addContactPersonToAuditWithInvalidAuditId_returns404() throws Exception {
         Audit audit = new Audit();
         audit.setScopesById(new ArrayList<>());
         audit.setAuditContactPeopleById(new ArrayList<>());
@@ -659,7 +642,7 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void addContactPersonToAuditWithInvalidContactPersonId_returns400() throws Exception {
+    public void addContactPersonToAuditWithInvalidContactPersonId_returns404() throws Exception {
         Audit audit = new Audit();
         audit.setScopesById(new ArrayList<>());
         audit.setAuditContactPeopleById(new ArrayList<>());
@@ -681,7 +664,7 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void removeContactPersonFromAuditWithInvalidAuditId_returns400() throws Exception {
+    public void removeContactPersonFromAuditWithInvalidAuditId_returns404() throws Exception {
         Audit audit = new Audit();
         audit.setScopesById(new ArrayList<>());
         audit.setAuditContactPeopleById(new ArrayList<>());
@@ -692,7 +675,7 @@ public class AuditRestServiceTest {
     }
 
     @Test
-    public void removeContactPersonFromAuditWithInvalidContactPersonId_returns400() throws Exception {
+    public void removeContactPersonFromAuditWithInvalidContactPersonId_returns404() throws Exception {
         Audit audit = new Audit();
         audit.setScopesById(new ArrayList<>());
         audit.setAuditContactPeopleById(new ArrayList<>());

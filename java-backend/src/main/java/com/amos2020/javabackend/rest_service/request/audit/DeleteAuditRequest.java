@@ -1,12 +1,13 @@
 package com.amos2020.javabackend.rest_service.request.audit;
 
 import com.amos2020.javabackend.entity.AuditStatus;
+import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
 
-public class DeleteAuditRequest {
+public class DeleteAuditRequest extends BasicRequest {
     @Getter
     @Setter
     private String reason;
@@ -23,16 +24,8 @@ public class DeleteAuditRequest {
     final AuditStatus status = AuditStatus.CANCELED;
 
     public void isValid() throws IllegalArgumentException {
-        if (reason == null || reason.isEmpty() || reason.length() < 3) {
-            throw new IllegalArgumentException("Invalid reason");
-        }
-
-        if (contactPerson == null || contactPerson <= 0) {
-            throw new IllegalArgumentException("Invalid contactPerson");
-        }
-
-        if (date == null) {
-            throw new IllegalArgumentException("Invalid date");
-        }
+        assertNameIsValid(reason);
+        assertIdIsValid(contactPerson);
+        assertDateIsNotNull(date);
     }
 }

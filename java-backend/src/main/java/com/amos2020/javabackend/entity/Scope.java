@@ -42,7 +42,7 @@ public class Scope {
     }
 
     @Basic
-    @Column(name = "change_note")
+    @Column(name = "change_note", length = 1024)
     public String getChangeNote() {
         return changeNote;
     }
@@ -63,7 +63,7 @@ public class Scope {
     }
 
     @Basic
-    @Column(name = "note")
+    @Column(name = "note", length = 8096)
     public String getNote() {
         return note;
     }
