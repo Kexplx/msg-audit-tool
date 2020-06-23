@@ -24,7 +24,6 @@
             Keine Interviews vorhanden
           </div>
         </ng-template>
-
         <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async).scope | criteriaByFactor: factor.id">
           <nb-card-header class="subtitle-2">
             {{ criteria.name }}
@@ -35,7 +34,6 @@
                 <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
               </nb-list-item>
             </nb-list>
-
             <ng-template #noInterviews>
               <div class="hint-no-interviews label">
                 Keine Interviews vorhanden
