@@ -48,4 +48,7 @@ public class BasicContactPersonResponse {
         this.sector = contactperson.getSector();
         this.corporateDivision = contactperson.getCorporateDivision();
     }
+
+    public BasicContactPersonResponse() {
+    }
 }
