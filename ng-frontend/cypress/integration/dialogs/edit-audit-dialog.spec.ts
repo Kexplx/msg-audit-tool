@@ -63,7 +63,7 @@ describe('EditAuditDialog', () => {
     cy.get('[data-cy=home]').click();
     cy.addAudit(testAudit);
     cy.get('[data-cy=audit-short-infos]').first().click();
-    cy.contains('infos').click();
+    cy.contains('Kontakte').click();
     cy.get('[data-cy=audit-options]').click();
     cy.inputAudit(testAuditEdited);
   }

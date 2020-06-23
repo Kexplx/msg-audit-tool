@@ -13,7 +13,7 @@
   <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async).scope | factors">
     <nb-accordion-item expanded>
       <nb-accordion-item-header class="subtitle-2">{{ factor.name }}</nb-accordion-item-header>
-      <nb-accordion-item-body>
+      <nb-accordion-item-body data-cy="faccrit-body">
         <nb-list *ngIf="(audit$ | async).interviews | interviewByFacCrit: factor.id as interviews; else noInterviews">
           <nb-list-item *ngFor="let interview of interviews">
             <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
