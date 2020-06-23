@@ -6,17 +6,22 @@ import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './actions/audi
 import * as shortid from 'shortid';
 import { FacCrit } from '../data/models/faccrit.model';
 import { FACCRITS } from '../data/examples/fac-crits';
-import { AUDITS } from '../data/examples/audits';
 
 export interface AuditStateModel {
   audits: Audit[];
   facCrits: FacCrit[];
 }
 
+/**
+ * State for managing the audits and facCrits of the application
+ *
+ * Action handlers to read, write, update and delete an audit
+ * Static and dynamic selectors to select audits and faccrits
+ */
 @State<AuditStateModel>({
   name: 'audit',
   defaults: {
-    audits: AUDITS,
+    audits: [],
     facCrits: FACCRITS,
   },
 })

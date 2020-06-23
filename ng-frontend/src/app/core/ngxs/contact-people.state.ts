@@ -14,6 +14,12 @@ export interface ContactPersonStateModel {
   contactPeople: ContactPerson[];
 }
 
+/**
+ * State for managing the contact people of the application
+ *
+ * Action handlers to read, write, update and delete a contact person
+ * Static and dynamic selectors to select contact people
+ */
 @State<ContactPersonStateModel>({
   name: 'contactPerson',
   defaults: {
