@@ -95,7 +95,7 @@ public class AnswerRestService {
         try {
             // Validate parameters for updating answer
             request.isValid();
-            response = answerController.updateAnswer(interviewId, questionId, request.getFaccritId(), request.getResult(),
+            response = answerController.updateAnswer(interviewId, questionId, request.getResult(),
                     request.getResponsible(), request.getDocumentation(), request.getProcedure(),
                     request.getReason(), request.getProof(), request.getAnnotation());
         } catch (IllegalArgumentException e) {

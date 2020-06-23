@@ -111,11 +111,10 @@ public class AnswerRestServiceTest {
         UpdateAnswerRequest request = new UpdateAnswerRequest();
         request.setInterviewId(1);
         request.setQuestionId(1);
-        request.setFaccritId(1);
         request.setAnnotation("test");
         request.setProof("test");
         request.setReason("test");
-        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(), request.getFaccritId(),
+        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(),
                 request.getResult(), request.getResponsible(),
                 request.getDocumentation(), request.getProcedure(), request.getReason(),
                 request.getProof(), request.getAnnotation())).willReturn(new BasicAnswerResponse(new Answer()));
@@ -132,11 +131,10 @@ public class AnswerRestServiceTest {
         UpdateAnswerRequest request = new UpdateAnswerRequest();
         request.setInterviewId(1);
         request.setQuestionId(1);
-        request.setFaccritId(-1);
         request.setAnnotation("test");
         request.setProof("test");
         request.setReason("test");
-        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(), request.getFaccritId(),
+        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(),
                 request.getResult(), request.getResponsible(),
                 request.getDocumentation(), request.getProcedure(), request.getReason(),
                 request.getProof(), request.getAnnotation())).willThrow(new IllegalArgumentException());
@@ -153,11 +151,10 @@ public class AnswerRestServiceTest {
         UpdateAnswerRequest request = new UpdateAnswerRequest();
         request.setInterviewId(1);
         request.setQuestionId(1);
-        request.setFaccritId(1);
         request.setAnnotation("test");
         request.setProof("test");
         request.setReason("test");
-        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(), request.getFaccritId(),
+        given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(),
                 request.getResult(), request.getResponsible(),
                 request.getDocumentation(), request.getProcedure(), request.getReason(),
                 request.getProof(), request.getAnnotation())).willThrow(new NotFoundException(""));
