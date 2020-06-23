@@ -16,10 +16,6 @@ public class UpdateAnswerRequest extends BasicRequest {
 
     @Getter
     @Setter
-    private int faccritId;
-
-    @Getter
-    @Setter
     private Boolean result;
 
     @Getter
@@ -50,7 +46,6 @@ public class UpdateAnswerRequest extends BasicRequest {
     public void isValid() {
         assertIdIsValid(questionId);
         assertIdIsValid(interviewId);
-        assertIdIsValid(faccritId);
         assertNoteIsValid(reason);
         assertNoteIsValid(proof);
         assertNoteIsValid(annotation);
