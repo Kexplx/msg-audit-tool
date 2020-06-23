@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 public class ScopeRestService {
 
-    final ScopeController scopeController;
+    private final ScopeController scopeController;
 
 
     public ScopeRestService(ScopeController scopeController) {
@@ -51,4 +51,41 @@ public class ScopeRestService {
         }
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * GET Endpoint for fetching an specific Scope identified by its Audit id and Faccrit id
+     * @param auditId
+     * @param faccritId
+     * @return ResponseEntity
+     */
+    @GetMapping("/audits/{id1}/scope/{id2}")
+    public ResponseEntity<BasicScopeResponse> getScopeByIds(@PathVariable("id1") int auditId,
+                                                            @PathVariable("id2") int faccritId){
+        BasicScopeResponse response;
+        try {
+            response = scopeController.getScopeByIds(auditId,faccritId);
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * GET Endpoint for fetching all existing Scopes
+     * @param auditId
+     * @return ResponseEntity
+     */
+    @GetMapping("/audits/{id}/scope")
+    public ResponseEntity<List<BasicScopeResponse>> getAllScopes(@PathVariable("id") int auditId){
+        List<BasicScopeResponse> responses;
+        try {
+            responses = scopeController.getScopesByAuditId(auditId);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(responses);
+    }
+
 }

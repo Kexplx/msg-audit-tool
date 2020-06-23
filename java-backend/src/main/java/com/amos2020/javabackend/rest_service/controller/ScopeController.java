@@ -41,4 +41,16 @@ public class ScopeController {
         scopeService.updateScopeItem(auditId, facCritId, change_note, removed, note);
         return (new BasicScopeResponse(scopeService.findScopeItemByIds(auditId,facCritId)));
     }
+
+    public BasicScopeResponse getScopeByIds(int auditId, int faccritId) throws NotFoundException {
+        Scope scope = scopeService.findScopeItemByIds(auditId, faccritId);
+        return new BasicScopeResponse(scope);
+    }
+
+    public List<BasicScopeResponse> getScopesByAuditId(int auditId){
+        List<BasicScopeResponse> responseList = new ArrayList<>();
+        List<Scope> scopes = scopeService.findScopeItemsByAuditId(auditId);
+        scopes.forEach( scope -> responseList.add(new BasicScopeResponse(scope)));
+        return responseList;
+    }
 }
