@@ -1,1 +1,8 @@
-<nb-menu [items]="items" autoCollapse> </nb-menu>
+<h5 style="margin: 0;">{{ (audit$ | async).name }}</h5>
+<nb-menu *ngIf="items.length > 0; else noScope" style="padding-left: 5px;" [items]="items" autoCollapse> </nb-menu>
+
+<ng-template #noScope>
+  <div class="no-scope-wrapper label">
+    Leerer Scope
+  </div>
+</ng-template>
