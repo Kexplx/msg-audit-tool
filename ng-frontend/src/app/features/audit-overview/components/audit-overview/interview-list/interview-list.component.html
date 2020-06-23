@@ -10,7 +10,7 @@
   </button>
 </header>
 <div class="fac-crits" *ngIf="(audit$ | async).scope.length > 0; else noFacrits">
-  <nb-accordion *ngFor="let factor of (audit$ | async).scope | factors">
+  <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async).scope | factors">
     <nb-accordion-item expanded>
       <nb-accordion-item-header class="subtitle-2">{{ factor.name }}</nb-accordion-item-header>
       <nb-accordion-item-body>
@@ -25,7 +25,7 @@
           </div>
         </ng-template>
 
-        <nb-card class="mt-2" *ngFor="let criteria of (audit$ | async).scope | criteriaByFactor: factor.id">
+        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async).scope | criteriaByFactor: factor.id">
           <nb-card-header class="subtitle-2">
             {{ criteria.name }}
           </nb-card-header>
