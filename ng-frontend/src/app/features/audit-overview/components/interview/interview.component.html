@@ -14,8 +14,8 @@
   </div>
 </header>
 
-<nb-accordion class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
-  <nb-accordion-item [expanded]="i === 0" class="mb-2">
+<nb-accordion [id]="question.id" class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
+  <nb-accordion-item expanded class="mb-2">
     <nb-accordion-item-header data-cy="question-card-header">{{ question.textDe }}</nb-accordion-item-header>
     <nb-accordion-item-body>
       <form class="container-interview-form" data-cy="question-form">
