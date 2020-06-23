@@ -36,7 +36,7 @@ public class InterviewContactPerson {
 
     @Basic
     @NotNull
-    @Column(name = "role")
+    @Column(name = "role", length = 256)
     public String getRole() {
         return role;
     }

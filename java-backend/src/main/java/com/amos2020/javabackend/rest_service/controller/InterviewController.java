@@ -20,14 +20,16 @@ public class InterviewController {
     final InterviewContactPersonService interviewContactPersonService;
     final AnswerService answerService;
     final QuestionService questionService;
+    final FacCritService facCritService;
 
-    public InterviewController(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService, AnswerService answerService, QuestionService questionService) {
+    public InterviewController(InterviewService interviewService, ContactPersonService contactPersonService, AuditService auditService, InterviewContactPersonService interviewContactPersonService, AnswerService answerService, QuestionService questionService, FacCritService facCritService) {
         this.interviewService = interviewService;
         this.contactPersonService = contactPersonService;
         this.auditService = auditService;
         this.interviewContactPersonService = interviewContactPersonService;
         this.answerService = answerService;
         this.questionService = questionService;
+        this.facCritService = facCritService;
     }
 
     /**
@@ -71,6 +73,8 @@ public class InterviewController {
     public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, HashMap<Integer, String> interviewedPeople, List<Integer> interviewScope) throws NotFoundException {
         auditService.getAuditById(auditId);
         List<ContactPerson> contactPeople = contactPersonService.getAllByIds(new ArrayList<>(interviewedPeople.keySet()));
+        facCritService.getAllById(interviewScope);
+
         Interview interview = interviewService.createInterview(auditId, startDate, endDate);
         for (int contactPersonId : interviewedPeople.keySet()) {
             interviewContactPersonService.create(interview.getId(), contactPersonId, interviewedPeople.get(contactPersonId));
@@ -138,6 +142,9 @@ public class InterviewController {
      * @throws NotFoundException If the if for the interview, contactPerson or the interviewContactPerson is not valid
      */
     public BasicInterviewResponse removeContactPersonFromInterview(int interviewId, int contactPersonId) throws NotFoundException {
+        assertIdIsValid(interviewId);
+        assertIdIsValid(contactPersonId);
+
         Interview interview = interviewService.getInterviewById(interviewId);
         contactPersonService.getContactPersonById(contactPersonId);
         InterviewContactPerson interviewContactPerson = interviewContactPersonService.exists(interviewId, contactPersonId);
@@ -163,5 +170,15 @@ public class InterviewController {
         return contactPersonService.getAllByIds(contactPeopleIds);
     }
 
+    /**
+     * Asserts that the given id is valid
+     *
+     * @param id Integer
+     */
+    private void assertIdIsValid(int id) throws IllegalArgumentException {
+        if (id < 1) {
+            throw new IllegalArgumentException("invalid id");
+        }
+    }
 
 }
