@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.integration_tests;
+package com.amos2020.javabackend.integration_tests.interview;
 
 import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.*;
