@@ -2,30 +2,41 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
+enum SidebarState {
+  InterviewList,
+  Interview,
+  Default,
+}
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  title: string;
-  display: string;
   url: string;
+  sidebarState: SidebarState;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    const interviewList = /\/audits\/.*\/interviews$/;
+    const interviewListRegex = /\/audits\/.*\/interviews$/;
+    const interviewRegex = /\/audits\/[^\/]*\/interviews\/[^\/]*\/[^\/]*$/;
+
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        if (interviewList.test(event.url)) {
-          this.display = 'INTERVIEWLIST';
+        const { url } = event;
+
+        if (interviewListRegex.test(url)) {
+          this.sidebarState = SidebarState.InterviewList;
+        } else if (interviewRegex.test(url)) {
+          this.sidebarState = SidebarState.Interview;
         } else {
-          this.display = 'DEFAULT';
+          this.sidebarState = SidebarState.Default;
         }
 
-        this.url = event.url;
+        this.url = url;
       });
   }
 }
