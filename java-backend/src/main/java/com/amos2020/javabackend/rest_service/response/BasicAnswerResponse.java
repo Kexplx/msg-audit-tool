@@ -9,6 +9,7 @@ public class BasicAnswerResponse {
     public BasicAnswerResponse(Answer answer){
         this.questionId = answer.getQuestionId();
         this.interviewId = answer.getInterviewId();
+        this.faccritId = answer.getFaccritId();
         this.result = answer.getResult();
         this.responsible = answer.getResponsible();
         this.documentation = answer.getDocumentation();
@@ -18,6 +19,10 @@ public class BasicAnswerResponse {
         this.annotation = answer.getAnnotation();
     }
 
+    public BasicAnswerResponse(){
+        //empty contructor
+    }
+
     @Getter
     @Setter
     private int questionId;
@@ -25,6 +30,10 @@ public class BasicAnswerResponse {
     @Getter
     @Setter
     private int interviewId;
+
+    @Getter
+    @Setter
+    private int faccritId;
 
     @Getter
     @Setter
