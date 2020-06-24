@@ -44,7 +44,7 @@
       <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Unternehmen</label>
-          <input placeholder="BMW" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" formControlName="companyName" nbInput fullWidth data-cy="company-name-input" />
+          <input placeholder="msg systems AG" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" formControlName="companyName" nbInput fullWidth data-cy="company-name-input" />
           <div *ngIf="companyName.invalid && companyName.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Unternehmen eintragen</label>
           </div>
@@ -52,7 +52,7 @@
         <div>
           <label class="label">Abteilung</label>
           <input
-            placeholder="Personalabteilung"
+            placeholder="Softwareentwicklung"
             [status]="department.invalid && department.touched ? 'danger' : 'basic'"
             formControlName="department"
             nbInput
@@ -68,7 +68,7 @@
         <div>
           <label class="label">Unternehmensbereich</label>
           <input
-            placeholder="BMW Robotics"
+            placeholder="msg Public Sector"
             [status]="corporateDivision.invalid && corporateDivision.touched ? 'danger' : 'basic'"
             formControlName="corporateDivision"
             nbInput
@@ -81,15 +81,8 @@
         </div>
         <div>
           <label class="label">Branche</label>
-          <input
-            placeholder="Automobilindustrie"
-            [status]="corporateDivision.invalid && corporateDivision.touched ? 'danger' : 'basic'"
-            formControlName="sector"
-            nbInput
-            fullWidth
-            data-cy="company-sector-input"
-          />
-          <div *ngIf="corporateDivision.invalid && corporateDivision.touched">
+          <input placeholder="Software" [status]="sector.invalid && sector.touched ? 'danger' : 'basic'" formControlName="sector" nbInput fullWidth data-cy="company-sector-input" />
+          <div *ngIf="sector.invalid && sector.touched">
             <label class="label text-danger" data-cy="auditname-missing-label">Branche eintragen</label>
           </div>
         </div>
