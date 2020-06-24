@@ -14,14 +14,14 @@
             <nb-option value="Divers" data-cy="salutation-option">Divers</nb-option>
           </nb-select>
           <div *ngIf="salutation.invalid && salutation.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Anrede wählen</label>
+            <label class="label text-danger" data-cy="missing-label">Anrede wählen</label>
           </div>
         </div>
         <div>
           <label class="label">Titel</label>
           <input placeholder="Dr." [status]="title.invalid && title.touched ? 'danger' : 'basic'" formControlName="title" nbInput fullWidth data-cy="contact-title-input" />
           <div *ngIf="title.invalid && title.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Titel eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Titel eintragen</label>
           </div>
         </div>
       </div>
@@ -30,14 +30,14 @@
           <label class="label">Vorname</label>
           <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" formControlName="firstName" nbInput fullWidth data-cy="contact-firstname-input" />
           <div *ngIf="firstName.invalid && firstName.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Vornamen eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Vornamen eintragen</label>
           </div>
         </div>
         <div>
           <label class="label">Nachname</label>
           <input placeholder="Mustermann" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" formControlName="lastName" nbInput fullWidth data-cy="contact-lastname-input" />
           <div *ngIf="lastName.invalid && lastName.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Nachnamen eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Nachnamen eintragen</label>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
           <label class="label">Unternehmen</label>
           <input placeholder="msg systems AG" [status]="companyName.invalid && companyName.touched ? 'danger' : 'basic'" formControlName="companyName" nbInput fullWidth data-cy="company-name-input" />
           <div *ngIf="companyName.invalid && companyName.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Unternehmen eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Unternehmen eintragen</label>
           </div>
         </div>
         <div>
@@ -60,7 +60,7 @@
             data-cy="company-department-input"
           />
           <div *ngIf="department.invalid && department.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Abteilung eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Abteilung eintragen</label>
           </div>
         </div>
       </div>
@@ -76,14 +76,14 @@
             data-cy="company-division-input"
           />
           <div *ngIf="corporateDivision.invalid && corporateDivision.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Unternehmensbereich eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Unternehmensbereich eintragen</label>
           </div>
         </div>
         <div>
           <label class="label">Branche</label>
           <input placeholder="Software" [status]="sector.invalid && sector.touched ? 'danger' : 'basic'" formControlName="sector" nbInput fullWidth data-cy="company-sector-input" />
           <div *ngIf="sector.invalid && sector.touched">
-            <label class="label text-danger" data-cy="auditname-missing-label">Branche eintragen</label>
+            <label class="label text-danger" data-cy="missing-label">Branche eintragen</label>
           </div>
         </div>
       </div>
@@ -91,10 +91,10 @@
       <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="contact-info-input"></textarea>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
+      <button (click)="onCancel()" hero nbButton data-cy="cancel-data-form">
         abbrechen
       </button>
-      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
+      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-data-form">
         {{ submitButtonName }}
       </button>
     </nb-card-footer>

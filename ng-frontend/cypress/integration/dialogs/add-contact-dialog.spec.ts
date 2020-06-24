@@ -13,12 +13,13 @@ describe('AddPersonDialog', () => {
    * Tests the contact form
    */
   context('When focussing on the contact person it... ', () => {
-    before(() => {
+    beforeEach(() => {
+      cy.visit(contactsUrl);
       cy.visit(contactsUrl + '/new');
     });
 
     after(() => {
-      cy.get('[data-cy=cancel-audit-data-form]').click();
+      cy.get('[data-cy=cancel-data-form]').click();
       cy.get('[data-cy=discard]').click();
     });
 
@@ -49,13 +50,6 @@ describe('AddPersonDialog', () => {
       cy.get('[data-cy=salutation-option]').should('contain', 'Divers');
     });
 
-    it('gives usable drop down for choosing a gendered salutation for the contact person', () => {
-      cy.get('[data-cy=salutation-option]').should('contain', 'Herr');
-      cy.get('[data-cy=salutation-option]').should('contain', 'Frau');
-      cy.get('[data-cy=salutation-option]').should('contain', 'Divers');
-      cy.get('[data-cy=salutation-option]').contains(testPerson.salutation).click();
-    });
-
     it('gives inputable element for professional salutation', () => {
       cy.get('[data-cy=contact-title-input]').clear().type(testPerson.title);
       cy.get('[data-cy=contact-title-input]').should('have.value', testPerson.title);
@@ -74,6 +68,23 @@ describe('AddPersonDialog', () => {
     it('gives inputable element for contact information', () => {
       cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
       cy.get('[data-cy=contact-info-input]').should('have.value', testPerson.information);
+    });
+
+    it('requires firstname, lastname, companyname, division to be submittable', () => {
+      cy.get('[data-cy=submit-data-form]').should('be.disabled');
+      cy.get('[data-cy=contact-title-input]').clear().type(testPerson.title);
+      cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
+      cy.get('[data-cy=company-sector-input]').clear().type(testPerson.sector);
+      cy.get('[data-cy=company-department-input]').clear().type(testPerson.department);
+      cy.get('[data-cy=submit-data-form]').should('be.disabled');
+      cy.get('[data-cy=contact-firstname-input]').clear().type(testPerson.firstName);
+      cy.get('[data-cy=submit-data-form]').should('be.disabled');
+      cy.get('[data-cy=contact-lastname-input]').clear().type(testPerson.lastName);
+      cy.get('[data-cy=submit-data-form]').should('be.disabled');
+      cy.get('[data-cy=company-name-input]').clear().type(testPerson.companyName);
+      cy.get('[data-cy=submit-data-form]').should('be.disabled');
+      cy.get('[data-cy=company-division-input]').clear().type(testPerson.corporateDivision);
+      cy.get('[data-cy=submit-data-form]').should('not.be.disabled');
     });
   });
 
