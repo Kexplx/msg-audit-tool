@@ -9,7 +9,7 @@
   </div>
   <div>
     <label class="label" data-cy="contact-department">Abteilung</label>
-    <p class="subtitle-2">{{ contactPerson.department }}</p>
+    <p *ngIf="contactPerson.department; else missing" class="subtitle-2">{{ contactPerson.department }}</p>
   </div>
   <div>
     <label class="label" data-cy="contact-division">Unternehmensbereich</label>
@@ -17,6 +17,9 @@
   </div>
   <div>
     <label class="label" data-cy="contact-sector">Branche</label>
-    <p class="subtitle-2">{{ contactPerson.sector }}</p>
+    <p *ngIf="contactPerson.sector; else missing" class="subtitle-2">{{ contactPerson.sector }}</p>
   </div>
+  <ng-template #missing>
+    <p class="subtitle-2">-</p>
+  </ng-template>
 </div>
