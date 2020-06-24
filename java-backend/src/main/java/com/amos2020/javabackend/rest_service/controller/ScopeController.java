@@ -47,7 +47,8 @@ public class ScopeController {
         return new BasicScopeResponse(scope);
     }
 
-    public List<BasicScopeResponse> getScopesByAuditId(int auditId){
+    public List<BasicScopeResponse> getScopesByAuditId(int auditId) throws NotFoundException {
+        auditService.getAuditById(auditId);
         List<BasicScopeResponse> responseList = new ArrayList<>();
         List<Scope> scopes = scopeService.findScopeItemsByAuditId(auditId);
         scopes.forEach( scope -> responseList.add(new BasicScopeResponse(scope)));
