@@ -59,11 +59,11 @@ export class ContactPersonFormComponent extends AbstractFormComponent implements
     this.formGroup = this.formBuilder.group({
       firstName: [this.contactPerson?.firstName, Validators.required],
       lastName: [this.contactPerson?.lastName, Validators.required],
-      salutation: [this.contactPerson?.salutation, Validators.required],
-      title: [this.contactPerson?.title, Validators.required],
+      salutation: [this.contactPerson?.salutation],
+      title: [this.contactPerson?.title],
       companyName: [this.contactPerson?.companyName, Validators.required],
-      department: [this.contactPerson?.department, Validators.required],
-      sector: [this.contactPerson?.sector, Validators.required],
+      department: [this.contactPerson?.department],
+      sector: [this.contactPerson?.sector],
       corporateDivision: [this.contactPerson?.corporateDivision, Validators.required],
       contactInformation: [this.contactPerson?.contactInformation],
     });
