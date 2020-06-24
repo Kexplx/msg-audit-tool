@@ -7,6 +7,9 @@ import lombok.Setter;
 
 public class BasicScopeResponse {
 
+    public BasicScopeResponse() {
+
+    }
     public BasicScopeResponse(int auditId, int facCritId, boolean removed, String change_note, String note) {
         this.auditId = auditId;
         this.facCritId = facCritId;
