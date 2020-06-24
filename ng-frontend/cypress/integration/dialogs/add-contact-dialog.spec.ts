@@ -93,6 +93,7 @@ describe('AddPersonDialog', () => {
    */
   context('When a contact was added it...', () => {
     before(() => {
+      cy.visit(contactsUrl);
       cy.addPerson(testPerson);
     });
 

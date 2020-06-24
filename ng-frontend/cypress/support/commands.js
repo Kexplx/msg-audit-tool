@@ -46,7 +46,7 @@ function inputPerson(testPerson) {
   if (testPerson.information) {
     cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
   }
-  cy.get('[data-cy=submit-audit-data-form]').click();
+  cy.get('[data-cy=submit-data-form]').click();
 }
 
 function addInterview(testInterview) {
