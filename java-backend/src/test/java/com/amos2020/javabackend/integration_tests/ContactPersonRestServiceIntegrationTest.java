@@ -207,7 +207,7 @@ public class ContactPersonRestServiceIntegrationTest {
         contactPersonRequest.setCorporateDivision("Updated_testDivision");
 
         HttpEntity<UpdateContactPersonRequest> request = new HttpEntity<>(contactPersonRequest);
-        ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.exchange("/contactpersons/1", HttpMethod.PUT, request, BasicContactPersonResponse.class);
+        ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.exchange("/contactpersons/1001", HttpMethod.PUT, request, BasicContactPersonResponse.class);
 
         System.out.println(response.getStatusCode());
 
@@ -229,7 +229,7 @@ public class ContactPersonRestServiceIntegrationTest {
         contactPersonRequest.setCorporateDivision("Updated_testDivision");
 
         HttpEntity<UpdateContactPersonRequest> request = new HttpEntity<>(contactPersonRequest);
-        ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.exchange("/contactpersons/1", HttpMethod.PUT, request, BasicContactPersonResponse.class);
+        ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.exchange("/contactpersons/1001", HttpMethod.PUT, request, BasicContactPersonResponse.class);
         assertEquals(400, response.getStatusCodeValue());
     }
 
