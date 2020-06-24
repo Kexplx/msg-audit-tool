@@ -2,4 +2,17 @@
 @import '~@nebular/theme/styles/themes/default';
 @import 'colors';
 
-$nb-themes: nb-register-theme((), default, default);
+$nb-themes: nb-register-theme(
+  (
+    color-primary-100: $msg-100,
+    color-primary-200: $msg-200,
+    color-primary-300: $msg-300,
+    color-primary-400: $msg-400,
+    color-primary-500: $msg-500,
+    color-primary-600: $msg-600,
+    color-primary-700: $msg-700,
+    color-primary-800: $msg-800,
+  ),
+  default,
+  default
+);
