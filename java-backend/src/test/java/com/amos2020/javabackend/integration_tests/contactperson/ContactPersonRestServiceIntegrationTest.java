@@ -22,6 +22,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -38,7 +39,8 @@ import java.nio.charset.Charset;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
-//@Sql("/ContactPersonTest.sql")
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@Sql("/ContactPersonTest.sql")
 @RunWith(SpringRunner.class)
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
@@ -49,11 +51,7 @@ public class ContactPersonRestServiceIntegrationTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-    @Test
-    public void setup() {
 
-    }
-/*
     @Test
     public void getContactPersonById() {
         ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.getForEntity("/contactpersons/1001", BasicContactPersonResponse.class);
@@ -237,6 +235,6 @@ public class ContactPersonRestServiceIntegrationTest {
         assertEquals(400, response.getStatusCodeValue());
     }
 
-*/
+
 
 }
