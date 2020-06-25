@@ -11,8 +11,6 @@ public abstract class BasicRequest {
     public static final int MAX_SMALL_TEXT_LENGTH = 1024;
     public static final int MAX_TEXT_LENGTH = 8096;
 
-    public abstract void isValid();
-
     /**
      * Asserts that an attribute that represents a name cannot be null, empty or longer than 256 chars
      *
