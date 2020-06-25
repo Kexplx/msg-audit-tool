@@ -80,12 +80,7 @@ describe('QuestionsPage', () => {
       //TODO
     });
 
-    it('opens accordeons on click', () => {
-      cy.get('[data-cy=question-card-header]').each(el => {
-        cy.wrap(el).click();
-        cy.get('[data-cy=question-form]').should('be.visible');
-      });
-    });
+    it('opens accordeons on click', () => {});
   });
 
   //TODO
