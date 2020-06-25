@@ -51,7 +51,6 @@ textarea {
 .goals-not-at-top {
   position: fixed;
   top: nb-theme(header-height) - nb-theme(header-padding);
-  width: 77%;
   height: 0px;
   z-index: 2;
 }
