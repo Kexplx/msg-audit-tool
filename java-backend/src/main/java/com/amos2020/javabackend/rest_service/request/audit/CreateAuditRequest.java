@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.rest_service.request.audit;
 
 import com.amos2020.javabackend.rest_service.request.BasicRequest;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,23 +19,28 @@ public class CreateAuditRequest extends BasicRequest {
     @NotNull
     @NotBlank
     @Size(min = 1, max = 256)
+    @Schema(type = "String", name = "auditName", example = "MSG project audit", required = true)
     private String auditName;
 
     @Getter
     @Setter
     @NotNull
+    @Schema(type = "string", name = "startDate", format = "date",  required = true)
     private Date startDate;
 
     @Getter
     @Setter
+    @Schema(type = "string", name = "endDate", format = "date")
     private Date endDate;
 
     @Getter
     @Setter
+    @Schema(type = "Array", name = "scope", example = "[1]", required = true)
     private List<@Min(1) Integer> scope;
 
     @Getter
     @Setter
+    @Schema(type = "Array", name = "contactPeople", example = "[1]", required = true)
     private List<@Min(1) Integer> contactPeople;
 
     public void isValid() throws IllegalArgumentException {
