@@ -1,4 +1,6 @@
 @import 'src/sass/utils';
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
 
 header {
   .container-persons {
@@ -44,4 +46,17 @@ header {
 textarea {
   height: 100px;
   resize: vertical;
+}
+
+.goals-not-at-top {
+  position: fixed;
+  top: nb-theme(header-height) - nb-theme(header-padding);
+  width: 77%;
+  height: 0px;
+  z-index: 2;
+}
+
+.goals-input {
+  resize: none;
+  z-index: 2;
 }
