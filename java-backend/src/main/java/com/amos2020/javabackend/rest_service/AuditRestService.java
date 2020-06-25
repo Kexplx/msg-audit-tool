@@ -6,10 +6,18 @@ import com.amos2020.javabackend.rest_service.request.audit.DeleteAuditRequest;
 import com.amos2020.javabackend.rest_service.request.audit.UpdateAuditRequest;
 import com.amos2020.javabackend.rest_service.request.audit.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.rest_service.response.BasicAuditResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -27,8 +35,14 @@ public class AuditRestService {
      * @param request CreateAuditRequest
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Create a new Audit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Created a new audit", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PostMapping("/audits")
-    public ResponseEntity<BasicAuditResponse> createAudit(@RequestBody CreateAuditRequest request) {
+    public ResponseEntity<BasicAuditResponse> createAudit(@RequestBody @Valid CreateAuditRequest request) {
         BasicAuditResponse response;
 
         try {
@@ -50,18 +64,23 @@ public class AuditRestService {
      * @param request UpdateAuditRequest
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Update an existing Audit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated the audit", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PutMapping("/audits/{id}")
-    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") int auditId, @RequestBody UpdateAuditRequest request) {
+    public ResponseEntity<BasicAuditResponse> updateAudit(@PathVariable("id") @Min(1) int auditId, @RequestBody @Valid UpdateAuditRequest request) {
         BasicAuditResponse response;
-
         try {
             // Validate parameters for updating audit
             request.isValid();
             response = auditController.updateAudit(auditId, request.getAuditName(), request.getStartDate(), request.getEndDate());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().build();
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
         }
 
         return ResponseEntity.ok(response);
@@ -74,8 +93,14 @@ public class AuditRestService {
      * @param contactPersonId int
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Add a contact person to an existing Audit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully added a person to the audit", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PutMapping("/audits/{id}/contactpersons/{contactPersonId}")
-    public ResponseEntity<BasicAuditResponse> addContactPersonToAudit(@PathVariable("id") int auditId, @PathVariable("contactPersonId") int contactPersonId) {
+    public ResponseEntity<BasicAuditResponse> addContactPersonToAudit(@PathVariable("id") @Min(1) int auditId, @PathVariable("contactPersonId") @Min(1) int contactPersonId) {
         BasicAuditResponse response;
         try {
             response = auditController.addContactPersonToAudit(auditId, contactPersonId);
@@ -95,8 +120,14 @@ public class AuditRestService {
      * @param contactPersonId int
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Remove a contact person from an existing Audit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully removed the contact person from the audit", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @DeleteMapping("/audits/{id}/contactpersons/{contactPersonId}")
-    public ResponseEntity<BasicAuditResponse> removeContactPersonFromAudit(@PathVariable("id") int auditId, @PathVariable("contactPersonId") int contactPersonId) {
+    public ResponseEntity<BasicAuditResponse> removeContactPersonFromAudit(@PathVariable("id") @Min(1) int auditId, @PathVariable("contactPersonId") @Min(1) int contactPersonId) {
         BasicAuditResponse response;
 
         try {
@@ -118,11 +149,17 @@ public class AuditRestService {
      * @param request UpdateAuditScopeRequest
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Update the scope of an existing Audit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated the scope of the audit", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "403", description = "Forbidden", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PutMapping("/audits/{id}/scope")
-    public ResponseEntity<BasicAuditResponse> updateAuditScope(@PathVariable("id") int auditId, @RequestBody UpdateAuditScopeRequest request) {
+    public ResponseEntity<BasicAuditResponse> updateAuditScope(@PathVariable("id") @Min(1) int auditId, @RequestBody @Valid UpdateAuditScopeRequest request) {
         BasicAuditResponse response;
         try {
-            request.isValid();
             response = auditController.updateAuditScope(auditId, request.getFacCritId(), request.getChangeNote(), request.isRemoved(), request.getNote());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
@@ -141,11 +178,16 @@ public class AuditRestService {
      * @param request DeleteAuditRequest
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Delete an existing Audit")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully deleted the audit", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @DeleteMapping("/audits/{id}")
-    public ResponseEntity<BasicAuditResponse> deleteAudit(@PathVariable("id") int auditId, @RequestBody DeleteAuditRequest request) {
+    public ResponseEntity<BasicAuditResponse> deleteAudit(@PathVariable("id") @Min(1) int auditId, @RequestBody @Valid DeleteAuditRequest request) {
         BasicAuditResponse response;
         try {
-            request.isValid();
             response = auditController.softDeleteAudit(auditId, request.getDate(), request.getReason(), request.getContactPerson());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
@@ -161,8 +203,14 @@ public class AuditRestService {
      * @param auditId int
      * @return BasicAuditResponse
      */
+    @Operation(summary = "Get Audit by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Receive audit with specific id", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = BasicAuditResponse.class))}),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @GetMapping("/audits/{id}")
-    public ResponseEntity<BasicAuditResponse> getAuditById(@PathVariable("id") int auditId) {
+    public ResponseEntity<BasicAuditResponse> getAuditById(@PathVariable("id") @Min(1) int auditId) {
         BasicAuditResponse response;
         try {
             response = auditController.getAuditById(auditId);
@@ -178,6 +226,10 @@ public class AuditRestService {
      *
      * @return List<BasicAuditResponse>
      */
+    @Operation(summary = "Get all existing Audits")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Received all existing audit", content = {@Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = BasicAuditResponse.class)))}),
+    })
     @GetMapping("/audits")
     public ResponseEntity<List<BasicAuditResponse>> getAuditAll() {
         List<BasicAuditResponse> response;
