@@ -52,7 +52,7 @@ export class InterviewComponent implements OnInit {
     const guardY = document.querySelector('#guard').getBoundingClientRect().y;
     if (scrollPosition >= guardY) {
       // get height and width of "goals-item" accordeon item to set the width and the height after the "goals" accordeon gets taken out of the grid
-      const goalHeight = document.querySelector('#goals-item').clientHeight + 40;
+      const goalHeight = document.querySelector('#goals-item').clientHeight;
       const goalWidth = document.querySelector('#goals-item').clientWidth;
       // add padding to the "pad" div with goalHeight to stop the body from shrinking
       document.getElementById('pad').style.paddingTop = goalHeight.toString() + 'px';
