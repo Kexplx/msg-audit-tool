@@ -42,7 +42,6 @@ public class UpdateAnswerRequest extends BasicRequest {
     @Setter
     private String annotation;
 
-    @Override
     public void isValid() {
         assertIdIsValid(questionId);
         assertIdIsValid(interviewId);

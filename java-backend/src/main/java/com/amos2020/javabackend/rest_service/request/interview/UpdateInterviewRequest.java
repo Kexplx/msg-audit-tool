@@ -23,7 +23,6 @@ public class UpdateInterviewRequest extends BasicRequest {
     private String goal;
 
 
-    @Override
     public void isValid() {
         assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);

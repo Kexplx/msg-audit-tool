@@ -34,8 +34,6 @@ public class UpdateContactPersonRequest extends BasicRequest {
     @Setter
     private String corporateDivision;
 
-
-    @Override
     public void isValid() {
         assertNameIsValid(forename);
         assertNameIsValid(surname);

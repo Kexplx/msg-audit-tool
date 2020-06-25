@@ -18,7 +18,6 @@ public class UpdateScopeRequest extends BasicRequest {
     @Setter
     private String note;
 
-    @Override
     public void isValid() {
         assertNoteIsValid(note);
         assertNoteIsValid(change_note);

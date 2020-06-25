@@ -13,7 +13,6 @@ public class AddScopeRequest extends BasicRequest {
     private List<Integer> scope;
 
 
-    @Override
     public void isValid() {
         for (Integer i : scope) {
             assertIdIsValid(i);

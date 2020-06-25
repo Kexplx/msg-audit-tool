@@ -30,7 +30,6 @@ public class CreateInterviewRequest extends BasicRequest {
     @Setter
     private List<Integer> interviewScope;
 
-    @Override
     public void isValid() {
         assertIdIsValid(auditId);
         assertDateIsNotNull(startDate);

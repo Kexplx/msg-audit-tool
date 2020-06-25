@@ -15,7 +15,6 @@ public class InterviewAddContactPersonRequest extends BasicRequest {
     @Setter
     private String role;
 
-    @Override
     public void isValid() {
         assertIdIsValid(contactPersonId);
         assertNameIsValid(role);

@@ -13,7 +13,6 @@ public class CreateAnswerRequest extends BasicRequest {
     @Setter
     private int interviewId;
 
-    @Override
     public void isValid() {
         assertIdIsValid(questionId);
         assertIdIsValid(interviewId);
