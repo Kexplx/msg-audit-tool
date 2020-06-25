@@ -4,42 +4,42 @@ import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateAuditRequest extends BasicRequest {
-    // mandatory
     @Getter
     @Setter
+    @NotNull
+    @NotBlank
+    @Size(min = 1, max = 256)
     private String auditName;
 
-    // mandatory
     @Getter
     @Setter
+    @NotNull
     private Date startDate;
 
-    // Not mandatory
     @Getter
     @Setter
     private Date endDate;
 
-    // Not mandatory
     @Getter
     @Setter
-    private List<Integer> scope;
+    private List<@Min(1) Integer> scope;
 
-    // Not mandatory
     @Getter
     @Setter
-    private List<Integer> contactPeople;
+    private List<@Min(1) Integer> contactPeople;
 
     public void isValid() throws IllegalArgumentException {
-        assertNameIsValid(auditName);
-        assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);
-        assertIdsAreValid(contactPeople);
-        assertIdsAreValid(scope);
+
         if (contactPeople == null) {
             contactPeople = new ArrayList<>();
         }
