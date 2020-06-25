@@ -2,6 +2,7 @@ package com.amos2020.javabackend.rest_service.request.audit;
 
 import com.amos2020.javabackend.rest_service.Constants;
 import com.amos2020.javabackend.rest_service.request.BasicRequest;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,20 +15,24 @@ public class UpdateAuditScopeRequest extends BasicRequest {
     @Setter
     @NotNull
     @Min(message = "facccrit ID", value = 1)
+    @Schema(type = "Integer", name = "facCritId", example = "1", required = true)
     private int facCritId;
 
     @Getter
     @Setter
     @Size(message = "change note", max = Constants.NOTE_LENGTH)
+    @Schema(type = "String", name = "changeNote", example = "Change note for a scope item", required = true)
     private String changeNote;
 
     @Getter
     @Setter
     @NotNull
+    @Schema(type = "boolean", name = "removed", example = "true", required = true)
     private boolean removed;
 
     @Getter
     @Setter
     @Size(message = "normal note", max = Constants.TEXT_LENGTH)
+    @Schema(type = "String", name = "note", example = "Note for a scope item", required = true)
     private String note;
 }
