@@ -61,8 +61,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithSalutationIsNull_ThrowsException() {
+    @Test
+    public void insertContactPersonWithSalutationIsNull_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setContactInformation(TEST_INFORMATION);
         toTest.setForename(TEST_FORENAME);
@@ -71,12 +71,25 @@ public class ContactPersonRepositoryTest {
         toTest.setDepartment(TEST_DEPARTMENT);
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
-        repository.save(toTest);
+
+
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
 
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithTitleIsNull_ThrowsException() {
+    @Test
+    public void insertContactPersonWithTitleIsNull_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setContactInformation(TEST_INFORMATION);
@@ -86,7 +99,20 @@ public class ContactPersonRepositoryTest {
         toTest.setDepartment(TEST_DEPARTMENT);
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
-        repository.save(toTest);
+
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
+
 
     }
 
@@ -135,8 +161,8 @@ public class ContactPersonRepositoryTest {
         repository.save(toTest);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithDepartmentIsNull_ThrowsException() {
+    @Test
+    public void insertContactPersonWithDepartmentIsNull_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -147,11 +173,23 @@ public class ContactPersonRepositoryTest {
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
 
-        repository.save(toTest);
+
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithSectorIsNull_ThrowsException() {
+    @Test
+    public void insertContactPersonWithSectorIsNull_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -162,7 +200,18 @@ public class ContactPersonRepositoryTest {
         toTest.setDepartment(TEST_DEPARTMENT);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
 
-        repository.save(toTest);
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -180,8 +229,8 @@ public class ContactPersonRepositoryTest {
         repository.save(toTest);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithTitleIsEmpty_ThrowsException() {
+    @Test
+    public void insertContactPersonWithTitleIsEmpty_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle("");
@@ -193,7 +242,19 @@ public class ContactPersonRepositoryTest {
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
 
-        repository.save(toTest);
+
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -244,8 +305,8 @@ public class ContactPersonRepositoryTest {
         repository.save(toTest);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithDepartmentIsEmpty_ThrowsException() {
+    @Test
+    public void insertContactPersonWithDepartmentIsEmpty_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -257,7 +318,18 @@ public class ContactPersonRepositoryTest {
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
 
-        repository.save(toTest);
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -291,8 +363,8 @@ public class ContactPersonRepositoryTest {
         repository.save(toTest);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithTitleIsBlank_ThrowsException() {
+    @Test
+    public void insertContactPersonWithTitleIsBlank_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle("   ");
@@ -303,7 +375,19 @@ public class ContactPersonRepositoryTest {
         toTest.setDepartment(TEST_DEPARTMENT);
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
-        repository.save(toTest);
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
+
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -351,8 +435,8 @@ public class ContactPersonRepositoryTest {
         repository.save(toTest);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void insertContactPersonWithDepartmentIsBlank_ThrowsException() {
+    @Test
+    public void insertContactPersonWithDepartmentIsBlank_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -363,7 +447,18 @@ public class ContactPersonRepositoryTest {
         toTest.setDepartment("   ");
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
-        repository.save(toTest);
+        ContactPerson entity = repository.save(toTest);
+
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+        Assert.assertEquals(entity.getSalutation(), toTest.getSalutation());
+        Assert.assertEquals(entity.getContactInformation(), toTest.getContactInformation());
+        Assert.assertEquals(entity.getForename(), toTest.getForename());
+        Assert.assertEquals(entity.getSurname(), toTest.getSurname());
+        Assert.assertEquals(entity.getTitle(), toTest.getTitle());
+        Assert.assertEquals(entity.getDepartment(), toTest.getDepartment());
+        Assert.assertEquals(entity.getSector(), toTest.getSector());
+        Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
+        Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -438,8 +533,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity, updatedEntity);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void updateContactPersonWithInvalidSalutation_throwsException() {
+    @Test
+    public void updateContactPersonWithSalutationisNull_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -454,7 +549,10 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setSalutation(null);
-        repository.save(entity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
+
+
     }
 
     @Test
@@ -478,8 +576,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity, updatedEntity);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void updateContactPersonWithInvalidTitle_throwsException() {
+    @Test
+    public void updateContactPersonWithBlankTitle_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -494,7 +592,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setTitle("  ");
-        repository.save(entity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
     }
 
     @Test
@@ -639,8 +738,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity, updatedEntity);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void updateContactPersonWithInvalidDepartment_throwsException() {
+    @Test
+    public void updateContactPersonWithBlankDepartment_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -655,7 +754,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setDepartment("  ");
-        repository.save(entity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
     }
 
     @Test
@@ -679,8 +779,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity, updatedEntity);
     }
 
-    @Test(expected = TransactionSystemException.class)
-    public void updateContactPersonWithInvalidSector_throwsException() {
+    @Test
+    public void updateContactPersonWithInvalidSector_isSuccessfully() {
         toTest = new ContactPerson();
         toTest.setSalutation(TEST_SALUTATION);
         toTest.setTitle(TEST_TITLE);
@@ -695,7 +795,8 @@ public class ContactPersonRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         entity.setSector("  ");
-        repository.save(entity);
+        ContactPerson updatedEntity = repository.save(entity);
+        Assert.assertEquals(entity, updatedEntity);
     }
 
     @Test
