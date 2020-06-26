@@ -47,6 +47,7 @@ public class BasicContactPersonResponse {
         this.department = contactperson.getDepartment();
         this.sector = contactperson.getSector();
         this.corporateDivision = contactperson.getCorporateDivision();
+        this.contactInformation = contactperson.getContactInformation();
     }
 
     public BasicContactPersonResponse() {
