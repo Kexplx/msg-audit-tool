@@ -20,12 +20,16 @@ public class ContactPersonController {
     }
 
     public BasicContactPersonResponse createContactPerson(Salutation salutation, String title, String forename, String surname, String companyName, String department, String sector, String corporate_division) {
-        // Create audit and save in database
+        // Create contact person and save in database
+
+        if(forename == null || surname == null || companyName == null || corporate_division == null )
+            throw  new IllegalArgumentException();
+
         ContactPerson contactPerson = contactPersonService.createContactPerson(salutation, title, forename, surname, companyName, department, sector, corporate_division);
         return new BasicContactPersonResponse(contactPerson);
     }
 
-    public List<BasicContactPersonResponse> getAllAudits() {
+    public List<BasicContactPersonResponse> getAllContactPersons() {
         List<BasicContactPersonResponse> response = new ArrayList<>();
         for (ContactPerson c : contactPersonService.getAll()) {
             response.add(new BasicContactPersonResponse(c));
@@ -39,6 +43,9 @@ public class ContactPersonController {
     }
 
     public BasicContactPersonResponse updateContactPerson(int contactPersonId, Salutation salutation, String title, String forename, String surname, String contactInformation, String companyName, String department, String sector, String corporate_division)  throws NotFoundException {
+        if(forename == null || surname == null || companyName == null || corporate_division == null )
+            throw  new IllegalArgumentException();
+
         ContactPerson contactPerson = contactPersonService.getContactPersonById(contactPersonId);
         contactPerson.setSalutation(salutation);
         contactPerson.setTitle(title);

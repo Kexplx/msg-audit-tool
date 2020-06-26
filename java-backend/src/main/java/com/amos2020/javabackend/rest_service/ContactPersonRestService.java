@@ -49,7 +49,7 @@ public class ContactPersonRestService {
     public ResponseEntity<List<BasicContactPersonResponse>> getAuditAll() {
         List<BasicContactPersonResponse> response;
         try {
-            response = contactPersonController.getAllAudits();
+            response = contactPersonController.getAllContactPersons();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }

@@ -41,7 +41,6 @@ public class ContactPerson {
     }
 
     @Basic
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "salutation")
     public Salutation getSalutation() {
@@ -53,7 +52,6 @@ public class ContactPerson {
     }
 
     @Basic
-    @NotBlank
     @Column(name = "title")
     public String getTitle() {
         return title;
@@ -107,7 +105,6 @@ public class ContactPerson {
     }
 
     @Basic
-    @NotBlank
     @Column(name = "department")
     public String getDepartment() {
         return department;
@@ -118,7 +115,6 @@ public class ContactPerson {
     }
 
     @Basic
-    @NotBlank
     @Column(name = "sector")
     public String getSector() {
         return sector;
