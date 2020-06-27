@@ -70,12 +70,12 @@ public class InterviewController {
      * @return New interview
      * @throws NotFoundException If the auditId, an contactPersonId or an facCritId is invalid
      */
-    public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, HashMap<Integer, String> interviewedPeople, List<Integer> interviewScope) throws NotFoundException {
+    public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, String goal, HashMap<Integer, String> interviewedPeople, List<Integer> interviewScope) throws NotFoundException {
         auditService.getAuditById(auditId);
         List<ContactPerson> contactPeople = contactPersonService.getAllByIds(new ArrayList<>(interviewedPeople.keySet()));
         facCritService.getAllById(interviewScope);
 
-        Interview interview = interviewService.createInterview(auditId, startDate, endDate);
+        Interview interview = interviewService.createInterview(auditId, startDate, endDate, goal);
         for (int contactPersonId : interviewedPeople.keySet()) {
             interviewContactPersonService.create(interview.getId(), contactPersonId, interviewedPeople.get(contactPersonId));
         }
@@ -101,11 +101,12 @@ public class InterviewController {
      * @return Updated Interview
      * @throws NotFoundException If stored contactPersonIds are not valid and therefore can not be found
      */
-    public BasicInterviewResponse updateInterview(int interviewId, Date startDate, Date endDate, InterviewStatus status) throws NotFoundException {
+    public BasicInterviewResponse updateInterview(int interviewId, Date startDate, Date endDate, InterviewStatus status, String goal) throws NotFoundException {
         Interview interview = interviewService.getInterviewById(interviewId);
         interview.setStartDate(startDate);
         interview.setEndDate(endDate);
         interview.setStatus(status);
+        interview.setGoal(goal);
         interviewService.updateInterview(interview);
         return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
     }
