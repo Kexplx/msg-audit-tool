@@ -15,10 +15,7 @@
 </header>
 
 <nb-card accent="primary" id="card-goal" class="mt-2">
-  <nb-card-header data-cy="goals-card-header">Ziel</nb-card-header>
-  <nb-card-body>
-    <input nbInput fullWidth type="text" />
-  </nb-card-body>
+  <nb-card-header data-cy="goals-card-header"><input [(ngModel)]="interviewGoal" placeholder="Ziel des Interviews..." nbInput fullWidth type="text" /></nb-card-header>
 </nb-card>
 
 <nb-accordion [id]="question.id" class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
