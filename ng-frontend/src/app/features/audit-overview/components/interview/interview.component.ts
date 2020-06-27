@@ -5,6 +5,10 @@ import { Interview } from 'src/app/core/data/models/interview.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Select, Store } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { AnswerState } from 'src/app/core/ngxs/answer.state';
+import { Answer } from 'src/app/core/data/models/answer.model';
+import { AddAnswer, UpdateAnswer } from 'src/app/core/ngxs/actions/answer.actions';
 
 @Component({
   selector: 'app-interview',
@@ -15,47 +19,63 @@ export class InterviewComponent implements OnInit {
   interview$: Observable<Interview>;
   facCrit$: Observable<FacCrit>;
 
+  facCritId: string;
+  interviewId: string;
+
+  interviewGoal: string;
+
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
+
+  formGroups: FormGroup[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private store: Store,
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(params => {
-      const facCritId = params.get('facCritId');
-      const interviewId = params.get('interviewId');
+      this.facCritId = params.get('facCritId');
+      this.interviewId = params.get('interviewId');
 
-      if (!facCritId || !interviewId) {
+      if (!this.interviewId || !this.facCritId) {
         this.router.navigate(['/audits']);
       }
 
-      this.facCrit$ = this.store.select(AuditState.facCrit(facCritId));
-      this.interview$ = this.store.select(AuditState.interview(interviewId));
+      this.facCrit$ = this.store.select(AuditState.facCrit(this.facCritId));
+      this.interview$ = this.store.select(AuditState.interview(this.interviewId));
 
       this.facCrit$.subscribe(facCrit => facCrit ?? this.router.navigate(['/audits']));
-      this.facCrit$.subscribe(facCrit => {
-        this.formGroups = [];
-        for (const question of facCrit.questions) {
-          this.store
-            .select(AnswerState.answer(this.facCritId, this.interviewId, question.id))
-            .subscribe(answer => {
-              this.formGroups.push(
-                this.fb.group({
-                  result: [answer?.result],
-                  responsible: [answer?.responsible],
-                  documentation: [answer?.documentation],
-                  procedure: [answer?.procedure],
-                  reason: [answer?.reason],
-                  proof: [answer?.proof],
-                  annotation: [answer?.annotation],
-                }),
-              );
-            });
+      this.interview$.subscribe(interview => {
+        if (!interview) {
+          return this.router.navigate(['/audits']);
         }
+
+        this.interviewGoal = interview.goal;
       });
+    });
+
+    this.facCrit$.subscribe(facCrit => {
+      this.formGroups = [];
+      for (const question of facCrit.questions) {
+        this.store
+          .select(AnswerState.answer(this.facCritId, this.interviewId, question.id))
+          .subscribe(answer => {
+            this.formGroups.push(
+              this.fb.group({
+                result: [answer?.result],
+                responsible: [answer?.responsible],
+                documentation: [answer?.documentation],
+                procedure: [answer?.procedure],
+                reason: [answer?.reason],
+                proof: [answer?.proof],
+                annotation: [answer?.annotation],
+              }),
+            );
+          });
+      }
     });
   }
 
