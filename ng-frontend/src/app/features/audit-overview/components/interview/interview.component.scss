@@ -48,14 +48,8 @@ textarea {
   resize: vertical;
 }
 
-.goals-not-at-top {
-  position: fixed;
-  top: nb-theme(header-height) - nb-theme(header-padding);
-  height: 0px;
-  z-index: 2;
-}
-
-.goals-input {
-  resize: none;
-  z-index: 2;
+#card-goal {
+  position: sticky;
+  top: nb-theme(header-height) - nb-theme(header-padding) + 1.5;
+  z-index: 1;
 }

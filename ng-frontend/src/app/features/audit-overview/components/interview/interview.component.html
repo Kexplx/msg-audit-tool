@@ -14,21 +14,12 @@
   </div>
 </header>
 
-<nb-accordion id="goals" class="mt-2">
-  <nb-accordion-item id="goals-item" class="mb-2">
-    <nb-accordion-item-header data-cy="goals-card-header">Ziel</nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <form data-cy="goals-form">
-        <div class="container-inputs-item-1" data-cy="goals">
-          <textarea fullWidth nbInput class="goals-textarea"></textarea>
-        </div>
-      </form>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-</nb-accordion>
-
-<div id="pad"></div>
-<div id="guard"></div>
+<nb-card accent="primary" id="card-goal" class="mt-2">
+  <nb-card-header data-cy="goals-card-header">Ziel</nb-card-header>
+  <nb-card-body>
+    <input nbInput fullWidth type="text" />
+  </nb-card-body>
+</nb-card>
 
 <nb-accordion [id]="question.id" class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
   <nb-accordion-item expanded class="mb-2">
