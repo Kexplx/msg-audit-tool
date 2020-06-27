@@ -20,6 +20,7 @@ public class BasicInterviewResponse {
         this.startDate = interview.getStartDate();
         this.endDate = interview.getEndDate();
         this.status = interview.getStatus();
+        this.goal = interview.getGoal();
         this.answers = new ArrayList<>();
         if (interview.getAnswersById() != null) {
             this.answers = interview.getAnswersById();
@@ -42,6 +43,10 @@ public class BasicInterviewResponse {
     @Getter
     @Setter
     private Date endDate;
+
+    @Getter
+    @Setter
+    private String goal;
 
     @Getter
     @Setter
