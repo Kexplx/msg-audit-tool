@@ -36,24 +36,56 @@ export class InterviewComponent implements OnInit {
       this.interview$ = this.store.select(AuditState.interview(interviewId));
 
       this.facCrit$.subscribe(facCrit => facCrit ?? this.router.navigate(['/audits']));
+      this.facCrit$.subscribe(facCrit => {
+        this.formGroups = [];
+        for (const question of facCrit.questions) {
+          this.store
+            .select(AnswerState.answer(this.facCritId, this.interviewId, question.id))
+            .subscribe(answer => {
+              this.formGroups.push(
+                this.fb.group({
+                  result: [answer?.result],
+                  responsible: [answer?.responsible],
+                  documentation: [answer?.documentation],
+                  procedure: [answer?.procedure],
+                  reason: [answer?.reason],
+                  proof: [answer?.proof],
+                  annotation: [answer?.annotation],
+                }),
+              );
+            });
+        }
+      });
+    });
+  }
+
+  onSave() {
     this.facCrit$.subscribe(facCrit => {
-      this.formGroups = [];
-      for (const question of facCrit.questions) {
-        this.store
-          .select(AnswerState.answer(this.facCritId, this.interviewId, question.id))
-          .subscribe(answer => {
-            this.formGroups.push(
-              this.fb.group({
-                result: [answer?.result],
-                responsible: [answer?.responsible],
-                documentation: [answer?.documentation],
-                procedure: [answer?.procedure],
-                reason: [answer?.reason],
-                proof: [answer?.proof],
-                annotation: [answer?.annotation],
-              }),
-            );
-          });
+      for (const [i, question] of facCrit.questions.entries()) {
+        const formGroup = this.formGroups[i];
+
+        const answer: Answer = {
+          proof: formGroup.get('proof').value,
+          result: formGroup.get('result').value,
+          documentation: formGroup.get('documentation').value,
+          procedure: formGroup.get('procedure').value,
+          reason: formGroup.get('reason').value,
+          annotation: formGroup.get('annotation').value,
+          responsible: formGroup.get('responsible').value,
+          facCritId: this.facCritId,
+          interviewId: this.interviewId,
+          questionId: question.id,
+        };
+
+        this.store;
+        const a = this.store.selectSnapshot(
+          AnswerState.answer(this.facCritId, this.interviewId, question.id),
+        );
+        if (!a) {
+          this.store.dispatch(new AddAnswer(answer));
+        } else {
+          this.store.dispatch(new UpdateAnswer(answer));
+        }
       }
     });
   }
