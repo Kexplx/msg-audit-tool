@@ -66,7 +66,7 @@ public class InterviewRestService {
 
         try {
             request.isValid();
-            response = interviewController.createInterview(request.getAuditId(), request.getStartDate(), request.getEndDate(), request.getInterviewedPeople(), request.getInterviewScope());
+            response = interviewController.createInterview(request.getAuditId(), request.getStartDate(), request.getEndDate(), request.getGoal() ,request.getInterviewedPeople(), request.getInterviewScope());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {
@@ -88,7 +88,7 @@ public class InterviewRestService {
         try {
             request.isValid();
             request.assertIdIsValid(interviewId);
-            response = interviewController.updateInterview(interviewId, request.getStartDate(), request.getEndDate(), request.getStatus());
+            response = interviewController.updateInterview(interviewId, request.getStartDate(), request.getEndDate(), request.getStatus(), request.getGoal());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {
