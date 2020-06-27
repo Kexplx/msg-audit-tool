@@ -6,6 +6,7 @@ import { AddAudit, DeleteAudit, UpdateAudit, AddInterview } from './actions/audi
 import * as shortid from 'shortid';
 import { FacCrit } from '../data/models/faccrit.model';
 import { FACCRITS } from '../data/examples/fac-crits';
+import { AUDITS } from '../data/examples/audits';
 
 export interface AuditStateModel {
   audits: Audit[];
@@ -21,7 +22,7 @@ export interface AuditStateModel {
 @State<AuditStateModel>({
   name: 'audit',
   defaults: {
-    audits: [],
+    audits: AUDITS,
     facCrits: FACCRITS,
   },
 })
