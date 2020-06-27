@@ -15,6 +15,7 @@ public class Interview {
     private Date startDate;
     private Date endDate;
     private InterviewStatus status;
+    private String goal;
 
     @JsonIgnore
     private Collection<Answer> answersById;
@@ -78,6 +79,16 @@ public class Interview {
         this.status = status;
     }
 
+    @Basic
+    @Column(name = "goal", length = 1024)
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
     @OneToMany(mappedBy = "interviewByInterviewId")
     public Collection<Answer> getAnswersById() {
         return answersById;
@@ -117,7 +128,8 @@ public class Interview {
         if (auditId != interview.auditId) return false;
         if (!Objects.equals(startDate, interview.startDate)) return false;
         if (!Objects.equals(endDate, interview.endDate)) return false;
-        return Objects.equals(status, interview.status);
+        if (!Objects.equals(status, interview.status)) return false;
+        return Objects.equals(goal, interview.goal);
     }
 
     @Override
@@ -127,6 +139,7 @@ public class Interview {
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
+        result = 31 * result + (goal != null ? goal.hashCode() : 0);
         return result;
     }
 }
