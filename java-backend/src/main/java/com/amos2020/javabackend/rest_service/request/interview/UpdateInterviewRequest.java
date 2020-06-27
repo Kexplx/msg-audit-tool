@@ -18,6 +18,9 @@ public class UpdateInterviewRequest extends BasicRequest {
     @Getter
     @Setter
     private InterviewStatus status;
+    @Getter
+    @Setter
+    private String goal;
 
 
     @Override
@@ -25,6 +28,7 @@ public class UpdateInterviewRequest extends BasicRequest {
         assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);
         assertInterviewStatusIsNotNull(status);
+        assertNoteIsValid(goal);
     }
 
     private void assertInterviewStatusIsNotNull(InterviewStatus status) {
