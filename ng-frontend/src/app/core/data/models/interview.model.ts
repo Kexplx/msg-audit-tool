@@ -10,8 +10,8 @@ export interface Interview {
   id?: string;
   start?: number;
   end?: number;
-  // contactPeopleRoles?: { contactPerson: ContactPerson; role: string }[];
   contactPeople: ContactPerson[];
   status: InterviewStatus;
   facCrits: FacCrit[];
+  goal?: string;
 }
