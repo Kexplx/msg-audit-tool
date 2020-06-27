@@ -36,7 +36,25 @@ export class InterviewComponent implements OnInit {
       this.interview$ = this.store.select(AuditState.interview(interviewId));
 
       this.facCrit$.subscribe(facCrit => facCrit ?? this.router.navigate(['/audits']));
-      this.interview$.subscribe(interview => interview ?? this.router.navigate(['/audits']));
+    this.facCrit$.subscribe(facCrit => {
+      this.formGroups = [];
+      for (const question of facCrit.questions) {
+        this.store
+          .select(AnswerState.answer(this.facCritId, this.interviewId, question.id))
+          .subscribe(answer => {
+            this.formGroups.push(
+              this.fb.group({
+                result: [answer?.result],
+                responsible: [answer?.responsible],
+                documentation: [answer?.documentation],
+                procedure: [answer?.procedure],
+                reason: [answer?.reason],
+                proof: [answer?.proof],
+                annotation: [answer?.annotation],
+              }),
+            );
+          });
+      }
     });
   }
 }
