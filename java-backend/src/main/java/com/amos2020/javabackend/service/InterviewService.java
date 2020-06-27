@@ -51,12 +51,13 @@ public class InterviewService {
      * @param endDate   Date
      * @return Created interview
      */
-    public Interview createInterview(int auditId, Date startDate, Date endDate) {
+    public Interview createInterview(int auditId, Date startDate, Date endDate, String goal) {
         Interview interview = new Interview();
         interview.setAuditId(auditId);
         interview.setStartDate(startDate);
         interview.setEndDate(endDate);
         interview.setStatus(InterviewStatus.ACTIVE);
+        interview.setGoal(goal);
         return repository.save(interview);
     }
 
