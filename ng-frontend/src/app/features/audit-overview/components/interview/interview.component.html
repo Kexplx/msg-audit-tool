@@ -4,7 +4,7 @@
       {{ (facCrit$ | async).name }} <span class="text-hint">{{ (interview$ | async).start | date: 'dd.MM.yyyy' }}</span>
     </h6>
     <div></div>
-    <button hero nbButton data-cy="save">speichern</button>
+    <button hero (click)="onSave()" nbButton data-cy="save">speichern</button>
     <button hero status="primary" nbButton data-cy="finish">abschließen</button>
   </div>
   <div class="header-container-2 mt-2 subtitle-2">
@@ -25,24 +25,24 @@
   <nb-accordion-item expanded class="mb-2">
     <nb-accordion-item-header data-cy="question-card-header">{{ question.textDe }}</nb-accordion-item-header>
     <nb-accordion-item-body>
-      <form class="container-interview-form" data-cy="question-form">
+      <form [formGroup]="formGroups[i]" class="container-interview-form" data-cy="question-form">
         <div class="container-checkboxes">
-          <nb-checkbox data-cy="question-result">Ergebnis</nb-checkbox>
-          <nb-checkbox data-cy="question-responsible">Verantwortlicher</nb-checkbox>
-          <nb-checkbox data-cy="question-documentation">Dokumentation</nb-checkbox>
-          <nb-checkbox data-cy="question-strategy">Vorgehen</nb-checkbox>
+          <nb-checkbox formControlName="result" data-cy="question-result">Ergebnis</nb-checkbox>
+          <nb-checkbox formControlName="responsible" data-cy="question-responsible">Verantwortlicher</nb-checkbox>
+          <nb-checkbox formControlName="documentation" data-cy="question-documentation">Dokumentation</nb-checkbox>
+          <nb-checkbox formControlName="procedure" data-cy="question-strategy">Vorgehen</nb-checkbox>
         </div>
         <div class="container-inputs-item-1" data-cy="question-reason">
           <label class="label">Begründung</label>
-          <textarea spellcheck="false" fullWidth nbInput></textarea>
+          <textarea formControlName="reason" spellcheck="false" fullWidth nbInput></textarea>
         </div>
         <div class="container-inputs-item-2" data-cy="question-note">
           <label class="label">Bemerkung</label>
-          <textarea spellcheck="false" fullWidth nbInput></textarea>
+          <textarea formControlName="annotation" spellcheck="false" fullWidth nbInput></textarea>
         </div>
         <div class="container-inputs-item-3" data-cy="question-certificate">
           <label class="label">Nachweis</label>
-          <textarea spellcheck="false" fullWidth nbInput></textarea>
+          <textarea formControlName="proof" spellcheck="false" fullWidth nbInput></textarea>
         </div>
       </form>
     </nb-accordion-item-body>
