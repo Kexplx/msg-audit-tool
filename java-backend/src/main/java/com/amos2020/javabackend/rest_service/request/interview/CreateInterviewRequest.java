@@ -22,6 +22,9 @@ public class CreateInterviewRequest extends BasicRequest {
     private Date endDate;
     @Getter
     @Setter
+    private String goal;
+    @Getter
+    @Setter
     private HashMap<Integer, String> interviewedPeople;
     @Getter
     @Setter
@@ -32,6 +35,7 @@ public class CreateInterviewRequest extends BasicRequest {
         assertIdIsValid(auditId);
         assertDateIsNotNull(startDate);
         assertDatesAreValid(startDate, endDate);
+        assertNoteIsValid(goal);
         assertIdsAreValid(new ArrayList<>(interviewedPeople.keySet()));
         assertIdsAreValid(interviewScope);
     }
