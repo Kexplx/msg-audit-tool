@@ -180,8 +180,8 @@ public class AuditRestService {
     @Operation(summary = "Delete an existing Audit")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully deleted the audit"),
-            @ApiResponse(responseCode = "400", description = "Bad Request"),
-            @ApiResponse(responseCode = "404", description = "Not Found")
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @DeleteMapping("/audits/{id}")
     public ResponseEntity<BasicAuditResponse> deleteAudit(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int auditId, @RequestBody @Valid DeleteAuditRequest request) {
