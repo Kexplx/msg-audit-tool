@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Interview } from 'src/app/core/data/models/interview.model';
@@ -108,5 +108,7 @@ export class InterviewComponent implements OnInit {
         }
       }
     });
+
+    // Update interview goal
   }
 }
