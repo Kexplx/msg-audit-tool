@@ -1,5 +1,5 @@
 import { Directive, OnInit } from '@angular/core';
-import { Actions, ofActionCompleted } from '@ngxs/store';
+import { Actions } from '@ngxs/store';
 import { NbToastrService } from '@nebular/theme';
 import {
   AddAudit,
@@ -13,14 +13,15 @@ import {
   AddContactPerson,
 } from 'src/app/core/ngxs/actions/contact-person.action';
 import { UpdateAnswer, AddAnswer } from 'src/app/core/ngxs/actions/answer.actions';
-import { first, bufferTime, filter, map, timeout } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { timer } from 'rxjs';
 @Directive({
   selector: '[appActionListener]',
 })
 export class ActionListenerDirective implements OnInit {
-  constructor(private actions$: Actions, private toastrService: NbToastrService) {}
   count = 0;
+
+  constructor(private actions$: Actions, private toastrService: NbToastrService) {}
 
   /**
    * Listens to completed NGXS Actions and shows a Toast at the bottom right

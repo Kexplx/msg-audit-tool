@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ContactPeopleRoutingModule } from './contact-people-routing.module';
 import { ContactPeopleListComponent } from './components/contact-people-list/contact-people-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { CoreModule } from 'src/app/core/core.module';
 import { ContactPersonCardComponent } from './components/contact-people-list/contact-person-card/contact-person-card.component';
 
 @NgModule({

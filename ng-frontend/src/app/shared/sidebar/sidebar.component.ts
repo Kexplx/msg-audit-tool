@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { Observable } from 'rxjs';

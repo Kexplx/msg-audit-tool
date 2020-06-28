@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';

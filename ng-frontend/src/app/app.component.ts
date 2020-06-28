@@ -4,8 +4,6 @@ import { Store, Select } from '@ngxs/store';
 import { AuditState } from './core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from './core/data/models/audit.model';
-import { ContactPerson } from './core/data/models/contact-person.model';
-import { ContactPersonState } from './core/ngxs/contact-people.state';
 
 @Component({
   selector: 'app-root',

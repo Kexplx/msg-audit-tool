@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
