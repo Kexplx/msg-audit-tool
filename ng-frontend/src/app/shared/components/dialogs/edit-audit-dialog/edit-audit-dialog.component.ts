@@ -33,7 +33,6 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.auditId$.subscribe(id => {
-      console.log(id);
       this.auditId = id;
       this.audit$ = this.store.select(AuditState.audit(id));
     });
