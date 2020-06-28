@@ -35,7 +35,7 @@ describe('ContactPersonState', () => {
     store.dispatch(new AddContactPerson(contactPerson));
     const length = store.selectSnapshot(ContactPersonState.contactPeople)?.length ?? 0;
 
-    store.dispatch(new DeleteContactPerson(contactPerson));
+    store.dispatch(new DeleteContactPerson(contactPerson.id));
     const lengthNow = store.selectSnapshot(ContactPersonState.contactPeople)?.length ?? 0;
     expect(lengthNow).toEqual(length - 1);
   });
