@@ -3,13 +3,13 @@ import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Store, Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
   selector: 'app-edit-audit-dialog',
@@ -19,21 +19,24 @@ import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 export class EditAuditDialogComponent implements OnInit, AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
   @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
-  dialogRef: NbDialogRef<any>;
+  @Select(AppRouterState.auditId) auditId$: Observable<string>;
 
+  dialogRef: NbDialogRef<any>;
   audit$: Observable<Audit>;
-  id: string;
+  private auditId: string;
 
   constructor(
     private dialogService: NbDialogService,
     private store: Store,
-    private router: Router,
     private location: Location,
   ) {}
 
   ngOnInit(): void {
-    this.id = this.router.url.split('/')[2];
-    this.audit$ = this.store.select(AuditState.audit(this.id));
+    this.auditId$.subscribe(id => {
+      console.log(id);
+      this.auditId = id;
+      this.audit$ = this.store.select(AuditState.audit(id));
+    });
   }
 
   ngAfterViewInit() {
@@ -47,7 +50,9 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(audit: Audit) {
-    this.store.dispatch(new UpdateAudit(this.id, audit)).subscribe(() => this.dialogRef.close());
+    this.store
+      .dispatch(new UpdateAudit(this.auditId, audit))
+      .subscribe(() => this.dialogRef.close());
   }
 
   onCancel() {

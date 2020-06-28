@@ -56,7 +56,7 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
     let audit: Audit;
     this.audit$.subscribe(x => (audit = x));
 
-    this.store.dispatch(new AddInterview(audit, interview)).subscribe(() => {
+    this.store.dispatch(new AddInterview(audit.id, interview)).subscribe(() => {
       this.dialogRef.close();
     });
   }

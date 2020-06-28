@@ -14,6 +14,6 @@ export class ContactPersonCardComponent {
   constructor(private store: Store) {}
 
   onDelete() {
-    this.store.dispatch(new DeleteContactPerson(this.contactPerson));
+    this.store.dispatch(new DeleteContactPerson(this.contactPerson.id));
   }
 }
