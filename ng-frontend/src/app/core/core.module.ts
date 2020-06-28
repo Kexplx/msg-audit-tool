@@ -6,12 +6,13 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ContactPersonState } from './ngxs/contact-people.state';
 import { AnswerState } from './ngxs/answer.state';
+import { AppRouterState } from './ngxs/app-router.state';
 
 @NgModule({
   imports: [
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([AuditState, ContactPersonState, AnswerState], {
+    NgxsModule.forRoot([AuditState, ContactPersonState, AppRouterState, AnswerState], {
       developmentMode: !environment.production,
     }),
   ],
