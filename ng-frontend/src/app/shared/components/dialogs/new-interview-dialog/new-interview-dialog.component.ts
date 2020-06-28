@@ -1,6 +1,6 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit, OnInit } from '@angular/core';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { defaultDialogOptions } from 'src/app/shared/components/dialogs/default-dialog-options';
@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
 import { AddInterview } from 'src/app/core/ngxs/actions/audit.actions';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
   selector: 'app-new-interview-dialog',
@@ -16,6 +17,7 @@ import { AddInterview } from 'src/app/core/ngxs/actions/audit.actions';
   styleUrls: ['./new-interview-dialog.component.scss'],
 })
 export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
+  @Select(AppRouterState.auditId) auditId$: Observable<string>;
   @ViewChild('dialog') dialog: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;
 
@@ -33,10 +35,9 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
    * audit as an observable from the store
    */
   ngOnInit() {
-    const idRegex = /\/audits\/([^\/]*)\/.*/gm;
-    const id = idRegex.exec(this.router.url)[1];
-
-    this.audit$ = this.store.select(AuditState.audit(id));
+    this.auditId$.subscribe(id => {
+      this.audit$ = this.store.select(AuditState.audit(id));
+    });
   }
 
   ngAfterViewInit() {

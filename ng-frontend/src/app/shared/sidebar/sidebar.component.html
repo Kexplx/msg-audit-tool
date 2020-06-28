@@ -1,2 +1,2 @@
-<app-sidebar-interview-list *ngIf="sidebarState == 0" [url]="url"></app-sidebar-interview-list>
-<app-sidebar-interview *ngIf="sidebarState == 1" [url]="url"></app-sidebar-interview>
+<app-sidebar-interview-list *ngIf="inAuditOverview$ | async"></app-sidebar-interview-list>
+<app-sidebar-interview *ngIf="inInterview$ | async"></app-sidebar-interview>

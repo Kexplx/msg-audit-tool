@@ -1,15 +1,13 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { Store } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
+import { Store, Select } from '@ngxs/store';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
-import { tap } from 'rxjs/operators';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 import { UpdateContactPerson } from 'src/app/core/ngxs/actions/contact-person.action';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
   selector: 'app-edit-contact-person-dialog',
@@ -18,20 +16,22 @@ import { UpdateContactPerson } from 'src/app/core/ngxs/actions/contact-person.ac
 })
 export class EditContactPersonDialogComponent implements OnInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
-  dialogRef: NbDialogRef<any>;
-  private id: string;
-
+  @Select(AppRouterState.contactPersonId) contactPersonId$: Observable<string>;
   contactPerson$: Observable<ContactPerson>;
 
+  dialogRef: NbDialogRef<any>;
+  private contactPersonId: string;
+
   constructor(
-    private router: Router,
     private location: Location,
     private store: Store,
     private dialogService: NbDialogService,
   ) {}
   ngOnInit() {
-    this.id = this.router.url.split('/')[2];
-    this.contactPerson$ = this.store.select(ContactPersonState.contactPerson(this.id));
+    this.contactPersonId$.subscribe(id => {
+      this.contactPersonId = id;
+      this.contactPerson$ = this.store.select(ContactPersonState.contactPerson(id));
+    });
   }
 
   ngAfterViewInit() {
@@ -40,23 +40,11 @@ export class EditContactPersonDialogComponent implements OnInit {
     this.dialogRef.onClose.subscribe(() => {
       this.location.back();
     });
-
-    this.contactPerson$
-      .pipe(
-        tap(contactPerson => {
-          if (!contactPerson) {
-            throw Error(`Audit with id: ${this.id} not found`);
-          }
-        }),
-      )
-      .subscribe(null, () => {
-        this.dialogRef.close();
-      });
   }
 
   onSubmit(contactPereson: ContactPerson) {
     this.store
-      .dispatch(new UpdateContactPerson(this.id, contactPereson))
+      .dispatch(new UpdateContactPerson(this.contactPersonId, contactPereson))
       .subscribe(() => this.dialogRef.close());
   }
 

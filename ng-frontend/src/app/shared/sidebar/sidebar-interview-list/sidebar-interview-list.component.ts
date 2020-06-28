@@ -1,11 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { FactorsPipe } from '../../pipes/factors.pipe';
 import { CriteriaByFactorPipe } from '../../pipes/facCritByFactor.pipe';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
   selector: 'app-sidebar-interview-list',
@@ -13,8 +14,10 @@ import { CriteriaByFactorPipe } from '../../pipes/facCritByFactor.pipe';
   styleUrls: ['./sidebar-interview-list.component.scss'],
 })
 export class SidebarInterviewListComponent implements OnInit {
-  @Input() url: string;
+  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+
   audit$: Observable<Audit>;
+  items: NbMenuItem[];
 
   constructor(
     private store: Store,
@@ -23,18 +26,15 @@ export class SidebarInterviewListComponent implements OnInit {
     private menuService: NbMenuService,
   ) {}
 
-  items: NbMenuItem[];
-
   ngOnInit() {
     this.menuService.onItemClick().subscribe(x => {
       const el = document.getElementById(x.item.data);
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    const idRegex = /\/audits\/([^\/]*)\/.*/gm;
-    const id = idRegex.exec(this.url)[1];
-
-    this.audit$ = this.store.select(AuditState.audit(id));
+    this.auditId$.subscribe(id => {
+      this.audit$ = this.store.select(AuditState.audit(id));
+    });
 
     this.items = [];
     this.audit$.subscribe(audit => {
