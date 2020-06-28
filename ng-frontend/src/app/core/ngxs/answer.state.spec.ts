@@ -5,7 +5,7 @@ import { generate } from 'shortid';
 import { AnswerState } from './answer.state';
 import { AddAnswer, UpdateAnswer } from './actions/answer.actions';
 
-fdescribe('AnswerState', () => {
+describe('AnswerState', () => {
   let answer: Answer;
   let store: Store;
 
