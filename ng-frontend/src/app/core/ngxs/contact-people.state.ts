@@ -15,10 +15,10 @@ export interface ContactPersonStateModel {
 }
 
 /**
- * State for managing the contact people of the application
+ * State for managing the contact people of the application.
  *
- * Action handlers to read, write, update and delete a contact person
- * Static and dynamic selectors to select contact people
+ * Has: Action handlers to read, write, update and delete a contact person.
+ * Static and dynamic selectors to select contact people.
  */
 @State<ContactPersonStateModel>({
   name: 'contactPerson',
@@ -51,18 +51,6 @@ export class ContactPersonState {
     );
   }
 
-  @Action(DeleteContactPerson)
-  deleteContactPerson(
-    { setState }: StateContext<ContactPersonStateModel>,
-    { contactPerson }: DeleteContactPerson,
-  ) {
-    setState(
-      patch({
-        contactPeople: removeItem<ContactPerson>(x => x === contactPerson),
-      }),
-    );
-  }
-
   @Action(UpdateContactPerson)
   updateContactPerson(
     { setState }: StateContext<ContactPersonStateModel>,
@@ -71,6 +59,18 @@ export class ContactPersonState {
     setState(
       patch({
         contactPeople: updateItem<ContactPerson>(x => x.id === id, { id, ...contactPerson }),
+      }),
+    );
+  }
+
+  @Action(DeleteContactPerson)
+  deleteContactPerson(
+    { setState }: StateContext<ContactPersonStateModel>,
+    { id }: DeleteContactPerson,
+  ) {
+    setState(
+      patch({
+        contactPeople: removeItem<ContactPerson>(x => x.id === id),
       }),
     );
   }
