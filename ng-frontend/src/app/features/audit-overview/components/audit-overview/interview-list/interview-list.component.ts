@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
   selector: 'app-interview-list',
@@ -12,13 +13,16 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
   styleUrls: ['./interview-list.component.scss'],
 })
 export class InterviewListComponent implements OnInit {
-  audit$: Observable<Audit>;
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
-  constructor(private router: Router, private store: Store) {}
+  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+
+  audit$: Observable<Audit>;
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    const idRegex = /\/audits\/([^\/]*)\/.*/gm;
-    const id = idRegex.exec(this.router.url)[1];
-    this.audit$ = this.store.select(AuditState.audit(id));
+    this.auditId$.subscribe(id => {
+      this.audit$ = this.store.select(AuditState.audit(id));
+    });
   }
 }
