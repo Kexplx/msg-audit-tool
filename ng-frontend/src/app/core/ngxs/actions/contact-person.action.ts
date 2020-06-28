@@ -12,5 +12,5 @@ export class UpdateContactPerson {
 
 export class DeleteContactPerson {
   static readonly type = '[ContactPeopleList] Delete Contact Person';
-  constructor(public contactPerson: ContactPerson) {}
+  constructor(public id: string) {}
 }
