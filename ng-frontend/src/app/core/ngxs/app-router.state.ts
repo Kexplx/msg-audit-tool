@@ -9,6 +9,13 @@ export interface AppRouterStateModel {
   interviewId: string;
   contactPersonId: string;
   facCritId: string;
+
+  inAuditList: boolean;
+  inAuditListEdit: boolean;
+  inAuditOverview: boolean;
+  inInterview: boolean;
+  inContactPeopleList: boolean;
+  inContactPeopleListEdit: boolean;
 }
 
 /**
@@ -25,6 +32,13 @@ export interface AppRouterStateModel {
     contactPersonId: null,
     facCritId: null,
     interviewId: null,
+
+    inAuditList: false,
+    inAuditListEdit: false,
+    inAuditOverview: false,
+    inInterview: false,
+    inContactPeopleList: false,
+    inContactPeopleListEdit: false,
   },
 })
 @Injectable()
@@ -37,16 +51,9 @@ export class AppRouterState implements NgxsOnInit {
    * from the current url.
    */
   ngxsOnInit({ patchState }: StateContext<AppRouterStateModel>) {
-    const nullFiller: AppRouterStateModel = {
-      auditId: null,
-      contactPersonId: null,
-      facCritId: null,
-      interviewId: null,
-    };
-
     const auditListRegex = /^\/audits$/;
     const auditListEditRegex = /^\/audits\/([^\/]*)\/edit$/;
-    const auditOverviewRegex = /^\/audits\/([^\/]*)\/interviews$/;
+    const auditOverviewRegex = /^\/audits\/([^\/]*)\/interviews(\/new){0,1}$/;
     const interviewRegex = /^\/audits\/([^\/]*)\/interviews\/([^\/]*)\/([^\/]*)$/;
     const contactPeopleRegex = /^\/contact-people$/;
     const contactPersonEdit = /^\/contact-people\/([^\/]*)\/edit$/;
@@ -54,30 +61,32 @@ export class AppRouterState implements NgxsOnInit {
     this.router.events
       .pipe(filter(obj => obj instanceof NavigationEnd))
       .subscribe(({ url }: NavigationEnd) => {
-        let match: RegExpExecArray;
+        const params = url.split('/');
 
-        match = auditListRegex.exec(url);
-        if (match) return patchState({ ...nullFiller });
-
-        match = auditListEditRegex.exec(url) ?? auditOverviewRegex.exec(url);
-        if (match) return patchState({ ...nullFiller, auditId: match[1] });
-
-        match = interviewRegex.exec(url);
-        if (match)
-          return patchState({
-            ...nullFiller,
-            auditId: match[1],
-            interviewId: match[2],
-            facCritId: match[3],
+        if (params[1] === 'audits') {
+          patchState({
+            auditId: params[2] ?? null,
+            interviewId: params[4] ?? null,
+            facCritId: params[5] ?? null,
+            contactPersonId: null,
           });
+        } else if (params[1] === 'contact-people') {
+          patchState({
+            contactPersonId: params[2],
+            auditId: null,
+            interviewId: null,
+            facCritId: null,
+          });
+        }
 
-        match = contactPeopleRegex.exec(url);
-        if (match) return patchState({ ...nullFiller });
-
-        match = contactPersonEdit.exec(url);
-        if (match) return patchState({ ...nullFiller, contactPersonId: match[1] });
-
-        return patchState({ ...nullFiller });
+        patchState({
+          inAuditList: auditListRegex.test(url),
+          inAuditListEdit: auditListEditRegex.test(url),
+          inAuditOverview: auditOverviewRegex.test(url),
+          inInterview: interviewRegex.test(url),
+          inContactPeopleList: contactPeopleRegex.test(url),
+          inContactPeopleListEdit: contactPersonEdit.test(url),
+        });
       });
   }
 
@@ -99,6 +108,36 @@ export class AppRouterState implements NgxsOnInit {
   @Selector()
   static facCritId(state: AppRouterStateModel) {
     return state.facCritId;
+  }
+
+  @Selector()
+  static inAuditList(state: AppRouterStateModel) {
+    return state.inAuditList;
+  }
+
+  @Selector()
+  static inAuditListEdit(state: AppRouterStateModel) {
+    return state.inAuditListEdit;
+  }
+
+  @Selector()
+  static inAuditOverview(state: AppRouterStateModel) {
+    return state.inAuditOverview;
+  }
+
+  @Selector()
+  static inInterview(state: AppRouterStateModel) {
+    return state.inInterview;
+  }
+
+  @Selector()
+  static inContactPeopleList(state: AppRouterStateModel) {
+    return state.inContactPeopleList;
+  }
+
+  @Selector()
+  static inContactPeopleListEdit(state: AppRouterStateModel) {
+    return state.inContactPeopleListEdit;
   }
 
   /**
