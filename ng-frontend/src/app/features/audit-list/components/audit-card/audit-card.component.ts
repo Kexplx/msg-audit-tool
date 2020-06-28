@@ -3,14 +3,13 @@ import { NbMenuService, NbMenuItem, NbMenuBag } from '@nebular/theme';
 import { map, filter } from 'rxjs/operators';
 import { Store } from '@ngxs/store';
 import * as shortid from 'shortid';
-import { Router } from '@angular/router';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
-import { DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
+import { DeleteAudit } from 'src/app/core/ngxs/actions/audit.actions';
+import { Navigate } from 'src/app/core/ngxs/actions/router.actions';
 
 enum MenuOptions {
   Edit,
   Delete,
-  Reactivate,
 }
 
 @Component({
@@ -22,29 +21,22 @@ export class AuditCardComponent implements OnInit {
   @Input() audit: Audit;
   nbMenuId: string;
   auditStatus = AuditStatus;
-  items: NbMenuItem[];
+  items: NbMenuItem[] = [
+    {
+      title: 'Bearbeiten',
+      icon: 'edit-outline',
+      data: MenuOptions.Edit,
+    },
+    { title: 'Löschen', icon: 'trash-outline', data: MenuOptions.Delete },
+  ];
 
-  constructor(private nbMenuService: NbMenuService, private store: Store, private router: Router) {}
+  constructor(private nbMenuService: NbMenuService, private store: Store) {}
 
   get contactPerson() {
     return this.audit.contactPeople ? this.audit.contactPeople[0] : null;
   }
 
   ngOnInit() {
-    const status = this.audit.status;
-
-    this.items = [
-      status == AuditStatus.Planned || status == AuditStatus.InAction
-        ? {
-            title: 'Bearbeiten',
-            icon: 'edit-outline',
-            link: `/audits/${this.audit.id}/edit`,
-            data: MenuOptions.Edit,
-          }
-        : { title: 'Reaktivieren', icon: 'activity-outline', data: MenuOptions.Reactivate },
-      { title: 'Löschen', icon: 'trash-outline', data: MenuOptions.Delete },
-    ];
-
     this.nbMenuId = shortid.generate();
 
     this.nbMenuService
@@ -56,11 +48,10 @@ export class AuditCardComponent implements OnInit {
       .subscribe((option: MenuOptions) => {
         switch (option) {
           case MenuOptions.Delete:
-            this.store.dispatch(new DeleteAudit(this.audit));
+            this.store.dispatch(new DeleteAudit(this.audit.id));
             break;
-          case MenuOptions.Reactivate:
-            const audit = { ...this.audit, status: AuditStatus.InAction };
-            this.store.dispatch(new UpdateAudit(this.audit.id, audit));
+          case MenuOptions.Edit:
+            this.store.dispatch(new Navigate(`/audits/${this.audit.id}/edit`));
         }
       });
   }
