@@ -124,7 +124,7 @@ export class AuditState {
   @Action(UpdateInterview)
   updateInterview(context: StateContext<AuditStateModel>, { auditId, interview }: UpdateInterview) {
     const audit = context.getState().audits.find(x => x.id === auditId);
-    const indexOfInterview = audit.interviews.indexOf(interview);
+    const indexOfInterview = audit.interviews.findIndex(x => x.id === interview.id);
 
     context.setState(
       patch({
