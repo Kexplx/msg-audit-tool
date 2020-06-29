@@ -5,10 +5,17 @@ import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRe
 import com.amos2020.javabackend.rest_service.request.interview.InterviewAddContactPersonRequest;
 import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
@@ -26,8 +33,14 @@ public class InterviewRestService {
      * @param interviewId int
      * @return ResponseEntity with a BasicInterviewResponse that includes all information regarding the interview
      */
+    @Operation(summary = "Get Interview by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Receive interview with specific id"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @GetMapping("/interviews/{id}")
-    public ResponseEntity<BasicInterviewResponse> getInterviewById(@PathVariable("id") int interviewId) {
+    public ResponseEntity<BasicInterviewResponse> getInterviewById(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int interviewId) {
         BasicInterviewResponse response;
         try {
             response = interviewController.getInterviewById(interviewId);
@@ -43,6 +56,10 @@ public class InterviewRestService {
      *
      * @return ResponseEntity with a List of the Interviews as BasicInterviewResponses
      */
+    @Operation(summary = "Get all interviews")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Receive all existing interviews")
+    })
     @GetMapping("/interviews")
     public ResponseEntity<List<BasicInterviewResponse>> getAllInterviews() {
         List<BasicInterviewResponse> responses;
@@ -60,13 +77,19 @@ public class InterviewRestService {
      *
      * @return ResponseEntity with the new interview
      */
+    @Operation(summary = "Create a new interview")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "New interview created"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PostMapping("/interviews")
-    public ResponseEntity<BasicInterviewResponse> createInterview(@RequestBody CreateInterviewRequest request) {
+    public ResponseEntity<BasicInterviewResponse> createInterview(@RequestBody @Valid CreateInterviewRequest request) {
         BasicInterviewResponse response;
 
         try {
             request.isValid();
-            response = interviewController.createInterview(request.getAuditId(), request.getStartDate(), request.getEndDate(), request.getGoal() ,request.getInterviewedPeople(), request.getInterviewScope());
+            response = interviewController.createInterview(request.getAuditId(), request.getStartDate(), request.getEndDate(), request.getGoal(), request.getInterviewedPeople(), request.getInterviewScope());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {
@@ -81,8 +104,14 @@ public class InterviewRestService {
      *
      * @return ResponseEntity with the updated interview
      */
+    @Operation(summary = "Change a existing interview")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Existing interview changed"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PutMapping("/interviews/{interviewId}")
-    public ResponseEntity<BasicInterviewResponse> updateInterview(@PathVariable("interviewId") int interviewId, @RequestBody UpdateInterviewRequest request) {
+    public ResponseEntity<BasicInterviewResponse> updateInterview(@PathVariable("interviewId") @Parameter(name = "interviewId", example = "1") @Min(1) int interviewId, @RequestBody @Valid UpdateInterviewRequest request) {
         BasicInterviewResponse response;
 
         try {
@@ -105,11 +134,16 @@ public class InterviewRestService {
      * @param request     InterviewAddContactPersonRequest
      * @return BasicInterviewResponse
      */
+    @Operation(summary = "Add a contact person to an existing interview")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Contact person added to interview"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @PutMapping("/interviews/{interviewId}/add/person")
-    public ResponseEntity<BasicInterviewResponse> addContactPersonToInterview(@PathVariable("interviewId") int interviewId, @RequestBody InterviewAddContactPersonRequest request) {
+    public ResponseEntity<BasicInterviewResponse> addContactPersonToInterview(@PathVariable("interviewId") @Parameter(name = "interviewId", example = "1") @Min(1) int interviewId, @RequestBody @Valid InterviewAddContactPersonRequest request) {
         BasicInterviewResponse response;
         try {
-            request.isValid();
             request.assertIdIsValid(interviewId);
             response = interviewController.addContactPersonToInterview(interviewId, request.getContactPersonId(), request.getRole());
         } catch (NotFoundException e) {
@@ -128,8 +162,14 @@ public class InterviewRestService {
      * @param contactPersonId int
      * @return BasicInterviewResponse
      */
+    @Operation(summary = "Delete a existing interview")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Existing interview deleted"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
     @DeleteMapping("/interviews/{interviewId}/delete/person/{contactPersonId}")
-    public ResponseEntity<BasicInterviewResponse> removeContactPersonFromInterview(@PathVariable("interviewId") int interviewId, @PathVariable("contactPersonId") int contactPersonId) {
+    public ResponseEntity<BasicInterviewResponse> removeContactPersonFromInterview(@PathVariable("interviewId") @Parameter(name = "interviewId", example = "1") @Min(1) int interviewId, @PathVariable("contactPersonId") @Parameter(name = "contactPersonId", example = "1") @Min(1) int contactPersonId) {
         BasicInterviewResponse response;
         try {
             response = interviewController.removeContactPersonFromInterview(interviewId, contactPersonId);
