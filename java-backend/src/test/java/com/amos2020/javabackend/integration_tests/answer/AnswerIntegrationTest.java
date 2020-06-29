@@ -255,7 +255,7 @@ public class AnswerIntegrationTest {
         ResponseEntity<BasicAnswerResponse> response2 = testRestTemplate.exchange(url2, HttpMethod.PUT,
                 request, BasicAnswerResponse.class);
 
-        Assert.assertEquals(500, response.getStatusCodeValue());
-        Assert.assertEquals(500, response2.getStatusCodeValue());
+        Assert.assertEquals(400, response.getStatusCodeValue());
+        Assert.assertEquals(400, response2.getStatusCodeValue());
     }
 }
