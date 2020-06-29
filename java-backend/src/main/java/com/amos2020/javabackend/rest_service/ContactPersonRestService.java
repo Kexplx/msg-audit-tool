@@ -5,6 +5,10 @@ import com.amos2020.javabackend.rest_service.controller.ContactPersonController;
 import com.amos2020.javabackend.rest_service.request.contactPerson.CreateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.request.contactPerson.UpdateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +29,11 @@ public class ContactPersonRestService {
      * @param request CreateContactPersonRequest
      * @return BasicContactPersonResponse
      */
+    @Operation(summary = "Create a new contact person")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Created a new contact person"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+    })
     @PostMapping("/contactpersons")
     public ResponseEntity<BasicContactPersonResponse> createAudit(@RequestBody CreateContactPersonRequest request) {
         BasicContactPersonResponse response;
@@ -45,6 +54,11 @@ public class ContactPersonRestService {
      *
      * @return List<BasicContactPersonResponse>
      */
+    @Operation(summary = "Get all existing contact persons")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Received all existing contact persons"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+    })
     @GetMapping("/contactpersons")
     public ResponseEntity<List<BasicContactPersonResponse>> getAuditAll() {
         List<BasicContactPersonResponse> response;
@@ -63,6 +77,11 @@ public class ContactPersonRestService {
      * @param contactPersonId int
      * @return BasicContactPersonResponse
      */
+    @Operation(summary = "Get contact person by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Receive contact person with specific id"),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
+    })
     @GetMapping("/contactpersons/{id}")
     public ResponseEntity<BasicContactPersonResponse> getAuditById(@PathVariable("id") int contactPersonId) {
         BasicContactPersonResponse response;
@@ -79,6 +98,12 @@ public class ContactPersonRestService {
      *
      * @return BasicContactPersonResponse
      */
+    @Operation(summary = "Update an existing contact person")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully updated the contact person"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
+    })
     @PutMapping("/contactpersons/{id}")
     public ResponseEntity<BasicContactPersonResponse> updateInterview(@PathVariable("id") int contactPersonId, @RequestBody UpdateContactPersonRequest request) {
         BasicContactPersonResponse response;
