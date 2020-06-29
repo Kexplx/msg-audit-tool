@@ -162,7 +162,7 @@ public class InterviewRestService {
      * @param contactPersonId int
      * @return BasicInterviewResponse
      */
-    @Operation(summary = "Delete a existing interview")
+    @Operation(summary = "Delete an existing interview")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Existing interview deleted"),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
