@@ -1,7 +1,6 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit, OnInit } from '@angular/core';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { Store, Select } from '@ngxs/store';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { defaultDialogOptions } from 'src/app/shared/components/dialogs/default-dialog-options';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
@@ -26,7 +25,6 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
   constructor(
     private dialogService: NbDialogService,
     private store: Store,
-    private router: Router,
     private location: Location,
   ) {}
 
