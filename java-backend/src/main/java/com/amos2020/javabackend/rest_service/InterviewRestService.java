@@ -104,7 +104,7 @@ public class InterviewRestService {
      *
      * @return ResponseEntity with the updated interview
      */
-    @Operation(summary = "Change a existing interview")
+    @Operation(summary = "Change an existing interview")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Existing interview changed"),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
