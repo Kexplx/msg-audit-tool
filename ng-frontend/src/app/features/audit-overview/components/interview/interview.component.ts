@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Interview } from 'src/app/core/data/models/interview.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
@@ -9,6 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { AnswerState } from 'src/app/core/ngxs/answer.state';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { AddAnswer, UpdateAnswer } from 'src/app/core/ngxs/actions/answer.actions';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
+import { UpdateInterview } from 'src/app/core/ngxs/actions/audit.actions';
 
 @Component({
   selector: 'app-interview',
@@ -16,46 +17,40 @@ import { AddAnswer, UpdateAnswer } from 'src/app/core/ngxs/actions/answer.action
   styleUrls: ['./interview.component.scss'],
 })
 export class InterviewComponent implements OnInit {
+  @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
+
+  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+  @Select(AppRouterState.interviewId) interviewId$: Observable<string>;
+  @Select(AppRouterState.facCritId) facCritId$: Observable<string>;
+
+  auditId: string;
+  interviewId: string;
+  facCritId: string;
+
   interview$: Observable<Interview>;
   facCrit$: Observable<FacCrit>;
 
-  facCritId: string;
-  interviewId: string;
-
   interviewGoal: string;
-
-  @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
-
   formGroups: FormGroup[];
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private store: Store,
-    private fb: FormBuilder,
-  ) {}
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(params => {
-      this.facCritId = params.get('facCritId');
-      this.interviewId = params.get('interviewId');
+    this.interviewId$.subscribe(id => {
+      this.interviewId = id;
+      this.interview$ = this.store.select(AuditState.interview(id));
 
-      if (!this.interviewId || !this.facCritId) {
-        this.router.navigate(['/audits']);
-      }
-
-      this.facCrit$ = this.store.select(AuditState.facCrit(this.facCritId));
-      this.interview$ = this.store.select(AuditState.interview(this.interviewId));
-
-      this.facCrit$.subscribe(facCrit => facCrit ?? this.router.navigate(['/audits']));
       this.interview$.subscribe(interview => {
-        if (!interview) {
-          return this.router.navigate(['/audits']);
-        }
-
-        this.interviewGoal = interview.goal;
+        this.interviewGoal = interview?.goal;
       });
     });
+
+    this.facCritId$.subscribe(id => {
+      this.facCritId = id;
+      this.facCrit$ = this.store.select(AuditState.facCrit(id));
+    });
+
+    this.auditId$.subscribe(id => (this.auditId = id));
 
     this.facCrit$.subscribe(facCrit => {
       this.formGroups = [];
@@ -97,18 +92,15 @@ export class InterviewComponent implements OnInit {
           questionId: question.id,
         };
 
-        this.store;
-        const a = this.store.selectSnapshot(
-          AnswerState.answer(this.facCritId, this.interviewId, question.id),
-        );
-        if (!a) {
-          this.store.dispatch(new AddAnswer(answer));
-        } else {
-          this.store.dispatch(new UpdateAnswer(answer));
-        }
+        this.store.selectSnapshot(AnswerState.answer(this.facCritId, this.interviewId, question.id))
+          ? this.store.dispatch(new UpdateAnswer(answer))
+          : this.store.dispatch(new AddAnswer(answer));
       }
     });
 
-    // Update interview goal
+    const interviewSnapshot = this.store.selectSnapshot(AuditState.interview(this.interviewId));
+    this.store.dispatch(
+      new UpdateInterview(this.auditId, { ...interviewSnapshot, goal: this.interviewGoal }),
+    );
   }
 }
