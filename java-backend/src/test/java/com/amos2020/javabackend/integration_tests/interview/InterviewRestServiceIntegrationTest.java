@@ -227,6 +227,17 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
+    public void createInterviewWithEndDateIsNull_returns200() throws Exception {
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, NULL_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        String requestAsJson = buildJson(request);
+
+        mvc.perform(post("/interviews")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void createInterviewWithStartDateIsAfterEndDate_returns400() throws Exception {
         CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, INVALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
