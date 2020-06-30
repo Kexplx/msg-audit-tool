@@ -6,6 +6,6 @@ export class AddInterview {
 }
 
 export class UpdateInterview {
-  static readonly type = '[AuditOverview] Add Interview';
+  static readonly type = '[AuditOverview] Update Interview';
   constructor(public id: string, public interview: Interview) {}
 }

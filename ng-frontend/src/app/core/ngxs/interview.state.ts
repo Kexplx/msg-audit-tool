@@ -36,7 +36,7 @@ export class InterviewState {
   }
 
   @Action(AddInterview)
-  addContactPerson({ setState }: StateContext<InterviewStateModel>, { interview }: AddInterview) {
+  addInterview({ setState }: StateContext<InterviewStateModel>, { interview }: AddInterview) {
     setState(
       patch({
         interviews: append<Interview>([{ ...interview, id: shortid.generate() }]),
@@ -46,10 +46,10 @@ export class InterviewState {
 
   @Action(UpdateInterview)
   updateInterview(ctx: StateContext<InterviewStateModel>, { id, interview }: UpdateInterview) {
-    const i = ctx.getState().interviews.find(x => x.id == id);
+    const i = ctx.getState().interviews.find(x => x.id === id);
     ctx.setState(
       patch({
-        interviews: updateItem<Interview>(x => x.id === id, { ...i, ...interview }),
+        interviews: updateItem<Interview>(x => x === i, { ...interview }),
       }),
     );
   }
