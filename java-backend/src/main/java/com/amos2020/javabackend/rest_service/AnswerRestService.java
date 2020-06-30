@@ -13,6 +13,7 @@ import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -89,10 +90,9 @@ public class AnswerRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @PostMapping("/answers")
-    public ResponseEntity<BasicAnswerResponse> createAnswer(@RequestBody CreateAnswerRequest request) {
+    public ResponseEntity<BasicAnswerResponse> createAnswer(@RequestBody @Valid CreateAnswerRequest request) {
         BasicAnswerResponse response;
         try {
-            request.isValid();
             response = answerController.createAnswer(request.getInterviewId(), request.getQuestionId());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
@@ -105,10 +105,10 @@ public class AnswerRestService {
     /**
      * PUT Endpoint for updating an Answer
      *
-     * @param interviewId
-     * @param questionId
-     * @param request
-     * @return
+     * @param interviewId int
+     * @param questionId  int
+     * @param request     BasicAnswerResponse
+     * @return Updated Answer
      */
     @Operation(summary = "Update an existing Answer")
     @ApiResponses(value = {
@@ -119,11 +119,9 @@ public class AnswerRestService {
     @PutMapping("/answers/interview/{id1}/question/{id2}")
     public ResponseEntity<BasicAnswerResponse> updateAnswer(@PathVariable("id1") int interviewId,
                                                             @PathVariable("id2") int questionId,
-                                                            @RequestBody UpdateAnswerRequest request) {
+                                                            @RequestBody @Valid UpdateAnswerRequest request) {
         BasicAnswerResponse response;
         try {
-            // Validate parameters for updating answer
-            request.isValid();
             response = answerController.updateAnswer(interviewId, questionId, request.getResult(),
                     request.getResponsible(), request.getDocumentation(), request.getProcedure(),
                     request.getReason(), request.getProof(), request.getAnnotation());
