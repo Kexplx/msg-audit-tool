@@ -13,6 +13,7 @@ import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -35,11 +36,9 @@ public class ContactPersonRestService {
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
     })
     @PostMapping("/contactpersons")
-    public ResponseEntity<BasicContactPersonResponse> createAudit(@RequestBody CreateContactPersonRequest request) {
+    public ResponseEntity<BasicContactPersonResponse> createAudit(@RequestBody @Valid CreateContactPersonRequest request) {
         BasicContactPersonResponse response;
         try {
-            // Validate parameters for creating a contact Person
-            request.isValid();
             response = contactPersonController.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(),
                     request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision());
         } catch (IllegalArgumentException e) {
@@ -105,11 +104,10 @@ public class ContactPersonRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
     })
     @PutMapping("/contactpersons/{id}")
-    public ResponseEntity<BasicContactPersonResponse> updateInterview(@PathVariable("id") int contactPersonId, @RequestBody UpdateContactPersonRequest request) {
+    public ResponseEntity<BasicContactPersonResponse> updateInterview(@PathVariable("id") int contactPersonId, @RequestBody @Valid UpdateContactPersonRequest request) {
         BasicContactPersonResponse response;
 
         try {
-            request.isValid();
             request.assertIdIsValid(contactPersonId);
             response = contactPersonController.updateContactPerson(contactPersonId, request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getContactInformation(), request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision());
         } catch (NotFoundException e) {
