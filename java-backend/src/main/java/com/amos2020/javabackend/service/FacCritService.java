@@ -17,6 +17,13 @@ public class FacCritService {
         this.repository = repository;
     }
 
+    /**
+     * Get a list of facCrits by a list of facCrit ids
+     *
+     * @param factorCriteriaIds List<Integer>
+     * @return List of FacCrits
+     * @throws NotFoundException If a given facCrit id is not found
+     */
     public List<FacCrit> getAllById(List<Integer> factorCriteriaIds) throws NotFoundException {
         List<FacCrit> facCrits = repository.findAllById(factorCriteriaIds);
         if (facCrits.size() != factorCriteriaIds.size()) {
@@ -25,7 +32,13 @@ public class FacCritService {
         return facCrits;
     }
 
-
+    /**
+     * Checks if facCrit exists and returns the facCrit or throws an exception
+     *
+     * @param facCritId int
+     * @return FacCrit
+     * @throws NotFoundException If the given facCrit id is invalid and can not be found
+     */
     public FacCrit exists(int facCritId) throws NotFoundException {
         Optional<FacCrit> facCrit = repository.findById(facCritId);
         if (!facCrit.isPresent()) {
@@ -33,4 +46,14 @@ public class FacCritService {
         }
         return facCrit.get();
     }
+
+    /**
+     * Returns all existing facCrits
+     *
+     * @return List<FacCrit>
+     */
+    public List<FacCrit> getAllFacCrits() {
+        return repository.findAll();
+    }
+
 }
