@@ -5,6 +5,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { FactorsPipe } from '../../pipes/factors.pipe';
 import { CriteriaByFactorPipe } from '../../pipes/facCritByFactor.pipe';
 import { SharedModule } from '../../shared.module';
+import { RouterModule } from '@angular/router';
 
 describe('SidebarInterviewListComponent', () => {
   let component: SidebarInterviewListComponent;
@@ -13,7 +14,7 @@ describe('SidebarInterviewListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [SidebarInterviewListComponent],
-      imports: [CoreModule, SharedModule],
+      imports: [CoreModule, SharedModule, RouterModule.forRoot([])],
       providers: [FactorsPipe, CriteriaByFactorPipe],
     }).compileComponents();
   }));

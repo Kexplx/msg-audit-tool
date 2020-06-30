@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddContactPersonDialogComponent } from './add-contact-person-dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { RouterModule } from '@angular/router';
 
 describe('AddContactPersonDialogComponent', () => {
   let component: AddContactPersonDialogComponent;
@@ -12,7 +13,7 @@ describe('AddContactPersonDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AddContactPersonDialogComponent],
-      imports: [SharedModule, CoreModule],
+      imports: [SharedModule, CoreModule, RouterModule.forRoot([])],
     }).compileComponents();
   }));
 

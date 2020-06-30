@@ -6,15 +6,16 @@ import { NbDialogService } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { RouterModule } from '@angular/router';
 
-describe('AuditDataComponent', () => {
+describe('AuditFormComponent', () => {
   let component: AuditFormComponent;
   let fixture: ComponentFixture<AuditFormComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [AuditFormComponent],
-      imports: [SharedModule, BrowserAnimationsModule, CoreModule],
+      imports: [SharedModule, BrowserAnimationsModule, CoreModule, RouterModule.forRoot([])],
       providers: [NbDialogService, FormBuilder],
     });
 

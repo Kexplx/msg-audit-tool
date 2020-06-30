@@ -59,7 +59,7 @@ export class AppRouterState implements NgxsOnInit {
     const contactPersonEdit = /^\/contact-people\/([^\/]*)\/edit$/;
 
     this.router.events
-      .pipe(filter(obj => obj instanceof NavigationEnd))
+      ?.pipe(filter(obj => obj instanceof NavigationEnd))
       .subscribe(({ url }: NavigationEnd) => {
         const params = url.split('/');
 

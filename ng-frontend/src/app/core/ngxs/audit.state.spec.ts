@@ -2,9 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { NgxsModule, Store } from '@ngxs/store';
 import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AuditState } from './audit.state';
-import * as jasmine from 'karma-jasmine';
-import { AddAudit, DeleteAudit, AddInterview, UpdateInterview } from './actions/audit.actions';
-import { Interview, InterviewStatus } from '../data/models/interview.model';
+import { AddAudit, DeleteAudit } from './actions/audit.actions';
 
 describe('AuditState', () => {
   let store: Store;
@@ -43,54 +41,5 @@ describe('AuditState', () => {
     store.dispatch(new DeleteAudit(auditToDelete.id));
     let updatedAudits = store.selectSnapshot(AuditState.audits);
     expect(updatedAudits[0]).not.toEqual(auditToDelete);
-  });
-
-  it('should add interview after AddInterview action was dispatched', () => {
-    let auditId: string;
-    store.dispatch(new AddAudit(audit)).subscribe((a: Audit) => (auditId = a.id));
-    const audit$ = store.select(AuditState.audit(auditId));
-    let a: Audit;
-    audit$.subscribe(x => (a = x));
-
-    store.dispatch(
-      new AddInterview(audit.id, { contactPeople: null, facCrits: null, status: null }),
-    );
-    audit$.subscribe(x => {
-      expect(x.interviews.length).toEqual(1);
-    });
-  });
-
-  it('should update an interview after UpdateInterivew action was dispatched', () => {
-    const interview: Interview = {
-      contactPeople: null,
-      facCrits: null,
-      status: null,
-      id: 'test123',
-    };
-    let auditId: string;
-
-    audit.interviews = [interview];
-    store.dispatch(new AddAudit(audit)).subscribe((a: Audit) => (auditId = a.id));
-
-    store
-      .dispatch(
-        new UpdateInterview(auditId, {
-          ...interview,
-          status: InterviewStatus.Finished,
-        }),
-      )
-      .subscribe(() => {
-        const updatedInterview = store.selectSnapshot(AuditState.interview(interview.id));
-        expect(updatedInterview.status).toEqual(InterviewStatus.Finished);
-      });
-  });
-
-  it('returns a interview when searched by id', () => {
-    audit.interviews = [{ id: '123', contactPeople: null, facCrits: null, status: null }];
-    store.dispatch(new AddAudit(audit));
-
-    const interview = store.selectSnapshot(AuditState.interview('123'));
-
-    expect(interview).toBeTruthy();
   });
 });

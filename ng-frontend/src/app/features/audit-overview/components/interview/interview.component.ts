@@ -99,7 +99,7 @@ export class InterviewComponent implements OnInit {
       }
     });
 
-    const interviewSnapshot = this.store.selectSnapshot(AuditState.interview(this.interviewId));
+    const interviewSnapshot = this.store.selectSnapshot(InterviewState.interview(this.interviewId));
     this.store.dispatch(
       new UpdateInterview(this.auditId, { ...interviewSnapshot, goal: this.interviewGoal }),
     );

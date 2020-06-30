@@ -1,10 +1,12 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import * as jasmine from 'karma-jasmine';
 import { InterviewFormComponent } from './interview-form.component';
 import { FormBuilder } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
+import { RouterModule } from '@angular/router';
 
 describe('InterviewFormComponent', () => {
   let component: InterviewFormComponent;
@@ -13,7 +15,7 @@ describe('InterviewFormComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [InterviewFormComponent],
-      imports: [SharedModule, CoreModule],
+      imports: [SharedModule, CoreModule, RouterModule.forRoot([])],
       providers: [FormBuilder],
     }).compileComponents();
   }));
