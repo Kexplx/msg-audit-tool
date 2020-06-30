@@ -25,7 +25,7 @@ public class CreateAuditRequest extends BasicRequest {
     @Getter
     @Setter
     @NotNull
-    @Schema(type = "string", name = "startDate", format = "date",  required = true)
+    @Schema(type = "string", name = "startDate", format = "date", required = true)
     private Date startDate;
 
     @Getter
