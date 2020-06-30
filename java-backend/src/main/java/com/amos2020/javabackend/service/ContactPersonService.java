@@ -18,6 +18,19 @@ public class ContactPersonService {
         this.repository = repository;
     }
 
+    /**
+     * Create a new ContactPerson
+     *
+     * @param salutation         Salutation
+     * @param title              String
+     * @param forename           String
+     * @param surname            String
+     * @param companyName        String
+     * @param department         String
+     * @param sector             String
+     * @param corporate_division String
+     * @return Created ContactPerson
+     */
     public ContactPerson createContactPerson(Salutation salutation, String title, String forename, String surname,
                                              String companyName, String department, String sector, String corporate_division) {
 
@@ -34,6 +47,13 @@ public class ContactPersonService {
         return repository.save(contactPerson);
     }
 
+    /**
+     * Get all ContactPersons for a given list of contactPerson ids
+     *
+     * @param contactPersonIds List<Integer>
+     * @return List of ContactPersons
+     * @throws NotFoundException If a contactPerson id is invalid and can not be found
+     */
     public List<ContactPerson> getAllByIds(List<Integer> contactPersonIds) throws NotFoundException {
         List<ContactPerson> contactPeople = repository.findAllById(contactPersonIds);
         if (contactPeople.size() != contactPersonIds.size()) {
@@ -43,10 +63,22 @@ public class ContactPersonService {
         return contactPeople;
     }
 
+    /**
+     * Get all existing contactPersons
+     *
+     * @return List<ContactPerson>
+     */
     public List<ContactPerson> getAll() {
         return repository.findAll();
     }
 
+    /**
+     * Get a specific contactPerson by id
+     *
+     * @param contactPersonId int
+     * @return ContactPerson
+     * @throws NotFoundException If the contactPerson id is invalid and can not be found
+     */
     public ContactPerson getContactPersonById(int contactPersonId) throws NotFoundException {
         Optional<ContactPerson> contactPerson = repository.findById(contactPersonId);
         if (!contactPerson.isPresent()) {
@@ -55,6 +87,12 @@ public class ContactPersonService {
         return contactPerson.get();
     }
 
+    /**
+     * Update an existing contactPerson
+     *
+     * @param contactPerson ContactPerson
+     * @return Updated ContactPerson
+     */
     public ContactPerson updateContactPerson(ContactPerson contactPerson) {
         return repository.save(contactPerson);
     }
