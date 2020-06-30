@@ -1,24 +1,19 @@
 package com.amos2020.javabackend.integration_tests.scope;
 
 import com.amos2020.javabackend.JavaBackendApplication;
-import com.amos2020.javabackend.entity.Scope;
 import com.amos2020.javabackend.rest_service.request.scope.AddScopeRequest;
 import com.amos2020.javabackend.rest_service.request.scope.UpdateScopeRequest;
-import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import com.amos2020.javabackend.rest_service.response.BasicScopeResponse;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -47,23 +42,23 @@ public class ScopeRestServiceIntegrationTest {
         ResponseEntity<BasicScopeResponse> response = testRestTemplate.getForEntity("/audits/1001/scope/1003", BasicScopeResponse.class);
 
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(1001,response.getBody().getAuditId());
-        assertEquals(1003,response.getBody().getFacCritId());
+        assertEquals(1001, response.getBody().getAuditId());
+        assertEquals(1003, response.getBody().getFacCritId());
         assertNull(response.getBody().getChange_note());
         assertNull(response.getBody().getNote());
-        assertEquals(false,response.getBody().isRemoved());
+        assertEquals(false, response.getBody().isRemoved());
     }
 
     @Test
     public void getScopeById_FacCritIdNotExisting() {
         ResponseEntity<BasicScopeResponse> response = testRestTemplate.getForEntity("/audits/1001/scope/1001", BasicScopeResponse.class);
-        assertEquals(400, response.getStatusCodeValue());
+        assertEquals(404, response.getStatusCodeValue());
     }
 
     @Test
     public void getScopeById_AuditIdNotExisting() {
         ResponseEntity<BasicScopeResponse> response = testRestTemplate.getForEntity("/audits/1000/scope/1003", BasicScopeResponse.class);
-        assertEquals(400, response.getStatusCodeValue());
+        assertEquals(404, response.getStatusCodeValue());
     }
 
     @Test
@@ -147,7 +142,7 @@ public class ScopeRestServiceIntegrationTest {
         addScopeRequest.setScope(scope);
 
         HttpEntity<AddScopeRequest> request = new HttpEntity<>(addScopeRequest);
-        ResponseEntity<List> response = testRestTemplate.postForEntity("/audits/1001/scope", request, List.class);
+        ResponseEntity<Object> response = testRestTemplate.postForEntity("/audits/1001/scope", request, Object.class);
         assertEquals(400, response.getStatusCodeValue());
     }
 
