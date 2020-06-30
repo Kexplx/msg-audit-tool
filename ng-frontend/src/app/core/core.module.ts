@@ -7,14 +7,20 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ContactPersonState } from './ngxs/contact-people.state';
 import { AnswerState } from './ngxs/answer.state';
 import { AppRouterState } from './ngxs/app-router.state';
+import { InterviewState } from './ngxs/interview.state';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([AuditState, ContactPersonState, AppRouterState, AnswerState], {
-      developmentMode: !environment.production,
-    }),
+    NgxsModule.forRoot(
+      [AuditState, InterviewState, ContactPersonState, AppRouterState, AnswerState],
+      {
+        developmentMode: !environment.production,
+      },
+    ),
   ],
   exports: [NgxsModule],
 })
