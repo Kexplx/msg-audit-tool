@@ -3,8 +3,8 @@ package com.amos2020.javabackend.rest_service.request.scope;
 import com.amos2020.javabackend.rest_service.Constants;
 import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Setter;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.Size;
 
@@ -26,9 +26,4 @@ public class UpdateScopeRequest extends BasicRequest {
     @Size(message = "note", max = Constants.NOTE_LENGTH)
     @Schema(type = "String", name = "note", example = "Some note")
     private String note;
-
-    public void isValid() {
-        assertNoteIsValid(note);
-        assertNoteIsValid(change_note);
-    }
 }
