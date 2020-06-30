@@ -13,6 +13,7 @@ import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,10 +27,9 @@ public class ScopeRestService {
     }
 
     /**
-     *
-     * @param auditId
-     * @param request
-     * @return
+     * @param auditId int
+     * @param request AddScopeRequest
+     * @return List of created Scope objects
      */
     @Operation(summary = "Create new Scopes belonging to an Audit")
     @ApiResponses(value = {
@@ -38,10 +38,9 @@ public class ScopeRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @PostMapping("/audits/{id}/scope")
-    public ResponseEntity<List<BasicScopeResponse>> addScope(@PathVariable("id") int auditId, @RequestBody AddScopeRequest request) {
+    public ResponseEntity<List<BasicScopeResponse>> addScope(@PathVariable("id") int auditId, @RequestBody @Valid AddScopeRequest request) {
         List<BasicScopeResponse> response;
         try {
-            request.isValid();
             response = scopeController.addScope(auditId, request.getScope());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
@@ -52,11 +51,10 @@ public class ScopeRestService {
     }
 
     /**
-     *
-     * @param auditId
-     * @param facCritId
-     * @param request
-     * @return
+     * @param auditId   int
+     * @param facCritId int
+     * @param request   UpdateScopeRequest
+     * @return Updated Scope object
      */
     @Operation(summary = "Update a Scope by its Audit and Faccrit Id ")
     @ApiResponses(value = {
@@ -67,10 +65,9 @@ public class ScopeRestService {
     @PutMapping("/audits/{id}/scope/{faccritid}")
     public ResponseEntity<BasicScopeResponse> addScope(@PathVariable("id") int auditId,
                                                        @PathVariable("faccritid") int facCritId,
-                                                       @RequestBody UpdateScopeRequest request) {
+                                                       @RequestBody @Valid UpdateScopeRequest request) {
         BasicScopeResponse response;
         try {
-            request.isValid();
             response = scopeController.updateScope(auditId, facCritId, request.isRemoved(), request.getNote(), request.getChange_note());
         } catch (IllegalArgumentException | IllegalAccessException e) {
             return ResponseEntity.badRequest().build();
@@ -82,9 +79,10 @@ public class ScopeRestService {
 
     /**
      * GET Endpoint for fetching a specific Scope identified by its Audit id and Faccrit id
-     * @param auditId
-     * @param faccritId
-     * @return ResponseEntity
+     *
+     * @param auditId   int
+     * @param faccritId int
+     * @return Scope object for the given audit id and faccrit id
      */
     @Operation(summary = "Get a Scope by its Audit and Faccrit id ")
     @ApiResponses(value = {
@@ -94,13 +92,13 @@ public class ScopeRestService {
     })
     @GetMapping("/audits/{id1}/scope/{id2}")
     public ResponseEntity<BasicScopeResponse> getScopeByIds(@PathVariable("id1") int auditId,
-                                                            @PathVariable("id2") int faccritId){
+                                                            @PathVariable("id2") int faccritId) {
         BasicScopeResponse response;
         try {
-            response = scopeController.getScopeByIds(auditId,faccritId);
+            response = scopeController.getScopeByIds(auditId, faccritId);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(response);
@@ -108,8 +106,9 @@ public class ScopeRestService {
 
     /**
      * GET Endpoint for fetching all existing Scopes
-     * @param auditId
-     * @return ResponseEntity
+     *
+     * @param auditId int
+     * @return List of all Scope objects belonging to an audit
      */
     @Operation(summary = "Get all Scopes by Audit id")
     @ApiResponses(value = {
@@ -117,11 +116,11 @@ public class ScopeRestService {
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
     })
     @GetMapping("/audits/{id}/scope")
-    public ResponseEntity<List<BasicScopeResponse>> getAllScopes(@PathVariable("id") int auditId){
+    public ResponseEntity<List<BasicScopeResponse>> getAllScopes(@PathVariable("id") int auditId) {
         List<BasicScopeResponse> responses;
         try {
             responses = scopeController.getScopesByAuditId(auditId);
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(responses);
