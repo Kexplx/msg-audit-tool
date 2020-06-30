@@ -31,6 +31,6 @@ public class DeleteAuditRequest extends BasicRequest {
     @Getter
     @Setter
     @NotNull
-    @Schema(type = "string", name = "date", format = "date",  required = true)
+    @Schema(type = "string", name = "date", format = "date", required = true)
     private Date date;
 }
