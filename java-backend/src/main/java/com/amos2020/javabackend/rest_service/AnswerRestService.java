@@ -11,12 +11,15 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
+@Validated
 @Tag(name = "Answer", description = "The endpoints for the Answer resource")
 public class AnswerRestService {
 
@@ -39,7 +42,7 @@ public class AnswerRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @GetMapping("/answers/interview/{id}")
-    public ResponseEntity<List<BasicAnswerResponse>> getAnswersByInterviewId(@PathVariable("id") int interviewId) {
+    public ResponseEntity<List<BasicAnswerResponse>> getAnswersByInterviewId(@PathVariable("id") @Min(1) int interviewId) {
         List<BasicAnswerResponse> response;
         try {
             response = answerController.getAllAnswersByInterviewId(interviewId);
@@ -65,14 +68,14 @@ public class AnswerRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @GetMapping("/answers/interview/{id1}/question/{id2}")
-    public ResponseEntity<BasicAnswerResponse> getAnswerByIds(@PathVariable("id1") int interviewId,
-                                                              @PathVariable("id2") int questionId) {
+    public ResponseEntity<BasicAnswerResponse> getAnswerByIds(@PathVariable("id1") @Min(1) int interviewId,
+                                                              @PathVariable("id2") @Min(1) int questionId) {
         BasicAnswerResponse response;
         try {
             response = answerController.getAnswerByIds(interviewId, questionId);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(response);
@@ -117,8 +120,8 @@ public class AnswerRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @PutMapping("/answers/interview/{id1}/question/{id2}")
-    public ResponseEntity<BasicAnswerResponse> updateAnswer(@PathVariable("id1") int interviewId,
-                                                            @PathVariable("id2") int questionId,
+    public ResponseEntity<BasicAnswerResponse> updateAnswer(@PathVariable("id1") @Min(1) int interviewId,
+                                                            @PathVariable("id2") @Min(1) int questionId,
                                                             @RequestBody @Valid UpdateAnswerRequest request) {
         BasicAnswerResponse response;
         try {
