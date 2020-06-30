@@ -72,9 +72,10 @@ public class AnswerService {
     }
 
     /**
+     * Update an existing Answer
      *
-     * @param answer
-     * @return
+     * @param answer Answer
+     * @return Updated answer
      */
     public Answer updateAnswer(Answer answer) {
         return repository.save(answer);
