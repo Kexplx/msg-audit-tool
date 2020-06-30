@@ -8,6 +8,27 @@ import lombok.Setter;
 
 public class BasicScopeResponse {
 
+    @Getter
+    @Setter
+    @Schema(type = "Integer", name = "auditId", example = "123456")
+    private int auditId;
+    @Getter
+    @Setter
+    @Schema(type = "Integer", name = "faccritId", example = "123456")
+    private int facCritId;
+    @Getter
+    @Setter
+    @Schema(type = "boolean", name = "removed", example = "true")
+    private boolean removed;
+    @Getter
+    @Setter
+    @Schema(type = "String", name = "change_note", example = "Some change note")
+    private String change_note;
+    @Getter
+    @Setter
+    @Schema(type = "String", name = "note", example = "Some note")
+    private String note;
+
     public BasicScopeResponse() {
         //empty constructor
     }
@@ -27,29 +48,4 @@ public class BasicScopeResponse {
         this.change_note = scope.getChangeNote();
         this.note = scope.getNote();
     }
-
-    @Getter
-    @Setter
-    @Schema(type = "Integer", name = "auditId", example = "123456")
-    private int auditId;
-
-    @Getter
-    @Setter
-    @Schema(type = "Integer", name = "faccritId", example = "123456")
-    private int facCritId;
-
-    @Getter
-    @Setter
-    @Schema(type = "boolean", name = "removed", example = "true")
-    private boolean removed;
-
-    @Getter
-    @Setter
-    @Schema(type = "String", name = "change_note", example = "Some change note")
-    private String change_note;
-
-    @Getter
-    @Setter
-    @Schema(type = "String", name = "note", example = "Some note")
-    private String note;
 }
