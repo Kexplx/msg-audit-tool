@@ -111,17 +111,6 @@ describe('QuestionsPage', () => {
       cy.get('[data-cy=interview-contact-persons]').first().click();
     });
 
-    it('saves the goal when clicking on save', () => {
-      const dummyText = 'Dummy goal';
-      cy.get('[data-cy=goals-input]').clear().type(dummyText);
-      cy.scrollTo('top');
-      cy.get('[data-cy=save]').click();
-      cy.get('[data-cy=home]').click();
-      cy.get('[data-cy=audit-short-infos]').first().click();
-      cy.get('[data-cy=interview-contact-persons]').first().click();
-      cy.get('[data-cy=goals-input]').should('have.value', dummyText);
-    });
-
     it('saves inputs in question card when clicking on save', () => {
       //TODO add dummy interview result as fixture
       const dummyText = 'Dummy';
