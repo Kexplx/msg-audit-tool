@@ -6,27 +6,20 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 public class CreateAnswerRequest extends BasicRequest {
 
     @Getter
     @Setter
     @NotNull
-    @Min(message ="Question Id", value = 1)
+    @Min(message = "Question Id", value = 1)
     @Schema(type = "Integer", name = "questionId", example = "1", required = true)
     private int questionId;
     @Getter
     @Setter
     @NotNull
-    @Min(message ="Interview Id", value = 1)
+    @Min(message = "Interview Id", value = 1)
     @Schema(type = "Integer", name = "interviewId", example = "1", required = true)
     private int interviewId;
-
-    public void isValid() {
-        assertIdIsValid(questionId);
-        assertIdIsValid(interviewId);
-    }
 }
