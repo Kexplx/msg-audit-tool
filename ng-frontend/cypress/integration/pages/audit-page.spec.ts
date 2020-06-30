@@ -63,6 +63,30 @@ describe('AuditPage', () => {
     });
   });
 
+  context('When focussing on the sidebar it', () => {
+    before(() => {
+      cy.visit(baseUrl);
+      cy.get('[data-cy=new-audit]').click();
+      cy.inputAudit(testAudit);
+      cy.get('[data-cy=audit-short-infos]').first().click();
+    });
+
+    it('opens sidebar on click', () => {
+      cy.get('[data-cy=toggle-sidebar]').click();
+      cy.get('[data-cy=toggle-sidebar]').should('not.have.class', 'collapsed');
+      cy.get('[data-cy=toggle-sidebar]').click();
+    });
+
+    it('scrolls to the selected question when clicked', () => {
+      cy.get('[data-cy=toggle-sidebar]').click();
+      cy.get('.menu-title').each(item => {
+        let questionLabel = item.text();
+        cy.wrap(item).click();
+        cy.get('[data-cy=factor-card]:visible').contains(questionLabel);
+      });
+    });
+  });
+
   //   /**
   //    * Tests the audit info page
   //    */
