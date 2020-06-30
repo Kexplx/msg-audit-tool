@@ -17,12 +17,12 @@ public class UpdateAuditRequest extends BasicRequest {
     @NotNull
     @NotBlank
     @Size(min = 1, max = Constants.NAME_LENGTH)
-    @Schema(type = "string", name = "auditName", example = "updated audit name",  required = true)
+    @Schema(type = "string", name = "auditName", example = "updated audit name", required = true)
     private String auditName;
     @Getter
     @Setter
     @NotNull
-    @Schema(type = "string", name = "startDate", format = "date",  required = true)
+    @Schema(type = "string", name = "startDate", format = "date", required = true)
     private Date startDate;
     @Getter
     @Setter
