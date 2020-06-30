@@ -438,7 +438,7 @@ public class AuditRestServiceTest {
     @Test
     public void getAuditByIdWithInvalidId_returnsNotFound() throws Exception {
         given(auditController.getAuditById(0)).willThrow(new NotFoundException(""));
-        restService.perform(get("/audits/0")).andExpect(status().isNotFound());
+        restService.perform(get("/audits/0")).andExpect(status().isBadRequest());
     }
 
     @Test

@@ -1,14 +1,8 @@
 package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.entity.Audit;
-import com.amos2020.javabackend.entity.AuditStatus;
-import com.amos2020.javabackend.entity.Scope;
 import com.amos2020.javabackend.rest_service.controller.AuditController;
 import com.amos2020.javabackend.rest_service.controller.ScopeController;
-import com.amos2020.javabackend.rest_service.request.audit.CreateAuditRequest;
-import com.amos2020.javabackend.rest_service.request.audit.DeleteAuditRequest;
-import com.amos2020.javabackend.rest_service.request.audit.UpdateAuditRequest;
-import com.amos2020.javabackend.rest_service.request.audit.UpdateAuditScopeRequest;
 import com.amos2020.javabackend.rest_service.request.scope.AddScopeRequest;
 import com.amos2020.javabackend.rest_service.request.scope.UpdateScopeRequest;
 import com.amos2020.javabackend.rest_service.response.BasicAuditResponse;
@@ -16,7 +10,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import javassist.NotFoundException;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +19,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -70,14 +61,13 @@ public class ScopeRestServiceTest {
     }
 
     @Test
-    public void addInvalidAuditId_returnsNotFound() throws Exception{
+    public void addInvalidAuditId_returnsNotFound() throws Exception {
         AddScopeRequest request = new AddScopeRequest();
         List<Integer> scope = Arrays.asList(1, 2, 3, 4, 5);
         request.setScope(scope);
         String requestAsJson = buildJson(request);
 
-        given(scopeController.addScope(anyInt(),anyList())).willThrow(NotFoundException.class);
-
+        given(scopeController.addScope(anyInt(), anyList())).willThrow(NotFoundException.class);
 
 
         restService.perform(post("/audits/1000/scope")

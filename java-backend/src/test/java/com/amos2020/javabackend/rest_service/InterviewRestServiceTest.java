@@ -57,7 +57,7 @@ public class InterviewRestServiceTest {
         interview.setInterviewContactPeopleById(new ArrayList<>());
         given(interviewController.getInterviewById(anyInt())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
-        restService.perform(get("/interviews/0")).andExpect(status().isOk());
+        restService.perform(get("/interviews/0")).andExpect(status().isBadRequest());
     }
 
     @Test
@@ -290,6 +290,7 @@ public class InterviewRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void createInterviewWithGoalIsNull_returns400() throws Exception {
         Interview interview = new Interview();
@@ -312,6 +313,7 @@ public class InterviewRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void createInterviewWithGoalIsTooLong_returns400() throws Exception {
         Interview interview = new Interview();
@@ -334,6 +336,7 @@ public class InterviewRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void createInterviewWithGoalIsMaximum_returns200() throws Exception {
         Interview interview = new Interview();
@@ -480,6 +483,7 @@ public class InterviewRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void updateInterviewWithGoalIsTooLong_returns400() throws Exception {
         Interview interview = new Interview();
@@ -500,6 +504,7 @@ public class InterviewRestServiceTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
+
     @Test
     public void updateInterviewWithGoalIsMaximum_returns200() throws Exception {
         Interview interview = new Interview();
