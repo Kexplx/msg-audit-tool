@@ -1,44 +1,25 @@
 package com.amos2020.javabackend.integration_tests.contactperson;
 
 import com.amos2020.javabackend.JavaBackendApplication;
-import com.amos2020.javabackend.entity.ContactPerson;
 import com.amos2020.javabackend.entity.Salutation;
-import com.amos2020.javabackend.repository.ContactPersonRepository;
 import com.amos2020.javabackend.rest_service.request.contactPerson.CreateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.request.contactPerson.UpdateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.jdbc.SqlMergeMode;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import javax.transaction.Transactional;
-import javax.validation.constraints.Null;
-
-import java.nio.charset.Charset;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @Sql("/ContactPersonTest.sql")
 @RunWith(SpringRunner.class)
@@ -84,7 +65,7 @@ public class ContactPersonRestServiceIntegrationTest {
 
         HttpEntity<CreateContactPersonRequest> request = new HttpEntity<>(contactPersonRequest);
 
-        ResponseEntity<BasicContactPersonResponse>response = testRestTemplate.postForEntity("/contactpersons", request, BasicContactPersonResponse.class);
+        ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.postForEntity("/contactpersons", request, BasicContactPersonResponse.class);
 
         assertEquals(200, response.getStatusCodeValue());
         assertNotNull(response.getBody().getId());
@@ -112,7 +93,7 @@ public class ContactPersonRestServiceIntegrationTest {
 
         HttpEntity<CreateContactPersonRequest> request = new HttpEntity<>(contactPersonRequest);
 
-        ResponseEntity<BasicContactPersonResponse>response = testRestTemplate.postForEntity("/contactpersons", request, BasicContactPersonResponse.class);
+        ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.postForEntity("/contactpersons", request, BasicContactPersonResponse.class);
 
         assertNotNull(response.getBody().getId());
         assertEquals(Salutation.MANN, response.getBody().getSalutation());
@@ -231,7 +212,6 @@ public class ContactPersonRestServiceIntegrationTest {
         ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.exchange("/contactpersons/1001", HttpMethod.PUT, request, BasicContactPersonResponse.class);
         assertEquals(400, response.getStatusCodeValue());
     }
-
 
 
 }
