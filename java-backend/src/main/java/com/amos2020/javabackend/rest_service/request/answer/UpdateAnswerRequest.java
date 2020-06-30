@@ -15,14 +15,14 @@ public class UpdateAnswerRequest extends BasicRequest {
     @Getter
     @Setter
     @NotNull
-    @Min(message ="Question Id", value = 1)
+    @Min(message = "Question Id", value = 1)
     @Schema(type = "Integer", name = "questionId", example = "1", required = true)
     private int questionId;
 
     @Getter
     @Setter
     @NotNull
-    @Min(message ="Interview Id", value = 1)
+    @Min(message = "Interview Id", value = 1)
     @Schema(type = "Integer", name = "interviewId", example = "1", required = true)
     private int interviewId;
 
@@ -48,27 +48,19 @@ public class UpdateAnswerRequest extends BasicRequest {
 
     @Getter
     @Setter
-    @Size(message = "reason" , max= Constants.NOTE_LENGTH)
+    @Size(message = "reason", max = Constants.NOTE_LENGTH)
     @Schema(type = "String", name = "reason", example = "Some reason")
     private String reason;
 
     @Getter
     @Setter
-    @Size(message = "proof" , max= Constants.NOTE_LENGTH)
+    @Size(message = "proof", max = Constants.NOTE_LENGTH)
     @Schema(type = "String", name = "proof", example = "Some proof")
     private String proof;
 
     @Getter
     @Setter
-    @Size(message = "annotation" , max= Constants.NOTE_LENGTH)
+    @Size(message = "annotation", max = Constants.NOTE_LENGTH)
     @Schema(type = "String", name = "annotation", example = "Some annotation")
     private String annotation;
-
-    public void isValid() {
-        assertIdIsValid(questionId);
-        assertIdIsValid(interviewId);
-        assertNoteIsValid(reason);
-        assertNoteIsValid(proof);
-        assertNoteIsValid(annotation);
-    }
 }
