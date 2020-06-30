@@ -42,16 +42,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @TestPropertySource(locations = "classpath:application-test.properties")
 public class AuditIntegrationTest {
 
-    @Autowired
-    private MockMvc mvc;
-    @Autowired
-    private FacCritRepository facCritRepository;
-    @Autowired
-    private ContactPersonRepository contactPersonRepository;
-    @Autowired
-    private QuestionRepository questionRepository;
-
-
     private static final String VALID_NAME = "TestAuditName";
     private static final String NULL_STRING = null;
     private static final String BLANK_STRING = "   ";
@@ -65,11 +55,9 @@ public class AuditIntegrationTest {
     private static final Date VALID_END_DATE = Date.valueOf("2020-06-22");
     private static final Date INVALID_END_DATE = Date.valueOf("2020-06-21");
     private static final Date NULL_DATE = null;
-
     private static final String UPDATED_NAME = "Update Name";
     private static final Date UPDATED_START_DATE = Date.valueOf("2000-01-01");
     private static final Date UPDATED_END_DATE = Date.valueOf("2000-02-02");
-
     private static final Salutation TEST_SALUTATION = Salutation.MANN;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
@@ -79,11 +67,18 @@ public class AuditIntegrationTest {
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
     private static final String TEST_CORPORATE_DIVISION = "testDivision";
-
     List<Integer> facCritList = new ArrayList<>();
     List<FacCrit> facCrits = new ArrayList<>();
     List<Integer> contacts = new ArrayList<>();
     List<ContactPerson> contactPeople = new ArrayList<>();
+    @Autowired
+    private MockMvc mvc;
+    @Autowired
+    private FacCritRepository facCritRepository;
+    @Autowired
+    private ContactPersonRepository contactPersonRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
 
     @Before
     public void setup() {
@@ -301,7 +296,7 @@ public class AuditIntegrationTest {
     @Test
     public void getAuditByIdWithInvalidId_returnsNotFound() throws Exception {
         mvc.perform(get("/audits/0"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -491,14 +486,14 @@ public class AuditIntegrationTest {
         String contactPersonId = setupNewContactPerson();
 
         mvc.perform(put("/audits/0/contactpersons/" + contactPersonId))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
     public void addContactPersonToAuditWithInvalidContactPersonId_returns404() throws Exception {
         String auditId = setupNewAudit();
         mvc.perform(put("/audits/" + auditId + "/contactpersons/0"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -521,14 +516,14 @@ public class AuditIntegrationTest {
     @Test
     public void removeContactPersonFromAuditWithInvalidAuditId_returns404() throws Exception {
         mvc.perform(delete("/audits/0/contactpersons/" + contactPeople.get(0).getId()))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
     public void removeContactPersonFromAuditWithInvalidContactPersonId_returns400() throws Exception {
         String auditId = setupNewAudit();
         mvc.perform(delete("/audits/" + auditId + "/contactpersons/0"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isBadRequest());
     }
 
     @Test
