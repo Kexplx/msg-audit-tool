@@ -15,11 +15,11 @@
 </header>
 
 <nb-card accent="primary" id="card-goal" class="mt-2">
-  <nb-card-header data-cy="goals-card-header"><input [(ngModel)]="interviewGoal" placeholder="Ziel des Interviews..." nbInput fullWidth type="text" /></nb-card-header>
+  <nb-card-header data-cy="goals-card-header"><input [(ngModel)]="interviewGoal" placeholder="Ziel des Interviews..." nbInput fullWidth type="text" data-cy="goals-input" /></nb-card-header>
 </nb-card>
 
 <nb-accordion [id]="question.id" class="mt-2" *ngFor="let question of (facCrit$ | async).questions; let i = index">
-  <nb-accordion-item expanded class="mb-2">
+  <nb-accordion-item expanded class="mb-2" data-cy="question-accordeon-item">
     <nb-accordion-item-header data-cy="question-card-header">{{ question.textDe }}</nb-accordion-item-header>
     <nb-accordion-item-body>
       <form [formGroup]="formGroups[i]" class="container-interview-form" data-cy="question-form">
@@ -29,17 +29,17 @@
           <nb-checkbox formControlName="documentation" data-cy="question-documentation">Dokumentation</nb-checkbox>
           <nb-checkbox formControlName="procedure" data-cy="question-strategy">Vorgehen</nb-checkbox>
         </div>
-        <div class="container-inputs-item-1" data-cy="question-reason">
+        <div class="container-inputs-item-1">
           <label class="label">Begründung</label>
-          <textarea formControlName="reason" spellcheck="false" fullWidth nbInput></textarea>
+          <textarea formControlName="reason" spellcheck="false" fullWidth nbInput data-cy="question-reason"></textarea>
         </div>
-        <div class="container-inputs-item-2" data-cy="question-note">
+        <div class="container-inputs-item-2">
           <label class="label">Bemerkung</label>
-          <textarea formControlName="annotation" spellcheck="false" fullWidth nbInput></textarea>
+          <textarea formControlName="annotation" spellcheck="false" fullWidth nbInput data-cy="question-note"></textarea>
         </div>
-        <div class="container-inputs-item-3" data-cy="question-certificate">
+        <div class="container-inputs-item-3">
           <label class="label">Nachweis</label>
-          <textarea formControlName="proof" spellcheck="false" fullWidth nbInput></textarea>
+          <textarea formControlName="proof" spellcheck="false" fullWidth nbInput data-cy="question-certificate"></textarea>
         </div>
       </form>
     </nb-accordion-item-body>
