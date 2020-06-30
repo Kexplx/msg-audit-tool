@@ -15,50 +15,30 @@ import java.util.List;
 
 public class BasicInterviewResponse {
 
-    public BasicInterviewResponse(Interview interview, List<ContactPerson> interviewedPeople) {
-        this.interviewId = interview.getId();
-        this.auditId = interview.getAuditId();
-        this.startDate = interview.getStartDate();
-        this.endDate = interview.getEndDate();
-        this.status = interview.getStatus();
-        this.goal = interview.getGoal();
-        this.answers = new ArrayList<>();
-        if (interview.getAnswersById() != null) {
-            this.answers = interview.getAnswersById();
-        }
-        this.interviewedPeople = interviewedPeople;
-    }
-
     @Getter
     @Setter
     @Schema(type = "Integer", name = "interviewId", example = "654321")
     private int interviewId;
-
     @Getter
     @Setter
     @Schema(type = "Integer", name = "auditId", example = "123456")
     private int auditId;
-
     @Getter
     @Setter
     @Schema(type = "string", name = "startDate", format = "date")
     private Date startDate;
-
     @Getter
     @Setter
     @Schema(type = "string", name = "endDate", format = "date")
     private Date endDate;
-
     @Getter
     @Setter
     @Schema(type = "string", name = "goal", example = "Das Ziel des Audits ist ...")
     private String goal;
-
     @Getter
     @Setter
     @Schema(type = "string", name = "status", example = "ACTIVE")
     private InterviewStatus status;
-
     @Getter
     @Setter
     @Schema(type = "array", name = "answers", example = "[\n" +
@@ -75,7 +55,6 @@ public class BasicInterviewResponse {
             "      \"annotation\": \"annotation\"\n" +
             "    }]")
     private Collection<Answer> answers;
-
     @Getter
     @Setter
     @Schema(type = "array", name = "contactPeople", example = "[{\n" +
@@ -91,4 +70,18 @@ public class BasicInterviewResponse {
             "    \"corporateDivision\": \"Software\"\n" +
             "  }]")
     private List<ContactPerson> interviewedPeople;
+
+    public BasicInterviewResponse(Interview interview, List<ContactPerson> interviewedPeople) {
+        this.interviewId = interview.getId();
+        this.auditId = interview.getAuditId();
+        this.startDate = interview.getStartDate();
+        this.endDate = interview.getEndDate();
+        this.status = interview.getStatus();
+        this.goal = interview.getGoal();
+        this.answers = new ArrayList<>();
+        if (interview.getAnswersById() != null) {
+            this.answers = interview.getAnswersById();
+        }
+        this.interviewedPeople = interviewedPeople;
+    }
 }
