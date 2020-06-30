@@ -43,22 +43,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class InterviewRestServiceIntegrationTest {
 
-    @Autowired
-    private MockMvc mvc;
-    @Autowired
-    private AuditRepository auditRepository;
-    @Autowired
-    private ContactPersonRepository contactPersonRepository;
-    @Autowired
-    private FacCritRepository facCritRepository;
-    @Autowired
-    private QuestionRepository questionRepository;
-
-    private Audit audit;
-    private List<ContactPerson> contactPeople = new ArrayList<>();
-    private List<Integer> facCritIds = new ArrayList<>();
-    private HashMap<Integer, String> interviewedPeople = new HashMap<>();
-
     private static final String VALID_NAME = "TestAuditName";
     private static final String NULL_STRING = null;
     private static final String BLANK_STRING = "   ";
@@ -73,7 +57,6 @@ public class InterviewRestServiceIntegrationTest {
     private static final Date UPDATED_START_DATE = Date.valueOf("2000-01-01");
     private static final Date UPDATED_END_DATE = Date.valueOf("2000-02-02");
     private static final String VALID_GOAL = "testGoal";
-
     private static final Salutation TEST_SALUTATION = Salutation.MANN;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
@@ -83,6 +66,20 @@ public class InterviewRestServiceIntegrationTest {
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
     private static final String TEST_CORPORATE_DIVISION = "testDivision";
+    @Autowired
+    private MockMvc mvc;
+    @Autowired
+    private AuditRepository auditRepository;
+    @Autowired
+    private ContactPersonRepository contactPersonRepository;
+    @Autowired
+    private FacCritRepository facCritRepository;
+    @Autowired
+    private QuestionRepository questionRepository;
+    private Audit audit;
+    private List<ContactPerson> contactPeople = new ArrayList<>();
+    private List<Integer> facCritIds = new ArrayList<>();
+    private HashMap<Integer, String> interviewedPeople = new HashMap<>();
 
     @Before
     public void setup() {
