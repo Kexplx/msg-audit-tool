@@ -22,7 +22,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.*;
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -31,9 +31,6 @@ import java.util.*;
         classes = JavaBackendApplication.class
 )
 public class AnswerIntegrationTest {
-
-    @Autowired
-    private TestRestTemplate testRestTemplate;
 
     @Autowired
     InterviewRepository interviewRepository;
@@ -45,7 +42,8 @@ public class AnswerIntegrationTest {
     AuditRepository auditRepository;
     @Autowired
     AnswerRepository answerRepository;
-
+    @Autowired
+    private TestRestTemplate testRestTemplate;
     private Interview interview;
     private Question question;
     private FacCrit facCrit;
@@ -88,9 +86,10 @@ public class AnswerIntegrationTest {
 
         String url = "/answers/interview/" + interviewId;
         ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
-                null,new ParameterizedTypeReference<List<BasicAnswerResponse>>(){});
+                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
+                });
 
-        Assert.assertEquals( 200, response.getStatusCodeValue());
+        Assert.assertEquals(200, response.getStatusCodeValue());
     }
 
     @Test
@@ -103,10 +102,8 @@ public class AnswerIntegrationTest {
         answerRepository.save(answer);
 
         String url = "/answers/interview/-1";
-        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
-                null,new ParameterizedTypeReference<List<BasicAnswerResponse>>(){});
-
-        Assert.assertEquals( 200, response.getStatusCodeValue());
+        ResponseEntity<BasicAnswerResponse> response = testRestTemplate.getForEntity(url, BasicAnswerResponse.class);
+        Assert.assertEquals(400, response.getStatusCodeValue());
     }
 
     @Test
