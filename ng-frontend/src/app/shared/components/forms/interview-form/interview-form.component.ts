@@ -25,11 +25,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
 
   facCritSelected = false;
 
-  constructor(
-    private fb: FormBuilder,
-    protected dialogService: NbDialogService,
-    private store: Store,
-  ) {
+  constructor(private fb: FormBuilder, protected dialogService: NbDialogService) {
     super(dialogService);
   }
 

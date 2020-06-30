@@ -7,8 +7,8 @@ import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
-import { AddInterview } from 'src/app/core/ngxs/actions/audit.actions';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
+import { AddInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 
 @Component({
   selector: 'app-new-interview-dialog',
@@ -21,6 +21,7 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
   dialogRef: NbDialogRef<any>;
 
   audit$: Observable<Audit>;
+  auditId: string;
 
   constructor(
     private dialogService: NbDialogService,
@@ -34,6 +35,7 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
    */
   ngOnInit() {
     this.auditId$.subscribe(id => {
+      this.auditId = id;
       this.audit$ = this.store.select(AuditState.audit(id));
     });
   }
@@ -52,12 +54,8 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
    * @param interview The interview filled out in the form
    */
   onSubmit(interview: Interview) {
-    let audit: Audit;
-    this.audit$.subscribe(x => (audit = x));
-
-    this.store.dispatch(new AddInterview(audit.id, interview)).subscribe(() => {
-      this.dialogRef.close();
-    });
+    this.store.dispatch(new AddInterview({ ...interview, auditId: this.auditId }));
+    this.dialogRef.close();
   }
 
   onCancel() {

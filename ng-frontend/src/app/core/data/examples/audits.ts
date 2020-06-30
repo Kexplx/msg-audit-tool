@@ -11,15 +11,6 @@ export const AUDITS: Audit[] = [
     startDate: Date.now(),
     scope: FACCRITS,
     status: AuditStatus.Planned,
-    interviews: [
-      {
-        id: '23894',
-        contactPeople: CONTACT_PEOPLE,
-        facCrits: FACCRITS,
-        status: InterviewStatus.InAction,
-        start: Date.now(),
-      },
-    ],
   },
   {
     id: '12sgdfgfd3',

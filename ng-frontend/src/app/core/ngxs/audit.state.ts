@@ -2,13 +2,7 @@ import { Audit, AuditStatus } from '../data/models/audit.model';
 import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import {
-  AddAudit,
-  DeleteAudit,
-  UpdateAudit,
-  AddInterview,
-  UpdateInterview,
-} from './actions/audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit } from './actions/audit.actions';
 import * as shortid from 'shortid';
 import { FacCrit } from '../data/models/faccrit.model';
 import { FACCRITS } from '../data/examples/fac-crits';
@@ -62,16 +56,6 @@ export class AuditState {
     });
   }
 
-  static interview(id: string) {
-    return createSelector([AuditState], (state: AuditStateModel) => {
-      const audit = state.audits.find(
-        x => x.interviews && x.interviews?.findIndex(x => x.id === id) != -1,
-      );
-
-      return audit.interviews.find(x => x.id === id);
-    });
-  }
-
   static criteriaByFactorId(id: string) {
     return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.filter(x => x.referenceId === id);
@@ -102,40 +86,6 @@ export class AuditState {
     setState(
       patch({
         audits: removeItem<Audit>(x => x.id === id),
-      }),
-    );
-  }
-
-  @Action(AddInterview)
-  addInterview(context: StateContext<AuditStateModel>, { auditId, interview }: AddInterview) {
-    interview = { ...interview, id: shortid.generate() };
-    const audit = context.getState().audits.find(x => x.id === auditId);
-
-    context.setState(
-      patch({
-        audits: updateItem<Audit>(x => x === audit, {
-          ...audit,
-          interviews: [...(audit.interviews ?? []), interview],
-        }),
-      }),
-    );
-  }
-
-  @Action(UpdateInterview)
-  updateInterview(context: StateContext<AuditStateModel>, { auditId, interview }: UpdateInterview) {
-    const audit = context.getState().audits.find(x => x.id === auditId);
-    const indexOfInterview = audit.interviews.findIndex(x => x.id === interview.id);
-
-    context.setState(
-      patch({
-        audits: updateItem<Audit>(x => x === audit, {
-          ...audit,
-          interviews: [
-            ...audit.interviews?.slice(0, indexOfInterview),
-            interview,
-            ...audit.interviews.slice(indexOfInterview + 1),
-          ],
-        }),
       }),
     );
   }

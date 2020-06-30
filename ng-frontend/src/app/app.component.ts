@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
-import { Store, Select } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { AuditState } from './core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from './core/data/models/audit.model';
@@ -13,7 +13,7 @@ import { Audit } from './core/data/models/audit.model';
 export class AppComponent {
   @Select(AuditState.audits) audits$: Observable<Audit[]>;
 
-  constructor(private sidebarService: NbSidebarService, private store: Store) {}
+  constructor(private sidebarService: NbSidebarService) {}
 
   toggleSidebar() {
     this.sidebarService.toggle();

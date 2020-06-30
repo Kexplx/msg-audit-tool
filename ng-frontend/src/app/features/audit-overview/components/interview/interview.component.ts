@@ -9,7 +9,8 @@ import { AnswerState } from 'src/app/core/ngxs/answer.state';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { AddAnswer, UpdateAnswer } from 'src/app/core/ngxs/actions/answer.actions';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
-import { UpdateInterview } from 'src/app/core/ngxs/actions/audit.actions';
+import { InterviewState } from 'src/app/core/ngxs/interview.state';
+import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 
 @Component({
   selector: 'app-interview',
@@ -38,7 +39,7 @@ export class InterviewComponent implements OnInit {
   ngOnInit(): void {
     this.interviewId$.subscribe(id => {
       this.interviewId = id;
-      this.interview$ = this.store.select(AuditState.interview(id));
+      this.interview$ = this.store.select(InterviewState.interview(id));
 
       this.interview$.subscribe(interview => {
         this.interviewGoal = interview?.goal;

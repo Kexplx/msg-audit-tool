@@ -1,12 +1,7 @@
 import { Directive, OnInit } from '@angular/core';
 import { Actions } from '@ngxs/store';
 import { NbToastrService } from '@nebular/theme';
-import {
-  AddAudit,
-  DeleteAudit,
-  UpdateAudit,
-  AddInterview,
-} from 'src/app/core/ngxs/actions/audit.actions';
+import { AddAudit, DeleteAudit, UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import {
   DeleteContactPerson,
   UpdateContactPerson,
@@ -15,6 +10,7 @@ import {
 import { UpdateAnswer, AddAnswer } from 'src/app/core/ngxs/actions/answer.actions';
 import { filter, map } from 'rxjs/operators';
 import { timer } from 'rxjs';
+import { AddInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 @Directive({
   selector: '[appActionListener]',
 })

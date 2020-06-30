@@ -8,6 +8,7 @@ export enum InterviewStatus {
 
 export interface Interview {
   id?: string;
+  auditId?: string;
   start?: number;
   end?: number;
   contactPeople: ContactPerson[];
