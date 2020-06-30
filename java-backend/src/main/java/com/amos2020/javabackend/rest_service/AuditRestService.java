@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
+@Validated
 @Tag(name = "Audit", description = "The endpoints for the audit resource")
 public class AuditRestService {
 
@@ -239,6 +241,4 @@ public class AuditRestService {
         }
         return ResponseEntity.ok(response);
     }
-
-
 }
