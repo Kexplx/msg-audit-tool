@@ -19,11 +19,6 @@ import org.springframework.transaction.TransactionSystemException;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ContactPersonRepositoryTest {
 
-    @Autowired
-    private ContactPersonRepository repository;
-
-    private ContactPerson toTest;
-
     private static final Salutation TEST_SALUTATION = Salutation.MANN;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
@@ -33,6 +28,9 @@ public class ContactPersonRepositoryTest {
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
     private static final String TEST_CORPORATE_DIVISION = "testDivision";
+    @Autowired
+    private ContactPersonRepository repository;
+    private ContactPerson toTest;
 
     @Test
     public void insertValidContactPersonEntity_isSuccessful() {

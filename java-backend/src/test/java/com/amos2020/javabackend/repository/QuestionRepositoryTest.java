@@ -17,12 +17,9 @@ import org.springframework.transaction.TransactionSystemException;
 public class QuestionRepositoryTest {
 
     @Autowired
-    private QuestionRepository repository;
-
-
-    @Autowired
     FacCritRepository facCritRepository;
-
+    @Autowired
+    private QuestionRepository repository;
     private Question question;
     private FacCrit facCrit;
 
@@ -63,7 +60,7 @@ public class QuestionRepositoryTest {
         tmp.setTextDe("NeueTestFrage?");
         repository.save(tmp);
         Assert.assertTrue(repository.exists(Example.of(tmp)));
-        Assert.assertEquals(tmp.getTextDe(),question.getTextDe());
+        Assert.assertEquals(tmp.getTextDe(), question.getTextDe());
     }
 
     @Test(expected = TransactionSystemException.class)

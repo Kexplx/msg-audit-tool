@@ -27,13 +27,6 @@ import java.time.Instant;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AuditRepositoryTest {
 
-    @Autowired
-    private AuditRepository repository;
-    @Autowired
-    private ContactPersonRepository contactPersonRepository;
-    private Audit toTest;
-    private ContactPerson cancellationContactPerson;
-
     private static final String TEST_NAME = "TestName";
     private static final Date TEST_START_DATE = Date.valueOf("2019-10-10");
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
@@ -48,6 +41,12 @@ public class AuditRepositoryTest {
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
     private static final String TEST_CORPORATE_DIVISION = "testDivision";
+    @Autowired
+    private AuditRepository repository;
+    @Autowired
+    private ContactPersonRepository contactPersonRepository;
+    private Audit toTest;
+    private ContactPerson cancellationContactPerson;
 
     @Before
     public void setUp() {

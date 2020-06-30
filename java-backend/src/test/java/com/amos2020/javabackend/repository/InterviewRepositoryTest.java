@@ -33,7 +33,7 @@ public class InterviewRepositoryTest {
     private Interview interview;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         audit = new Audit();
         audit.setName("TestAudit");
         audit.setStartDate(Date.valueOf("2000-01-02"));
@@ -43,7 +43,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test
-    public void insertValidInterviewEntity(){
+    public void insertValidInterviewEntity() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -56,7 +56,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void insertInterviewWithAuditIdNull(){
+    public void insertInterviewWithAuditIdNull() {
         interview = new Interview();
         interview.setStartDate(Date.valueOf("2020-01-01"));
         interview.setEndDate(Date.valueOf("2020-01-02"));
@@ -66,7 +66,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void insertInterviewWithStartDateNull(){
+    public void insertInterviewWithStartDateNull() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setEndDate(Date.valueOf("2020-01-02"));
@@ -75,7 +75,7 @@ public class InterviewRepositoryTest {
         repository.save(interview);
     }
 
-    public void insertInterviewWithEndDateNull(){
+    public void insertInterviewWithEndDateNull() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -87,7 +87,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void insertInterviewWithStatusNull(){
+    public void insertInterviewWithStatusNull() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -96,7 +96,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
-    public void changeInterviewWithAuditIdInvalid(){
+    public void changeInterviewWithAuditIdInvalid() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -109,7 +109,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void changeInterviewWithStartDateNull(){
+    public void changeInterviewWithStartDateNull() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -121,7 +121,7 @@ public class InterviewRepositoryTest {
         repository.save(toTest);
     }
 
-    public void changeInterviewWithEndDateNull(){
+    public void changeInterviewWithEndDateNull() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -135,7 +135,7 @@ public class InterviewRepositoryTest {
         Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
-    public void changeInterviewStartDate(){
+    public void changeInterviewStartDate() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -149,7 +149,7 @@ public class InterviewRepositoryTest {
         Assert.assertTrue(repository.exists(Example.of(toTest)));
     }
 
-    public void changeInterviewEndDate(){
+    public void changeInterviewEndDate() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -164,7 +164,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test(expected = TransactionSystemException.class)
-    public void changeInterviewStatusWithNull(){
+    public void changeInterviewStatusWithNull() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -176,7 +176,7 @@ public class InterviewRepositoryTest {
         repository.save(interview1);
     }
 
-    public void changeInterviewStatus(){
+    public void changeInterviewStatus() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -191,7 +191,7 @@ public class InterviewRepositoryTest {
     }
 
     @Test
-    public void deleteInterviewEntity(){
+    public void deleteInterviewEntity() {
         interview = new Interview();
         interview.setAuditId(audit.getId());
         interview.setStartDate(Date.valueOf("2020-01-01"));
@@ -205,7 +205,7 @@ public class InterviewRepositoryTest {
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() {
         repository.delete(interview);
         auditRepository.delete(audit);
     }
