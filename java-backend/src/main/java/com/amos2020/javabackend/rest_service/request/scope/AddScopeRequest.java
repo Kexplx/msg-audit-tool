@@ -13,11 +13,5 @@ public class AddScopeRequest extends BasicRequest {
     @Getter
     @Setter
     @Schema(type = "Array", name = "scope", example = "[1]", required = true)
-    private List<@Min(1)Integer> scope;
-
-    public void isValid() {
-        for (Integer i : scope) {
-            assertIdIsValid(i);
-        }
-    }
+    private List<@Min(1) Integer> scope;
 }
