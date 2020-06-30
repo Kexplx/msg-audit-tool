@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Objects;
 
@@ -135,7 +134,7 @@ public class ContactPerson {
         this.corporateDivision = corporateDivision;
     }
 
-    @OneToMany(mappedBy = "contactPersonByCancellationContactPerson", cascade = CascadeType.ALL )
+    @OneToMany(mappedBy = "contactPersonByCancellationContactPerson", cascade = CascadeType.ALL)
     public Collection<Audit> getAuditsById() {
         return auditsById;
     }
@@ -144,7 +143,7 @@ public class ContactPerson {
         this.auditsById = auditsById;
     }
 
-    @OneToMany(mappedBy = "contactPersonByContactPersonId",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "contactPersonByContactPersonId", cascade = CascadeType.ALL)
     public Collection<AuditContactPerson> getAuditContactPeopleById() {
         return auditContactPeopleById;
     }
@@ -153,7 +152,7 @@ public class ContactPerson {
         this.auditContactPeopleById = auditContactPeopleById;
     }
 
-    @OneToMany(mappedBy = "contactPersonByContactPersonId",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "contactPersonByContactPersonId", cascade = CascadeType.ALL)
     public Collection<InterviewContactPerson> getInterviewContactPeopleById() {
         return interviewContactPeopleById;
     }
