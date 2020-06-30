@@ -14,25 +14,10 @@ import java.util.List;
 
 public class BasicAuditResponse {
 
-    public BasicAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPeople) {
-        this.auditId = audit.getId();
-        this.auditName = audit.getName();
-        this.startDate = audit.getStartDate();
-        this.endDate = audit.getEndDate();
-        this.creationDate = audit.getCreationDate();
-        this.status = audit.getStatus();
-        this.scope = scope;
-        this.contactPeople = contactPeople;
-        this.cancellationContactPerson = audit.getContactPersonByCancellationContactPerson();
-        this.cancellationDate = audit.getCancellationDate();
-        this.cancellationReason = audit.getCancellationReason();
-    }
-
     @Getter
     @Setter
     @Schema(type = "Integer", name = "auditId", example = "123456")
     private int auditId;
-
     @Getter
     @Setter
     @Schema(type = "String", name = "auditName", example = "MSG project audit")
@@ -49,12 +34,10 @@ public class BasicAuditResponse {
     @Setter
     @Schema(type = "string", name = "creationDate", format = "date-time")
     private Timestamp creationDate;
-
     @Getter
     @Setter
     @Schema(type = "string", name = "status", example = "ACTIVE")
     private AuditStatus status;
-
     @Getter
     @Setter
     @Schema(type = "array", name = "scope", example = "[{\n" +
@@ -63,7 +46,6 @@ public class BasicAuditResponse {
             "   \"name\": \"Modifizierbarkeit\"\n" +
             "}]")
     private List<FacCrit> scope;
-
     @Getter
     @Setter
     @Schema(type = "array", name = "contactPeople", example = "[{\n" +
@@ -79,17 +61,14 @@ public class BasicAuditResponse {
             "    \"corporateDivision\": \"Software\"\n" +
             "  }]")
     private List<ContactPerson> contactPeople;
-
     @Getter
     @Setter
     @Schema(type = "string", name = "cancellationDate", format = "date")
     private Date cancellationDate;
-
     @Getter
     @Setter
     @Schema(type = "String", name = "cancellationReason", example = "Project got canceled")
     private String cancellationReason;
-
     @Getter
     @Setter
     @Schema(type = "object", name = "cancellationContactPerson", example = "{\n" +
@@ -105,5 +84,19 @@ public class BasicAuditResponse {
             "    \"corporateDivision\": \"Software\"\n" +
             "  }")
     private ContactPerson cancellationContactPerson;
+
+    public BasicAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPeople) {
+        this.auditId = audit.getId();
+        this.auditName = audit.getName();
+        this.startDate = audit.getStartDate();
+        this.endDate = audit.getEndDate();
+        this.creationDate = audit.getCreationDate();
+        this.status = audit.getStatus();
+        this.scope = scope;
+        this.contactPeople = contactPeople;
+        this.cancellationContactPerson = audit.getContactPersonByCancellationContactPerson();
+        this.cancellationDate = audit.getCancellationDate();
+        this.cancellationReason = audit.getCancellationReason();
+    }
 
 }
