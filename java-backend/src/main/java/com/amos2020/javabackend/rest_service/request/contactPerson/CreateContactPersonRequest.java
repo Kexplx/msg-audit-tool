@@ -64,9 +64,4 @@ public class CreateContactPersonRequest extends BasicRequest {
     @Size(min = 1, max = Constants.NAME_LENGTH)
     @Schema(type = "String", name = "corporateDivision", example = "msg Public Sector", required = true)
     private String corporateDivision;
-
-    public void isValid() {
-        assertNameIsValid(forename);
-        assertNameIsValid(surname);
-    }
 }
