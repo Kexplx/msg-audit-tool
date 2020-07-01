@@ -7,13 +7,9 @@ import { map } from 'rxjs/operators';
 import { PostAuditDto } from './dtos/post-audit.dto';
 import { parseTimestamp } from './helpers';
 import { Observable } from 'rxjs';
-
-const connectionStrings = {
-  production: '...',
-  development: 'http://localhost:8080',
-};
-
-const compileTimeSwitchedString = connectionStrings.development;
+import { ContactPerson } from '../data/models/contact-person.model';
+import { PutAuditDto } from './dtos/put-audit.dto';
+import { compileTimeSwitchedString } from './connectionStrings';
 
 @Injectable({
   providedIn: 'root',
@@ -25,16 +21,16 @@ export class CoreService {
    * Sends a GET to ../faccrits and returns an observable.
    */
   getFacCrits() {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + '/faccrits');
+    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits');
   }
 
   /**
    * Sends a GET to ../audits and returns an observable.
    *
-   * ../audits should return a list of all existing audits
+   * ../audits returns a list of all existing audits
    */
   getAudits() {
-    return this.http.get(compileTimeSwitchedString + '/audits').pipe(
+    return this.http.get(compileTimeSwitchedString + 'audits').pipe(
       map((audits: AuditDto[]) => {
         const result = audits.map<Audit>(auditDto => {
           const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
@@ -58,7 +54,7 @@ export class CoreService {
   /**
    * Sends a POST to ../audits and returns an observable.
    *
-   * ../contactpersons should return the created audit
+   * ../contactpersons returns the created audit
    */
   postAudit(audit: Audit): Observable<Audit> {
     const auditDto: PostAuditDto = {
@@ -69,7 +65,7 @@ export class CoreService {
       startDate: parseTimestamp(audit.startDate),
     };
 
-    return this.http.post(compileTimeSwitchedString + '/audits', auditDto).pipe(
+    return this.http.post(compileTimeSwitchedString + 'audits', auditDto).pipe(
       map((auditDto: AuditDto) => {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
@@ -127,7 +123,17 @@ export class CoreService {
       }
     }
   }
+
+  //#region Contact Person
+  /**
+   * Sends a GET to ../contactpersons and returns an observable
+   *
+   * GET ../contactpersons returns a list of all existing contact persons
+   */
+  getContactPersons() {
+    return this.http.get<ContactPerson[]>(compileTimeSwitchedString + 'contactpersons');
   }
+
   /**
    * Sends a POST to ../contactpersons and returns an observable
    *
@@ -135,7 +141,7 @@ export class CoreService {
    */
   postContactPerson(contactPerson: ContactPerson) {
     return this.http.post<ContactPerson>(
-      compileTimeSwitchedString + '/contactpersons',
+      compileTimeSwitchedString + 'contactpersons',
       contactPerson,
     );
   }
@@ -145,8 +151,9 @@ export class CoreService {
    *
    * PUT ../contactpersons returns the updated contact person
    */
-  updateContactPerson(contactPerson: ContactPerson) {
-    const url = compileTimeSwitchedString + '/contactpersons/' + contactPerson.id;
+  putContactPerson(contactPerson: ContactPerson) {
+    const url = compileTimeSwitchedString + 'contactpersons/' + contactPerson.id;
     return this.http.put<ContactPerson>(url, contactPerson);
   }
+  //#endregion
 }
