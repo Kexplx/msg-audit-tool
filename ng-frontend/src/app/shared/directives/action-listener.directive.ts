@@ -58,7 +58,6 @@ export class ActionListenerDirective implements OnInit {
             );
             break;
           case action instanceof UpdateContactPerson:
-            this.showToast(`Audit: ${action.audit?.name} gelöscht`, 'trash-outline');
             this.showToast(
               `Kontaktperson ${action.contactPerson.forename} ${action.contactPerson.surname} bearbeitet`,
               'edit-outline',
