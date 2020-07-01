@@ -18,3 +18,9 @@ hr {
   border: none;
   border-bottom: 1px solid $border-light;
 }
+
+nb-menu {
+  ul > .menu-item > a > span {
+    width: 180px !important;
+  }
+}
