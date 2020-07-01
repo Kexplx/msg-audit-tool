@@ -88,18 +88,45 @@ export class CoreService {
   }
 
   /**
-   * Sends a PUT to ../contactpersons/{id} and returns an observable
+   * Sends a PUT to ../audits/{id}.
+   * If there are differences in the contactPersons
+   * also sends PUT and DELETE requests to ../audits/{id}/contactpersons/{id}
    *
-   * PUT ../contactpersons returns the updated contact person
+   * Returns an observable of the updated audit
+   *
+   * @param oldAudit The old audit
+   * @param currentAudit The updated audit
    */
-  updateAudit(audit: Audit) {
+  putAudit(oldAudit: Audit, currentAudit: Audit) {
+    this.putAuditContactPersons(oldAudit, currentAudit);
     const putAuditDto: PutAuditDto = {
-      auditName: audit.name,
-      endDate: parseTimestamp(audit.endDate),
-      startDate: parseTimestamp(audit.startDate),
+      auditName: currentAudit.name,
+      endDate: parseTimestamp(currentAudit.endDate),
+      startDate: parseTimestamp(currentAudit.startDate),
     };
 
-    return this.http.put(compileTimeSwitchedString + '/audits/' + audit.id, putAuditDto);
+    return this.http.put(compileTimeSwitchedString + 'audits/' + currentAudit.id, putAuditDto);
+  }
+
+  private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit) {
+    const url = compileTimeSwitchedString + 'audits/' + currentAudit.id + '/contactpersons/';
+    const oldContactPeople = oldAudit.contactPeople;
+    const newContactPeople = currentAudit.contactPeople;
+
+    for (const contactPerson of newContactPeople) {
+      const existsInOld = oldAudit.contactPeople.find(x => x.id === contactPerson.id);
+      if (!existsInOld) {
+        this.http.put(url + contactPerson.id, {}).subscribe(() => {});
+      }
+    }
+
+    for (const contactPerson of oldContactPeople) {
+      const existsInCurrent = currentAudit.contactPeople.find(x => x.id === contactPerson.id);
+      if (!existsInCurrent) {
+        this.http.delete(url + contactPerson.id, {}).subscribe(() => {});
+      }
+    }
+  }
   }
   /**
    * Sends a POST to ../contactpersons and returns an observable
