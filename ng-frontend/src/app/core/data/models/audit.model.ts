@@ -1,12 +1,11 @@
 import { ContactPerson } from './contact-person.model';
-import { Interview } from './interview.model';
 import { FacCrit } from './faccrit.model';
 
 export enum AuditStatus {
-  Planned,
-  InAction,
-  Finished,
-  Cancelled,
+  Planned = 'OPEN',
+  Active = 'ACTIVE',
+  Finished = 'FINISHED',
+  Cancelled = 'CANCELLED',
 }
 
 export interface Audit {
@@ -17,6 +16,5 @@ export interface Audit {
   startDate: number;
   endDate?: number;
   contactPeople?: ContactPerson[];
-  interviews?: Interview[];
   scope: FacCrit[];
 }

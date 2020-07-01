@@ -8,7 +8,7 @@ export const INTERVIEWS: Interview[] = [
     id: 1232,
     contactPeople: CONTACT_PEOPLE,
     facCrits: FACCRITS,
-    status: InterviewStatus.InAction,
+    status: InterviewStatus.Active,
     start: Date.now(),
   },
 ];

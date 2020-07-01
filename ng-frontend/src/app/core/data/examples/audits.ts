@@ -1,7 +1,5 @@
 import { Audit, AuditStatus } from '../models/audit.model';
 import { FACCRITS } from './fac-crits';
-import { CONTACT_PEOPLE } from './contact-people';
-import { InterviewStatus } from '../models/interview.model';
 
 export const AUDITS: Audit[] = [
   {
@@ -26,7 +24,7 @@ export const AUDITS: Audit[] = [
     name: 'Audit 3',
     startDate: Date.now(),
     scope: [],
-    status: AuditStatus.InAction,
+    status: AuditStatus.Active,
   },
   {
     id: 3425345,
@@ -34,6 +32,6 @@ export const AUDITS: Audit[] = [
     name: 'Audit 4',
     startDate: Date.now(),
     scope: [],
-    status: AuditStatus.InAction,
+    status: AuditStatus.Active,
   },
 ];

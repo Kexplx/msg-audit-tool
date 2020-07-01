@@ -10,7 +10,7 @@ import { AuditStatus, Audit } from 'src/app/core/data/models/audit.model';
   styleUrls: ['./audit-list.component.scss'],
 })
 export class AuditListComponent implements OnInit {
-  @Select(AuditState.auditByStatus(AuditStatus.Planned, AuditStatus.InAction))
+  @Select(AuditState.auditByStatus(AuditStatus.Planned, AuditStatus.Active))
   activeAudits$: Observable<Audit[]>;
 
   @Select(AuditState.auditByStatus(AuditStatus.Cancelled, AuditStatus.Finished))

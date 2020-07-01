@@ -79,7 +79,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   onSubmit() {
     const interview: Interview = {
       start: this.startDate.value,
-      status: InterviewStatus.InAction,
+      status: InterviewStatus.Active,
       facCrits: this.checkedFacCrits(),
       contactPeople: this.contactPeople.value,
     };

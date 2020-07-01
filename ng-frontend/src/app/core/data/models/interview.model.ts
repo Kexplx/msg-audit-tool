@@ -2,7 +2,7 @@ import { ContactPerson } from './contact-person.model';
 import { FacCrit } from './faccrit.model';
 
 export enum InterviewStatus {
-  InAction,
+  Active,
   Finished,
 }
 

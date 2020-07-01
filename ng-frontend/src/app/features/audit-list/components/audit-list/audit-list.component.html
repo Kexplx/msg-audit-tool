@@ -21,7 +21,7 @@
 </header>
 <nb-tabset data-cy="audits-list">
   <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
-    <div *ngIf="activeAudits$ | async; else noActiveAudits">
+    <div *ngIf="(activeAudits$ | async) && (activeAudits$ | async)?.length > 0; else noActiveAudits">
       <app-audit-card *ngFor="let audit of activeAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
     </div>
     <ng-template #noActiveAudits>
@@ -32,7 +32,7 @@
     </ng-template>
   </nb-tab>
   <nb-tab responsive tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
-    <div *ngIf="archivedAudits$ | async; else noArchivedAudits">
+    <div *ngIf="(archivedAudits$ | async) && (archivedAudits$ | async)?.length > 0; else noArchivedAudits">
       <app-audit-card *ngFor="let audit of archivedAudits$ | async | sortAudit" [audit]="audit"></app-audit-card>
     </div>
     <ng-template #noArchivedAudits>

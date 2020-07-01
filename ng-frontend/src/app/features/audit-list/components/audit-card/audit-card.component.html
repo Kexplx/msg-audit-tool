@@ -1,7 +1,7 @@
 <nb-card [routerLink]="[audit.id + '/interviews']" data-cy="audit-card">
   <ng-container [ngSwitch]="audit.status">
     <div nbPopoverPlacement="left" nbPopover="Geplant" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Planned" class="banner-status banner-status-is-planned" data-cy="audit-status"></div>
-    <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.InAction" class="banner-status banner-status-in-action" data-cy="audit-status"></div>
+    <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Active" class="banner-status banner-status-in-action" data-cy="audit-status"></div>
     <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Finished" class="banner-status banner-status-is-finished" data-cy="audit-status"></div>
     <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Cancelled" class="banner-status banner-status-is-canceled" data-cy="audit-status"></div>
   </ng-container>
