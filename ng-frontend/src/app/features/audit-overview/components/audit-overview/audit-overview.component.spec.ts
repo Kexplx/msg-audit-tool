@@ -6,7 +6,7 @@ describe('AuditOverviewComponent', () => {
     const routeSpy = jasmine.createSpyObj('ActivatedRoute', ['dispatch']);
     const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
-    const component = new AuditOverviewComponent(storeSpy, routerSpy, routeSpy);
+    const component = new AuditOverviewComponent(storeSpy);
 
     expect(component).toBeTruthy();
   });
