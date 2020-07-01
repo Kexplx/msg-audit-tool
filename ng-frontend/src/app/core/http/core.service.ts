@@ -104,6 +104,15 @@ export class CoreService {
   /**
    * Sends a POST to ../contactpersons and returns an observable
    *
+   * POST ../contactpersons returns the created contact person
+   */
+  postContactPerson(contactPerson: ContactPerson) {
+    return this.http.post<ContactPerson>(
+      compileTimeSwitchedString + '/contactpersons',
+      contactPerson,
+    );
+  }
+
   /**
    * Sends a PUT to ../contactpersons/{id} and returns an observable
    *
