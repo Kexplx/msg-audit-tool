@@ -3,7 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { FacCrit } from '../data/models/faccrit.model';
 import { Audit } from '../data/models/audit.model';
 import { AuditDto } from './dtos/audit.dto';
-import { audit, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { PostAuditDto } from './dtos/post-audit.dto';
+import { parseTimestamp } from './helpers';
+import { Observable } from 'rxjs';
 
 const connectionStrings = {
   production: '...',
@@ -17,12 +20,6 @@ const compileTimeSwitchedString = connectionStrings.development;
 })
 export class CoreService {
   constructor(private http: HttpClient) {}
-
-  //
-
-  //
-
-  //
 
   /**
    * Sends a GET to ../faccrits and returns an observable.
