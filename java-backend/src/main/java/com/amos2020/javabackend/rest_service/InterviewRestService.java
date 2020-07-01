@@ -23,6 +23,7 @@ import java.util.List;
 @RestController
 @Validated
 @Tag(name = "Interview", description = "The endpoints for the interview resource")
+@CrossOrigin
 public class InterviewRestService {
 
     final InterviewController interviewController;

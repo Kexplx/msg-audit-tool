@@ -17,6 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ContactPersonRestService {
     private final ContactPersonController contactPersonController;
 

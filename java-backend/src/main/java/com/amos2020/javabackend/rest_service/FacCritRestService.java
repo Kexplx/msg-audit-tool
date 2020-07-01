@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @Tag(name = "Factor / Criteria", description = "The endpoints for the facCrit resource")
+@CrossOrigin
 public class FacCritRestService {
 
     final FacCritController facCritController;

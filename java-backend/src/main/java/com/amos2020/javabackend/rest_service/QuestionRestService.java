@@ -18,6 +18,7 @@ import javax.validation.constraints.Min;
 
 @RestController
 @Tag(name = "Question", description = "The endpoint for the question resource")
+@CrossOrigin
 public class QuestionRestService {
 
     final QuestionController questionController;

@@ -21,6 +21,7 @@ import java.util.List;
 @RestController
 @Validated
 @Tag(name = "Answer", description = "The endpoints for the Answer resource")
+@CrossOrigin
 public class AnswerRestService {
 
     private final AnswerController answerController;

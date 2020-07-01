@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 @Validated
 @Tag(name = "Audit", description = "The endpoints for the audit resource")
+@CrossOrigin
 public class AuditRestService {
 
     final AuditController auditController;
