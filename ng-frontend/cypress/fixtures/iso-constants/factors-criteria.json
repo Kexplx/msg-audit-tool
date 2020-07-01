@@ -1,103 +1,272 @@
 [
   {
-    "title": "1. Effektivität",
-    "criteria": [{ "title": "1. Effektivität" }]
+    "id": 1,
+    "referenceId": null,
+    "name": "Effektivität"
   },
   {
-    "title": "2. Effizienz",
-    "criteria": [{ "title": "2. Effizienz" }]
+    "id": 2,
+    "referenceId": null,
+    "name": "Effizienz"
   },
   {
-    "title": "3. Zufriedenheit",
-    "criteria": [
-      { "title": "3.1 Nützlichkeit" },
-      { "title": "3.2 Vertrauen" },
-      { "title": "3.3 Wohlgefälligkeit" },
-      { "title": "3.4 Komfort" }
-    ]
+    "id": 3,
+    "referenceId": null,
+    "name": "Zufriedenheit"
   },
   {
-    "title": "4. Risikofreiheit",
-    "criteria": [
-      { "title": "4.1 Verringerung der ökonomischen Risiken" },
-      { "title": "4.2 Verringerung der Risiken hinsichtlich Gesundheit und Sicherheit" },
-      { "title": "4.3 Verringerung der Umweltrisiken" }
-    ]
+    "id": 4,
+    "referenceId": null,
+    "name": "Risikofreiheit"
   },
   {
-    "title": "5. Lieferbestandteile",
-    "criteria": [
-      { "title": "5.1 Komplette Abdeckung aller Umgebungsanforderungen" },
-      { "title": "5.2 Flexibilität" }
-    ]
+    "id": 5,
+    "referenceId": null,
+    "name": "Lieferbestandteile"
   },
   {
-    "title": "6. Funktionale Tauglichkeit",
-    "criteria": [
-      { "title": "6.1 Funktionale Vollständigkeit" },
-      { "title": "6.2 Funktionale Richtigkeit" },
-      { "title": "6.3 Funktionale Angemessenheit" }
-    ]
+    "id": 6,
+    "referenceId": null,
+    "name": "Funktionale Tauglichkeit"
   },
   {
-    "title": "7. Performanz, Effizienz",
-    "criteria": [
-      { "title": "7.1 Antwortzeitverhalten" },
-      { "title": "7.2 Ressourcenverbrauch" },
-      { "title": "7.3 Kapazität" }
-    ]
+    "id": 7,
+    "referenceId": null,
+    "name": "Performanz, Effizienz"
   },
   {
-    "title": "8. Austauschbarkeit, Übertragbarkeit",
-    "criteria": [{ "title": "8.1 Koexistenz" }, { "title": "8.2 Interoperabilität" }]
+    "id": 8,
+    "referenceId": null,
+    "name": "Austauschbarkeit, Übertragbarkeit"
   },
   {
-    "title": "9. Benutzbarkeit",
-    "criteria": [
-      { "title": "9.1 Angemessenheit Erkennbarkeit" },
-      { "title": "9.2 Erlernbarkeit" },
-      { "title": "9.3 Bedienbarkeit" },
-      { "title": "9.4 auf Anwender bezogene Fehlervorbeugung" },
-      { "title": "9.5 Ästhetik der Benutzeroberfläche" },
-      { "title": "9.6 Zugänglichkeit/Barrierefreiheit" }
-    ]
+    "id": 9,
+    "referenceId": null,
+    "name": "Benutzbarkeit"
   },
   {
-    "title": "10. Zuverlässigkeit",
-    "criteria": [
-      { "title": "10.1 Reife" },
-      { "title": "10.2 Verfügbarkeit" },
-      { "title": "10.3 Fehlertoleranz" },
-      { "title": "10.4 Wiederherstellbarkeit" }
-    ]
+    "id": 10,
+    "referenceId": null,
+    "name": "Zuverlässigkeit"
   },
   {
-    "title": "11. Sicherheit",
-    "criteria": [
-      { "title": "11.1 Vertraulichkeit, Zugriffsrechte" },
-      { "title": "11.2 Integrität" },
-      { "title": "11.3 Nachweisbarkeit, Schutz vor fremden Zugriff" },
-      { "title": "11.4 Haftung" },
-      { "title": "11.5 Authentizität, Glaubwürdigkeit" }
-    ]
+    "id": 11,
+    "referenceId": null,
+    "name": "Sicherheit"
   },
   {
-    "title": "12. Wartbarkeit",
-    "criteria": [
-      { "title": "12.1 Modularität" },
-      { "title": "12.2 Wiederverwendbarkeit" },
-      { "title": "12.3 Analysierbarkeit" },
-      { "title": "12.4 Modifizierbarkeit" },
-      { "title": "12.5 Prüfbarkeit" }
-    ]
+    "id": 12,
+    "referenceId": null,
+    "name": "Wartbarkeit"
   },
   {
-    "title": "13. Portabilität",
-    "criteria": [
-      { "title": "13.1 Anpassbarkeit" },
-      { "title": "13.1 Installierbarkeit" },
-      { "title": "13.1 Austauschbarkeit" }
-    ]
+    "id": 13,
+    "referenceId": null,
+    "name": "Portabilität"
   },
-  { "title": "14. Sonstige Anforderungen", "criteria": [{ "title": "14. Sonstige Anforderungen" }] }
+  {
+    "id": 14,
+    "referenceId": null,
+    "name": "Sonstige Anforderungen"
+  },
+  {
+    "id": 15,
+    "referenceId": 3,
+    "name": "Nützlichkeit"
+  },
+  {
+    "id": 16,
+    "referenceId": 3,
+    "name": "Vertrauen"
+  },
+  {
+    "id": 17,
+    "referenceId": 3,
+    "name": "Wohlgefälligkeit"
+  },
+  {
+    "id": 18,
+    "referenceId": 3,
+    "name": "Komfort"
+  },
+  {
+    "id": 19,
+    "referenceId": 4,
+    "name": "Verringerung der ökonomischen Risiken"
+  },
+  {
+    "id": 20,
+    "referenceId": 4,
+    "name": "Verringerung der Risiken hinsichtlich Gesundheit und Sicherheit"
+  },
+  {
+    "id": 21,
+    "referenceId": 4,
+    "name": "Verringerung der Umweltrisiken"
+  },
+  {
+    "id": 22,
+    "referenceId": 5,
+    "name": "Komplette Abdeckung aller Umgebungsanforderungen"
+  },
+  {
+    "id": 23,
+    "referenceId": 5,
+    "name": "Flexibilität"
+  },
+  {
+    "id": 24,
+    "referenceId": 6,
+    "name": "Funktionale Vollständigkei"
+  },
+  {
+    "id": 25,
+    "referenceId": 6,
+    "name": "Funktionale Richtigkeit"
+  },
+  {
+    "id": 26,
+    "referenceId": 6,
+    "name": "Funktionale Angemessenheit"
+  },
+  {
+    "id": 27,
+    "referenceId": 7,
+    "name": "Antwortzeitverhalten"
+  },
+  {
+    "id": 28,
+    "referenceId": 7,
+    "name": "Ressourcenverbrauch"
+  },
+  {
+    "id": 29,
+    "referenceId": 7,
+    "name": "Kapazität"
+  },
+  {
+    "id": 30,
+    "referenceId": 8,
+    "name": "Koexistenz"
+  },
+  {
+    "id": 31,
+    "referenceId": 8,
+    "name": "Interoperabilität"
+  },
+  {
+    "id": 32,
+    "referenceId": 9,
+    "name": "Angemessenheit Erkennbarkeit"
+  },
+  {
+    "id": 33,
+    "referenceId": 9,
+    "name": "Erlernbarkeit"
+  },
+  {
+    "id": 34,
+    "referenceId": 9,
+    "name": "Bedienbarkeit"
+  },
+  {
+    "id": 35,
+    "referenceId": 9,
+    "name": "auf Anwender bezogene Fehlervorbeugung"
+  },
+  {
+    "id": 36,
+    "referenceId": 9,
+    "name": "Ästhetik der Benutzeroberfläche"
+  },
+  {
+    "id": 37,
+    "referenceId": 9,
+    "name": "Zugänglichkeit / Barrierefreiheit"
+  },
+  {
+    "id": 38,
+    "referenceId": 10,
+    "name": "Reife"
+  },
+  {
+    "id": 39,
+    "referenceId": 10,
+    "name": "Verfügbarkeit"
+  },
+  {
+    "id": 40,
+    "referenceId": 10,
+    "name": "Fehlertoleranz"
+  },
+  {
+    "id": 41,
+    "referenceId": 10,
+    "name": "Wiedeherstellbarkeit"
+  },
+  {
+    "id": 42,
+    "referenceId": 11,
+    "name": "Vertraulichkeit, Zugriffsrechte"
+  },
+  {
+    "id": 43,
+    "referenceId": 11,
+    "name": "Integrität"
+  },
+  {
+    "id": 44,
+    "referenceId": 11,
+    "name": "Nachweisbarkeit, Schutz vor fremdem Zugriff"
+  },
+  {
+    "id": 45,
+    "referenceId": 11,
+    "name": "Haftung"
+  },
+  {
+    "id": 46,
+    "referenceId": 11,
+    "name": "Authentizität, Glaubwürdigkeit"
+  },
+  {
+    "id": 47,
+    "referenceId": 12,
+    "name": " Modularität"
+  },
+  {
+    "id": 48,
+    "referenceId": 12,
+    "name": "Wiederverwendbarkeit"
+  },
+  {
+    "id": 49,
+    "referenceId": 12,
+    "name": "Analysierbarkeit"
+  },
+  {
+    "id": 50,
+    "referenceId": 12,
+    "name": "Modifizierbarkeit"
+  },
+  {
+    "id": 51,
+    "referenceId": 12,
+    "name": "Prüfbarkeit"
+  },
+  {
+    "id": 52,
+    "referenceId": 13,
+    "name": "Anpassbarkeit"
+  },
+  {
+    "id": 53,
+    "referenceId": 13,
+    "name": "Installierbarkeit"
+  },
+  {
+    "id": 54,
+    "referenceId": 13,
+    "name": "Austauschbarkeit"
+  }
 ]

@@ -20,11 +20,6 @@ describe('EditAuditDialog', () => {
     });
   });
 
-  beforeEach(() => {
-    cy.server();
-    cy.route(auditsUrl);
-  });
-
   it('does not show an edit dialog when audit id is invalid', () => {
     cy.visit(auditsUrl);
     cy.visit(auditsUrl + '/kaputt/edit');

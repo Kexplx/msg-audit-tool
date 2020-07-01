@@ -1,14 +1,23 @@
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
-  let isoConstants;
+  // let isoConstants;
   let testAudit;
 
   before(() => {
     cy.fixture('audits/example-audit').then(json => {
       testAudit = json;
     });
-    cy.fixture('iso-constants/factors-criteria.json').then(json => {
-      isoConstants = json;
+    // cy.fixture('iso-constants/factors-criteria.json').then(json => {
+    //   isoConstants = json;
+    // });
+  });
+
+  beforeEach(() => {
+    cy.server();
+    cy.route({
+      method: 'GET',
+      url: '/faccrits',
+      response: 'fixture:iso-constants/factors-criteria.json',
     });
   });
 
@@ -87,14 +96,14 @@ describe('AddAuditDialog', () => {
   });
 
   context('When focussing on the scope it...', () => {
-    let allCriteria = [];
+    // let allCriteria = [];
 
     before(() => {
-      isoConstants.forEach(factor => {
-        factor.criteria.forEach(c => {
-          allCriteria.push(c);
-        });
-      });
+      // isoConstants.forEach(factor => {
+      //   factor.criteria.forEach(c => {
+      //     allCriteria.push(c);
+      //   });
+      // });
     });
 
     beforeEach(() => {

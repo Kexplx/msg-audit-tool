@@ -2,7 +2,7 @@ describe('AuditPage', () => {
   let baseUrl = Cypress.config().baseUrl;
   let testAudit;
   let testAuditUrl;
-  let factors;
+  // let factors;
 
   before(() => {
     // import testAudit that does not contain startdate nor enddate
@@ -19,14 +19,14 @@ describe('AuditPage', () => {
           testAuditUrl = url;
         });
       });
-    cy.fixture('iso-constants/factors-criteria').then(f => {
-      factors = f;
-    });
+    // cy.fixture('iso-constants/factors-criteria').then(f => {
+    //   factors = f;
+    // });
   });
 
   beforeEach(() => {
-    cy.server();
-    cy.route(testAuditUrl);
+    //cy.server();
+    //cy.route(testAuditUrl);
   });
 
   it('generates a valid audit page with a unique id after adding an audit', () => {
@@ -38,8 +38,8 @@ describe('AuditPage', () => {
    */
   context('When in interview overview it ...', () => {
     before(() => {
-      cy.server();
-      cy.route(testAuditUrl);
+      //cy.server();
+      //cy.route(testAuditUrl);
     });
 
     //TODO
