@@ -88,6 +88,20 @@ export class CoreService {
   }
 
   /**
+   * Sends a PUT to ../contactpersons/{id} and returns an observable
+   *
+   * PUT ../contactpersons returns the updated contact person
+   */
+  updateAudit(audit: Audit) {
+    const putAuditDto: PutAuditDto = {
+      auditName: audit.name,
+      endDate: parseTimestamp(audit.endDate),
+      startDate: parseTimestamp(audit.startDate),
+    };
+
+    return this.http.put(compileTimeSwitchedString + '/audits/' + audit.id, putAuditDto);
+  }
+  /**
    * Sends a POST to ../contactpersons and returns an observable
    *
    * ../contactpersons should return a list of all existing contact persons
