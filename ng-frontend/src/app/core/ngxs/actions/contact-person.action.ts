@@ -7,10 +7,10 @@ export class AddContactPerson {
 
 export class UpdateContactPerson {
   static readonly type = '[ContactPeopleList] Update Contact Person';
-  constructor(public id: string, public contactPerson: ContactPerson) {}
+  constructor(public id: number, public contactPerson: ContactPerson) {}
 }
 
 export class DeleteContactPerson {
   static readonly type = '[ContactPeopleList] Delete Contact Person';
-  constructor(public id: string) {}
+  constructor(public id: number) {}
 }

@@ -5,7 +5,7 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
   name: 'criteriaByFactor',
 })
 export class CriteriaByFactorPipe implements PipeTransform {
-  transform(facCrits: FacCrit[], factorId: string): FacCrit[] {
+  transform(facCrits: FacCrit[], factorId: number): FacCrit[] {
     return facCrits.filter(x => x.referenceId === factorId);
   }
 }

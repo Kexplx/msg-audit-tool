@@ -20,13 +20,13 @@ import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 export class InterviewComponent implements OnInit {
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
 
-  @Select(AppRouterState.auditId) auditId$: Observable<string>;
-  @Select(AppRouterState.interviewId) interviewId$: Observable<string>;
-  @Select(AppRouterState.facCritId) facCritId$: Observable<string>;
+  @Select(AppRouterState.auditId) auditId$: Observable<number>;
+  @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
+  @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
 
-  auditId: string;
-  interviewId: string;
-  facCritId: string;
+  auditId: number;
+  interviewId: number;
+  facCritId: number;
 
   interview$: Observable<Interview>;
   facCrit$: Observable<FacCrit>;

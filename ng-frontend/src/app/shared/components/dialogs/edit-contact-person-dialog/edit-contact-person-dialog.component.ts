@@ -16,11 +16,11 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 })
 export class EditContactPersonDialogComponent implements OnInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
-  @Select(AppRouterState.contactPersonId) contactPersonId$: Observable<string>;
+  @Select(AppRouterState.contactPersonId) contactPersonId$: Observable<number>;
   contactPerson$: Observable<ContactPerson>;
 
   dialogRef: NbDialogRef<any>;
-  private contactPersonId: string;
+  contactPersonId: number;
 
   constructor(
     private location: Location,

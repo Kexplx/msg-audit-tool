@@ -8,10 +8,10 @@ export class AddAudit {
 
 export class UpdateAudit {
   static readonly type = '[Auditlist] Update Audit';
-  constructor(public id: string, public audit: Audit) {}
+  constructor(public id: number, public audit: Audit) {}
 }
 
 export class DeleteAudit {
   static readonly type = '[AuditList] Delete Audit';
-  constructor(public id: string) {}
+  constructor(public id: number) {}
 }

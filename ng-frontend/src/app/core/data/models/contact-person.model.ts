@@ -1,5 +1,5 @@
 export interface ContactPerson {
-  id?: string;
+  id?: number;
   salutation: string;
   title: string;
   firstName: string;

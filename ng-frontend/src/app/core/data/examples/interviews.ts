@@ -4,8 +4,8 @@ import { FACCRITS } from './fac-crits';
 
 export const INTERVIEWS: Interview[] = [
   {
-    auditId: '1gdfss23',
-    id: '23894',
+    auditId: 65,
+    id: 1232,
     contactPeople: CONTACT_PEOPLE,
     facCrits: FACCRITS,
     status: InterviewStatus.InAction,

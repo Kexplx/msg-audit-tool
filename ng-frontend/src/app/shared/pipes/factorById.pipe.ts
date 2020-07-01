@@ -5,7 +5,7 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
   name: 'factorById',
 })
 export class FactorByIdPipe implements PipeTransform {
-  transform(facCrits: FacCrit[], id: string): FacCrit {
+  transform(facCrits: FacCrit[], id: number): FacCrit {
     return facCrits.find(x => x.id === id);
   }
 }

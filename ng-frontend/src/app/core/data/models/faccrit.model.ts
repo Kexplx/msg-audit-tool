@@ -1,8 +1,8 @@
 import { Question } from './question.model';
 
 export interface FacCrit {
-  id: string;
-  referenceId: string;
+  id: number;
+  referenceId: number;
   name: string;
   questions: Question[];
 }

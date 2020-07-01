@@ -6,6 +6,7 @@ import * as shortid from 'shortid';
 import { Interview } from '../data/models/interview.model';
 import { AddInterview, UpdateInterview } from './actions/inteview.actions';
 import { INTERVIEWS } from '../data/examples/interviews';
+import { getId } from './audit.state';
 
 export interface InterviewStateModel {
   interviews: Interview[];
@@ -19,17 +20,16 @@ export interface InterviewStateModel {
  */
 @State<InterviewStateModel>({
   name: 'interviewState',
-  defaults: { interviews: INTERVIEWS },
 })
 @Injectable()
 export class InterviewState {
-  static interviewsByAuditId(auditId: string) {
+  static interviewsByAuditId(auditId: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
       return state.interviews.filter(x => x.auditId === auditId);
     });
   }
 
-  static interview(id: string) {
+  static interview(id: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
       return state.interviews.find(x => x.id === id);
     });
@@ -39,7 +39,7 @@ export class InterviewState {
   addInterview({ setState }: StateContext<InterviewStateModel>, { interview }: AddInterview) {
     setState(
       patch({
-        interviews: append<Interview>([{ ...interview, id: shortid.generate() }]),
+        interviews: append<Interview>([{ ...interview, id: getId() }]),
       }),
     );
   }

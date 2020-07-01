@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
-import { ActivatedRoute, Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Interview } from 'src/app/core/data/models/interview.model';
@@ -18,7 +16,7 @@ export class AuditOverviewComponent implements OnInit {
   interviews$: Observable<Interview[]>;
   audit$: Observable<Audit>;
 
-  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+  @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
   tabs: any[] = [
     {
@@ -36,7 +34,7 @@ export class AuditOverviewComponent implements OnInit {
     },
   ];
 
-  constructor(private store: Store, private router: Router, private route: ActivatedRoute) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
     this.auditId$.subscribe(id => {

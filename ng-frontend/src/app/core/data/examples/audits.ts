@@ -5,7 +5,7 @@ import { InterviewStatus } from '../models/interview.model';
 
 export const AUDITS: Audit[] = [
   {
-    id: '1gdfss23',
+    id: 1293921,
     creationDate: Date.now(),
     name: 'Audit 1',
     startDate: Date.now(),
@@ -13,7 +13,7 @@ export const AUDITS: Audit[] = [
     status: AuditStatus.Planned,
   },
   {
-    id: '12sgdfgfd3',
+    id: 9832093,
     creationDate: Date.now(),
     name: 'Audit 2',
     startDate: Date.now(),
@@ -21,7 +21,7 @@ export const AUDITS: Audit[] = [
     status: AuditStatus.Planned,
   },
   {
-    id: '1s2sgdsdgffgfd3',
+    id: 53432,
     creationDate: Date.now(),
     name: 'Audit 3',
     startDate: Date.now(),
@@ -29,7 +29,7 @@ export const AUDITS: Audit[] = [
     status: AuditStatus.InAction,
   },
   {
-    id: '12sgdfggsdffd3',
+    id: 3425345,
     creationDate: Date.now(),
     name: 'Audit 4',
     startDate: Date.now(),

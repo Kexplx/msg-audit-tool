@@ -16,12 +16,12 @@ import { AddInterview } from 'src/app/core/ngxs/actions/inteview.actions';
   styleUrls: ['./new-interview-dialog.component.scss'],
 })
 export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
-  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+  @Select(AppRouterState.auditId) auditId$: Observable<number>;
   @ViewChild('dialog') dialog: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;
 
   audit$: Observable<Audit>;
-  auditId: string;
+  auditId: number;
 
   constructor(
     private dialogService: NbDialogService,

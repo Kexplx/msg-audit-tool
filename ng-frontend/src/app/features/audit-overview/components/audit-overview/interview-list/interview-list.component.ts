@@ -15,7 +15,7 @@ import { InterviewState } from 'src/app/core/ngxs/interview.state';
 })
 export class InterviewListComponent implements OnInit {
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
-  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+  @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
   interviews$: Observable<Interview[]>;
   audit$: Observable<Audit>;

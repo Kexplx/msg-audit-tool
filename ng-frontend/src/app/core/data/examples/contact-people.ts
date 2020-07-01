@@ -11,7 +11,7 @@ export const CONTACT_PEOPLE: ContactPerson[] = [
     title: 'Dr. ',
     corporateDivision: 'msg Public Sector',
     department: 'Softwareentwicklung',
-    id: '12fadfsf',
+    id: 345282,
     sector: 'Software',
   },
   {
@@ -24,7 +24,7 @@ export const CONTACT_PEOPLE: ContactPerson[] = [
     title: 'Dr. ',
     corporateDivision: 'msg Public Sector',
     department: 'Softwareentwicklung',
-    id: '8932fiodja',
+    id: 392,
     sector: 'Software',
   },
 ];

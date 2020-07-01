@@ -19,11 +19,11 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 export class EditAuditDialogComponent implements OnInit, AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
   @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
-  @Select(AppRouterState.auditId) auditId$: Observable<string>;
+  @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
   dialogRef: NbDialogRef<any>;
   audit$: Observable<Audit>;
-  private auditId: string;
+  auditId: number;
 
   constructor(
     private dialogService: NbDialogService,

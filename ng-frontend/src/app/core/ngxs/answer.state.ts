@@ -24,7 +24,7 @@ export class AnswerState {
     return state.answers;
   }
 
-  static answer(facCritId: string, interviewId: string, questionId: string) {
+  static answer(facCritId: number, interviewId: number, questionId: number) {
     return createSelector([AnswerState], (state: AnswerStateModel) => {
       return state.answers.find(
         x =>

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
@@ -48,12 +48,12 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     });
 
     for (const facCrit of this.scope) {
-      this.formGroup.addControl(facCrit.id, new FormControl(false));
+      this.formGroup.addControl(String(facCrit.id), new FormControl(false));
     }
 
-    this.formGroup.valueChanges.subscribe(x => {
+    this.formGroup.valueChanges.subscribe(() => {
       for (const facCrit of this.scope) {
-        if (this.formGroup.get(facCrit.id).value === true) {
+        if (this.formGroup.get(String(facCrit.id)).value === true) {
           return (this.facCritSelected = true);
         }
       }
@@ -66,7 +66,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     const result: FacCrit[] = [];
 
     for (const crit of this.scope) {
-      const checked = this.formGroup.get(crit.id).value;
+      const checked = this.formGroup.get(String(crit.id)).value;
 
       if (checked) {
         result.push(crit);
@@ -87,10 +87,10 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   }
 
   toggleCriteriaChecked(factorId: string, checked: true) {
-    const criteria = this.scope.filter(x => x.referenceId === factorId);
+    const criteria = this.scope.filter(x => x.referenceId === +factorId);
 
     for (const crit of criteria) {
-      this.formGroup.get(crit.id)?.setValue(checked);
+      this.formGroup.get(String(crit.id))?.setValue(checked);
     }
   }
 }

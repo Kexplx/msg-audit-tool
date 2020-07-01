@@ -9,6 +9,7 @@ import {
   DeleteContactPerson,
   UpdateContactPerson,
 } from './actions/contact-person.action';
+import { getId } from './audit.state';
 
 export interface ContactPersonStateModel {
   contactPeople: ContactPerson[];
@@ -33,7 +34,7 @@ export class ContactPersonState {
     return state.contactPeople;
   }
 
-  static contactPerson(id: string) {
+  static contactPerson(id: number) {
     return createSelector([ContactPersonState], (state: ContactPersonStateModel) => {
       return state.contactPeople.find(x => x.id === id);
     });
@@ -46,7 +47,7 @@ export class ContactPersonState {
   ) {
     setState(
       patch({
-        contactPeople: append<ContactPerson>([{ ...contactPerson, id: shortid.generate() }]),
+        contactPeople: append<ContactPerson>([{ ...contactPerson, id: getId() }]),
       }),
     );
   }

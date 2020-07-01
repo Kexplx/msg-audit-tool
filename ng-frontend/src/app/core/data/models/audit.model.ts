@@ -10,7 +10,7 @@ export enum AuditStatus {
 }
 
 export interface Audit {
-  id?: string;
+  id?: number;
   status: AuditStatus;
   creationDate: number;
   name: string;

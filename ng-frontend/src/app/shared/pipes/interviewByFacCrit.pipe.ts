@@ -5,7 +5,7 @@ import { Interview } from 'src/app/core/data/models/interview.model';
   name: 'interviewByFacCrit',
 })
 export class InterviewByFacCritPipe implements PipeTransform {
-  transform(interviews: Interview[], facCritId: string): Interview[] {
+  transform(interviews: Interview[], facCritId: number): Interview[] {
     const result = interviews?.filter(x => x.facCrits.findIndex(x => x.id === facCritId) != -1);
 
     return result?.length == 0 ? null : result;

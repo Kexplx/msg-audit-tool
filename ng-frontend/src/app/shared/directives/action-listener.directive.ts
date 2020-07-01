@@ -32,15 +32,15 @@ export class ActionListenerDirective implements OnInit {
         switch (true) {
           case action instanceof AddAudit:
             this.showToast(
-              `Neuen Audit: ${action.audit.name} erstellt`,
+              `Neuen Audit: ${action.audit?.name} erstellt`,
               'checkmark-circle-2-outline',
             );
             break;
           case action instanceof DeleteAudit:
-            this.showToast(`Audit: ${action.audit.name} gelöscht`, 'trash-outline');
+            this.showToast(`Audit: ${action.audit?.name} gelöscht`, 'trash-outline');
             break;
           case action instanceof UpdateAudit:
-            this.showToast(`Audit: ${action.audit.name} bearbeitet`, 'edit-outline');
+            this.showToast(`Audit: ${action.audit?.name} bearbeitet`, 'edit-outline');
             break;
           case action instanceof AddInterview:
             this.showToast(`Neues Interview erstellt`, 'checkmark-circle-2-outline');
@@ -58,7 +58,7 @@ export class ActionListenerDirective implements OnInit {
             );
             break;
           case action instanceof UpdateContactPerson:
-            this.showToast(`Audit: ${action.audit.name} gelöscht`, 'trash-outline');
+            this.showToast(`Audit: ${action.audit?.name} gelöscht`, 'trash-outline');
             this.showToast(
               `Kontaktperson ${action.contactPerson.firstName} ${action.contactPerson.lastName} bearbeitet`,
               'edit-outline',

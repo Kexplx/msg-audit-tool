@@ -1,16 +1,18 @@
 import { Audit, AuditStatus } from '../data/models/audit.model';
-import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
+import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { AddAudit, DeleteAudit, UpdateAudit } from './actions/audit.actions';
-import * as shortid from 'shortid';
 import { FacCrit } from '../data/models/faccrit.model';
-import { FACCRITS } from '../data/examples/fac-crits';
-import { AUDITS } from '../data/examples/audits';
+import { CoreService } from '../http/core.service';
 
 export interface AuditStateModel {
   audits: Audit[];
   facCrits: FacCrit[];
+}
+
+export function getId() {
+  return Math.floor(Math.random() * 12978178);
 }
 
 /**
@@ -21,13 +23,17 @@ export interface AuditStateModel {
  */
 @State<AuditStateModel>({
   name: 'audit',
-  defaults: {
-    audits: AUDITS,
-    facCrits: FACCRITS,
-  },
 })
 @Injectable()
-export class AuditState {
+export class AuditState implements NgxsOnInit {
+  constructor(private coreService: CoreService) {}
+
+  ngxsOnInit({ patchState }: StateContext<AuditStateModel>) {
+    this.coreService.getFacCrits().subscribe(facCrits => {
+      patchState({ facCrits });
+    });
+  }
+
   @Selector()
   static audits(state: AuditStateModel) {
     return state.audits;
@@ -38,7 +44,7 @@ export class AuditState {
     return state.facCrits;
   }
 
-  static audit(id: string) {
+  static audit(id: number) {
     return createSelector([AuditState], (state: AuditStateModel) => {
       return state.audits.find(x => x.id === id);
     });
@@ -50,13 +56,13 @@ export class AuditState {
     });
   }
 
-  static facCrit(id: string) {
+  static facCrit(id: number) {
     return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.find(x => x.id === id);
     });
   }
 
-  static criteriaByFactorId(id: string) {
+  static criteriaByFactorId(id: number) {
     return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.filter(x => x.referenceId === id);
     });
@@ -66,14 +72,14 @@ export class AuditState {
   addAudit({ setState }: StateContext<AuditStateModel>, { audit }: AddAudit) {
     setState(
       patch({
-        audits: append<Audit>([{ ...audit, id: shortid.generate() }]),
+        audits: append<Audit>([{ ...audit, id: getId() }]),
       }),
     );
   }
 
   @Action(UpdateAudit)
   updateAudit(ctx: StateContext<AuditStateModel>, { id, audit }: UpdateAudit) {
-    const a = ctx.getState().audits.find(x => x.id == id);
+    const a = ctx.getState().audits.find(x => x.id === id);
     ctx.setState(
       patch({
         audits: updateItem<Audit>(x => x.id === id, { ...a, ...audit }),

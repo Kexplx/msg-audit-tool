@@ -1,5 +1,5 @@
 export interface Question {
-  id: string;
-  facCritId: string;
+  id: number;
+  facCritId: number;
   textDe: string;
 }

@@ -70,7 +70,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
           ? this.audit.scope.findIndex(x => x.id === facCrit.id) != -1
           : true;
 
-        this.formGroup.addControl(facCrit.id, new FormControl(inAudit));
+        this.formGroup.addControl(String(facCrit.id), new FormControl(inAudit));
       }
     });
   }
@@ -94,7 +94,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
 
     this.facCrits$.subscribe(facCrits => {
       for (const crit of facCrits) {
-        const checked = this.formGroup.get(crit.id).value;
+        const checked = this.formGroup.get(String(crit.id)).value;
 
         if (checked) {
           result.push(crit);
@@ -106,9 +106,9 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   }
 
   toggleCriteriaChecked(factorId: string, checked: true) {
-    this.store.select(AuditState.criteriaByFactorId(factorId)).subscribe(x => {
+    this.store.select(AuditState.criteriaByFactorId(+factorId)).subscribe(x => {
       for (const crit of x) {
-        this.formGroup.get(crit.id).setValue(checked);
+        this.formGroup.get(String(crit.id)).setValue(checked);
       }
     });
   }

@@ -5,10 +5,10 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 export interface AppRouterStateModel {
-  auditId: string;
-  interviewId: string;
-  contactPersonId: string;
-  facCritId: string;
+  auditId: number;
+  interviewId: number;
+  contactPersonId: number;
+  facCritId: number;
 
   inAuditList: boolean;
   inAuditListEdit: boolean;
@@ -65,14 +65,14 @@ export class AppRouterState implements NgxsOnInit {
 
         if (params[1] === 'audits') {
           patchState({
-            auditId: params[2] ?? null,
-            interviewId: params[4] ?? null,
-            facCritId: params[5] ?? null,
+            auditId: isNaN(+params[2]) ? null : +params[2],
+            interviewId: isNaN(+params[4]) ? null : +params[4],
+            facCritId: isNaN(+params[5]) ? null : +params[5],
             contactPersonId: null,
           });
         } else if (params[1] === 'contact-people') {
           patchState({
-            contactPersonId: params[2],
+            contactPersonId: isNaN(+params[2]) ? null : +params[2],
             auditId: null,
             interviewId: null,
             facCritId: null,

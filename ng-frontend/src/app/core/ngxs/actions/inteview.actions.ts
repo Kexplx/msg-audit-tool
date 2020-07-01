@@ -7,5 +7,5 @@ export class AddInterview {
 
 export class UpdateInterview {
   static readonly type = '[AuditOverview] Update Interview';
-  constructor(public id: string, public interview: Interview) {}
+  constructor(public id: number, public interview: Interview) {}
 }

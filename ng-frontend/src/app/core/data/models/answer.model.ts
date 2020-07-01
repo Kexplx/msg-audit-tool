@@ -1,7 +1,7 @@
 export interface Answer {
-  interviewId: string;
-  facCritId: string;
-  questionId: string;
+  interviewId: number;
+  facCritId: number;
+  questionId: number;
 
   result?: boolean;
   responsible?: boolean;

@@ -2,7 +2,7 @@
   <nb-layout-header fixed>
     <nb-actions size="small">
       <nb-action (click)="toggleSidebar()" icon="menu-2-outline" data-cy="toggle-sidebar">Hello</nb-action>
-      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async).length > 0 ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>
+      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async) ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>
       <nb-action routerLink="/contact-people" icon="people-outline" data-cy="contacts"></nb-action>
     </nb-actions>
   </nb-layout-header>
@@ -11,9 +11,6 @@
       <div class="sidebar-container-content" data-cy="sidebar-content">
         <app-sidebar></app-sidebar>
       </div>
-      <span class="sidebar-container-version label" data-cy="sidebar-version-label">
-        .msg Audit Tool
-      </span>
     </div>
   </nb-sidebar>
   <nb-layout-column>

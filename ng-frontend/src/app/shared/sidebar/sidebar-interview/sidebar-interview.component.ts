@@ -12,7 +12,7 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
   styleUrls: ['./sidebar-interview.component.scss'],
 })
 export class SidebarInterviewComponent implements OnInit {
-  @Select(AppRouterState.facCritId) facCritId$: Observable<string>;
+  @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
   facCrit$: Observable<FacCrit>;
   items: NbMenuItem[];
 
