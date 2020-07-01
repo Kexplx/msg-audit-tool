@@ -19,12 +19,12 @@ export class ContactPersonFormComponent extends AbstractFormComponent implements
     super(dialogService);
   }
 
-  get firstName() {
-    return this.formGroup.get('firstName');
+  get forename() {
+    return this.formGroup.get('forename');
   }
 
-  get lastName() {
-    return this.formGroup.get('lastName');
+  get surname() {
+    return this.formGroup.get('surname');
   }
 
   get salutation() {
@@ -57,8 +57,8 @@ export class ContactPersonFormComponent extends AbstractFormComponent implements
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
-      firstName: [this.contactPerson?.firstName, Validators.required],
-      lastName: [this.contactPerson?.lastName, Validators.required],
+      forename: [this.contactPerson?.forename, Validators.required],
+      surname: [this.contactPerson?.surname, Validators.required],
       salutation: [this.contactPerson?.salutation],
       title: [this.contactPerson?.title],
       companyName: [this.contactPerson?.companyName, Validators.required],
@@ -71,8 +71,8 @@ export class ContactPersonFormComponent extends AbstractFormComponent implements
 
   onSubmit() {
     const contactPerson: Partial<ContactPerson> = {
-      firstName: this.firstName.value,
-      lastName: this.lastName.value,
+      forename: this.forename.value,
+      surname: this.surname.value,
       salutation: this.salutation.value,
       title: this.title.value,
       companyName: this.companyName.value,

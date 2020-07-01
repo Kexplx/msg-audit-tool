@@ -2,8 +2,8 @@ export interface ContactPerson {
   id?: number;
   salutation: string;
   title: string;
-  firstName: string;
-  lastName: string;
+  forename: string;
+  surname: string;
   companyName: string;
   role: string;
   sector: string;

@@ -9,7 +9,7 @@
   </div>
   <div class="header-container-2 mt-2 subtitle-2">
     <span *ngFor="let person of (interview$ | async).contactPeople">
-      {{ person.firstName + ', ' + person.lastName + ' | ' + person.role }}
+      {{ person.forename + ', ' + person.surname + ' | ' + person.role }}
     </span>
   </div>
 </header>

@@ -4,8 +4,8 @@ export const CONTACT_PEOPLE: ContactPerson[] = [
   {
     companyName: 'msg systems AG',
     contactInformation: 'oscar.rosner@fau.de',
-    firstName: 'Oscar',
-    lastName: 'Rosner',
+    forename: 'Oscar',
+    surname: 'Rosner',
     role: 'Software Developer',
     salutation: 'Herr',
     title: 'Dr. ',
@@ -17,8 +17,8 @@ export const CONTACT_PEOPLE: ContactPerson[] = [
   {
     companyName: 'msg systems AG',
     contactInformation: 'cathy.hu@fau.de',
-    firstName: 'Cathy',
-    lastName: 'Hu',
+    forename: 'Cathy',
+    surname: 'Hu',
     role: 'Software Developer',
     salutation: 'Frau',
     title: 'Dr. ',

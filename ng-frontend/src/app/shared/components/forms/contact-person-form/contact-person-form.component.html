@@ -28,15 +28,15 @@
       <div class="grid-1-1 mb-2">
         <div>
           <label class="label">Vorname</label>
-          <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? 'danger' : 'basic'" formControlName="firstName" nbInput fullWidth data-cy="contact-firstname-input" />
-          <div *ngIf="firstName.invalid && firstName.touched">
+          <input placeholder="Max" [status]="forename.invalid && forename.touched ? 'danger' : 'basic'" formControlName="forename" nbInput fullWidth data-cy="contact-forename-input" />
+          <div *ngIf="forename.invalid && forename.touched">
             <label class="label text-danger" data-cy="missing-label">Vornamen eintragen</label>
           </div>
         </div>
         <div>
           <label class="label">Nachname</label>
-          <input placeholder="Mustermann" [status]="lastName.invalid && lastName.touched ? 'danger' : 'basic'" formControlName="lastName" nbInput fullWidth data-cy="contact-lastname-input" />
-          <div *ngIf="lastName.invalid && lastName.touched">
+          <input placeholder="Mustermann" [status]="surname.invalid && surname.touched ? 'danger' : 'basic'" formControlName="surname" nbInput fullWidth data-cy="contact-surname-input" />
+          <div *ngIf="surname.invalid && surname.touched">
             <label class="label text-danger" data-cy="missing-label">Nachnamen eintragen</label>
           </div>
         </div>

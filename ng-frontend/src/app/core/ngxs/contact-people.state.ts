@@ -1,4 +1,4 @@
-import { State, Selector, Action, StateContext, createSelector } from '@ngxs/store';
+import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import * as shortid from 'shortid';
@@ -23,12 +23,11 @@ export interface ContactPersonStateModel {
  */
 @State<ContactPersonStateModel>({
   name: 'contactPerson',
-  defaults: {
-    contactPeople: CONTACT_PEOPLE,
-  },
 })
 @Injectable()
-export class ContactPersonState {
+export class ContactPersonState implements NgxsOnInit {
+  ngxsOnInit(ctx?: StateContext<any>) {}
+
   @Selector()
   static contactPeople(state: ContactPersonStateModel) {
     return state.contactPeople;

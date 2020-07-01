@@ -30,6 +30,8 @@ export class CoreService {
 
   /**
    * Sends a GET to ../audits and returns an observable.
+   *
+   * ../audits should return a list of all existing audits
    */
   getAudits() {
     return this.http.get(compileTimeSwitchedString + '/audits').pipe(
@@ -55,6 +57,8 @@ export class CoreService {
 
   /**
    * Sends a POST to ../audits and returns an observable.
+   *
+   * ../contactpersons should return the created audit
    */
   postAudit(audit: Audit): Observable<Audit> {
     const auditDto: PostAuditDto = {
@@ -81,5 +85,14 @@ export class CoreService {
         };
       }),
     );
+  }
+
+  /**
+   * Sends a POST to ../contactpersons and returns an observable
+   *
+   * ../contactpersons should return a list of all existing contact persons
+   */
+  getContactPersons() {
+    const obs$ = this.http.get(compileTimeSwitchedString + '/contactpersons');
   }
 }

@@ -47,20 +47,20 @@ export class ActionListenerDirective implements OnInit {
             break;
           case action instanceof AddContactPerson:
             this.showToast(
-              `Kontaktperson ${action.contactPerson.firstName} ${action.contactPerson.lastName} erstellt`,
+              `Kontaktperson ${action.contactPerson.forename} ${action.contactPerson.surname} erstellt`,
               'checkmark-circle-2-outline',
             );
             break;
           case action instanceof DeleteContactPerson:
             this.showToast(
-              `Kontaktperson ${action.contactPerson.firstName} ${action.contactPerson.lastName} gelöscht`,
+              `Kontaktperson ${action.contactPerson.forename} ${action.contactPerson.surname} gelöscht`,
               'trash-outline',
             );
             break;
           case action instanceof UpdateContactPerson:
             this.showToast(`Audit: ${action.audit?.name} gelöscht`, 'trash-outline');
             this.showToast(
-              `Kontaktperson ${action.contactPerson.firstName} ${action.contactPerson.lastName} bearbeitet`,
+              `Kontaktperson ${action.contactPerson.forename} ${action.contactPerson.surname} bearbeitet`,
               'edit-outline',
             );
             break;
