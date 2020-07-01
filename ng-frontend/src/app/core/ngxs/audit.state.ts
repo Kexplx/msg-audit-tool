@@ -85,12 +85,17 @@ export class AuditState implements NgxsOnInit {
 
   @Action(UpdateAudit)
   updateAudit(ctx: StateContext<AuditStateModel>, { id, audit }: UpdateAudit) {
-    const a = ctx.getState().audits.find(x => x.id === id);
-    ctx.setState(
-      patch({
-        audits: updateItem<Audit>(x => x.id === id, { ...a, ...audit }),
-      }),
-    );
+    const oldAudit = ctx.getState().audits.find(audit => audit.id === id);
+
+    this.coreService.putAudit(oldAudit, { ...audit, id }).subscribe(() => {
+      const a = ctx.getState().audits.find(x => x.id === id);
+
+      ctx.setState(
+        patch({
+          audits: updateItem<Audit>(x => x.id === id, { ...a, ...audit }),
+        }),
+      );
+    });
   }
 
   @Action(DeleteAudit)

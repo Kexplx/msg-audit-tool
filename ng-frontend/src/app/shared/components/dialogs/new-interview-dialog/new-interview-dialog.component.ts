@@ -9,6 +9,7 @@ import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { AddInterview } from 'src/app/core/ngxs/actions/inteview.actions';
+import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 
 @Component({
   selector: 'app-new-interview-dialog',
@@ -53,8 +54,8 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
    *
    * @param interview The interview filled out in the form
    */
-  onSubmit(interview: Interview) {
-    this.store.dispatch(new AddInterview({ ...interview, auditId: this.auditId }));
+  onSubmit(interview: Interview, scope: FacCrit[]) {
+    this.store.dispatch(new AddInterview({ ...interview, auditId: this.auditId }, scope));
     this.dialogRef.close();
   }
 

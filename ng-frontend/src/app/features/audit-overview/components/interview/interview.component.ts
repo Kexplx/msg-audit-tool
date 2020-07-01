@@ -88,7 +88,7 @@ export class InterviewComponent implements OnInit {
           reason: formGroup.get('reason').value,
           annotation: formGroup.get('annotation').value,
           responsible: formGroup.get('responsible').value,
-          facCritId: this.facCritId,
+          faccritId: this.facCritId,
           interviewId: this.interviewId,
           questionId: question.id,
         };

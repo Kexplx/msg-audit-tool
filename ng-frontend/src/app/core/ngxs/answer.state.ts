@@ -28,7 +28,7 @@ export class AnswerState {
     return createSelector([AnswerState], (state: AnswerStateModel) => {
       return state.answers.find(
         x =>
-          x.facCritId === facCritId && x.questionId === questionId && x.interviewId && interviewId,
+          x.faccritId === facCritId && x.questionId === questionId && x.interviewId && interviewId,
       );
     });
   }
@@ -48,7 +48,7 @@ export class AnswerState {
       patch({
         answers: updateItem<Answer>(
           x =>
-            x.facCritId === answer.facCritId &&
+            x.faccritId === answer.faccritId &&
             x.interviewId === answer.interviewId &&
             x.questionId === answer.questionId,
           answer,

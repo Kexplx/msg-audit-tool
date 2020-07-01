@@ -1,9 +1,7 @@
 import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import * as shortid from 'shortid';
 import { ContactPerson } from '../data/models/contact-person.model';
-import { CONTACT_PEOPLE } from '../data/examples/contact-people';
 import {
   AddContactPerson,
   DeleteContactPerson,
@@ -65,7 +63,7 @@ export class ContactPersonState implements NgxsOnInit {
     { setState }: StateContext<ContactPersonStateModel>,
     { id, contactPerson }: UpdateContactPerson,
   ) {
-    this.coreService.updateContactPerson({ ...contactPerson, id }).subscribe(contactPerson => {
+    this.coreService.putContactPerson({ ...contactPerson, id }).subscribe(contactPerson => {
       setState(
         patch({
           contactPeople: updateItem<ContactPerson>(x => x.id === contactPerson.id, contactPerson),

@@ -18,7 +18,7 @@ import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 export class InterviewFormComponent extends AbstractFormComponent implements OnInit {
   @Input() interview: Interview;
   @Input() scope: FacCrit[];
-  @Output() formSubmitted = new EventEmitter<Interview>();
+  @Output() formSubmitted = new EventEmitter<{ interview: Interview; scope: FacCrit[] }>();
 
   @Select(AuditState.facCrits) allFacCrits$: Observable<FacCrit[]>;
   @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
@@ -43,7 +43,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
 
   ngOnInit() {
     this.formGroup = this.fb.group({
-      startDate: [this.interview?.start ?? new Date()],
+      startDate: [this.interview?.startDate ?? new Date()],
       contactPeople: [this.interview?.contactPeople, Validators.required],
     });
 
@@ -78,12 +78,11 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
 
   onSubmit() {
     const interview: Interview = {
-      start: this.startDate.value,
+      startDate: this.startDate.value,
       status: InterviewStatus.Active,
-      facCrits: this.checkedFacCrits(),
       contactPeople: this.contactPeople.value,
     };
-    this.formSubmitted.emit(interview);
+    this.formSubmitted.emit({ interview, scope: this.checkedFacCrits() });
   }
 
   toggleCriteriaChecked(factorId: string, checked: true) {
