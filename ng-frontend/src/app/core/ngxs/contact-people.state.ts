@@ -10,6 +10,7 @@ import {
   UpdateContactPerson,
 } from './actions/contact-person.action';
 import { getId } from './audit.state';
+import { CoreService } from '../http/core.service';
 
 export interface ContactPersonStateModel {
   contactPeople: ContactPerson[];
@@ -26,7 +27,13 @@ export interface ContactPersonStateModel {
 })
 @Injectable()
 export class ContactPersonState implements NgxsOnInit {
-  ngxsOnInit(ctx?: StateContext<any>) {}
+  constructor(private coreService: CoreService) {}
+
+  ngxsOnInit({ patchState }: StateContext<ContactPersonStateModel>) {
+    this.coreService.getContactPersons().subscribe(contactPeople => {
+      patchState({ contactPeople });
+    });
+  }
 
   @Selector()
   static contactPeople(state: ContactPersonStateModel) {
@@ -44,11 +51,13 @@ export class ContactPersonState implements NgxsOnInit {
     { setState }: StateContext<ContactPersonStateModel>,
     { contactPerson }: AddContactPerson,
   ) {
-    setState(
-      patch({
-        contactPeople: append<ContactPerson>([{ ...contactPerson, id: getId() }]),
-      }),
-    );
+    this.coreService.postContactPerson(contactPerson).subscribe(contactPerson => {
+      setState(
+        patch({
+          contactPeople: append<ContactPerson>([{ ...contactPerson, id: getId() }]),
+        }),
+      );
+    });
   }
 
   @Action(UpdateContactPerson)
@@ -56,11 +65,13 @@ export class ContactPersonState implements NgxsOnInit {
     { setState }: StateContext<ContactPersonStateModel>,
     { id, contactPerson }: UpdateContactPerson,
   ) {
-    setState(
-      patch({
-        contactPeople: updateItem<ContactPerson>(x => x.id === id, { id, ...contactPerson }),
-      }),
-    );
+    this.coreService.updateContactPerson({ ...contactPerson, id }).subscribe(contactPerson => {
+      setState(
+        patch({
+          contactPeople: updateItem<ContactPerson>(x => x.id === contactPerson.id, contactPerson),
+        }),
+      );
+    });
   }
 
   @Action(DeleteContactPerson)
