@@ -27,7 +27,7 @@
       <ng-template #noContactPerson>
         <span class="text-danger">Keine Kontaktperson gewählt</span>
       </ng-template>
-      <span class="label" *ngIf="interview.start" data-cy="interview-timestamp"> &nbsp;{{ interview.start | date: 'dd.MM.yyyy' }} </span>
+      <span class="label" *ngIf="interview.startDate" data-cy="interview-timestamp"> &nbsp;{{ interview.startDate | date: 'dd.MM.yyyy' }} </span>
     </div>
     <br />
   </nb-card-header>

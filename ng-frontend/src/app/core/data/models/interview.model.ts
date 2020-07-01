@@ -1,18 +1,19 @@
 import { ContactPerson } from './contact-person.model';
 import { FacCrit } from './faccrit.model';
+import { Answer } from './answer.model';
 
 export enum InterviewStatus {
-  Active,
-  Finished,
+  Active = 'ACTIVE',
+  Finished = 'FINISHED',
 }
 
 export interface Interview {
   id?: number;
   auditId?: number;
-  start?: number;
-  end?: number;
-  contactPeople: ContactPerson[];
+  startDate?: number;
+  endDate?: number;
   status: InterviewStatus;
-  facCrits: FacCrit[];
   goal?: string;
+  contactPeople: ContactPerson[];
+  answers?: Answer[];
 }

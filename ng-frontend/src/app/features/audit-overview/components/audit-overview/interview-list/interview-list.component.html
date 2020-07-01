@@ -1,5 +1,5 @@
 <header>
-  <button [disabled]="!(audit$ | async).scope.length" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
+  <button [disabled]="!(audit$ | async)?.scope.length" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
     <div class="min-500">
       <nb-icon icon="plus"></nb-icon>
       Neues Interview
@@ -9,8 +9,8 @@
     </div>
   </button>
 </header>
-<div class="fac-crits" *ngIf="(audit$ | async).scope.length > 0; else noFacrits">
-  <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async).scope | factors">
+<div class="fac-crits" *ngIf="(audit$ | async)?.scope.length > 0; else noFacrits">
+  <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async)?.scope | factors">
     <nb-accordion-item expanded data-cy="factor-card">
       <nb-accordion-item-header class="subtitle-2">{{ factor.name }}</nb-accordion-item-header>
       <nb-accordion-item-body data-cy="faccrit-body">
@@ -24,7 +24,7 @@
             Keine Interviews vorhanden
           </div>
         </ng-template>
-        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async).scope | criteriaByFactor: factor.id">
+        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async)?.scope | criteriaByFactor: factor.id">
           <nb-card-header class="subtitle-2">
             {{ criteria.name }}
           </nb-card-header>

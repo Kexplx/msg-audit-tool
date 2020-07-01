@@ -1,7 +1,7 @@
 <header class="mt-2">
   <div class="header-container-1">
     <h6 data-cy="faccrit">
-      {{ (facCrit$ | async).name }} <span class="text-hint">{{ (interview$ | async).start | date: 'dd.MM.yyyy' }}</span>
+      {{ (facCrit$ | async).name }} <span class="text-hint">{{ (interview$ | async)?.startDate | date: 'dd.MM.yyyy' }}</span>
     </h6>
     <div></div>
     <button hero (click)="onSave()" nbButton data-cy="save">speichern</button>

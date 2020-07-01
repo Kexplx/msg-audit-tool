@@ -1,6 +1,6 @@
 export interface Answer {
   interviewId: number;
-  facCritId: number;
+  faccritId: number;
   questionId: number;
 
   result?: boolean;
