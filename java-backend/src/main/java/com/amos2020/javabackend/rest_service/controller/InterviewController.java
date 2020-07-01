@@ -59,6 +59,22 @@ public class InterviewController {
         return responses;
     }
 
+
+    /**
+     * Get all existing interviews by an auditId
+     *
+     * @param auditId int
+     * @return all interviews
+     * @throws NotFoundException if contactPersonIds are not valid and therefore can not be found
+     */
+    public List<BasicInterviewResponse> getAllInterviewsByAuditId(int auditId) throws NotFoundException {
+        List<BasicInterviewResponse> responses = new ArrayList<>();
+        for (Interview interview : interviewService.getAllInterviews()) {
+            responses.add(new BasicInterviewResponse(interview, getContactPeopleForInterview(interview)));
+        }
+        return responses;
+    }
+
     /**
      * Create a new Interview, the associated InterviewContactPeople and empty Answers for the scope of FacCrits
      *

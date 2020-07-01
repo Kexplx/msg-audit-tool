@@ -185,4 +185,27 @@ public class InterviewRestService {
 
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * GET Endpoint for receiving all existing interviews by auditId
+     *
+     * @return ResponseEntity with a List of the Interviews as BasicInterviewResponses
+     */
+    @Operation(summary = "Get all interviews by auditId")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Receive all existing interviews by auditId"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
+    })
+    @GetMapping("/audits/{auditId}/interviews")
+    public ResponseEntity<List<BasicInterviewResponse>> getAllInterviewsByAuditId(@PathVariable("auditId") @Parameter(name = "auditId", example = "1") @Min(1) int auditId) {
+        List<BasicInterviewResponse> responses;
+        try {
+            responses = interviewController.getAllInterviewsByAuditId(auditId);
+        } catch (NotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(responses);
+    }
 }
