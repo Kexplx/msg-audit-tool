@@ -56,15 +56,33 @@ export class CoreService {
     );
   }
 
-  //         return { creationDate: new Date(auditDto.creationDate).getTime(),
-  //         startDate: new Date(auditDto.startDate).getTime(),
-  //         endDate,
-  //         id: String(auditDto.auditId),
+  /**
+   * Sends a POST to ../audits and returns an observable.
+   */
+  postAudit(audit: Audit): Observable<Audit> {
+    const auditDto: PostAuditDto = {
+      auditName: audit.name,
+      endDate: parseTimestamp(audit.endDate),
+      contactPeople: audit.contactPeople?.map(x => x.id) ?? [],
+      scope: audit.scope?.map(x => x.id) ?? [],
+      startDate: parseTimestamp(audit.startDate),
+    };
 
-  //        };
-  //       });
-  //       return audits;
-  //     }),
-  //   );
-  // }
+    return this.http.post(compileTimeSwitchedString + '/audits', auditDto).pipe(
+      map((auditDto: AuditDto) => {
+        const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+
+        return {
+          id: auditDto.auditId,
+          name: auditDto.auditName,
+          creationDate: new Date(auditDto.creationDate).getTime(),
+          startDate: new Date(auditDto.startDate).getTime(),
+          endDate,
+          scope: auditDto.scope,
+          status: auditDto.status,
+          contactPeople: auditDto.contactPeople,
+        };
+      }),
+    );
+  }
 }
