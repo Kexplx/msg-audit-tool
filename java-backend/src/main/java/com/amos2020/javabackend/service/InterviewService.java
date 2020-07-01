@@ -43,6 +43,19 @@ public class InterviewService {
         return repository.findAll();
     }
 
+
+    /**
+     * Returns all existing interviews
+     *
+     * @param auditId int
+     * @return List<Interview>
+     */
+    public List<Interview> getAllInterviewsByAuditId(int auditId) {
+        return repository.findAllByAuditId(auditId);
+    }
+
+
+
     /**
      * Creates interview and returns the new interview
      *
