@@ -1,6 +1,12 @@
+export enum Salutation {
+  Frau = 'FRAU',
+  Mann = 'MANN',
+  Divers = 'DIVERS',
+}
+
 export interface ContactPerson {
   id?: number;
-  salutation: string;
+  salutation: Salutation;
   title: string;
   forename: string;
   surname: string;
