@@ -32,6 +32,10 @@ export class AuditState implements NgxsOnInit {
     this.coreService.getFacCrits().subscribe(facCrits => {
       patchState({ facCrits });
     });
+
+    this.coreService.getAudits().subscribe(audits => {
+      patchState({ audits });
+    });
   }
 
   @Selector()
@@ -70,11 +74,13 @@ export class AuditState implements NgxsOnInit {
 
   @Action(AddAudit)
   addAudit({ setState }: StateContext<AuditStateModel>, { audit }: AddAudit) {
-    setState(
-      patch({
-        audits: append<Audit>([{ ...audit, id: getId() }]),
-      }),
-    );
+    this.coreService.postAudit(audit).subscribe(audit => {
+      setState(
+        patch({
+          audits: append<Audit>([audit]),
+        }),
+      );
+    });
   }
 
   @Action(UpdateAudit)
