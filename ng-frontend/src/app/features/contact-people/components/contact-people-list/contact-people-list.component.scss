@@ -1,21 +1,10 @@
 @import 'src/sass/utils';
 
-.audit-cards {
-  display: grid;
-  gap: 10px;
-}
-
-.hint-no-audits {
+.hint-no-contact-people {
   max-width: 900px;
   margin: 100px auto 0 auto;
   text-align: center;
 }
-
-.content-active {
-  padding-left: 0;
-  padding-right: 0;
-}
-
 nb-card-body {
   padding: 0;
 }
