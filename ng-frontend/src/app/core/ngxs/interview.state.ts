@@ -1,12 +1,11 @@
-import { State, Action, StateContext, createSelector } from '@ngxs/store';
+import { State, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
 import { patch, append, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import * as shortid from 'shortid';
 
 import { Interview } from '../data/models/interview.model';
 import { AddInterview, UpdateInterview } from './actions/inteview.actions';
-import { INTERVIEWS } from '../data/examples/interviews';
 import { getId } from './audit.state';
+import { InterviewService } from '../http/interview.service';
 
 export interface InterviewStateModel {
   interviews: Interview[];
@@ -22,7 +21,15 @@ export interface InterviewStateModel {
   name: 'interviewState',
 })
 @Injectable()
-export class InterviewState {
+export class InterviewState implements NgxsOnInit {
+  constructor(private interviewService: InterviewService) {}
+
+  ngxsOnInit({ patchState }: StateContext<InterviewStateModel>) {
+    this.interviewService.getInterviews().subscribe(interviews => {
+      patchState({ interviews });
+    });
+  }
+
   static interviewsByAuditId(auditId: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
       return state.interviews.filter(x => x.auditId === auditId);
@@ -36,12 +43,17 @@ export class InterviewState {
   }
 
   @Action(AddInterview)
-  addInterview({ setState }: StateContext<InterviewStateModel>, { interview }: AddInterview) {
-    setState(
-      patch({
-        interviews: append<Interview>([{ ...interview, id: getId() }]),
-      }),
-    );
+  addInterview(
+    { setState }: StateContext<InterviewStateModel>,
+    { interview, interviewScope }: AddInterview,
+  ) {
+    this.interviewService.postInterview(interview, interviewScope).subscribe(interview => {
+      setState(
+        patch({
+          interviews: append<Interview>([interview]),
+        }),
+      );
+    });
   }
 
   @Action(UpdateInterview)
