@@ -104,9 +104,13 @@ export class CoreService {
   /**
    * Sends a POST to ../contactpersons and returns an observable
    *
-   * ../contactpersons should return a list of all existing contact persons
+  /**
+   * Sends a PUT to ../contactpersons/{id} and returns an observable
+   *
+   * PUT ../contactpersons returns the updated contact person
    */
-  getContactPersons() {
-    const obs$ = this.http.get(compileTimeSwitchedString + '/contactpersons');
+  updateContactPerson(contactPerson: ContactPerson) {
+    const url = compileTimeSwitchedString + '/contactpersons/' + contactPerson.id;
+    return this.http.put<ContactPerson>(url, contactPerson);
   }
 }
