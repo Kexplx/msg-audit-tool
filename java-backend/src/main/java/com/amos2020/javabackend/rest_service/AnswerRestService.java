@@ -76,7 +76,7 @@ public class AnswerRestService {
             response = answerController.getAnswerByIds(interviewId, questionId);
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(response);
@@ -131,6 +131,27 @@ public class AnswerRestService {
                     request.getReason(), request.getProof(), request.getAnnotation());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(response);
+    }
+
+    /**
+     * GET Endpoint for fetching all existing Answers
+     *
+     * @return ResponseEntity with list of Answers
+     */
+    @Operation(summary = "Get all Answers")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Received all answers"),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+    })
+    @GetMapping("/answers")
+    public ResponseEntity<List<BasicAnswerResponse>> getAllAnswers() {
+        List<BasicAnswerResponse> response;
+        try {
+            response = answerController.getAllAnswers();
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
