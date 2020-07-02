@@ -15,6 +15,6 @@ export interface Audit {
   name: string;
   startDate: number;
   endDate?: number;
-  contactPeople?: ContactPerson[];
+  contactPersons?: ContactPerson[];
   scope: FacCrit[];
 }

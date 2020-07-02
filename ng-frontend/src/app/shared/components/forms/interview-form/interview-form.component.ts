@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { AbstractFormComponent } from '../abstract-form-component';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 
 @Component({
   selector: 'app-interview-form',
@@ -21,7 +21,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   @Output() formSubmitted = new EventEmitter<{ interview: Interview; scope: FacCrit[] }>();
 
   @Select(AuditState.facCrits) allFacCrits$: Observable<FacCrit[]>;
-  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
 
   facCritSelected = false;
 
@@ -37,14 +37,14 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     return this.formGroup.get('facCrit');
   }
 
-  get contactPeople() {
-    return this.formGroup.get('contactPeople');
+  get contactPersons() {
+    return this.formGroup.get('contactPersons');
   }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
       startDate: [this.interview?.startDate ?? new Date()],
-      contactPeople: [this.interview?.contactPeople, Validators.required],
+      contactPersons: [this.interview?.contactPersons, Validators.required],
     });
 
     for (const facCrit of this.scope) {
@@ -80,7 +80,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     const interview: Interview = {
       startDate: this.startDate.value,
       status: InterviewStatus.Active,
-      contactPeople: this.contactPeople.value,
+      contactPersons: this.contactPersons.value,
     };
     this.formSubmitted.emit({ interview, scope: this.checkedFacCrits() });
   }

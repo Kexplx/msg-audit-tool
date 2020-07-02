@@ -33,7 +33,7 @@ export class AuditCardComponent implements OnInit {
   constructor(private nbMenuService: NbMenuService, private store: Store) {}
 
   get contactPerson() {
-    return this.audit.contactPeople ? this.audit.contactPeople[0] : null;
+    return this.audit.contactPersons ? this.audit.contactPersons[0] : null;
   }
 
   ngOnInit() {

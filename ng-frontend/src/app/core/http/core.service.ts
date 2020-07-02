@@ -43,7 +43,7 @@ export class CoreService {
             endDate,
             scope: auditDto.scope,
             status: auditDto.status,
-            contactPeople: auditDto.contactPeople,
+            contactPersons: auditDto.contactPersons,
           };
         });
         return result;
@@ -60,7 +60,7 @@ export class CoreService {
     const auditDto: PostAuditDto = {
       auditName: audit.name,
       endDate: parseTimestamp(audit.endDate),
-      contactPeople: audit.contactPeople?.map(x => x.id) ?? [],
+      contactPersons: audit.contactPersons?.map(x => x.id) ?? [],
       scope: audit.scope?.map(x => x.id) ?? [],
       startDate: parseTimestamp(audit.startDate),
     };
@@ -77,7 +77,7 @@ export class CoreService {
           endDate,
           scope: auditDto.scope,
           status: auditDto.status,
-          contactPeople: auditDto.contactPeople,
+          contactPersons: auditDto.contactPersons,
         };
       }),
     );
@@ -106,18 +106,18 @@ export class CoreService {
 
   private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit) {
     const url = compileTimeSwitchedString + 'audits/' + currentAudit.id + '/contactpersons/';
-    const oldContactPeople = oldAudit.contactPeople;
-    const newContactPeople = currentAudit.contactPeople;
+    const oldContactPersons = oldAudit.contactPersons;
+    const newContactPersons = currentAudit.contactPersons;
 
-    for (const contactPerson of newContactPeople) {
-      const existsInOld = oldAudit.contactPeople.find(x => x.id === contactPerson.id);
+    for (const contactPerson of newContactPersons) {
+      const existsInOld = oldAudit.contactPersons.find(x => x.id === contactPerson.id);
       if (!existsInOld) {
         this.http.put(url + contactPerson.id, {}).subscribe(() => {});
       }
     }
 
-    for (const contactPerson of oldContactPeople) {
-      const existsInCurrent = currentAudit.contactPeople.find(x => x.id === contactPerson.id);
+    for (const contactPerson of oldContactPersons) {
+      const existsInCurrent = currentAudit.contactPersons.find(x => x.id === contactPerson.id);
       if (!existsInCurrent) {
         this.http.delete(url + contactPerson.id, {}).subscribe(() => {});
       }

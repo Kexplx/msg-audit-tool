@@ -20,25 +20,20 @@ export class InterviewService {
    * ../interviews returns a list of all interviews
    */
   getInterviews() {
-    this.testGetInterviews();
     return this.http.get<InterviewDto[]>(compileTimeSwitchedString + 'interviews').pipe(
       map<InterviewDto[], Interview[]>(interviews => {
         return interviews.map(interviewDto => {
           const { endDate, startDate } = interviewDto;
-          console.log(interviewDto.interviewedPeople);
+          console.log(interviewDto.interviewedContactPersons);
           return {
             ...interviewDto,
-            contactPeople: interviewDto.interviewedPeople,
+            contactPersons: interviewDto.interviewedContactPersons,
             endDate: new Date(endDate).getTime(),
             startDate: new Date(startDate).getTime(),
           };
         });
       }),
     );
-  }
-
-  testGetInterviews() {
-    this.http.get(compileTimeSwitchedString + 'interviews').subscribe(x => console.log(x));
   }
 
   /**
@@ -48,14 +43,11 @@ export class InterviewService {
    * @param interview The interview to add
    * @param interviewScope The selected scope of facCrits for that interview
    */
-  postInterview(
-    { contactPeople, startDate, endDate, auditId }: Interview,
-    interviewScope: FacCrit[],
-  ) {
-    const interviewedPeopleDto = {};
+  postInterview({ contactPersons, startDate, auditId }: Interview, interviewScope: FacCrit[]) {
+    const interviewedContactPersonsDto: { id: number; role: string }[] = [];
 
-    for (const iterator of contactPeople ?? []) {
-      interviewedPeopleDto[String(iterator.id)] = 'Default Role';
+    for (const iterator of contactPersons ?? []) {
+      interviewedContactPersonsDto.push({ id: iterator.id, role: 'Default Role' });
     }
 
     const interviewScopeDto = interviewScope?.map(facCrit => facCrit.id);
@@ -63,10 +55,8 @@ export class InterviewService {
     const postInterviewDto: PostInterviewDto = {
       auditId,
       startDate: parseTimestamp(startDate),
-      goal: 'Default Goal',
-      endDate: parseTimestamp(new Date(2050, 5, 5).getTime()),
       interviewScope: interviewScopeDto,
-      interviewedPeople: interviewedPeopleDto,
+      interviewedContactPersons: interviewedContactPersonsDto,
     };
 
     return this.http
@@ -77,7 +67,7 @@ export class InterviewService {
 
           return {
             ...interviewDto,
-            contactPeople: interviewDto.interviewedPeople,
+            contactPersons: interviewDto.interviewedContactPersons,
             endDate: new Date(endDate).getTime(),
             startDate: new Date(startDate).getTime(),
           };

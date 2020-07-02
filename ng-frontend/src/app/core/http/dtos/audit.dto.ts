@@ -10,7 +10,7 @@ export interface AuditDto {
   creationDate: string;
   status: AuditStatus;
   scope: FacCrit[];
-  contactPeople: ContactPerson[];
+  contactPersons: ContactPerson[];
   cancellationDate: string;
   cancellationReason: string;
   cancellationContactPerson: ContactPerson[];

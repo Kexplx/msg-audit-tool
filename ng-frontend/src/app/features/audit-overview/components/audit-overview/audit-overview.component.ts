@@ -29,7 +29,7 @@ export class AuditOverviewComponent implements OnInit {
     {
       title: 'Kontakte',
       icon: 'person-outline',
-      route: './contact-people',
+      route: './contact-persons',
       responsive: true,
     },
   ];

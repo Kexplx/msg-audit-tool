@@ -23,7 +23,7 @@ const routes: Routes = [
         children: [{ path: 'new', component: NewInterviewDialogComponent }],
       },
       {
-        path: 'contact-people',
+        path: 'contact-persons',
         component: AuditInfoComponent,
         children: [{ path: 'edit', component: EditAuditDialogComponent }],
       },

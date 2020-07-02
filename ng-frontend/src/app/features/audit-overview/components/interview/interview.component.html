@@ -8,7 +8,7 @@
     <button hero status="primary" nbButton data-cy="finish">abschließen</button>
   </div>
   <div class="header-container-2 mt-2 subtitle-2">
-    <span *ngFor="let person of (interview$ | async).contactPeople">
+    <span *ngFor="let person of (interview$ | async).contactPersons">
       {{ person.forename + ', ' + person.surname + ' | ' + person.role }}
     </span>
   </div>

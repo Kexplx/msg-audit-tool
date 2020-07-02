@@ -26,8 +26,8 @@
       </div>
       <div class="mb-2">
         <label class="label">Kontaktpersonen</label>
-        <nb-select formControlName="contactPeople" multiple fullWidth data-cy="audit-contacts">
-          <nb-option *ngFor="let contactPerson of contactPeople$ | async" [value]="contactPerson" data-cy="audit-contact">{{ contactPerson.forename + ' ' + contactPerson.surname }}</nb-option>
+        <nb-select formControlName="contactPersons" multiple fullWidth data-cy="audit-contacts">
+          <nb-option *ngFor="let contactPerson of contactPersons$ | async" [value]="contactPerson" data-cy="audit-contact">{{ contactPerson.forename + ' ' + contactPerson.surname }}</nb-option>
         </nb-select>
       </div>
       <hr style="border-bottom: 3px dotted rgb(228, 233, 242);" />

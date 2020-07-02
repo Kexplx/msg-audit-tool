@@ -8,10 +8,10 @@
       </button>
     </div>
   </nb-card-header>
-  <div *ngIf="(audit$ | async).contactPeople as contactPeople; else noContacts">
+  <div *ngIf="(audit$ | async).contactPersons as contactPersons; else noContacts">
     <nb-card-body>
       <nb-list>
-        <nb-list-item *ngFor="let contactPerson of contactPeople">
+        <nb-list-item *ngFor="let contactPerson of contactPersons">
           <app-contact-person-card [contactPerson]="contactPerson" data-cy="contact-person-card"></app-contact-person-card>
         </nb-list-item>
       </nb-list>

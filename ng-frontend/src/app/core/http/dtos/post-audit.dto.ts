@@ -3,5 +3,5 @@ export interface PostAuditDto {
   startDate: string;
   endDate: string;
   scope: number[];
-  contactPeople: number[];
+  contactPersons: number[];
 }

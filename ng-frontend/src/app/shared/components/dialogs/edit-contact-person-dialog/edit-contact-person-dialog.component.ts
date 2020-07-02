@@ -5,7 +5,7 @@ import { Store, Select } from '@ngxs/store';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 import { UpdateContactPerson } from 'src/app/core/ngxs/actions/contact-person.action';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 

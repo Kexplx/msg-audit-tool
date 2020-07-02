@@ -10,5 +10,5 @@ export interface InterviewDto {
   goal: string;
   status: InterviewStatus;
   answers: Answer[];
-  interviewedPeople: ContactPerson[];
+  interviewedContactPersons: ContactPerson[];
 }

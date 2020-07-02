@@ -16,9 +16,9 @@ const routes: Routes = [
       import('./features/audit-overview/audit-overview.module').then(m => m.AuditOverviewModule),
   },
   {
-    path: 'contact-people',
+    path: 'contact-persons',
     loadChildren: () =>
-      import('./features/contact-people/contact-people.module').then(m => m.ContactPeopleModule),
+      import('./features/contact-persons/contact-persons.module').then(m => m.ContactPersonsModule),
   },
   { path: '**', component: NotFoundComponent },
 ];

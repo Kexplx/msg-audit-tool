@@ -9,7 +9,7 @@ import { Select, Store } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 
 @Component({
   selector: 'app-audit-form',
@@ -20,7 +20,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   @Input() audit: Audit;
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
 
-  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
 
   constructor(
@@ -47,12 +47,12 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     return this.formGroup.get('creationDate');
   }
 
-  get contactPeopleControl() {
-    return this.formGroup.get('contactPeople');
+  get contactPersonsControl() {
+    return this.formGroup.get('contactPersons');
   }
 
   ngOnInit() {
-    const contactPeopleSnapshot = this.store.selectSnapshot(ContactPersonState.contactPeople);
+    const contactPersonsSnapshot = this.store.selectSnapshot(ContactPersonState.contactPersons);
 
     const defaultStartDate = new Date();
     defaultStartDate.setHours(0, 0, 0, 0);
@@ -62,8 +62,8 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
         name: [this.audit?.name, Validators.required],
         startDate: [this.audit?.startDate ?? defaultStartDate, Validators.required],
         endDate: [this.audit?.endDate],
-        contactPeople: [
-          contactPeopleSnapshot.filter(x => this.audit?.contactPeople.find(f => f.id === x.id)),
+        contactPersons: [
+          contactPersonsSnapshot.filter(x => this.audit?.contactPersons.find(f => f.id === x.id)),
         ],
       },
       { validator: dateRangeValidator('startDate', 'endDate') },
@@ -87,7 +87,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
       endDate: this.endDate.value,
       startDate: this.startDate.value,
       status: this.audit?.status ?? AuditStatus.Planned,
-      contactPeople: this.contactPeopleControl.value,
+      contactPersons: this.contactPersonsControl.value,
       scope: this.checkedFacCrits(),
     };
 

@@ -5,20 +5,20 @@
     Neue Person
   </a>
 </header>
-<div *ngIf="contactPeople$ | async as contactPeople; else noContactPeople">
+<div *ngIf="contactPersons$ | async as contactPersons; else noContactPersons">
   <nb-card fullWidth>
-    <nb-card-header>Registrierte Kontaktpersonen ({{ contactPeople.length }})</nb-card-header>
+    <nb-card-header>Registrierte Kontaktpersonen ({{ contactPersons.length }})</nb-card-header>
     <nb-card-body>
       <nb-list>
-        <nb-list-item *ngFor="let contactPerson of contactPeople">
+        <nb-list-item *ngFor="let contactPerson of contactPersons">
           <app-contact-person-card [contactPerson]="contactPerson" data-cy="contact-person-card"></app-contact-person-card>
         </nb-list-item>
       </nb-list>
     </nb-card-body>
   </nb-card>
 </div>
-<ng-template #noContactPeople>
-  <div class="hint-no-contact-people text-hint">
+<ng-template #noContactPersons>
+  <div class="hint-no-contact-persons text-hint">
     <h6 class="text-hint">Keine Kontaktpersonen registriert</h6>
   </div>
 </ng-template>

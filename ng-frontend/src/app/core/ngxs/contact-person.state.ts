@@ -11,7 +11,7 @@ import { getId } from './audit.state';
 import { CoreService } from '../http/core.service';
 
 export interface ContactPersonStateModel {
-  contactPeople: ContactPerson[];
+  contactPersons: ContactPerson[];
 }
 
 /**
@@ -28,19 +28,19 @@ export class ContactPersonState implements NgxsOnInit {
   constructor(private coreService: CoreService) {}
 
   ngxsOnInit({ patchState }: StateContext<ContactPersonStateModel>) {
-    this.coreService.getContactPersons().subscribe(contactPeople => {
-      patchState({ contactPeople });
+    this.coreService.getContactPersons().subscribe(contactPersons => {
+      patchState({ contactPersons });
     });
   }
 
   @Selector()
-  static contactPeople(state: ContactPersonStateModel) {
-    return state.contactPeople;
+  static contactPersons(state: ContactPersonStateModel) {
+    return state.contactPersons;
   }
 
   static contactPerson(id: number) {
     return createSelector([ContactPersonState], (state: ContactPersonStateModel) => {
-      return state.contactPeople.find(x => x.id === id);
+      return state.contactPersons.find(x => x.id === id);
     });
   }
 
@@ -52,7 +52,7 @@ export class ContactPersonState implements NgxsOnInit {
     this.coreService.postContactPerson(contactPerson).subscribe(contactPerson => {
       setState(
         patch({
-          contactPeople: append<ContactPerson>([{ ...contactPerson, id: getId() }]),
+          contactPersons: append<ContactPerson>([{ ...contactPerson, id: getId() }]),
         }),
       );
     });
@@ -66,7 +66,7 @@ export class ContactPersonState implements NgxsOnInit {
     this.coreService.putContactPerson({ ...contactPerson, id }).subscribe(contactPerson => {
       setState(
         patch({
-          contactPeople: updateItem<ContactPerson>(x => x.id === contactPerson.id, contactPerson),
+          contactPersons: updateItem<ContactPerson>(x => x.id === contactPerson.id, contactPerson),
         }),
       );
     });
@@ -79,7 +79,7 @@ export class ContactPersonState implements NgxsOnInit {
   ) {
     setState(
       patch({
-        contactPeople: removeItem<ContactPerson>(x => x.id === id),
+        contactPersons: removeItem<ContactPerson>(x => x.id === id),
       }),
     );
   }

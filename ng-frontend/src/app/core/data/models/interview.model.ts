@@ -14,6 +14,6 @@ export interface Interview {
   endDate?: number;
   status: InterviewStatus;
   goal?: string;
-  contactPeople: ContactPerson[];
+  contactPersons: ContactPerson[];
   answers?: Answer[];
 }

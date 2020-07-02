@@ -4,7 +4,7 @@ import { AuditState } from './ngxs/audit.state';
 import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
-import { ContactPersonState } from './ngxs/contact-people.state';
+import { ContactPersonState } from './ngxs/contact-person.state';
 import { AnswerState } from './ngxs/answer.state';
 import { AppRouterState } from './ngxs/app-router.state';
 import { InterviewState } from './ngxs/interview.state';

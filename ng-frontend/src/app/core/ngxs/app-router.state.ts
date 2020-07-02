@@ -14,16 +14,12 @@ export interface AppRouterStateModel {
   inAuditListEdit: boolean;
   inAuditOverview: boolean;
   inInterview: boolean;
-  inContactPeopleList: boolean;
-  inContactPeopleListEdit: boolean;
+  inContactPersonsList: boolean;
+  inContactPersonsListEdit: boolean;
 }
 
 /**
- * State for handling the routing of the application.
- *
- * Has:
- * Action handler to navigate by url.
- * Static selectors to select route param id's of audits, interviews, contactPerson and facCrit.
+ * State for handling the application's routing and routes.
  */
 @State<AppRouterStateModel>({
   name: 'routerState',
@@ -37,8 +33,8 @@ export interface AppRouterStateModel {
     inAuditListEdit: false,
     inAuditOverview: false,
     inInterview: false,
-    inContactPeopleList: false,
-    inContactPeopleListEdit: false,
+    inContactPersonsList: false,
+    inContactPersonsListEdit: false,
   },
 })
 @Injectable()
@@ -47,16 +43,15 @@ export class AppRouterState implements NgxsOnInit {
 
   /**
    * Subscribes to the router's completed navigation events and retrieves
-   * the query parameters of Audit, ContactPerson, FacCrit and Interview ID's
-   * from the current url.
+   * the current route and it's query parameters from the url.
    */
   ngxsOnInit({ patchState }: StateContext<AppRouterStateModel>) {
     const auditListRegex = /^\/audits$/;
-    const auditListEditRegex = /^\/audits\/([^\/]*)\/edit$/;
-    const auditOverviewRegex = /^\/audits\/([^\/]*)\/interviews(\/new){0,1}$/;
-    const interviewRegex = /^\/audits\/([^\/]*)\/interviews\/([^\/]*)\/([^\/]*)$/;
-    const contactPeopleRegex = /^\/contact-people$/;
-    const contactPersonEdit = /^\/contact-people\/([^\/]*)\/edit$/;
+    const contactPersonsRegex = /^\/contact-persons$/;
+    const auditListEditRegex = /^\/audits\/[^\/]*\/edit$/;
+    const contactPersonEdit = /^\/contact-persons\/[^\/]*\/edit$/;
+    const auditOverviewRegex = /^\/audits\/[^\/]*\/interviews\/new{0,1}$/;
+    const interviewRegex = /^\/audits\/[^\/]*\/interviews\/[^\/]*\/[^\/]*$/;
 
     this.router.events
       ?.pipe(filter(obj => obj instanceof NavigationEnd))
@@ -70,7 +65,7 @@ export class AppRouterState implements NgxsOnInit {
             facCritId: isNaN(+params[5]) ? null : +params[5],
             contactPersonId: null,
           });
-        } else if (params[1] === 'contact-people') {
+        } else {
           patchState({
             contactPersonId: isNaN(+params[2]) ? null : +params[2],
             auditId: null,
@@ -84,8 +79,8 @@ export class AppRouterState implements NgxsOnInit {
           inAuditListEdit: auditListEditRegex.test(url),
           inAuditOverview: auditOverviewRegex.test(url),
           inInterview: interviewRegex.test(url),
-          inContactPeopleList: contactPeopleRegex.test(url),
-          inContactPeopleListEdit: contactPersonEdit.test(url),
+          inContactPersonsList: contactPersonsRegex.test(url),
+          inContactPersonsListEdit: contactPersonEdit.test(url),
         });
       });
   }
@@ -131,18 +126,15 @@ export class AppRouterState implements NgxsOnInit {
   }
 
   @Selector()
-  static inContactPeopleList(state: AppRouterStateModel) {
-    return state.inContactPeopleList;
+  static inContactPersonsList(state: AppRouterStateModel) {
+    return state.inContactPersonsList;
   }
 
   @Selector()
-  static inContactPeopleListEdit(state: AppRouterStateModel) {
-    return state.inContactPeopleListEdit;
+  static inContactPersonsListEdit(state: AppRouterStateModel) {
+    return state.inContactPersonsListEdit;
   }
 
-  /**
-   * Navigates to the given route.
-   */
   @Action(Navigate)
   navigate(_: StateContext<AppRouterStateModel>, { route }: Navigate) {
     this.ngZone.run(() => this.router.navigate([route]));

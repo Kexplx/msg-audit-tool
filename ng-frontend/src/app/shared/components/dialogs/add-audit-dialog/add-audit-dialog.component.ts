@@ -7,7 +7,7 @@ import { AddAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 
 @Component({
   selector: 'app-add-audit-dialog',
@@ -16,7 +16,7 @@ import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
 })
 export class AddAuditDialogComponent implements AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
-  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
   dialogRef: NbDialogRef<any>;
 
   constructor(

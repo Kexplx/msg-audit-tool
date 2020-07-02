@@ -8,7 +8,7 @@ import { Audit } from 'src/app/core/data/models/audit.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-people.state';
+import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
@@ -18,7 +18,7 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 })
 export class EditAuditDialogComponent implements OnInit, AfterViewInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
-  @Select(ContactPersonState.contactPeople) contactPeople$: Observable<ContactPerson[]>;
+  @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
   dialogRef: NbDialogRef<any>;
