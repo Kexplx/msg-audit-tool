@@ -75,6 +75,24 @@ public class AnswerIntegrationTest {
     }
 
     @Test
+    public void getAllAnswers(){
+        Answer answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setReason("ReasonBefore");
+        answerRepository.save(answer);
+
+        String url = "/answers";
+
+        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
+                });
+
+        Assert.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
     public void getAnswersByInterviewId() {
         Answer answer = new Answer();
         answer.setQuestionId(question.getId());
