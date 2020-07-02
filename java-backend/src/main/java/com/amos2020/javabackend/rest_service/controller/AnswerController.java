@@ -41,6 +41,19 @@ public class AnswerController {
     }
 
     /**
+     * Get all answers
+     *
+     * @return List of Answers
+     * @throws Exception
+     */
+    public List<BasicAnswerResponse> getAllAnswers() throws Exception {
+        List<BasicAnswerResponse> response = new ArrayList<>();
+        List<Answer> answers = answerService.getAll();
+        answers.forEach(a -> response.add(new BasicAnswerResponse(a)));
+        return response;
+    }
+
+    /**
      * Get an answer by interview id and question id
      *
      * @param interviewId int
