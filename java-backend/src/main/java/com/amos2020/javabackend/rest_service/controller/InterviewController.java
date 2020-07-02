@@ -69,7 +69,7 @@ public class InterviewController {
      */
     public List<BasicInterviewResponse> getAllInterviewsByAuditId(int auditId) throws NotFoundException {
         List<BasicInterviewResponse> responses = new ArrayList<>();
-        for (Interview interview : interviewService.getAllInterviews()) {
+        for (Interview interview : interviewService.getAllInterviewsByAuditId(auditId)) {
             responses.add(new BasicInterviewResponse(interview, getContactPersonsForInterview(interview)));
         }
         return responses;
