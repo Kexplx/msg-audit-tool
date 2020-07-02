@@ -58,7 +58,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -70,7 +70,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -89,7 +89,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -100,7 +100,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -121,7 +121,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -133,7 +133,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -154,7 +154,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -166,7 +166,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -189,7 +189,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -201,7 +201,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -220,7 +220,7 @@ public class AuditRestServiceTest {
         request.setAuditName(auditName);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -230,7 +230,7 @@ public class AuditRestServiceTest {
         audit.setEndDate(endDate);
 
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -249,7 +249,7 @@ public class AuditRestServiceTest {
         request.setAuditName(auditName);
         request.setStartDate(startDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -259,7 +259,7 @@ public class AuditRestServiceTest {
         audit.setStatus(AuditStatus.OPEN);
 
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -280,7 +280,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -292,7 +292,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -311,7 +311,7 @@ public class AuditRestServiceTest {
         request.setAuditName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -323,7 +323,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -344,7 +344,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -356,7 +356,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -377,7 +377,7 @@ public class AuditRestServiceTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(scopes);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         String requestAsJson = buildJson(request);
 
         Audit audit = new Audit();
@@ -389,7 +389,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -420,7 +420,7 @@ public class AuditRestServiceTest {
             audit.setEndDate(endDate);
         }
 
-        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPeople())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits")
                 .contentType(MediaType.APPLICATION_JSON)

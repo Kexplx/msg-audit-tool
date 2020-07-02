@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.rest_service.controller;
 
 import com.amos2020.javabackend.entity.*;
+import com.amos2020.javabackend.rest_service.request.interview.InterviewPerson;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.amos2020.javabackend.service.*;
 import javassist.NotFoundException;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -41,8 +41,8 @@ public class InterviewController {
      */
     public BasicInterviewResponse getInterviewById(int interviewId) throws NotFoundException {
         Interview interview = interviewService.getInterviewById(interviewId);
-        List<ContactPerson> interviewedContactPeople = getContactPeopleForInterview(interview);
-        return new BasicInterviewResponse(interview, interviewedContactPeople);
+        List<ContactPerson> interviewedContactPersons = getContactPersonsForInterview(interview);
+        return new BasicInterviewResponse(interview, interviewedContactPersons);
     }
 
     /**
@@ -54,7 +54,7 @@ public class InterviewController {
     public List<BasicInterviewResponse> getAllInterviews() throws NotFoundException {
         List<BasicInterviewResponse> responses = new ArrayList<>();
         for (Interview interview : interviewService.getAllInterviews()) {
-            responses.add(new BasicInterviewResponse(interview, getContactPeopleForInterview(interview)));
+            responses.add(new BasicInterviewResponse(interview, getContactPersonsForInterview(interview)));
         }
         return responses;
     }
@@ -70,30 +70,32 @@ public class InterviewController {
     public List<BasicInterviewResponse> getAllInterviewsByAuditId(int auditId) throws NotFoundException {
         List<BasicInterviewResponse> responses = new ArrayList<>();
         for (Interview interview : interviewService.getAllInterviews()) {
-            responses.add(new BasicInterviewResponse(interview, getContactPeopleForInterview(interview)));
+            responses.add(new BasicInterviewResponse(interview, getContactPersonsForInterview(interview)));
         }
         return responses;
     }
 
     /**
-     * Create a new Interview, the associated InterviewContactPeople and empty Answers for the scope of FacCrits
+     * Create a new Interview, the associated InterviewContactPersons and empty Answers for the scope of FacCrits
      *
      * @param auditId           int
      * @param startDate         Date
      * @param endDate           Date
-     * @param interviewedPeople HashMap of ContactPersonId and Role
+     * @param interviewedPeople List of ContactPersonId and Role
      * @param interviewScope    List of FacCritIds
      * @return New interview
      * @throws NotFoundException If the auditId, an contactPersonId or an facCritId is invalid
      */
-    public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, String goal, HashMap<Integer, String> interviewedPeople, List<Integer> interviewScope) throws NotFoundException {
+    public BasicInterviewResponse createInterview(int auditId, Date startDate, Date endDate, String goal, List<InterviewPerson> interviewedPeople, List<Integer> interviewScope) throws NotFoundException {
         auditService.getAuditById(auditId);
-        List<ContactPerson> contactPeople = contactPersonService.getAllByIds(new ArrayList<>(interviewedPeople.keySet()));
+        List<Integer> ContactPersonIds = new ArrayList<>();
+        interviewedPeople.forEach(item -> ContactPersonIds.add(item.getId()));
+        List<ContactPerson> contactPersons = contactPersonService.getAllByIds(ContactPersonIds);
         facCritService.getAllById(interviewScope);
 
         Interview interview = interviewService.createInterview(auditId, startDate, endDate, goal);
-        for (int contactPersonId : interviewedPeople.keySet()) {
-            interviewContactPersonService.create(interview.getId(), contactPersonId, interviewedPeople.get(contactPersonId));
+        for (InterviewPerson interviewPerson : interviewedPeople) {
+            interviewContactPersonService.create(interview.getId(), interviewPerson.getId(), interviewPerson.getRole());
         }
 
         // create empty Answers
@@ -104,7 +106,7 @@ public class InterviewController {
             }
         }
         interview.setAnswersById(answerService.getAnswersByInterviewId(interview.getId()));
-        return new BasicInterviewResponse(interview, contactPeople);
+        return new BasicInterviewResponse(interview, contactPersons);
     }
 
     /**
@@ -124,7 +126,7 @@ public class InterviewController {
         interview.setStatus(status);
         interview.setGoal(goal);
         interviewService.updateInterview(interview);
-        return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
+        return new BasicInterviewResponse(interview, getContactPersonsForInterview(interview));
     }
 
     /**
@@ -147,7 +149,7 @@ public class InterviewController {
             interview.getInterviewContactPeopleById().add(interviewContactPerson);
             interviewService.updateInterview(interview);
         }
-        return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
+        return new BasicInterviewResponse(interview, getContactPersonsForInterview(interview));
     }
 
     /**
@@ -171,20 +173,20 @@ public class InterviewController {
         interviewContactPersonService.delete(interviewId, contactPersonId);
         interview.getInterviewContactPeopleById().remove(interviewContactPerson);
         interview = interviewService.updateInterview(interview);
-        return new BasicInterviewResponse(interview, getContactPeopleForInterview(interview));
+        return new BasicInterviewResponse(interview, getContactPersonsForInterview(interview));
     }
 
     /**
-     * Helper method for receiving the List of ContactPeople associated with the Interview
+     * Helper method for receiving the List of ContactPersons associated with the Interview
      *
      * @param interview Interview
-     * @return List of ContactPeople
+     * @return List of ContactPersons
      * @throws NotFoundException If stored contactPersonIds are not valid and therefore can not be found
      */
-    private List<ContactPerson> getContactPeopleForInterview(Interview interview) throws NotFoundException {
-        List<Integer> contactPeopleIds = new ArrayList<>();
-        interview.getInterviewContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
-        return contactPersonService.getAllByIds(contactPeopleIds);
+    private List<ContactPerson> getContactPersonsForInterview(Interview interview) throws NotFoundException {
+        List<Integer> ContactPersonIds = new ArrayList<>();
+        interview.getInterviewContactPeopleById().forEach(item -> ContactPersonIds.add(item.getContactPersonId()));
+        return contactPersonService.getAllByIds(ContactPersonIds);
     }
 
     /**

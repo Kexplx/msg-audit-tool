@@ -5,6 +5,7 @@ import com.amos2020.javabackend.entity.InterviewStatus;
 import com.amos2020.javabackend.rest_service.controller.InterviewController;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
 import com.amos2020.javabackend.rest_service.request.interview.InterviewAddContactPersonRequest;
+import com.amos2020.javabackend.rest_service.request.interview.InterviewPerson;
 import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.amos2020.javabackend.rest_service.response.BasicInterviewResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -23,7 +24,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -84,7 +84,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal("testGoal");
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -107,7 +107,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(0);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -129,7 +129,7 @@ public class InterviewRestServiceTest {
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -152,7 +152,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1000);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setGoal("testGoal");
         request.setInterviewScope(new ArrayList<>());
 
@@ -177,7 +177,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(null);
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal("testGoal");
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -201,7 +201,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-26"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal("testGoal");
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -213,22 +213,22 @@ public class InterviewRestServiceTest {
     }
 
     @Test
-    public void createInterviewWithContactPeopleIdIsInvalid_returns400() throws Exception {
+    public void createInterviewWithContactPersonIdIsInvalid_returns400() throws Exception {
         Interview interview = new Interview();
         interview.setAnswersById(new ArrayList<>());
         interview.setInterviewContactPeopleById(new ArrayList<>());
         given(interviewController.createInterview(anyInt(), any(), any(), anyString(), any(), anyList())).willReturn(new BasicInterviewResponse(interview, new ArrayList<>()));
 
 
-        HashMap<Integer, String> map = new HashMap<>();
-        map.put(-1, "role");
+        List<InterviewPerson> map = new ArrayList<>();
+        map.add(new InterviewPerson(-1, "Role"));
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal("testGoal");
-        request.setInterviewedPeople(map);
+        request.setInterviewedContactPersons(map);
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -247,15 +247,15 @@ public class InterviewRestServiceTest {
         given(interviewController.createInterview(anyInt(), any(), any(), anyString(), any(), anyList())).willThrow(NotFoundException.class);
 
 
-        HashMap<Integer, String> map = new HashMap<>();
-        map.put(100000, "role");
+        List<InterviewPerson> map = new ArrayList<>();
+        map.add(new InterviewPerson(100000, "Role"));
 
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-16"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal("testGoal");
-        request.setInterviewedPeople(map);
+        request.setInterviewedContactPersons(map);
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -278,7 +278,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal("testGoal");
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         ArrayList<Integer> scope = new ArrayList<>();
         scope.add(0);
         request.setInterviewScope(scope);
@@ -303,7 +303,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal(null);
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -326,7 +326,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal(StringUtils.repeat("*", 1025));
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -349,7 +349,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setGoal(StringUtils.repeat("*", 1024));
-        request.setInterviewedPeople(new HashMap<>());
+        request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);

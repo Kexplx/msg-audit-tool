@@ -8,6 +8,7 @@ import com.amos2020.javabackend.repository.FacCritRepository;
 import com.amos2020.javabackend.repository.QuestionRepository;
 import com.amos2020.javabackend.rest_service.request.interview.CreateInterviewRequest;
 import com.amos2020.javabackend.rest_service.request.interview.InterviewAddContactPersonRequest;
+import com.amos2020.javabackend.rest_service.request.interview.InterviewPerson;
 import com.amos2020.javabackend.rest_service.request.interview.UpdateInterviewRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +28,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
@@ -77,9 +77,9 @@ public class InterviewRestServiceIntegrationTest {
     @Autowired
     private QuestionRepository questionRepository;
     private Audit audit;
-    private List<ContactPerson> contactPeople = new ArrayList<>();
+    private List<ContactPerson> contactPersons = new ArrayList<>();
     private List<Integer> facCritIds = new ArrayList<>();
-    private HashMap<Integer, String> interviewedPeople = new HashMap<>();
+    private List<InterviewPerson> interviewedPeople = new ArrayList<>();
 
     @Before
     public void setup() {
@@ -103,8 +103,8 @@ public class InterviewRestServiceIntegrationTest {
         contactPerson.setCorporateDivision(TEST_CORPORATE_DIVISION);
         contactPerson = contactPersonRepository.save(contactPerson);
 
-        contactPeople.add(contactPerson);
-        interviewedPeople.put(contactPerson.getId(), "TestRole");
+        contactPersons.add(contactPerson);
+        interviewedPeople.add(new InterviewPerson(contactPerson.getId(), "TestRole"));
 
         FacCrit facCrit = new FacCrit();
         facCrit.setName("Effektivität");
@@ -131,17 +131,17 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
                 .andExpect(jsonPath("$.goal").value(VALID_GOAL))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.interviewedPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.interviewedPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.interviewedPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.interviewedPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.interviewedPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.interviewedPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.interviewedPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.interviewedPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.interviewedPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
                 .andReturn();
     }
 
@@ -175,17 +175,17 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
                 .andExpect(jsonPath("$.goal").value(VALID_GOAL))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.interviewedPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.interviewedPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.interviewedPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.interviewedPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.interviewedPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.interviewedPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.interviewedPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.interviewedPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.interviewedPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
                 .andReturn();
     }
 
@@ -246,8 +246,8 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void createInterviewWithContactPeopleIdIsInvalid_returns400() throws Exception {
-        interviewedPeople.put(0, "Invalid");
+    public void createInterviewWithContactPersonIdIsInvalid_returns400() throws Exception {
+        interviewedPeople.add(new InterviewPerson(0, "Invalid"));
         CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
@@ -259,7 +259,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithContactPersonNotExisting_returns404() throws Exception {
-        interviewedPeople.put(100, "Not existing");
+        interviewedPeople.add(new InterviewPerson(100, "Not existing"));
         CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
@@ -341,17 +341,17 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.goal").value(VALID_GOAL))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.FINISHED.toString()))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.interviewedPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.interviewedPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.interviewedPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.interviewedPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.interviewedPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.interviewedPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.interviewedPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.interviewedPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.interviewedPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
                 .andReturn();
     }
 
@@ -381,17 +381,17 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.status").value(InterviewStatus.FINISHED.toString()))
                 .andExpect(jsonPath("$.goal").value(VALID_GOAL))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.interviewedPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.interviewedPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.interviewedPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.interviewedPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.interviewedPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.interviewedPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.interviewedPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.interviewedPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.interviewedPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
                 .andReturn();
     }
 
@@ -477,27 +477,27 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
                 .andExpect(jsonPath("$.goal").value(VALID_GOAL))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(2)))
-                .andExpect(jsonPath("$.interviewedPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.interviewedPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.interviewedPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.interviewedPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.interviewedPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.interviewedPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.interviewedPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.interviewedPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.interviewedPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.interviewedPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
-                .andExpect(jsonPath("$.interviewedPeople[1].id").value(contactPersonId))
-                .andExpect(jsonPath("$.interviewedPeople[1].salutation").value(TEST_SALUTATION.toString()))
-                .andExpect(jsonPath("$.interviewedPeople[1].title").value(TEST_TITLE))
-                .andExpect(jsonPath("$.interviewedPeople[1].forename").value(TEST_FORENAME))
-                .andExpect(jsonPath("$.interviewedPeople[1].surname").value(TEST_SURNAME))
-                .andExpect(jsonPath("$.interviewedPeople[1].contactInformation").value(TEST_INFORMATION))
-                .andExpect(jsonPath("$.interviewedPeople[1].companyName").value(TEST_COMPANY))
-                .andExpect(jsonPath("$.interviewedPeople[1].department").value(TEST_DEPARTMENT))
-                .andExpect(jsonPath("$.interviewedPeople[1].sector").value(TEST_SECTOR))
-                .andExpect(jsonPath("$.interviewedPeople[1].corporateDivision").value(TEST_CORPORATE_DIVISION))
+                .andExpect(jsonPath("$.contactPersons", hasSize(2)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons[1].id").value(contactPersonId))
+                .andExpect(jsonPath("$.contactPersons[1].salutation").value(TEST_SALUTATION.toString()))
+                .andExpect(jsonPath("$.contactPersons[1].title").value(TEST_TITLE))
+                .andExpect(jsonPath("$.contactPersons[1].forename").value(TEST_FORENAME))
+                .andExpect(jsonPath("$.contactPersons[1].surname").value(TEST_SURNAME))
+                .andExpect(jsonPath("$.contactPersons[1].contactInformation").value(TEST_INFORMATION))
+                .andExpect(jsonPath("$.contactPersons[1].companyName").value(TEST_COMPANY))
+                .andExpect(jsonPath("$.contactPersons[1].department").value(TEST_DEPARTMENT))
+                .andExpect(jsonPath("$.contactPersons[1].sector").value(TEST_SECTOR))
+                .andExpect(jsonPath("$.contactPersons[1].corporateDivision").value(TEST_CORPORATE_DIVISION))
                 .andReturn();
     }
 
@@ -604,26 +604,26 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void removeContactPersonFromInterviewWithValidParameters_returns200() throws Exception {
         String interviewId = setupNewInterview();
-        mvc.perform(delete("/interviews/" + interviewId + "/delete/person/" + contactPeople.get(0).getId()))
+        mvc.perform(delete("/interviews/" + interviewId + "/delete/person/" + contactPersons.get(0).getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.auditId").value(audit.getId()))
                 .andExpect(jsonPath("$.startDate").value(VALID_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(VALID_END_DATE.toString()))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(0)))
+                .andExpect(jsonPath("$.contactPersons", hasSize(0)))
                 .andReturn();
     }
 
     @Test
     public void removeContactPersonFromInterviewWithInterviewIdNotExisting_returns404() throws Exception {
-        mvc.perform(delete("/interviews/100/delete/person/" + contactPeople.get(0).getId()))
+        mvc.perform(delete("/interviews/100/delete/person/" + contactPersons.get(0).getId()))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void removeContactPersonFromInterviewWithInvalidInterviewId_returns400() throws Exception {
-        mvc.perform(delete("/interviews/0/delete/person/" + contactPeople.get(0).getId()))
+        mvc.perform(delete("/interviews/0/delete/person/" + contactPersons.get(0).getId()))
                 .andExpect(status().isBadRequest());
     }
 
@@ -655,17 +655,17 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
                 .andExpect(jsonPath("$.goal").value(VALID_GOAL))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople", hasSize(1)))
-                .andExpect(jsonPath("$.interviewedPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.interviewedPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.interviewedPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.interviewedPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.interviewedPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.interviewedPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.interviewedPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.interviewedPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.interviewedPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.interviewedPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
                 .andReturn().getResponse().getContentAsString().split(",")[0];
 
         return result.substring(result.indexOf(":") + 1);
@@ -686,13 +686,13 @@ public class InterviewRestServiceIntegrationTest {
         return contactPerson.getId();
     }
 
-    private CreateInterviewRequest getCreateInterviewRequest(int auditId, Date startDate, Date endDate, String goal, HashMap<Integer, String> interviewedPeople, List<Integer> scope) {
+    private CreateInterviewRequest getCreateInterviewRequest(int auditId, Date startDate, Date endDate, String goal, List<InterviewPerson> interviewedPeople, List<Integer> scope) {
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(auditId);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setGoal(goal);
-        request.setInterviewedPeople(interviewedPeople);
+        request.setInterviewedContactPersons(interviewedPeople);
         request.setInterviewScope(scope);
         return request;
     }

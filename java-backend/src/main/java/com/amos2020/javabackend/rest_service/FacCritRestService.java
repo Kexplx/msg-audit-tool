@@ -33,7 +33,7 @@ public class FacCritRestService {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Receive all existing facCrits")
     })
-    @GetMapping("/faccrits")
+    @GetMapping("/facCrits")
     public ResponseEntity<List<BasicFacCritResponse>> getAllFacCrits() {
         return ResponseEntity.ok(facCritController.getAllFacCrits());
     }

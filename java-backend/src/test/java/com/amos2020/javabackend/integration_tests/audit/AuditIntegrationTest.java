@@ -70,7 +70,7 @@ public class AuditIntegrationTest {
     List<Integer> facCritList = new ArrayList<>();
     List<FacCrit> facCrits = new ArrayList<>();
     List<Integer> contacts = new ArrayList<>();
-    List<ContactPerson> contactPeople = new ArrayList<>();
+    List<ContactPerson> contactPersons = new ArrayList<>();
     @Autowired
     private MockMvc mvc;
     @Autowired
@@ -95,7 +95,7 @@ public class AuditIntegrationTest {
         contactPerson = contactPersonRepository.save(contactPerson);
 
         contacts.add(contactPerson.getId());
-        contactPeople.add(contactPerson);
+        contactPersons.add(contactPerson);
 
         FacCrit facCrit = new FacCrit();
         facCrit.setName("Effektivität");
@@ -128,17 +128,17 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
                 .andExpect(jsonPath("$.scope[*].name", containsInAnyOrder(facCrits.get(0).getName())))
-                .andExpect(jsonPath("$.contactPeople", hasSize(1)))
-                .andExpect(jsonPath("$.contactPeople[*].id", containsInAnyOrder(contactPeople.get(0).getId())))
-                .andExpect(jsonPath("$.contactPeople[*].salutation", containsInAnyOrder(contactPeople.get(0).getSalutation().toString())))
-                .andExpect(jsonPath("$.contactPeople[*].title", containsInAnyOrder(contactPeople.get(0).getTitle())))
-                .andExpect(jsonPath("$.contactPeople[*].forename", containsInAnyOrder(contactPeople.get(0).getForename())))
-                .andExpect(jsonPath("$.contactPeople[*].surname", containsInAnyOrder(contactPeople.get(0).getSurname())))
-                .andExpect(jsonPath("$.contactPeople[*].contactInformation", containsInAnyOrder(contactPeople.get(0).getContactInformation())))
-                .andExpect(jsonPath("$.contactPeople[*].companyName", containsInAnyOrder(contactPeople.get(0).getCompanyName())))
-                .andExpect(jsonPath("$.contactPeople[*].department", containsInAnyOrder(contactPeople.get(0).getDepartment())))
-                .andExpect(jsonPath("$.contactPeople[*].sector", containsInAnyOrder(contactPeople.get(0).getSector())))
-                .andExpect(jsonPath("$.contactPeople[*].corporateDivision", containsInAnyOrder(contactPeople.get(0).getCorporateDivision())))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[*].id", containsInAnyOrder(contactPersons.get(0).getId())))
+                .andExpect(jsonPath("$.contactPersons[*].salutation", containsInAnyOrder(contactPersons.get(0).getSalutation().toString())))
+                .andExpect(jsonPath("$.contactPersons[*].title", containsInAnyOrder(contactPersons.get(0).getTitle())))
+                .andExpect(jsonPath("$.contactPersons[*].forename", containsInAnyOrder(contactPersons.get(0).getForename())))
+                .andExpect(jsonPath("$.contactPersons[*].surname", containsInAnyOrder(contactPersons.get(0).getSurname())))
+                .andExpect(jsonPath("$.contactPersons[*].contactInformation", containsInAnyOrder(contactPersons.get(0).getContactInformation())))
+                .andExpect(jsonPath("$.contactPersons[*].companyName", containsInAnyOrder(contactPersons.get(0).getCompanyName())))
+                .andExpect(jsonPath("$.contactPersons[*].department", containsInAnyOrder(contactPersons.get(0).getDepartment())))
+                .andExpect(jsonPath("$.contactPersons[*].sector", containsInAnyOrder(contactPersons.get(0).getSector())))
+                .andExpect(jsonPath("$.contactPersons[*].corporateDivision", containsInAnyOrder(contactPersons.get(0).getCorporateDivision())))
                 .andReturn();
     }
 
@@ -279,17 +279,17 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
                 .andExpect(jsonPath("$.scope[*].name", containsInAnyOrder(facCrits.get(0).getName())))
-                .andExpect(jsonPath("$.contactPeople", hasSize(1)))
-                .andExpect(jsonPath("$.contactPeople[*].id", containsInAnyOrder(contactPeople.get(0).getId())))
-                .andExpect(jsonPath("$.contactPeople[*].salutation", containsInAnyOrder(contactPeople.get(0).getSalutation().toString())))
-                .andExpect(jsonPath("$.contactPeople[*].title", containsInAnyOrder(contactPeople.get(0).getTitle())))
-                .andExpect(jsonPath("$.contactPeople[*].forename", containsInAnyOrder(contactPeople.get(0).getForename())))
-                .andExpect(jsonPath("$.contactPeople[*].surname", containsInAnyOrder(contactPeople.get(0).getSurname())))
-                .andExpect(jsonPath("$.contactPeople[*].contactInformation", containsInAnyOrder(contactPeople.get(0).getContactInformation())))
-                .andExpect(jsonPath("$.contactPeople[*].companyName", containsInAnyOrder(contactPeople.get(0).getCompanyName())))
-                .andExpect(jsonPath("$.contactPeople[*].department", containsInAnyOrder(contactPeople.get(0).getDepartment())))
-                .andExpect(jsonPath("$.contactPeople[*].sector", containsInAnyOrder(contactPeople.get(0).getSector())))
-                .andExpect(jsonPath("$.contactPeople[*].corporateDivision", containsInAnyOrder(contactPeople.get(0).getCorporateDivision())))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[*].id", containsInAnyOrder(contactPersons.get(0).getId())))
+                .andExpect(jsonPath("$.contactPersons[*].salutation", containsInAnyOrder(contactPersons.get(0).getSalutation().toString())))
+                .andExpect(jsonPath("$.contactPersons[*].title", containsInAnyOrder(contactPersons.get(0).getTitle())))
+                .andExpect(jsonPath("$.contactPersons[*].forename", containsInAnyOrder(contactPersons.get(0).getForename())))
+                .andExpect(jsonPath("$.contactPersons[*].surname", containsInAnyOrder(contactPersons.get(0).getSurname())))
+                .andExpect(jsonPath("$.contactPersons[*].contactInformation", containsInAnyOrder(contactPersons.get(0).getContactInformation())))
+                .andExpect(jsonPath("$.contactPersons[*].companyName", containsInAnyOrder(contactPersons.get(0).getCompanyName())))
+                .andExpect(jsonPath("$.contactPersons[*].department", containsInAnyOrder(contactPersons.get(0).getDepartment())))
+                .andExpect(jsonPath("$.contactPersons[*].sector", containsInAnyOrder(contactPersons.get(0).getSector())))
+                .andExpect(jsonPath("$.contactPersons[*].corporateDivision", containsInAnyOrder(contactPersons.get(0).getCorporateDivision())))
                 .andReturn();
     }
 
@@ -324,17 +324,17 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
                 .andExpect(jsonPath("$.scope[*].name", containsInAnyOrder(facCrits.get(0).getName())))
-                .andExpect(jsonPath("$.contactPeople", hasSize(1)))
-                .andExpect(jsonPath("$.contactPeople[*].id", containsInAnyOrder(contactPeople.get(0).getId())))
-                .andExpect(jsonPath("$.contactPeople[*].salutation", containsInAnyOrder(contactPeople.get(0).getSalutation().toString())))
-                .andExpect(jsonPath("$.contactPeople[*].title", containsInAnyOrder(contactPeople.get(0).getTitle())))
-                .andExpect(jsonPath("$.contactPeople[*].forename", containsInAnyOrder(contactPeople.get(0).getForename())))
-                .andExpect(jsonPath("$.contactPeople[*].surname", containsInAnyOrder(contactPeople.get(0).getSurname())))
-                .andExpect(jsonPath("$.contactPeople[*].contactInformation", containsInAnyOrder(contactPeople.get(0).getContactInformation())))
-                .andExpect(jsonPath("$.contactPeople[*].companyName", containsInAnyOrder(contactPeople.get(0).getCompanyName())))
-                .andExpect(jsonPath("$.contactPeople[*].department", containsInAnyOrder(contactPeople.get(0).getDepartment())))
-                .andExpect(jsonPath("$.contactPeople[*].sector", containsInAnyOrder(contactPeople.get(0).getSector())))
-                .andExpect(jsonPath("$.contactPeople[*].corporateDivision", containsInAnyOrder(contactPeople.get(0).getCorporateDivision())))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[*].id", containsInAnyOrder(contactPersons.get(0).getId())))
+                .andExpect(jsonPath("$.contactPersons[*].salutation", containsInAnyOrder(contactPersons.get(0).getSalutation().toString())))
+                .andExpect(jsonPath("$.contactPersons[*].title", containsInAnyOrder(contactPersons.get(0).getTitle())))
+                .andExpect(jsonPath("$.contactPersons[*].forename", containsInAnyOrder(contactPersons.get(0).getForename())))
+                .andExpect(jsonPath("$.contactPersons[*].surname", containsInAnyOrder(contactPersons.get(0).getSurname())))
+                .andExpect(jsonPath("$.contactPersons[*].contactInformation", containsInAnyOrder(contactPersons.get(0).getContactInformation())))
+                .andExpect(jsonPath("$.contactPersons[*].companyName", containsInAnyOrder(contactPersons.get(0).getCompanyName())))
+                .andExpect(jsonPath("$.contactPersons[*].department", containsInAnyOrder(contactPersons.get(0).getDepartment())))
+                .andExpect(jsonPath("$.contactPersons[*].sector", containsInAnyOrder(contactPersons.get(0).getSector())))
+                .andExpect(jsonPath("$.contactPersons[*].corporateDivision", containsInAnyOrder(contactPersons.get(0).getCorporateDivision())))
                 .andReturn();
     }
 
@@ -457,26 +457,26 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
                 .andExpect(jsonPath("$.scope[*].name", containsInAnyOrder(facCrits.get(0).getName())))
-                .andExpect(jsonPath("$.contactPeople", hasSize(2)))
-                .andExpect(jsonPath("$.contactPeople[0].id").value(contactPeople.get(0).getId()))
-                .andExpect(jsonPath("$.contactPeople[0].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.contactPeople[0].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.contactPeople[0].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.contactPeople[0].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.contactPeople[0].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.contactPeople[0].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.contactPeople[0].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.contactPeople[0].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.contactPeople[0].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
-                .andExpect(jsonPath("$.contactPeople[1].salutation").value(contactPeople.get(0).getSalutation().toString()))
-                .andExpect(jsonPath("$.contactPeople[1].title").value(contactPeople.get(0).getTitle()))
-                .andExpect(jsonPath("$.contactPeople[1].forename").value(contactPeople.get(0).getForename()))
-                .andExpect(jsonPath("$.contactPeople[1].surname").value(contactPeople.get(0).getSurname()))
-                .andExpect(jsonPath("$.contactPeople[1].contactInformation").value(contactPeople.get(0).getContactInformation()))
-                .andExpect(jsonPath("$.contactPeople[1].companyName").value(contactPeople.get(0).getCompanyName()))
-                .andExpect(jsonPath("$.contactPeople[1].department").value(contactPeople.get(0).getDepartment()))
-                .andExpect(jsonPath("$.contactPeople[1].sector").value(contactPeople.get(0).getSector()))
-                .andExpect(jsonPath("$.contactPeople[1].corporateDivision").value(contactPeople.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons", hasSize(2)))
+                .andExpect(jsonPath("$.contactPersons[0].id").value(contactPersons.get(0).getId()))
+                .andExpect(jsonPath("$.contactPersons[0].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[0].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[0].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[0].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[0].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[0].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[0].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[0].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[0].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
+                .andExpect(jsonPath("$.contactPersons[1].salutation").value(contactPersons.get(0).getSalutation().toString()))
+                .andExpect(jsonPath("$.contactPersons[1].title").value(contactPersons.get(0).getTitle()))
+                .andExpect(jsonPath("$.contactPersons[1].forename").value(contactPersons.get(0).getForename()))
+                .andExpect(jsonPath("$.contactPersons[1].surname").value(contactPersons.get(0).getSurname()))
+                .andExpect(jsonPath("$.contactPersons[1].contactInformation").value(contactPersons.get(0).getContactInformation()))
+                .andExpect(jsonPath("$.contactPersons[1].companyName").value(contactPersons.get(0).getCompanyName()))
+                .andExpect(jsonPath("$.contactPersons[1].department").value(contactPersons.get(0).getDepartment()))
+                .andExpect(jsonPath("$.contactPersons[1].sector").value(contactPersons.get(0).getSector()))
+                .andExpect(jsonPath("$.contactPersons[1].corporateDivision").value(contactPersons.get(0).getCorporateDivision()))
                 .andReturn();
     }
 
@@ -499,7 +499,7 @@ public class AuditIntegrationTest {
     @Test
     public void removeContactPersonFromAuditWithValidIds_returns200() throws Exception {
         String auditId = setupNewAudit();
-        mvc.perform(delete("/audits/" + auditId + "/contactpersons/" + contactPeople.get(0).getId()))
+        mvc.perform(delete("/audits/" + auditId + "/contactpersons/" + contactPersons.get(0).getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.auditName").value(VALID_NAME))
                 .andExpect(jsonPath("$.startDate").value(VALID_START_DATE.toString()))
@@ -509,13 +509,13 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
                 .andExpect(jsonPath("$.scope[*].name", containsInAnyOrder(facCrits.get(0).getName())))
-                .andExpect(jsonPath("$.contactPeople", hasSize(0)))
+                .andExpect(jsonPath("$.contactPersons", hasSize(0)))
                 .andReturn();
     }
 
     @Test
     public void removeContactPersonFromAuditWithInvalidAuditId_returns404() throws Exception {
-        mvc.perform(delete("/audits/0/contactpersons/" + contactPeople.get(0).getId()))
+        mvc.perform(delete("/audits/0/contactpersons/" + contactPersons.get(0).getId()))
                 .andExpect(status().isBadRequest());
     }
 
@@ -665,7 +665,7 @@ public class AuditIntegrationTest {
     public void deleteAuditValidRequest_returnsOK() throws Exception {
         String auditId = setupNewAudit();
 
-        DeleteAuditRequest request = getDeleteAuditRequest(contactPeople.get(0).getId(), Date.valueOf("2020-06-22"), "reason");
+        DeleteAuditRequest request = getDeleteAuditRequest(contactPersons.get(0).getId(), Date.valueOf("2020-06-22"), "reason");
         String requestAsJson = buildJson(request);
 
         mvc.perform(delete("/audits/" + auditId)
@@ -680,17 +680,17 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
                 .andExpect(jsonPath("$.scope[*].name", containsInAnyOrder(facCrits.get(0).getName())))
-                .andExpect(jsonPath("$.contactPeople", hasSize(1)))
-                .andExpect(jsonPath("$.contactPeople[*].id", containsInAnyOrder(contactPeople.get(0).getId())))
-                .andExpect(jsonPath("$.contactPeople[*].salutation", containsInAnyOrder(contactPeople.get(0).getSalutation().toString())))
-                .andExpect(jsonPath("$.contactPeople[*].title", containsInAnyOrder(contactPeople.get(0).getTitle())))
-                .andExpect(jsonPath("$.contactPeople[*].forename", containsInAnyOrder(contactPeople.get(0).getForename())))
-                .andExpect(jsonPath("$.contactPeople[*].surname", containsInAnyOrder(contactPeople.get(0).getSurname())))
-                .andExpect(jsonPath("$.contactPeople[*].contactInformation", containsInAnyOrder(contactPeople.get(0).getContactInformation())))
-                .andExpect(jsonPath("$.contactPeople[*].companyName", containsInAnyOrder(contactPeople.get(0).getCompanyName())))
-                .andExpect(jsonPath("$.contactPeople[*].department", containsInAnyOrder(contactPeople.get(0).getDepartment())))
-                .andExpect(jsonPath("$.contactPeople[*].sector", containsInAnyOrder(contactPeople.get(0).getSector())))
-                .andExpect(jsonPath("$.contactPeople[*].corporateDivision", containsInAnyOrder(contactPeople.get(0).getCorporateDivision())))
+                .andExpect(jsonPath("$.contactPersons", hasSize(1)))
+                .andExpect(jsonPath("$.contactPersons[*].id", containsInAnyOrder(contactPersons.get(0).getId())))
+                .andExpect(jsonPath("$.contactPersons[*].salutation", containsInAnyOrder(contactPersons.get(0).getSalutation().toString())))
+                .andExpect(jsonPath("$.contactPersons[*].title", containsInAnyOrder(contactPersons.get(0).getTitle())))
+                .andExpect(jsonPath("$.contactPersons[*].forename", containsInAnyOrder(contactPersons.get(0).getForename())))
+                .andExpect(jsonPath("$.contactPersons[*].surname", containsInAnyOrder(contactPersons.get(0).getSurname())))
+                .andExpect(jsonPath("$.contactPersons[*].contactInformation", containsInAnyOrder(contactPersons.get(0).getContactInformation())))
+                .andExpect(jsonPath("$.contactPersons[*].companyName", containsInAnyOrder(contactPersons.get(0).getCompanyName())))
+                .andExpect(jsonPath("$.contactPersons[*].department", containsInAnyOrder(contactPersons.get(0).getDepartment())))
+                .andExpect(jsonPath("$.contactPersons[*].sector", containsInAnyOrder(contactPersons.get(0).getSector())))
+                .andExpect(jsonPath("$.contactPersons[*].corporateDivision", containsInAnyOrder(contactPersons.get(0).getCorporateDivision())))
                 .andReturn();
     }
 
@@ -698,7 +698,7 @@ public class AuditIntegrationTest {
     public void deleteAuditReasonBlank__returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        DeleteAuditRequest request = getDeleteAuditRequest(contactPeople.get(0).getId(), Date.valueOf("2020-06-22"), BLANK_STRING);
+        DeleteAuditRequest request = getDeleteAuditRequest(contactPersons.get(0).getId(), Date.valueOf("2020-06-22"), BLANK_STRING);
         String requestAsJson = buildJson(request);
 
         mvc.perform(delete("/audits/" + auditId)
@@ -735,7 +735,7 @@ public class AuditIntegrationTest {
 
     @Test
     public void deleteAuditInvalidAuditId_returnsNotFound() throws Exception {
-        DeleteAuditRequest request = getDeleteAuditRequest(contactPeople.get(0).getId(), Date.valueOf("2020-06-22"), "reason");
+        DeleteAuditRequest request = getDeleteAuditRequest(contactPersons.get(0).getId(), Date.valueOf("2020-06-22"), "reason");
         String requestAsJson = buildJson(request);
 
         mvc.perform(delete("/audits/100")
@@ -789,7 +789,7 @@ public class AuditIntegrationTest {
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(facCritList);
-        request.setContactPeople(contacts);
+        request.setContactPersons(contacts);
         return request;
     }
 

@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class UpdateAuditContactPeopleRequest extends BasicRequest {
+public class UpdateAuditContactPersonsRequest extends BasicRequest {
     @Getter
     @Setter
     @NotNull

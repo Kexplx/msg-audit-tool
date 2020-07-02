@@ -48,7 +48,7 @@ public class BasicAuditResponse {
     private List<FacCrit> scope;
     @Getter
     @Setter
-    @Schema(type = "array", name = "contactPeople", example = "[{\n" +
+    @Schema(type = "array", name = "contactPersons", example = "[{\n" +
             "    \"id\": 1,\n" +
             "    \"salutation\": \"MANN\",\n" +
             "    \"title\": \"Prof\",\n" +
@@ -60,7 +60,7 @@ public class BasicAuditResponse {
             "    \"sector\": \"msg Public Sector\",\n" +
             "    \"corporateDivision\": \"Software\"\n" +
             "  }]")
-    private List<ContactPerson> contactPeople;
+    private List<ContactPerson> contactPersons;
     @Getter
     @Setter
     @Schema(type = "string", name = "cancellationDate", format = "date")
@@ -85,7 +85,7 @@ public class BasicAuditResponse {
             "  }")
     private ContactPerson cancellationContactPerson;
 
-    public BasicAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPeople) {
+    public BasicAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPersons) {
         this.auditId = audit.getId();
         this.auditName = audit.getName();
         this.startDate = audit.getStartDate();
@@ -93,7 +93,7 @@ public class BasicAuditResponse {
         this.creationDate = audit.getCreationDate();
         this.status = audit.getStatus();
         this.scope = scope;
-        this.contactPeople = contactPeople;
+        this.contactPersons = contactPersons;
         this.cancellationContactPerson = audit.getContactPersonByCancellationContactPerson();
         this.cancellationDate = audit.getCancellationDate();
         this.cancellationReason = audit.getCancellationReason();

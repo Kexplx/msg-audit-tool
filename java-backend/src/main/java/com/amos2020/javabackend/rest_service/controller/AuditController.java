@@ -38,19 +38,19 @@ public class AuditController {
      * @param startDate     Date
      * @param endDate       Date
      * @param scope         List<Integer>
-     * @param contactPeople List<Integer>
+     * @param contactPersons List<Integer>
      * @return Created Audit
      * @throws NotFoundException If a facCrit id or a contactPerson id is invalid and can not be found
      */
-    public BasicAuditResponse createAudit(String auditName, Date startDate, Date endDate, List<Integer> scope, List<Integer> contactPeople) throws NotFoundException {
+    public BasicAuditResponse createAudit(String auditName, Date startDate, Date endDate, List<Integer> scope, List<Integer> contactPersons) throws NotFoundException {
         // Create audit and save in database
         Audit audit = auditService.createAudit(auditName, startDate, endDate);
         // Create Scope
         scopeService.createScopeByFactorCriteriaList(audit.getId(), scope);
         // Create AuditContactPerson if needed
-        auditContactPersonService.createAuditContactPersons(audit.getId(), contactPeople);
+        auditContactPersonService.createAuditContactPersons(audit.getId(), contactPersons);
         // Create Response object
-        return new BasicAuditResponse(audit, facCritService.getAllById(scope), contactPersonService.getAllByIds(contactPeople));
+        return new BasicAuditResponse(audit, facCritService.getAllById(scope), contactPersonService.getAllByIds(contactPersons));
     }
 
     /**
@@ -207,9 +207,9 @@ public class AuditController {
         List<Integer> facCritIds = new ArrayList<>();
         audit.getScopesById().stream().filter(item -> !item.getRemoved()).forEach(item -> facCritIds.add(item.getFaccritId()));
 
-        List<Integer> contactPeopleIds = new ArrayList<>();
-        audit.getAuditContactPeopleById().forEach(item -> contactPeopleIds.add(item.getContactPersonId()));
+        List<Integer> ContactPersonIds = new ArrayList<>();
+        audit.getAuditContactPeopleById().forEach(item -> ContactPersonIds.add(item.getContactPersonId()));
 
-        return new BasicAuditResponse(audit, facCritService.getAllById(facCritIds), contactPersonService.getAllByIds(contactPeopleIds));
+        return new BasicAuditResponse(audit, facCritService.getAllById(facCritIds), contactPersonService.getAllByIds(ContactPersonIds));
     }
 }

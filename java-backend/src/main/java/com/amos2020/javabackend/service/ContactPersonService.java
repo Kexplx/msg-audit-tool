@@ -55,12 +55,12 @@ public class ContactPersonService {
      * @throws NotFoundException If a contactPerson id is invalid and can not be found
      */
     public List<ContactPerson> getAllByIds(List<Integer> contactPersonIds) throws NotFoundException {
-        List<ContactPerson> contactPeople = repository.findAllById(contactPersonIds);
-        if (contactPeople.size() != contactPersonIds.size()) {
+        List<ContactPerson> contactPersons = repository.findAllById(contactPersonIds);
+        if (contactPersons.size() != contactPersonIds.size()) {
             throw new NotFoundException("Not all contact person ids are valid");
         }
 
-        return contactPeople;
+        return contactPersons;
     }
 
     /**

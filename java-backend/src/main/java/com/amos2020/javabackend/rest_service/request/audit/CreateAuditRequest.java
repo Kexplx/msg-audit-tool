@@ -40,14 +40,14 @@ public class CreateAuditRequest extends BasicRequest {
 
     @Getter
     @Setter
-    @Schema(type = "Array", name = "contactPeople", example = "[1]", required = true)
-    private List<@Min(1) Integer> contactPeople;
+    @Schema(type = "Array", name = "contactPersons", example = "[1]", required = true)
+    private List<@Min(1) Integer> contactPersons;
 
     public void isValid() throws IllegalArgumentException {
         assertDatesAreValid(startDate, endDate);
 
-        if (contactPeople == null) {
-            contactPeople = new ArrayList<>();
+        if (contactPersons == null) {
+            contactPersons = new ArrayList<>();
         }
         if (scope == null) {
             scope = new ArrayList<>();

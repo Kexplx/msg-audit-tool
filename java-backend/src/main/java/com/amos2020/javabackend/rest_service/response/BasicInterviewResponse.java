@@ -57,7 +57,7 @@ public class BasicInterviewResponse {
     private Collection<Answer> answers;
     @Getter
     @Setter
-    @Schema(type = "array", name = "contactPeople", example = "[{\n" +
+    @Schema(type = "array", name = "interviewedContactPersons", example = "[{\n" +
             "    \"id\": 1,\n" +
             "    \"salutation\": \"MANN\",\n" +
             "    \"title\": \"Prof\",\n" +
@@ -69,9 +69,9 @@ public class BasicInterviewResponse {
             "    \"sector\": \"msg Public Sector\",\n" +
             "    \"corporateDivision\": \"Software\"\n" +
             "  }]")
-    private List<ContactPerson> interviewedPeople;
+    private List<ContactPerson> interviewedContactPersons;
 
-    public BasicInterviewResponse(Interview interview, List<ContactPerson> interviewedPeople) {
+    public BasicInterviewResponse(Interview interview, List<ContactPerson> interviewedContactPersons) {
         this.interviewId = interview.getId();
         this.auditId = interview.getAuditId();
         this.startDate = interview.getStartDate();
@@ -82,6 +82,6 @@ public class BasicInterviewResponse {
         if (interview.getAnswersById() != null) {
             this.answers = interview.getAnswersById();
         }
-        this.interviewedPeople = interviewedPeople;
+        this.interviewedContactPersons = interviewedContactPersons;
     }
 }
