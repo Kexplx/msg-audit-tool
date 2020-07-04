@@ -11,15 +11,11 @@ export interface AuditStateModel {
   facCrits: FacCrit[];
 }
 
-export function getId() {
-  return Math.floor(Math.random() * 12978178);
-}
-
 /**
  * State for managing the audits and facCrits of the application.
  *
  * Has: Action handlers to read, write, update and delete an audit.
- * Static and dynamic selectors to select audits and faccrits.
+ * Static and dynamic selectors to select audits and facCrits.
  */
 @State<AuditStateModel>({
   name: 'audit',
