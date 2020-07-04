@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ContactPersonState } from './ngxs/contact-person.state';
-import { AnswerState } from './ngxs/answer.state';
 import { AppRouterState } from './ngxs/app-router.state';
 import { InterviewState } from './ngxs/interview.state';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,12 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot(
-      [AuditState, InterviewState, ContactPersonState, AppRouterState, AnswerState],
-      {
-        developmentMode: !environment.production,
-      },
-    ),
+    NgxsModule.forRoot([AuditState, InterviewState, ContactPersonState, AppRouterState], {
+      developmentMode: !environment.production,
+    }),
   ],
   exports: [NgxsModule],
 })
