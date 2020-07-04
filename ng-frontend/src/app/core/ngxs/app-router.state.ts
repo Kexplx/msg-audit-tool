@@ -50,7 +50,7 @@ export class AppRouterState implements NgxsOnInit {
     const contactPersonsRegex = /^\/contact-persons$/;
     const auditListEditRegex = /^\/audits\/[^\/]*\/edit$/;
     const contactPersonEdit = /^\/contact-persons\/[^\/]*\/edit$/;
-    const auditOverviewRegex = /^\/audits\/[^\/]*\/interviews\/new{0,1}$/;
+    const auditOverviewRegex = /^\/audits\/[^\/]*\/interviews(\/new){0,1}$/;
     const interviewRegex = /^\/audits\/[^\/]*\/interviews\/[^\/]*\/[^\/]*$/;
 
     this.router.events
