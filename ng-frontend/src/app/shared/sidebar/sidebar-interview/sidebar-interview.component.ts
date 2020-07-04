@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store, Select } from '@ngxs/store';
+import { Component } from '@angular/core';
+import { Observable, forkJoin, combineLatest } from 'rxjs';
+import { Select } from '@ngxs/store';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { FacCrit } from 'src/app/core/data/models/faccrit.model';
+import { Question } from 'src/app/core/data/models/question.model';
+import { InterviewService } from 'src/app/core/http/interview.service';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
@@ -11,29 +11,33 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
   templateUrl: './sidebar-interview.component.html',
   styleUrls: ['./sidebar-interview.component.scss'],
 })
-export class SidebarInterviewComponent implements OnInit {
+export class SidebarInterviewComponent {
   @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
-  facCrit$: Observable<FacCrit>;
+  @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
+
   items: NbMenuItem[];
 
-  constructor(private store: Store, private menuService: NbMenuService) {}
-
+  constructor(private menuService: NbMenuService, private interviewService: InterviewService) {}
   ngOnInit() {
     this.items = [];
-
     this.menuService.onItemClick().subscribe(x => {
       const el = document.getElementById(x.item.data);
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    this.facCritId$.subscribe(id => {
-      this.facCrit$ = this.store.select(AuditState.facCrit(id));
+    combineLatest([this.facCritId$, this.interviewId$]).subscribe(ids => {
+      this.interviewService.getAnswersByInterviewId(ids[1]).subscribe(answers => {
+        const filtered = answers.filter(a => a.faccritId === ids[0]);
 
-      this.facCrit$.subscribe(facCrit => {
-        if (!facCrit) return;
+        const questionObservables: Observable<Question>[] = [];
+        for (const answer of filtered) {
+          questionObservables.push(this.interviewService.getQuestion(answer.questionId));
 
-        for (const question of facCrit.questions) {
-          this.items.push({ title: question.textDe, data: question.id });
+          forkJoin(questionObservables).subscribe(questions => {
+            this.items = questions.map<NbMenuItem>(q => {
+              return { title: q.textDe, data: q.id };
+            });
+          });
         }
       });
     });
