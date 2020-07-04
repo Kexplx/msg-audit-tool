@@ -29,4 +29,17 @@ public class FacCritController {
         }
         return responses;
     }
+
+    /**
+     * get all Faccrits for a Interview
+     *
+     * @param interviewId
+     * @return
+     */
+    public List<BasicFacCritResponse> getAllFacCritsByInterviewId(int interviewId){
+        List<BasicFacCritResponse> responses = new ArrayList<>();
+        List<FacCrit> facCrits = facCritService.getAllFacCritsByInterviewId(interviewId);
+        facCrits.forEach(facCrit -> responses.add(new BasicFacCritResponse(facCrit)));
+        return responses;
+    }
 }
