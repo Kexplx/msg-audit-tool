@@ -5,6 +5,7 @@ import com.amos2020.javabackend.repository.FacCritRepository;
 import javassist.NotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +55,40 @@ public class FacCritService {
      */
     public List<FacCrit> getAllFacCrits() {
         return repository.findAll();
+    }
+
+    /**
+     * Returns all Faccrits ordered by an Interview id ordered by their hierachy
+     *
+     * @param interviewId
+     * @return List<FacCrit>
+     */
+    public List<FacCrit> getAllFacCritsByInterviewId(int interviewId) {
+        List<FacCrit> facCrits = repository.getFacCritsByInterviewId(interviewId);
+        Comparator<FacCrit> comparator = new Comparator<FacCrit>() {
+            @Override
+            public int compare(FacCrit o1, FacCrit o2) {
+                if (o1.getReferenceId() == null && o2.getReferenceId() != null) {
+                    return o1.getId() < o2.getReferenceId() ? -1 : 1;
+                }
+                if (o1.getReferenceId() != null && o2.getReferenceId() == null) {
+                    return o1.getReferenceId() < o2.getId() ? -1 : 1;
+                }
+                if (o1.getReferenceId() != null && o2.getReferenceId() != null) {
+                    if(o1.getReferenceId() == o2.getReferenceId()){
+                        return o1.getId() < o2.getId() ? -1 : 1;
+                    }
+                    return o1.getReferenceId() < o2.getReferenceId() ? -1 : 1;
+                }
+
+                if (o1.getReferenceId() == null && o2.getReferenceId() == null) {
+                    return o1.getId() < o2.getId() ? -1 : 1;
+                }
+                return 0;
+            }
+        };
+        facCrits.sort(comparator);
+        return facCrits;
     }
 
 }
