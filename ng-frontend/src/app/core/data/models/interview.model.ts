@@ -8,7 +8,7 @@ export enum InterviewStatus {
 }
 
 export interface Interview {
-  id?: number;
+  interviewId?: number;
   auditId?: number;
   startDate?: number;
   endDate?: number;
