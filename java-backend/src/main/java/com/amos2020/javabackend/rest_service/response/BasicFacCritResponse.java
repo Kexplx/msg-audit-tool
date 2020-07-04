@@ -19,6 +19,10 @@ public class BasicFacCritResponse {
     @Schema(type = "String", name = "name", example = "Nützlichkeit")
     private String name;
 
+    public BasicFacCritResponse(){
+        //empty
+    }
+
     public BasicFacCritResponse(FacCrit facCrit) {
         this.id = facCrit.getId();
         this.referenceId = facCrit.getReferenceId();
