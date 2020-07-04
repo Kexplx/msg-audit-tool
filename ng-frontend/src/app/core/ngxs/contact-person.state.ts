@@ -7,7 +7,6 @@ import {
   DeleteContactPerson,
   UpdateContactPerson,
 } from './actions/contact-person.action';
-import { getId } from './audit.state';
 import { CoreService } from '../http/core.service';
 
 export interface ContactPersonStateModel {
@@ -52,7 +51,7 @@ export class ContactPersonState implements NgxsOnInit {
     this.coreService.postContactPerson(contactPerson).subscribe(contactPerson => {
       setState(
         patch({
-          contactPersons: append<ContactPerson>([{ ...contactPerson, id: getId() }]),
+          contactPersons: append<ContactPerson>([contactPerson]),
         }),
       );
     });

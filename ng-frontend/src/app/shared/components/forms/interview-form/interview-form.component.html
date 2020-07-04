@@ -7,8 +7,8 @@
           <nb-accordion-item>
             <nb-accordion-item-header class="label" data-cy="interview-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
             <nb-accordion-item-body data-cy="interview-scope-body">
-              <div class="wrapper-faccrits mt-2">
-                <div class="wrapper-faccrits-inner" *ngFor="let factor of scope | factors">
+              <div class="wrapper-facCrits mt-2">
+                <div class="wrapper-facCrits-inner" *ngFor="let factor of scope | factors">
                   <nb-checkbox [formControlName]="factor.id" data-cy="interview-scope-factor">{{ factor.name }}</nb-checkbox>
                   <nb-checkbox
                     class="criteria"

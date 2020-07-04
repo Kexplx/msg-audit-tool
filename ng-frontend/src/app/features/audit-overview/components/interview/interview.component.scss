@@ -11,9 +11,8 @@ header {
 }
 
 .header-container-1 {
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  gap: 0 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .header-container-2 span:not(:first-child) {

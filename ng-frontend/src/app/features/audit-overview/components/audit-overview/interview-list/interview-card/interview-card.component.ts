@@ -6,12 +6,9 @@ import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.m
   templateUrl: './interview-card.component.html',
   styleUrls: ['./interview-card.component.scss'],
 })
-export class InterviewCardComponent implements OnInit {
+export class InterviewCardComponent {
   @Input() interview: Interview;
   @Input() facCritId: string;
+
   interviewStatuses = InterviewStatus;
-
-  constructor() {}
-
-  ngOnInit() {}
 }

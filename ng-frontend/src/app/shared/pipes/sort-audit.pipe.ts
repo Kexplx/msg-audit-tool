@@ -6,6 +6,6 @@ import { Audit } from 'src/app/core/data/models/audit.model';
 })
 export class SortAuditPipe implements PipeTransform {
   transform(audits: Audit[]): Audit[] {
-    return audits.sort((a, b) => b.creationDate - a.creationDate);
+    return audits?.sort((a, b) => b.creationDate - a.creationDate);
   }
 }
