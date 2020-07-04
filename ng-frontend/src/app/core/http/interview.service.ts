@@ -7,6 +7,8 @@ import { Interview } from '../data/models/interview.model';
 import { PostInterviewDto } from './dtos/post-interview.dto';
 import { FacCrit } from '../data/models/faccrit.model';
 import { parseTimestamp } from './helpers';
+import { Question } from '../data/models/question.model';
+import { Answer } from '../data/models/answer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +16,25 @@ import { parseTimestamp } from './helpers';
 export class InterviewService {
   constructor(private http: HttpClient) {}
 
-  /**
-   * Sends a GET to ../interviews and returns an observable
-   *
-   * ../interviews returns a list of all interviews
-   */
+  getInterview(id: number) {
+    return this.http.get<InterviewDto>(compileTimeSwitchedString + 'interviews/' + id).pipe(
+      map<InterviewDto, Interview>(interviewDto => {
+        const { endDate, startDate } = interviewDto;
+        return {
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
+        };
+      }),
+    );
+  }
+
   getInterviews() {
     return this.http.get<InterviewDto[]>(compileTimeSwitchedString + 'interviews').pipe(
-      map<InterviewDto[], Interview[]>(interviews => {
-        return interviews.map(interviewDto => {
+      map<InterviewDto[], Interview[]>(interviewDtos => {
+        return interviewDtos.map(interviewDto => {
           const { endDate, startDate } = interviewDto;
-          console.log(interviewDto.interviewedContactPersons);
           return {
             ...interviewDto,
             contactPersons: interviewDto.interviewedContactPersons,
@@ -36,13 +46,24 @@ export class InterviewService {
     );
   }
 
-  /**
-   * Sends a POST to ../interviews and returns an observable
-   *
-   * POST ../interviews returns a list of all interviews
-   * @param interview The interview to add
-   * @param interviewScope The selected scope of facCrits for that interview
-   */
+  getInterviewsByAuditId(auditId: number) {
+    return this.http
+      .get<InterviewDto[]>(compileTimeSwitchedString + 'audits/' + auditId + '/interviews')
+      .pipe(
+        map<InterviewDto[], Interview[]>(interviewDtos => {
+          return interviewDtos.map(interviewDto => {
+            const { endDate, startDate } = interviewDto;
+            return {
+              ...interviewDto,
+              contactPersons: interviewDto.interviewedContactPersons,
+              endDate: new Date(endDate).getTime(),
+              startDate: new Date(startDate).getTime(),
+            };
+          });
+        }),
+      );
+  }
+
   postInterview({ contactPersons, startDate, auditId }: Interview, interviewScope: FacCrit[]) {
     const interviewedContactPersonsDto: { id: number; role: string }[] = [];
 
@@ -54,6 +75,7 @@ export class InterviewService {
 
     const postInterviewDto: PostInterviewDto = {
       auditId,
+      goal: '',
       startDate: parseTimestamp(startDate),
       interviewScope: interviewScopeDto,
       interviewedContactPersons: interviewedContactPersonsDto,
@@ -73,5 +95,27 @@ export class InterviewService {
           };
         }),
       );
+  }
+
+  getQuestion(id: number) {
+    return this.http.get<Question>(compileTimeSwitchedString + 'questions/' + id);
+  }
+
+  getAnswersByInterviewId(interviewId: number) {
+    return this.http.get<Answer[]>(
+      compileTimeSwitchedString + 'answers/' + 'interview/' + interviewId,
+    );
+  }
+
+  putAnswer(answer: Answer) {
+    const url =
+      compileTimeSwitchedString +
+      'answers/' +
+      'interview/' +
+      answer.interviewId +
+      '/question/' +
+      answer.questionId;
+
+    return this.http.put<Answer>(url, answer);
   }
 }
