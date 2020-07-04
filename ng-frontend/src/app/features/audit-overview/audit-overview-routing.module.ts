@@ -6,6 +6,7 @@ import { InterviewListComponent } from './components/audit-overview/interview-li
 import { AuditInfoComponent } from './components/audit-overview/audit-info/audit-info.component';
 import { EditAuditDialogComponent } from 'src/app/shared/components/dialogs/edit-audit-dialog/edit-audit-dialog.component';
 import { InterviewComponent } from './components/interview/interview.component';
+import { InterviewDirectorComponent } from './components/interview/interview-director/interview-director.component';
 
 const routes: Routes = [
   {
@@ -27,12 +28,12 @@ const routes: Routes = [
         component: AuditInfoComponent,
         children: [{ path: 'edit', component: EditAuditDialogComponent }],
       },
-
-      {
-        path: 'interviews/:interviewId/:facCritId',
-        component: InterviewComponent,
-      },
     ],
+  },
+  {
+    path: 'interviews/:interviewId',
+    component: InterviewDirectorComponent,
+    children: [{ path: ':id', component: InterviewComponent }],
   },
 ];
 
