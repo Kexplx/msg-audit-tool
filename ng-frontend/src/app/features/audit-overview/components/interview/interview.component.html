@@ -1,10 +1,8 @@
-<header class="mt-1">
-  <div class="header-container-1">
-    <h6 data-cy="faccrit">
-      {{ (facCrit$ | async)?.name }}
-    </h6>
-    <button hero (click)="onSave()" nbButton data-cy="save">speichern</button>
-  </div>
+<header class="mt-1 header-container-1">
+  <h6 data-cy="faccrit">
+    {{ (facCrit$ | async)?.name }}
+  </h6>
+  <button hero (click)="onSave()" nbButton data-cy="save">speichern</button>
 </header>
 <ng-container *ngIf="allLoaded">
   <nb-accordion [id]="answer.questionId" class="mt-2" *ngFor="let answer of answers; let i = index">
