@@ -1,22 +1,8 @@
 @import 'src/sass/utils';
-@import '~@nebular/theme/styles/theming';
-@import '~@nebular/theme/styles/themes/default';
-
-header {
-  .container-persons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100%;
-  }
-}
 
 .header-container-1 {
   display: flex;
   justify-content: space-between;
-}
-
-.header-container-2 span:not(:first-child) {
-  margin-left: 20px;
 }
 
 .container-checkboxes {
@@ -40,15 +26,4 @@ header {
   display: grid;
   grid-template-columns: auto 1fr 1fr;
   gap: 20px;
-}
-
-textarea {
-  height: 100px;
-  resize: vertical;
-}
-
-#card-goal {
-  position: sticky;
-  top: nb-theme(header-height) - nb-theme(header-padding) + 1.5;
-  z-index: 1;
 }

@@ -1,10 +1,25 @@
-<h4>Inteview Director</h4>
-<header class="header-navigation">
+<header class="header-main">
+  <div class="header-main-info">
+    <h4>
+      Interview
+      <span class="label">04.07.2020</span>
+    </h4>
+    <p class="subtitle-2">Oscar Rosner, Cathy Wu</p>
+  </div>
+  <div class="header-main-button">
+    <button status="primary" hero nbButton>Abschließen</button>
+  </div>
+</header>
+<nb-form-field class="mt-2" id="input-goal">
+  <nb-icon nbPrefix icon="compass-outline"></nb-icon>
+  <input [value]="goal" (input)="onGoalInput($event.target.value)" placeholder="Ziel des Interviews..." type="text" fullWidth nbInput />
+</nb-form-field>
+<header class="header-navigation mt-1">
   <button nbButton>
-    <nb-icon icon="arrow-circle-left-outline"></nb-icon>
+    <nb-icon icon="arrow-ios-back-outline"></nb-icon>
   </button>
   <button nbButton>
-    <nb-icon icon="arrow-circle-right-outline"></nb-icon>
+    <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
   </button>
 </header>
 <router-outlet></router-outlet>

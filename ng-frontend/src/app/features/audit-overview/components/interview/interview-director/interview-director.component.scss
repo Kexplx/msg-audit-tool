@@ -1,0 +1,14 @@
+@import 'src/sass/utils';
+@import '~@nebular/theme/styles/theming';
+@import '~@nebular/theme/styles/themes/default';
+
+#input-goal {
+  position: sticky;
+  top: nb-theme(header-height) - nb-theme(header-padding) + 1.5;
+  z-index: 1;
+}
+
+.header-main {
+  display: flex;
+  justify-content: space-between;
+}
