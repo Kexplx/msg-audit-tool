@@ -1,10 +1,8 @@
-import { State, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
+import { State, Action, StateContext, NgxsOnInit, createSelector } from '@ngxs/store';
 import { patch, append, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-
 import { Interview } from '../data/models/interview.model';
 import { AddInterview, UpdateInterview } from './actions/inteview.actions';
-import { getId } from './audit.state';
 import { InterviewService } from '../http/interview.service';
 
 export interface InterviewStateModel {
@@ -30,15 +28,15 @@ export class InterviewState implements NgxsOnInit {
     });
   }
 
-  static interviewsByAuditId(auditId: number) {
+  static interview(id: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
-      return state.interviews.filter(x => x.auditId === auditId);
+      return state.interviews.find(x => x.interviewId === id);
     });
   }
 
-  static interview(id: number) {
+  static interviewsByAuditId(auditId: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
-      return state.interviews.find(x => x.id === id);
+      return state.interviews.filter(x => x.auditId === auditId);
     });
   }
 
@@ -57,9 +55,12 @@ export class InterviewState implements NgxsOnInit {
   }
 
   @Action(UpdateInterview)
-  updateInterview(ctx: StateContext<InterviewStateModel>, { id, interview }: UpdateInterview) {
-    const i = ctx.getState().interviews.find(x => x.id === id);
-    ctx.setState(
+  updateInterview(
+    { getState, setState }: StateContext<InterviewStateModel>,
+    { id, interview }: UpdateInterview,
+  ) {
+    const i = getState().interviews.find(x => x.interviewId === id);
+    setState(
       patch({
         interviews: updateItem<Interview>(x => x === i, { ...interview }),
       }),
