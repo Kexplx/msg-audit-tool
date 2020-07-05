@@ -1,36 +1,41 @@
-<header class="header-main">
-  <div class="header-main-info">
-    <h4>
-      Interview
-      <span class="label">04.07.2020</span>
-    </h4>
-    <p class="subtitle-2">Oscar Rosner, Cathy Wu</p>
-  </div>
-  <div class="header-main-button">
-    <button status="primary" hero nbButton>
-      <nb-icon icon="checkmark-square-outline"></nb-icon>
-      Abschließen
-    </button>
-  </div>
-</header>
-<nb-form-field class="mt-2" id="input-goal">
-  <nb-icon nbPrefix icon="compass-outline"></nb-icon>
-  <input [value]="goal" (input)="onGoalInput($event.target.value)" placeholder="Ziel des Interviews..." type="text" fullWidth nbInput />
-</nb-form-field>
-
-<nb-card class="mt-1">
-  <nb-card-body>
-    <div class="nb-card-header-navigation">
-      <button ghost nbButton>
-        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
-      </button>
-      <p class="subtitle">
-        Effektivität
-      </p>
-      <button ghost nbButton>
-        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+<ng-container *ngIf="interview$ | async; let interview">
+  <header class="header-main">
+    <div class="header-main-info">
+      <h4>
+        Interview
+        <span class="label">{{ interview.startDate | date: 'dd.MM.yyyy' }}</span>
+      </h4>
+      <span class="subtitle-2" *ngFor="let person of interview.contactPersons">
+        {{ person.forename + ' ' + person.surname + ',' }}
+      </span>
+    </div>
+    <div class="header-main-button">
+      <button status="primary" hero nbButton>
+        <nb-icon icon="checkmark-square-outline"></nb-icon>
+        Abschließen
       </button>
     </div>
+  </header>
+  <nb-form-field class="mt-2" id="input-goal">
+    <nb-icon nbPrefix icon="compass-outline"></nb-icon>
+    <input [value]="interview.goal" (input)="onGoalInput($event.target.value)" placeholder="Ziel des Interviews..." type="text" fullWidth nbInput />
+  </nb-form-field>
+</ng-container>
+<nb-card class="mt-1">
+  <nb-card-body>
+    <ng-container *ngIf="facCrit$ | async; let facCrit">
+      <div class="nb-card-header-navigation">
+        <button (click)="onNaviagteBack(facCrit.id)" ghost nbButton>
+          <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+        </button>
+        <p class="subtitle">
+          {{ facCrit.name }}
+        </p>
+        <button (click)="onNavigateForward(facCrit.id)" ghost nbButton>
+          <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+        </button>
+      </div>
+    </ng-container>
   </nb-card-body>
 </nb-card>
 <router-outlet></router-outlet>
