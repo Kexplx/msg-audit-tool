@@ -14,16 +14,14 @@ describe('QuestionsPage', () => {
     });
   });
 
-  context('When in the questions overview it ...', () => {
-    before(() => {
-      cy.visit(baseUrl);
-      cy.get('[data-cy=new-audit]').click();
-      cy.inputAudit(testAudit);
-      cy.get('[data-cy=audit-short-infos]').first().click();
-      cy.addInterview(testInterview);
-      cy.get('[data-cy=interview-contact-persons]').first().click();
-    });
+  beforeEach(() => {
+    cy.injectBackendMocks();
+    cy.visit(baseUrl);
+    cy.get('[data-cy=audit-short-infos]').first().click();
+    cy.get('[data-cy=interview-contact-persons]').first().click();
+  });
 
+  context('When in the questions overview it ...', () => {
     it('shows faccrit name', () => {
       cy.get('[data-cy=faccrit]').should('exist');
     });

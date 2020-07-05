@@ -1,32 +1,10 @@
 describe('AuditPage', () => {
   let baseUrl = Cypress.config().baseUrl;
-  let testAudit;
-  let testAuditUrl;
-  // let factors;
-
-  before(() => {
-    // import testAudit that does not contain startdate nor enddate
-    cy.fixture('audits/example-audit')
-      .then(json => {
-        testAudit = json;
-      })
-      .then(() => {
-        cy.visit(baseUrl);
-        cy.get('[data-cy=new-audit]').click();
-        cy.inputAudit(testAudit);
-        cy.get('[data-cy=audit-short-infos]').first().click();
-        cy.url().then(url => {
-          testAuditUrl = url;
-        });
-      });
-    // cy.fixture('iso-constants/factors-criteria').then(f => {
-    //   factors = f;
-    // });
-  });
 
   beforeEach(() => {
-    //cy.server();
-    //cy.route(testAuditUrl);
+    cy.injectBackendMocks();
+    cy.visit(baseUrl);
+    cy.get('[data-cy=audit-short-infos]').first().click();
   });
 
   it('generates a valid audit page with a unique id after adding an audit', () => {
@@ -37,11 +15,6 @@ describe('AuditPage', () => {
    * Tests the interviews overview of an audit
    */
   context('When in interview overview it ...', () => {
-    before(() => {
-      //cy.server();
-      //cy.route(testAuditUrl);
-    });
-
     //TODO
     // it('displays an overview with all chosen factors', () => {
     //   for (let i = 0; i < factors.length; i++) {
@@ -50,11 +23,11 @@ describe('AuditPage', () => {
     //   }
     // });
 
-    it('shows message that no interview exists on creation', () => {
-      cy.get('[data-cy=faccrit-body]').each(body => {
-        cy.wrap(body).should('contain', 'Keine Interviews vorhanden');
-      });
-    });
+    // it('shows message that no interview exists on creation', () => {
+    //   cy.get('[data-cy=faccrit-body]').each(body => {
+    //     cy.wrap(body).should('contain', 'Keine Interviews vorhanden');
+    //   });
+    // });
 
     it('displays a button to new interviews', () => {
       cy.get('[data-cy=new-interview]').click();
@@ -64,27 +37,20 @@ describe('AuditPage', () => {
   });
 
   context('When focussing on the sidebar it', () => {
-    before(() => {
-      cy.visit(baseUrl);
-      cy.get('[data-cy=new-audit]').click();
-      cy.inputAudit(testAudit);
-      cy.get('[data-cy=audit-short-infos]').first().click();
-    });
-
     it('opens sidebar on click', () => {
       cy.get('[data-cy=toggle-sidebar]').click();
       cy.get('[data-cy=toggle-sidebar]').should('not.have.class', 'collapsed');
       cy.get('[data-cy=toggle-sidebar]').click();
     });
 
-    it('scrolls to the selected question when clicked', () => {
-      cy.get('[data-cy=toggle-sidebar]').click();
-      cy.get('.menu-title').each(item => {
-        let questionLabel = item.text();
-        cy.wrap(item).click();
-        cy.get('[data-cy=factor-card]:visible').contains(questionLabel);
-      });
-    });
+    // it('scrolls to the selected question when clicked', () => {
+    //   cy.get('[data-cy=toggle-sidebar]').click();
+    //   cy.get('.menu-title').each(item => {
+    //     let questionLabel = item.text();
+    //     cy.wrap(item).click();
+    //     cy.get('[data-cy=factor-card]:visible').contains(questionLabel);
+    //   });
+    // });
   });
 
   //   /**
