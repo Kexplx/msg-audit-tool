@@ -2,7 +2,12 @@ import { Audit, AuditStatus } from '../data/models/audit.model';
 import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import { AddAudit, DeleteAudit, UpdateAudit } from './actions/audit.actions';
+import {
+  AddAudit,
+  DeleteAudit,
+  UpdateAudit,
+  LoadFacCritsByInterviewId,
+} from './actions/audit.actions';
 import { FacCrit } from '../data/models/faccrit.model';
 import { CoreService } from '../http/core.service';
 
@@ -101,5 +106,10 @@ export class AuditState implements NgxsOnInit {
         audits: removeItem<Audit>(x => x.id === id),
       }),
     );
+  }
+
+  @Action(LoadFacCritsByInterviewId)
+  loadFacCritsByInterviewId(ctx: StateContext<AuditStateModel>, { id }: LoadFacCritsByInterviewId) {
+    return this.coreService.getFacCritsByInterviewId(id);
   }
 }

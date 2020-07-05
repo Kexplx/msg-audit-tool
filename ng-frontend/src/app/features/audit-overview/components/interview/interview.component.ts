@@ -4,10 +4,10 @@ import { Answer } from 'src/app/core/data/models/answer.model';
 import { Question } from 'src/app/core/data/models/question.model';
 import { Router } from '@angular/router';
 import { InterviewService } from 'src/app/core/http/interview.service';
-import { Observable, forkJoin } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Observable, forkJoin, combineLatest } from 'rxjs';
+import { Store, Select } from '@ngxs/store';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
+import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
   selector: 'app-interview',
@@ -15,6 +15,8 @@ import { AuditState } from 'src/app/core/ngxs/audit.state';
   styleUrls: ['./interview.component.scss'],
 })
 export class InterviewComponent implements OnInit {
+  @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
+  @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
   facCrit$: Observable<FacCrit>;
 
   allLoaded = false;
@@ -24,45 +26,43 @@ export class InterviewComponent implements OnInit {
   questions: Question[] = [];
   formGroups: FormGroup[];
 
-  constructor(
-    private store: Store,
-    private interviewservice: InterviewService,
-    private fb: FormBuilder,
-    private router: Router,
-  ) {}
+  constructor(private interviewservice: InterviewService, private fb: FormBuilder) {}
 
   ngOnInit() {
-    const interviewRegex = /^\/audits\/([^\/]*)\/interviews\/([^\/]*)\/([^\/])*$/;
-    const regexResult = interviewRegex.exec(this.router.url);
-    this.interviewId = +regexResult[2];
-    this.facCritId = +regexResult[3];
+    console.log('test');
 
-    this.facCrit$ = this.store.select(AuditState.facCrit(this.facCritId));
-    this.formGroups = [];
+    combineLatest(this.interviewId$, this.facCritId$).subscribe(ids => {
+      this.allLoaded = false;
+      this.formGroups = [];
+      this.interviewId = ids[0];
+      this.facCritId = ids[1];
+      console.log(this.interviewId, this.facCritId);
 
-    this.interviewservice.getAnswersByInterviewId(this.interviewId).subscribe(answers => {
-      this.answers = answers.filter(a => a.faccritId === this.facCritId);
+      this.interviewservice.getAnswersByInterviewId(this.interviewId).subscribe(answers => {
+        this.answers = answers.filter(a => a.faccritId === this.facCritId);
+        console.log(this.answers);
 
-      const questionObservables: Observable<Question>[] = [];
-      for (const answer of this.answers) {
-        questionObservables.push(this.interviewservice.getQuestion(answer.questionId));
+        const questionObservables: Observable<Question>[] = [];
+        for (const answer of this.answers) {
+          questionObservables.push(this.interviewservice.getQuestion(answer.questionId));
 
-        this.formGroups.push(
-          this.fb.group({
-            result: [answer?.result],
-            responsible: [answer?.responsible],
-            documentation: [answer?.documentation],
-            procedure: [answer?.procedure],
-            reason: [answer?.reason],
-            proof: [answer?.proof],
-            annotation: [answer?.annotation],
-          }),
-        );
-      }
+          this.formGroups.push(
+            this.fb.group({
+              result: [answer?.result],
+              responsible: [answer?.responsible],
+              documentation: [answer?.documentation],
+              procedure: [answer?.procedure],
+              reason: [answer?.reason],
+              proof: [answer?.proof],
+              annotation: [answer?.annotation],
+            }),
+          );
+        }
 
-      forkJoin(questionObservables).subscribe(questions => {
-        this.questions = questions;
-        this.allLoaded = true;
+        forkJoin(questionObservables).subscribe(questions => {
+          this.questions = questions;
+          this.allLoaded = true;
+        });
       });
     });
   }
