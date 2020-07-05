@@ -9,6 +9,7 @@ import { FacCrit } from '../data/models/faccrit.model';
 import { parseTimestamp } from './helpers';
 import { Question } from '../data/models/question.model';
 import { Answer } from '../data/models/answer.model';
+import { PutInterviewDto } from './dtos/put-interview.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -83,6 +84,30 @@ export class InterviewService {
 
     return this.http
       .post<InterviewDto>(compileTimeSwitchedString + 'interviews', postInterviewDto)
+      .pipe(
+        map<InterviewDto, Interview>(interviewDto => {
+          const { endDate, startDate } = interviewDto;
+
+          return {
+            ...interviewDto,
+            contactPersons: interviewDto.interviewedContactPersons,
+            endDate: new Date(endDate).getTime(),
+            startDate: new Date(startDate).getTime(),
+          };
+        }),
+      );
+  }
+
+  putInterview({ startDate, endDate, status, goal, interviewId }: Interview) {
+    const putInterviewDto: PutInterviewDto = {
+      endDate: parseTimestamp(endDate),
+      startDate: parseTimestamp(startDate),
+      goal,
+      status,
+    };
+
+    return this.http
+      .put<InterviewDto>(compileTimeSwitchedString + 'interviews/' + interviewId, putInterviewDto)
       .pipe(
         map<InterviewDto, Interview>(interviewDto => {
           const { endDate, startDate } = interviewDto;
