@@ -26,4 +26,24 @@ export class InterviewDirectorComponent implements OnInit {
   onGoalInput(value: string) {
     this.goalDebounce$.next(value);
   }
+  onNavigateForward(facCritId: number) {
+    const indexOfFacCrit = this.facCritIds.indexOf(facCritId);
+
+    if (indexOfFacCrit + 1 !== this.facCritIds.length) {
+      this.router.navigate([String(this.facCritIds[indexOfFacCrit + 1])], {
+        relativeTo: this.activatedRoute,
+      });
+    }
+  }
+
+  onNaviagteBack(facCritId: number) {
+    const indexOfFacCrit = this.facCritIds.indexOf(facCritId);
+
+    if (indexOfFacCrit > 0) {
+      this.router.navigate([String(this.facCritIds[indexOfFacCrit - 1])], {
+        relativeTo: this.activatedRoute,
+      });
+    }
+  }
+
 }
