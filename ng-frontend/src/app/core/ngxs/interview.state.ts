@@ -60,10 +60,12 @@ export class InterviewState implements NgxsOnInit {
     { id, interview }: UpdateInterview,
   ) {
     const i = getState().interviews.find(x => x.interviewId === id);
-    setState(
-      patch({
-        interviews: updateItem<Interview>(x => x === i, { ...interview }),
-      }),
-    );
+    this.interviewService.putInterview({ ...i, ...interview }).subscribe(interview => {
+      setState(
+        patch({
+          interviews: updateItem<Interview>(x => x.interviewId === id, { ...i, ...interview }),
+        }),
+      );
+    });
   }
 }
