@@ -41,8 +41,8 @@ export class InterviewDirectorComponent implements OnInit {
       });
     });
 
-    this.goalDebounce$.pipe(debounceTime(1000)).subscribe(() => {
-      // this.store.dispatch(new UpdateInterview())
+    this.goalDebounce$.pipe(debounceTime(1000)).subscribe(goal => {
+      this.store.dispatch(new UpdateInterview(this.interviewId, { goal }));
     });
   }
 
