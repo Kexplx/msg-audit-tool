@@ -14,7 +14,7 @@ describe('Navbar', () => {
 
   it('contains contacts button', () => {
     cy.get('[data-cy=contacts]').click();
-    cy.url().should('contain', 'contact-people');
+    cy.url().should('contain', 'contact-persons');
   });
 
   it('opens the sidebar when clicking the sidebar toggle button', () => {
