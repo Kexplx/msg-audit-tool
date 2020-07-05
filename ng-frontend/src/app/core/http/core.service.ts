@@ -17,6 +17,10 @@ import { compileTimeSwitchedString } from './connectionStrings';
 export class CoreService {
   constructor(private http: HttpClient) {}
 
+  getFacCritsByInterviewId(id: number) {
+    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'facCrits/interview/' + id);
+  }
+
   getFacCrits() {
     return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'facCrits');
   }
