@@ -1,0 +1,14 @@
+[
+    {
+      "questionId": 123456,
+      "interviewId": 123456,
+      "faccritId": 123456,
+      "annotation": "Some annotation",
+      "proof": "Some proof",
+      "reason": "Some reason",
+      "procedure": true,
+      "documentation": true,
+      "responsible": true,
+      "result": true
+    }
+  ]

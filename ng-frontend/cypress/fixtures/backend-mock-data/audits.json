@@ -1,0 +1,45 @@
+[
+    {
+      "auditId": 123456,
+      "auditName": "MSG project audit",
+      "startDate": "2020-07-04",
+      "endDate": "2020-07-04",
+      "creationDate": "2020-07-04T08:49:03.451Z",
+      "status": "ACTIVE",
+      "scope": [
+        {
+          "id": 50,
+          "referenceId": 12,
+          "name": "Modifizierbarkeit"
+        }
+      ],
+      "contactPersons": [
+        {
+          "id": 1,
+          "salutation": "MANN",
+          "title": "Prof",
+          "forename": "Max",
+          "surname": "Mustermann",
+          "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
+          "companyName": "msg systems AG",
+          "department": "Softwareentwicklung",
+          "sector": "msg Public Sector",
+          "corporateDivision": "Software"
+        }
+      ],
+      "cancellationDate": "2020-07-04",
+      "cancellationReason": "Project got canceled",
+      "cancellationContactPerson": {
+        "id": 1,
+        "salutation": "MANN",
+        "title": "Prof",
+        "forename": "Max",
+        "surname": "Mustermann",
+        "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
+        "companyName": "msg systems AG",
+        "department": "Softwareentwicklung",
+        "sector": "msg Public Sector",
+        "corporateDivision": "Software"
+      }
+    }
+  ]

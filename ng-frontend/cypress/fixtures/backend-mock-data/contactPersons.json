@@ -1,0 +1,14 @@
+[
+    {
+      "id": 0,
+      "salutation": "MANN",
+      "title": "string",
+      "forename": "string",
+      "surname": "string",
+      "contactInformation": "string",
+      "companyName": "string",
+      "department": "string",
+      "sector": "string",
+      "corporateDivision": "string"
+    }
+  ]
