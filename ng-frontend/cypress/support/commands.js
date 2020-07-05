@@ -1,5 +1,39 @@
 const baseUrl = Cypress.config().baseUrl;
 
+function injectBackendMocks() {
+  cy.server();
+  cy.route({
+    method: 'GET',
+    url: '/faccrits',
+    response: 'fixture:backend-mock-data/facCrits.json',
+  });
+  cy.route({
+    method: 'GET',
+    url: '/answers',
+    response: 'fixture:backend-mock-data/answers.json',
+  });
+  cy.route({
+    method: 'GET',
+    url: '/audits',
+    response: 'fixture:backend-mock-data/audits.json',
+  });
+  cy.route({
+    method: 'GET',
+    url: '/contactpersons',
+    response: 'fixture:backend-mock-data/contactPersons.json',
+  });
+  cy.route({
+    method: 'GET',
+    url: '/interviews',
+    response: 'fixture:backend-mock-data/interviews.json',
+  });
+  cy.route({
+    method: 'POST',
+    url: '/audits',
+    response: [],
+  });
+}
+
 function addAudit(testAudit) {
   //cy.visit(baseUrl + '/audits/new');
   cy.get('[data-cy=home]');
@@ -156,3 +190,4 @@ Cypress.Commands.add('inputPerson', inputPerson);
 Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
 Cypress.Commands.add('testAuditListEntry', testAuditListEntry);
 Cypress.Commands.add('testInterviewListEntry', testInterviewListEntry);
+Cypress.Commands.add('injectBackendMocks', injectBackendMocks);
