@@ -1,45 +1,31 @@
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
-  // let isoConstants;
   let testAudit;
 
   before(() => {
     cy.fixture('audits/example-audit').then(json => {
       testAudit = json;
     });
-    // cy.fixture('iso-constants/factors-criteria.json').then(json => {
-    //   isoConstants = json;
-    // });
-  });
-
-  beforeEach(() => {
-    cy.server();
-    cy.route({
-      method: 'GET',
-      url: '/faccrits',
-      response: 'fixture:iso-constants/factors-criteria.json',
-    });
   });
 
   it('opens a form to input audit information when routing to audits/new', () => {
     cy.visit(auditsUrl + '/new');
-    cy.get('[data-cy=audit-data-form]');
+    cy.get('[data-cy=audit-data-form]').should('exist');
   });
 
   /**
    * Tests the basic information form
    */
   context('When focussing on the basic information it... ', () => {
-    before(() => {
-      cy.visit(auditsUrl + '/new');
-    });
-
     beforeEach(() => {
+      cy.injectBackendMocks();
+      cy.visit(auditsUrl + '/new');
       cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
     });
 
     it('gives an inputable element for audit name', () => {
       cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
+      cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
     });
 
     it('gives a possibility to set start and end date', () => {
@@ -51,9 +37,6 @@ describe('AddAuditDialog', () => {
     });
 
     it('disallows end date before the start date', () => {
-      cy.visit(auditsUrl + '/new');
-      cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
-      cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
       cy.get('[data-cy=audit-end-input]').click();
       cy.get('.prev-month').click();
       cy.get('.bounding-month').first().click();
@@ -61,9 +44,6 @@ describe('AddAuditDialog', () => {
     });
 
     it('disallows start date behind end date', () => {
-      cy.visit(auditsUrl + '/new');
-      cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
-      cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
       cy.get('[data-cy=audit-end-input]').click();
       cy.get('.today > .cell-content').click();
       cy.get('[data-cy=audit-start-input]').click();
@@ -73,9 +53,6 @@ describe('AddAuditDialog', () => {
     });
 
     it('allows start date and end date in the past', () => {
-      cy.visit(auditsUrl + '/new');
-      cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
-      cy.get('[data-cy=audit-name-input]').should('have.value', testAudit.name);
       cy.get('[data-cy=audit-start-input]').click();
       cy.get('.prev-month').click();
       cy.get('.bounding-month').first().click();
@@ -86,7 +63,6 @@ describe('AddAuditDialog', () => {
     });
 
     it('allows choosing a contact person', () => {
-      cy.visit(auditsUrl + '/new');
       cy.get('[data-cy=audit-contacts]').click();
       cy.get('[data-cy=audit-contacts]').each(contact => {
         cy.wrap(contact).click();
@@ -96,17 +72,8 @@ describe('AddAuditDialog', () => {
   });
 
   context('When focussing on the scope it...', () => {
-    // let allCriteria = [];
-
-    before(() => {
-      // isoConstants.forEach(factor => {
-      //   factor.criteria.forEach(c => {
-      //     allCriteria.push(c);
-      //   });
-      // });
-    });
-
     beforeEach(() => {
+      cy.injectBackendMocks();
       cy.visit(auditsUrl + '/new');
       cy.get('[data-cy=audit-scope-header]').click();
     });
@@ -120,14 +87,7 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=audit-scope-header]').click();
     });
 
-    // it('shows all factors and criteria from the ISO Norm', () => {
-    //   cy.get('[data-cy=factor-entry]').each((el, index) => {
-    //     cy.wrap(el).should('contain', isoConstants[index].title);
-    //   });
-    //   cy.get('[data-cy=criteria-entry]').each((el, index) => {
-    //     cy.wrap(el).should('contain', allCriteria[index].title);
-    //   });
-    // });
+    it('shows all factors and criteria from the ISO Norm', () => {});
 
     it('checks all factors and criteria (default)', () => {
       cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
@@ -170,8 +130,9 @@ describe('AddAuditDialog', () => {
    */
   context('When focussing on the buttons it...', () => {
     beforeEach(() => {
+      cy.injectBackendMocks();
       cy.visit(auditsUrl);
-      cy.get('[data-cy=new-audit]').click();
+      cy.visit(auditsUrl + '/new');
     });
 
     it('shows an alert message when clicked on cancel', () => {
@@ -207,21 +168,8 @@ describe('AddAuditDialog', () => {
     });
   });
 
-  /**
-   * Tests the consistency of an added audit in the audits overview and the infopage
-   */
-  context('When an audit was added it ...', () => {
-    before(() => {
-      cy.visit(auditsUrl);
-      cy.addAudit(testAudit);
-    });
-
-    beforeEach(() => {
-      cy.get('[data-cy=home]');
-    });
-
-    it('populates the audits list overview page with consistent information', () => {
-      cy.testAuditListEntry(testAudit);
-    });
+  context('When focussing on the network request it ...', () => {
+    it('builds a valid post request as form', () => {});
+    it('shows error message when the network connection/requests failed', () => {});
   });
 });

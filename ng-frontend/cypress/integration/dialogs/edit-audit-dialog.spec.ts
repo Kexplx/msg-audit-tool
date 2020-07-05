@@ -8,16 +8,9 @@
  */
 describe('EditAuditDialog', () => {
   const auditsUrl = Cypress.config().baseUrl + '/audits';
-  let testAudit;
-  let testAuditEdited;
 
-  before(() => {
-    cy.fixture('audits/example-audit').then(json => {
-      testAudit = json;
-    });
-    cy.fixture('audits/example-audit2').then(json => {
-      testAuditEdited = json;
-    });
+  beforeEach(() => {
+    cy.injectBackendMocks();
   });
 
   it('does not show an edit dialog when audit id is invalid', () => {
@@ -28,57 +21,15 @@ describe('EditAuditDialog', () => {
     cy.get('[data-cy=audit-data-form]').should('not.exist');
   });
 
-  // it('shows an edit formular that takes inputs and closes on button click', () => {
-  //   editAuditFromAuditsOverview(testAudit, testAuditEdited);
-  //   cy.get('[data-cy=audit-data-form]').should('not.exist');
-  // });
+  context('When focussing on the existing form content it ...', () => {
+    it('shows the correct audit name', () => {});
+    it('shows the correct start and end date', () => {});
+    it('shows the correct contact person(s)', () => {});
+    it('shows the correct scope', () => {});
+  });
 
-  /**
-   * Simulates an edit from the audits overview.
-   *
-   * @param testAudit
-   * @param testAuditEdited
-   */
-  function editAuditFromAuditsOverview(testAudit, testAuditEdited) {
-    cy.get('[data-cy=home]').click();
-    cy.addAudit(testAudit);
-    cy.get('[data-cy=audit-options]').first().click();
-    cy.contains('Bearbeiten').click();
-    cy.url().should('contain', 'edit');
-    cy.inputAudit(testAuditEdited);
-  }
-
-  /**
-   * Simulates an edit from the audit information page.
-   *
-   * @param testAudit
-   * @param testAuditEdited
-   */
-  function editAuditFromInfoPage(testAudit, testAuditEdited) {
-    cy.get('[data-cy=home]').click();
-    cy.addAudit(testAudit);
-    cy.get('[data-cy=audit-short-infos]').first().click();
-    cy.contains('Kontakte').click();
-    cy.get('[data-cy=audit-options]').click();
-    cy.inputAudit(testAuditEdited);
-  }
-
-  /**
-   *  Tests the consistency of audit information when edited at different pages
-   */
-  [
-    { text: 'from the audits list overview', func: editAuditFromAuditsOverview },
-    { text: 'from the audit info page', func: editAuditFromInfoPage },
-  ].forEach(beforeFunc => {
-    context('When an audit was edited ' + beforeFunc.text + ' it ...', () => {
-      before(() => {
-        beforeFunc.func(testAudit, testAuditEdited);
-      });
-
-      it('populates the audits list overview page with consistent edited information', () => {
-        cy.get('[data-cy=home]').click();
-        cy.testAuditListEntry(testAuditEdited);
-      });
-    });
+  context('When focussing on the network request it ...', () => {
+    it('builds a valid post request as form', () => {});
+    it('shows error message when the network connection/requests failed', () => {});
   });
 });

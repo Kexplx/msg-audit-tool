@@ -4,40 +4,22 @@ describe('AddInterviewDialog', () => {
   let testUrl;
 
   before(() => {
-    cy.fixture('audits/example-audit')
-      .then(json => {
-        testAudit = json;
-      })
-      .then(() => {
-        cy.visit(Cypress.config().baseUrl);
-        cy.addAudit(testAudit);
-        // TODO add Person
-        // go to specific audit interview page
-        cy.get('[data-cy=audit-card]').first().click();
-      });
+    cy.fixture('audits/example-audit').then(json => {
+      testAudit = json;
+    });
     cy.fixture('interviews/example-interview').then(json => {
       testInterview = json;
     });
   });
 
   beforeEach(() => {
+    cy.injectBackendMocks();
+    cy.visit(Cypress.config().baseUrl);
+    cy.get('[data-cy=audit-card]').first().click();
     // click on new interview button
     cy.get('[data-cy=new-interview]').click();
     // shows a dialog to input interview data
     cy.get('[data-cy=add-interview-form]').should('exist');
-  });
-
-  afterEach(() => {
-    cy.get('body').then(body => {
-      if (body.find('[data-cy=cancel-interview-data-form]').length > 0) {
-        cy.get('[data-cy=cancel-interview-data-form]').click();
-      }
-    });
-    cy.get('body').then(body => {
-      if (body.find('[data-cy=discard]').length > 0) {
-        cy.get('[data-cy=discard]').click();
-      }
-    });
   });
 
   it('gives an inputable start date picker', () => {
@@ -171,14 +153,8 @@ describe('AddInterviewDialog', () => {
     });
   });
 
-  // Test consistency of added interview information
-  context('When an interview was added it ...', () => {
-    beforeEach(() => {
-      cy.inputInterview(testInterview);
-    });
-
-    // it('shows up on the interview overview', () => {
-    //   cy.testInterviewListEntry(testInterview);
-    // });
+  context('When focussing on the network requests it ...', () => {
+    it('builds a valid post request as form', () => {});
+    it('shows error message when the network connection/requests failed', () => {});
   });
 });
