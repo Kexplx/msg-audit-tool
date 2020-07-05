@@ -9,7 +9,11 @@
         {{ person.forename + ' ' + person.surname + ',' }}
       </span>
     </div>
-    <div class="header-main-button">
+    <div>
+      <button class="mr-1" hero [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton>
+        <nb-icon icon="arrow-back-outline"></nb-icon>
+        Interviews
+      </button>
       <button status="primary" hero nbButton>
         <nb-icon icon="checkmark-square-outline"></nb-icon>
         Abschließen
@@ -25,17 +29,18 @@
   <nb-card-body>
     <ng-container *ngIf="facCrit$ | async; let facCrit">
       <div class="nb-card-header-navigation">
-        <button (click)="onNaviagteBack(facCrit.id)" ghost nbButton>
-          <nb-icon icon="arrow-ios-back-outline"></nb-icon>
-        </button>
+        <nb-icon class="ml-1 icon-navigation" (click)="onNaviagteBack(facCrit.id)" icon="arrow-ios-back-outline"></nb-icon>
         <p class="subtitle">
           {{ facCrit.name }}
+          <span *ngIf="facCritIds" class="text-hint">{{ getFacCritPosition(facCrit.id) }}</span>
         </p>
-        <button (click)="onNavigateForward(facCrit.id)" ghost nbButton>
-          <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
-        </button>
+        <nb-icon class="mr-1 icon-navigation" (click)="onNavigateForward(facCrit.id)" icon="arrow-ios-forward-outline"></nb-icon>
       </div>
     </ng-container>
   </nb-card-body>
 </nb-card>
-<router-outlet></router-outlet>
+<ng-container *ngIf="answers$ | async; let answers">
+  <ng-container *ngIf="questions$ | async; let questions">
+    <app-interview [questions]="questions" [answers]="answers"></app-interview>
+  </ng-container>
+</ng-container>

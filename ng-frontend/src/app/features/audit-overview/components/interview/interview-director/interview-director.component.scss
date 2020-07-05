@@ -2,6 +2,10 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/default';
 
+nb-card-body {
+  padding: 7px !important;
+}
+
 #input-goal {
   position: sticky;
   top: nb-theme(header-height) - nb-theme(header-padding) + 1.5;
@@ -22,6 +26,6 @@
   align-items: center;
 }
 
-nb-card-body {
-  padding: 0px !important;
+.icon-navigation {
+  cursor: pointer;
 }

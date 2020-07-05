@@ -7,7 +7,6 @@ import {
   UpdateContactPerson,
   AddContactPerson,
 } from 'src/app/core/ngxs/actions/contact-person.action';
-import { UpdateAnswer, AddAnswer } from 'src/app/core/ngxs/actions/answer.actions';
 import { filter, map } from 'rxjs/operators';
 import { timer } from 'rxjs';
 import { AddInterview } from 'src/app/core/ngxs/actions/inteview.actions';
@@ -62,22 +61,6 @@ export class ActionListenerDirective implements OnInit {
               `Kontaktperson ${action.contactPerson.forename} ${action.contactPerson.surname} bearbeitet`,
               'edit-outline',
             );
-            break;
-          case action instanceof AddAnswer:
-            if (this.count === 0) {
-              this.showToast(`Antworten aktualisiert`, 'checkmark-circle-2-outline');
-              this.count = 99;
-              timer(1000).subscribe(() => (this.count = 0));
-            }
-            break;
-          case action instanceof UpdateAnswer:
-            if (this.count === 0) {
-              this.showToast(`Antworten aktualisiert`, 'checkmark-circle-2-outline');
-              this.count = 99;
-              timer(1000).subscribe(() => (this.count = 0));
-            }
-            break;
-          default:
             break;
         }
       });

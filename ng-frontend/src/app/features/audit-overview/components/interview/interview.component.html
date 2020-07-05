@@ -2,37 +2,35 @@
   <h5 data-cy="faccrit">
     Basisfragen
   </h5>
-  <button hero (click)="onSave()" nbButton data-cy="save">
+  <button status="primary" hero (click)="onSave()" nbButton data-cy="save">
     <nb-icon icon="save-outline"></nb-icon>
     speichern
   </button>
 </header>
-<ng-container *ngIf="allLoaded">
-  <nb-accordion [id]="answer.questionId" class="mt-2" *ngFor="let answer of answers; let i = index">
-    <nb-accordion-item expanded class="mb-2" data-cy="question-accordeon-item">
-      <nb-accordion-item-header data-cy="question-card-header">{{ 'Hello' }}</nb-accordion-item-header>
-      <nb-accordion-item-body>
-        <form [formGroup]="formGroups[i]" class="container-interview-form" data-cy="question-form">
-          <div class="container-checkboxes">
-            <nb-checkbox formControlName="result" data-cy="question-result">Ergebnis</nb-checkbox>
-            <nb-checkbox formControlName="responsible" data-cy="question-responsible">Verantwortlicher</nb-checkbox>
-            <nb-checkbox formControlName="documentation" data-cy="question-documentation">Dokumentation</nb-checkbox>
-            <nb-checkbox formControlName="procedure" data-cy="question-strategy">Vorgehen</nb-checkbox>
-          </div>
-          <div class="container-inputs-item-1">
-            <label class="label">Begründung</label>
-            <textarea formControlName="reason" spellcheck="false" fullWidth nbInput data-cy="question-reason"></textarea>
-          </div>
-          <div class="container-inputs-item-2">
-            <label class="label">Bemerkung</label>
-            <textarea formControlName="annotation" spellcheck="false" fullWidth nbInput data-cy="question-note"></textarea>
-          </div>
-          <div class="container-inputs-item-3">
-            <label class="label">Nachweis</label>
-            <textarea formControlName="proof" spellcheck="false" fullWidth nbInput data-cy="question-certificate"></textarea>
-          </div>
-        </form>
-      </nb-accordion-item-body>
-    </nb-accordion-item>
-  </nb-accordion>
-</ng-container>
+<nb-accordion [id]="answer.questionId" class="mt-2" *ngFor="let answer of answers; let i = index">
+  <nb-accordion-item expanded class="mb-2" data-cy="question-accordeon-item">
+    <nb-accordion-item-header data-cy="question-card-header">{{ questionById(answer.questionId).textDe }}</nb-accordion-item-header>
+    <nb-accordion-item-body>
+      <form [formGroup]="formGroups[i]" class="container-interview-form" data-cy="question-form">
+        <div class="container-checkboxes">
+          <nb-checkbox formControlName="result" data-cy="question-result">Ergebnis</nb-checkbox>
+          <nb-checkbox formControlName="responsible" data-cy="question-responsible">Verantwortlicher</nb-checkbox>
+          <nb-checkbox formControlName="documentation" data-cy="question-documentation">Dokumentation</nb-checkbox>
+          <nb-checkbox formControlName="procedure" data-cy="question-strategy">Vorgehen</nb-checkbox>
+        </div>
+        <div class="container-inputs-item-1">
+          <label class="label">Begründung</label>
+          <textarea formControlName="reason" spellcheck="false" fullWidth nbInput data-cy="question-reason"></textarea>
+        </div>
+        <div class="container-inputs-item-2">
+          <label class="label">Bemerkung</label>
+          <textarea formControlName="annotation" spellcheck="false" fullWidth nbInput data-cy="question-note"></textarea>
+        </div>
+        <div class="container-inputs-item-3">
+          <label class="label">Nachweis</label>
+          <textarea formControlName="proof" spellcheck="false" fullWidth nbInput data-cy="question-certificate"></textarea>
+        </div>
+      </form>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>
