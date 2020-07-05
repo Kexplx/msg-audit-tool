@@ -12,3 +12,16 @@
   display: flex;
   justify-content: space-between;
 }
+
+.nb-card-header-navigation {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0 5px;
+
+  justify-items: center;
+  align-items: center;
+}
+
+nb-card-body {
+  padding: 0px !important;
+}

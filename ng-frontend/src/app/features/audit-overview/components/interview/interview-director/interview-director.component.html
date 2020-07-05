@@ -7,19 +7,30 @@
     <p class="subtitle-2">Oscar Rosner, Cathy Wu</p>
   </div>
   <div class="header-main-button">
-    <button status="primary" hero nbButton>Abschließen</button>
+    <button status="primary" hero nbButton>
+      <nb-icon icon="checkmark-square-outline"></nb-icon>
+      Abschließen
+    </button>
   </div>
 </header>
 <nb-form-field class="mt-2" id="input-goal">
   <nb-icon nbPrefix icon="compass-outline"></nb-icon>
   <input [value]="goal" (input)="onGoalInput($event.target.value)" placeholder="Ziel des Interviews..." type="text" fullWidth nbInput />
 </nb-form-field>
-<header class="header-navigation mt-1">
-  <button nbButton>
-    <nb-icon icon="arrow-ios-back-outline"></nb-icon>
-  </button>
-  <button nbButton>
-    <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
-  </button>
-</header>
+
+<nb-card class="mt-1">
+  <nb-card-body>
+    <div class="nb-card-header-navigation">
+      <button ghost nbButton>
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+      </button>
+      <p class="subtitle">
+        Effektivität
+      </p>
+      <button ghost nbButton>
+        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>
 <router-outlet></router-outlet>
