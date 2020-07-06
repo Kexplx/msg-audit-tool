@@ -3,10 +3,9 @@ describe('AddPersonDialog', () => {
   let testPerson;
 
   before(() => {
-    cy.fixture('contacts/example-contact').then(json => {
+    cy.fixture('user-input-data/example-contact').then(json => {
       testPerson = json;
     });
-    cy.visit(contactsUrl);
   });
 
   /**
@@ -85,7 +84,25 @@ describe('AddPersonDialog', () => {
   });
 
   context('When focussing on the network requests it ...', () => {
-    it('builds a valid post request as form', () => {});
+    it('builds a valid post request as form', () => {
+      cy.injectBackendMocks();
+      cy.visit(contactsUrl);
+      cy.addPerson(testPerson);
+      cy.wait('@postContacts').then(xhr => {
+        assert.deepEqual(xhr.request.body, {
+          companyName: testPerson.companyName,
+          contactInformation: testPerson.information,
+          corporateDivision: testPerson.corporateDivision,
+          department: testPerson.department,
+          forename: testPerson.firstName,
+          salutation: testPerson.salutation.toUpperCase(),
+          sector: testPerson.sector,
+          surname: testPerson.lastName,
+          title: testPerson.title,
+        });
+      });
+    });
+
     it('shows error message when the network connection/requests failed', () => {});
   });
 });
