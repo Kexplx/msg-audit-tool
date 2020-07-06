@@ -21,7 +21,7 @@ INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('4'
 INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('4', 'Verringerung der Umweltrisiken');
 INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('5', 'Komplette Abdeckung aller Umgebungsanforderungen');
 INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('5', 'Flexibilität');
-INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('6', 'Funktionale Vollständigkei');
+INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('6', 'Funktionale Vollständigkeit');
 INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('6', 'Funktionale Richtigkeit');
 INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('6', 'Funktionale Angemessenheit');
 INSERT INTO `msg_audit_database`.`fac_crit` (`reference_id`, `name`) VALUES ('7', 'Antwortzeitverhalten');
