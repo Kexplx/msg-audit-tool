@@ -785,7 +785,7 @@ public class AuditIntegrationTest {
 
     private CreateAuditRequest getCreateAuditRequest(String auditName, Date startDate, Date endDate, List<Integer> facCritList, List<Integer> contacts) {
         CreateAuditRequest request = new CreateAuditRequest();
-        request.setAuditName(auditName);
+        request.setName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setScope(facCritList);
@@ -795,7 +795,7 @@ public class AuditIntegrationTest {
 
     private UpdateAuditRequest getUpdateAuditRequest(String auditName, Date startDate, Date endDate) {
         UpdateAuditRequest request = new UpdateAuditRequest();
-        request.setAuditName(auditName);
+        request.setName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         return request;

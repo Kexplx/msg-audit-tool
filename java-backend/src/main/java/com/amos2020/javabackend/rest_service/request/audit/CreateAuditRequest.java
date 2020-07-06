@@ -19,8 +19,8 @@ public class CreateAuditRequest extends BasicRequest {
     @NotNull
     @NotBlank
     @Size(min = 1, max = 256)
-    @Schema(type = "String", name = "auditName", example = "MSG project audit", required = true)
-    private String auditName;
+    @Schema(type = "String", name = "name", example = "MSG project audit", required = true)
+    private String name;
 
     @Getter
     @Setter

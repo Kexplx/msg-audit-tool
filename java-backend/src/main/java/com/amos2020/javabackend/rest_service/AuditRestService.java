@@ -52,7 +52,7 @@ public class AuditRestService {
         try {
             // Validate parameters for creating a audit
             request.isValid();
-            response = auditController.createAudit(request.getAuditName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons());
+            response = auditController.createAudit(request.getName(), request.getStartDate(), request.getEndDate(), request.getScope(), request.getContactPersons());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (NotFoundException e) {
@@ -80,7 +80,7 @@ public class AuditRestService {
         try {
             // Validate parameters for updating audit
             request.isValid();
-            response = auditController.updateAudit(auditId, request.getAuditName(), request.getStartDate(), request.getEndDate());
+            response = auditController.updateAudit(auditId, request.getName(), request.getStartDate(), request.getEndDate());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {

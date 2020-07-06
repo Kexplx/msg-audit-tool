@@ -16,12 +16,12 @@ public class BasicAuditResponse {
 
     @Getter
     @Setter
-    @Schema(type = "Integer", name = "auditId", example = "123456")
-    private int auditId;
+    @Schema(type = "Integer", name = "id", example = "123456")
+    private int id;
     @Getter
     @Setter
-    @Schema(type = "String", name = "auditName", example = "MSG project audit")
-    private String auditName;
+    @Schema(type = "String", name = "name", example = "MSG project audit")
+    private String name;
     @Getter
     @Setter
     @Schema(type = "string", name = "startDate", format = "date")
@@ -86,8 +86,8 @@ public class BasicAuditResponse {
     private ContactPerson cancellationContactPerson;
 
     public BasicAuditResponse(Audit audit, List<FacCrit> scope, List<ContactPerson> contactPersons) {
-        this.auditId = audit.getId();
-        this.auditName = audit.getName();
+        this.id = audit.getId();
+        this.name = audit.getName();
         this.startDate = audit.getStartDate();
         this.endDate = audit.getEndDate();
         this.creationDate = audit.getCreationDate();

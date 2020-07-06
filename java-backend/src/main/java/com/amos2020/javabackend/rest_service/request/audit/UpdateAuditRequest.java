@@ -17,8 +17,8 @@ public class UpdateAuditRequest extends BasicRequest {
     @NotNull
     @NotBlank
     @Size(min = 1, max = Constants.NAME_LENGTH)
-    @Schema(type = "string", name = "auditName", example = "updated audit name", required = true)
-    private String auditName;
+    @Schema(type = "string", name = "name", example = "updated audit name", required = true)
+    private String name;
     @Getter
     @Setter
     @NotNull

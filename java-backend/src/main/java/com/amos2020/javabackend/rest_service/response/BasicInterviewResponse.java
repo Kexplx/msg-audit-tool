@@ -17,8 +17,8 @@ public class BasicInterviewResponse {
 
     @Getter
     @Setter
-    @Schema(type = "Integer", name = "interviewId", example = "654321")
-    private int interviewId;
+    @Schema(type = "Integer", name = "id", example = "654321")
+    private int id;
     @Getter
     @Setter
     @Schema(type = "Integer", name = "auditId", example = "123456")
@@ -72,7 +72,7 @@ public class BasicInterviewResponse {
     private List<ContactPerson> interviewedContactPersons;
 
     public BasicInterviewResponse(Interview interview, List<ContactPerson> interviewedContactPersons) {
-        this.interviewId = interview.getId();
+        this.id = interview.getId();
         this.auditId = interview.getAuditId();
         this.startDate = interview.getStartDate();
         this.endDate = interview.getEndDate();
