@@ -11,7 +11,7 @@ export enum AuditStatus {
 export interface Audit {
   id?: number;
   status: AuditStatus;
-  creationDate: number;
+  creationDate?: number;
   name: string;
   startDate: number;
   endDate?: number;
