@@ -30,7 +30,6 @@ public class UpdateInterviewRequest extends BasicRequest {
     @Getter
     @Setter
     @NotNull
-    @NotBlank
     @Size(max = MAX_SMALL_TEXT_LENGTH)
     @Schema(type = "String", name = "goal", example = "Das geänderte Ziel ist ...", required = true)
     private String goal;
