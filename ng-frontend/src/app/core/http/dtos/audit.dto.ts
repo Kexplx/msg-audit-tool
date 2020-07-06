@@ -13,5 +13,5 @@ export interface AuditDto {
   contactPersons: ContactPerson[];
   cancellationDate: string;
   cancellationReason: string;
-  cancellationContactPerson: ContactPerson[];
+  cancellationContactPerson: ContactPerson;
 }
