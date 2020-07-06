@@ -4,10 +4,10 @@ describe('AddInterviewDialog', () => {
   let testUrl;
 
   before(() => {
-    cy.fixture('audits/example-audit').then(json => {
+    cy.fixture('user-input-data/example-audit').then(json => {
       testAudit = json;
     });
-    cy.fixture('interviews/example-interview').then(json => {
+    cy.fixture('user-input-data/example-interview').then(json => {
       testInterview = json;
     });
   });
