@@ -35,7 +35,7 @@ public class FacCritRestService {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Receive all existing facCrits")
     })
-    @GetMapping("/facCrits")
+    @GetMapping("/faccrits")
     public ResponseEntity<List<BasicFacCritResponse>> getAllFacCrits() {
         return ResponseEntity.ok(facCritController.getAllFacCrits());
     }
@@ -45,7 +45,7 @@ public class FacCritRestService {
             @ApiResponse(responseCode = "200", description = "Receive all existing facCrits"),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
     })
-    @GetMapping("/facCrits/interview/{id}")
+    @GetMapping("/faccrits/interview/{id}")
     public ResponseEntity<List<BasicFacCritResponse>> getAllFacCritsByInterviewId(@PathVariable("id") int interviewId) {
         List<BasicFacCritResponse> response;
         //try{
