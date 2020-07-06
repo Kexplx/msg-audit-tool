@@ -38,7 +38,7 @@ public class ContactPersonRestServiceIntegrationTest {
         ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.getForEntity("/contactpersons/1001", BasicContactPersonResponse.class);
         System.out.println(response.getStatusCode());
         assertEquals(1001, response.getBody().getId());
-        assertEquals(Salutation.MANN, response.getBody().getSalutation());
+        assertEquals(Salutation.HERR, response.getBody().getSalutation());
         assertEquals("John", response.getBody().getForename());
         assertEquals("Doe", response.getBody().getSurname());
         //assertEquals("john@doe.com", response.getBody().getContactInformation());
@@ -81,7 +81,7 @@ public class ContactPersonRestServiceIntegrationTest {
     @Test
     public void addContactPersonFullDetails() {
         CreateContactPersonRequest contactPersonRequest = new CreateContactPersonRequest();
-        contactPersonRequest.setSalutation(Salutation.MANN);
+        contactPersonRequest.setSalutation(Salutation.HERR);
         contactPersonRequest.setTitle("Dr.");
         contactPersonRequest.setForename("Foo");
         contactPersonRequest.setSurname("Bar");
@@ -96,7 +96,7 @@ public class ContactPersonRestServiceIntegrationTest {
         ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.postForEntity("/contactpersons", request, BasicContactPersonResponse.class);
 
         assertNotNull(response.getBody().getId());
-        assertEquals(Salutation.MANN, response.getBody().getSalutation());
+        assertEquals(Salutation.HERR, response.getBody().getSalutation());
         assertEquals("Foo", response.getBody().getForename());
         assertEquals("Bar", response.getBody().getSurname());
         //assertEquals("+00123", response.getBody().getContactInformation());

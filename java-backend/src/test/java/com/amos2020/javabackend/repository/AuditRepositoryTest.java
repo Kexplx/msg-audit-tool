@@ -32,7 +32,7 @@ public class AuditRepositoryTest {
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
     private static final Date TEST_CANCELLATION_DATE = Date.valueOf("2020-02-10");
     private static final String TEST_CANCELLATION_REASON = "Test Reason";
-    private static final Salutation TEST_SALUTATION = Salutation.MANN;
+    private static final Salutation TEST_SALUTATION = Salutation.HERR;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
     private static final String TEST_FORENAME = "Jon";

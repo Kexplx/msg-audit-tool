@@ -15,7 +15,7 @@ public class CreateContactPersonRequest extends BasicRequest {
 
     @Getter
     @Setter
-    @Schema(type = "String", name = "salutation", example = "MANN")
+    @Schema(type = "String", name = "salutation", example = "HERR")
     private Salutation salutation;
     @Getter
     @Setter

@@ -58,7 +58,7 @@ public class AuditIntegrationTest {
     private static final String UPDATED_NAME = "Update Name";
     private static final Date UPDATED_START_DATE = Date.valueOf("2000-01-01");
     private static final Date UPDATED_END_DATE = Date.valueOf("2000-02-02");
-    private static final Salutation TEST_SALUTATION = Salutation.MANN;
+    private static final Salutation TEST_SALUTATION = Salutation.HERR;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
     private static final String TEST_FORENAME = "Jon";

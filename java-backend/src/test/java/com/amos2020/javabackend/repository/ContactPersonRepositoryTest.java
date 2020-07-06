@@ -19,7 +19,7 @@ import org.springframework.transaction.TransactionSystemException;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ContactPersonRepositoryTest {
 
-    private static final Salutation TEST_SALUTATION = Salutation.MANN;
+    private static final Salutation TEST_SALUTATION = Salutation.HERR;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
     private static final String TEST_FORENAME = "Jon";

@@ -1,7 +1,7 @@
 package com.amos2020.javabackend.entity;
 
 public enum Salutation {
-    MANN,
+    HERR,
     FRAU,
     DIVERS
 }
