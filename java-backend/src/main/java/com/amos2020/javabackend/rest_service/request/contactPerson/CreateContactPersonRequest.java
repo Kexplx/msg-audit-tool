@@ -55,7 +55,7 @@ public class CreateContactPersonRequest extends BasicRequest {
     @Getter
     @Setter
     @Size(max = Constants.NAME_LENGTH)
-    @Schema(type = "String", name = "department", example = "Software")
+    @Schema(type = "String", name = "sector", example = "Software")
     private String sector;
     @Getter
     @Setter
