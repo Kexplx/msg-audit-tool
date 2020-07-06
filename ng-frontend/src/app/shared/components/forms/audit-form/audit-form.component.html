@@ -35,7 +35,7 @@
         <nb-accordion-item>
           <nb-accordion-item-header class="label" data-cy="audit-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
           <nb-accordion-item-body>
-            <div class="wrapper-facCrits mt-2">
+            <div class="wrapper-facCrits mt-2" data-cy="facCrits">
               <div *ngFor="let factor of facCrits$ | async | factors">
                 <nb-checkbox [formControlName]="factor.id" (checkedChange)="toggleCriteriaChecked(factor.id, $event)" data-cy="factor-entry">{{ factor.name }}</nb-checkbox>
                 <nb-checkbox
