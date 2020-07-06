@@ -19,7 +19,7 @@ public class BasicQuestionResponse {
 
     @Getter
     @Setter
-    @Schema(type = "String", name = "name", example = "Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?")
+    @Schema(type = "String", name = "textDe", example = "Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?")
     private String textDe;
 
     public BasicQuestionResponse(Question question) {
