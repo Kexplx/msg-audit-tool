@@ -196,7 +196,7 @@ public class FacCritIntegrationTest {
     public void getAllFaccritsOrderedByInterviewId(){
         int id = interview.getId();
 
-        String url = "/facCrits/interview/"+String.valueOf(id);
+        String url = "/faccrits/interview/"+String.valueOf(id);
 
         ResponseEntity<List<BasicFacCritResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<BasicFacCritResponse>>() {
