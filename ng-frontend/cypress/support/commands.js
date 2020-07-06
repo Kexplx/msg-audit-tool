@@ -4,7 +4,7 @@ function injectBackendMocks() {
   cy.server();
   cy.route({
     method: 'GET',
-    url: '/faccrits',
+    url: '/facCrits',
     response: 'fixture:backend-mock-data/facCrits.json',
   });
   cy.route({
@@ -31,18 +31,26 @@ function injectBackendMocks() {
     method: 'POST',
     url: '/audits',
     response: [],
-  });
+  }).as('postAudits');
+  cy.route({
+    method: 'POST',
+    url: '/contactpersons',
+    response: [],
+  }).as('postContacts');
+  cy.route({
+    method: 'PUT',
+    url: '/audits/*',
+    response: [],
+  }).as('putAudits');
 }
 
 function addAudit(testAudit) {
-  //cy.visit(baseUrl + '/audits/new');
   cy.get('[data-cy=home]');
   cy.get('[data-cy=new-audit]').click();
   inputAudit(testAudit);
 }
 
 function inputAudit(testAudit) {
-  // Input Audit name, start date, end date and open next collapsed accordeon through click
   cy.get('[data-cy=audit-data-form]').should('exist');
   cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
   if (testAudit.start) {
@@ -57,11 +65,8 @@ function inputAudit(testAudit) {
 }
 
 function addPerson(testPerson) {
+  cy.get('[data-cy=contacts]').click();
   cy.get('[data-cy=new-contact]').click();
-  inputPerson(testPerson);
-}
-
-function inputPerson(testPerson) {
   cy.get('[data-cy=company-name-input]').filter(':visible').clear().type(testPerson.companyName);
   cy.get('[data-cy=company-department-input]')
     .filter(':visible')
@@ -75,8 +80,8 @@ function inputPerson(testPerson) {
   cy.get('[data-cy=contact-salutation-input]').click();
   cy.get('[data-cy=salutation-option]').contains(testPerson.salutation).click();
   cy.get('[data-cy=contact-title-input]').filter(':visible').clear().type(testPerson.title);
-  cy.get('[data-cy=contact-firstname-input]').filter(':visible').clear().type(testPerson.firstName);
-  cy.get('[data-cy=contact-lastname-input]').filter(':visible').clear().type(testPerson.lastName);
+  cy.get('[data-cy=contact-forename-input]').filter(':visible').clear().type(testPerson.firstName);
+  cy.get('[data-cy=contact-surname-input]').filter(':visible').clear().type(testPerson.lastName);
   if (testPerson.information) {
     cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
   }
@@ -175,18 +180,11 @@ function testInterviewListEntry(testInterview) {
     });
 }
 
-// TODO testAlertDialog
-// it('Clicking yes on warning message should close overlay', () => {
-//     cy.get('[data-cy=discard]').click();
-//     cy.get('[data-cy=discard-back-dialog]').should('not.exist');
-//   });
-
 Cypress.Commands.add('addAudit', addAudit);
 Cypress.Commands.add('addPerson', addPerson);
-Cypress.Commands.add('addInterview', addInterview);
 Cypress.Commands.add('inputAudit', inputAudit);
+Cypress.Commands.add('addInterview', addInterview);
 Cypress.Commands.add('inputInterview', inputInterview);
-Cypress.Commands.add('inputPerson', inputPerson);
 Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
 Cypress.Commands.add('testAuditListEntry', testAuditListEntry);
 Cypress.Commands.add('testInterviewListEntry', testInterviewListEntry);
