@@ -1,14 +1,17 @@
+import { first } from 'rxjs/operators';
+
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
   let testAudit;
 
   before(() => {
-    cy.fixture('audits/example-audit').then(json => {
+    cy.fixture('user-input-data/example-audit').then(json => {
       testAudit = json;
     });
   });
 
   it('opens a form to input audit information when routing to audits/new', () => {
+    cy.injectBackendMocks();
     cy.visit(auditsUrl + '/new');
     cy.get('[data-cy=audit-data-form]').should('exist');
   });
@@ -69,6 +72,8 @@ describe('AddAuditDialog', () => {
       });
       cy.get('[data-cy=audit-contacts]').click();
     });
+
+    it('shows all existing contact persons');
   });
 
   context('When focussing on the scope it...', () => {
@@ -87,7 +92,13 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=audit-scope-header]').click();
     });
 
-    it('shows all factors and criteria from the ISO Norm', () => {});
+    it('shows all factors and criteria from the ISO Norm', () => {
+      cy.fixture('backend-mock-data/facCrits.json').then(facCrits => {
+        facCrits.forEach(el => {
+          cy.get('[data-cy=facCrits]').should('contain', el.name);
+        });
+      });
+    });
 
     it('checks all factors and criteria (default)', () => {
       cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
@@ -98,30 +109,36 @@ describe('AddAuditDialog', () => {
       });
     });
 
-    it('allows unchecking all entries', () => {
-      cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('not.have.class', 'checked');
-      });
-      cy.get('[data-cy=factor-entry] > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('not.have.class', 'checked');
-      });
+    it('allows unchecking entries', () => {
+      cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox')
+        .first()
+        .then(el => {
+          cy.wrap(el).should('have.class', 'checked');
+          cy.wrap(el).click();
+          cy.wrap(el).should('not.have.class', 'checked');
+        });
+      cy.get('[data-cy=factor-entry] > .label > .custom-checkbox')
+        .first()
+        .then(el => {
+          cy.wrap(el).should('have.class', 'checked');
+          cy.wrap(el).click();
+          cy.wrap(el).should('not.have.class', 'checked');
+        });
     });
 
     it('automatically checks/unchecks all criteria if factor was checked/unchecked', () => {
-      cy.get('[data-cy=factor-entry]  > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('not.have.class', 'checked');
-        cy.wrap(el)
-          .get('[data-cy=criteria-entry]')
-          .each(criteria => {
-            cy.wrap(criteria).should('not.have.class', 'checked');
-          });
-      });
+      cy.get('[data-cy=factor-entry]  > .label > .custom-checkbox')
+        .first()
+        .then(el => {
+          cy.wrap(el).should('have.class', 'checked');
+          cy.wrap(el).click();
+          cy.wrap(el).should('not.have.class', 'checked');
+          cy.wrap(el)
+            .get('[data-cy=criteria-entry]')
+            .each(criteria => {
+              cy.wrap(criteria).should('not.have.class', 'checked');
+            });
+        });
     });
   });
 
@@ -169,7 +186,22 @@ describe('AddAuditDialog', () => {
   });
 
   context('When focussing on the network request it ...', () => {
-    it('builds a valid post request as form', () => {});
+    it('builds a valid post request as form', () => {
+      cy.injectBackendMocks();
+      cy.visit(auditsUrl);
+      cy.visit(auditsUrl + '/new');
+      cy.inputAudit(testAudit);
+      cy.wait('@postAudits').then(xhr => {
+        assert.deepEqual(xhr.request.body, {
+          auditName: testAudit.name,
+          contactPersons: [],
+          endDate: null,
+          scope: Array.from(Array(54), (_, i) => i + 1),
+          startDate: new Date(Date.now()).toISOString().slice(0, 10),
+        });
+      });
+    });
+
     it('shows error message when the network connection/requests failed', () => {});
   });
 });
