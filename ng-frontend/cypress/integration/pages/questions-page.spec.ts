@@ -6,10 +6,10 @@ describe('QuestionsPage', () => {
 
   before(() => {
     // import testAudit that does not contain startdate nor enddate
-    cy.fixture('audits/example-audit').then(json => {
+    cy.fixture('user-input-data/example-audit').then(json => {
       testAudit = json;
     });
-    cy.fixture('interviews/example-interview').then(f => {
+    cy.fixture('user-input-data/example-interview').then(f => {
       testInterview = f;
     });
   });
@@ -77,6 +77,7 @@ describe('QuestionsPage', () => {
   context('When in question card it ...', () => {
     before(() => {
       cy.visit(baseUrl);
+      cy.get('[data-cy=home]');
       cy.get('[data-cy=new-audit]').click();
       cy.inputAudit(testAudit);
       cy.get('[data-cy=audit-short-infos]').first().click();
@@ -102,6 +103,7 @@ describe('QuestionsPage', () => {
   context('When focussing on the interactions it ...', () => {
     before(() => {
       cy.visit(baseUrl);
+      cy.get('[data-cy=home]');
       cy.get('[data-cy=new-audit]').click();
       cy.inputAudit(testAudit);
       cy.get('[data-cy=audit-short-infos]').first().click();
@@ -147,6 +149,7 @@ describe('QuestionsPage', () => {
   context('When focussing on the sidebar it', () => {
     before(() => {
       cy.visit(baseUrl);
+      cy.get('[data-cy=home]');
       cy.get('[data-cy=new-audit]').click();
       cy.inputAudit(testAudit);
       cy.get('[data-cy=audit-short-infos]').first().click();
