@@ -41,11 +41,11 @@ fdescribe('CoreService', () => {
   it('#getAudit should return a piped auditDto', () => {
     const auditDto = AUDITS_DTO_DUMMY[0];
 
-    service.getAudit(auditDto.auditId).subscribe(audit => {
+    service.getAudit(auditDto.id).subscribe(audit => {
       verifyAuditContent(audit, auditDto);
     });
 
-    const req = httpMock.expectOne(BASE_URL + 'audits/' + auditDto.auditId);
+    const req = httpMock.expectOne(BASE_URL + 'audits/' + auditDto.id);
     expect(req.request.method).toEqual('GET');
 
     req.flush(auditDto);

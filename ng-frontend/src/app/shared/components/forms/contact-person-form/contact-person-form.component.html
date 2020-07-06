@@ -10,7 +10,7 @@
           <label class="label">Anrede</label>
           <nb-select placeholder="Frau" formControlName="salutation" fullWidth data-cy="contact-salutation-input">
             <nb-option value="FRAU" data-cy="salutation-option">Frau</nb-option>
-            <nb-option value="MANN" data-cy="salutation-option">Mann</nb-option>
+            <nb-option value="HERR" data-cy="salutation-option">Mann</nb-option>
             <nb-option value="DIVERS" data-cy="salutation-option">Divers</nb-option>
           </nb-select>
           <div *ngIf="salutation.invalid && salutation.touched">

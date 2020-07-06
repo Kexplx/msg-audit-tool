@@ -18,11 +18,11 @@ export class CoreService {
   constructor(private http: HttpClient) {}
 
   getFacCritsByInterviewId(id: number) {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'facCrits/interview/' + id);
+    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits/interview/' + id);
   }
 
   getFacCrits() {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'facCrits');
+    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits');
   }
 
   getAudits() {
@@ -32,8 +32,8 @@ export class CoreService {
           const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
           return {
-            id: auditDto.auditId,
-            name: auditDto.auditName,
+            id: auditDto.id,
+            name: auditDto.name,
             creationDate: new Date(auditDto.creationDate).getTime(),
             startDate: new Date(auditDto.startDate).getTime(),
             endDate,
@@ -53,8 +53,8 @@ export class CoreService {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
         return {
-          id: auditDto.auditId,
-          name: auditDto.auditName,
+          id: auditDto.id,
+          name: auditDto.name,
           creationDate: new Date(auditDto.creationDate).getTime(),
           startDate: new Date(auditDto.startDate).getTime(),
           endDate,
@@ -68,7 +68,7 @@ export class CoreService {
 
   postAudit(audit: Audit): Observable<Audit> {
     const auditDto: PostAuditDto = {
-      auditName: audit.name,
+      name: audit.name,
       endDate: parseTimestamp(audit.endDate),
       contactPersons: audit.contactPersons?.map(x => x.id) ?? [],
       scope: audit.scope?.map(x => x.id) ?? [],
@@ -80,8 +80,8 @@ export class CoreService {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
         return {
-          id: auditDto.auditId,
-          name: auditDto.auditName,
+          id: auditDto.id,
+          name: auditDto.name,
           creationDate: new Date(auditDto.creationDate).getTime(),
           startDate: new Date(auditDto.startDate).getTime(),
           endDate,
@@ -96,7 +96,7 @@ export class CoreService {
   putAudit(oldAudit: Audit, currentAudit: Audit) {
     this.putAuditContactPersons(oldAudit, currentAudit);
     const putAuditDto: PutAuditDto = {
-      auditName: currentAudit.name,
+      name: currentAudit.name,
       endDate: parseTimestamp(currentAudit.endDate),
       startDate: parseTimestamp(currentAudit.startDate),
     };

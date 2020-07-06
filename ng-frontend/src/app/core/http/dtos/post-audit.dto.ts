@@ -1,5 +1,5 @@
 export interface PostAuditDto {
-  auditName: string;
+  name: string;
   startDate: string;
   endDate: string;
   scope: number[];

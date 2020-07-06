@@ -4,8 +4,8 @@ import { Salutation } from '../../data/models/contact-person.model';
 
 export const AUDITS_DTO_DUMMY: AuditDto[] = [
   {
-    auditId: 1,
-    auditName: 'MSG project audit',
+    id: 1,
+    name: 'MSG project audit',
     startDate: '2020-07-06',
     endDate: '2020-07-06',
     creationDate: '2020-07-06T14:35:44.035Z',
@@ -20,7 +20,7 @@ export const AUDITS_DTO_DUMMY: AuditDto[] = [
     contactPersons: [
       {
         id: 4,
-        salutation: Salutation.Mann,
+        salutation: Salutation.Herr,
         title: 'Prof',
         forename: 'Max',
         role: 'asds',
@@ -37,7 +37,7 @@ export const AUDITS_DTO_DUMMY: AuditDto[] = [
     cancellationContactPerson: {
       id: 5,
       role: '',
-      salutation: Salutation.Mann,
+      salutation: Salutation.Herr,
       title: 'Prof',
       forename: 'Max',
       surname: 'Mustermann',
@@ -49,8 +49,8 @@ export const AUDITS_DTO_DUMMY: AuditDto[] = [
     },
   },
   {
-    auditId: 2,
-    auditName: 'MSG project audit',
+    id: 2,
+    name: 'MSG project audit',
     startDate: '2020-07-06',
     endDate: '2020-07-06',
     creationDate: '2020-07-06T14:35:44.035Z',
@@ -65,7 +65,7 @@ export const AUDITS_DTO_DUMMY: AuditDto[] = [
     contactPersons: [
       {
         id: 1,
-        salutation: Salutation.Mann,
+        salutation: Salutation.Herr,
         title: 'Prof',
         forename: 'Max',
         role: 'asds',
@@ -82,7 +82,7 @@ export const AUDITS_DTO_DUMMY: AuditDto[] = [
     cancellationContactPerson: {
       id: 123,
       role: '',
-      salutation: Salutation.Mann,
+      salutation: Salutation.Herr,
       title: 'Prof',
       forename: 'Max',
       surname: 'Mustermann',

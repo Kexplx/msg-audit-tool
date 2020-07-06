@@ -3,8 +3,8 @@ import { ContactPerson } from '../../data/models/contact-person.model';
 import { AuditStatus } from '../../data/models/audit.model';
 
 export interface AuditDto {
-  auditId: number;
-  auditName: string;
+  id: number;
+  name: string;
   startDate: string;
   endDate: string;
   creationDate: string;

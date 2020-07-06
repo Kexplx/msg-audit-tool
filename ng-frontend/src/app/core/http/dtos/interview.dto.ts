@@ -3,7 +3,7 @@ import { Answer } from '../../data/models/answer.model';
 import { ContactPerson } from '../../data/models/contact-person.model';
 
 export interface InterviewDto {
-  interviewId?: number;
+  id?: number;
   auditId: number;
   startDate: string;
   endDate: string;

@@ -1,5 +1,5 @@
 export interface PutAuditDto {
-  auditName: string;
+  name: string;
   startDate: string;
   endDate: string;
 }
