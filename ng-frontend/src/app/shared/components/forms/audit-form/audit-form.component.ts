@@ -43,10 +43,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     return this.formGroup.get('endDate');
   }
 
-  get creationDate() {
-    return this.formGroup.get('creationDate');
-  }
-
   get contactPersonsControl() {
     return this.formGroup.get('contactPersons');
   }
@@ -83,7 +79,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   onSubmit() {
     const audit: Partial<Audit> = {
       name: this.name.value,
-      creationDate: this.audit?.creationDate ?? Date.now(),
       endDate: this.endDate.value,
       startDate: this.startDate.value,
       status: this.audit?.status ?? AuditStatus.Planned,
