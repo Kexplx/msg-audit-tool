@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable, combineLatest, forkJoin } from 'rxjs';
-import { debounceTime, map, tap } from 'rxjs/operators';
+import { debounceTime, map, tap, switchMap } from 'rxjs/operators';
 import { Store, Select } from '@ngxs/store';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
@@ -25,9 +25,11 @@ export class InterviewDirectorComponent implements OnInit {
 
   facCrit$: Observable<FacCrit>;
   interview$: Observable<Interview>;
-  answers$: Observable<Answer[]>;
-  questions$: Observable<Question[]>;
 
+  goal$ = new Subject<string>();
+
+  answers: Answer[];
+  questions: Question[];
   interviewId: number;
   facCritIds: number[];
 
@@ -42,36 +44,34 @@ export class InterviewDirectorComponent implements OnInit {
   ngOnInit() {
     combineLatest([this.interviewId$, this.facCritId$]).subscribe(ids => {
       this.interviewId = ids[0];
-      this.interview$ = this.store.select(InterviewState.interview(ids[0]));
+      this.interview$ = this.store.select(InterviewState.interview(ids[0])).pipe(
+        tap(interview => {
+          const questions$: Observable<Question>[] = [];
+          this.answers = interview.answers.filter(a => a.faccritId === ids[1]);
+          for (const answer of interview.answers) {
+            questions$.push(this.interviewService.getQuestion(answer.questionId));
+          }
+
+          forkJoin(questions$).subscribe(questions => (this.questions = questions));
+        }),
+      );
+
       this.facCrit$ = this.store.select(AuditState.facCrit(ids[1]));
 
       this.coreService.getFacCritsByInterviewId(ids[0]).subscribe((facCrits: FacCrit[]) => {
         const result = (this.facCritIds = facCrits.map(f => f.id));
         this.facCritIds = this.getDistinctIds(result);
       });
-
-      this.answers$ = this.interviewService.getAnswersByInterviewId(ids[0]).pipe(
-        tap(answers => {
-          const questions$: Observable<Question>[] = [];
-          for (const answer of answers) {
-            questions$.push(this.interviewService.getQuestion(answer.questionId));
-          }
-
-          this.questions$ = forkJoin(questions$);
-        }),
-        map(answers => answers.filter(a => a.faccritId === ids[1])),
-      );
     });
 
-    this.goalDebounce$.pipe(debounceTime(1000)).subscribe(goal => {
+    // Dispatch UpdateInterview after 1000ms of last input event
+    this.goal$.pipe(debounceTime(1000)).subscribe(goal => {
       this.store.dispatch(new UpdateInterview(this.interviewId, { goal }));
     });
   }
 
-  goalDebounce$ = new Subject<string>();
-
   onGoalInput(value: string) {
-    this.goalDebounce$.next(value);
+    this.goal$.next(value);
   }
 
   onNavigateForward(facCritId: number) {
@@ -108,7 +108,6 @@ export class InterviewDirectorComponent implements OnInit {
 
   getFacCritPosition(id: number) {
     const indexOfFacCrit = this.facCritIds.indexOf(id) + 1;
-
     return indexOfFacCrit + '/' + this.facCritIds.length;
   }
 }
