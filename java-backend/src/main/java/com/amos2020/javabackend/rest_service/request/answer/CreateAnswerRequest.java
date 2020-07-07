@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
+/**
+ * Request object for creating a new answer
+ */
 public class CreateAnswerRequest extends BasicRequest {
 
     @Getter
