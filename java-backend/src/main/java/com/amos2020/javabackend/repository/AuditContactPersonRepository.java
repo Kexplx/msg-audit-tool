@@ -5,7 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
+/**
+ * Interface to access the answer_contact_person table in the database
+ */
 public interface AuditContactPersonRepository extends JpaRepository<AuditContactPerson, Integer> {
     @Modifying
     @Query("delete from AuditContactPerson a where a.auditId=:auditId and a.contactPersonId=:contactPersonId")

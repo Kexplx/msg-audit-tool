@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-
+/**
+ * Interface to access the answer table in the database
+ */
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
 
     @Query("select a from Answer a where a.interviewId=:interviewId")

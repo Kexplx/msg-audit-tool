@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-
+/**
+ * Interface to access the question table in the database
+ */
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
     @Modifying
     @Query("select a from Question a where a.faccritId=:faccritId")

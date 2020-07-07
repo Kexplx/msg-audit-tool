@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-
+/**
+ * Interface to access the fac_crit table in the database
+ */
 public interface FacCritRepository extends JpaRepository<FacCrit, Integer> {
 
 

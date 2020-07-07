@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FacCritService {
@@ -65,6 +66,7 @@ public class FacCritService {
      */
     public List<FacCrit> getAllFacCritsByInterviewId(int interviewId) {
         List<FacCrit> facCrits = repository.getFacCritsByInterviewId(interviewId);
+        facCrits = facCrits.stream().distinct().collect(Collectors.toList());
         Comparator<FacCrit> comparator = new Comparator<FacCrit>() {
             @Override
             public int compare(FacCrit o1, FacCrit o2) {
