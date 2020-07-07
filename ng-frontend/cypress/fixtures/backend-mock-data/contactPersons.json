@@ -1,14 +1,14 @@
 [
-    {
-      "id": 0,
-      "salutation": "MANN",
-      "title": "string",
-      "forename": "string",
-      "surname": "string",
-      "contactInformation": "string",
-      "companyName": "string",
-      "department": "string",
-      "sector": "string",
-      "corporateDivision": "string"
-    }
-  ]
+  {
+    "id": 1,
+    "salutation": "HERR",
+    "title": "Prof",
+    "forename": "Max",
+    "surname": "Mustermann",
+    "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
+    "companyName": "msg systems AG",
+    "department": "Softwareentwicklung",
+    "sector": "msg Public Sector",
+    "corporateDivision": "Software"
+  }
+]

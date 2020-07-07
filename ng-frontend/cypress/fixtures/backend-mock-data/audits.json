@@ -1,37 +1,33 @@
 [
-    {
-      "auditId": 123456,
-      "auditName": "MSG project audit",
-      "startDate": "2020-07-04",
-      "endDate": "2020-07-04",
-      "creationDate": "2020-07-04T08:49:03.451Z",
-      "status": "ACTIVE",
-      "scope": [
-        {
-          "id": 50,
-          "referenceId": 12,
-          "name": "Modifizierbarkeit"
-        }
-      ],
-      "contactPersons": [
-        {
-          "id": 1,
-          "salutation": "MANN",
-          "title": "Prof",
-          "forename": "Max",
-          "surname": "Mustermann",
-          "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
-          "companyName": "msg systems AG",
-          "department": "Softwareentwicklung",
-          "sector": "msg Public Sector",
-          "corporateDivision": "Software"
-        }
-      ],
-      "cancellationDate": "2020-07-04",
-      "cancellationReason": "Project got canceled",
-      "cancellationContactPerson": {
+  {
+    "id": 123456,
+    "name": "MSG project audit",
+    "startDate": "2020-07-07",
+    "endDate": "2020-07-07",
+    "creationDate": "2020-07-07T10:23:34.169Z",
+    "status": "ACTIVE",
+    "scope": [
+      { "id": 1, "referenceId": null, "name": "Effektivität" },
+      {
+        "id": 4,
+        "referenceId": null,
+        "name": "Risikofreiheit"
+      },
+      {
+        "id": 20,
+        "referenceId": 4,
+        "name": "Verringerung der Risiken hinsichtlich Gesundheit und Sicherheit"
+      },
+      {
+        "id": 21,
+        "referenceId": 4,
+        "name": "Verringerung der Umweltrisiken"
+      }
+    ],
+    "contactPersons": [
+      {
         "id": 1,
-        "salutation": "MANN",
+        "salutation": "HERR",
         "title": "Prof",
         "forename": "Max",
         "surname": "Mustermann",
@@ -41,5 +37,20 @@
         "sector": "msg Public Sector",
         "corporateDivision": "Software"
       }
+    ],
+    "cancellationDate": "2020-07-07",
+    "cancellationReason": "Project got canceled",
+    "cancellationContactPerson": {
+      "id": 1,
+      "salutation": "HERR",
+      "title": "Prof",
+      "forename": "Max",
+      "surname": "Mustermann",
+      "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
+      "companyName": "msg systems AG",
+      "department": "Softwareentwicklung",
+      "sector": "msg Public Sector",
+      "corporateDivision": "Software"
     }
-  ]
+  }
+]
