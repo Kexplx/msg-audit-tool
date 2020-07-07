@@ -1,7 +1,10 @@
 describe('AddInterviewDialog', () => {
+  let audits;
   let testAudit;
   let testInterview;
-  let testUrl;
+  let interviewsUrl;
+  let interviewDialogUrl;
+  let contactPersons;
 
   before(() => {
     cy.fixture('user-input-data/example-audit').then(json => {
@@ -10,20 +13,23 @@ describe('AddInterviewDialog', () => {
     cy.fixture('user-input-data/example-interview').then(json => {
       testInterview = json;
     });
+    cy.fixture('backend-mock-data/audits.json').then(json => {
+      audits = json;
+      interviewsUrl = `${Cypress.config().baseUrl}/audits/${audits[0].id}/interviews`;
+      interviewDialogUrl = interviewsUrl + '/new';
+    });
+    cy.fixture('backend-mock-data/contactPersons').then(json => {
+      contactPersons = json;
+    });
   });
 
   beforeEach(() => {
     cy.injectBackendMocks();
-    cy.visit(Cypress.config().baseUrl);
-    cy.get('[data-cy=audit-card]').first().click();
-    // click on new interview button
+    cy.visit(interviewsUrl);
     cy.get('[data-cy=new-interview]').click();
-    // shows a dialog to input interview data
-    cy.get('[data-cy=add-interview-form]').should('exist');
   });
 
   it('gives an inputable start date picker', () => {
-    // pick a start date
     cy.get('[data-cy=interview-start-input]').click();
     cy.get('.today > .cell-content').first().click();
   });
@@ -38,6 +44,8 @@ describe('AddInterviewDialog', () => {
       cy.get('[data-cy=interview-scope-header]').click();
       cy.get('[data-cy=interview-scope-body]').should('not.be.visible');
     });
+
+    it('shows all factors and criteria given of an audit');
 
     it('leaves all checkboxes unchecked by default', () => {
       cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
@@ -111,6 +119,15 @@ describe('AddInterviewDialog', () => {
       });
       cy.get('[data-cy=interview-contacts]').click();
     });
+
+    it('shows the correct contact person(s)', () => {
+      cy.get('[data-cy=interview-contacts]').click();
+      cy.get('[data-cy=interview-contact]').each((contact, i) => {
+        cy.wrap(contact).should('contain', contactPersons[i].forename);
+        cy.wrap(contact).should('contain', contactPersons[i].surname);
+      });
+      cy.get('[data-cy=interview-contacts]').click();
+    });
   });
 
   context('When focussing on the buttons', () => {
@@ -155,6 +172,7 @@ describe('AddInterviewDialog', () => {
 
   context('When focussing on the network requests it ...', () => {
     it('builds a valid post request as form', () => {});
-    it('shows error message when the network connection/requests failed', () => {});
+    it('shows error message when malformed request received');
+    it('shows error message when the network connection/requests failed');
   });
 });

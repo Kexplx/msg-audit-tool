@@ -40,7 +40,7 @@ describe('AddPersonDialog', () => {
 
     it('gives the gendered salutations for Herr, Frau, Divers', () => {
       cy.get('[data-cy=contact-salutation-input]').click();
-      cy.get('[data-cy=salutation-option]').should('contain', 'Mann');
+      cy.get('[data-cy=salutation-option]').should('contain', 'Herr');
       cy.get('[data-cy=salutation-option]').should('contain', 'Frau');
       cy.get('[data-cy=salutation-option]').should('contain', 'Divers');
     });
@@ -102,7 +102,7 @@ describe('AddPersonDialog', () => {
         });
       });
     });
-
-    it('shows error message when the network connection/requests failed', () => {});
+    it('shows error message when malformed request received');
+    it('shows error message when the network connection/requests failed');
   });
 });

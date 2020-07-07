@@ -4,7 +4,7 @@ function injectBackendMocks() {
   cy.server();
   cy.route({
     method: 'GET',
-    url: '/facCrits',
+    url: new RegExp('faccrits', 'i'),
     response: 'fixture:backend-mock-data/facCrits.json',
   });
   cy.route({

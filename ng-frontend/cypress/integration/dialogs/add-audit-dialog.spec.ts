@@ -3,10 +3,14 @@ import { first } from 'rxjs/operators';
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
   let testAudit;
+  let contactPersons;
 
   before(() => {
     cy.fixture('user-input-data/example-audit').then(json => {
       testAudit = json;
+    });
+    cy.fixture('backend-mock-data/contactPersons').then(json => {
+      contactPersons = json;
     });
   });
 
@@ -73,7 +77,14 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=audit-contacts]').click();
     });
 
-    it('shows all existing contact persons');
+    it('shows all existing contact persons', () => {
+      cy.get('[data-cy=audit-contacts]').click();
+      cy.get('[data-cy=audit-contact]').each((contact, i) => {
+        cy.wrap(contact).should('contain', contactPersons[i].forename);
+        cy.wrap(contact).should('contain', contactPersons[i].surname);
+      });
+      cy.get('[data-cy=audit-contacts]').click();
+    });
   });
 
   context('When focussing on the scope it...', () => {
@@ -193,7 +204,7 @@ describe('AddAuditDialog', () => {
       cy.inputAudit(testAudit);
       cy.wait('@postAudits').then(xhr => {
         assert.deepEqual(xhr.request.body, {
-          auditName: testAudit.name,
+          name: testAudit.name,
           contactPersons: [],
           endDate: null,
           scope: Array.from(Array(54), (_, i) => i + 1),
@@ -201,7 +212,7 @@ describe('AddAuditDialog', () => {
         });
       });
     });
-
-    it('shows error message when the network connection/requests failed', () => {});
+    it('shows error message when malformed request received');
+    it('shows error message when the network connection/requests failed');
   });
 });

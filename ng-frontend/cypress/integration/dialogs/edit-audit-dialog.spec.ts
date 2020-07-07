@@ -2,6 +2,7 @@ describe('EditAuditDialog', () => {
   const auditsUrl = Cypress.config().baseUrl + '/audits';
   let audits;
   let testAudit;
+  let contactPersons;
 
   before(() => {
     cy.fixture('backend-mock-data/audits.json').then(json => {
@@ -9,6 +10,9 @@ describe('EditAuditDialog', () => {
     });
     cy.fixture('user-input-data/example-audit').then(json => {
       testAudit = json;
+    });
+    cy.fixture('backend-mock-data/contactPersons').then(json => {
+      contactPersons = json;
     });
   });
 
@@ -29,11 +33,12 @@ describe('EditAuditDialog', () => {
 
     beforeEach(() => {
       audit = audits[0];
-      cy.visit(`${auditsUrl}/${audit.auditId}/edit`);
+      cy.visit(auditsUrl);
+      cy.visit(`${auditsUrl}/${audit.id}/edit`);
     });
 
     it('shows the correct audit name', () => {
-      cy.get('[data-cy=audit-name-input]').should('have.value', audit.auditName);
+      cy.get('[data-cy=audit-name-input]').should('have.value', audit.name);
     });
 
     it('shows the correct start date', () => {
@@ -61,15 +66,15 @@ describe('EditAuditDialog', () => {
     it('shows the correct contact person(s)', () => {
       cy.get('[data-cy=audit-contacts]').click();
       cy.get('[data-cy=audit-contact]').each((contact, i) => {
-        cy.wrap(contact).should('contain', audit.contactPersons[i].forename);
-        cy.wrap(contact).should('contain', audit.contactPersons[i].surname);
+        cy.wrap(contact).should('contain', contactPersons[i].forename);
+        cy.wrap(contact).should('contain', contactPersons[i].surname);
       });
       cy.get('[data-cy=audit-contacts]').click();
     });
 
     it('shows the correct scope', () => {
       audit.scope.forEach(scope => {
-        cy.get('[data-cy=criteria-entry]')
+        cy.get('[data-cy=facCrits]')
           .contains(scope.name)
           .then(a => {
             cy.wrap(a).get('.label > .custom-checkbox').should('have.class', 'checked');
@@ -84,19 +89,20 @@ describe('EditAuditDialog', () => {
     beforeEach(() => {
       audit = audits[0];
       cy.visit(auditsUrl);
-      cy.visit(`${auditsUrl}/${audit.auditId}/edit`);
+      cy.visit(`${auditsUrl}/${audit.id}/edit`);
     });
 
     it('builds a valid post request as form', () => {
       cy.inputAudit(testAudit);
       cy.wait('@putAudits').then(xhr => {
         assert.deepEqual(xhr.request.body, {
-          auditName: testAudit.name,
+          name: testAudit.name,
           endDate: audit.endDate,
           startDate: audit.startDate,
         });
       });
     });
-    it('shows error message when the network connection/requests failed', () => {});
+
+    it('shows error message when the network connection/requests failed');
   });
 });
