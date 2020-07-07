@@ -14,7 +14,9 @@ import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
-
+/**
+ * Request object for creating a new interview.
+ */
 public class CreateInterviewRequest extends BasicRequest {
 
     @Getter

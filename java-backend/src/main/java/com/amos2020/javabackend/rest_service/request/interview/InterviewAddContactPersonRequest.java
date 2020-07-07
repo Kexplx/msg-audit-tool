@@ -10,7 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
+/**
+ * Request object for adding an existing contact person to an existing interview.
+ */
 public class InterviewAddContactPersonRequest extends BasicRequest {
 
     @Getter

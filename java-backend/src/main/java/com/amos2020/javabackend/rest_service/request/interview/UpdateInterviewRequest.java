@@ -10,7 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
-
+/**
+ * Request object for updating an existing interview.
+ */
 public class UpdateInterviewRequest extends BasicRequest {
 
     @Getter
@@ -34,7 +36,9 @@ public class UpdateInterviewRequest extends BasicRequest {
     @Schema(type = "String", name = "goal", example = "Das geänderte Ziel ist ...", required = true)
     private String goal;
 
-
+    /**
+     * Checks if provided startDate is before endDate
+     */
     public void isValid() {
         assertDatesAreValid(startDate, endDate);
     }
