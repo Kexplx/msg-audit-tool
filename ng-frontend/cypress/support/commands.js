@@ -148,16 +148,6 @@ function testAuditInfoPage(testAudit) {
   // );
 }
 
-function testAuditListEntry(testAudit) {
-  cy.get('[data-cy=audit-short-infos]').first().should('contain.text', testAudit.name);
-  if (!testAudit.end) {
-    cy.get('[data-cy=audit-short-infos]').contains('TBD');
-  }
-  // A newly added audit always has the status 'Planned'
-  cy.get('[data-cy=audit-status]').first().should('have.attr', 'nbPopover');
-  cy.get('[data-cy=audit-status]').first().invoke('attr', 'nbPopover').should('contain', 'Geplant');
-}
-
 function testInterviewListEntry(testInterview) {
   cy.get('[data-cy=interview]')
     .contains(testInterview.name)
@@ -186,6 +176,5 @@ Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('addInterview', addInterview);
 Cypress.Commands.add('inputInterview', inputInterview);
 Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
-Cypress.Commands.add('testAuditListEntry', testAuditListEntry);
 Cypress.Commands.add('testInterviewListEntry', testInterviewListEntry);
 Cypress.Commands.add('injectBackendMocks', injectBackendMocks);
