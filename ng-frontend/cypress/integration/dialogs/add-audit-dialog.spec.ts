@@ -16,6 +16,10 @@ describe('AddAuditDialog', () => {
     cy.injectBackendMocks();
     cy.visit(auditsUrl);
     cy.visit(auditsUrl + '/new');
+    cy.wait('@getFacCrits');
+    cy.wait('@getAudits');
+    cy.wait('@getContactPersons');
+    cy.wait('@getInterviews');
   });
 
   it('opens a form to input audit information when routing to audits/new', () => {

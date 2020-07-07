@@ -6,27 +6,27 @@ function injectBackendMocks() {
     method: 'GET',
     url: new RegExp('faccrits', 'i'),
     response: 'fixture:backend-mock-data/facCrits.json',
-  });
+  }).as('getFacCrits');
   cy.route({
     method: 'GET',
     url: '/answers',
     response: 'fixture:backend-mock-data/answers.json',
-  });
+  }).as('getAnswers');
   cy.route({
     method: 'GET',
     url: '/audits',
     response: 'fixture:backend-mock-data/audits.json',
-  });
+  }).as('getAudits');
   cy.route({
     method: 'GET',
     url: '/contactpersons',
     response: 'fixture:backend-mock-data/contactPersons.json',
-  });
+  }).as('getContactPersons');
   cy.route({
     method: 'GET',
     url: '/interviews',
     response: 'fixture:backend-mock-data/interviews.json',
-  });
+  }).as('getInterviews');
   cy.route({
     method: 'POST',
     url: '/audits',

@@ -35,6 +35,10 @@ describe('EditAuditDialog', () => {
       audit = audits[0];
       cy.visit(auditsUrl);
       cy.visit(`${auditsUrl}/${audit.id}/edit`);
+      cy.wait('@getFacCrits');
+      cy.wait('@getAudits');
+      cy.wait('@getContactPersons');
+      cy.wait('@getInterviews');
     });
 
     it('shows the correct audit name', () => {
@@ -90,6 +94,10 @@ describe('EditAuditDialog', () => {
       audit = audits[0];
       cy.visit(auditsUrl);
       cy.visit(`${auditsUrl}/${audit.id}/edit`);
+      cy.wait('@getFacCrits');
+      cy.wait('@getAudits');
+      cy.wait('@getContactPersons');
+      cy.wait('@getInterviews');
     });
 
     it('builds a valid post request as form', () => {
