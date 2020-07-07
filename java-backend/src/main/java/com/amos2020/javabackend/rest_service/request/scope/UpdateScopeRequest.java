@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Size;
-
+/**
+ * Request object for updating a specific scope item
+ */
 public class UpdateScopeRequest extends BasicRequest {
 
     @Getter

@@ -7,7 +7,9 @@ import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import java.util.List;
-
+/**
+ * Request object for adding elements to the scope of an existing audit project.
+ */
 public class AddScopeRequest extends BasicRequest {
 
     @Getter
