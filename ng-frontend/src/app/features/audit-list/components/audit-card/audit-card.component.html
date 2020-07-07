@@ -10,7 +10,7 @@
       {{ audit.name }}
       <span *ngIf="contactPerson">| {{ contactPerson.companyName }} </span>
       <br />
-      <span class="label"> &nbsp;{{ audit.startDate | date: 'dd.MM.yyyy' }} - {{ audit.endDate ? (audit.endDate | date: 'dd.MM.yyyy') : 'TBD' }}</span>
+      <span class="label" data-cy="audit-dates"> &nbsp;{{ audit.startDate | date: 'dd.MM.yyyy' }} - {{ audit.endDate ? (audit.endDate | date: 'dd.MM.yyyy') : 'TBD' }}</span>
     </div>
     <div></div>
     <button (click)="$event.stopPropagation()" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" nbButton [nbContextMenu]="items" [nbContextMenuTag]="nbMenuId" data-cy="audit-options">
