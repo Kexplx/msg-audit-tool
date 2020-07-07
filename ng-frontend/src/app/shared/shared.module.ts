@@ -16,11 +16,11 @@ import { FactorsPipe } from './pipes/factors.pipe';
 import { CriteriasPipe } from './pipes/criterias.pipe';
 import { AuditFormComponent } from './components/forms/audit-form/audit-form.component';
 import { FactorByIdPipe } from './pipes/factorById.pipe';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { SidebarInterviewListComponent } from './sidebar/sidebar-interview-list/sidebar-interview-list.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarInterviewListComponent } from './components/sidebar/sidebar-interview-list/sidebar-interview-list.component';
 import { CriteriaByFactorPipe } from './pipes/facCritByFactor.pipe';
 import { InterviewByFacCritPipe } from './pipes/interviewByFacCrit.pipe';
-import { SidebarInterviewComponent } from './sidebar/sidebar-interview/sidebar-interview.component';
+import { SidebarInterviewComponent } from './components/sidebar/sidebar-interview/sidebar-interview.component';
 
 @NgModule({
   declarations: [

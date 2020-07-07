@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, Observable, combineLatest, forkJoin } from 'rxjs';
-import { debounceTime, map, tap, switchMap } from 'rxjs/operators';
+import { debounceTime, tap } from 'rxjs/operators';
 import { Store, Select } from '@ngxs/store';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';

@@ -4,8 +4,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { AUDITS_DTO_DUMMY } from './dummies';
 import { AuditStatus, Audit } from '../../data/models/audit.model';
 import { AuditDto } from '../dtos/audit.dto';
-
-const BASE_URL = 'http://localhost:8080/';
+import { compileTimeSwitchedString } from '../connectionStrings';
 
 fdescribe('CoreService', () => {
   let service: CoreService;
@@ -30,7 +29,7 @@ fdescribe('CoreService', () => {
       verifyAuditContent(audits[1], auditDto1);
     });
 
-    const req = httpMock.expectOne(BASE_URL + 'audits');
+    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits');
     expect(req.request.method).toEqual('GET');
 
     req.flush([auditDto0, auditDto1]);
@@ -45,7 +44,7 @@ fdescribe('CoreService', () => {
       verifyAuditContent(audit, auditDto);
     });
 
-    const req = httpMock.expectOne(BASE_URL + 'audits/' + auditDto.id);
+    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits/' + auditDto.id);
     expect(req.request.method).toEqual('GET');
 
     req.flush(auditDto);
@@ -68,13 +67,16 @@ fdescribe('CoreService', () => {
       verifyAuditContent(audit, auditDto);
     });
 
-    const req = httpMock.expectOne(BASE_URL + 'audits');
+    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits');
     expect(req.request.method).toEqual('POST');
 
     req.flush(auditDto);
 
     httpMock.verify();
   });
+
+  // put audit
+  // delete audit
 
   function verifyAuditContent(audit: Audit, auditDto: AuditDto) {
     const { id, status, endDate, startDate, contactPersons, creationDate, scope } = audit;
