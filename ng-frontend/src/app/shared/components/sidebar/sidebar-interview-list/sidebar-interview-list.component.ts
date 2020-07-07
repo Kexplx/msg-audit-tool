@@ -4,8 +4,8 @@ import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
-import { FactorsPipe } from '../../pipes/factors.pipe';
-import { CriteriaByFactorPipe } from '../../pipes/facCritByFactor.pipe';
+import { FactorsPipe } from '../../../pipes/factors.pipe';
+import { CriteriaByFactorPipe } from '../../../pipes/facCritByFactor.pipe';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({

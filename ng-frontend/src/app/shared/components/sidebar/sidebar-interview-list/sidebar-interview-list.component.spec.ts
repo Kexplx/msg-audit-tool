@@ -2,9 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarInterviewListComponent } from './sidebar-interview-list.component';
 import { CoreModule } from 'src/app/core/core.module';
-import { FactorsPipe } from '../../pipes/factors.pipe';
-import { CriteriaByFactorPipe } from '../../pipes/facCritByFactor.pipe';
-import { SharedModule } from '../../shared.module';
+import { FactorsPipe } from '../../../pipes/factors.pipe';
+import { CriteriaByFactorPipe } from '../../../pipes/facCritByFactor.pipe';
+import { SharedModule } from '../../../shared.module';
 import { RouterModule } from '@angular/router';
 
 describe('SidebarInterviewListComponent', () => {

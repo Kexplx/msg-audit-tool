@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarInterviewComponent } from './sidebar-interview.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../../shared.module';
 
 describe('SidebarInterviewComponent', () => {
   let component: SidebarInterviewComponent;
