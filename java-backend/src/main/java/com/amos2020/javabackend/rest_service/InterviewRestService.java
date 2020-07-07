@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
-
+/**
+ * Provides endpoints for the interview resource under /interviews
+ */
 @RestController
 @Validated
 @Tag(name = "Interview", description = "The endpoints for the interview resource")

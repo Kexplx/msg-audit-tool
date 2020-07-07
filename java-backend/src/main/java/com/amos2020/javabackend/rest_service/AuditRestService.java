@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
-
+/**
+ * Provides endpoints for the audit resource under /audits
+ */
 @RestController
 @Validated
 @Tag(name = "Audit", description = "The endpoints for the audit resource")

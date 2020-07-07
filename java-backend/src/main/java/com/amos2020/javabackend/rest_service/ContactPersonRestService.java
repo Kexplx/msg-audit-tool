@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
-
+/**
+ * Provides endpoints for the contactPerson resource under /contactpersons
+ */
 @RestController
 @Validated
 @Tag(name = "ContactPerson", description = "The endpoints for the contactPerson resource")

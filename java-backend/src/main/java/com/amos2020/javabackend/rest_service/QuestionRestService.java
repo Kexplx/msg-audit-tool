@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
-
+/**
+ * Provides endpoints for the question resource under /questions
+ */
 @RestController
 @Tag(name = "Question", description = "The endpoint for the question resource")
 @CrossOrigin

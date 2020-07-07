@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
 import java.util.List;
-
+/**
+ * Provides endpoints for the facCrit resource under /faccrits
+ */
 @RestController
 @Validated
 @Tag(name = "Factor / Criteria", description = "The endpoints for the facCrit resource")

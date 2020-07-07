@@ -18,9 +18,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 
+/**
+ * Provides endpoints for the answer resource under /answer
+ */
 @RestController
 @Validated
-@Tag(name = "Answer", description = "The endpoints for the Answer resource")
+@Tag(name = "Answer", description = "The endpoints for the answer resource")
 @CrossOrigin
 public class AnswerRestService {
 

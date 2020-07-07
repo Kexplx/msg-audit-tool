@@ -20,6 +20,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 
+/**
+ * Provides endpoints for the scope resource under /audits/{id}/scope
+ */
 @RestController
 @Validated
 @Tag(name = "Scope", description = "The endpoints for the Scope resource")
