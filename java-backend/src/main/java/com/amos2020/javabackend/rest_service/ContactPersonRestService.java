@@ -6,17 +6,23 @@ import com.amos2020.javabackend.rest_service.request.contactPerson.CreateContact
 import com.amos2020.javabackend.rest_service.request.contactPerson.UpdateContactPersonRequest;
 import com.amos2020.javabackend.rest_service.response.BasicContactPersonResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
+@Validated
+@Tag(name = "ContactPerson", description = "The endpoints for the contactPerson resource")
 @CrossOrigin
 public class ContactPersonRestService {
     private final ContactPersonController contactPersonController;
@@ -83,7 +89,7 @@ public class ContactPersonRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
     })
     @GetMapping("/contactpersons/{id}")
-    public ResponseEntity<BasicContactPersonResponse> getAuditById(@PathVariable("id") int contactPersonId) {
+    public ResponseEntity<BasicContactPersonResponse> getAuditById(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int contactPersonId) {
         BasicContactPersonResponse response;
         try {
             response = contactPersonController.getContactPersonById(contactPersonId);
@@ -105,9 +111,8 @@ public class ContactPersonRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content),
     })
     @PutMapping("/contactpersons/{id}")
-    public ResponseEntity<BasicContactPersonResponse> updateInterview(@PathVariable("id") int contactPersonId, @RequestBody @Valid UpdateContactPersonRequest request) {
+    public ResponseEntity<BasicContactPersonResponse> updateInterview(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int contactPersonId, @RequestBody @Valid UpdateContactPersonRequest request) {
         BasicContactPersonResponse response;
-
         try {
             request.assertIdIsValid(contactPersonId);
             response = contactPersonController.updateContactPerson(contactPersonId, request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getContactInformation(), request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision());
