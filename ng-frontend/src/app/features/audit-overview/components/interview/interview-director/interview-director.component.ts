@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { Question } from 'src/app/core/data/models/question.model';
 import { InterviewService } from 'src/app/core/http/interview.service';
-import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
+import { UpdateInterview, LoadQuestion } from 'src/app/core/ngxs/actions/inteview.actions';
 
 @Component({
   selector: 'app-interview-director',
@@ -29,16 +29,12 @@ export class InterviewDirectorComponent implements OnInit {
   goal$ = new Subject<string>();
 
   answers$: Observable<Answer[]>;
-  questions$: Observable<Question[]>;
 
-  answers: Answer[];
-  questions: Question[];
   interviewId: number;
   facCritIds: number[];
 
   constructor(
     private store: Store,
-    private interviewService: InterviewService,
     private activatedRoute: ActivatedRoute,
     private coreService: CoreService,
     private router: Router,
@@ -52,15 +48,12 @@ export class InterviewDirectorComponent implements OnInit {
         this.interview$ = this.store.select(InterviewState.interview(ids[0]));
         this.facCrit$ = this.store.select(AuditState.facCrit(ids[1]));
 
-        this.answers$ = this.store.select(InterviewState.answers).pipe(
-          map(answers => answers.filter(a => a.faccritId === ids[1])),
+        this.answers$ = this.store.selectOnce(InterviewState.answers).pipe(
+          map(answers => answers.filter(a => a.interviewId === ids[0] && a.faccritId === ids[1])),
           tap(answers => {
-            const questionsHold$: Observable<Question>[] = [];
             for (const answer of answers) {
-              questionsHold$.push(this.interviewService.getQuestion(answer.questionId));
+              this.store.dispatch(new LoadQuestion(answer.questionId));
             }
-
-            this.questions$ = forkJoin(questionsHold$);
           }),
         );
 

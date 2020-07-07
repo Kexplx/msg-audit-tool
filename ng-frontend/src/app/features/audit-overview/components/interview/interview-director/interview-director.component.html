@@ -40,7 +40,5 @@
   </nb-card-body>
 </nb-card>
 <ng-container *ngIf="answers$ | async; let answers">
-  <ng-container *ngIf="questions$ | async; let questions">
-    <app-interview [questions]="questions" [answers]="answers"></app-interview>
-  </ng-container>
+  <app-interview [answers]="answers"></app-interview>
 </ng-container>

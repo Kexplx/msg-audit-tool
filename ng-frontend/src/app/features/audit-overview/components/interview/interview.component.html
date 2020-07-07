@@ -9,7 +9,7 @@
 </header>
 <nb-accordion [id]="answer.questionId" class="mt-2" *ngFor="let answer of answers; let i = index">
   <nb-accordion-item expanded class="mb-2" data-cy="question-accordeon-item">
-    <nb-accordion-item-header data-cy="question-card-header">{{ questionById(answer.questionId).textDe }}</nb-accordion-item-header>
+    <nb-accordion-item-header data-cy="question-card-header">{{ (questions$ | async | questionById: answer.questionId)?.textDe }} </nb-accordion-item-header>
     <nb-accordion-item-body>
       <form [formGroup]="formGroups[i]" class="container-interview-form" data-cy="question-form">
         <div class="container-checkboxes">

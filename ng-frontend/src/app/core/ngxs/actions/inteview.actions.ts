@@ -16,3 +16,8 @@ export class UpdateAnswer {
   static readonly type = '[Interview] Update Answer';
   constructor(public answer: Answer) {}
 }
+
+export class LoadQuestion {
+  static readonly type = '[Interview] Load Question';
+  constructor(public id: number) {}
+}

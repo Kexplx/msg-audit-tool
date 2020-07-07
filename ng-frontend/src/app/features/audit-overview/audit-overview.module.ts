@@ -13,6 +13,7 @@ import { AuditInfoComponent } from './components/audit-overview/audit-info/audit
 import { InterviewComponent } from './components/interview/interview.component';
 import { AuditContactPersonCardComponent } from './components/audit-overview/audit-info/audit-contact-person-card/contact-person-card.component';
 import { InterviewDirectorComponent } from './components/interview/interview-director/interview-director.component';
+import { QuestionByIdPipe } from './components/interview/question-by-id.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { InterviewDirectorComponent } from './components/interview/interview-dir
     AuditInfoComponent,
     NewInterviewDialogComponent,
     InterviewFormComponent,
+    QuestionByIdPipe,
     InterviewDirectorComponent,
     InterviewListComponent,
     InterviewComponent,

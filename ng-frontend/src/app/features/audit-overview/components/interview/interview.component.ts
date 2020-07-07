@@ -2,8 +2,10 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { Question } from 'src/app/core/data/models/question.model';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
+import { InterviewState } from 'src/app/core/ngxs/interview.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-interview',
@@ -12,11 +14,12 @@ import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
 })
 export class InterviewComponent implements OnInit, OnChanges {
   @Input() answers: Answer[];
-  @Input() questions: Question[];
+
+  @Select(InterviewState.questions) questions$: Observable<Question[]>;
 
   formGroups: FormGroup[];
 
-  constructor(private store: Store, private fb: FormBuilder) {}
+  constructor(public store: Store, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.formGroups = [];
@@ -53,10 +56,6 @@ export class InterviewComponent implements OnInit, OnChanges {
         });
       }
     }
-  }
-
-  questionById(id: number) {
-    return this.questions.find(q => q.id === id);
   }
 
   onSave() {

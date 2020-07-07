@@ -2,13 +2,21 @@ import { State, Action, StateContext, NgxsOnInit, createSelector, Selector } fro
 import { patch, append, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { Interview } from '../data/models/interview.model';
-import { AddInterview, UpdateInterview, UpdateAnswer } from './actions/inteview.actions';
+import {
+  AddInterview,
+  UpdateInterview,
+  UpdateAnswer,
+  LoadQuestion,
+} from './actions/inteview.actions';
 import { InterviewService } from '../http/interview.service';
 import { Answer } from '../data/models/answer.model';
+import { Question } from '../data/models/question.model';
+import { tap } from 'rxjs/operators';
 
 export interface InterviewStateModel {
   interviews: Interview[];
   answers: Answer[];
+  questions: Question[];
 }
 
 /**
@@ -26,6 +34,8 @@ export class InterviewState implements NgxsOnInit {
 
   ngxsOnInit({ patchState }: StateContext<InterviewStateModel>) {
     this.interviewService.getInterviews().subscribe(interviews => {
+      console.log('HELLO WORLD');
+
       patchState({
         interviews,
         answers: [].concat.apply(
@@ -39,6 +49,19 @@ export class InterviewState implements NgxsOnInit {
   @Selector()
   static answers(state: InterviewStateModel) {
     return state.answers ?? [];
+  }
+
+  @Selector()
+  static questions(state: InterviewStateModel) {
+    return state.questions ?? [];
+  }
+
+  static question(id: number) {
+    return createSelector([InterviewState], (state: InterviewStateModel) => {
+      const result = state.questions.find(x => x.id === id);
+      console.log('returning', result);
+      return result;
+    });
   }
 
   static interview(id: number) {
@@ -98,5 +121,19 @@ export class InterviewState implements NgxsOnInit {
         }),
       );
     });
+  }
+
+  @Action(LoadQuestion)
+  loadQuestion({ setState, getState }: StateContext<InterviewStateModel>, { id }: LoadQuestion) {
+    const question = getState().questions?.find(q => q.id === id);
+    if (!question) {
+      this.interviewService.getQuestion(id).subscribe(question => {
+        setState(
+          patch({
+            questions: append<Question>([question]),
+          }),
+        );
+      });
+    }
   }
 }
