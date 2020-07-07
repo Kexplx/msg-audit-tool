@@ -44,18 +44,24 @@ export class SidebarInterviewListComponent implements OnInit {
         const criterias = this.criteriaPipe.transform(audit.scope, factor.id);
 
         const menuItem: NbMenuItem = {
-          title: factor.name,
+          title: this.cropTitle(factor.name, 25),
           data: factor.id,
         };
 
         if (criterias.length > 0) {
-          menuItem.children = criterias.map(x => {
-            return { title: x.name, data: x.id };
+          menuItem.children = criterias.map(c => {
+            return { title: this.cropTitle(c.name, 25), data: c.id };
           });
         }
 
         this.items.push(menuItem);
       }
     });
+  }
+
+  cropTitle(s: string, n: number): string {
+    if (s.length < n) return s;
+
+    return s.substr(0, n) + '...';
   }
 }
