@@ -1,5 +1,3 @@
-import { first } from 'rxjs/operators';
-
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
   let testAudit;
@@ -14,9 +12,13 @@ describe('AddAuditDialog', () => {
     });
   });
 
-  it('opens a form to input audit information when routing to audits/new', () => {
+  beforeEach(() => {
     cy.injectBackendMocks();
+    cy.visit(auditsUrl);
     cy.visit(auditsUrl + '/new');
+  });
+
+  it('opens a form to input audit information when routing to audits/new', () => {
     cy.get('[data-cy=audit-data-form]').should('exist');
   });
 
@@ -25,8 +27,6 @@ describe('AddAuditDialog', () => {
    */
   context('When focussing on the basic information it... ', () => {
     beforeEach(() => {
-      cy.injectBackendMocks();
-      cy.visit(auditsUrl + '/new');
       cy.get('[data-cy=audit-name-input]').clear().type(testAudit.name);
     });
 
@@ -89,8 +89,6 @@ describe('AddAuditDialog', () => {
 
   context('When focussing on the scope it...', () => {
     beforeEach(() => {
-      cy.injectBackendMocks();
-      cy.visit(auditsUrl + '/new');
       cy.get('[data-cy=audit-scope-header]').click();
     });
 
@@ -157,12 +155,6 @@ describe('AddAuditDialog', () => {
    * Tests the buttons and their status depending on different inputs
    */
   context('When focussing on the buttons it...', () => {
-    beforeEach(() => {
-      cy.injectBackendMocks();
-      cy.visit(auditsUrl);
-      cy.visit(auditsUrl + '/new');
-    });
-
     it('shows an alert message when clicked on cancel', () => {
       cy.get('[data-cy=cancel-audit-data-form]').click();
       cy.get('[data-cy=discard-back-dialog]').should('exist');
@@ -198,9 +190,6 @@ describe('AddAuditDialog', () => {
 
   context('When focussing on the network request it ...', () => {
     it('builds a valid post request as form', () => {
-      cy.injectBackendMocks();
-      cy.visit(auditsUrl);
-      cy.visit(auditsUrl + '/new');
       cy.inputAudit(testAudit);
       cy.wait('@postAudits').then(xhr => {
         assert.deepEqual(xhr.request.body, {
