@@ -1,3 +1,8 @@
+/**
+ * Parses a timestamp into german date format 'DD.MM.YYYY' e.g. 07.07.2020
+ *
+ * @param timestamp The timestamp of a date
+ */
 export function parseTimestamp(timestamp: number) {
   if (!timestamp) return null;
 

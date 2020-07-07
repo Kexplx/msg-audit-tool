@@ -5,11 +5,11 @@ import { Audit } from '../data/models/audit.model';
 import { AuditDto } from './dtos/audit.dto';
 import { map } from 'rxjs/operators';
 import { PostAuditDto } from './dtos/post-audit.dto';
-import { parseTimestamp } from './helpers';
 import { Observable } from 'rxjs';
 import { ContactPerson } from '../data/models/contact-person.model';
 import { PutAuditDto } from './dtos/put-audit.dto';
 import { compileTimeSwitchedString } from './connectionStrings';
+import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 
 @Injectable({
   providedIn: 'root',

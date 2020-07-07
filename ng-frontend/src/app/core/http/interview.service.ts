@@ -6,10 +6,10 @@ import { map } from 'rxjs/operators';
 import { Interview } from '../data/models/interview.model';
 import { PostInterviewDto } from './dtos/post-interview.dto';
 import { FacCrit } from '../data/models/faccrit.model';
-import { parseTimestamp } from './helpers';
 import { Question } from '../data/models/question.model';
 import { Answer } from '../data/models/answer.model';
 import { PutInterviewDto } from './dtos/put-interview.dto';
+import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 
 @Injectable({
   providedIn: 'root',
