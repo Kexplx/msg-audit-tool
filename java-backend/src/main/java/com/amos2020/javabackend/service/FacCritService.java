@@ -68,21 +68,20 @@ public class FacCritService {
         Comparator<FacCrit> comparator = new Comparator<FacCrit>() {
             @Override
             public int compare(FacCrit o1, FacCrit o2) {
+                if (o1.getId() < o2.getId()) {
+                    return -1;
+                }
+                if (o1.getId() > o2.getId()) {
+                    return 1;
+                }
                 if (o1.getReferenceId() == null && o2.getReferenceId() != null) {
-                    return o1.getId() < o2.getReferenceId() ? -1 : 1;
+                    return -1;
                 }
                 if (o1.getReferenceId() != null && o2.getReferenceId() == null) {
-                    return o1.getReferenceId() < o2.getId() ? -1 : 1;
+                    return 1;
                 }
                 if (o1.getReferenceId() != null && o2.getReferenceId() != null) {
-                    if(o1.getReferenceId() == o2.getReferenceId()){
-                        return o1.getId() < o2.getId() ? -1 : 1;
-                    }
                     return o1.getReferenceId() < o2.getReferenceId() ? -1 : 1;
-                }
-
-                if (o1.getReferenceId() == null && o2.getReferenceId() == null) {
-                    return o1.getId() < o2.getId() ? -1 : 1;
                 }
                 return 0;
             }
