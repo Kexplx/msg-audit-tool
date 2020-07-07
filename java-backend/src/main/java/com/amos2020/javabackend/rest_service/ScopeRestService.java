@@ -6,17 +6,23 @@ import com.amos2020.javabackend.rest_service.request.scope.AddScopeRequest;
 import com.amos2020.javabackend.rest_service.request.scope.UpdateScopeRequest;
 import com.amos2020.javabackend.rest_service.response.BasicScopeResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import javassist.NotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 @RestController
+@Validated
+@Tag(name = "Scope", description = "The endpoints for the Scope resource")
 @CrossOrigin
 public class ScopeRestService {
 
@@ -39,7 +45,7 @@ public class ScopeRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @PostMapping("/audits/{id}/scope")
-    public ResponseEntity<List<BasicScopeResponse>> addScope(@PathVariable("id") int auditId, @RequestBody @Valid AddScopeRequest request) {
+    public ResponseEntity<List<BasicScopeResponse>> addScope(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int auditId, @RequestBody @Valid AddScopeRequest request) {
         List<BasicScopeResponse> response;
         try {
             response = scopeController.addScope(auditId, request.getScope());
@@ -64,8 +70,8 @@ public class ScopeRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @PutMapping("/audits/{id}/scope/{faccritid}")
-    public ResponseEntity<BasicScopeResponse> addScope(@PathVariable("id") int auditId,
-                                                       @PathVariable("faccritid") int facCritId,
+    public ResponseEntity<BasicScopeResponse> addScope(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int auditId,
+                                                       @PathVariable("faccritid") @Parameter(name = "id", example = "1") @Min(1) int facCritId,
                                                        @RequestBody @Valid UpdateScopeRequest request) {
         BasicScopeResponse response;
         try {
@@ -92,8 +98,8 @@ public class ScopeRestService {
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content)
     })
     @GetMapping("/audits/{id1}/scope/{id2}")
-    public ResponseEntity<BasicScopeResponse> getScopeByIds(@PathVariable("id1") int auditId,
-                                                            @PathVariable("id2") int faccritId) {
+    public ResponseEntity<BasicScopeResponse> getScopeByIds(@PathVariable("id1") @Parameter(name = "id", example = "1") @Min(1) int auditId,
+                                                            @PathVariable("id2") @Parameter(name = "id", example = "1") @Min(1) int faccritId) {
         BasicScopeResponse response;
         try {
             response = scopeController.getScopeByIds(auditId, faccritId);
@@ -117,7 +123,7 @@ public class ScopeRestService {
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
     })
     @GetMapping("/audits/{id}/scope")
-    public ResponseEntity<List<BasicScopeResponse>> getAllScopes(@PathVariable("id") int auditId) {
+    public ResponseEntity<List<BasicScopeResponse>> getAllScopes(@PathVariable("id") @Parameter(name = "id", example = "1") @Min(1) int auditId) {
         List<BasicScopeResponse> responses;
         try {
             responses = scopeController.getScopesByAuditId(auditId);
