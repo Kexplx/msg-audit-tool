@@ -1,12 +1,14 @@
-import { State, Action, StateContext, NgxsOnInit, createSelector } from '@ngxs/store';
+import { State, Action, StateContext, NgxsOnInit, createSelector, Selector } from '@ngxs/store';
 import { patch, append, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { Interview } from '../data/models/interview.model';
-import { AddInterview, UpdateInterview } from './actions/inteview.actions';
+import { AddInterview, UpdateInterview, UpdateAnswer } from './actions/inteview.actions';
 import { InterviewService } from '../http/interview.service';
+import { Answer } from '../data/models/answer.model';
 
 export interface InterviewStateModel {
   interviews: Interview[];
+  answers: Answer[];
 }
 
 /**
@@ -24,13 +26,24 @@ export class InterviewState implements NgxsOnInit {
 
   ngxsOnInit({ patchState }: StateContext<InterviewStateModel>) {
     this.interviewService.getInterviews().subscribe(interviews => {
-      patchState({ interviews });
+      patchState({
+        interviews,
+        answers: [].concat.apply(
+          [],
+          interviews.map(i => i.answers),
+        ),
+      });
     });
+  }
+
+  @Selector()
+  static answers(state: InterviewStateModel) {
+    return state.answers ?? [];
   }
 
   static interview(id: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
-      return state.interviews.find(x => x.interviewId === id);
+      return state.interviews.find(x => x.id === id);
     });
   }
 
@@ -49,6 +62,7 @@ export class InterviewState implements NgxsOnInit {
       setState(
         patch({
           interviews: append<Interview>([interview]),
+          answers: append<Answer>([...interview.answers]),
         }),
       );
     });
@@ -59,11 +73,28 @@ export class InterviewState implements NgxsOnInit {
     { getState, setState }: StateContext<InterviewStateModel>,
     { id, interview }: UpdateInterview,
   ) {
-    const i = getState().interviews.find(x => x.interviewId === id);
+    const i = getState().interviews.find(x => x.id === id);
     this.interviewService.putInterview({ ...i, ...interview }).subscribe(interview => {
       setState(
         patch({
-          interviews: updateItem<Interview>(x => x.interviewId === id, { ...i, ...interview }),
+          interviews: updateItem<Interview>(x => x.id === id, { ...i, ...interview }),
+        }),
+      );
+    });
+  }
+
+  @Action(UpdateAnswer)
+  updateAnswer({ setState }: StateContext<InterviewStateModel>, { answer }: UpdateAnswer) {
+    this.interviewService.putAnswer(answer).subscribe(answer => {
+      setState(
+        patch({
+          answers: updateItem<Answer>(
+            a =>
+              a.questionId === answer.questionId &&
+              a.faccritId === answer.faccritId &&
+              a.interviewId === answer.interviewId,
+            answer,
+          ),
         }),
       );
     });
