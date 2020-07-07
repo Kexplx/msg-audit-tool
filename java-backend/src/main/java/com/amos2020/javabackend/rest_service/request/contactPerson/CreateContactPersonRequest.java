@@ -10,7 +10,9 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+/**
+ * Request object for creating a new contact person.
+ */
 public class CreateContactPersonRequest extends BasicRequest {
 
     @Getter
