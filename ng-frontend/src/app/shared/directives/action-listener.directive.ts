@@ -8,7 +8,6 @@ import {
   AddContactPerson,
 } from 'src/app/core/ngxs/actions/contact-person.action';
 import { filter, map } from 'rxjs/operators';
-import { timer } from 'rxjs';
 import { AddInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 @Directive({
   selector: '[appActionListener]',

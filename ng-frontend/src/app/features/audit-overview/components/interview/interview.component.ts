@@ -2,7 +2,8 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { Question } from 'src/app/core/data/models/question.model';
-import { InterviewService } from 'src/app/core/http/interview.service';
+import { Store } from '@ngxs/store';
+import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
 
 @Component({
   selector: 'app-interview',
@@ -15,23 +16,7 @@ export class InterviewComponent implements OnInit, OnChanges {
 
   formGroups: FormGroup[];
 
-  constructor(private interviewservice: InterviewService, private fb: FormBuilder) {}
-
-  ngOnChanges() {
-    if (this.formGroups) {
-      for (const [i, answer] of this.answers.entries()) {
-        const formGroup = this.formGroups[i];
-
-        formGroup.setValue({ proof: answer?.proof });
-        formGroup.setValue({ result: answer?.result });
-        formGroup.setValue({ documentation: answer?.documentation });
-        formGroup.setValue({ procedure: answer?.procedure });
-        formGroup.setValue({ reason: answer?.reason });
-        formGroup.setValue({ annotation: answer?.annotation });
-        formGroup.setValue({ responsible: answer?.responsible });
-      }
-    }
-  }
+  constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit() {
     this.formGroups = [];
@@ -52,6 +37,24 @@ export class InterviewComponent implements OnInit, OnChanges {
     }
   }
 
+  ngOnChanges() {
+    if (this.formGroups) {
+      for (const [i, answer] of this.answers.entries()) {
+        const formGroup = this.formGroups[i];
+
+        formGroup.setValue({
+          proof: answer?.proof,
+          result: answer?.result,
+          documentation: answer?.documentation,
+          procedure: answer?.procedure,
+          reason: answer?.reason,
+          annotation: answer?.annotation,
+          responsible: answer?.responsible,
+        });
+      }
+    }
+  }
+
   questionById(id: number) {
     return this.questions.find(q => q.id === id);
   }
@@ -60,6 +63,7 @@ export class InterviewComponent implements OnInit, OnChanges {
     for (const [i, a] of this.answers.entries()) {
       const formGroup = this.formGroups[i];
       const answer: Answer = {
+        ...a,
         proof: formGroup.get('proof').value,
         result: formGroup.get('result').value,
         documentation: formGroup.get('documentation').value,
@@ -67,12 +71,9 @@ export class InterviewComponent implements OnInit, OnChanges {
         reason: formGroup.get('reason').value,
         annotation: formGroup.get('annotation').value,
         responsible: formGroup.get('responsible').value,
-        faccritId: a.faccritId,
-        interviewId: a.interviewId,
-        questionId: a.questionId,
       };
 
-      this.interviewservice.putAnswer(answer).subscribe(() => {});
+      this.store.dispatch(new UpdateAnswer(answer));
     }
   }
 }

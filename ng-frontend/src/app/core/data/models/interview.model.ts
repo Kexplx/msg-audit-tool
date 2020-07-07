@@ -1,5 +1,4 @@
 import { ContactPerson } from './contact-person.model';
-import { FacCrit } from './faccrit.model';
 import { Answer } from './answer.model';
 
 export enum InterviewStatus {
@@ -8,7 +7,7 @@ export enum InterviewStatus {
 }
 
 export interface Interview {
-  interviewId?: number;
+  id?: number;
   auditId?: number;
   startDate?: number;
   endDate?: number;

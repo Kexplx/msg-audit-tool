@@ -30,7 +30,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'interviews/:id/:id',
+    path: 'interviews/:interviewId/:facCritId',
     component: InterviewDirectorComponent,
   },
 ];

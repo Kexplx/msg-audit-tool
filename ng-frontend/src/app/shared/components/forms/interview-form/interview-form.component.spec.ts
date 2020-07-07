@@ -1,7 +1,5 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import * as jasmine from 'karma-jasmine';
 import { InterviewFormComponent } from './interview-form.component';
 import { FormBuilder } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';

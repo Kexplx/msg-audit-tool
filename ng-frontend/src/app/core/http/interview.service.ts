@@ -98,7 +98,7 @@ export class InterviewService {
       );
   }
 
-  putInterview({ startDate, endDate, status, goal, interviewId }: Interview) {
+  putInterview({ startDate, endDate, status, goal, id }: Interview) {
     const putInterviewDto: PutInterviewDto = {
       endDate: parseTimestamp(endDate),
       startDate: parseTimestamp(startDate),
@@ -107,7 +107,7 @@ export class InterviewService {
     };
 
     return this.http
-      .put<InterviewDto>(compileTimeSwitchedString + 'interviews/' + interviewId, putInterviewDto)
+      .put<InterviewDto>(compileTimeSwitchedString + 'interviews/' + id, putInterviewDto)
       .pipe(
         map<InterviewDto, Interview>(interviewDto => {
           const { endDate, startDate } = interviewDto;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 
 @Component({

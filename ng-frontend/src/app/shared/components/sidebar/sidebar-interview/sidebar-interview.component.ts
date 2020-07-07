@@ -5,6 +5,9 @@ import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { Question } from 'src/app/core/data/models/question.model';
 import { InterviewService } from 'src/app/core/http/interview.service';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
+import { InterviewState } from 'src/app/core/ngxs/interview.state';
+import { Answer } from 'src/app/core/data/models/answer.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidebar-interview',
@@ -14,6 +17,7 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 export class SidebarInterviewComponent {
   @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
   @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
+  @Select(InterviewState.answers) answers$: Observable<Answer[]>;
 
   items: NbMenuItem[];
 
@@ -26,20 +30,20 @@ export class SidebarInterviewComponent {
     });
 
     combineLatest([this.facCritId$, this.interviewId$]).subscribe(ids => {
-      this.interviewService.getAnswersByInterviewId(ids[1]).subscribe(answers => {
-        const filtered = answers.filter(a => a.faccritId === ids[0]);
+      this.answers$
+        .pipe(map(answers => answers.filter(a => a.faccritId === ids[0])))
+        .subscribe(answers => {
+          const questionObservables: Observable<Question>[] = [];
+          for (const answer of answers) {
+            questionObservables.push(this.interviewService.getQuestion(answer.questionId));
 
-        const questionObservables: Observable<Question>[] = [];
-        for (const answer of filtered) {
-          questionObservables.push(this.interviewService.getQuestion(answer.questionId));
-
-          forkJoin(questionObservables).subscribe(questions => {
-            this.items = questions.map<NbMenuItem>(q => {
-              return { title: q.textDe, data: q.id };
+            forkJoin(questionObservables).subscribe(questions => {
+              this.items = questions.map<NbMenuItem>(q => {
+                return { title: q.textDe, data: q.id };
+              });
             });
-          });
-        }
-      });
+          }
+        });
     });
   }
 }
