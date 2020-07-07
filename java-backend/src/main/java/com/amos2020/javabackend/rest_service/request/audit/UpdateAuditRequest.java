@@ -10,7 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
-
+/**
+ * Request object for updating an existing audit
+ */
 public class UpdateAuditRequest extends BasicRequest {
     @Getter
     @Setter
@@ -29,6 +31,9 @@ public class UpdateAuditRequest extends BasicRequest {
     @Schema(type = "string", name = "endDate", format = "date")
     private Date endDate;
 
+    /**
+     * Checks if provided startDate is before endDate
+     */
     public void isValid() throws IllegalArgumentException {
         assertDatesAreValid(startDate, endDate);
     }

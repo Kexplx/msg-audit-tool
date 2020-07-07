@@ -9,7 +9,9 @@ import lombok.Setter;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+/**
+ * Request object for updating the scope of an existing audit
+ */
 public class UpdateAuditScopeRequest extends BasicRequest {
     @Getter
     @Setter

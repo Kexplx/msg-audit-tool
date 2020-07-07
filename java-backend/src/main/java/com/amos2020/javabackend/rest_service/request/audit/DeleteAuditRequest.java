@@ -11,7 +11,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
-
+/**
+ * Request object for deleting an audit
+ */
 public class DeleteAuditRequest extends BasicRequest {
     @Getter
     @Setter
