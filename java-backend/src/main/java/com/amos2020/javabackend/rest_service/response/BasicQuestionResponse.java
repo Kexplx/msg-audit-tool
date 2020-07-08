@@ -14,8 +14,8 @@ public class BasicQuestionResponse {
 
     @Getter
     @Setter
-    @Schema(type = "Integer", name = "faccritId", example = "2")
-    private int faccritId;
+    @Schema(type = "Integer", name = "facCritId", example = "2")
+    private int facCritId;
 
     @Getter
     @Setter
@@ -24,7 +24,7 @@ public class BasicQuestionResponse {
 
     public BasicQuestionResponse(Question question) {
         id = question.getId();
-        faccritId = question.getFaccritId();
+        facCritId = question.getFaccritId();
         textDe = question.getTextDe();
     }
 }

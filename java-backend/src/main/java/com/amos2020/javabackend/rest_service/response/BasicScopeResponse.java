@@ -14,7 +14,7 @@ public class BasicScopeResponse {
     private int auditId;
     @Getter
     @Setter
-    @Schema(type = "Integer", name = "faccritId", example = "123456")
+    @Schema(type = "Integer", name = "facCritId", example = "123456")
     private int facCritId;
     @Getter
     @Setter
