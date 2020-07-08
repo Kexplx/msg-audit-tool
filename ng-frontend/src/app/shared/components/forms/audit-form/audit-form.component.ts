@@ -59,7 +59,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
         startDate: [this.audit?.startDate ?? defaultStartDate, Validators.required],
         endDate: [this.audit?.endDate],
         contactPersons: [
-          contactPersonsSnapshot.filter(x => this.audit?.contactPersons.find(f => f.id === x.id)),
+          contactPersonsSnapshot?.filter(x => this.audit?.contactPersons.find(f => f.id === x.id)),
         ],
       },
       { validator: dateRangeValidator('startDate', 'endDate') },
