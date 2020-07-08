@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { Question } from 'src/app/core/data/models/question.model';
@@ -12,16 +12,15 @@ import { Observable } from 'rxjs';
   templateUrl: './interview.component.html',
   styleUrls: ['./interview.component.scss'],
 })
-export class InterviewComponent implements OnInit, OnChanges {
+export class InterviewComponent implements OnChanges {
   @Input() answers: Answer[];
-
   @Select(InterviewState.questions) questions$: Observable<Question[]>;
 
   formGroups: FormGroup[];
 
   constructor(public store: Store, private fb: FormBuilder) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     this.formGroups = [];
 
     for (const answer of this.answers) {
@@ -37,24 +36,6 @@ export class InterviewComponent implements OnInit, OnChanges {
             annotation: [answer?.annotation],
           }),
         );
-    }
-  }
-
-  ngOnChanges() {
-    if (this.formGroups) {
-      for (const [i, answer] of this.answers.entries()) {
-        const formGroup = this.formGroups[i];
-
-        formGroup.setValue({
-          proof: answer?.proof,
-          result: answer?.result,
-          documentation: answer?.documentation,
-          procedure: answer?.procedure,
-          reason: answer?.reason,
-          annotation: answer?.annotation,
-          responsible: answer?.responsible,
-        });
-      }
     }
   }
 
