@@ -24,6 +24,7 @@ export class SidebarInterviewComponent {
   questionIds: number[];
 
   constructor(private menuService: NbMenuService) {}
+  
   ngOnInit() {
     this.items = [];
     this.menuService.onItemClick().subscribe(x => {
@@ -45,6 +46,7 @@ export class SidebarInterviewComponent {
         if (this.questionIds) {
           this.items = questions
             .filter(q => this.questionIds.includes(q.id) && q.facCritId === ids[0])
+            .sort((a, b) => a.id - b.id)
             .map<NbMenuItem>(q => ({ title: q.textDe, data: q.id }));
         }
       });
