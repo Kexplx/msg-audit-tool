@@ -11,7 +11,7 @@ import {
 import { InterviewService } from '../http/interview.service';
 import { Answer } from '../data/models/answer.model';
 import { Question } from '../data/models/question.model';
-import { tap } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 
 export interface InterviewStateModel {
   interviews: Interview[];
@@ -34,14 +34,31 @@ export class InterviewState implements NgxsOnInit {
 
   ngxsOnInit({ patchState }: StateContext<InterviewStateModel>) {
     this.interviewService.getInterviews().subscribe(interviews => {
-      console.log('HELLO WORLD');
+      const answers: Answer[] = [].concat.apply(
+        [],
+        interviews.map(i => i.answers),
+      );
 
-      patchState({
-        interviews,
-        answers: [].concat.apply(
-          [],
-          interviews.map(i => i.answers),
-        ),
+      const questions$ = [];
+      for (const answer of answers) {
+        questions$.push(this.interviewService.getQuestion(answer.questionId));
+      }
+
+      forkJoin([...questions$]).subscribe((questions: Question[]) => {
+        const distinctQuestions: Question[] = [];
+
+        for (const question of questions) {
+          const included = distinctQuestions.find(q => q.id === question.id);
+          if (!included) {
+            distinctQuestions.push(question);
+          }
+        }
+
+        patchState({
+          interviews,
+          answers,
+          questions: distinctQuestions,
+        });
       });
     });
   }
@@ -59,7 +76,6 @@ export class InterviewState implements NgxsOnInit {
   static question(id: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
       const result = state.questions.find(x => x.id === id);
-      console.log('returning', result);
       return result;
     });
   }
@@ -78,7 +94,7 @@ export class InterviewState implements NgxsOnInit {
 
   @Action(AddInterview)
   addInterview(
-    { setState }: StateContext<InterviewStateModel>,
+    { setState, getState }: StateContext<InterviewStateModel>,
     { interview, interviewScope }: AddInterview,
   ) {
     this.interviewService.postInterview(interview, interviewScope).subscribe(interview => {
@@ -88,6 +104,20 @@ export class InterviewState implements NgxsOnInit {
           answers: append<Answer>([...interview.answers]),
         }),
       );
+
+      const questions = getState().questions;
+
+      for (const answer of interview.answers) {
+        if (!questions?.find(q => q.id === answer.questionId)) {
+          this.interviewService.getQuestion(answer.questionId).subscribe(question => {
+            setState(
+              patch({
+                questions: append<Question>([question]),
+              }),
+            );
+          });
+        }
+      }
     });
   }
 
