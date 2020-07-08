@@ -8,78 +8,96 @@ describe('AddPersonDialog', () => {
     });
   });
 
-  /**
-   * Tests the contact form
-   */
   context('When focussing on the contact person it... ', () => {
     beforeEach(() => {
       cy.injectBackendMocks();
-      cy.visit(contactsUrl);
-      cy.visit(contactsUrl + '/new');
+      cy.visit(contactsUrl).visit(contactsUrl + '/new');
     });
 
     it('gives an inputable element for company name', () => {
-      cy.get('[data-cy=company-name-input]').clear().type(testPerson.companyName);
-      cy.get('[data-cy=company-name-input]').should('have.value', testPerson.companyName);
+      cy.get('[data-cy=company-name-input]')
+        .type(testPerson.companyName)
+        .should('have.value', testPerson.companyName);
     });
 
     it('gives an inputable element for company department', () => {
-      cy.get('[data-cy=company-department-input]').clear().type(testPerson.department);
-      cy.get('[data-cy=company-department-input]').should('have.value', testPerson.department);
+      cy.get('[data-cy=company-department-input]')
+        .type(testPerson.department)
+        .should('have.value', testPerson.department);
     });
 
     it('gives an inputable element for corporate division', () => {
-      cy.get('[data-cy=company-division-input]').clear().type(testPerson.corporateDivision);
-      cy.get('[data-cy=company-division-input]').should('have.value', testPerson.corporateDivision);
+      cy.get('[data-cy=company-division-input]')
+        .type(testPerson.corporateDivision)
+        .should('have.value', testPerson.corporateDivision);
     });
 
     it('gives an inputable element for company sector', () => {
-      cy.get('[data-cy=company-sector-input]').clear().type(testPerson.sector);
-      cy.get('[data-cy=company-sector-input]').should('have.value', testPerson.sector);
+      cy.get('[data-cy=company-sector-input]')
+        .type(testPerson.sector)
+        .should('have.value', testPerson.sector);
     });
 
     it('gives the gendered salutations for Herr, Frau, Divers', () => {
       cy.get('[data-cy=contact-salutation-input]').click();
-      cy.get('[data-cy=salutation-option]').should('contain', 'Herr');
-      cy.get('[data-cy=salutation-option]').should('contain', 'Frau');
-      cy.get('[data-cy=salutation-option]').should('contain', 'Divers');
+      cy.get('[data-cy=salutation-option]')
+        .should('contain', 'Herr')
+        .should('contain', 'Frau')
+        .should('contain', 'Divers');
     });
 
     it('gives inputable element for professional salutation', () => {
-      cy.get('[data-cy=contact-title-input]').clear().type(testPerson.title);
-      cy.get('[data-cy=contact-title-input]').should('have.value', testPerson.title);
+      cy.get('[data-cy=contact-title-input]')
+        .type(testPerson.title)
+        .should('have.value', testPerson.title);
     });
 
     it('gives inputable element for first name', () => {
-      cy.get('[data-cy=contact-forename-input]').clear().type(testPerson.firstName);
-      cy.get('[data-cy=contact-forename-input]').should('have.value', testPerson.firstName);
+      cy.get('[data-cy=contact-forename-input]')
+        .type(testPerson.firstName)
+        .should('have.value', testPerson.firstName);
     });
 
     it('gives inputable element for last name', () => {
-      cy.get('[data-cy=contact-surname-input]').clear().type(testPerson.lastName);
-      cy.get('[data-cy=contact-surname-input]').should('have.value', testPerson.lastName);
+      cy.get('[data-cy=contact-surname-input]')
+        .type(testPerson.lastName)
+        .should('have.value', testPerson.lastName);
     });
 
     it('gives inputable element for contact information', () => {
-      cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
-      cy.get('[data-cy=contact-info-input]').should('have.value', testPerson.information);
+      cy.get('[data-cy=contact-info-input]')
+        .type(testPerson.information)
+        .should('have.value', testPerson.information);
     });
 
     it('requires firstname, lastname, companyname, division to be submittable', () => {
       cy.get('[data-cy=submit-data-form]').should('be.disabled');
-      cy.get('[data-cy=contact-title-input]').clear().type(testPerson.title);
-      cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
-      cy.get('[data-cy=company-sector-input]').clear().type(testPerson.sector);
-      cy.get('[data-cy=company-department-input]').clear().type(testPerson.department);
-      cy.get('[data-cy=submit-data-form]').should('be.disabled');
-      cy.get('[data-cy=contact-forename-input]').clear().type(testPerson.firstName);
-      cy.get('[data-cy=submit-data-form]').should('be.disabled');
-      cy.get('[data-cy=contact-surname-input]').clear().type(testPerson.lastName);
-      cy.get('[data-cy=submit-data-form]').should('be.disabled');
-      cy.get('[data-cy=company-name-input]').clear().type(testPerson.companyName);
-      cy.get('[data-cy=submit-data-form]').should('be.disabled');
-      cy.get('[data-cy=company-division-input]').clear().type(testPerson.corporateDivision);
-      cy.get('[data-cy=submit-data-form]').should('not.be.disabled');
+      cy.get('[data-cy=contact-title-input]')
+        .type(testPerson.title)
+        .get('[data-cy=contact-info-input]')
+        .type(testPerson.information)
+        .get('[data-cy=company-sector-input]')
+        .type(testPerson.sector)
+        .get('[data-cy=company-department-input]')
+        .type(testPerson.department)
+        .get('[data-cy=submit-data-form]')
+        .should('be.disabled');
+      cy.get('[data-cy=contact-forename-input]')
+        .type(testPerson.firstName)
+        .get('[data-cy=submit-data-form]')
+        .should('be.disabled');
+      cy.get('[data-cy=contact-surname-input]')
+        .type(testPerson.lastName)
+        .get('[data-cy=submit-data-form]')
+        .should('be.disabled');
+      cy.get('[data-cy=company-name-input]')
+        .type(testPerson.companyName)
+        .get('[data-cy=submit-data-form]')
+        .should('be.disabled');
+      cy.get('[data-cy=company-division-input]')
+        .type(testPerson.corporateDivision)
+        .get('[data-cy=submit-data-form]')
+        .should('not.be.disabled');
     });
   });
 

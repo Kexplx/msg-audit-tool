@@ -25,13 +25,11 @@ describe('AddInterviewDialog', () => {
 
   beforeEach(() => {
     cy.injectBackendMocks();
-    cy.visit(interviewsUrl);
-    cy.get('[data-cy=new-interview]').click();
+    cy.visit(interviewsUrl).get('[data-cy=new-interview]').click();
   });
 
   it('gives an inputable start date picker', () => {
-    cy.get('[data-cy=interview-start-input]').click();
-    cy.get('.today > .cell-content').first().click();
+    cy.get('[data-cy=interview-start-input]').click().get('.today > .cell-content').should('exist');
   });
 
   context('When focussing on the scope it...', () => {
@@ -41,8 +39,10 @@ describe('AddInterviewDialog', () => {
 
     it('opens and closes accordeon body', () => {
       cy.get('[data-cy=interview-scope-body]').should('be.visible');
-      cy.get('[data-cy=interview-scope-header]').click();
-      cy.get('[data-cy=interview-scope-body]').should('not.be.visible');
+      cy.get('[data-cy=interview-scope-header]')
+        .click()
+        .get('[data-cy=interview-scope-body]')
+        .should('not.be.visible');
     });
 
     it('shows all factors and criteria given of an audit');
@@ -58,20 +58,15 @@ describe('AddInterviewDialog', () => {
 
     it('is possible to select a factor without its criteria', () => {
       cy.get('[data-cy=interview-scope-factor] > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('not.have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).should('not.have.class', 'checked').click().should('have.class', 'checked');
       });
       cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
         cy.wrap(el).should('not.have.class', 'checked');
       });
     });
-
     it('is possible to select criteria without selecting the factor', () => {
       cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('not.have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).should('not.have.class', 'checked').click().should('have.class', 'checked');
       });
       cy.get('[data-cy=interview-scope-factor] > .label > .custom-checkbox').each((el, index) => {
         cy.wrap(el).should('not.have.class', 'checked');
@@ -80,9 +75,7 @@ describe('AddInterviewDialog', () => {
 
     it('shows an radio button to select all criteria of a factor (without the factor itself)', () => {
       cy.get('[data-cy=interview-scope-radio] > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('not.have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('have.class', 'checked');
+        cy.wrap(el).should('not.have.class', 'checked').click().should('have.class', 'checked');
       });
       cy.get('[data-cy=interview-scope-factor] > .label > .custom-checkbox').each((el, index) => {
         cy.wrap(el).should('not.have.class', 'checked');
@@ -96,37 +89,42 @@ describe('AddInterviewDialog', () => {
   });
 
   context('When focussing on the contact persons it...', () => {
-    // it('leaves all contact persons unchecked by default', () => {});
+    it('leaves all contact persons unchecked by default');
 
     it('can select one contact person', () => {
-      // select contact
-      cy.get('[data-cy=interview-contacts]').click();
-      cy.get('[data-cy=interview-contact]').last().click();
-      cy.get('[data-cy=interview-contacts]').click();
+      cy.get('[data-cy=interview-contacts]')
+        .click()
+        .get('[data-cy=interview-contact]')
+        .last()
+        .click();
     });
 
     it('can add and remove multiple contact persons with their roles', () => {
-      // select multiple names and roles
-      cy.get('[data-cy=interview-contacts]').click();
-      cy.get('[data-cy=interview-contact]').each(contact => {
-        cy.wrap(contact).click();
-      });
-      cy.get('[data-cy=interview-contacts]').click();
-      // remove added names except first
-      cy.get('[data-cy=interview-contacts]').click();
-      cy.get('[data-cy=interview-contact]').each(contact => {
-        cy.wrap(contact).click();
-      });
-      cy.get('[data-cy=interview-contacts]').click();
+      cy.get('[data-cy=interview-contacts]')
+        .click()
+        .get('[data-cy=interview-contact]')
+        .each(contact => {
+          cy.wrap(contact).click();
+        })
+        .get('[data-cy=interview-contacts]')
+        .click();
+      cy.get('[data-cy=interview-contacts]')
+        .click()
+        .get('[data-cy=interview-contact]')
+        .each(contact => {
+          cy.wrap(contact).click();
+        })
+        .get('[data-cy=interview-contacts]')
+        .click();
     });
 
     it('shows the correct contact person(s)', () => {
       cy.get('[data-cy=interview-contacts]').click();
       cy.get('[data-cy=interview-contact]').each((contact, i) => {
-        cy.wrap(contact).should('contain', contactPersons[i].forename);
-        cy.wrap(contact).should('contain', contactPersons[i].surname);
+        cy.wrap(contact)
+          .should('contain', contactPersons[i].forename)
+          .should('contain', contactPersons[i].surname);
       });
-      cy.get('[data-cy=interview-contacts]').click();
     });
   });
 
@@ -136,37 +134,24 @@ describe('AddInterviewDialog', () => {
     });
 
     it('shows an confirmation dialog when clicking on cancel and data was entered', () => {
-      // click on contact person
-      cy.get('[data-cy=interview-contacts]').click();
-      cy.get('[data-cy=interview-contacts]').click();
-      // dialog pops up when clicking on cancel
-      cy.get('[data-cy=cancel-interview-data-form]').click();
+      cy.get('[data-cy=interview-start-input]')
+        .click()
+        .get('[data-cy=cancel-interview-data-form]')
+        .click();
       cy.get('[data-cy=discard-back-dialog]').should('exist');
-      // return to the interview form
-      cy.get('[data-cy=back]').click();
-      cy.get('[data-cy=add-interview-form]').should('exist');
-      // dialog pops up when clicking on cancel
-      cy.get('[data-cy=cancel-interview-data-form]').click();
-      cy.get('[data-cy=discard-back-dialog]').should('exist');
-      // agree to discard changes
-      cy.get('[data-cy=discard]').click();
     });
 
     it('requires iso criteria to be submittable', () => {
-      // submit button should be disabled by default
       cy.get('[data-cy=submit-interview-data-form]').should('have.attr', 'disabled');
-      // choose an iso criteria
-      cy.get('[data-cy=interview-scope-header]').click();
-      cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
-        cy.wrap(el).should('not.have.class', 'checked');
-        cy.wrap(el).click();
-        cy.wrap(el).should('have.class', 'checked');
-      });
-      cy.get('[data-cy=interview-scope-header]').click();
-      // submit button should be enabled
+      cy.get('[data-cy=interview-scope-header]')
+        .click()
+        .get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox')
+        .each((el, index) => {
+          cy.wrap(el).should('not.have.class', 'checked').click().should('have.class', 'checked');
+        })
+        .get('[data-cy=interview-scope-header]')
+        .click();
       cy.get('[data-cy=submit-interview-data-form]').should('be.enabled');
-      // submit button should be clickable, submit form
-      cy.get('[data-cy=submit-interview-data-form]').click();
     });
   });
 
