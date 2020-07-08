@@ -10,6 +10,7 @@ import { Question } from '../data/models/question.model';
 import { Answer } from '../data/models/answer.model';
 import { PutInterviewDto } from './dtos/put-interview.dto';
 import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +18,16 @@ import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 export class InterviewService {
   constructor(private http: HttpClient) {}
 
-  getInterview(id: number) {
-    return this.http.get<InterviewDto>(compileTimeSwitchedString + 'interviews/' + id).pipe(
+  /**
+   * Builds an observable for making a GET request to get an interview.
+   *
+   * @param id The interview's id.
+   * @returns An Observable of the interview.
+   */
+  getInterview(id: number): Observable<Interview> {
+    const url = compileTimeSwitchedString + 'interviews/' + id;
+
+    return this.http.get<InterviewDto>(url).pipe(
       map<InterviewDto, Interview>(interviewDto => {
         const { endDate, startDate } = interviewDto;
         return {
@@ -31,8 +40,15 @@ export class InterviewService {
     );
   }
 
-  getInterviews() {
-    return this.http.get<InterviewDto[]>(compileTimeSwitchedString + 'interviews').pipe(
+  /**
+   * Builds an observable for making a GET request to all interviews.
+   *
+   * @returns An Observable of the interviews.
+   */
+  getInterviews(): Observable<Interview[]> {
+    const url = compileTimeSwitchedString + 'interviews';
+
+    return this.http.get<InterviewDto[]>(url).pipe(
       map<InterviewDto[], Interview[]>(interviewDtos => {
         return interviewDtos.map(interviewDto => {
           const { endDate, startDate } = interviewDto;
@@ -47,25 +63,42 @@ export class InterviewService {
     );
   }
 
-  getInterviewsByAuditId(auditId: number) {
-    return this.http
-      .get<InterviewDto[]>(compileTimeSwitchedString + 'audits/' + auditId + '/interviews')
-      .pipe(
-        map<InterviewDto[], Interview[]>(interviewDtos => {
-          return interviewDtos.map(interviewDto => {
-            const { endDate, startDate } = interviewDto;
-            return {
-              ...interviewDto,
-              contactPersons: interviewDto.interviewedContactPersons,
-              endDate: new Date(endDate).getTime(),
-              startDate: new Date(startDate).getTime(),
-            };
-          });
-        }),
-      );
+  /**
+   * Builds an observable for making a GET request to get all interviews by an audit id.
+   *
+   * @param id The audit's id.
+   * @returns An Observable of the interviews.
+   */
+  getInterviewsByAuditId(auditId: number): Observable<Interview[]> {
+    const url = compileTimeSwitchedString + 'audits/' + auditId + '/interviews';
+
+    return this.http.get<InterviewDto[]>(url).pipe(
+      map<InterviewDto[], Interview[]>(interviewDtos => {
+        return interviewDtos.map(interviewDto => {
+          const { endDate, startDate } = interviewDto;
+          return {
+            ...interviewDto,
+            contactPersons: interviewDto.interviewedContactPersons,
+            endDate: new Date(endDate).getTime(),
+            startDate: new Date(startDate).getTime(),
+          };
+        });
+      }),
+    );
   }
 
-  postInterview({ contactPersons, startDate, auditId }: Interview, interviewScope: FacCrit[]) {
+  /**
+   * Builds an observable for making a POST request to create an interview.
+   *
+   * @param interview The interview to create.
+   * @param interviewScope The interviews scope (List of assigned fac crits).
+   * @returns An Observable of the created interview.
+   */
+  postInterview(
+    { contactPersons, startDate, auditId }: Interview,
+    interviewScope: FacCrit[],
+  ): Observable<Interview> {
+    const url = compileTimeSwitchedString + 'interviews';
     const interviewedContactPersonsDto: { id: number; role: string }[] = [];
 
     for (const iterator of contactPersons ?? []) {
@@ -82,23 +115,29 @@ export class InterviewService {
       interviewedContactPersons: interviewedContactPersonsDto,
     };
 
-    return this.http
-      .post<InterviewDto>(compileTimeSwitchedString + 'interviews', postInterviewDto)
-      .pipe(
-        map<InterviewDto, Interview>(interviewDto => {
-          const { endDate, startDate } = interviewDto;
+    return this.http.post<InterviewDto>(url, postInterviewDto).pipe(
+      map<InterviewDto, Interview>(interviewDto => {
+        const { endDate, startDate } = interviewDto;
 
-          return {
-            ...interviewDto,
-            contactPersons: interviewDto.interviewedContactPersons,
-            endDate: new Date(endDate).getTime(),
-            startDate: new Date(startDate).getTime(),
-          };
-        }),
-      );
+        return {
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
+        };
+      }),
+    );
   }
 
-  putInterview({ startDate, endDate, status, goal, id }: Interview) {
+  /**
+   * Builds an observable for making a PUT request to update an interview.
+   *
+   * @param interview The interview to update.
+   * @returns An Observable of the updated interview.
+   */
+  putInterview({ startDate, endDate, status, goal, id }: Interview): Observable<Interview> {
+    const url = compileTimeSwitchedString + 'interviews/' + id;
+
     const putInterviewDto: PutInterviewDto = {
       endDate: parseTimestamp(endDate),
       startDate: parseTimestamp(startDate),
@@ -106,41 +145,58 @@ export class InterviewService {
       status,
     };
 
-    return this.http
-      .put<InterviewDto>(compileTimeSwitchedString + 'interviews/' + id, putInterviewDto)
-      .pipe(
-        map<InterviewDto, Interview>(interviewDto => {
-          const { endDate, startDate } = interviewDto;
+    return this.http.put<InterviewDto>(url, putInterviewDto).pipe(
+      map<InterviewDto, Interview>(interviewDto => {
+        const { endDate, startDate } = interviewDto;
 
-          return {
-            ...interviewDto,
-            contactPersons: interviewDto.interviewedContactPersons,
-            endDate: new Date(endDate).getTime(),
-            startDate: new Date(startDate).getTime(),
-          };
-        }),
-      );
-  }
-
-  getQuestion(id: number) {
-    return this.http.get<any>(compileTimeSwitchedString + 'questions/' + id).pipe(
-      map(questionDto => {
         return {
-          textDe: questionDto.textDe,
-          id: questionDto.id,
-          facCritId: questionDto.faccritId,
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
         };
       }),
     );
   }
 
-  getAnswersByInterviewId(interviewId: number) {
-    return this.http.get<Answer[]>(
-      compileTimeSwitchedString + 'answers/' + 'interview/' + interviewId,
+  /**
+   * Builds an observable for making a GET request to get a question.
+   *
+   * @param id The question's id.
+   * @returns An Observable of the question.
+   */
+  getQuestion(id: number): Observable<Question> {
+    const url = compileTimeSwitchedString + 'questions/' + id;
+
+    return this.http.get<Question>(url).pipe(
+      map(questionDto => {
+        return {
+          textDe: questionDto.textDe,
+          id: questionDto.id,
+          facCritId: questionDto['faccritId'],
+        };
+      }),
     );
   }
 
-  putAnswer(answer: Answer) {
+  /**
+   * Builds an observable for making a GET request to get answers by their interview id.
+   *
+   * @param id The interviews's id.
+   * @returns An Observable of the answers.
+   */
+  getAnswersByInterviewId(interviewId: number): Observable<Answer[]> {
+    const url = compileTimeSwitchedString + 'answers/' + 'interview/' + interviewId;
+    return this.http.get<Answer[]>(url);
+  }
+
+  /**
+   * Builds an observable for making a POST request to update an answer.
+   *
+   * @param answer The updated answer.
+   * @returns An Observable of the answers.
+   */
+  putAnswer(answer: Answer): Observable<Answer> {
     const url =
       compileTimeSwitchedString +
       'answers/' +

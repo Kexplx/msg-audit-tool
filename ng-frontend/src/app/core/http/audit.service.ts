@@ -16,15 +16,12 @@ import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 export class AuditService {
   constructor(private http: HttpClient) {}
 
-  getFacCritsByInterviewId(id: number) {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits/interview/' + id);
-  }
-
-  getFacCrits() {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits');
-  }
-
-  getAudits() {
+  /**
+   * Builds an observable for making a GET request to get all audits.
+   *
+   * @returns An Observable of the audits.
+   */
+  getAudits(): Observable<Audit[]> {
     return this.http.get(compileTimeSwitchedString + 'audits').pipe(
       map((audits: AuditDto[]) => {
         const result = audits.map<Audit>(auditDto => {
@@ -46,7 +43,13 @@ export class AuditService {
     );
   }
 
-  getAudit(id: number) {
+  /**
+   * Builds an observable for making a GET request to get an audit by id.
+   *
+   * @param id The audit's id.
+   * @returns An Observable of the audit.
+   */
+  getAudit(id: number): Observable<Audit> {
     return this.http.get<AuditDto>(compileTimeSwitchedString + 'audits/' + id).pipe(
       map<AuditDto, Audit>(auditDto => {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
@@ -65,6 +68,12 @@ export class AuditService {
     );
   }
 
+  /**
+   * Builds an observable for making a POST request to creats an audit.
+   *
+   * @param audit The audit to create.
+   * @returns An Observable of the created audit.
+   */
   postAudit(audit: Audit): Observable<Audit> {
     const auditDto: PostAuditDto = {
       name: audit.name,
@@ -92,7 +101,14 @@ export class AuditService {
     );
   }
 
-  putAudit(oldAudit: Audit, currentAudit: Audit) {
+  /**
+   * Builds an observable for making a PUT request to update an audit.
+   *
+   * @param audit The old audit.
+   * @param audit The updated audit.
+   * @returns An Observable of the updated audit.
+   */
+  putAudit(oldAudit: Audit, currentAudit: Audit): Observable<Audit> {
     this.putAuditContactPersons(oldAudit, currentAudit);
     const putAuditDto: PutAuditDto = {
       name: currentAudit.name,
@@ -100,11 +116,42 @@ export class AuditService {
       startDate: parseTimestamp(currentAudit.startDate),
     };
 
-    return this.http.put(compileTimeSwitchedString + 'audits/' + currentAudit.id, putAuditDto);
+    return this.http.put<Audit>(
+      compileTimeSwitchedString + 'audits/' + currentAudit.id,
+      putAuditDto,
+    );
   }
 
-  private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit) {
+  /**
+   * Builds an observable for making a GET request to get facCrits that belong to an interview.
+   *
+   * @param id The interview's id.
+   * @returns An Observable of facCrits.
+   */
+  getFacCritsByInterviewId(id: number): Observable<FacCrit[]> {
+    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits/interview/' + id);
+  }
+
+  /**
+   * Builds an observable for making a GET request to get all facCrits.
+   *
+   * @returns An Observable of facCrits.
+   */
+  getFacCrits(): Observable<FacCrit[]> {
+    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits');
+  }
+
+  /**
+   * Comapres the contact persons of an old and an updated audit.
+   * Makes PUT and DELETE requests to ../audits/{id}/contactpersons/{id} to update
+   * the contact persons of the audit accordingly.
+   *
+   * @param oldAudit The old audit.
+   * @param currentAudit The updated audit.
+   */
+  private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit): void {
     const url = compileTimeSwitchedString + 'audits/' + currentAudit.id + '/contactpersons/';
+
     const oldContactPersons = oldAudit.contactPersons;
     const newContactPersons = currentAudit.contactPersons;
 
@@ -116,8 +163,8 @@ export class AuditService {
     }
 
     for (const contactPerson of oldContactPersons) {
-      const existsInCurrent = currentAudit.contactPersons.find(x => x.id === contactPerson.id);
-      if (!existsInCurrent) {
+      const existsInUpdated = currentAudit.contactPersons.find(x => x.id === contactPerson.id);
+      if (!existsInUpdated) {
         this.http.delete(url + contactPerson.id, {}).subscribe(() => {});
       }
     }
