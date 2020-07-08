@@ -123,7 +123,15 @@ export class InterviewService {
   }
 
   getQuestion(id: number) {
-    return this.http.get<Question>(compileTimeSwitchedString + 'questions/' + id);
+    return this.http.get<any>(compileTimeSwitchedString + 'questions/' + id).pipe(
+      map(questionDto => {
+        return {
+          textDe: questionDto.textDe,
+          id: questionDto.id,
+          facCritId: questionDto.faccritId,
+        };
+      }),
+    );
   }
 
   getAnswersByInterviewId(interviewId: number) {
