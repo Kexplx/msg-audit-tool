@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 
+const defaultScopeComplement = [8, 14];
+
 @Component({
   selector: 'app-audit-form',
   templateUrl: './audit-form.component.html',
@@ -69,6 +71,9 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
       for (const facCrit of facCrits) {
         const inAudit = this.audit
           ? this.audit.scope.findIndex(x => x.id === facCrit.id) != -1
+          : defaultScopeComplement.includes(facCrit.id) ||
+            defaultScopeComplement.includes(facCrit.referenceId)
+          ? false
           : true;
 
         this.formGroup.addControl(String(facCrit.id), new FormControl(inAudit));
