@@ -1,3 +1,26 @@
+const defaultScopeComplement = [
+  {
+    id: 8,
+    referenceId: null,
+    name: 'Austauschbarkeit, Übertragbarkeit',
+  },
+  {
+    id: 14,
+    referenceId: null,
+    name: 'Sonstige Anforderungen',
+  },
+  {
+    id: 30,
+    referenceId: 8,
+    name: 'Koexistenz',
+  },
+  {
+    id: 31,
+    referenceId: 8,
+    name: 'Interoperabilität',
+  },
+];
+
 describe('AddAuditDialog', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
   let testAudit;
@@ -152,12 +175,21 @@ describe('AddAuditDialog', () => {
       cy.get('[data-cy=criteria-entry] > .label > .custom-checkbox')
         .should('exist')
         .each((el, index) => {
-          cy.wrap(el).should('have.class', 'checked');
+          if (
+            !defaultScopeComplement
+              .filter(fc => fc.referenceId)
+              .map(fc => fc.id - 15)
+              .includes(index)
+          ) {
+            cy.wrap(el).should('have.class', 'checked');
+          }
         });
       cy.get('[data-cy=factor-entry] > .label > .custom-checkbox')
         .should('exist')
         .each((el, index) => {
-          cy.wrap(el).should('have.class', 'checked');
+          if (!defaultScopeComplement.map(fc => fc.id - 1).includes(index)) {
+            cy.wrap(el).should('have.class', 'checked');
+          }
         });
     });
 
@@ -176,6 +208,8 @@ describe('AddAuditDialog', () => {
         });
     });
 
+    // Noch fixen mit defaultScopeComplement
+    // Evtl. ganz weglassen
     it('automatically checks/unchecks criteria if factor was checked/unchecked', () => {
       cy.get('[data-cy=factor-entry]  > .label > .custom-checkbox')
         .should('exist')
@@ -248,9 +282,11 @@ describe('AddAuditDialog', () => {
         .then(xhr => {
           assert.deepEqual(xhr.request.body, {
             name: testAudit.name,
-            contactPersons: [],
             endDate: null,
-            scope: Array.from(Array(54), (_, i) => i + 1),
+            contactPersons: [],
+            scope: Array.from(Array(54), (_, i) => i + 1).filter(
+              i => !defaultScopeComplement.map(fc => fc.id).includes(i),
+            ),
             startDate: new Date(Date.now()).toISOString().slice(0, 10),
           });
         });
