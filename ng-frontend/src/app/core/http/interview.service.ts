@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { compileTimeSwitchedString } from './connectionStrings';
 import { InterviewDto } from './dtos/interview.dto';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Interview } from '../data/models/interview.model';
 import { PostInterviewDto } from './dtos/post-interview.dto';
 import { FacCrit } from '../data/models/faccrit.model';
@@ -168,15 +168,7 @@ export class InterviewService {
   getQuestion(id: number): Observable<Question> {
     const url = compileTimeSwitchedString + 'questions/' + id;
 
-    return this.http.get<Question>(url).pipe(
-      map(questionDto => {
-        return {
-          textDe: questionDto.textDe,
-          id: questionDto.id,
-          facCritId: questionDto['faccritId'],
-        };
-      }),
-    );
+    return this.http.get<Question>(url).pipe(tap(q => console.log(q)));
   }
 
   /**
