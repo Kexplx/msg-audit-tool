@@ -4,7 +4,7 @@ import { debounceTime, filter, map } from 'rxjs/operators';
 import { Store, Select } from '@ngxs/store';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { Interview } from 'src/app/core/data/models/interview.model';
+import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { InterviewState } from 'src/app/core/ngxs/interview.state';
 import { AuditService } from 'src/app/core/http/audit.service';
@@ -87,5 +87,11 @@ export class InterviewDirectorComponent implements OnInit {
   getFacCritPosition(id: number) {
     const indexOfFacCrit = this.facCritIds.indexOf(id) + 1;
     return indexOfFacCrit + '/' + this.facCritIds.length;
+  }
+
+  onFinishClick() {
+    this.store.dispatch(
+      new UpdateInterview(this.interviewId, { status: InterviewStatus.Finished }),
+    );
   }
 }
