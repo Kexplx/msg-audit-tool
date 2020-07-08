@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
-import { Observable, forkJoin, combineLatest } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Select, Store } from '@ngxs/store';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { Question } from 'src/app/core/data/models/question.model';
-import { InterviewService } from 'src/app/core/http/interview.service';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { InterviewState } from 'src/app/core/ngxs/interview.state';
 import { Answer } from 'src/app/core/data/models/answer.model';
-import { map, filter } from 'rxjs/operators';
-import { LoadQuestion } from 'src/app/core/ngxs/actions/inteview.actions';
+import { map, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sidebar-interview',
@@ -25,7 +23,7 @@ export class SidebarInterviewComponent {
 
   questionIds: number[];
 
-  constructor(private menuService: NbMenuService, private store: Store) {}
+  constructor(private menuService: NbMenuService) {}
   ngOnInit() {
     this.items = [];
     this.menuService.onItemClick().subscribe(x => {
@@ -36,19 +34,17 @@ export class SidebarInterviewComponent {
     combineLatest([this.facCritId$, this.interviewId$]).subscribe(ids => {
       this.answers$
         .pipe(
-          map(answers =>
-            answers.filter(a => a.faccritId === ids[0] && a.interviewId === a.interviewId),
-          ),
-          filter(answers => answers.length >= 7),
+          first(answers => answers.length > 0),
+          map(answers => answers.filter(a => a.faccritId === ids[0] && a.interviewId === ids[1])),
         )
         .subscribe(answers => {
           this.questionIds = answers.map(a => a.questionId);
         });
 
-      this.questions$.subscribe(questions => {
+      this.questions$.pipe(first(questions => questions.length > 0)).subscribe(questions => {
         if (this.questionIds) {
           this.items = questions
-            .filter(q => this.questionIds.includes(q.id))
+            .filter(q => this.questionIds.includes(q.id) && q.facCritId === ids[0])
             .map<NbMenuItem>(q => ({ title: q.textDe, data: q.id }));
         }
       });
