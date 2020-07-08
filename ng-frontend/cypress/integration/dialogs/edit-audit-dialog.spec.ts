@@ -17,6 +17,7 @@ describe('EditAuditDialog', () => {
   });
 
   beforeEach(() => {
+    cy.clearLocalStorage();
     cy.injectBackendMocks();
   });
 
@@ -33,20 +34,20 @@ describe('EditAuditDialog', () => {
 
     beforeEach(() => {
       audit = audits[0];
-      cy.visit(auditsUrl);
-      cy.visit(`${auditsUrl}/${audit.id}/edit`);
-      cy.wait('@getFacCrits');
-      cy.wait('@getAudits');
-      cy.wait('@getContactPersons');
-      cy.wait('@getInterviews');
+      cy.visit(auditsUrl).visit(`${auditsUrl}/${audit.id}/edit`);
+      cy.wait('@getFacCrits').its('status').should('eq', 200);
+      cy.wait('@getAudits').its('status').should('eq', 200);
+      cy.wait('@getContactPersons').its('status').should('eq', 200);
+      cy.wait('@getInterviews').its('status').should('eq', 200);
     });
 
     it('shows the correct audit name', () => {
-      cy.get('[data-cy=audit-name-input]').should('have.value', audit.name);
+      cy.get('[data-cy=audit-name-input]').should('exist').should('have.value', audit.name);
     });
 
     it('shows the correct start date', () => {
       cy.get('[data-cy=audit-start-input]')
+        .should('exist')
         .invoke('val')
         .then(val => {
           assert.equal(
@@ -58,6 +59,7 @@ describe('EditAuditDialog', () => {
 
     it('shows the correct end date', () => {
       cy.get('[data-cy=audit-end-input]')
+        .should('exist')
         .invoke('val')
         .then(val => {
           assert.equal(
@@ -68,17 +70,21 @@ describe('EditAuditDialog', () => {
     });
 
     it('shows the correct contact person(s)', () => {
-      cy.get('[data-cy=audit-contacts]').click();
-      cy.get('[data-cy=audit-contact]').each((contact, i) => {
-        cy.wrap(contact).should('contain', contactPersons[i].forename);
-        cy.wrap(contact).should('contain', contactPersons[i].surname);
-      });
-      cy.get('[data-cy=audit-contacts]').click();
+      cy.get('[data-cy=audit-contacts]')
+        .should('exist')
+        .click()
+        .get('[data-cy=audit-contact]')
+        .should('exist')
+        .each((contact, i) => {
+          cy.wrap(contact).should('contain', contactPersons[i].forename);
+          cy.wrap(contact).should('contain', contactPersons[i].surname);
+        });
     });
 
     it('shows the correct scope', () => {
       audit.scope.forEach(scope => {
         cy.get('[data-cy=facCrits]')
+          .should('exist')
           .contains(scope.name)
           .then(a => {
             cy.wrap(a).get('.label > .custom-checkbox').should('have.class', 'checked');
@@ -92,12 +98,11 @@ describe('EditAuditDialog', () => {
 
     beforeEach(() => {
       audit = audits[0];
-      cy.visit(auditsUrl);
-      cy.visit(`${auditsUrl}/${audit.id}/edit`);
-      cy.wait('@getFacCrits');
-      cy.wait('@getAudits');
-      cy.wait('@getContactPersons');
-      cy.wait('@getInterviews');
+      cy.visit(auditsUrl).visit(`${auditsUrl}/${audit.id}/edit`);
+      cy.wait('@getFacCrits').its('status').should('eq', 200);
+      cy.wait('@getAudits').its('status').should('eq', 200);
+      cy.wait('@getContactPersons').its('status').should('eq', 200);
+      cy.wait('@getInterviews').its('status').should('eq', 200);
     });
 
     it('builds a valid post request as form', () => {
