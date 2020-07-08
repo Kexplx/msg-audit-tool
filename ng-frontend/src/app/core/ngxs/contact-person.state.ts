@@ -7,7 +7,7 @@ import {
   DeleteContactPerson,
   UpdateContactPerson,
 } from './actions/contact-person.action';
-import { CoreService } from '../http/core.service';
+import { ContactPersonService } from '../http/contact-person.service';
 
 export interface ContactPersonStateModel {
   contactPersons: ContactPerson[];
@@ -24,10 +24,10 @@ export interface ContactPersonStateModel {
 })
 @Injectable()
 export class ContactPersonState implements NgxsOnInit {
-  constructor(private coreService: CoreService) {}
+  constructor(private contactPersonService: ContactPersonService) {}
 
   ngxsOnInit({ patchState }: StateContext<ContactPersonStateModel>) {
-    this.coreService.getContactPersons().subscribe(contactPersons => {
+    this.contactPersonService.getContactPersons().subscribe(contactPersons => {
       patchState({ contactPersons });
     });
   }
@@ -48,7 +48,7 @@ export class ContactPersonState implements NgxsOnInit {
     { setState }: StateContext<ContactPersonStateModel>,
     { contactPerson }: AddContactPerson,
   ) {
-    this.coreService.postContactPerson(contactPerson).subscribe(contactPerson => {
+    this.contactPersonService.postContactPerson(contactPerson).subscribe(contactPerson => {
       setState(
         patch({
           contactPersons: append<ContactPerson>([contactPerson]),
@@ -62,13 +62,18 @@ export class ContactPersonState implements NgxsOnInit {
     { setState }: StateContext<ContactPersonStateModel>,
     { id, contactPerson }: UpdateContactPerson,
   ) {
-    this.coreService.putContactPerson({ ...contactPerson, id }).subscribe(contactPerson => {
-      setState(
-        patch({
-          contactPersons: updateItem<ContactPerson>(x => x.id === contactPerson.id, contactPerson),
-        }),
-      );
-    });
+    this.contactPersonService
+      .putContactPerson({ ...contactPerson, id })
+      .subscribe(contactPerson => {
+        setState(
+          patch({
+            contactPersons: updateItem<ContactPerson>(
+              x => x.id === contactPerson.id,
+              contactPerson,
+            ),
+          }),
+        );
+      });
   }
 
   @Action(DeleteContactPerson)

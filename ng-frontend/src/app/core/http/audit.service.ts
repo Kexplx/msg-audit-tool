@@ -6,7 +6,6 @@ import { AuditDto } from './dtos/audit.dto';
 import { map } from 'rxjs/operators';
 import { PostAuditDto } from './dtos/post-audit.dto';
 import { Observable } from 'rxjs';
-import { ContactPerson } from '../data/models/contact-person.model';
 import { PutAuditDto } from './dtos/put-audit.dto';
 import { compileTimeSwitchedString } from './connectionStrings';
 import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
@@ -14,7 +13,7 @@ import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 @Injectable({
   providedIn: 'root',
 })
-export class CoreService {
+export class AuditService {
   constructor(private http: HttpClient) {}
 
   getFacCritsByInterviewId(id: number) {
@@ -122,21 +121,5 @@ export class CoreService {
         this.http.delete(url + contactPerson.id, {}).subscribe(() => {});
       }
     }
-  }
-
-  getContactPersons() {
-    return this.http.get<ContactPerson[]>(compileTimeSwitchedString + 'contactpersons');
-  }
-
-  postContactPerson(contactPerson: ContactPerson) {
-    return this.http.post<ContactPerson>(
-      compileTimeSwitchedString + 'contactpersons',
-      contactPerson,
-    );
-  }
-
-  putContactPerson(contactPerson: ContactPerson) {
-    const url = compileTimeSwitchedString + 'contactpersons/' + contactPerson.id;
-    return this.http.put<ContactPerson>(url, contactPerson);
   }
 }

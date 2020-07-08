@@ -9,7 +9,7 @@ import {
   LoadFacCritsByInterviewId,
 } from './actions/audit.actions';
 import { FacCrit } from '../data/models/faccrit.model';
-import { CoreService } from '../http/core.service';
+import { AuditService } from '../http/audit.service';
 
 export interface AuditStateModel {
   audits: Audit[];
@@ -27,14 +27,14 @@ export interface AuditStateModel {
 })
 @Injectable()
 export class AuditState implements NgxsOnInit {
-  constructor(private coreService: CoreService) {}
+  constructor(private auditService: AuditService) {}
 
   ngxsOnInit({ patchState }: StateContext<AuditStateModel>) {
-    this.coreService.getFacCrits().subscribe(facCrits => {
+    this.auditService.getFacCrits().subscribe(facCrits => {
       patchState({ facCrits });
     });
 
-    this.coreService.getAudits().subscribe(audits => {
+    this.auditService.getAudits().subscribe(audits => {
       patchState({ audits });
     });
   }
@@ -75,7 +75,7 @@ export class AuditState implements NgxsOnInit {
 
   @Action(AddAudit)
   addAudit({ setState }: StateContext<AuditStateModel>, { audit }: AddAudit) {
-    this.coreService.postAudit(audit).subscribe(audit => {
+    this.auditService.postAudit(audit).subscribe(audit => {
       setState(
         patch({
           audits: append<Audit>([audit]),
@@ -88,7 +88,7 @@ export class AuditState implements NgxsOnInit {
   updateAudit(ctx: StateContext<AuditStateModel>, { id, audit }: UpdateAudit) {
     const oldAudit = ctx.getState().audits.find(audit => audit.id === id);
 
-    this.coreService.putAudit(oldAudit, { ...audit, id }).subscribe(() => {
+    this.auditService.putAudit(oldAudit, { ...audit, id }).subscribe(() => {
       const a = ctx.getState().audits.find(x => x.id === id);
 
       ctx.setState(
@@ -110,6 +110,6 @@ export class AuditState implements NgxsOnInit {
 
   @Action(LoadFacCritsByInterviewId)
   loadFacCritsByInterviewId(ctx: StateContext<AuditStateModel>, { id }: LoadFacCritsByInterviewId) {
-    return this.coreService.getFacCritsByInterviewId(id);
+    return this.auditService.getFacCritsByInterviewId(id);
   }
 }

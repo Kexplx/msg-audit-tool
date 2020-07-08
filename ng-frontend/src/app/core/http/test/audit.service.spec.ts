@@ -1,22 +1,23 @@
-import { CoreService } from '../core.service';
+import { AuditService } from '../audit.service';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AUDITS_DTO_DUMMY } from './dummies';
 import { AuditStatus, Audit } from '../../data/models/audit.model';
 import { AuditDto } from '../dtos/audit.dto';
 import { compileTimeSwitchedString } from '../connectionStrings';
+import * as karma from 'karma-jasmine';
 
-fdescribe('CoreService', () => {
-  let service: CoreService;
+fdescribe('AuditService', () => {
+  let service: AuditService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [CoreService],
+      providers: [AuditService],
     });
 
-    service = TestBed.inject(CoreService);
+    service = TestBed.inject(AuditService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
