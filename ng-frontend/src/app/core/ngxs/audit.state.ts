@@ -10,6 +10,7 @@ import {
 } from './actions/audit.actions';
 import { FacCrit } from '../data/models/faccrit.model';
 import { AuditService } from '../http/audit.service';
+import { FacCritService } from '../http/facCrit.service';
 
 export interface AuditStateModel {
   audits: Audit[];
@@ -27,10 +28,10 @@ export interface AuditStateModel {
 })
 @Injectable()
 export class AuditState implements NgxsOnInit {
-  constructor(private auditService: AuditService) {}
+  constructor(private auditService: AuditService, private facCritService: FacCritService) {}
 
   ngxsOnInit({ patchState }: StateContext<AuditStateModel>) {
-    this.auditService.getFacCrits().subscribe(facCrits => {
+    this.facCritService.getFacCrits().subscribe(facCrits => {
       patchState({ facCrits });
     });
 
@@ -110,6 +111,6 @@ export class AuditState implements NgxsOnInit {
 
   @Action(LoadFacCritsByInterviewId)
   loadFacCritsByInterviewId(ctx: StateContext<AuditStateModel>, { id }: LoadFacCritsByInterviewId) {
-    return this.auditService.getFacCritsByInterviewId(id);
+    return this.facCritService.getFacCritsByInterviewId(id);
   }
 }

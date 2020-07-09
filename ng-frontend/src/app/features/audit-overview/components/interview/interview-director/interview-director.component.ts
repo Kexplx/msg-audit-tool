@@ -11,6 +11,7 @@ import { AuditService } from 'src/app/core/http/audit.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
+import { FacCritService } from 'src/app/core/http/facCrit.service';
 
 @Component({
   selector: 'app-interview-director',
@@ -34,7 +35,7 @@ export class InterviewDirectorComponent implements OnInit {
   constructor(
     private store: Store,
     private activatedRoute: ActivatedRoute,
-    private auditService: AuditService,
+    private facCritService: FacCritService,
     private router: Router,
   ) {}
 
@@ -48,7 +49,7 @@ export class InterviewDirectorComponent implements OnInit {
         this.interview$ = this.store.select(InterviewState.interview(ids[0]));
         this.facCrit$ = this.store.select(AuditState.facCrit(ids[1]));
 
-        this.auditService.getFacCritsByInterviewId(ids[0]).subscribe((facCrits: FacCrit[]) => {
+        this.facCritService.getFacCritsByInterviewId(ids[0]).subscribe((facCrits: FacCrit[]) => {
           this.facCritIds = this.facCritIds = facCrits.map(f => f.id);
         });
       });
