@@ -1,6 +1,3 @@
-import { AddAudit } from 'src/app/core/ngxs/actions/audit.actions';
-import { audit } from 'rxjs/operators';
-
 describe('AuditsListPage', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
 
