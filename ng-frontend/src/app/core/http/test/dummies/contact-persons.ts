@@ -1,0 +1,43 @@
+import { ContactPerson, Salutation } from 'src/app/core/data/models/contact-person.model';
+
+export const CONTACTPERSON_DTO_DUMMY: ContactPerson[] = [
+  {
+    id: 1,
+    role: 'Default Role',
+    salutation: Salutation.Herr,
+    title: 'string',
+    forename: 'string',
+    surname: 'string',
+    contactInformation: 'string',
+    companyName: 'string',
+    department: 'string',
+    sector: 'string',
+    corporateDivision: 'string',
+  },
+  {
+    id: 2,
+    role: 'Default Role',
+    salutation: Salutation.Herr,
+    title: 'string',
+    forename: 'string',
+    surname: 'string',
+    contactInformation: 'string',
+    companyName: 'string',
+    department: 'string',
+    sector: 'string',
+    corporateDivision: 'string',
+  },
+  {
+    id: 3,
+    role: 'Default Role',
+    salutation: Salutation.Herr,
+    title: 'string',
+    forename: 'string',
+    surname: 'string',
+    contactInformation: 'string',
+    companyName: 'string',
+    department: 'string',
+    sector: 'string',
+    corporateDivision: 'string',
+  },
+];

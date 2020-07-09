@@ -2,12 +2,7 @@ import { State, Action, StateContext, NgxsOnInit, createSelector, Selector } fro
 import { patch, append, updateItem } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { Interview } from '../data/models/interview.model';
-import {
-  AddInterview,
-  UpdateInterview,
-  UpdateAnswer,
-  LoadQuestion,
-} from './actions/inteview.actions';
+import { AddInterview, UpdateInterview, UpdateAnswer } from './actions/inteview.actions';
 import { InterviewService } from '../http/interview.service';
 import { Answer } from '../data/models/answer.model';
 import { Question } from '../data/models/question.model';
@@ -151,19 +146,5 @@ export class InterviewState implements NgxsOnInit {
         }),
       );
     });
-  }
-
-  @Action(LoadQuestion)
-  loadQuestion({ setState, getState }: StateContext<InterviewStateModel>, { id }: LoadQuestion) {
-    const question = getState().questions?.find(q => q.id === id);
-    if (!question) {
-      this.interviewService.getQuestion(id).subscribe(question => {
-        setState(
-          patch({
-            questions: append<Question>([question]),
-          }),
-        );
-      });
-    }
   }
 }
