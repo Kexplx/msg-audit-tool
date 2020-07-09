@@ -12,7 +12,7 @@
 <div class="fac-crits" *ngIf="(audit$ | async)?.scope.length > 0; else noFacrits">
   <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async)?.scope | factors">
     <nb-accordion-item expanded data-cy="factor-card">
-      <nb-accordion-item-header class="subtitle-2">{{ factor.name }}</nb-accordion-item-header>
+      <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">{{ factor.name }}</nb-accordion-item-header>
       <nb-accordion-item-body data-cy="faccrit-body">
         <nb-list *ngIf="interviews$ | async | interviewByFacCrit: factor.id as interviews; else noInterviews">
           <nb-list-item *ngFor="let interview of interviews">
@@ -20,12 +20,12 @@
           </nb-list-item>
         </nb-list>
         <ng-template #noInterviews>
-          <div class="hint-no-interviews label">
+          <div class="hint-no-interviews label" data-cy="noInterviews">
             Keine Interviews vorhanden
           </div>
         </ng-template>
         <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async)?.scope | criteriaByFactor: factor.id">
-          <nb-card-header class="subtitle-2">
+          <nb-card-header class="subtitle-2" data-cy="criteria-header">
             {{ criteria.name }}
           </nb-card-header>
           <nb-card-body>
@@ -46,7 +46,7 @@
   </nb-accordion>
 </div>
 <ng-template #noFacrits>
-  <div class="hint-no-interviews">
+  <div class="hint-no-interviews" data-cy="emptyScope">
     <h6 class="text-hint mb-1">Leerer Scope</h6>
     <p class="label">Fügen Sie dem Audit ISO/IEC Faktoren & Kriterien hinzu</p>
   </div>
