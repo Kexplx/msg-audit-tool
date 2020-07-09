@@ -22,6 +22,17 @@ export class ContactPersonService {
   }
 
   /**
+   * Builds an observable for making a GET request to get a contact person by id.
+   *
+   * @returns An Observable of a contact person.
+   */
+  getContactPerson(id: number): Observable<ContactPerson> {
+    const url = compileTimeSwitchedString + 'contactpersons/' + id;
+
+    return this.http.get<ContactPerson>(url);
+  }
+
+  /**
    * Builds an observable for making a POST request to create a contact person.
    *
    * @param contactPerson The contact person to create.
