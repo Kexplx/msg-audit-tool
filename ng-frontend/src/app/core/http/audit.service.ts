@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
 import { PostAuditDto } from './dtos/post-audit.dto';
 import { Observable } from 'rxjs';
 import { PutAuditDto } from './dtos/put-audit.dto';
-import { compileTimeSwitchedString } from './connectionStrings';
 import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +22,7 @@ export class AuditService {
    * @returns An Observable of the audits.
    */
   getAudits(): Observable<Audit[]> {
-    return this.http.get(compileTimeSwitchedString + 'audits').pipe(
+    return this.http.get(environment.baseUrl + 'audits').pipe(
       map((audits: AuditDto[]) => {
         const result = audits.map<Audit>(auditDto => {
           const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
@@ -50,7 +50,7 @@ export class AuditService {
    * @returns An Observable of the audit.
    */
   getAudit(id: number): Observable<Audit> {
-    return this.http.get<AuditDto>(compileTimeSwitchedString + 'audits/' + id).pipe(
+    return this.http.get<AuditDto>(environment.baseUrl + 'audits/' + id).pipe(
       map<AuditDto, Audit>(auditDto => {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
@@ -83,7 +83,7 @@ export class AuditService {
       startDate: parseTimestamp(audit.startDate),
     };
 
-    return this.http.post(compileTimeSwitchedString + 'audits', auditDto).pipe(
+    return this.http.post(environment.baseUrl + 'audits', auditDto).pipe(
       map((auditDto: AuditDto) => {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
@@ -117,7 +117,7 @@ export class AuditService {
     };
 
     return this.http
-      .put<Audit>(compileTimeSwitchedString + 'audits/' + currentAudit.id, putAuditDto)
+      .put<Audit>(environment.baseUrl + 'audits/' + currentAudit.id, putAuditDto)
       .pipe(
         map(auditDto => {
           const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
@@ -137,25 +137,6 @@ export class AuditService {
   }
 
   /**
-   * Builds an observable for making a GET request to get facCrits that belong to an interview.
-   *
-   * @param id The interview's id.
-   * @returns An Observable of facCrits.
-   */
-  getFacCritsByInterviewId(id: number): Observable<FacCrit[]> {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits/interview/' + id);
-  }
-
-  /**
-   * Builds an observable for making a GET request to get all facCrits.
-   *
-   * @returns An Observable of facCrits.
-   */
-  getFacCrits(): Observable<FacCrit[]> {
-    return this.http.get<FacCrit[]>(compileTimeSwitchedString + 'faccrits');
-  }
-
-  /**
    * Comapres the contact persons of an old and an updated audit.
    * Makes PUT and DELETE requests to ../audits/{id}/contactpersons/{id} to update
    * the contact persons of the audit accordingly.
@@ -164,7 +145,7 @@ export class AuditService {
    * @param currentAudit The updated audit.
    */
   private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit): void {
-    const url = compileTimeSwitchedString + 'audits/' + currentAudit.id + '/contactpersons/';
+    const url = environment.baseUrl + 'audits/' + currentAudit.id + '/contactpersons/';
 
     const oldContactPersons = oldAudit.contactPersons;
     const newContactPersons = currentAudit.contactPersons;

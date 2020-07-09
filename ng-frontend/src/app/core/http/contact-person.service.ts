@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ContactPerson } from '../data/models/contact-person.model';
-import { compileTimeSwitchedString } from './connectionStrings';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class ContactPersonService {
    * @returns An Observable of contact persons.
    */
   getContactPersons(): Observable<ContactPerson[]> {
-    const url = compileTimeSwitchedString + 'contactpersons';
+    const url = environment.baseUrl + 'contactpersons';
 
     return this.http.get<ContactPerson[]>(url);
   }
@@ -27,7 +27,7 @@ export class ContactPersonService {
    * @returns An Observable of a contact person.
    */
   getContactPerson(id: number): Observable<ContactPerson> {
-    const url = compileTimeSwitchedString + 'contactpersons/' + id;
+    const url = environment.baseUrl + 'contactpersons/' + id;
 
     return this.http.get<ContactPerson>(url);
   }
@@ -39,7 +39,7 @@ export class ContactPersonService {
    * @returns An Observable of the created contact person.
    */
   postContactPerson(contactPerson: ContactPerson): Observable<ContactPerson> {
-    const url = compileTimeSwitchedString + 'contactpersons';
+    const url = environment.baseUrl + 'contactpersons';
 
     return this.http.post<ContactPerson>(url, contactPerson);
   }
@@ -51,7 +51,7 @@ export class ContactPersonService {
    * @returns An Observable of the updated contact person.
    */
   putContactPerson(contactPerson: ContactPerson): Observable<ContactPerson> {
-    const url = compileTimeSwitchedString + 'contactpersons/' + contactPerson.id;
+    const url = environment.baseUrl + 'contactpersons/' + contactPerson.id;
 
     return this.http.put<ContactPerson>(url, contactPerson);
   }

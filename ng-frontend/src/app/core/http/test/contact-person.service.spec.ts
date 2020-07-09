@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { compileTimeSwitchedString } from '../connectionStrings';
 import * as karma from 'karma-jasmine';
 import { ContactPersonService } from '../contact-person.service';
 import { CONTACTPERSON_DTO_DUMMY } from './dummies/contact-persons';
 import { ContactPerson } from '../../data/models/contact-person.model';
+import { environment } from 'src/environments/environment';
 
 fdescribe('ContactPersonService', () => {
   let service: ContactPersonService;
@@ -28,7 +28,7 @@ fdescribe('ContactPersonService', () => {
       }
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'contactpersons');
+    const req = httpMock.expectOne(environment.baseUrl + 'contactpersons');
     expect(req.request.method).toEqual('GET');
 
     req.flush(contactPersonsDto);
@@ -41,7 +41,7 @@ fdescribe('ContactPersonService', () => {
       verifyContactPerson(contactPerson, contactPersonDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'contactpersons/' + 1);
+    const req = httpMock.expectOne(environment.baseUrl + 'contactpersons/' + 1);
     expect(req.request.method).toEqual('GET');
 
     req.flush(contactPersonDto);
@@ -54,7 +54,7 @@ fdescribe('ContactPersonService', () => {
       verifyContactPerson(contactPerson, contactPersonDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'contactpersons');
+    const req = httpMock.expectOne(environment.baseUrl + 'contactpersons');
     expect(req.request.method).toEqual('POST');
 
     req.flush(contactPersonDto);
@@ -67,7 +67,7 @@ fdescribe('ContactPersonService', () => {
       verifyContactPerson(contactPerson, contactPersonDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'contactpersons/' + 1);
+    const req = httpMock.expectOne(environment.baseUrl + 'contactpersons/' + 1);
     expect(req.request.method).toEqual('PUT');
 
     req.flush(contactPersonDto);

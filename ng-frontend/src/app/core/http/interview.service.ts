@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { compileTimeSwitchedString } from './connectionStrings';
 import { InterviewDto } from './dtos/interview.dto';
 import { map, tap } from 'rxjs/operators';
 import { Interview } from '../data/models/interview.model';
@@ -11,6 +10,7 @@ import { Answer } from '../data/models/answer.model';
 import { PutInterviewDto } from './dtos/put-interview.dto';
 import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +25,7 @@ export class InterviewService {
    * @returns An Observable of the interview.
    */
   getInterview(id: number): Observable<Interview> {
-    const url = compileTimeSwitchedString + 'interviews/' + id;
+    const url = environment.baseUrl + 'interviews/' + id;
 
     return this.http.get<InterviewDto>(url).pipe(
       map<InterviewDto, Interview>(interviewDto => {
@@ -46,7 +46,7 @@ export class InterviewService {
    * @returns An Observable of the interviews.
    */
   getInterviews(): Observable<Interview[]> {
-    const url = compileTimeSwitchedString + 'interviews';
+    const url = environment.baseUrl + 'interviews';
 
     return this.http.get<InterviewDto[]>(url).pipe(
       map<InterviewDto[], Interview[]>(interviewDtos => {
@@ -70,7 +70,7 @@ export class InterviewService {
    * @returns An Observable of the interviews.
    */
   getInterviewsByAuditId(auditId: number): Observable<Interview[]> {
-    const url = compileTimeSwitchedString + 'audits/' + auditId + '/interviews';
+    const url = environment.baseUrl + 'audits/' + auditId + '/interviews';
 
     return this.http.get<InterviewDto[]>(url).pipe(
       map<InterviewDto[], Interview[]>(interviewDtos => {
@@ -98,7 +98,7 @@ export class InterviewService {
     { contactPersons, startDate, auditId }: Interview,
     interviewScope: FacCrit[],
   ): Observable<Interview> {
-    const url = compileTimeSwitchedString + 'interviews';
+    const url = environment.baseUrl + 'interviews';
     const interviewedContactPersonsDto: { id: number; role: string }[] = [];
 
     for (const iterator of contactPersons ?? []) {
@@ -136,7 +136,7 @@ export class InterviewService {
    * @returns An Observable of the updated interview.
    */
   putInterview({ startDate, endDate, status, goal, id }: Interview): Observable<Interview> {
-    const url = compileTimeSwitchedString + 'interviews/' + id;
+    const url = environment.baseUrl + 'interviews/' + id;
 
     const putInterviewDto: PutInterviewDto = {
       endDate: parseTimestamp(endDate),
@@ -166,7 +166,7 @@ export class InterviewService {
    * @returns An Observable of the question.
    */
   getQuestion(id: number): Observable<Question> {
-    const url = compileTimeSwitchedString + 'questions/' + id;
+    const url = environment.baseUrl + 'questions/' + id;
 
     return this.http.get<Question>(url).pipe(tap(q => console.log(q)));
   }
@@ -178,7 +178,7 @@ export class InterviewService {
    * @returns An Observable of the answers.
    */
   getAnswersByInterviewId(interviewId: number): Observable<Answer[]> {
-    const url = compileTimeSwitchedString + 'answers/' + 'interview/' + interviewId;
+    const url = environment.baseUrl + 'answers/' + 'interview/' + interviewId;
     return this.http.get<Answer[]>(url);
   }
 
@@ -190,7 +190,7 @@ export class InterviewService {
    */
   putAnswer(answer: Answer): Observable<Answer> {
     const url =
-      compileTimeSwitchedString +
+      environment.baseUrl +
       'answers/' +
       'interview/' +
       answer.interviewId +

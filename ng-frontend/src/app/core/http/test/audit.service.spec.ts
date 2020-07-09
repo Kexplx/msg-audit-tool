@@ -3,11 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuditStatus, Audit } from '../../data/models/audit.model';
 import { AuditDto } from '../dtos/audit.dto';
-import { compileTimeSwitchedString } from '../connectionStrings';
 import * as karma from 'karma-jasmine';
 import { FacCrit } from '../../data/models/faccrit.model';
 import { AUDITS_DTO_DUMMY } from './dummies/audits';
 import { FACCRITS_DUMMY } from './dummies/faccrits';
+import { environment } from 'src/environments/environment';
 
 describe('AuditService', () => {
   let service: AuditService;
@@ -32,7 +32,7 @@ describe('AuditService', () => {
       verifyAuditContent(audits[1], auditDto1);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits');
+    const req = httpMock.expectOne(environment.baseUrl + 'audits');
     expect(req.request.method).toEqual('GET');
 
     req.flush([auditDto0, auditDto1]);
@@ -47,7 +47,7 @@ describe('AuditService', () => {
       verifyAuditContent(audit, auditDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits/' + auditDto.id);
+    const req = httpMock.expectOne(environment.baseUrl + 'audits/' + auditDto.id);
     expect(req.request.method).toEqual('GET');
 
     req.flush(auditDto);
@@ -70,7 +70,7 @@ describe('AuditService', () => {
       verifyAuditContent(audit, auditDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits');
+    const req = httpMock.expectOne(environment.baseUrl + 'audits');
     expect(req.request.method).toEqual('POST');
 
     req.flush(auditDto);
@@ -93,46 +93,10 @@ describe('AuditService', () => {
       verifyAuditContent(audit, auditDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits/' + auditPut.id);
+    const req = httpMock.expectOne(environment.baseUrl + 'audits/' + auditPut.id);
     expect(req.request.method).toEqual('PUT');
 
     req.flush(auditDto);
-    httpMock.verify();
-  });
-
-  it('#getFacCrits should return facCrits', () => {
-    const facCritsDto: FacCrit[] = FACCRITS_DUMMY;
-
-    service.getFacCrits().subscribe(facCrits => {
-      expect(facCrits.length).toBe(facCritsDto.length);
-
-      for (const [i, facCrit] of facCrits.entries()) {
-        expect(facCrit).toEqual(facCritsDto[i]);
-      }
-    });
-
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'faccrits');
-    expect(req.request.method).toEqual('GET');
-
-    req.flush(facCritsDto);
-    httpMock.verify();
-  });
-
-  it('#getFacCritsByInterviewId should return facCrits', () => {
-    const facCritsDto: FacCrit[] = FACCRITS_DUMMY.slice(0, 20);
-
-    service.getFacCritsByInterviewId(21).subscribe(facCrits => {
-      expect(facCrits.length).toBe(facCritsDto.length);
-
-      for (const [i, facCrit] of facCrits.entries()) {
-        expect(facCrit).toEqual(facCritsDto[i]);
-      }
-    });
-
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'faccrits/interview/' + 21);
-    expect(req.request.method).toEqual('GET');
-
-    req.flush(facCritsDto);
     httpMock.verify();
   });
 
