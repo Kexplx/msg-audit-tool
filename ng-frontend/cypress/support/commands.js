@@ -27,6 +27,13 @@ function injectBackendMocks() {
     url: '/interviews',
     response: 'fixture:backend-mock-data/interviews.json',
   }).as('getInterviews');
+
+  cy.route({
+    method: 'GET',
+    url: '/questions/1',
+    response: 'fixture:backend-mock-data/questions-1.json',
+  }).as('getQuestion1');
+
   cy.route({
     method: 'POST',
     url: '/audits',
