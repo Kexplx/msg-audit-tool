@@ -3,32 +3,25 @@ import { CommonModule } from '@angular/common';
 
 import { AuditOverviewRoutingModule } from './audit-overview-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { AuditOverviewComponent } from './components/audit-overview/audit-overview.component';
-import { InterviewCardComponent } from './components/audit-overview/interview-list/interview-card/interview-card.component';
+import { AuditOverviewComponent } from './audit-overview.component';
+import { InterviewCardComponent } from './interview-list/interview-card/interview-card.component';
 import { NewInterviewDialogComponent } from '../../shared/components/dialogs/new-interview-dialog/new-interview-dialog.component';
-import { InterviewFormComponent } from '../../shared/components/forms/interview-form/interview-form.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { InterviewListComponent } from './components/audit-overview/interview-list/interview-list.component';
-import { AuditInfoComponent } from './components/audit-overview/audit-info/audit-info.component';
-import { InterviewComponent } from './components/interview/interview.component';
-import { AuditContactPersonCardComponent } from './components/audit-overview/audit-info/audit-contact-person-card/contact-person-card.component';
-import { InterviewDirectorComponent } from './components/interview/interview-director/interview-director.component';
-import { QuestionByIdPipe } from './components/interview/question-by-id.pipe';
-import { AnswersByIdsPipe } from './components/interview/interview-director/answers-by-ids.pipe';
+import { InterviewListComponent } from './interview-list/interview-list.component';
+import { AuditInfoComponent } from './audit-info/audit-info.component';
+import { AuditContactPersonCardComponent } from './audit-info/audit-contact-person-card/contact-person-card.component';
+import { CriteriaByFactorIdPipe } from './interview-list/criteria-by-factor-id.pipe';
+import { InterviewsByFacCritIdPipe } from './interview-list/interviews-by-fac-crit-id.pipe';
 
 @NgModule({
   declarations: [
     AuditOverviewComponent,
     InterviewCardComponent,
     AuditInfoComponent,
-    NewInterviewDialogComponent,
-    AnswersByIdsPipe,
-    InterviewFormComponent,
-    QuestionByIdPipe,
-    InterviewDirectorComponent,
     InterviewListComponent,
-    InterviewComponent,
     AuditContactPersonCardComponent,
+    CriteriaByFactorIdPipe,
+    InterviewsByFacCritIdPipe,
   ],
   imports: [
     CommonModule,

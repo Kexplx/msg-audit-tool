@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SidebarInterviewListComponent } from './sidebar-interview-list.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { FactorsPipe } from '../../../pipes/factors.pipe';
-import { CriteriaByFactorPipe } from '../../../pipes/facCritByFactor.pipe';
+import { CriteriaByFactorIdPipe } from '../../../../features/audit-overview/interview-list/criteria-by-factor-id.pipe';
 import { SharedModule } from '../../../shared.module';
 import { RouterModule } from '@angular/router';
 
@@ -15,7 +15,7 @@ describe('SidebarInterviewListComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SidebarInterviewListComponent],
       imports: [CoreModule, SharedModule, RouterModule.forRoot([])],
-      providers: [FactorsPipe, CriteriaByFactorPipe],
+      providers: [FactorsPipe, CriteriaByFactorIdPipe],
     }).compileComponents();
   }));
 

@@ -30,10 +30,6 @@ export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
     private location: Location,
   ) {}
 
-  /**
-   * Parses the audit id from router.url and selects the
-   * audit as an observable from the store
-   */
   ngOnInit() {
     this.auditId$.subscribe(id => {
       this.auditId = id;

@@ -4,8 +4,6 @@ import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
-import { FactorsPipe } from '../../../pipes/factors.pipe';
-import { CriteriaByFactorPipe } from '../../../pipes/facCritByFactor.pipe';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
@@ -19,12 +17,7 @@ export class SidebarInterviewListComponent implements OnInit {
   audit$: Observable<Audit>;
   items: NbMenuItem[];
 
-  constructor(
-    private store: Store,
-    private factorsPipe: FactorsPipe,
-    private criteriaPipe: CriteriaByFactorPipe,
-    private menuService: NbMenuService,
-  ) {}
+  constructor(private store: Store, private menuService: NbMenuService) {}
 
   ngOnInit() {
     this.menuService.onItemClick().subscribe(x => {
@@ -40,8 +33,8 @@ export class SidebarInterviewListComponent implements OnInit {
     this.audit$.subscribe(audit => {
       if (!audit) return;
 
-      for (const factor of this.factorsPipe.transform(audit.scope)) {
-        const criterias = this.criteriaPipe.transform(audit.scope, factor.id);
+      for (const factor of audit.scope.filter(fc => !fc.referenceId)) {
+        const criterias = audit.scope.filter(fc => !fc.referenceId);
 
         const menuItem: NbMenuItem = {
           title: this.cropTitle(factor.name, 25),

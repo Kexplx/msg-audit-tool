@@ -40,5 +40,5 @@
   </nb-card-body>
 </nb-card>
 <ng-container *ngIf="answers$ | async | answerByIds: interviewId:facCritId; let answers">
-  <app-interview [answers]="answers"></app-interview>
+  <app-answer-question-list [answers]="answers"></app-answer-question-list>
 </ng-container>

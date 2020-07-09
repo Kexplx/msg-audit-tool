@@ -1,6 +1,6 @@
-@import 'src/sass/utils';
-@import '~@nebular/theme/styles/theming';
-@import '~@nebular/theme/styles/themes/default';
+@import '../../../../../sass/utils';
+@import '../../../../../../node_modules/@nebular/theme/styles/theming';
+@import '../../../../../../node_modules/@nebular/theme/styles/themes/default';
 
 .banner-status {
   position: absolute;

@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Interview } from 'src/app/core/data/models/interview.model';
 
 @Pipe({
-  name: 'interviewByFacCrit',
+  name: 'interviewsByFacCritId',
 })
-export class InterviewByFacCritPipe implements PipeTransform {
+export class InterviewsByFacCritIdPipe implements PipeTransform {
   transform(interviews: Interview[], facCritId: number): Interview[] {
     const result = interviews?.filter(
       interview => interview.answers.findIndex(answer => answer.faccritId === facCritId) != -1,

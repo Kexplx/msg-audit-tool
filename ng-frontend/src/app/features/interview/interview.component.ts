@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, Observable, combineLatest } from 'rxjs';
-import { debounceTime, filter, map } from 'rxjs/operators';
-import { Store, Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
+import { Observable, Subject, combineLatest } from 'rxjs';
+import { InterviewState } from 'src/app/core/ngxs/interview.state';
+import { Answer } from 'src/app/core/data/models/answer.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { InterviewState } from 'src/app/core/ngxs/interview.state';
-import { AuditService } from 'src/app/core/http/audit.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Answer } from 'src/app/core/data/models/answer.model';
-import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FacCritService } from 'src/app/core/http/facCrit.service';
+import { filter, debounceTime } from 'rxjs/operators';
+import { AuditState } from 'src/app/core/ngxs/audit.state';
+import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 
 @Component({
-  selector: 'app-interview-director',
-  templateUrl: './interview-director.component.html',
-  styleUrls: ['./interview-director.component.scss'],
+  selector: 'app-interview',
+  templateUrl: './interview.component.html',
+  styleUrls: ['./interview.component.scss'],
 })
-export class InterviewDirectorComponent implements OnInit {
+export class InterviewComponent implements OnInit {
   @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
   @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
   @Select(InterviewState.answers) answers$: Observable<Answer[]>;
@@ -65,10 +64,12 @@ export class InterviewDirectorComponent implements OnInit {
   }
 
   onNavigateForward(facCritId: number) {
-    const { id, interviewId } = this.activatedRoute.snapshot.params;
+    const { auditId, interviewId } = this.activatedRoute.snapshot.params;
     const indexOfFacCrit = this.facCritIds.indexOf(facCritId);
 
-    const url = `audits/${id}/interviews/${interviewId}/${this.facCritIds[indexOfFacCrit + 1]}`;
+    const url = `audits/${auditId}/interviews/${interviewId}/${
+      this.facCritIds[indexOfFacCrit + 1]
+    }`;
 
     if (indexOfFacCrit + 1 !== this.facCritIds.length) {
       this.router.navigate([url]);
@@ -76,10 +77,12 @@ export class InterviewDirectorComponent implements OnInit {
   }
 
   onNaviagteBack(facCritId: number) {
-    const { id, interviewId } = this.activatedRoute.snapshot.params;
+    const { auditId, interviewId } = this.activatedRoute.snapshot.params;
     const indexOfFacCrit = this.facCritIds.indexOf(facCritId);
 
-    const url = `audits/${id}/interviews/${interviewId}/${this.facCritIds[indexOfFacCrit - 1]}`;
+    const url = `audits/${auditId}/interviews/${interviewId}/${
+      this.facCritIds[indexOfFacCrit - 1]
+    }`;
     if (indexOfFacCrit > 0) {
       this.router.navigate([url]);
     }

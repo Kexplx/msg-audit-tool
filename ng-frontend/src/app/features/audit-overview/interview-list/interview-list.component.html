@@ -14,7 +14,7 @@
     <nb-accordion-item expanded data-cy="factor-card">
       <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">{{ factor.name }}</nb-accordion-item-header>
       <nb-accordion-item-body data-cy="faccrit-body">
-        <nb-list *ngIf="interviews$ | async | interviewByFacCrit: factor.id as interviews; else noInterviews">
+        <nb-list *ngIf="interviews$ | async | interviewsByFacCritId: factor.id as interviews; else noInterviews">
           <nb-list-item *ngFor="let interview of interviews">
             <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
           </nb-list-item>
@@ -24,12 +24,12 @@
             Keine Interviews vorhanden
           </div>
         </ng-template>
-        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async)?.scope | criteriaByFactor: factor.id">
+        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async)?.scope | criteriaByFactorId: factor.id">
           <nb-card-header class="subtitle-2" data-cy="criteria-header">
             {{ criteria.name }}
           </nb-card-header>
           <nb-card-body>
-            <nb-list *ngIf="interviews$ | async | interviewByFacCrit: criteria.id as interviews; else noInterviews">
+            <nb-list *ngIf="interviews$ | async | interviewsByFacCritId: criteria.id as interviews; else noInterviews">
               <nb-list-item *ngFor="let interview of interviews">
                 <app-interview-card [interview]="interview" [facCritId]="criteria.id" data-cy="interview"></app-interview-card>
               </nb-list-item>

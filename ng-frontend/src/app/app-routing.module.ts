@@ -11,7 +11,7 @@ const routes: Routes = [
       import('./features/audit-list/audit-list.module').then(m => m.AuditListModule),
   },
   {
-    path: 'audits/:id',
+    path: 'audits/:auditId',
     loadChildren: () =>
       import('./features/audit-overview/audit-overview.module').then(m => m.AuditOverviewModule),
   },
@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'contact-persons',
     loadChildren: () =>
       import('./features/contact-persons/contact-persons.module').then(m => m.ContactPersonsModule),
+  },
+  {
+    path: 'audits/:auditId/interviews/:interviewId/:facCritId',
+    loadChildren: () =>
+      import('./features/interview/interview.module').then(m => m.InterviewModule),
   },
   { path: '**', component: NotFoundComponent },
 ];

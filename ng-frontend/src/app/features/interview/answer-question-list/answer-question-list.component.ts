@@ -1,18 +1,18 @@
-import { Component, Input, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Answer } from 'src/app/core/data/models/answer.model';
-import { Question } from 'src/app/core/data/models/question.model';
-import { Store, Select } from '@ngxs/store';
-import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
+import { Select, Store } from '@ngxs/store';
 import { InterviewState } from 'src/app/core/ngxs/interview.state';
 import { Observable } from 'rxjs';
+import { Question } from 'src/app/core/data/models/question.model';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
 
 @Component({
-  selector: 'app-interview',
-  templateUrl: './interview.component.html',
-  styleUrls: ['./interview.component.scss'],
+  selector: 'app-answer-question-list',
+  templateUrl: './answer-question-list.component.html',
+  styleUrls: ['./answer-question-list.component.scss'],
 })
-export class InterviewComponent implements OnChanges {
+export class AnswerQuestionListComponent implements OnChanges {
   @Input() answers: Answer[];
   @Select(InterviewState.questions) questions$: Observable<Question[]>;
 
