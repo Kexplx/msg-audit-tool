@@ -7,7 +7,7 @@ import { InterviewDto } from '../dtos/interview.dto';
 import { INTERVIEWS_DTO_DUMMY } from './dummies/interviews';
 import { Interview } from '../../data/models/interview.model';
 
-fdescribe('InterviewService', () => {
+describe('InterviewService', () => {
   let service: InterviewService;
   let httpMock: HttpTestingController;
 
