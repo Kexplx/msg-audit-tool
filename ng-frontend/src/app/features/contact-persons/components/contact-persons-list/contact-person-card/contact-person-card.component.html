@@ -5,22 +5,22 @@
 <div class="wrapper-contact-person-details">
   <div>
     <label class="label" data-cy="contact-companyname">Unternehmen</label>
-    <p class="subtitle-2">{{ contactPerson.companyName }}</p>
+    <p class="subtitle-2" data-cy="contact-companyname-entry">{{ contactPerson.companyName }}</p>
   </div>
   <div>
     <label class="label" data-cy="contact-department">Abteilung</label>
-    <p *ngIf="contactPerson.department; else missing" class="subtitle-2">{{ contactPerson.department }}</p>
+    <p *ngIf="contactPerson.department; else missing" class="subtitle-2" data-cy="contact-department-entry">{{ contactPerson.department }}</p>
   </div>
   <div>
     <label class="label" data-cy="contact-division">Unternehmensbereich</label>
-    <p class="subtitle-2">{{ contactPerson.corporateDivision }}</p>
+    <p class="subtitle-2" data-cy="contact-division-entry">{{ contactPerson.corporateDivision }}</p>
   </div>
   <div>
     <label class="label" data-cy="contact-sector">Branche</label>
-    <p *ngIf="contactPerson.sector; else missing" class="subtitle-2">{{ contactPerson.sector }}</p>
+    <p *ngIf="contactPerson.sector; else missing" class="subtitle-2" data-cy="contact-sector-entry">{{ contactPerson.sector }}</p>
   </div>
   <ng-template #missing>
-    <p class="subtitle-2">-</p>
+    <p class="subtitle-2" data-cy="missing">-</p>
   </ng-template>
 </div>
 
