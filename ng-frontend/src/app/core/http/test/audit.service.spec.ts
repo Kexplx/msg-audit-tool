@@ -1,13 +1,15 @@
 import { AuditService } from '../audit.service';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { AUDITS_DTO_DUMMY } from './dummies';
 import { AuditStatus, Audit } from '../../data/models/audit.model';
 import { AuditDto } from '../dtos/audit.dto';
 import { compileTimeSwitchedString } from '../connectionStrings';
 import * as karma from 'karma-jasmine';
+import { FacCrit } from '../../data/models/faccrit.model';
+import { AUDITS_DTO_DUMMY } from './dummies/audits';
+import { FACCRITS_DUMMY } from './dummies/faccrits';
 
-fdescribe('AuditService', () => {
+describe('AuditService', () => {
   let service: AuditService;
   let httpMock: HttpTestingController;
 
@@ -76,16 +78,71 @@ fdescribe('AuditService', () => {
     httpMock.verify();
   });
 
-  // put audit
-  // delete audit
+  it('#putAudit should return an updated audit', () => {
+    const auditDto: AuditDto = AUDITS_DTO_DUMMY[0];
+    const auditPut: Audit = {
+      name: 'Test',
+      status: AuditStatus.Active,
+      scope: auditDto.scope,
+      startDate: new Date(auditDto.startDate).getTime(),
+      endDate: new Date(auditDto.startDate).getTime(),
+      contactPersons: auditDto.contactPersons,
+    };
+
+    service.putAudit(auditPut, auditPut).subscribe(audit => {
+      verifyAuditContent(audit, auditDto);
+    });
+
+    const req = httpMock.expectOne(compileTimeSwitchedString + 'audits/' + auditPut.id);
+    expect(req.request.method).toEqual('PUT');
+
+    req.flush(auditDto);
+    httpMock.verify();
+  });
+
+  it('#getFacCrits should return facCrits', () => {
+    const facCritsDto: FacCrit[] = FACCRITS_DUMMY;
+
+    service.getFacCrits().subscribe(facCrits => {
+      expect(facCrits.length).toBe(facCritsDto.length);
+
+      for (const [i, facCrit] of facCrits.entries()) {
+        expect(facCrit).toEqual(facCritsDto[i]);
+      }
+    });
+
+    const req = httpMock.expectOne(compileTimeSwitchedString + 'faccrits');
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(facCritsDto);
+    httpMock.verify();
+  });
+
+  it('#getFacCritsByInterviewId should return facCrits', () => {
+    const facCritsDto: FacCrit[] = FACCRITS_DUMMY.slice(0, 20);
+
+    service.getFacCritsByInterviewId(21).subscribe(facCrits => {
+      expect(facCrits.length).toBe(facCritsDto.length);
+
+      for (const [i, facCrit] of facCrits.entries()) {
+        expect(facCrit).toEqual(facCritsDto[i]);
+      }
+    });
+
+    const req = httpMock.expectOne(compileTimeSwitchedString + 'faccrits/interview/' + 21);
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(facCritsDto);
+    httpMock.verify();
+  });
 
   function verifyAuditContent(audit: Audit, auditDto: AuditDto) {
     const { id, status, endDate, startDate, contactPersons, creationDate, scope } = audit;
-    expect(id).toEqual(id);
+    expect(id).toEqual(auditDto.id);
     expect(creationDate).toEqual(new Date(auditDto.creationDate).getTime());
     expect(endDate).toEqual(new Date(auditDto.endDate).getTime());
     expect(startDate).toEqual(new Date(auditDto.startDate).getTime());
-    expect(status).toEqual(AuditStatus.Active);
+    expect(status).toEqual(auditDto.status);
     expect(contactPersons).toEqual(auditDto.contactPersons);
     expect(scope).toEqual(auditDto.scope);
   }

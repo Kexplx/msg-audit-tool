@@ -116,10 +116,24 @@ export class AuditService {
       startDate: parseTimestamp(currentAudit.startDate),
     };
 
-    return this.http.put<Audit>(
-      compileTimeSwitchedString + 'audits/' + currentAudit.id,
-      putAuditDto,
-    );
+    return this.http
+      .put<Audit>(compileTimeSwitchedString + 'audits/' + currentAudit.id, putAuditDto)
+      .pipe(
+        map(auditDto => {
+          const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+
+          return {
+            id: auditDto.id,
+            name: auditDto.name,
+            creationDate: new Date(auditDto.creationDate).getTime(),
+            startDate: new Date(auditDto.startDate).getTime(),
+            endDate,
+            scope: auditDto.scope,
+            status: auditDto.status,
+            contactPersons: auditDto.contactPersons,
+          };
+        }),
+      );
   }
 
   /**

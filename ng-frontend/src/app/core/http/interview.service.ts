@@ -41,7 +41,7 @@ export class InterviewService {
   }
 
   /**
-   * Builds an observable for making a GET request to all interviews.
+   * Builds an observable for making a GET request to get all interviews.
    *
    * @returns An Observable of the interviews.
    */
