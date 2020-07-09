@@ -207,21 +207,6 @@ describe('AddAuditDialog', () => {
           cy.wrap(el).should('have.class', 'checked').click().should('not.have.class', 'checked');
         });
     });
-
-    // Noch fixen mit defaultScopeComplement
-    // Evtl. ganz weglassen
-    it('automatically checks/unchecks criteria if factor was checked/unchecked', () => {
-      cy.get('[data-cy=factor-entry]  > .label > .custom-checkbox')
-        .should('exist')
-        .last()
-        .should('have.class', 'checked')
-        .click()
-        .should('not.have.class', 'checked')
-        .get('[data-cy=criteria-entry]')
-        .each(criteria => {
-          cy.wrap(criteria).should('not.have.class', 'checked');
-        });
-    });
   });
 
   /**
