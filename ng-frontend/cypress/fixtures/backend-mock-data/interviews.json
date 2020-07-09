@@ -1,38 +1,62 @@
 [
-    {
-      "interviewId": 654321,
-      "auditId": 123456,
-      "startDate": "2020-07-04",
-      "endDate": "2020-07-04",
-      "goal": "Das Ziel des Audits ist ...",
-      "status": "ACTIVE",
-      "answers": [
-        {
-          "questionId": 1,
-          "interviewId": 3,
-          "faccritId": 1,
-          "result": false,
-          "responsible": false,
-          "documentation": false,
-          "procedure": false,
-          "reason": "reason",
-          "proof": "proof",
-          "annotation": "annotation"
-        }
-      ],
-      "interviewedContactPersons": [
-        {
-          "id": 1,
-          "salutation": "MANN",
-          "title": "Prof",
-          "forename": "Max",
-          "surname": "Mustermann",
-          "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
-          "companyName": "msg systems AG",
-          "department": "Softwareentwicklung",
-          "sector": "msg Public Sector",
-          "corporateDivision": "Software"
-        }
-      ]
-    }
-  ]
+  {
+    "id": 1,
+    "auditId": 123456,
+    "startDate": "2020-07-09",
+    "endDate": "2020-07-09",
+    "goal": "Das Ziel des Audits ist ...",
+    "status": "ACTIVE",
+    "answers": [
+      {
+        "questionId": 1,
+        "interviewId": 1,
+        "faccritId": 1,
+        "result": false,
+        "responsible": false,
+        "documentation": false,
+        "procedure": false,
+        "reason": "reason",
+        "proof": "proof",
+        "annotation": "annotation"
+      },
+      {
+        "questionId": 1,
+        "interviewId": 1,
+        "faccritId": 4,
+        "result": false,
+        "responsible": false,
+        "documentation": false,
+        "procedure": false,
+        "reason": "reason",
+        "proof": "proof",
+        "annotation": "annotation"
+      }
+    ],
+    "interviewedContactPersons": [
+      {
+        "id": 1,
+        "salutation": "HERR",
+        "title": "Prof",
+        "forename": "Max",
+        "surname": "Mustermann",
+        "contactInformation": "max.mustermann@gmx.de, tel: 0123456789",
+        "companyName": "msg systems AG",
+        "department": "Softwareentwicklung",
+        "sector": "msg Public Sector",
+        "corporateDivision": "Software"
+      },
+      {
+        "id": 2,
+        "salutation": "FRAU",
+        "title": "Prof",
+        "forename": "Maxi",
+        "surname": "Mustermann",
+        "contactInformation": "maxi.mustermann@gmx.de, tel: 0123456789",
+        "companyName": "msg systems AG",
+        "department": "Softwareentwicklung",
+        "sector": "msg Public Sector",
+        "corporateDivision": "Software"
+      }
+    ]
+  }
+]

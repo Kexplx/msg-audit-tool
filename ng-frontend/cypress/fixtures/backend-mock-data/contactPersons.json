@@ -10,5 +10,17 @@
     "department": "Softwareentwicklung",
     "sector": "msg Public Sector",
     "corporateDivision": "Software"
+  },
+  {
+    "id": 2,
+    "salutation": "FRAU",
+    "title": "Prof",
+    "forename": "Maxi",
+    "surname": "Mustermann",
+    "contactInformation": "maxi.mustermann@gmx.de, tel: 0123456789",
+    "companyName": "msg systems AG",
+    "department": "Softwareentwicklung",
+    "sector": "msg Public Sector",
+    "corporateDivision": "Software"
   }
 ]
