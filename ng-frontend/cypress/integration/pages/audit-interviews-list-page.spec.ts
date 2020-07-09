@@ -110,7 +110,7 @@ describe('AuditInterviewsListPage', () => {
     it('displays an interview with more than one faccrit in all of their chosen faccrit cards', () => {
       cy.fixture('backend-mock-data/interviews.json').then(interviews => {
         const interview = interviews[0];
-        assert.equal(interview.answers.length, 2);
+        assert(interview.answers.length >= 2);
         interview.answers.forEach(answer => {
           cy.fixture('backend-mock-data/facCrits.json').then(facCrits => {
             const facCritList = facCrits;
@@ -152,7 +152,7 @@ describe('AuditInterviewsListPage', () => {
     });
 
     it('shows a contact name, "(+)" and startdate if there are more than one contact person', () => {
-      assert.equal(interview.interviewedContactPersons.length, 2);
+      assert(interview.interviewedContactPersons.length >= 2);
       const startDate = new Date(interview.startDate).toLocaleDateString('de-DE', {
         year: 'numeric',
         month: '2-digit',

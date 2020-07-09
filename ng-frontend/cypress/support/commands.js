@@ -33,6 +33,11 @@ function injectBackendMocks() {
     url: '/questions/1',
     response: 'fixture:backend-mock-data/questions-1.json',
   }).as('getQuestion1');
+  cy.route({
+    method: 'GET',
+    url: '/questions/2',
+    response: 'fixture:backend-mock-data/questions-2.json',
+  }).as('getQuestion2');
 
   cy.route({
     method: 'POST',
@@ -44,6 +49,7 @@ function injectBackendMocks() {
     url: '/contactpersons',
     response: [],
   }).as('postContacts');
+
   cy.route({
     method: 'PUT',
     url: '/audits/*',

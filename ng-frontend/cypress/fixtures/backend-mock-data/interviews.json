@@ -20,6 +20,18 @@
         "annotation": "annotation"
       },
       {
+        "questionId": 2,
+        "interviewId": 1,
+        "faccritId": 1,
+        "result": false,
+        "responsible": false,
+        "documentation": false,
+        "procedure": false,
+        "reason": "reason",
+        "proof": "proof",
+        "annotation": "annotation"
+      },
+      {
         "questionId": 1,
         "interviewId": 1,
         "faccritId": 4,
