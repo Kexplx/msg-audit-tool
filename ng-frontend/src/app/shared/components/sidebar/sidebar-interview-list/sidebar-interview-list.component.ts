@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
@@ -34,27 +34,50 @@ export class SidebarInterviewListComponent implements OnInit {
       if (!audit) return;
 
       for (const factor of audit.scope.filter(fc => !fc.referenceId)) {
-        const criterias = audit.scope.filter(fc => !fc.referenceId);
+        const criterias = audit.scope.filter(fc => fc.referenceId && fc.referenceId === factor.id);
 
         const menuItem: NbMenuItem = {
-          title: this.cropTitle(factor.name, 25),
+          title: factor.name,
           data: factor.id,
         };
 
         if (criterias.length > 0) {
           menuItem.children = criterias.map(c => {
-            return { title: this.cropTitle(c.name, 25), data: c.id };
+            return { title: c.name, data: c.id };
           });
         }
 
         this.items.push(menuItem);
+
+        timer(50).subscribe(() => this.cropMenuItemTitles());
       }
     });
   }
 
-  cropTitle(s: string, n: number): string {
+  /**
+   * Crops all titles of nebular's menu to fit onto one line.
+   */
+  private cropMenuItemTitles() {
+    const spans: NodeListOf<HTMLSpanElement> = document.querySelectorAll('nb-menu .menu-title');
+    spans.forEach(s => {
+      s.innerText = this.cropString(s.innerText, 25);
+    });
+  }
+
+  /**
+   * Crops a string after n characters and appens "..." onto it.
+   *
+   * @example
+   * cropString('Hello World', 5);
+   * // Will return "Hello..."
+   *
+   *
+   * @param s The string to crop.
+   * @param n The length after which to crop.
+   */
+  private cropString(s: string, n: number): string {
     if (s.length < n) return s;
 
-    return s.substr(0, n) + '...';
+    return s.substr(0, n).trim() + '...';
   }
 }
