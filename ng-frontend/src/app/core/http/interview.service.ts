@@ -133,13 +133,13 @@ export class InterviewService {
    * @param interview The interview to update.
    * @returns An Observable of the updated interview.
    */
-  putInterview({ startDate, endDate, status, goal, id }: Interview): Observable<Interview> {
+  putInterview({ startDate, endDate, status, note, id }: Interview): Observable<Interview> {
     const url = environment.baseUrl + 'interviews/' + id;
 
     const putInterviewDto: PutInterviewDto = {
       endDate: parseTimestamp(endDate),
       startDate: parseTimestamp(startDate),
-      goal,
+      note: note,
       status,
     };
 

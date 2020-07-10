@@ -55,7 +55,7 @@ export class InterviewComponent implements OnInit {
 
     // Dispatch UpdateInterview after 1000ms of last input event
     this.goal$.pipe(debounceTime(1000)).subscribe(goal => {
-      this.store.dispatch(new UpdateInterview(this.interviewId, { goal }));
+      this.store.dispatch(new UpdateInterview(this.interviewId, { note: goal }));
     });
   }
 

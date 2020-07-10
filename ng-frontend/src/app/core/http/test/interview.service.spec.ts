@@ -37,13 +37,13 @@ describe('InterviewService', () => {
   });
 
   function verifyInterviewContent(interview: Interview, interviewDto: InterviewDto) {
-    const { id, status, startDate, contactPersons, answers, auditId, goal } = interview;
+    const { id, status, startDate, contactPersons, answers, auditId, note } = interview;
     expect(id).toEqual(interviewDto.id);
     expect(startDate).toEqual(new Date(interviewDto.startDate).getTime());
     expect(status).toEqual(interviewDto.status);
     expect(contactPersons).toEqual(interviewDto.interviewedContactPersons);
     expect(answers).toEqual(interviewDto.answers);
     expect(auditId).toEqual(interviewDto.auditId);
-    expect(goal).toEqual(interviewDto.goal);
+    expect(note).toEqual(interviewDto.goal);
   }
 });

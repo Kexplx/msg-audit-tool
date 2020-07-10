@@ -12,7 +12,7 @@ export interface Interview {
   startDate?: number;
   endDate?: number;
   status: InterviewStatus;
-  goal?: string;
+  note?: string;
   contactPersons: ContactPerson[];
   answers?: Answer[];
 }
