@@ -13,6 +13,7 @@ public class FacCrit {
     private int id;
     private Integer referenceId;
     private String name;
+    private String goal;
 
     @JsonIgnore
     private FacCrit facCritByReferenceId;
@@ -53,6 +54,17 @@ public class FacCrit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    @Basic
+    @Column(name = "goal", length = 256)
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String name) {
+        this.goal = goal;
     }
 
     @ManyToOne
