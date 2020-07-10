@@ -59,7 +59,7 @@ export class InterviewComponent implements OnInit {
     });
   }
 
-  onGoalInput(value: string) {
+  onNoteInput(value: string) {
     this.note$.next(value);
   }
 
