@@ -18,6 +18,10 @@ public class BasicFacCritResponse {
     @Setter
     @Schema(type = "String", name = "name", example = "Nützlichkeit")
     private String name;
+    @Getter
+    @Setter
+    @Schema(type = "String", name = "goal", example = "Das Ziel dieses Kriteriums ist....")
+    private String goal;
 
     public BasicFacCritResponse(){
         //empty
@@ -27,5 +31,6 @@ public class BasicFacCritResponse {
         this.id = facCrit.getId();
         this.referenceId = facCrit.getReferenceId();
         this.name = facCrit.getName();
+        this.goal = facCrit.getGoal();
     }
 }
