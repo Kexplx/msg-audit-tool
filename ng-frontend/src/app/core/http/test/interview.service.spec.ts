@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { compileTimeSwitchedString } from '../connectionStrings';
 import * as karma from 'karma-jasmine';
 import { InterviewService } from '../interview.service';
 import { InterviewDto } from '../dtos/interview.dto';
 import { INTERVIEWS_DTO_DUMMY } from './dummies/interviews';
 import { Interview } from '../../data/models/interview.model';
+import { environment } from 'src/environments/environment';
 
 describe('InterviewService', () => {
   let service: InterviewService;
@@ -28,7 +28,7 @@ describe('InterviewService', () => {
       verifyInterviewContent(interview, interviewDto);
     });
 
-    const req = httpMock.expectOne(compileTimeSwitchedString + 'interviews/' + 1);
+    const req = httpMock.expectOne(environment.baseUrl + 'interviews/' + 1);
     expect(req.request.method).toEqual('GET');
 
     req.flush(interviewDto);

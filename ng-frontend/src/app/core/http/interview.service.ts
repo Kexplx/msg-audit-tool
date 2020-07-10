@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { InterviewDto } from './dtos/interview.dto';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Interview } from '../data/models/interview.model';
 import { PostInterviewDto } from './dtos/post-interview.dto';
 import { FacCrit } from '../data/models/faccrit.model';
-import { Question } from '../data/models/question.model';
-import { Answer } from '../data/models/answer.model';
 import { PutInterviewDto } from './dtos/put-interview.dto';
 import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
 import { Observable } from 'rxjs';
@@ -157,46 +155,5 @@ export class InterviewService {
         };
       }),
     );
-  }
-
-  /**
-   * Builds an observable for making a GET request to get a question.
-   *
-   * @param id The question's id.
-   * @returns An Observable of the question.
-   */
-  getQuestion(id: number): Observable<Question> {
-    const url = environment.baseUrl + 'questions/' + id;
-
-    return this.http.get<Question>(url).pipe(tap(q => console.log(q)));
-  }
-
-  /**
-   * Builds an observable for making a GET request to get answers by their interview id.
-   *
-   * @param id The interviews's id.
-   * @returns An Observable of the answers.
-   */
-  getAnswersByInterviewId(interviewId: number): Observable<Answer[]> {
-    const url = environment.baseUrl + 'answers/' + 'interview/' + interviewId;
-    return this.http.get<Answer[]>(url);
-  }
-
-  /**
-   * Builds an observable for making a POST request to update an answer.
-   *
-   * @param answer The updated answer.
-   * @returns An Observable of the answers.
-   */
-  putAnswer(answer: Answer): Observable<Answer> {
-    const url =
-      environment.baseUrl +
-      'answers/' +
-      'interview/' +
-      answer.interviewId +
-      '/question/' +
-      answer.questionId;
-
-    return this.http.put<Answer>(url, answer);
   }
 }

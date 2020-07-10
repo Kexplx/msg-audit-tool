@@ -4,9 +4,11 @@ import { Injectable } from '@angular/core';
 import { Interview } from '../data/models/interview.model';
 import { AddInterview, UpdateInterview, UpdateAnswer } from './actions/inteview.actions';
 import { InterviewService } from '../http/interview.service';
+import { QuestionService } from '../http/question.service';
 import { Answer } from '../data/models/answer.model';
 import { Question } from '../data/models/question.model';
 import { forkJoin } from 'rxjs';
+import { AnswerService } from '../http/answer.service';
 
 export interface InterviewStateModel {
   interviews: Interview[];
@@ -25,7 +27,11 @@ export interface InterviewStateModel {
 })
 @Injectable()
 export class InterviewState implements NgxsOnInit {
-  constructor(private interviewService: InterviewService) {}
+  constructor(
+    private interviewService: InterviewService,
+    private questionService: QuestionService,
+    private answerService: AnswerService,
+  ) {}
 
   ngxsOnInit({ patchState }: StateContext<InterviewStateModel>) {
     this.interviewService.getInterviews().subscribe(interviews => {
@@ -36,7 +42,7 @@ export class InterviewState implements NgxsOnInit {
 
       const questions$ = [];
       for (const answer of answers) {
-        questions$.push(this.interviewService.getQuestion(answer.questionId));
+        questions$.push(this.questionService.getQuestion(answer.questionId));
       }
 
       forkJoin([...questions$]).subscribe((questions: Question[]) => {
@@ -104,7 +110,7 @@ export class InterviewState implements NgxsOnInit {
 
       for (const answer of interview.answers) {
         if (!questions?.find(q => q.id === answer.questionId)) {
-          this.interviewService.getQuestion(answer.questionId).subscribe(question => {
+          this.questionService.getQuestion(answer.questionId).subscribe(question => {
             setState(
               patch({
                 questions: append<Question>([question]),
@@ -133,7 +139,7 @@ export class InterviewState implements NgxsOnInit {
 
   @Action(UpdateAnswer)
   updateAnswer({ setState }: StateContext<InterviewStateModel>, { answer }: UpdateAnswer) {
-    this.interviewService.putAnswer(answer).subscribe(answer => {
+    this.answerService.putAnswer(answer).subscribe(answer => {
       setState(
         patch({
           answers: updateItem<Answer>(
