@@ -63,7 +63,7 @@ public class FacCrit {
         return goal;
     }
 
-    public void setGoal(String name) {
+    public void setGoal(String goal) {
         this.goal = goal;
     }
 
