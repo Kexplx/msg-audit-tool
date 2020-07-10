@@ -33,8 +33,8 @@ public class UpdateInterviewRequest extends BasicRequest {
     @Setter
     @NotNull
     @Size(max = MAX_SMALL_TEXT_LENGTH)
-    @Schema(type = "String", name = "goal", example = "Das geänderte Ziel ist ...", required = true)
-    private String goal;
+    @Schema(type = "String", name = "note", example = "Some changed note", required = true)
+    private String note;
 
     /**
      * Checks if provided startDate is before endDate

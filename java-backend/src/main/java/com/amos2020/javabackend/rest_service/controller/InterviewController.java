@@ -119,12 +119,12 @@ public class InterviewController {
      * @return Updated Interview
      * @throws NotFoundException If stored contactPersonIds are not valid and therefore can not be found
      */
-    public BasicInterviewResponse updateInterview(int interviewId, Date startDate, Date endDate, InterviewStatus status, String goal) throws NotFoundException {
+    public BasicInterviewResponse updateInterview(int interviewId, Date startDate, Date endDate, InterviewStatus status, String note) throws NotFoundException {
         Interview interview = interviewService.getInterviewById(interviewId);
         interview.setStartDate(startDate);
         interview.setEndDate(endDate);
         interview.setStatus(status);
-        interview.setGoal(goal);
+        interview.setNote(note);
         interviewService.updateInterview(interview);
         return new BasicInterviewResponse(interview, getContactPersonsForInterview(interview));
     }

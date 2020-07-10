@@ -33,8 +33,8 @@ public class BasicInterviewResponse {
     private Date endDate;
     @Getter
     @Setter
-    @Schema(type = "string", name = "goal", example = "Das Ziel des Audits ist ...")
-    private String goal;
+    @Schema(type = "string", name = "note", example = "Some notes...")
+    private String note;
     @Getter
     @Setter
     @Schema(type = "string", name = "status", example = "ACTIVE")
@@ -77,7 +77,7 @@ public class BasicInterviewResponse {
         this.startDate = interview.getStartDate();
         this.endDate = interview.getEndDate();
         this.status = interview.getStatus();
-        this.goal = interview.getGoal();
+        this.note = interview.getNote();
         this.answers = new ArrayList<>();
         if (interview.getAnswersById() != null) {
             this.answers = interview.getAnswersById();

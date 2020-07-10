@@ -15,7 +15,7 @@ public class Interview {
     private Date startDate;
     private Date endDate;
     private InterviewStatus status;
-    private String goal;
+    private String note;
 
     @JsonIgnore
     private Collection<Answer> answersById;
@@ -80,13 +80,13 @@ public class Interview {
     }
 
     @Basic
-    @Column(name = "goal", length = 1024)
-    public String getGoal() {
-        return goal;
+    @Column(name = "note", length = 1024)
+    public String getNote() {
+        return note;
     }
 
-    public void setGoal(String goal) {
-        this.goal = goal;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     @OneToMany(mappedBy = "interviewByInterviewId")
@@ -129,7 +129,7 @@ public class Interview {
         if (!Objects.equals(startDate, interview.startDate)) return false;
         if (!Objects.equals(endDate, interview.endDate)) return false;
         if (!Objects.equals(status, interview.status)) return false;
-        return Objects.equals(goal, interview.goal);
+        return Objects.equals(note, interview.note);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class Interview {
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (goal != null ? goal.hashCode() : 0);
+        result = 31 * result + (note != null ? note.hashCode() : 0);
         return result;
     }
 }

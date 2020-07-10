@@ -83,7 +83,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
@@ -153,7 +153,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setInterviewedContactPersons(new ArrayList<>());
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewScope(new ArrayList<>());
 
         String requestAsJson = buildJson(request);
@@ -176,7 +176,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(null);
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
@@ -200,7 +200,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-26"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
@@ -227,7 +227,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewedContactPersons(map);
         request.setInterviewScope(new ArrayList<>());
 
@@ -254,7 +254,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-16"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewedContactPersons(map);
         request.setInterviewScope(new ArrayList<>());
 
@@ -277,7 +277,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testGoal");
+        request.setNote("testNote");
         request.setInterviewedContactPersons(new ArrayList<>());
         ArrayList<Integer> scope = new ArrayList<>();
         scope.add(0);
@@ -302,7 +302,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal(null);
+        request.setNote(null);
         request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
@@ -325,7 +325,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal(StringUtils.repeat("*", 1025));
+        request.setNote(StringUtils.repeat("*", 1025));
         request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
@@ -348,7 +348,7 @@ public class InterviewRestServiceTest {
         request.setAuditId(1);
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal(StringUtils.repeat("*", 1024));
+        request.setNote(StringUtils.repeat("*", 1024));
         request.setInterviewedContactPersons(new ArrayList<>());
         request.setInterviewScope(new ArrayList<>());
 
@@ -371,7 +371,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal("testgoal");
+        request.setNote("testNote");
 
         String requestAsJson = buildJson(request);
 
@@ -391,7 +391,7 @@ public class InterviewRestServiceTest {
         UpdateInterviewRequest request = new UpdateInterviewRequest();
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal("testgoal");
+        request.setNote("testNote");
 
         String requestAsJson = buildJson(request);
 
@@ -412,7 +412,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-26"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal("testgoal");
+        request.setNote("testNote");
 
         String requestAsJson = buildJson(request);
 
@@ -432,7 +432,7 @@ public class InterviewRestServiceTest {
         UpdateInterviewRequest request = new UpdateInterviewRequest();
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
-        request.setGoal("testgoal");
+        request.setNote("testNote");
 
         String requestAsJson = buildJson(request);
 
@@ -453,7 +453,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal("testgoal");
+        request.setNote("testNote");
 
         String requestAsJson = buildJson(request);
 
@@ -474,7 +474,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal(null);
+        request.setNote(null);
 
         String requestAsJson = buildJson(request);
 
@@ -495,7 +495,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal(StringUtils.repeat("*", 1025));
+        request.setNote(StringUtils.repeat("*", 1025));
 
         String requestAsJson = buildJson(request);
 
@@ -516,7 +516,7 @@ public class InterviewRestServiceTest {
         request.setStartDate(Date.valueOf("2020-05-25"));
         request.setEndDate(Date.valueOf("2020-05-25"));
         request.setStatus(InterviewStatus.ACTIVE);
-        request.setGoal(StringUtils.repeat("*", 1024));
+        request.setNote(StringUtils.repeat("*", 1024));
 
         String requestAsJson = buildJson(request);
 

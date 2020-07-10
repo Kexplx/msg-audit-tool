@@ -56,7 +56,7 @@ public class InterviewRestServiceIntegrationTest {
     private static final Date NULL_DATE = null;
     private static final Date UPDATED_START_DATE = Date.valueOf("2000-01-01");
     private static final Date UPDATED_END_DATE = Date.valueOf("2000-02-02");
-    private static final String VALID_GOAL = "testGoal";
+    private static final String VALID_NOTE = "testNote";
     private static final Salutation TEST_SALUTATION = Salutation.HERR;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
@@ -129,7 +129,7 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.startDate").value(VALID_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(VALID_END_DATE.toString()))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
-                .andExpect(jsonPath("$.goal").value(VALID_GOAL))
+                .andExpect(jsonPath("$.note").value(VALID_NOTE))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons[0].id").value(contactPersons.get(0).getId()))
@@ -162,7 +162,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithValidRequest_returnsOk() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -173,7 +173,7 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.startDate").value(VALID_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(VALID_END_DATE.toString()))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
-                .andExpect(jsonPath("$.goal").value(VALID_GOAL))
+                .andExpect(jsonPath("$.note").value(VALID_NOTE))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons[0].id").value(contactPersons.get(0).getId()))
@@ -192,7 +192,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithAuditIdIsInvalid_returns400() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(0, VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(0, VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -203,7 +203,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithAuditDoesNotExist_returns404() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(100, VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(100, VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -214,7 +214,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithStartDateIsNull_returns400() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), NULL_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), NULL_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -225,7 +225,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithEndDateIsNull_returns200() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, NULL_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, NULL_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -236,7 +236,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void createInterviewWithStartDateIsAfterEndDate_returns400() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, INVALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, INVALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -248,7 +248,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void createInterviewWithContactPersonIdIsInvalid_returns400() throws Exception {
         interviewedPeople.add(new InterviewPerson(0, "Invalid"));
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -260,7 +260,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void createInterviewWithContactPersonNotExisting_returns404() throws Exception {
         interviewedPeople.add(new InterviewPerson(100, "Not existing"));
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -272,7 +272,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void createInterviewWithFaccritNotValid_returns400() throws Exception {
         facCritIds.add(0);
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -284,7 +284,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void createInterviewWithFaccritNotExisting_returns404() throws Exception {
         facCritIds.add(10000);
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
@@ -294,7 +294,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void createInterviewWithGoalIsNull_returns400() throws Exception {
+    public void createInterviewWithNoteIsNull_returns400() throws Exception {
         CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, NULL_STRING, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
@@ -305,7 +305,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void createInterviewWithGoalIsTooLong_returns400() throws Exception {
+    public void createInterviewWithNoteIsTooLong_returns400() throws Exception {
         CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, STRING_1025, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
@@ -316,7 +316,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void createInterviewWithGoalIsMaximum_returns200() throws Exception {
+    public void createInterviewWithNoteIsMaximum_returns200() throws Exception {
         CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, STRING_1024, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
@@ -329,7 +329,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void updateInterviewWithValidRequest_returns200() throws Exception {
         String interviewId = setupNewInterview();
-        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.FINISHED, VALID_GOAL);
+        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.FINISHED, VALID_NOTE);
         String requestAsJson = buildJson(request);
         mvc.perform(put("/interviews/" + interviewId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -338,7 +338,7 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.auditId").value(audit.getId()))
                 .andExpect(jsonPath("$.startDate").value(UPDATED_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(UPDATED_END_DATE.toString()))
-                .andExpect(jsonPath("$.goal").value(VALID_GOAL))
+                .andExpect(jsonPath("$.note").value(VALID_NOTE))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.FINISHED.toString()))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons", hasSize(1)))
@@ -358,7 +358,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void updateInterviewWithStartDateIsNull_returns400() throws Exception {
         String interviewId = setupNewInterview();
-        UpdateInterviewRequest request = getUpdateInterviewRequest(NULL_DATE, UPDATED_END_DATE, InterviewStatus.FINISHED, VALID_GOAL);
+        UpdateInterviewRequest request = getUpdateInterviewRequest(NULL_DATE, UPDATED_END_DATE, InterviewStatus.FINISHED, VALID_NOTE);
         String requestAsJson = buildJson(request);
         mvc.perform(put("/interviews/" + interviewId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -369,7 +369,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void updateInterviewWithEndDateIsNull_returns200() throws Exception {
         String interviewId = setupNewInterview();
-        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, NULL_DATE, InterviewStatus.FINISHED, VALID_GOAL);
+        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, NULL_DATE, InterviewStatus.FINISHED, VALID_NOTE);
         String requestAsJson = buildJson(request);
         mvc.perform(put("/interviews/" + interviewId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -379,7 +379,7 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.startDate").value(UPDATED_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(nullValue()))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.FINISHED.toString()))
-                .andExpect(jsonPath("$.goal").value(VALID_GOAL))
+                .andExpect(jsonPath("$.note").value(VALID_NOTE))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons[0].id").value(contactPersons.get(0).getId()))
@@ -398,7 +398,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void updateInterviewWithEndDateIsBeforeStartDate_returns400() throws Exception {
         String interviewId = setupNewInterview();
-        UpdateInterviewRequest request = getUpdateInterviewRequest(VALID_START_DATE, INVALID_END_DATE, InterviewStatus.FINISHED, VALID_GOAL);
+        UpdateInterviewRequest request = getUpdateInterviewRequest(VALID_START_DATE, INVALID_END_DATE, InterviewStatus.FINISHED, VALID_NOTE);
         String requestAsJson = buildJson(request);
         mvc.perform(put("/interviews/" + interviewId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -409,7 +409,7 @@ public class InterviewRestServiceIntegrationTest {
     @Test
     public void updateInterviewWithInterviewStatusIsNull_returns400() throws Exception {
         String interviewId = setupNewInterview();
-        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, null, VALID_GOAL);
+        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, null, VALID_NOTE);
         String requestAsJson = buildJson(request);
         mvc.perform(put("/interviews/" + interviewId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -419,7 +419,7 @@ public class InterviewRestServiceIntegrationTest {
 
     @Test
     public void updateInterviewWithNoInterviewExistingForInterviewId_returns404() throws Exception {
-        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.ACTIVE, VALID_GOAL);
+        UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.ACTIVE, VALID_NOTE);
         String requestAsJson = buildJson(request);
         mvc.perform(put("/interviews/100")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -428,7 +428,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void updateInterviewWithGoalIsNull_returns400() throws Exception {
+    public void updateInterviewWithNoteIsNull_returns400() throws Exception {
         String interviewId = setupNewInterview();
         UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.ACTIVE, NULL_STRING);
         String requestAsJson = buildJson(request);
@@ -439,7 +439,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void updateInterviewWithGoalIsTooLong_returns400() throws Exception {
+    public void updateInterviewWithNoteIsTooLong_returns400() throws Exception {
         String interviewId = setupNewInterview();
         UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.ACTIVE, STRING_1025);
         String requestAsJson = buildJson(request);
@@ -450,7 +450,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     @Test
-    public void updateInterviewWithGoalIsMaximum_returns200() throws Exception {
+    public void updateInterviewWithNoteIsMaximum_returns200() throws Exception {
         String interviewId = setupNewInterview();
         UpdateInterviewRequest request = getUpdateInterviewRequest(UPDATED_START_DATE, UPDATED_END_DATE, InterviewStatus.ACTIVE, STRING_1024);
         String requestAsJson = buildJson(request);
@@ -475,7 +475,7 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.startDate").value(VALID_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(VALID_END_DATE.toString()))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
-                .andExpect(jsonPath("$.goal").value(VALID_GOAL))
+                .andExpect(jsonPath("$.note").value(VALID_NOTE))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons", hasSize(2)))
                 .andExpect(jsonPath("$.interviewedContactPersons[0].id").value(contactPersons.get(0).getId()))
@@ -642,7 +642,7 @@ public class InterviewRestServiceIntegrationTest {
     }
 
     private String setupNewInterview() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_GOAL, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(audit.getId(), VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         String result = mvc.perform(post("/interviews")
@@ -653,7 +653,7 @@ public class InterviewRestServiceIntegrationTest {
                 .andExpect(jsonPath("$.startDate").value(VALID_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(VALID_END_DATE.toString()))
                 .andExpect(jsonPath("$.status").value(InterviewStatus.ACTIVE.toString()))
-                .andExpect(jsonPath("$.goal").value(VALID_GOAL))
+                .andExpect(jsonPath("$.note").value(VALID_NOTE))
                 .andExpect(jsonPath("$.answers", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons", hasSize(1)))
                 .andExpect(jsonPath("$.interviewedContactPersons[0].id").value(contactPersons.get(0).getId()))
@@ -686,23 +686,23 @@ public class InterviewRestServiceIntegrationTest {
         return contactPerson.getId();
     }
 
-    private CreateInterviewRequest getCreateInterviewRequest(int auditId, Date startDate, Date endDate, String goal, List<InterviewPerson> interviewedPeople, List<Integer> scope) {
+    private CreateInterviewRequest getCreateInterviewRequest(int auditId, Date startDate, Date endDate, String note, List<InterviewPerson> interviewedPeople, List<Integer> scope) {
         CreateInterviewRequest request = new CreateInterviewRequest();
         request.setAuditId(auditId);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
-        request.setGoal(goal);
+        request.setNote(note);
         request.setInterviewedContactPersons(interviewedPeople);
         request.setInterviewScope(scope);
         return request;
     }
 
-    private UpdateInterviewRequest getUpdateInterviewRequest(Date startDate, Date endDate, InterviewStatus status, String goal) {
+    private UpdateInterviewRequest getUpdateInterviewRequest(Date startDate, Date endDate, InterviewStatus status, String note) {
         UpdateInterviewRequest request = new UpdateInterviewRequest();
         request.setStartDate(startDate);
         request.setEndDate(endDate);
         request.setStatus(status);
-        request.setGoal(goal);
+        request.setNote(note);
         return request;
     }
 

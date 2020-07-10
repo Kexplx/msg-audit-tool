@@ -39,8 +39,8 @@ public class CreateInterviewRequest extends BasicRequest {
     @Setter
     @NotNull
     @Size(max = MAX_SMALL_TEXT_LENGTH)
-    @Schema(type = "String", name = "goal", example = "Das Ziel ist ...", required = true)
-    private String goal;
+    @Schema(type = "String", name = "note", example = "Some note", required = true)
+    private String note;
     @Getter
     @Setter
     @Schema(type = "Array", name = "interviewedContactPersons", example = "[\n" +
