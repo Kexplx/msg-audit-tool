@@ -28,6 +28,7 @@ public class QuestionRepositoryTest {
     public void setup() {
         facCrit = new FacCrit();
         facCrit.setName("TestFaccrit");
+        facCrit.setGoal("TestGoal");
         facCritRepository.save(facCrit);
     }
 

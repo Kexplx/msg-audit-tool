@@ -54,6 +54,7 @@ public class AnswerRepositoryTest {
 
         facCrit = new FacCrit();
         facCrit.setName("TestFaccrit");
+        facCrit.setGoal("TestGoal");
         facCritRepository.save(facCrit);
 
         question = new Question();

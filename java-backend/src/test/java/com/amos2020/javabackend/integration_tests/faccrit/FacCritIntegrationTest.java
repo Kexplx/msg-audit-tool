@@ -84,33 +84,40 @@ public class FacCritIntegrationTest {
 
         facCrit = new FacCrit();
         facCrit.setName("TestFaccrit");
+        facCrit.setGoal("TestGoal");
         facCritRepository.save(facCrit);
 
         facCrit1 = new FacCrit();
         facCrit1.setName("TestFaccrit");
+        facCrit1.setGoal("TestGoal");
         facCrit1.setReferenceId(facCrit.getId());
         facCritRepository.save(facCrit1);
 
         facCrit2 = new FacCrit();
         facCrit2.setName("TestFaccrit");
+        facCrit2.setGoal("TestGoal");
         facCrit2.setReferenceId(facCrit.getId());
         facCritRepository.save(facCrit2);
 
         facCrit3 = new FacCrit();
         facCrit3.setName("TestFaccrit");
+        facCrit3.setGoal("TestGoal");
         facCritRepository.save(facCrit3);
 
         facCrit4 = new FacCrit();
         facCrit4.setName("TestFaccrit");
+        facCrit4.setGoal("TestGoal");
         facCritRepository.save(facCrit4);
 
         facCrit5 = new FacCrit();
         facCrit5.setName("TestFaccrit");
+        facCrit5.setGoal("TestGoal");
         facCrit5.setReferenceId(facCrit4.getId());
         facCritRepository.save(facCrit5);
 
         facCrit6 = new FacCrit();
         facCrit6.setName("TestFaccrit");
+        facCrit6.setGoal("TestGoal");
         facCrit6.setReferenceId(facCrit4.getId());
         facCritRepository.save(facCrit6);
 

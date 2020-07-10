@@ -47,6 +47,7 @@ public class ScopeRepositoryTest {
 
         facCrit = new FacCrit();
         facCrit.setName("TestFaccrit");
+        facCrit.setGoal("TestGoal");
         facCritRepository.save(facCrit);
     }
 
