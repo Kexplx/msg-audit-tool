@@ -1,0 +1,783 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>.msg Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>AuditService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/http/audit.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getAudit">getAudit</a>
+                            </li>
+                            <li>
+                                <a href="#getAudits">getAudits</a>
+                            </li>
+                            <li>
+                                <a href="#postAudit">postAudit</a>
+                            </li>
+                            <li>
+                                <a href="#putAudit">putAudit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#putAuditContactPersons">putAuditContactPersons</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/http/audit.service.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAudit"></a>
+                    <span class="name">
+                        <b>
+                            getAudit
+                        </b>
+                        <a href="#getAudit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAudit(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/core/http/audit.service.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a GET request to get an audit by id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The audit&#39;s id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Audit.html" target="_self" >Observable&lt;Audit&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the audit.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAudits"></a>
+                    <span class="name">
+                        <b>
+                            getAudits
+                        </b>
+                        <a href="#getAudits"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAudits()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="24"
+                            class="link-to-prism">src/app/core/http/audit.service.ts:24</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a GET request to get all audits.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Audit.html" target="_self" >Observable&lt;Audit[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the audits.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postAudit"></a>
+                    <span class="name">
+                        <b>
+                            postAudit
+                        </b>
+                        <a href="#postAudit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postAudit(audit: <a href="../interfaces/Audit.html">Audit</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/app/core/http/audit.service.ts:77</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a POST request to creats an audit.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>audit</td>
+                                    <td>
+                                                <code><a href="../interfaces/Audit.html" target="_self" >Audit</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The audit to create.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Audit.html" target="_self" >Observable&lt;Audit&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the created audit.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="putAudit"></a>
+                    <span class="name">
+                        <b>
+                            putAudit
+                        </b>
+                        <a href="#putAudit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>putAudit(oldAudit: <a href="../interfaces/Audit.html">Audit</a>, currentAudit: <a href="../interfaces/Audit.html">Audit</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/core/http/audit.service.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a PUT request to update an audit.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>oldAudit</td>
+                                    <td>
+                                                <code><a href="../interfaces/Audit.html" target="_self" >Audit</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>currentAudit</td>
+                                    <td>
+                                                <code><a href="../interfaces/Audit.html" target="_self" >Audit</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Audit.html" target="_self" >Observable&lt;Audit&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the updated audit.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="putAuditContactPersons"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            putAuditContactPersons
+                        </b>
+                        <a href="#putAuditContactPersons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>putAuditContactPersons(oldAudit: <a href="../interfaces/Audit.html">Audit</a>, currentAudit: <a href="../interfaces/Audit.html">Audit</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/app/core/http/audit.service.ts:147</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Comapres the contact persons of an old and an updated audit.
+Makes PUT and DELETE requests to ../audits/{id}/contactpersons/{id} to update
+the contact persons of the audit accordingly.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>oldAudit</td>
+                                    <td>
+                                                <code><a href="../interfaces/Audit.html" target="_self" >Audit</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The old audit.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>currentAudit</td>
+                                    <td>
+                                                <code><a href="../interfaces/Audit.html" target="_self" >Audit</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The updated audit.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { FacCrit } from &#x27;../data/models/faccrit.model&#x27;;
+import { Audit } from &#x27;../data/models/audit.model&#x27;;
+import { AuditDto } from &#x27;./dtos/audit.dto&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
+import { PostAuditDto } from &#x27;./dtos/post-audit.dto&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { PutAuditDto } from &#x27;./dtos/put-audit.dto&#x27;;
+import { parseTimestamp } from &#x27;src/app/shared/helpers/date-helpers&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class AuditService {
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Builds an observable for making a GET request to get all audits.
+   *
+   * @returns An Observable of the audits.
+   */
+  getAudits(): Observable&lt;Audit[]&gt; {
+    return this.http.get(environment.baseUrl + &#x27;audits&#x27;).pipe(
+      map((audits: AuditDto[]) &#x3D;&gt; {
+        const result &#x3D; audits.map&lt;Audit&gt;(auditDto &#x3D;&gt; {
+          const endDate &#x3D; auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+
+          return {
+            id: auditDto.id,
+            name: auditDto.name,
+            creationDate: new Date(auditDto.creationDate).getTime(),
+            startDate: new Date(auditDto.startDate).getTime(),
+            endDate,
+            scope: auditDto.scope,
+            status: auditDto.status,
+            contactPersons: auditDto.contactPersons,
+          };
+        });
+        return result;
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a GET request to get an audit by id.
+   *
+   * @param id The audit&#x27;s id.
+   * @returns An Observable of the audit.
+   */
+  getAudit(id: number): Observable&lt;Audit&gt; {
+    return this.http.get&lt;AuditDto&gt;(environment.baseUrl + &#x27;audits/&#x27; + id).pipe(
+      map&lt;AuditDto, Audit&gt;(auditDto &#x3D;&gt; {
+        const endDate &#x3D; auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+
+        return {
+          id: auditDto.id,
+          name: auditDto.name,
+          creationDate: new Date(auditDto.creationDate).getTime(),
+          startDate: new Date(auditDto.startDate).getTime(),
+          endDate,
+          scope: auditDto.scope,
+          status: auditDto.status,
+          contactPersons: auditDto.contactPersons,
+        };
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a POST request to creats an audit.
+   *
+   * @param audit The audit to create.
+   * @returns An Observable of the created audit.
+   */
+  postAudit(audit: Audit): Observable&lt;Audit&gt; {
+    const auditDto: PostAuditDto &#x3D; {
+      name: audit.name,
+      endDate: parseTimestamp(audit.endDate),
+      contactPersons: audit.contactPersons?.map(x &#x3D;&gt; x.id) ?? [],
+      scope: audit.scope?.map(x &#x3D;&gt; x.id) ?? [],
+      startDate: parseTimestamp(audit.startDate),
+    };
+
+    return this.http.post(environment.baseUrl + &#x27;audits&#x27;, auditDto).pipe(
+      map((auditDto: AuditDto) &#x3D;&gt; {
+        const endDate &#x3D; auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+
+        return {
+          id: auditDto.id,
+          name: auditDto.name,
+          creationDate: new Date(auditDto.creationDate).getTime(),
+          startDate: new Date(auditDto.startDate).getTime(),
+          endDate,
+          scope: auditDto.scope,
+          status: auditDto.status,
+          contactPersons: auditDto.contactPersons,
+        };
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a PUT request to update an audit.
+   *
+   * @param audit The old audit.
+   * @param audit The updated audit.
+   * @returns An Observable of the updated audit.
+   */
+  putAudit(oldAudit: Audit, currentAudit: Audit): Observable&lt;Audit&gt; {
+    this.putAuditContactPersons(oldAudit, currentAudit);
+    const putAuditDto: PutAuditDto &#x3D; {
+      name: currentAudit.name,
+      endDate: parseTimestamp(currentAudit.endDate),
+      startDate: parseTimestamp(currentAudit.startDate),
+    };
+
+    return this.http
+      .put&lt;Audit&gt;(environment.baseUrl + &#x27;audits/&#x27; + currentAudit.id, putAuditDto)
+      .pipe(
+        map(auditDto &#x3D;&gt; {
+          const endDate &#x3D; auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+
+          return {
+            id: auditDto.id,
+            name: auditDto.name,
+            creationDate: new Date(auditDto.creationDate).getTime(),
+            startDate: new Date(auditDto.startDate).getTime(),
+            endDate,
+            scope: auditDto.scope,
+            status: auditDto.status,
+            contactPersons: auditDto.contactPersons,
+          };
+        }),
+      );
+  }
+
+  /**
+   * Comapres the contact persons of an old and an updated audit.
+   * Makes PUT and DELETE requests to ../audits/{id}/contactpersons/{id} to update
+   * the contact persons of the audit accordingly.
+   *
+   * @param oldAudit The old audit.
+   * @param currentAudit The updated audit.
+   */
+  private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit): void {
+    const url &#x3D; environment.baseUrl + &#x27;audits/&#x27; + currentAudit.id + &#x27;/contactpersons/&#x27;;
+
+    const oldContactPersons &#x3D; oldAudit.contactPersons;
+    const newContactPersons &#x3D; currentAudit.contactPersons;
+
+    for (const contactPerson of newContactPersons) {
+      const existsInOld &#x3D; oldAudit.contactPersons.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; contactPerson.id);
+      if (!existsInOld) {
+        this.http.put(url + contactPerson.id, {}).subscribe(() &#x3D;&gt; {});
+      }
+    }
+
+    for (const contactPerson of oldContactPersons) {
+      const existsInUpdated &#x3D; currentAudit.contactPersons.find(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; contactPerson.id);
+      if (!existsInUpdated) {
+        this.http.delete(url + contactPerson.id, {}).subscribe(() &#x3D;&gt; {});
+      }
+    }
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuditService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

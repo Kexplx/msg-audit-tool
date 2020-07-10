@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -58,10 +58,13 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#audits" title="src/app/core/data/examples/audits.ts"><b>audits</b>&nbsp;&nbsp;&nbsp;(src/.../audits.ts)</a>
+                            <a href="#ANSWERS_DTO_DUMMY" title="src/app/core/http/test/dummies/answers.ts"><b>ANSWERS_DTO_DUMMY</b>&nbsp;&nbsp;&nbsp;(src/.../answers.ts)</a>
                         </li>
                         <li>
-                            <a href="#contactPeople" title="src/app/core/data/examples/contact-people.ts"><b>contactPeople</b>&nbsp;&nbsp;&nbsp;(src/.../contact-people.ts)</a>
+                            <a href="#AUDITS_DTO_DUMMY" title="src/app/core/http/test/dummies/audits.ts"><b>AUDITS_DTO_DUMMY</b>&nbsp;&nbsp;&nbsp;(src/.../audits.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#CONTACTPERSON_DTO_DUMMY" title="src/app/core/http/test/dummies/contact-persons.ts"><b>CONTACTPERSON_DTO_DUMMY</b>&nbsp;&nbsp;&nbsp;(src/.../contact-persons.ts)</a>
                         </li>
                         <li>
                             <a href="#context" title="src/test.ts"><b>context</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
@@ -70,13 +73,22 @@
                             <a href="#defaultDialogOptions" title="src/app/shared/components/dialogs/default-dialog-options.ts"><b>defaultDialogOptions</b>&nbsp;&nbsp;&nbsp;(src/.../default-dialog-options.ts)</a>
                         </li>
                         <li>
+                            <a href="#defaultScopeComplement" title="src/app/shared/components/forms/audit-form/audit-form.component.ts"><b>defaultScopeComplement</b>&nbsp;&nbsp;&nbsp;(src/.../audit-form.component.ts)</a>
+                        </li>
+                        <li>
                             <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
                             <a href="#environment" title="src/environments/environment.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
                         </li>
                         <li>
-                            <a href="#FACCRITS" title="src/app/core/data/examples/fac-crits.ts"><b>FACCRITS</b>&nbsp;&nbsp;&nbsp;(src/.../fac-crits.ts)</a>
+                            <a href="#FACCRITS_DUMMY" title="src/app/core/http/test/dummies/faccrits.ts"><b>FACCRITS_DUMMY</b>&nbsp;&nbsp;&nbsp;(src/.../faccrits.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#INTERVIEWS_DTO_DUMMY" title="src/app/core/http/test/dummies/interviews.ts"><b>INTERVIEWS_DTO_DUMMY</b>&nbsp;&nbsp;&nbsp;(src/.../interviews.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#QUESTIONS_DTO_DUMMY" title="src/app/core/http/test/dummies/questions.ts"><b>QUESTIONS_DTO_DUMMY</b>&nbsp;&nbsp;&nbsp;(src/.../questions.ts)</a>
                         </li>
                         <li>
                             <a href="#require" title="src/test.ts"><b>require</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
@@ -88,23 +100,23 @@
     </table>
 </section>
 
-    <h3>src/app/core/data/examples/audits.ts</h3>
+    <h3>src/app/core/http/test/dummies/answers.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="audits"></a>
+                        <a name="ANSWERS_DTO_DUMMY"></a>
                         <span class="name">
                             <b>
-                            audits</b>
-                            <a href="#audits"><span class="icon ion-ios-link"></span></a>
+                            ANSWERS_DTO_DUMMY</b>
+                            <a href="#ANSWERS_DTO_DUMMY"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../interfaces/Audit.html" target="_self" >Audit[]</a></code>
+                            <i>Type : </i>        <code><a href="../interfaces/Answer.html" target="_self" >Answer[]</a></code>
 
                         </td>
                     </tr>
@@ -112,22 +124,52 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
   {
-    id: &#x27;1gdfss23&#x27;,
-    creationDate: Date.now(),
-    name: &#x27;Audit 1&#x27;,
-    startDate: Date.now(),
-    facCrits: [],
-    status: AuditStatus.InAction,
-    contactPeople,
+    questionId: 1,
+    interviewId: 2,
+    faccritId: 3,
+    annotation: &#x27;Some annotation&#x27;,
+    proof: &#x27;Some proof&#x27;,
+    reason: &#x27;Some reason&#x27;,
+    procedure: true,
+    documentation: true,
+    responsible: true,
+    result: true,
   },
   {
-    id: &#x27;12sgdfgfd3&#x27;,
-    creationDate: Date.now(),
-    name: &#x27;Audit 2&#x27;,
-    startDate: Date.now(),
-    facCrits: [],
-    status: AuditStatus.Finished,
-    contactPeople,
+    questionId: 3,
+    interviewId: 4,
+    faccritId: 5,
+    annotation: &#x27;Some annotation&#x27;,
+    proof: &#x27;Some proof&#x27;,
+    reason: &#x27;Some reason&#x27;,
+    procedure: true,
+    documentation: true,
+    responsible: true,
+    result: true,
+  },
+  {
+    questionId: 6,
+    interviewId: 7,
+    faccritId: 8,
+    annotation: &#x27;Some annotation&#x27;,
+    proof: &#x27;Some proof&#x27;,
+    reason: &#x27;Some reason&#x27;,
+    procedure: true,
+    documentation: true,
+    responsible: true,
+    result: true,
+  },
+  {
+    questionId: 12,
+    interviewId: 123,
+    faccritId: 321,
+    annotation: &#x27;Some annotation&#x27;,
+    proof: &#x27;Some proof&#x27;,
+    reason: &#x27;Some reason&#x27;,
+    procedure: true,
+    documentation: true,
+    responsible: true,
+    result: true,
   },
 ]</code>
                         </td>
@@ -137,17 +179,138 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/core/data/examples/contact-people.ts</h3>
+    <h3>src/app/core/http/test/dummies/audits.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="contactPeople"></a>
+                        <a name="AUDITS_DTO_DUMMY"></a>
                         <span class="name">
                             <b>
-                            contactPeople</b>
-                            <a href="#contactPeople"><span class="icon ion-ios-link"></span></a>
+                            AUDITS_DTO_DUMMY</b>
+                            <a href="#AUDITS_DTO_DUMMY"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>AuditDto[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+  {
+    id: 1,
+    name: &#x27;MSG project audit&#x27;,
+    startDate: &#x27;2020-07-06&#x27;,
+    endDate: &#x27;2020-07-06&#x27;,
+    creationDate: &#x27;2020-07-06T14:35:44.035Z&#x27;,
+    status: AuditStatus.Active,
+    scope: [
+      {
+        id: 2,
+        referenceId: 3,
+        name: &#x27;Modifizierbarkeit&#x27;,
+      },
+    ],
+    contactPersons: [
+      {
+        id: 4,
+        salutation: Salutation.Herr,
+        title: &#x27;Prof&#x27;,
+        forename: &#x27;Max&#x27;,
+        role: &#x27;asds&#x27;,
+        surname: &#x27;Mustermann&#x27;,
+        contactInformation: &#x27;max.mustermann@gmx.de, tel: 0123456789&#x27;,
+        companyName: &#x27;msg systems AG&#x27;,
+        department: &#x27;Softwareentwicklung&#x27;,
+        sector: &#x27;msg Public Sector&#x27;,
+        corporateDivision: &#x27;Software&#x27;,
+      },
+    ],
+    cancellationDate: &#x27;2020-07-06&#x27;,
+    cancellationReason: &#x27;Project got canceled&#x27;,
+    cancellationContactPerson: {
+      id: 5,
+      role: &#x27;&#x27;,
+      salutation: Salutation.Herr,
+      title: &#x27;Prof&#x27;,
+      forename: &#x27;Max&#x27;,
+      surname: &#x27;Mustermann&#x27;,
+      contactInformation: &#x27;max.mustermann@gmx.de, tel: 0123456789&#x27;,
+      companyName: &#x27;msg systems AG&#x27;,
+      department: &#x27;Softwareentwicklung&#x27;,
+      sector: &#x27;msg Public Sector&#x27;,
+      corporateDivision: &#x27;Software&#x27;,
+    },
+  },
+  {
+    id: 2,
+    name: &#x27;MSG project audit&#x27;,
+    startDate: &#x27;2020-07-06&#x27;,
+    endDate: &#x27;2020-07-06&#x27;,
+    creationDate: &#x27;2020-07-06T14:35:44.035Z&#x27;,
+    status: AuditStatus.Active,
+    scope: [
+      {
+        id: 2,
+        referenceId: 12,
+        name: &#x27;Modifizierbarkeit&#x27;,
+      },
+    ],
+    contactPersons: [
+      {
+        id: 1,
+        salutation: Salutation.Herr,
+        title: &#x27;Prof&#x27;,
+        forename: &#x27;Max&#x27;,
+        role: &#x27;asds&#x27;,
+        surname: &#x27;Mustermann&#x27;,
+        contactInformation: &#x27;max.mustermann@gmx.de, tel: 0123456789&#x27;,
+        companyName: &#x27;msg systems AG&#x27;,
+        department: &#x27;Softwareentwicklung&#x27;,
+        sector: &#x27;msg Public Sector&#x27;,
+        corporateDivision: &#x27;Software&#x27;,
+      },
+    ],
+    cancellationDate: &#x27;2020-07-06&#x27;,
+    cancellationReason: &#x27;Project got canceled&#x27;,
+    cancellationContactPerson: {
+      id: 123,
+      role: &#x27;&#x27;,
+      salutation: Salutation.Herr,
+      title: &#x27;Prof&#x27;,
+      forename: &#x27;Max&#x27;,
+      surname: &#x27;Mustermann&#x27;,
+      contactInformation: &#x27;max.mustermann@gmx.de, tel: 0123456789&#x27;,
+      companyName: &#x27;msg systems AG&#x27;,
+      department: &#x27;Softwareentwicklung&#x27;,
+      sector: &#x27;msg Public Sector&#x27;,
+      corporateDivision: &#x27;Software&#x27;,
+    },
+  },
+]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/core/http/test/dummies/contact-persons.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CONTACTPERSON_DTO_DUMMY"></a>
+                        <span class="name">
+                            <b>
+                            CONTACTPERSON_DTO_DUMMY</b>
+                            <a href="#CONTACTPERSON_DTO_DUMMY"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -161,30 +324,43 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
   {
-    companyName: &#x27;BMW&#x27;,
-    contactInformation: &#x27;Contact Information 123&#x27;,
-    firstName: &#x27;Oscar&#x27;,
-    lastName: &#x27;Rosner&#x27;,
-    role: &#x27;Software Developer&#x27;,
-    salutation: &#x27;Herr&#x27;,
-    title: &#x27;Dr. &#x27;,
-    corporateDivision: &#x27;BMW Robotics&#x27;,
-    department: &#x27;IT-Abteilung&#x27;,
-    id: &#x27;7891209sdkmlds9&#x27;,
-    sector: &#x27;Automobilindustrie&#x27;,
+    id: 1,
+    role: &#x27;Default Role&#x27;,
+    salutation: Salutation.Herr,
+    title: &#x27;string&#x27;,
+    forename: &#x27;string&#x27;,
+    surname: &#x27;string&#x27;,
+    contactInformation: &#x27;string&#x27;,
+    companyName: &#x27;string&#x27;,
+    department: &#x27;string&#x27;,
+    sector: &#x27;string&#x27;,
+    corporateDivision: &#x27;string&#x27;,
   },
   {
-    companyName: &#x27;BMW&#x27;,
-    contactInformation: &#x27;Contact Information 123&#x27;,
-    firstName: &#x27;Cathy&#x27;,
-    lastName: &#x27;Wu&#x27;,
-    role: &#x27;Software Developer&#x27;,
-    salutation: &#x27;Frau&#x27;,
-    title: &#x27;Dr. &#x27;,
-    corporateDivision: &#x27;BMW Robotics&#x27;,
-    department: &#x27;IT-Abteilung&#x27;,
-    id: &#x27;7891209sdkmlds9&#x27;,
-    sector: &#x27;Automobilindustrie&#x27;,
+    id: 2,
+    role: &#x27;Default Role&#x27;,
+    salutation: Salutation.Herr,
+    title: &#x27;string&#x27;,
+    forename: &#x27;string&#x27;,
+    surname: &#x27;string&#x27;,
+    contactInformation: &#x27;string&#x27;,
+    companyName: &#x27;string&#x27;,
+    department: &#x27;string&#x27;,
+    sector: &#x27;string&#x27;,
+    corporateDivision: &#x27;string&#x27;,
+  },
+  {
+    id: 3,
+    role: &#x27;Default Role&#x27;,
+    salutation: Salutation.Herr,
+    title: &#x27;string&#x27;,
+    forename: &#x27;string&#x27;,
+    surname: &#x27;string&#x27;,
+    contactInformation: &#x27;string&#x27;,
+    companyName: &#x27;string&#x27;,
+    department: &#x27;string&#x27;,
+    sector: &#x27;string&#x27;,
+    corporateDivision: &#x27;string&#x27;,
   },
 ]</code>
                         </td>
@@ -274,6 +450,36 @@
             </tbody>
         </table>
 </section>
+    <h3>src/app/shared/components/forms/audit-form/audit-form.component.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="defaultScopeComplement"></a>
+                        <span class="name">
+                            <b>
+                            defaultScopeComplement</b>
+                            <a href="#defaultScopeComplement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[8, 14]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
     <h3>src/environments/environment.prod.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -297,8 +503,8 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-  production: true,
-  apiUrl: &#x27;...&#x27;,
+  production: false,
+  baseUrl: &#x27;http://localhost:3000&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -331,7 +537,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
   production: false,
-  apiUrl: &#x27;http://localhost:3000&#x27;,
+  baseUrl: &#x27;http://localhost:8080/&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -340,17 +546,17 @@
             </tbody>
         </table>
 </section>
-    <h3>src/app/core/data/examples/fac-crits.ts</h3>
+    <h3>src/app/core/http/test/dummies/faccrits.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="FACCRITS"></a>
+                        <a name="FACCRITS_DUMMY"></a>
                         <span class="name">
                             <b>
-                            FACCRITS</b>
-                            <a href="#FACCRITS"><span class="icon ion-ios-link"></span></a>
+                            FACCRITS_DUMMY</b>
+                            <a href="#FACCRITS_DUMMY"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -363,20 +569,460 @@
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
-  { id: &#x27;1&#x27;, name: &#x27;FACTOR 1&#x27;, referenceId: null },
-  { id: generate(), name: &#x27;FACTOR 1 CRITERIA 1&#x27;, referenceId: &#x27;1&#x27; },
-  { id: generate(), name: &#x27;FACTOR 1 CRITERIA 2&#x27;, referenceId: &#x27;1&#x27; },
-  { id: generate(), name: &#x27;FACTOR 1 CRITERIA 3&#x27;, referenceId: &#x27;1&#x27; },
+  {
+    id: 1,
+    referenceId: null,
+    name: &#x27;Effektivität&#x27;,
+  },
+  {
+    id: 2,
+    referenceId: null,
+    name: &#x27;Effizienz&#x27;,
+  },
+  {
+    id: 3,
+    referenceId: null,
+    name: &#x27;Zufriedenheit&#x27;,
+  },
+  {
+    id: 4,
+    referenceId: null,
+    name: &#x27;Risikofreiheit&#x27;,
+  },
+  {
+    id: 5,
+    referenceId: null,
+    name: &#x27;Lieferbestandteile&#x27;,
+  },
+  {
+    id: 6,
+    referenceId: null,
+    name: &#x27;Funktionale Tauglichkeit&#x27;,
+  },
+  {
+    id: 7,
+    referenceId: null,
+    name: &#x27;Performanz, Effizienz&#x27;,
+  },
+  {
+    id: 8,
+    referenceId: null,
+    name: &#x27;Austauschbarkeit, Übertragbarkeit&#x27;,
+  },
+  {
+    id: 9,
+    referenceId: null,
+    name: &#x27;Benutzbarkeit&#x27;,
+  },
+  {
+    id: 10,
+    referenceId: null,
+    name: &#x27;Zuverlässigkeit&#x27;,
+  },
+  {
+    id: 11,
+    referenceId: null,
+    name: &#x27;Sicherheit&#x27;,
+  },
+  {
+    id: 12,
+    referenceId: null,
+    name: &#x27;Wartbarkeit&#x27;,
+  },
+  {
+    id: 13,
+    referenceId: null,
+    name: &#x27;Portabilität&#x27;,
+  },
+  {
+    id: 14,
+    referenceId: null,
+    name: &#x27;Sonstige Anforderungen&#x27;,
+  },
+  {
+    id: 15,
+    referenceId: 3,
+    name: &#x27;Nützlichkeit&#x27;,
+  },
+  {
+    id: 16,
+    referenceId: 3,
+    name: &#x27;Vertrauen&#x27;,
+  },
+  {
+    id: 17,
+    referenceId: 3,
+    name: &#x27;Wohlgefälligkeit&#x27;,
+  },
+  {
+    id: 18,
+    referenceId: 3,
+    name: &#x27;Komfort&#x27;,
+  },
+  {
+    id: 19,
+    referenceId: 4,
+    name: &#x27;Verringerung der ökonomischen Risiken&#x27;,
+  },
+  {
+    id: 20,
+    referenceId: 4,
+    name: &#x27;Verringerung der Risiken hinsichtlich Gesundheit und Sicherheit&#x27;,
+  },
+  {
+    id: 21,
+    referenceId: 4,
+    name: &#x27;Verringerung der Umweltrisiken&#x27;,
+  },
+  {
+    id: 22,
+    referenceId: 5,
+    name: &#x27;Komplette Abdeckung aller Umgebungsanforderungen&#x27;,
+  },
+  {
+    id: 23,
+    referenceId: 5,
+    name: &#x27;Flexibilität&#x27;,
+  },
+  {
+    id: 24,
+    referenceId: 6,
+    name: &#x27;Funktionale Vollständigkei&#x27;,
+  },
+  {
+    id: 25,
+    referenceId: 6,
+    name: &#x27;Funktionale Richtigkeit&#x27;,
+  },
+  {
+    id: 26,
+    referenceId: 6,
+    name: &#x27;Funktionale Angemessenheit&#x27;,
+  },
+  {
+    id: 27,
+    referenceId: 7,
+    name: &#x27;Antwortzeitverhalten&#x27;,
+  },
+  {
+    id: 28,
+    referenceId: 7,
+    name: &#x27;Ressourcenverbrauch&#x27;,
+  },
+  {
+    id: 29,
+    referenceId: 7,
+    name: &#x27;Kapazität&#x27;,
+  },
+  {
+    id: 30,
+    referenceId: 8,
+    name: &#x27;Koexistenz&#x27;,
+  },
+  {
+    id: 31,
+    referenceId: 8,
+    name: &#x27;Interoperabilität&#x27;,
+  },
+  {
+    id: 32,
+    referenceId: 9,
+    name: &#x27;Angemessenheit Erkennbarkeit&#x27;,
+  },
+  {
+    id: 33,
+    referenceId: 9,
+    name: &#x27;Erlernbarkeit&#x27;,
+  },
+  {
+    id: 34,
+    referenceId: 9,
+    name: &#x27;Bedienbarkeit&#x27;,
+  },
+  {
+    id: 35,
+    referenceId: 9,
+    name: &#x27;auf Anwender bezogene Fehlervorbeugung&#x27;,
+  },
+  {
+    id: 36,
+    referenceId: 9,
+    name: &#x27;Ästhetik der Benutzeroberfläche&#x27;,
+  },
+  {
+    id: 37,
+    referenceId: 9,
+    name: &#x27;Zugänglichkeit / Barrierefreiheit&#x27;,
+  },
+  {
+    id: 38,
+    referenceId: 10,
+    name: &#x27;Reife&#x27;,
+  },
+  {
+    id: 39,
+    referenceId: 10,
+    name: &#x27;Verfügbarkeit&#x27;,
+  },
+  {
+    id: 40,
+    referenceId: 10,
+    name: &#x27;Fehlertoleranz&#x27;,
+  },
+  {
+    id: 41,
+    referenceId: 10,
+    name: &#x27;Wiedeherstellbarkeit&#x27;,
+  },
+  {
+    id: 42,
+    referenceId: 11,
+    name: &#x27;Vertraulichkeit, Zugriffsrechte&#x27;,
+  },
+  {
+    id: 43,
+    referenceId: 11,
+    name: &#x27;Integrität&#x27;,
+  },
+  {
+    id: 44,
+    referenceId: 11,
+    name: &#x27;Nachweisbarkeit, Schutz vor fremdem Zugriff&#x27;,
+  },
+  {
+    id: 45,
+    referenceId: 11,
+    name: &#x27;Haftung&#x27;,
+  },
+  {
+    id: 46,
+    referenceId: 11,
+    name: &#x27;Authentizität, Glaubwürdigkeit&#x27;,
+  },
+  {
+    id: 47,
+    referenceId: 12,
+    name: &#x27; Modularität&#x27;,
+  },
+  {
+    id: 48,
+    referenceId: 12,
+    name: &#x27;Wiederverwendbarkeit&#x27;,
+  },
+  {
+    id: 49,
+    referenceId: 12,
+    name: &#x27;Analysierbarkeit&#x27;,
+  },
+  {
+    id: 50,
+    referenceId: 12,
+    name: &#x27;Modifizierbarkeit&#x27;,
+  },
+  {
+    id: 51,
+    referenceId: 12,
+    name: &#x27;Prüfbarkeit&#x27;,
+  },
+  {
+    id: 52,
+    referenceId: 13,
+    name: &#x27;Anpassbarkeit&#x27;,
+  },
+  {
+    id: 53,
+    referenceId: 13,
+    name: &#x27;Installierbarkeit&#x27;,
+  },
+  {
+    id: 54,
+    referenceId: 13,
+    name: &#x27;Austauschbarkeit&#x27;,
+  },
+]</code>
+                        </td>
+                    </tr>
 
-  { id: &#x27;2&#x27;, name: &#x27;FACTOR 2&#x27;, referenceId: null },
-  { id: generate(), name: &#x27;FACTOR 2 CRITERIA 1&#x27;, referenceId: &#x27;2&#x27; },
-  { id: generate(), name: &#x27;FACTOR 2 CRITERIA 2&#x27;, referenceId: &#x27;2&#x27; },
-  { id: generate(), name: &#x27;FACTOR 2 CRITERIA 3&#x27;, referenceId: &#x27;2&#x27; },
 
-  { id: &#x27;3&#x27;, name: &#x27;FACTOR 3&#x27;, referenceId: null },
-  { id: generate(), name: &#x27;FACTOR 3 CRITERIA 1&#x27;, referenceId: &#x27;3&#x27; },
-  { id: generate(), name: &#x27;FACTOR 3 CRITERIA 2&#x27;, referenceId: &#x27;3&#x27; },
-  { id: generate(), name: &#x27;FACTOR 3 CRITERIA 3&#x27;, referenceId: &#x27;3&#x27; },
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/core/http/test/dummies/interviews.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="INTERVIEWS_DTO_DUMMY"></a>
+                        <span class="name">
+                            <b>
+                            INTERVIEWS_DTO_DUMMY</b>
+                            <a href="#INTERVIEWS_DTO_DUMMY"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>InterviewDto[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+  {
+    id: 1,
+    auditId: 3,
+    startDate: &#x27;2020-07-08&#x27;,
+    endDate: &#x27;2020-07-08&#x27;,
+    goal: &#x27;Das Ziel des Audits ist ...&#x27;,
+    status: InterviewStatus.Active,
+    answers: [
+      {
+        questionId: 1,
+        interviewId: 3,
+        faccritId: 1,
+        result: false,
+        responsible: false,
+        documentation: false,
+        procedure: false,
+        reason: &#x27;reason&#x27;,
+        proof: &#x27;proof&#x27;,
+        annotation: &#x27;annotation&#x27;,
+      },
+    ],
+    interviewedContactPersons: [
+      {
+        id: 1,
+        salutation: Salutation.Herr,
+        role: &#x27;Default role&#x27;,
+        title: &#x27;Prof&#x27;,
+        forename: &#x27;Max&#x27;,
+        surname: &#x27;Mustermann&#x27;,
+        contactInformation: &#x27;max.mustermann@gmx.de, tel: 0123456789&#x27;,
+        companyName: &#x27;msg systems AG&#x27;,
+        department: &#x27;Softwareentwicklung&#x27;,
+        sector: &#x27;msg Public Sector&#x27;,
+        corporateDivision: &#x27;Software&#x27;,
+      },
+    ],
+  },
+  {
+    id: 2,
+    auditId: 4,
+    startDate: &#x27;2020-07-08&#x27;,
+    endDate: &#x27;2020-07-08&#x27;,
+    goal: &#x27;Das Ziel des Audits ist ...&#x27;,
+    status: InterviewStatus.Active,
+    answers: [
+      {
+        questionId: 1,
+        interviewId: 3,
+        faccritId: 1,
+        result: false,
+        responsible: false,
+        documentation: false,
+        procedure: false,
+        reason: &#x27;reason&#x27;,
+        proof: &#x27;proof&#x27;,
+        annotation: &#x27;annotation&#x27;,
+      },
+    ],
+    interviewedContactPersons: [
+      {
+        id: 1,
+        salutation: Salutation.Herr,
+        role: &#x27;Default role&#x27;,
+        title: &#x27;Prof&#x27;,
+        forename: &#x27;Max&#x27;,
+        surname: &#x27;Mustermann&#x27;,
+        contactInformation: &#x27;max.mustermann@gmx.de, tel: 0123456789&#x27;,
+        companyName: &#x27;msg systems AG&#x27;,
+        department: &#x27;Softwareentwicklung&#x27;,
+        sector: &#x27;msg Public Sector&#x27;,
+        corporateDivision: &#x27;Software&#x27;,
+      },
+    ],
+  },
+]</code>
+                        </td>
+                    </tr>
+
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/core/http/test/dummies/questions.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="QUESTIONS_DTO_DUMMY"></a>
+                        <span class="name">
+                            <b>
+                            QUESTIONS_DTO_DUMMY</b>
+                            <a href="#QUESTIONS_DTO_DUMMY"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Question.html" target="_self" >Question[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+  {
+    id: 1,
+    facCritId: 2,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 2,
+    facCritId: 3,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 3,
+    facCritId: 4,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 4,
+    facCritId: 5,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 5,
+    facCritId: 21,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 6,
+    facCritId: 222,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 7,
+    facCritId: 212,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
+  {
+    id: 8,
+    facCritId: 253,
+    textDe:
+      &#x27;Werden konkrete Maßnahmen ergriffen, um das Qualitätskriterium in der Anwendung zu steigern?&#x27;,
+  },
 ]</code>
                         </td>
                     </tr>

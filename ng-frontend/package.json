@@ -1,14 +1,13 @@
 {
-  "name": "ng-frontend",
-  "version": "0.0.0",
+  "name": "msg-audit-tool",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
-    "lint": "ng lint",
     "compodoc": "compodoc -p tsconfig.json -w -s --name=\".msg Audit Tool Documentation\"",
+    "test-headless": "ng test --watch=false --browsers=ChromeHeadless",
     "e2e": "cypress open",
     "e2e-headless": "cypress run"
   },

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -65,6 +65,12 @@
 </p>
 
 
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+    </p>
 
     <p class="comment">
         <h3>Implements</h3>
@@ -130,7 +136,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#contactPersonForm">contactPersonForm</a>
+                                <a href="#formGroup">formGroup</a>
                             </li>
                         </ul>
                     </td>
@@ -148,10 +154,10 @@
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#onCancel">onCancel</a>
+                                <a href="#onSubmit">onSubmit</a>
                             </li>
                             <li>
-                                <a href="#onSubmit">onSubmit</a>
+                                <a href="#onCancel">onCancel</a>
                             </li>
                         </ul>
                     </td>
@@ -171,6 +177,12 @@
                             <li>
                                 <a href="#submitButtonName">submitButtonName</a>
                             </li>
+                            <li>
+                                <a href="#cancelButtonName">cancelButtonName</a>
+                            </li>
+                            <li>
+                                <a href="#submitButtonName">submitButtonName</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -184,10 +196,10 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#cancelled">cancelled</a>
+                                <a href="#formSubmitted">formSubmitted</a>
                             </li>
                             <li>
-                                <a href="#formSubmitted">formSubmitted</a>
+                                <a href="#cancelled">cancelled</a>
                             </li>
                         </ul>
                     </td>
@@ -204,10 +216,10 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#firstName">firstName</a>
+                                    <a href="#forename">forename</a>
                                 </li>
                                 <li>
-                                    <a href="#lastName">lastName</a>
+                                    <a href="#surname">surname</a>
                                 </li>
                                 <li>
                                     <a href="#salutation">salutation</a>
@@ -248,7 +260,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -342,30 +354,65 @@
                         </tr>
             </tbody>
         </table>
-</section>
-    <section>
-    <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="cancelled"></a>
-                        <b>cancelled</b>
+                        <a name="cancelButtonName"></a>
+                        <b>cancelButtonName</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:17</a></div>
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:8</a></code>
+</div>
                             </td>
                         </tr>
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="submitButtonName"></a>
+                        <b>submitButtonName</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:7</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -383,6 +430,34 @@
                         <tr>
                             <td class="col-md-2" colspan="2">
                                     <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:16</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelled"></a>
+                        <b>cancelled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:9</a></code>
+</div>
                             </td>
                         </tr>
             </tbody>
@@ -417,47 +492,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:59</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onCancel"></a>
-                    <span class="name">
-                        <b>
-                            onCancel
-                        </b>
-                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onCancel()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:58</a></div>
                 </td>
             </tr>
 
@@ -495,8 +531,53 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <b>
+                            onCancel
+                        </b>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:15</a></code>
+</div>
                 </td>
             </tr>
 
@@ -522,11 +603,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="contactPersonForm"></a>
+                        <a name="formGroup"></a>
                         <span class="name">
                             <b>
-                            contactPersonForm</b>
-                            <a href="#contactPersonForm"><span class="icon ion-ios-link"></span></a>
+                            formGroup</b>
+                            <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -536,9 +617,16 @@
 
                         </td>
                     </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:19</a></div>
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:11</a></code>
+</div>
                             </td>
                         </tr>
 
@@ -555,19 +643,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="firstName"></a>
-                        <span class="name"><b>firstName</b><a href="#firstName"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="forename"></a>
+                        <span class="name"><b>forename</b><a href="#forename"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>firstName()</code></span>
+                        <span class="accessor"><b>get</b><code>forename()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:22</a></div>
                                 </td>
                             </tr>
 
@@ -577,19 +665,19 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="lastName"></a>
-                        <span class="name"><b>lastName</b><a href="#lastName"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="surname"></a>
+                        <span class="name"><b>surname</b><a href="#surname"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>lastName()</code></span>
+                        <span class="accessor"><b>get</b><code>surname()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:26</a></div>
                                 </td>
                             </tr>
 
@@ -611,7 +699,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:31</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:30</a></div>
                                 </td>
                             </tr>
 
@@ -633,7 +721,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:34</a></div>
                                 </td>
                             </tr>
 
@@ -655,7 +743,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:38</a></div>
                                 </td>
                             </tr>
 
@@ -677,7 +765,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:42</a></div>
                                 </td>
                             </tr>
 
@@ -699,7 +787,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:46</a></div>
                                 </td>
                             </tr>
 
@@ -721,7 +809,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:51</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:50</a></div>
                                 </td>
                             </tr>
 
@@ -743,7 +831,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/shared/components/forms/contact-person-form/contact-person-form.component.ts:54</a></div>
                                 </td>
                             </tr>
 
@@ -756,80 +844,79 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
 import { ContactPerson } from &#x27;src/app/core/data/models/contact-person.model&#x27;;
-import { FormGroup, FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
-import { ConfirmDiscardDialogComponent } from &#x27;../../dialogs/confirm-discard-dialog/confirm-discard-dialog.component&#x27;;
+import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
 import { NbDialogService } from &#x27;@nebular/theme&#x27;;
+import { AbstractFormComponent } from &#x27;../abstract-form-component&#x27;;
 
 @Component({
   selector: &#x27;app-contact-person-form&#x27;,
   templateUrl: &#x27;./contact-person-form.component.html&#x27;,
   styleUrls: [&#x27;./contact-person-form.component.scss&#x27;],
 })
-export class ContactPersonFormComponent implements OnInit {
+export class ContactPersonFormComponent extends AbstractFormComponent implements OnInit {
   @Input() contactPerson: ContactPerson;
   @Input() submitButtonName: string;
 
   @Output() formSubmitted &#x3D; new EventEmitter&lt;Partial&lt;ContactPerson&gt;&gt;();
-  @Output() cancelled &#x3D; new EventEmitter&lt;any&gt;();
 
-  contactPersonForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder, private dialogService: NbDialogService) {}
-
-  get firstName() {
-    return this.contactPersonForm.get(&#x27;firstName&#x27;);
+  constructor(private formBuilder: FormBuilder, protected dialogService: NbDialogService) {
+    super(dialogService);
   }
 
-  get lastName() {
-    return this.contactPersonForm.get(&#x27;lastName&#x27;);
+  get forename() {
+    return this.formGroup.get(&#x27;forename&#x27;);
+  }
+
+  get surname() {
+    return this.formGroup.get(&#x27;surname&#x27;);
   }
 
   get salutation() {
-    return this.contactPersonForm.get(&#x27;salutation&#x27;);
+    return this.formGroup.get(&#x27;salutation&#x27;);
   }
 
   get title() {
-    return this.contactPersonForm.get(&#x27;title&#x27;);
+    return this.formGroup.get(&#x27;title&#x27;);
   }
 
   get companyName() {
-    return this.contactPersonForm.get(&#x27;companyName&#x27;);
+    return this.formGroup.get(&#x27;companyName&#x27;);
   }
 
   get department() {
-    return this.contactPersonForm.get(&#x27;department&#x27;);
+    return this.formGroup.get(&#x27;department&#x27;);
   }
 
   get sector() {
-    return this.contactPersonForm.get(&#x27;sector&#x27;);
+    return this.formGroup.get(&#x27;sector&#x27;);
   }
 
   get corporateDivision() {
-    return this.contactPersonForm.get(&#x27;corporateDivision&#x27;);
+    return this.formGroup.get(&#x27;corporateDivision&#x27;);
   }
 
   get contactInformation() {
-    return this.contactPersonForm.get(&#x27;contactInformation&#x27;);
+    return this.formGroup.get(&#x27;contactInformation&#x27;);
   }
 
   ngOnInit() {
-    this.contactPersonForm &#x3D; this.formBuilder.group({
-      firstName: [null, Validators.required],
-      lastName: [null, Validators.required],
-      salutation: [null, Validators.required],
-      title: [null, Validators.required],
-      companyName: [null, Validators.required],
-      department: [null, Validators.required],
-      sector: [null, Validators.required],
-      corporateDivision: [null, Validators.required],
-      contactInformation: [null],
+    this.formGroup &#x3D; this.formBuilder.group({
+      forename: [this.contactPerson?.forename, Validators.required],
+      surname: [this.contactPerson?.surname, Validators.required],
+      salutation: [this.contactPerson?.salutation],
+      title: [this.contactPerson?.title],
+      companyName: [this.contactPerson?.companyName, Validators.required],
+      department: [this.contactPerson?.department],
+      sector: [this.contactPerson?.sector],
+      corporateDivision: [this.contactPerson?.corporateDivision, Validators.required],
+      contactInformation: [this.contactPerson?.contactInformation],
     });
   }
 
   onSubmit() {
     const contactPerson: Partial&lt;ContactPerson&gt; &#x3D; {
-      firstName: this.firstName.value,
-      lastName: this.lastName.value,
+      forename: this.forename.value,
+      surname: this.surname.value,
       salutation: this.salutation.value,
       title: this.title.value,
       companyName: this.companyName.value,
@@ -841,127 +928,108 @@ export class ContactPersonFormComponent implements OnInit {
 
     this.formSubmitted.emit(contactPerson);
   }
-
-  onCancel() {
-    if (this.contactPersonForm.dirty &amp;&amp; this.contactPersonForm.touched) {
-      const confirmDiscardComponentRef &#x3D; this.dialogService.open(ConfirmDiscardDialogComponent, {
-        autoFocus: false,
-        closeOnBackdropClick: false,
-      });
-
-      confirmDiscardComponentRef.componentRef.instance.onDiscardConfirm.subscribe(
-        (cancelConfirmed: boolean) &#x3D;&gt; {
-          if (cancelConfirmed) {
-            this.cancelled.emit();
-          }
-        },
-      );
-    } else {
-      this.cancelled.emit();
-    }
-  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;contactPersonForm&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;formGroup&quot; data-cy&#x3D;&quot;contact-data-form&quot;&gt;
   &lt;nb-card&gt;
     &lt;nb-card-header&gt;
       &lt;nb-icon icon&#x3D;&quot;person-outline&quot;&gt; &lt;/nb-icon&gt;
       Neue Kontaktperson
     &lt;/nb-card-header&gt;
     &lt;nb-card-body&gt;
-      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+      &lt;div class&#x3D;&quot;grid-1-1 mb-2&quot;&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Anrede&lt;/label&gt;
-          &lt;nb-select placeholder&#x3D;&quot;Herr&quot; formControlName&#x3D;&quot;salutation&quot; fullWidth data-cy&#x3D;&quot;audit-contact-salutation-input&quot;&gt;
-            &lt;nb-option value&#x3D;&quot;Herr&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Herr&lt;/nb-option&gt;
-            &lt;nb-option value&#x3D;&quot;Frau&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Frau&lt;/nb-option&gt;
-            &lt;nb-option value&#x3D;&quot;Divers&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Divers&lt;/nb-option&gt;
+          &lt;nb-select placeholder&#x3D;&quot;Frau&quot; formControlName&#x3D;&quot;salutation&quot; fullWidth data-cy&#x3D;&quot;contact-salutation-input&quot;&gt;
+            &lt;nb-option value&#x3D;&quot;FRAU&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Frau&lt;/nb-option&gt;
+            &lt;nb-option value&#x3D;&quot;HERR&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Herr&lt;/nb-option&gt;
+            &lt;nb-option value&#x3D;&quot;DIVERS&quot; data-cy&#x3D;&quot;salutation-option&quot;&gt;Divers&lt;/nb-option&gt;
           &lt;/nb-select&gt;
           &lt;div *ngIf&#x3D;&quot;salutation.invalid &amp;&amp; salutation.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Anrede wählen&lt;/label&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Anrede wählen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Titel&lt;/label&gt;
-          &lt;input placeholder&#x3D;&quot;Dr.&quot; [status]&#x3D;&quot;title.invalid &amp;&amp; title.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;title&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;input placeholder&#x3D;&quot;Dr.&quot; [status]&#x3D;&quot;title.invalid &amp;&amp; title.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;title&quot; nbInput fullWidth data-cy&#x3D;&quot;contact-title-input&quot; /&gt;
           &lt;div *ngIf&#x3D;&quot;title.invalid &amp;&amp; title.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Titel eintragen&lt;/label&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Titel eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+      &lt;div class&#x3D;&quot;grid-1-1 mb-2&quot;&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Vorname&lt;/label&gt;
-          &lt;input placeholder&#x3D;&quot;Max&quot; [status]&#x3D;&quot;firstName.invalid &amp;&amp; firstName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;firstName&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
-          &lt;div *ngIf&#x3D;&quot;firstName.invalid &amp;&amp; firstName.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Vornamen eintragen&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Max&quot; [status]&#x3D;&quot;forename.invalid &amp;&amp; forename.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;forename&quot; nbInput fullWidth data-cy&#x3D;&quot;contact-forename-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;forename.invalid &amp;&amp; forename.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Vornamen eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Nachname&lt;/label&gt;
-          &lt;input placeholder&#x3D;&quot;Mustermann&quot; [status]&#x3D;&quot;lastName.invalid &amp;&amp; lastName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;lastName&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
-          &lt;div *ngIf&#x3D;&quot;lastName.invalid &amp;&amp; lastName.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Nachnamen eintragen&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Mustermann&quot; [status]&#x3D;&quot;surname.invalid &amp;&amp; surname.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;surname&quot; nbInput fullWidth data-cy&#x3D;&quot;contact-surname-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;surname.invalid &amp;&amp; surname.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Nachnamen eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+      &lt;div class&#x3D;&quot;grid-1-1 mb-2&quot;&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Unternehmen&lt;/label&gt;
-          &lt;input placeholder&#x3D;&quot;BMW&quot; [status]&#x3D;&quot;companyName.invalid &amp;&amp; companyName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;companyName&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;input placeholder&#x3D;&quot;msg systems AG&quot; [status]&#x3D;&quot;companyName.invalid &amp;&amp; companyName.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;companyName&quot; nbInput fullWidth data-cy&#x3D;&quot;company-name-input&quot; /&gt;
           &lt;div *ngIf&#x3D;&quot;companyName.invalid &amp;&amp; companyName.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Unternehmen eintragen&lt;/label&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Unternehmen eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Abteilung&lt;/label&gt;
-          &lt;input placeholder&#x3D;&quot;Personalabteilung&quot; [status]&#x3D;&quot;department.invalid &amp;&amp; department.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;department&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+          &lt;input
+            placeholder&#x3D;&quot;Softwareentwicklung&quot;
+            [status]&#x3D;&quot;department.invalid &amp;&amp; department.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot;
+            formControlName&#x3D;&quot;department&quot;
+            nbInput
+            fullWidth
+            data-cy&#x3D;&quot;company-department-input&quot;
+          /&gt;
           &lt;div *ngIf&#x3D;&quot;department.invalid &amp;&amp; department.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Abteilung eintragen&lt;/label&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Abteilung eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class&#x3D;&quot;grid-1-1&quot;&gt;
+      &lt;div class&#x3D;&quot;grid-1-1 mb-2&quot;&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Unternehmensbereich&lt;/label&gt;
           &lt;input
-            placeholder&#x3D;&quot;BMW Robotics&quot;
+            placeholder&#x3D;&quot;msg Public Sector&quot;
             [status]&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot;
             formControlName&#x3D;&quot;corporateDivision&quot;
             nbInput
             fullWidth
-            data-cy&#x3D;&quot;audit-name-input&quot;
+            data-cy&#x3D;&quot;company-division-input&quot;
           /&gt;
           &lt;div *ngIf&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Unternehmensbereich eintragen&lt;/label&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Unternehmensbereich eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
         &lt;div&gt;
           &lt;label class&#x3D;&quot;label&quot;&gt;Branche&lt;/label&gt;
-          &lt;input
-            placeholder&#x3D;&quot;Automobilindustrie&quot;
-            [status]&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot;
-            formControlName&#x3D;&quot;sector&quot;
-            nbInput
-            fullWidth
-            data-cy&#x3D;&quot;audit-name-input&quot;
-          /&gt;
-          &lt;div *ngIf&#x3D;&quot;corporateDivision.invalid &amp;&amp; corporateDivision.touched&quot;&gt;
-            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Branche eintragen&lt;/label&gt;
+          &lt;input placeholder&#x3D;&quot;Software&quot; [status]&#x3D;&quot;sector.invalid &amp;&amp; sector.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;sector&quot; nbInput fullWidth data-cy&#x3D;&quot;company-sector-input&quot; /&gt;
+          &lt;div *ngIf&#x3D;&quot;sector.invalid &amp;&amp; sector.touched&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;missing-label&quot;&gt;Branche eintragen&lt;/label&gt;
           &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       &lt;label class&#x3D;&quot;label&quot;&gt;Kontaktinformation&lt;/label&gt;
-      &lt;textarea spellcheck&#x3D;&quot;false&quot; nbInput formControlName&#x3D;&quot;contactInformation&quot; placeholder&#x3D;&quot;Erreichbar unter...&quot; fullWidth data-cy&#x3D;&quot;audit-contact-info-input&quot;&gt;&lt;/textarea&gt;
+      &lt;textarea spellcheck&#x3D;&quot;false&quot; nbInput formControlName&#x3D;&quot;contactInformation&quot; placeholder&#x3D;&quot;Erreichbar unter...&quot; fullWidth data-cy&#x3D;&quot;contact-info-input&quot;&gt;&lt;/textarea&gt;
     &lt;/nb-card-body&gt;
     &lt;nb-card-footer&gt;
-      &lt;button (click)&#x3D;&quot;onCancel()&quot; hero nbButton data-cy&#x3D;&quot;cancel-audit-data-form&quot;&gt;
+      &lt;button (click)&#x3D;&quot;onCancel()&quot; hero nbButton data-cy&#x3D;&quot;cancel-data-form&quot;&gt;
         abbrechen
       &lt;/button&gt;
-      &lt;button (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;contactPersonForm.invalid&quot; status&#x3D;&quot;primary&quot; hero nbButton data-cy&#x3D;&quot;submit-audit-data-form&quot;&gt;
+      &lt;button (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;formGroup.invalid&quot; status&#x3D;&quot;primary&quot; hero nbButton data-cy&#x3D;&quot;submit-data-form&quot;&gt;
         {{ submitButtonName }}
       &lt;/button&gt;
     &lt;/nb-card-footer&gt;
@@ -1032,8 +1100,8 @@ textarea {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form [formGroup]="contactPersonForm">  <nb-card>    <nb-card-header>      <nb-icon icon="person-outline"> </nb-icon>      Neue Kontaktperson    </nb-card-header>    <nb-card-body>      <div class="grid-1-1">        <div>          <label class="label">Anrede</label>          <nb-select placeholder="Herr" formControlName="salutation" fullWidth data-cy="audit-contact-salutation-input">            <nb-option value="Herr" data-cy="salutation-option">Herr</nb-option>            <nb-option value="Frau" data-cy="salutation-option">Frau</nb-option>            <nb-option value="Divers" data-cy="salutation-option">Divers</nb-option>          </nb-select>          <div *ngIf="salutation.invalid && salutation.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Anrede wählen</label>          </div>        </div>        <div>          <label class="label">Titel</label>          <input placeholder="Dr." [status]="title.invalid && title.touched ? \'danger\' : \'basic\'" formControlName="title" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="title.invalid && title.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Titel eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1">        <div>          <label class="label">Vorname</label>          <input placeholder="Max" [status]="firstName.invalid && firstName.touched ? \'danger\' : \'basic\'" formControlName="firstName" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="firstName.invalid && firstName.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Vornamen eintragen</label>          </div>        </div>        <div>          <label class="label">Nachname</label>          <input placeholder="Mustermann" [status]="lastName.invalid && lastName.touched ? \'danger\' : \'basic\'" formControlName="lastName" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="lastName.invalid && lastName.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Nachnamen eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1">        <div>          <label class="label">Unternehmen</label>          <input placeholder="BMW" [status]="companyName.invalid && companyName.touched ? \'danger\' : \'basic\'" formControlName="companyName" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="companyName.invalid && companyName.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Unternehmen eintragen</label>          </div>        </div>        <div>          <label class="label">Abteilung</label>          <input placeholder="Personalabteilung" [status]="department.invalid && department.touched ? \'danger\' : \'basic\'" formControlName="department" nbInput fullWidth data-cy="audit-name-input" />          <div *ngIf="department.invalid && department.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Abteilung eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1">        <div>          <label class="label">Unternehmensbereich</label>          <input            placeholder="BMW Robotics"            [status]="corporateDivision.invalid && corporateDivision.touched ? \'danger\' : \'basic\'"            formControlName="corporateDivision"            nbInput            fullWidth            data-cy="audit-name-input"          />          <div *ngIf="corporateDivision.invalid && corporateDivision.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Unternehmensbereich eintragen</label>          </div>        </div>        <div>          <label class="label">Branche</label>          <input            placeholder="Automobilindustrie"            [status]="corporateDivision.invalid && corporateDivision.touched ? \'danger\' : \'basic\'"            formControlName="sector"            nbInput            fullWidth            data-cy="audit-name-input"          />          <div *ngIf="corporateDivision.invalid && corporateDivision.touched">            <label class="label text-danger" data-cy="auditname-missing-label">Branche eintragen</label>          </div>        </div>      </div>      <label class="label">Kontaktinformation</label>      <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="audit-contact-info-input"></textarea>    </nb-card-body>    <nb-card-footer>      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">        abbrechen      </button>      <button (click)="onSubmit()" [disabled]="contactPersonForm.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">        {{ submitButtonName }}      </button>    </nb-card-footer>  </nb-card></form></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="formGroup" data-cy="contact-data-form">  <nb-card>    <nb-card-header>      <nb-icon icon="person-outline"> </nb-icon>      Neue Kontaktperson    </nb-card-header>    <nb-card-body>      <div class="grid-1-1 mb-2">        <div>          <label class="label">Anrede</label>          <nb-select placeholder="Frau" formControlName="salutation" fullWidth data-cy="contact-salutation-input">            <nb-option value="FRAU" data-cy="salutation-option">Frau</nb-option>            <nb-option value="HERR" data-cy="salutation-option">Herr</nb-option>            <nb-option value="DIVERS" data-cy="salutation-option">Divers</nb-option>          </nb-select>          <div *ngIf="salutation.invalid && salutation.touched">            <label class="label text-danger" data-cy="missing-label">Anrede wählen</label>          </div>        </div>        <div>          <label class="label">Titel</label>          <input placeholder="Dr." [status]="title.invalid && title.touched ? \'danger\' : \'basic\'" formControlName="title" nbInput fullWidth data-cy="contact-title-input" />          <div *ngIf="title.invalid && title.touched">            <label class="label text-danger" data-cy="missing-label">Titel eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1 mb-2">        <div>          <label class="label">Vorname</label>          <input placeholder="Max" [status]="forename.invalid && forename.touched ? \'danger\' : \'basic\'" formControlName="forename" nbInput fullWidth data-cy="contact-forename-input" />          <div *ngIf="forename.invalid && forename.touched">            <label class="label text-danger" data-cy="missing-label">Vornamen eintragen</label>          </div>        </div>        <div>          <label class="label">Nachname</label>          <input placeholder="Mustermann" [status]="surname.invalid && surname.touched ? \'danger\' : \'basic\'" formControlName="surname" nbInput fullWidth data-cy="contact-surname-input" />          <div *ngIf="surname.invalid && surname.touched">            <label class="label text-danger" data-cy="missing-label">Nachnamen eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1 mb-2">        <div>          <label class="label">Unternehmen</label>          <input placeholder="msg systems AG" [status]="companyName.invalid && companyName.touched ? \'danger\' : \'basic\'" formControlName="companyName" nbInput fullWidth data-cy="company-name-input" />          <div *ngIf="companyName.invalid && companyName.touched">            <label class="label text-danger" data-cy="missing-label">Unternehmen eintragen</label>          </div>        </div>        <div>          <label class="label">Abteilung</label>          <input            placeholder="Softwareentwicklung"            [status]="department.invalid && department.touched ? \'danger\' : \'basic\'"            formControlName="department"            nbInput            fullWidth            data-cy="company-department-input"          />          <div *ngIf="department.invalid && department.touched">            <label class="label text-danger" data-cy="missing-label">Abteilung eintragen</label>          </div>        </div>      </div>      <div class="grid-1-1 mb-2">        <div>          <label class="label">Unternehmensbereich</label>          <input            placeholder="msg Public Sector"            [status]="corporateDivision.invalid && corporateDivision.touched ? \'danger\' : \'basic\'"            formControlName="corporateDivision"            nbInput            fullWidth            data-cy="company-division-input"          />          <div *ngIf="corporateDivision.invalid && corporateDivision.touched">            <label class="label text-danger" data-cy="missing-label">Unternehmensbereich eintragen</label>          </div>        </div>        <div>          <label class="label">Branche</label>          <input placeholder="Software" [status]="sector.invalid && sector.touched ? \'danger\' : \'basic\'" formControlName="sector" nbInput fullWidth data-cy="company-sector-input" />          <div *ngIf="sector.invalid && sector.touched">            <label class="label text-danger" data-cy="missing-label">Branche eintragen</label>          </div>        </div>      </div>      <label class="label">Kontaktinformation</label>      <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="contact-info-input"></textarea>    </nb-card-body>    <nb-card-footer>      <button (click)="onCancel()" hero nbButton data-cy="cancel-data-form">        abbrechen      </button>      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-data-form">        {{ submitButtonName }}      </button>    </nb-card-footer>  </nb-card></form></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'ContactPersonFormComponent'};
 </script>

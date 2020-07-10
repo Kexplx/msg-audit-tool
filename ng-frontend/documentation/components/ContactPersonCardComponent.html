@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -61,17 +61,11 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/features/contact-people/components/contact-people-list/contact-person-card/contact-person-card.component.ts</code>
+    <code>src/app/features/contact-persons/contact-person-card/contact-person-card.component.ts</code>
 </p>
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -131,7 +125,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#onDelete">onDelete</a>
                             </li>
                         </ul>
                     </td>
@@ -165,15 +159,45 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(store: Store)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/features/contact-people/components/contact-people-list/contact-person-card/contact-person-card.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/features/contact-persons/contact-person-card/contact-person-card.component.ts:12</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -196,7 +220,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/features/contact-people/components/contact-people-list/contact-person-card/contact-person-card.component.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/features/contact-persons/contact-person-card/contact-person-card.component.ts:12</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -214,26 +238,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="onDelete"></a>
                     <span class="name">
                         <b>
-                            ngOnInit
+                            onDelete
                         </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        <a href="#onDelete"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+<code>onDelete()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="14"
-                            class="link-to-prism">src/app/features/contact-people/components/contact-people-list/contact-person-card/contact-person-card.component.ts:14</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/app/features/contact-persons/contact-person-card/contact-person-card.component.ts:16</a></div>
                 </td>
             </tr>
 
@@ -255,28 +279,63 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input } from &#x27;@angular/core&#x27;;
 import { ContactPerson } from &#x27;src/app/core/data/models/contact-person.model&#x27;;
+import { Store } from &#x27;@ngxs/store&#x27;;
+import { DeleteContactPerson } from &#x27;src/app/core/ngxs/actions/contact-person.action&#x27;;
 
 @Component({
   selector: &#x27;app-contact-person-card&#x27;,
   templateUrl: &#x27;./contact-person-card.component.html&#x27;,
   styleUrls: [&#x27;./contact-person-card.component.scss&#x27;],
 })
-export class ContactPersonCardComponent implements OnInit {
+export class ContactPersonCardComponent {
   @Input() contactPerson: ContactPerson;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
-  ngOnInit() {}
+  onDelete() {
+    this.store.dispatch(new DeleteContactPerson(this.contactPerson.id));
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;nb-card&gt;
-  &lt;nb-card-header&gt;{{ contactPerson.firstName + &#x27; &#x27; + contactPerson.lastName }}&lt;/nb-card-header&gt;
-&lt;/nb-card&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;p class&#x3D;&quot;subtitle-2 mb-2&quot; data-cy&#x3D;&quot;contact-name&quot;&gt;
+  {{ contactPerson.forename + &#x27; &#x27; + contactPerson.surname }}
+&lt;/p&gt;
+
+&lt;div class&#x3D;&quot;wrapper-contact-person-details&quot;&gt;
+  &lt;div&gt;
+    &lt;label class&#x3D;&quot;label&quot; data-cy&#x3D;&quot;contact-companyname&quot;&gt;Unternehmen&lt;/label&gt;
+    &lt;p class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;contact-companyname-entry&quot;&gt;{{ contactPerson.companyName }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label class&#x3D;&quot;label&quot; data-cy&#x3D;&quot;contact-department&quot;&gt;Abteilung&lt;/label&gt;
+    &lt;p *ngIf&#x3D;&quot;contactPerson.department; else missing&quot; class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;contact-department-entry&quot;&gt;{{ contactPerson.department }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label class&#x3D;&quot;label&quot; data-cy&#x3D;&quot;contact-division&quot;&gt;Unternehmensbereich&lt;/label&gt;
+    &lt;p class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;contact-division-entry&quot;&gt;{{ contactPerson.corporateDivision }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;label class&#x3D;&quot;label&quot; data-cy&#x3D;&quot;contact-sector&quot;&gt;Branche&lt;/label&gt;
+    &lt;p *ngIf&#x3D;&quot;contactPerson.sector; else missing&quot; class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;contact-sector-entry&quot;&gt;{{ contactPerson.sector }}&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;ng-template #missing&gt;
+    &lt;p class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;missing&quot;&gt;-&lt;/p&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;
+
+&lt;div class&#x3D;&quot;action-bar&quot;&gt;
+  &lt;a [routerLink]&#x3D;&quot;contactPerson.id + &#x27;/edit&#x27;&quot; nbPopover&#x3D;&quot;Bearbeiten&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; status&#x3D;&quot;primary&quot; ghost nbButton data-cy&#x3D;&quot;edit-person-button&quot;&gt;
+    &lt;nb-icon icon&#x3D;&quot;edit-outline&quot;&gt;&lt;/nb-icon&gt;
+  &lt;/a&gt;
+  &lt;button (click)&#x3D;&quot;onDelete()&quot; nbPopover&#x3D;&quot;Löschen&quot; nbPopoverTrigger&#x3D;&quot;hint&quot; status&#x3D;&quot;basic&quot; ghost nbButton data-cy&#x3D;&quot;delete-person-button&quot;&gt;
+    &lt;nb-icon icon&#x3D;&quot;person-remove-outline&quot;&gt;&lt;/nb-icon&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
 </code></pre>
     </div>
 
@@ -284,7 +343,32 @@ export class ContactPersonCardComponent implements OnInit {
                 <p class="comment">
                     <code>./contact-person-card.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../../sass/utils&#x27;;
+
+.wrapper-contact-person-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 10px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+:host {
+  width: 100%;
+  position: relative;
+}
+
+.action-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 10px;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -312,8 +396,8 @@ export class ContactPersonCardComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><nb-card>  <nb-card-header>{{ contactPerson.firstName + \' \' + contactPerson.lastName }}</nb-card-header></nb-card></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><p class="subtitle-2 mb-2" data-cy="contact-name">  {{ contactPerson.forename + \' \' + contactPerson.surname }}</p><div class="wrapper-contact-person-details">  <div>    <label class="label" data-cy="contact-companyname">Unternehmen</label>    <p class="subtitle-2" data-cy="contact-companyname-entry">{{ contactPerson.companyName }}</p>  </div>  <div>    <label class="label" data-cy="contact-department">Abteilung</label>    <p *ngIf="contactPerson.department; else missing" class="subtitle-2" data-cy="contact-department-entry">{{ contactPerson.department }}</p>  </div>  <div>    <label class="label" data-cy="contact-division">Unternehmensbereich</label>    <p class="subtitle-2" data-cy="contact-division-entry">{{ contactPerson.corporateDivision }}</p>  </div>  <div>    <label class="label" data-cy="contact-sector">Branche</label>    <p *ngIf="contactPerson.sector; else missing" class="subtitle-2" data-cy="contact-sector-entry">{{ contactPerson.sector }}</p>  </div>  <ng-template #missing>    <p class="subtitle-2" data-cy="missing">-</p>  </ng-template></div><div class="action-bar">  <a [routerLink]="contactPerson.id + \'/edit\'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" status="primary" ghost nbButton data-cy="edit-person-button">    <nb-icon icon="edit-outline"></nb-icon>  </a>  <button (click)="onDelete()" nbPopover="Löschen" nbPopoverTrigger="hint" status="basic" ghost nbButton data-cy="delete-person-button">    <nb-icon icon="person-remove-outline"></nb-icon>  </button></div></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'ContactPersonCardComponent'};
 </script>

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -72,10 +72,10 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
-import { AuditOverviewComponent } from &#x27;./components/audit-overview/audit-overview.component&#x27;;
-import { NewInterviewDialogComponent } from &#x27;./components/audit-overview/interview-list/new-interview-dialog/new-interview-dialog.component&#x27;;
-import { InterviewListComponent } from &#x27;./components/audit-overview/interview-list/interview-list.component&#x27;;
-import { AuditInfoComponent } from &#x27;./components/audit-overview/audit-info/audit-info.component&#x27;;
+import { AuditOverviewComponent } from &#x27;./audit-overview.component&#x27;;
+import { AddInterviewDialogComponent } from &#x27;../../shared/components/dialogs/add-interview-dialog/add-interview-dialog.component&#x27;;
+import { InterviewListComponent } from &#x27;./interview-list/interview-list.component&#x27;;
+import { AuditInfoComponent } from &#x27;./audit-info/audit-info.component&#x27;;
 import { EditAuditDialogComponent } from &#x27;src/app/shared/components/dialogs/edit-audit-dialog/edit-audit-dialog.component&#x27;;
 
 const routes: Routes &#x3D; [
@@ -91,10 +91,10 @@ const routes: Routes &#x3D; [
       {
         path: &#x27;interviews&#x27;,
         component: InterviewListComponent,
-        children: [{ path: &#x27;new&#x27;, component: NewInterviewDialogComponent }],
+        children: [{ path: &#x27;new&#x27;, component: AddInterviewDialogComponent }],
       },
       {
-        path: &#x27;infos&#x27;,
+        path: &#x27;contact-persons&#x27;,
         component: AuditInfoComponent,
         children: [{ path: &#x27;edit&#x27;, component: EditAuditDialogComponent }],
       },

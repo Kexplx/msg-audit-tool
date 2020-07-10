@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -111,40 +111,231 @@
     </table>
 </section>
 
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#audits$">audits$</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#toggleSidebar">toggleSidebar</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
 
 
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(sidebarService: NbSidebarService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/app.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>sidebarService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NbSidebarService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidebar"></a>
+                    <span class="name">
+                        <b>
+                            toggleSidebar
+                        </b>
+                        <a href="#toggleSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleSidebar()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/app/app.component.ts:18</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="audits$"></a>
+                        <span class="name">
+                            <b>
+                            audits$</b>
+                            <a href="#audits$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Audit.html" target="_self" >Observable&lt;Audit[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(AuditState.audits)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/app.component.ts:14</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+import { NbSidebarService } from &#x27;@nebular/theme&#x27;;
+import { Select } from &#x27;@ngxs/store&#x27;;
+import { AuditState } from &#x27;./core/ngxs/audit.state&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { Audit } from &#x27;./core/data/models/audit.model&#x27;;
 
 @Component({
   selector: &#x27;app-root&#x27;,
   templateUrl: &#x27;./app.component.html&#x27;,
   styleUrls: [&#x27;./app.component.scss&#x27;],
 })
-export class AppComponent {}
+export class AppComponent {
+  @Select(AuditState.audits) audits$: Observable&lt;Audit[]&gt;;
+
+  constructor(private sidebarService: NbSidebarService) {}
+
+  toggleSidebar() {
+    this.sidebarService.toggle();
+  }
+}
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;app-navbar&gt;&lt;/app-navbar&gt;
-&lt;nb-layout&gt;
-  &lt;nb-sidebar style&#x3D;&quot;top: 60px; z-index: 1;&quot; collapsedBreakpoints&#x3D;&quot;lg, md, sm, is, xs&quot; responsive data-cy&#x3D;&quot;sidebar&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;nb-layout&gt;
+  &lt;nb-layout-header fixed&gt;
+    &lt;nb-actions size&#x3D;&quot;small&quot;&gt;
+      &lt;nb-action (click)&#x3D;&quot;toggleSidebar()&quot; icon&#x3D;&quot;menu-2-outline&quot; data-cy&#x3D;&quot;toggle-sidebar&quot;&gt;Hello&lt;/nb-action&gt;
+      &lt;nb-action badgeStatus&#x3D;&quot;primary&quot; [badgeText]&#x3D;&quot;(audits$ | async) ? (audits$ | async).length : &#x27;0&#x27;&quot; routerLink&#x3D;&quot;/audits&quot; icon&#x3D;&quot;home-outline&quot; data-cy&#x3D;&quot;home&quot;&gt;&lt;/nb-action&gt;
+      &lt;nb-action routerLink&#x3D;&quot;/contact-persons&quot; icon&#x3D;&quot;people-outline&quot; data-cy&#x3D;&quot;contacts&quot;&gt;&lt;/nb-action&gt;
+    &lt;/nb-actions&gt;
+  &lt;/nb-layout-header&gt;
+  &lt;nb-sidebar collapsedBreakpoints&#x3D;&quot;lg, md, sm, is, xs&quot; responsive data-cy&#x3D;&quot;sidebar&quot;&gt;
     &lt;div class&#x3D;&quot;sidebar-container&quot;&gt;
       &lt;div class&#x3D;&quot;sidebar-container-content&quot; data-cy&#x3D;&quot;sidebar-content&quot;&gt;
-        &lt;h5&gt;Sidebar&lt;/h5&gt;
+        &lt;app-sidebar&gt;&lt;/app-sidebar&gt;
       &lt;/div&gt;
-      &lt;span class&#x3D;&quot;sidebar-container-version label&quot; data-cy&#x3D;&quot;sidebar-version-label&quot;&gt;
-        Version 0.0.1
-      &lt;/span&gt;
     &lt;/div&gt;
   &lt;/nb-sidebar&gt;
   &lt;nb-layout-column&gt;
@@ -168,10 +359,6 @@ export class AppComponent {}
   &amp; .sidebar-container-version {
     text-align: center;
   }
-}
-
-nb-layout-column {
-  margin-top: 60px;
 }
 </code></pre>
     </div>
@@ -201,8 +388,8 @@ nb-layout-column {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><app-navbar></app-navbar><nb-layout>  <nb-sidebar style="top: 60px; z-index: 1;" collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">    <div class="sidebar-container">      <div class="sidebar-container-content" data-cy="sidebar-content">        <h5>Sidebar</h5>      </div>      <span class="sidebar-container-version label" data-cy="sidebar-version-label">        Version 0.0.1      </span>    </div>  </nb-sidebar>  <nb-layout-column>    <router-outlet></router-outlet>  </nb-layout-column></nb-layout><ng-container appActionListener></ng-container></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><nb-layout>  <nb-layout-header fixed>    <nb-actions size="small">      <nb-action (click)="toggleSidebar()" icon="menu-2-outline" data-cy="toggle-sidebar">Hello</nb-action>      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async) ? (audits$ | async).length : \'0\'" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>      <nb-action routerLink="/contact-persons" icon="people-outline" data-cy="contacts"></nb-action>    </nb-actions>  </nb-layout-header>  <nb-sidebar collapsedBreakpoints="lg, md, sm, is, xs" responsive data-cy="sidebar">    <div class="sidebar-container">      <div class="sidebar-container-content" data-cy="sidebar-content">        <app-sidebar></app-sidebar>      </div>    </div>  </nb-sidebar>  <nb-layout-column>    <router-outlet></router-outlet>  </nb-layout-column></nb-layout><ng-container appActionListener></ng-container></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>

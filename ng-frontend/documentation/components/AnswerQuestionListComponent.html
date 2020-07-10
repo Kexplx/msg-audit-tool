@@ -1,0 +1,693 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>.msg Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AnswerQuestionListComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/features/interview/answer-question-list/answer-question-list.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-answer-question-list</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./answer-question-list.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./answer-question-list.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formGroups">formGroups</a>
+                            </li>
+                            <li>
+                                <a href="#questions$">questions$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#store">store</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#onSave">onSave</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#answers">answers</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(store: Store, fb: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="answers"></a>
+                        <b>answers</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Answer.html" target="_self" >Answer[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:16</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <b>
+                            ngOnChanges
+                        </b>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="23"
+                            class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:23</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSave"></a>
+                    <span class="name">
+                        <b>
+                            onSave
+                        </b>
+                        <a href="#onSave"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSave()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:42</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formGroups"></a>
+                        <span class="name">
+                            <b>
+                            formGroups</b>
+                            <a href="#formGroups"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>FormGroup[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="questions$"></a>
+                        <span class="name">
+                            <b>
+                            questions$</b>
+                            <a href="#questions$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Question.html" target="_self" >Observable&lt;Question[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(InterviewState.questions)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="store"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            store</b>
+                            <a href="#store"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Store</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/features/interview/answer-question-list/answer-question-list.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, OnChanges } from &#x27;@angular/core&#x27;;
+import { Answer } from &#x27;src/app/core/data/models/answer.model&#x27;;
+import { Select, Store } from &#x27;@ngxs/store&#x27;;
+import { InterviewState } from &#x27;src/app/core/ngxs/interview.state&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { Question } from &#x27;src/app/core/data/models/question.model&#x27;;
+import { FormGroup, FormBuilder } from &#x27;@angular/forms&#x27;;
+import { UpdateAnswer } from &#x27;src/app/core/ngxs/actions/inteview.actions&#x27;;
+
+@Component({
+  selector: &#x27;app-answer-question-list&#x27;,
+  templateUrl: &#x27;./answer-question-list.component.html&#x27;,
+  styleUrls: [&#x27;./answer-question-list.component.scss&#x27;],
+})
+export class AnswerQuestionListComponent implements OnChanges {
+  @Input() answers: Answer[];
+  @Select(InterviewState.questions) questions$: Observable&lt;Question[]&gt;;
+
+  formGroups: FormGroup[];
+
+  constructor(public store: Store, private fb: FormBuilder) {}
+
+  ngOnChanges() {
+    this.formGroups &#x3D; [];
+
+    for (const answer of this.answers) {
+      if (this.formGroups)
+        this.formGroups.push(
+          this.fb.group({
+            result: [answer?.result],
+            responsible: [answer?.responsible],
+            documentation: [answer?.documentation],
+            procedure: [answer?.procedure],
+            reason: [answer?.reason],
+            proof: [answer?.proof],
+            annotation: [answer?.annotation],
+          }),
+        );
+    }
+  }
+
+  onSave() {
+    for (const [i, a] of this.answers.entries()) {
+      const formGroup &#x3D; this.formGroups[i];
+      const answer: Answer &#x3D; {
+        ...a,
+        proof: formGroup.get(&#x27;proof&#x27;).value,
+        result: formGroup.get(&#x27;result&#x27;).value,
+        documentation: formGroup.get(&#x27;documentation&#x27;).value,
+        procedure: formGroup.get(&#x27;procedure&#x27;).value,
+        reason: formGroup.get(&#x27;reason&#x27;).value,
+        annotation: formGroup.get(&#x27;annotation&#x27;).value,
+        responsible: formGroup.get(&#x27;responsible&#x27;).value,
+      };
+
+      this.store.dispatch(new UpdateAnswer(answer));
+    }
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;header class&#x3D;&quot;mt-1 header-container-1&quot;&gt;
+  &lt;h5 data-cy&#x3D;&quot;faccrit&quot;&gt;
+    Basisfragen
+  &lt;/h5&gt;
+  &lt;button status&#x3D;&quot;primary&quot; hero (click)&#x3D;&quot;onSave()&quot; nbButton data-cy&#x3D;&quot;save&quot;&gt;
+    &lt;nb-icon icon&#x3D;&quot;save-outline&quot;&gt;&lt;/nb-icon&gt;
+    speichern
+  &lt;/button&gt;
+&lt;/header&gt;
+&lt;nb-accordion [id]&#x3D;&quot;answer.questionId&quot; class&#x3D;&quot;mt-2&quot; *ngFor&#x3D;&quot;let answer of answers; let i &#x3D; index&quot;&gt;
+  &lt;nb-accordion-item expanded class&#x3D;&quot;mb-2&quot; data-cy&#x3D;&quot;question-accordeon-item&quot;&gt;
+    &lt;nb-accordion-item-header data-cy&#x3D;&quot;question-card-header&quot;&gt;{{ (questions$ | async | questionById: answer.questionId)?.textDe }} &lt;/nb-accordion-item-header&gt;
+    &lt;nb-accordion-item-body&gt;
+      &lt;form [formGroup]&#x3D;&quot;formGroups[i]&quot; class&#x3D;&quot;container-interview-form&quot; data-cy&#x3D;&quot;question-form&quot;&gt;
+        &lt;div class&#x3D;&quot;container-checkboxes&quot;&gt;
+          &lt;nb-checkbox formControlName&#x3D;&quot;result&quot; data-cy&#x3D;&quot;question-result&quot;&gt;Ergebnis&lt;/nb-checkbox&gt;
+          &lt;nb-checkbox formControlName&#x3D;&quot;responsible&quot; data-cy&#x3D;&quot;question-responsible&quot;&gt;Verantwortlicher&lt;/nb-checkbox&gt;
+          &lt;nb-checkbox formControlName&#x3D;&quot;documentation&quot; data-cy&#x3D;&quot;question-documentation&quot;&gt;Dokumentation&lt;/nb-checkbox&gt;
+          &lt;nb-checkbox formControlName&#x3D;&quot;procedure&quot; data-cy&#x3D;&quot;question-strategy&quot;&gt;Vorgehen&lt;/nb-checkbox&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;container-inputs-item-1&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Begründung&lt;/label&gt;
+          &lt;textarea formControlName&#x3D;&quot;reason&quot; spellcheck&#x3D;&quot;false&quot; fullWidth nbInput data-cy&#x3D;&quot;question-reason&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;container-inputs-item-2&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Bemerkung&lt;/label&gt;
+          &lt;textarea formControlName&#x3D;&quot;annotation&quot; spellcheck&#x3D;&quot;false&quot; fullWidth nbInput data-cy&#x3D;&quot;question-note&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;container-inputs-item-3&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Nachweis&lt;/label&gt;
+          &lt;textarea formControlName&#x3D;&quot;proof&quot; spellcheck&#x3D;&quot;false&quot; fullWidth nbInput data-cy&#x3D;&quot;question-certificate&quot;&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/nb-accordion-item-body&gt;
+  &lt;/nb-accordion-item&gt;
+&lt;/nb-accordion&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./answer-question-list.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../../sass/utils&#x27;;
+
+.header-container-1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-checkboxes {
+  grid-row: 1 / 3;
+  display: grid;
+}
+
+.container-inputs-item-1 {
+  grid-column: 2 / 4;
+}
+
+.container-inputs-item-2 {
+  grid-column: 2 / 3;
+}
+
+.container-inputs-item-3 {
+  grid-column: 3 / 4;
+}
+
+.container-interview-form {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 20px;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><header class="mt-1 header-container-1">  <h5 data-cy="faccrit">    Basisfragen  </h5>  <button status="primary" hero (click)="onSave()" nbButton data-cy="save">    <nb-icon icon="save-outline"></nb-icon>    speichern  </button></header><nb-accordion [id]="answer.questionId" class="mt-2" *ngFor="let answer of answers; let i = index">  <nb-accordion-item expanded class="mb-2" data-cy="question-accordeon-item">    <nb-accordion-item-header data-cy="question-card-header">{{ (questions$ | async | questionById: answer.questionId)?.textDe }} </nb-accordion-item-header>    <nb-accordion-item-body>      <form [formGroup]="formGroups[i]" class="container-interview-form" data-cy="question-form">        <div class="container-checkboxes">          <nb-checkbox formControlName="result" data-cy="question-result">Ergebnis</nb-checkbox>          <nb-checkbox formControlName="responsible" data-cy="question-responsible">Verantwortlicher</nb-checkbox>          <nb-checkbox formControlName="documentation" data-cy="question-documentation">Dokumentation</nb-checkbox>          <nb-checkbox formControlName="procedure" data-cy="question-strategy">Vorgehen</nb-checkbox>        </div>        <div class="container-inputs-item-1">          <label class="label">Begründung</label>          <textarea formControlName="reason" spellcheck="false" fullWidth nbInput data-cy="question-reason"></textarea>        </div>        <div class="container-inputs-item-2">          <label class="label">Bemerkung</label>          <textarea formControlName="annotation" spellcheck="false" fullWidth nbInput data-cy="question-note"></textarea>        </div>        <div class="container-inputs-item-3">          <label class="label">Nachweis</label>          <textarea formControlName="proof" spellcheck="false" fullWidth nbInput data-cy="question-certificate"></textarea>        </div>      </form>    </nb-accordion-item-body>  </nb-accordion-item></nb-accordion></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
+    var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
+    var ACTUAL_COMPONENT = {'name': 'AnswerQuestionListComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AnswerQuestionListComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

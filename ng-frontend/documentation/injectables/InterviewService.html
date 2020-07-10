@@ -1,0 +1,750 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>.msg Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>InterviewService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/http/interview.service.ts</code>
+        </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getInterview">getInterview</a>
+                            </li>
+                            <li>
+                                <a href="#getInterviews">getInterviews</a>
+                            </li>
+                            <li>
+                                <a href="#getInterviewsByAuditId">getInterviewsByAuditId</a>
+                            </li>
+                            <li>
+                                <a href="#postInterview">postInterview</a>
+                            </li>
+                            <li>
+                                <a href="#putInterview">putInterview</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/core/http/interview.service.ts:16</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInterview"></a>
+                    <span class="name">
+                        <b>
+                            getInterview
+                        </b>
+                        <a href="#getInterview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInterview(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/core/http/interview.service.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a GET request to get an interview.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The interview&#39;s id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Interview.html" target="_self" >Observable&lt;Interview&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the interview.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInterviews"></a>
+                    <span class="name">
+                        <b>
+                            getInterviews
+                        </b>
+                        <a href="#getInterviews"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInterviews()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/core/http/interview.service.ts:46</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a GET request to get all interviews.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Interview.html" target="_self" >Observable&lt;Interview[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the interviews.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInterviewsByAuditId"></a>
+                    <span class="name">
+                        <b>
+                            getInterviewsByAuditId
+                        </b>
+                        <a href="#getInterviewsByAuditId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInterviewsByAuditId(auditId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/core/http/interview.service.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a GET request to get all interviews by an audit id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>auditId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Interview.html" target="_self" >Observable&lt;Interview[]&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the interviews.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="postInterview"></a>
+                    <span class="name">
+                        <b>
+                            postInterview
+                        </b>
+                        <a href="#postInterview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>postInterview(undefined: <a href="../interfaces/Interview.html">Interview</a>, interviewScope: <a href="../interfaces/FacCrit.html">FacCrit[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="95"
+                            class="link-to-prism">src/app/core/http/interview.service.ts:95</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a POST request to create an interview.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../interfaces/Interview.html" target="_self" >Interview</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>interviewScope</td>
+                                    <td>
+                                                <code><a href="../interfaces/FacCrit.html" target="_self" >FacCrit[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The interviews scope (List of assigned fac crits).</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Interview.html" target="_self" >Observable&lt;Interview&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the created interview.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="putInterview"></a>
+                    <span class="name">
+                        <b>
+                            putInterview
+                        </b>
+                        <a href="#putInterview"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>putInterview(undefined: <a href="../interfaces/Interview.html">Interview</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="136"
+                            class="link-to-prism">src/app/core/http/interview.service.ts:136</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Builds an observable for making a PUT request to update an interview.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                                <code><a href="../interfaces/Interview.html" target="_self" >Interview</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Interview.html" target="_self" >Observable&lt;Interview&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An Observable of the updated interview.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { HttpClient } from &#x27;@angular/common/http&#x27;;
+import { InterviewDto } from &#x27;./dtos/interview.dto&#x27;;
+import { map } from &#x27;rxjs/operators&#x27;;
+import { Interview } from &#x27;../data/models/interview.model&#x27;;
+import { PostInterviewDto } from &#x27;./dtos/post-interview.dto&#x27;;
+import { FacCrit } from &#x27;../data/models/faccrit.model&#x27;;
+import { PutInterviewDto } from &#x27;./dtos/put-interview.dto&#x27;;
+import { parseTimestamp } from &#x27;src/app/shared/helpers/date-helpers&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { environment } from &#x27;src/environments/environment&#x27;;
+
+@Injectable({
+  providedIn: &#x27;root&#x27;,
+})
+export class InterviewService {
+  constructor(private http: HttpClient) {}
+
+  /**
+   * Builds an observable for making a GET request to get an interview.
+   *
+   * @param id The interview&#x27;s id.
+   * @returns An Observable of the interview.
+   */
+  getInterview(id: number): Observable&lt;Interview&gt; {
+    const url &#x3D; environment.baseUrl + &#x27;interviews/&#x27; + id;
+
+    return this.http.get&lt;InterviewDto&gt;(url).pipe(
+      map&lt;InterviewDto, Interview&gt;(interviewDto &#x3D;&gt; {
+        const { endDate, startDate } &#x3D; interviewDto;
+        return {
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
+        };
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a GET request to get all interviews.
+   *
+   * @returns An Observable of the interviews.
+   */
+  getInterviews(): Observable&lt;Interview[]&gt; {
+    const url &#x3D; environment.baseUrl + &#x27;interviews&#x27;;
+
+    return this.http.get&lt;InterviewDto[]&gt;(url).pipe(
+      map&lt;InterviewDto[], Interview[]&gt;(interviewDtos &#x3D;&gt; {
+        return interviewDtos.map(interviewDto &#x3D;&gt; {
+          const { endDate, startDate } &#x3D; interviewDto;
+          return {
+            ...interviewDto,
+            contactPersons: interviewDto.interviewedContactPersons,
+            endDate: new Date(endDate).getTime(),
+            startDate: new Date(startDate).getTime(),
+          };
+        });
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a GET request to get all interviews by an audit id.
+   *
+   * @param id The audit&#x27;s id.
+   * @returns An Observable of the interviews.
+   */
+  getInterviewsByAuditId(auditId: number): Observable&lt;Interview[]&gt; {
+    const url &#x3D; environment.baseUrl + &#x27;audits/&#x27; + auditId + &#x27;/interviews&#x27;;
+
+    return this.http.get&lt;InterviewDto[]&gt;(url).pipe(
+      map&lt;InterviewDto[], Interview[]&gt;(interviewDtos &#x3D;&gt; {
+        return interviewDtos.map(interviewDto &#x3D;&gt; {
+          const { endDate, startDate } &#x3D; interviewDto;
+          return {
+            ...interviewDto,
+            contactPersons: interviewDto.interviewedContactPersons,
+            endDate: new Date(endDate).getTime(),
+            startDate: new Date(startDate).getTime(),
+          };
+        });
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a POST request to create an interview.
+   *
+   * @param interview The interview to create.
+   * @param interviewScope The interviews scope (List of assigned fac crits).
+   * @returns An Observable of the created interview.
+   */
+  postInterview(
+    { contactPersons, startDate, auditId }: Interview,
+    interviewScope: FacCrit[],
+  ): Observable&lt;Interview&gt; {
+    const url &#x3D; environment.baseUrl + &#x27;interviews&#x27;;
+    const interviewedContactPersonsDto: { id: number; role: string }[] &#x3D; [];
+
+    for (const iterator of contactPersons ?? []) {
+      interviewedContactPersonsDto.push({ id: iterator.id, role: &#x27;Default Role&#x27; });
+    }
+
+    const interviewScopeDto &#x3D; interviewScope?.map(facCrit &#x3D;&gt; facCrit.id);
+
+    const postInterviewDto: PostInterviewDto &#x3D; {
+      auditId,
+      goal: &#x27;&#x27;,
+      startDate: parseTimestamp(startDate),
+      interviewScope: interviewScopeDto,
+      interviewedContactPersons: interviewedContactPersonsDto,
+    };
+
+    return this.http.post&lt;InterviewDto&gt;(url, postInterviewDto).pipe(
+      map&lt;InterviewDto, Interview&gt;(interviewDto &#x3D;&gt; {
+        const { endDate, startDate } &#x3D; interviewDto;
+
+        return {
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
+        };
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a PUT request to update an interview.
+   *
+   * @param interview The interview to update.
+   * @returns An Observable of the updated interview.
+   */
+  putInterview({ startDate, endDate, status, goal, id }: Interview): Observable&lt;Interview&gt; {
+    const url &#x3D; environment.baseUrl + &#x27;interviews/&#x27; + id;
+
+    const putInterviewDto: PutInterviewDto &#x3D; {
+      endDate: parseTimestamp(endDate),
+      startDate: parseTimestamp(startDate),
+      goal,
+      status,
+    };
+
+    return this.http.put&lt;InterviewDto&gt;(url, putInterviewDto).pipe(
+      map&lt;InterviewDto, Interview&gt;(interviewDto &#x3D;&gt; {
+        const { endDate, startDate } &#x3D; interviewDto;
+
+        return {
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
+        };
+      }),
+    );
+  }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'InterviewService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

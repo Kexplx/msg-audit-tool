@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -61,7 +61,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/features/audit-overview/components/audit-overview/interview-list/interview-list.component.ts</code>
+    <code>src/app/features/audit-overview/interview-list/interview-list.component.ts</code>
 </p>
 
 
@@ -132,6 +132,15 @@
                             <li>
                                 <a href="#audit$">audit$</a>
                             </li>
+                            <li>
+                                <a href="#auditId$">auditId$</a>
+                            </li>
+                            <li>
+                                <a href="#facCrits$">facCrits$</a>
+                            </li>
+                            <li>
+                                <a href="#interviews$">interviews$</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -165,12 +174,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, store: Store)</code>
+<code>constructor(store: Store)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-list.component.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/features/audit-overview/interview-list/interview-list.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -187,18 +196,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                <tr>
-                                                        <td>router</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
                                                 <tr>
                                                         <td>store</td>
                                                   
@@ -251,8 +248,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-list.component.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/features/audit-overview/interview-list/interview-list.component.ts:25</a></div>
                 </td>
             </tr>
 
@@ -294,7 +291,106 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/features/audit-overview/components/audit-overview/interview-list/interview-list.component.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/features/audit-overview/interview-list/interview-list.component.ts:21</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="auditId$"></a>
+                        <span class="name">
+                            <b>
+                            auditId$</b>
+                            <a href="#auditId$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Observable&lt;number&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(AppRouterState.auditId)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/features/audit-overview/interview-list/interview-list.component.ts:18</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="facCrits$"></a>
+                        <span class="name">
+                            <b>
+                            facCrits$</b>
+                            <a href="#facCrits$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/FacCrit.html" target="_self" >Observable&lt;FacCrit[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(AuditState.facCrits)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/features/audit-overview/interview-list/interview-list.component.ts:17</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="interviews$"></a>
+                        <span class="name">
+                            <b>
+                            interviews$</b>
+                            <a href="#interviews$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Interview.html" target="_self" >Observable&lt;Interview[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/features/audit-overview/interview-list/interview-list.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -309,10 +405,13 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
 import { Audit } from &#x27;src/app/core/data/models/audit.model&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
 import { Observable } from &#x27;rxjs&#x27;;
-import { Store } from &#x27;@ngxs/store&#x27;;
-import { AuditRegistryState } from &#x27;src/app/core/ngxs/audit-registry.state&#x27;;
+import { Store, Select } from &#x27;@ngxs/store&#x27;;
+import { AuditState } from &#x27;src/app/core/ngxs/audit.state&#x27;;
+import { FacCrit } from &#x27;src/app/core/data/models/faccrit.model&#x27;;
+import { AppRouterState } from &#x27;src/app/core/ngxs/app-router.state&#x27;;
+import { Interview } from &#x27;src/app/core/data/models/interview.model&#x27;;
+import { InterviewState } from &#x27;src/app/core/ngxs/interview.state&#x27;;
 
 @Component({
   selector: &#x27;app-interview-list&#x27;,
@@ -320,22 +419,27 @@ import { AuditRegistryState } from &#x27;src/app/core/ngxs/audit-registry.state&
   styleUrls: [&#x27;./interview-list.component.scss&#x27;],
 })
 export class InterviewListComponent implements OnInit {
+  @Select(AuditState.facCrits) facCrits$: Observable&lt;FacCrit[]&gt;;
+  @Select(AppRouterState.auditId) auditId$: Observable&lt;number&gt;;
+
+  interviews$: Observable&lt;Interview[]&gt;;
   audit$: Observable&lt;Audit&gt;;
-  constructor(private router: Router, private store: Store) {}
+
+  constructor(private store: Store) {}
 
   ngOnInit() {
-    const idRegex &#x3D; /\/audits\/([^\/]*)\/.*/gm;
-    const id &#x3D; idRegex.exec(this.router.url)[1];
-    this.audit$ &#x3D; this.store.select(AuditRegistryState.audit(id));
+    this.auditId$.subscribe(id &#x3D;&gt; {
+      this.audit$ &#x3D; this.store.select(AuditState.audit(id));
+      this.interviews$ &#x3D; this.store.select(InterviewState.interviewsByAuditId(id));
+    });
   }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;!-- &lt;header&gt;
-  &lt;div&gt;&lt;/div&gt;
-  &lt;button [routerLink]&#x3D;&quot;[&#x27;new&#x27;]&quot; nbButton status&#x3D;&quot;primary&quot; hero data-cy&#x3D;&quot;new-interview&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;header&gt;
+  &lt;button [disabled]&#x3D;&quot;!(audit$ | async)?.scope.length&quot; [routerLink]&#x3D;&quot;[&#x27;new&#x27;]&quot; nbButton status&#x3D;&quot;primary&quot; hero data-cy&#x3D;&quot;new-interview&quot;&gt;
     &lt;div class&#x3D;&quot;min-500&quot;&gt;
       &lt;nb-icon icon&#x3D;&quot;plus&quot;&gt;&lt;/nb-icon&gt;
       Neues Interview
@@ -345,22 +449,51 @@ export class InterviewListComponent implements OnInit {
     &lt;/div&gt;
   &lt;/button&gt;
 &lt;/header&gt;
-&lt;div class&#x3D;&quot;wrapper-interviews&quot;&gt;
-  &lt;nb-card *ngFor&#x3D;&quot;let factor of (audit$ | async).scope&quot;&gt;
-    &lt;nb-card-header class&#x3D;&quot;subtitle&quot;&gt;{{ factor.title }}&lt;/nb-card-header&gt;
-    &lt;nb-list *ngIf&#x3D;&quot;(audit$ | async).interviews | filterInterviews: factor.title as interviews&quot; data-cy&#x3D;&quot;interview-factor-name&quot;&gt;
-      &lt;nb-list-item *ngFor&#x3D;&quot;let interview of interviews&quot;&gt;
-        &lt;app-interview-card [interview]&#x3D;&quot;interview&quot;&gt; &lt;/app-interview-card&gt;
-      &lt;/nb-list-item&gt;
-    &lt;/nb-list&gt;
-  &lt;/nb-card&gt;
+&lt;div class&#x3D;&quot;fac-crits&quot; *ngIf&#x3D;&quot;(audit$ | async)?.scope.length &gt; 0; else noFacrits&quot;&gt;
+  &lt;nb-accordion [id]&#x3D;&quot;factor.id&quot; *ngFor&#x3D;&quot;let factor of (audit$ | async)?.scope | factors&quot;&gt;
+    &lt;nb-accordion-item expanded data-cy&#x3D;&quot;factor-card&quot;&gt;
+      &lt;nb-accordion-item-header class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;factor-header&quot;&gt;{{ factor.name }}&lt;/nb-accordion-item-header&gt;
+      &lt;nb-accordion-item-body data-cy&#x3D;&quot;faccrit-body&quot;&gt;
+        &lt;nb-list *ngIf&#x3D;&quot;interviews$ | async | interviewsByFacCritId: factor.id as interviews; else noInterviews&quot;&gt;
+          &lt;nb-list-item *ngFor&#x3D;&quot;let interview of interviews&quot;&gt;
+            &lt;app-interview-card [interview]&#x3D;&quot;interview&quot; [facCritId]&#x3D;&quot;factor.id&quot; data-cy&#x3D;&quot;interview&quot;&gt;&lt;/app-interview-card&gt;
+          &lt;/nb-list-item&gt;
+        &lt;/nb-list&gt;
+        &lt;ng-template #noInterviews&gt;
+          &lt;div class&#x3D;&quot;hint-no-interviews label&quot; data-cy&#x3D;&quot;noInterviews&quot;&gt;
+            Keine Interviews vorhanden
+          &lt;/div&gt;
+        &lt;/ng-template&gt;
+        &lt;nb-card [id]&#x3D;&quot;criteria.id&quot; class&#x3D;&quot;mt-2&quot; *ngFor&#x3D;&quot;let criteria of (audit$ | async)?.scope | criteriaByFactorId: factor.id&quot;&gt;
+          &lt;nb-card-header class&#x3D;&quot;subtitle-2&quot; data-cy&#x3D;&quot;criteria-header&quot;&gt;
+            {{ criteria.name }}
+          &lt;/nb-card-header&gt;
+          &lt;nb-card-body&gt;
+            &lt;nb-list *ngIf&#x3D;&quot;interviews$ | async | interviewsByFacCritId: criteria.id as interviews; else noInterviews&quot;&gt;
+              &lt;nb-list-item *ngFor&#x3D;&quot;let interview of interviews&quot;&gt;
+                &lt;app-interview-card [interview]&#x3D;&quot;interview&quot; [facCritId]&#x3D;&quot;criteria.id&quot; data-cy&#x3D;&quot;interview&quot;&gt;&lt;/app-interview-card&gt;
+              &lt;/nb-list-item&gt;
+            &lt;/nb-list&gt;
+            &lt;ng-template #noInterviews&gt;
+              &lt;div class&#x3D;&quot;hint-no-interviews label&quot;&gt;
+                Keine Interviews vorhanden
+              &lt;/div&gt;
+            &lt;/ng-template&gt;
+          &lt;/nb-card-body&gt;
+        &lt;/nb-card&gt;
+      &lt;/nb-accordion-item-body&gt;
+    &lt;/nb-accordion-item&gt;
+  &lt;/nb-accordion&gt;
 &lt;/div&gt;
-&lt;aside class&#x3D;&quot;hint-no-interviews&quot; *ngIf&#x3D;&quot;(audit$ | async).scope.length &#x3D;&#x3D; 0&quot;&gt;
-  &lt;h6 class&#x3D;&quot;text-hint&quot;&gt;Keine Interviews vorhanden&lt;/h6&gt;
-&lt;/aside&gt;
+&lt;ng-template #noFacrits&gt;
+  &lt;div class&#x3D;&quot;hint-no-interviews&quot; data-cy&#x3D;&quot;emptyScope&quot;&gt;
+    &lt;h6 class&#x3D;&quot;text-hint mb-1&quot;&gt;Leerer Scope&lt;/h6&gt;
+    &lt;p class&#x3D;&quot;label&quot;&gt;Fügen Sie dem Audit ISO/IEC Faktoren &amp; Kriterien hinzu&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
 &lt;nb-layout&gt;
   &lt;router-outlet&gt;&lt;/router-outlet&gt;
-&lt;/nb-layout&gt; --&gt;
+&lt;/nb-layout&gt;
 </code></pre>
     </div>
 
@@ -368,12 +501,12 @@ export class InterviewListComponent implements OnInit {
                 <p class="comment">
                     <code>./interview-list.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/sass/utils&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;../../../../sass/utils&#x27;;
 
 header {
   margin: 20px 0 10px 0;
   display: grid;
-  grid-template-columns: 1fr auto;
+  justify-items: right;
 }
 
 nb-accordion {
@@ -388,38 +521,31 @@ app-interview-card {
 nb-card {
   margin-bottom: 0px;
 }
-ul {
-  list-style-type: none;
-}
 
 li {
   margin-left: 20px;
 }
 
-.criteria-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
-}
-
 .hint-no-interviews {
-  max-width: 900px;
-  margin: 100px auto 0 auto;
+  margin: 0 auto;
   text-align: center;
 }
 
-.wrapper-interviews {
+nb-list-item {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+}
 
-  @media screen and (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
+nb-accordion-item-header,
+nb-card-header {
+  background: #f7f9fc !important;
+}
+
+nb-accordion-item-header {
+  border-radius: 0.25rem !important;
+}
+
+nb-accordion-item.expanded nb-accordion-item-header {
+  border-radius: 0.25rem 0.25rem 0 0 !important;
 }
 </code></pre>
     </div>
@@ -449,8 +575,8 @@ li {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- <header>  <div></div>  <button [routerLink]="[\'new\']" nbButton status="primary" hero data-cy="new-interview">    <div class="min-500">      <nb-icon icon="plus"></nb-icon>      Neues Interview    </div>    <div class="max-500">      <nb-icon icon="plus"></nb-icon>    </div>  </button></header><div class="wrapper-interviews">  <nb-card *ngFor="let factor of (audit$ | async).scope">    <nb-card-header class="subtitle">{{ factor.title }}</nb-card-header>    <nb-list *ngIf="(audit$ | async).interviews | filterInterviews: factor.title as interviews" data-cy="interview-factor-name">      <nb-list-item *ngFor="let interview of interviews">        <app-interview-card [interview]="interview"> </app-interview-card>      </nb-list-item>    </nb-list>  </nb-card></div><aside class="hint-no-interviews" *ngIf="(audit$ | async).scope.length == 0">  <h6 class="text-hint">Keine Interviews vorhanden</h6></aside><nb-layout>  <router-outlet></router-outlet></nb-layout> --></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><header>  <button [disabled]="!(audit$ | async)?.scope.length" [routerLink]="[\'new\']" nbButton status="primary" hero data-cy="new-interview">    <div class="min-500">      <nb-icon icon="plus"></nb-icon>      Neues Interview    </div>    <div class="max-500">      <nb-icon icon="plus"></nb-icon>    </div>  </button></header><div class="fac-crits" *ngIf="(audit$ | async)?.scope.length > 0; else noFacrits">  <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async)?.scope | factors">    <nb-accordion-item expanded data-cy="factor-card">      <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">{{ factor.name }}</nb-accordion-item-header>      <nb-accordion-item-body data-cy="faccrit-body">        <nb-list *ngIf="interviews$ | async | interviewsByFacCritId: factor.id as interviews; else noInterviews">          <nb-list-item *ngFor="let interview of interviews">            <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>          </nb-list-item>        </nb-list>        <ng-template #noInterviews>          <div class="hint-no-interviews label" data-cy="noInterviews">            Keine Interviews vorhanden          </div>        </ng-template>        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async)?.scope | criteriaByFactorId: factor.id">          <nb-card-header class="subtitle-2" data-cy="criteria-header">            {{ criteria.name }}          </nb-card-header>          <nb-card-body>            <nb-list *ngIf="interviews$ | async | interviewsByFacCritId: criteria.id as interviews; else noInterviews">              <nb-list-item *ngFor="let interview of interviews">                <app-interview-card [interview]="interview" [facCritId]="criteria.id" data-cy="interview"></app-interview-card>              </nb-list-item>            </nb-list>            <ng-template #noInterviews>              <div class="hint-no-interviews label">                Keine Interviews vorhanden              </div>            </ng-template>          </nb-card-body>        </nb-card>      </nb-accordion-item-body>    </nb-accordion-item>  </nb-accordion></div><ng-template #noFacrits>  <div class="hint-no-interviews" data-cy="emptyScope">    <h6 class="text-hint mb-1">Leerer Scope</h6>    <p class="label">Fügen Sie dem Audit ISO/IEC Faktoren & Kriterien hinzu</p>  </div></ng-template><nb-layout>  <router-outlet></router-outlet></nb-layout></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'InterviewListComponent'};
 </script>
