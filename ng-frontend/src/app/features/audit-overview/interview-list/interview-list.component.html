@@ -1,56 +1,67 @@
-<header>
-  <button [disabled]="!(audit$ | async)?.scope.length" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
-    <div class="min-500">
+<ng-container *ngIf="audit && interviews">
+  <header>
+    <button [disabled]="audit.scope?.length === 0" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
       <nb-icon icon="plus"></nb-icon>
       Neues Interview
-    </div>
-    <div class="max-500">
-      <nb-icon icon="plus"></nb-icon>
-    </div>
-  </button>
-</header>
-<div class="fac-crits" *ngIf="(audit$ | async)?.scope.length > 0; else noFacrits">
-  <nb-accordion [id]="factor.id" *ngFor="let factor of (audit$ | async)?.scope | factors">
-    <nb-accordion-item expanded data-cy="factor-card">
-      <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">{{ factor.name }}</nb-accordion-item-header>
-      <nb-accordion-item-body data-cy="faccrit-body">
-        <nb-list *ngIf="interviews$ | async | interviewsByFacCritId: factor.id as interviews; else noInterviews">
-          <nb-list-item *ngFor="let interview of interviews">
-            <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
-          </nb-list-item>
-        </nb-list>
-        <ng-template #noInterviews>
-          <div class="hint-no-interviews label" data-cy="noInterviews">
-            Keine Interviews vorhanden
-          </div>
-        </ng-template>
-        <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of (audit$ | async)?.scope | criteriaByFactorId: factor.id">
-          <nb-card-header class="subtitle-2" data-cy="criteria-header">
-            {{ criteria.name }}
-          </nb-card-header>
-          <nb-card-body>
-            <nb-list *ngIf="interviews$ | async | interviewsByFacCritId: criteria.id as interviews; else noInterviews">
-              <nb-list-item *ngFor="let interview of interviews">
-                <app-interview-card [interview]="interview" [facCritId]="criteria.id" data-cy="interview"></app-interview-card>
-              </nb-list-item>
-            </nb-list>
-            <ng-template #noInterviews>
-              <div class="hint-no-interviews label">
-                Keine Interviews vorhanden
-              </div>
-            </ng-template>
-          </nb-card-body>
-        </nb-card>
-      </nb-accordion-item-body>
-    </nb-accordion-item>
-  </nb-accordion>
-</div>
-<ng-template #noFacrits>
-  <div class="hint-no-interviews" data-cy="emptyScope">
-    <h6 class="text-hint mb-1">Leerer Scope</h6>
-    <p class="label">Fügen Sie dem Audit ISO/IEC Faktoren & Kriterien hinzu</p>
+    </button>
+  </header>
+  <div class="fac-crits" *ngIf="audit.scope.length > 0; else noFacrits">
+    <nb-accordion [id]="factor.id" *ngFor="let factor of audit.scope | factors">
+      <nb-accordion-item [expanded]="!(interviews | interviewsByFacCritId: factor.id | allInterviewsFinished)" data-cy="factor-card">
+        <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">
+          <ng-container [ngSwitch]="interviews | interviewsByFacCritId: factor.id | allInterviewsFinished">
+            <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="false" class="banner-status banner-status-in-action" data-cy="interview-status"></div>
+            <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="true" class="banner-status banner-status-is-finished" data-cy="interview-status"></div>
+          </ng-container>
+          <span class="ml-1">
+            {{ factor.name }}
+          </span>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body data-cy="faccrit-body">
+          <nb-list *ngIf="interviews | interviewsByFacCritId: factor.id as interviews; else noInterviews">
+            <nb-list-item *ngFor="let interview of interviews">
+              <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
+            </nb-list-item>
+          </nb-list>
+          <ng-template #noInterviews>
+            <div class="hint-no-interviews label" data-cy="noInterviews">
+              Keine Interviews vorhanden
+            </div>
+          </ng-template>
+          <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of audit.scope | criteriaByFactorId: factor.id">
+            <nb-card-header class="subtitle-2" data-cy="criteria-header">
+              <ng-container [ngSwitch]="interviews | interviewsByFacCritId: criteria.id | allInterviewsFinished">
+                <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="false" class="banner-status banner-status-in-action" data-cy="interview-status"></div>
+                <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="true" class="banner-status banner-status-is-finished" data-cy="interview-status"></div>
+              </ng-container>
+              <span class="ml-1">
+                {{ criteria.name }}
+              </span>
+            </nb-card-header>
+            <nb-card-body>
+              <nb-list *ngIf="interviews | interviewsByFacCritId: criteria.id as interviews; else noInterviews">
+                <nb-list-item *ngFor="let interview of interviews">
+                  <app-interview-card [interview]="interview" [facCritId]="criteria.id" data-cy="interview"></app-interview-card>
+                </nb-list-item>
+              </nb-list>
+              <ng-template #noInterviews>
+                <div class="hint-no-interviews label">
+                  Keine Interviews vorhanden
+                </div>
+              </ng-template>
+            </nb-card-body>
+          </nb-card>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
   </div>
-</ng-template>
-<nb-layout>
-  <router-outlet></router-outlet>
-</nb-layout>
+  <ng-template #noFacrits>
+    <div class="hint-no-interviews" data-cy="emptyScope">
+      <h6 class="text-hint mb-1">Leerer Scope</h6>
+      <p class="label">Fügen Sie dem Audit ISO/IEC Faktoren & Kriterien hinzu</p>
+    </div>
+  </ng-template>
+  <nb-layout>
+    <router-outlet></router-outlet>
+  </nb-layout>
+</ng-container>

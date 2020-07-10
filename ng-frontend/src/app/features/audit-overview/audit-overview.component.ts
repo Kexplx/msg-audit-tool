@@ -3,8 +3,6 @@ import { Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { Interview } from 'src/app/core/data/models/interview.model';
-import { InterviewState } from 'src/app/core/ngxs/interview.state';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 
 @Component({
@@ -13,11 +11,9 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
   styleUrls: ['./audit-overview.component.scss'],
 })
 export class AuditOverviewComponent implements OnInit {
-  interviews$: Observable<Interview[]>;
-  audit$: Observable<Audit>;
-
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
+  audit: Audit;
   tabs: any[] = [
     {
       title: 'Interviews',
@@ -38,8 +34,7 @@ export class AuditOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.auditId$.subscribe(id => {
-      this.audit$ = this.store.select(AuditState.audit(id));
-      this.interviews$ = this.store.select(InterviewState.interviewsByAuditId(id));
+      this.store.select(AuditState.audit(id)).subscribe(a => (this.audit = a));
     });
   }
 }

@@ -1,4 +1,6 @@
 @import '../../../../sass/utils';
+@import '../../../../../node_modules/@nebular/theme/styles/theming';
+@import '../../../../../node_modules/@nebular/theme/styles/themes/default';
 
 header {
   margin: 20px 0 10px 0;
@@ -23,11 +25,6 @@ li {
   margin-left: 20px;
 }
 
-.hint-no-interviews {
-  margin: 0 auto;
-  text-align: center;
-}
-
 nb-list-item {
   display: grid;
 }
@@ -35,12 +32,35 @@ nb-list-item {
 nb-accordion-item-header,
 nb-card-header {
   background: #f7f9fc !important;
+  position: relative;
 }
 
 nb-accordion-item-header {
   border-radius: 0.25rem !important;
 }
+.banner-status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 12px;
+  border-radius: 3px 0 0 0;
+}
 
-nb-accordion-item.expanded nb-accordion-item-header {
-  border-radius: 0.25rem 0.25rem 0 0 !important;
+nb-accordion-item.collapsed .banner-status {
+  border-radius: 3px 0 0 3px;
+}
+
+.banner-status-in-action {
+  background-color: nb-theme(color-warning-default);
+}
+
+.banner-status-is-finished {
+  background-color: nb-theme(color-success-default);
+}
+
+.hint-no-interviews {
+  margin: 0 auto;
+  text-align: center;
 }

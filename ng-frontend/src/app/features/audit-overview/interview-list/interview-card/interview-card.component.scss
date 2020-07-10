@@ -2,6 +2,19 @@
 @import '../../../../../../node_modules/@nebular/theme/styles/theming';
 @import '../../../../../../node_modules/@nebular/theme/styles/themes/default';
 
+nb-card-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0 10px;
+  border: none;
+}
+
+a {
+  display: grid;
+  text-decoration: none;
+}
+
 .banner-status {
   position: absolute;
   top: 0;
@@ -14,32 +27,10 @@
   box-shadow: 3px 3px 3px 0px rgba(44, 51, 73, 0.1);
   border-radius: 3px;
 }
-
-.banner-status-is-planned {
-  background-color: nb-theme(color-basic-100);
-}
-
 .banner-status-in-action {
   background-color: nb-theme(color-warning-default);
 }
 
 .banner-status-is-finished {
   background-color: nb-theme(color-success-default);
-}
-
-.banner-status-is-canceled {
-  background-color: nb-theme(color-danger-default);
-}
-
-nb-card-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 0 10px;
-  border: none;
-}
-
-a {
-  display: grid;
-  text-decoration: none;
 }

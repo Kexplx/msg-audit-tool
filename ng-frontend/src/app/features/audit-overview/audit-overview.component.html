@@ -1,10 +1,12 @@
-<header class="grid-1 mb-2" data-cy="audit-short-infos">
-  <h4 data-cy="heading">
-    {{ (audit$ | async)?.name }}
-  </h4>
-  <p class="label" *ngIf="(audit$ | async)?.startDate" data-cy="subheading">
-    {{ (audit$ | async).startDate | date: 'dd.MM.yyyy' }} - <span *ngIf="(audit$ | async).endDate; else tbd">{{ (audit$ | async).endDate | date: 'dd.MM.yyyy' }}</span>
-    <ng-template #tbd>TBD</ng-template>
-  </p>
-</header>
-<nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+<ng-container *ngIf="audit">
+  <header class="grid-1 mb-2" data-cy="audit-short-infos">
+    <h4 data-cy="heading">
+      {{ audit.name }}
+    </h4>
+    <p class="label" *ngIf="audit.startDate" data-cy="subheading">
+      {{ audit.startDate | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.endDate; else tbd">{{ audit.endDate | date: 'dd.MM.yyyy' }}</span>
+      <ng-template #tbd>TBD</ng-template>
+    </p>
+  </header>
+  <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
+</ng-container>

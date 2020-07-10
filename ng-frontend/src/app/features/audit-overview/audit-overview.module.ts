@@ -12,12 +12,14 @@ import { AuditInfoComponent } from './audit-info/audit-info.component';
 import { AuditContactPersonCardComponent } from './audit-info/audit-contact-person-card/contact-person-card.component';
 import { CriteriaByFactorIdPipe } from './interview-list/criteria-by-factor-id.pipe';
 import { InterviewsByFacCritIdPipe } from './interview-list/interviews-by-fac-crit-id.pipe';
+import { AllInterviewsFinishedPipe } from './interview-list/all-interviews-finished.pipe';
 
 @NgModule({
   declarations: [
     AuditOverviewComponent,
     InterviewCardComponent,
     AuditInfoComponent,
+    AllInterviewsFinishedPipe,
     InterviewListComponent,
     AuditContactPersonCardComponent,
     CriteriaByFactorIdPipe,

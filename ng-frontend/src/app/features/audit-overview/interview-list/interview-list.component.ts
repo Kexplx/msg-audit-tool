@@ -17,15 +17,18 @@ export class InterviewListComponent implements OnInit {
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
-  interviews$: Observable<Interview[]>;
-  audit$: Observable<Audit>;
+  audit: Audit;
+  interviews: Interview[];
 
   constructor(private store: Store) {}
 
   ngOnInit() {
     this.auditId$.subscribe(id => {
-      this.audit$ = this.store.select(AuditState.audit(id));
-      this.interviews$ = this.store.select(InterviewState.interviewsByAuditId(id));
+      this.store.select(AuditState.audit(id)).subscribe(a => (this.audit = a));
+
+      this.store
+        .select(InterviewState.interviewsByAuditId(id))
+        .subscribe(i => (this.interviews = i));
     });
   }
 }
