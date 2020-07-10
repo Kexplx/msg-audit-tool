@@ -7,8 +7,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
   {
     path: 'audits',
-    loadChildren: () =>
-      import('./features/audit-list/audit-list.module').then(m => m.AuditListModule),
+    loadChildren: () => import('./features/audits/audits.module').then(m => m.AuditsModule),
   },
   {
     path: 'audits/:auditId',

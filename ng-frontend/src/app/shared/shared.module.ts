@@ -18,7 +18,7 @@ import { SidebarInterviewComponent } from './components/sidebar/sidebar-intervie
 import { FactorsPipe } from './pipes/factors.pipe';
 import { CriteriasPipe } from './pipes/criterias.pipe';
 import { InterviewFormComponent } from './components/forms/interview-form/interview-form.component';
-import { NewInterviewDialogComponent } from './components/dialogs/new-interview-dialog/new-interview-dialog.component';
+import { AddInterviewDialogComponent } from './components/dialogs/add-interview-dialog/add-interview-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { NewInterviewDialogComponent } from './components/dialogs/new-interview-
     AuditFormComponent,
     ContactPersonFormComponent,
     EditContactPersonDialogComponent,
-    NewInterviewDialogComponent,
+    AddInterviewDialogComponent,
     SidebarInterviewListComponent,
     SidebarInterviewComponent,
     NotFoundComponent,

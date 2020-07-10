@@ -6,10 +6,10 @@ import { AuditStatus, Audit } from 'src/app/core/data/models/audit.model';
 
 @Component({
   selector: 'app-audit-list',
-  templateUrl: './audit-list.component.html',
-  styleUrls: ['./audit-list.component.scss'],
+  templateUrl: './audits.component.html',
+  styleUrls: ['./audits.component.scss'],
 })
-export class AuditListComponent implements OnInit {
+export class AuditsComponent implements OnInit {
   @Select(AuditState.auditByStatus(AuditStatus.Planned, AuditStatus.Active))
   activeAudits$: Observable<Audit[]>;
 

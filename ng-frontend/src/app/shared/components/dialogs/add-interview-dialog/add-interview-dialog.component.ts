@@ -13,10 +13,10 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 
 @Component({
   selector: 'app-new-interview-dialog',
-  templateUrl: './new-interview-dialog.component.html',
-  styleUrls: ['./new-interview-dialog.component.scss'],
+  templateUrl: './add-interview-dialog.component.html',
+  styleUrls: ['./add-interview-dialog.component.scss'],
 })
-export class NewInterviewDialogComponent implements AfterViewInit, OnInit {
+export class AddInterviewDialogComponent implements AfterViewInit, OnInit {
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
   @ViewChild('dialog') dialog: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;

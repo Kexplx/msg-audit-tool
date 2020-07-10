@@ -5,7 +5,7 @@ import { AuditOverviewRoutingModule } from './audit-overview-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuditOverviewComponent } from './audit-overview.component';
 import { InterviewCardComponent } from './interview-list/interview-card/interview-card.component';
-import { NewInterviewDialogComponent } from '../../shared/components/dialogs/new-interview-dialog/new-interview-dialog.component';
+import { AddInterviewDialogComponent } from '../../shared/components/dialogs/add-interview-dialog/add-interview-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { InterviewListComponent } from './interview-list/interview-list.component';
 import { AuditInfoComponent } from './audit-info/audit-info.component';

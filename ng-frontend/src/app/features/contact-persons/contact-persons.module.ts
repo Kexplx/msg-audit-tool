@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ContactPersonsRoutingModule } from './contact-persons-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ContactPersonCardComponent } from './components/contact-persons-list/contact-person-card/contact-person-card.component';
-import { ContactPersonsListComponent } from './components/contact-persons-list/contact-persons-list.component';
+import { ContactPersonCardComponent } from './contact-person-card/contact-person-card.component';
+import { ContactPersonsComponent } from './contact-persons.component';
 
 @NgModule({
-  declarations: [ContactPersonsListComponent, ContactPersonCardComponent],
+  declarations: [ContactPersonsComponent, ContactPersonCardComponent],
   imports: [CommonModule, ContactPersonsRoutingModule, SharedModule],
 })
 export class ContactPersonsModule {}

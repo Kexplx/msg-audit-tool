@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ContactPersonsListComponent } from './components/contact-persons-list/contact-persons-list.component';
+import { ContactPersonsComponent } from './contact-persons.component';
 import { AddContactPersonDialogComponent } from 'src/app/shared/components/dialogs/add-contact-person-dialog/add-contact-person-dialog.component';
 import { EditContactPersonDialogComponent } from 'src/app/shared/components/dialogs/edit-contact-person-dialog/edit-contact-person-dialog.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ContactPersonsListComponent,
+    component: ContactPersonsComponent,
     children: [
       {
         path: 'new',
