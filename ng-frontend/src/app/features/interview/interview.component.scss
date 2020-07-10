@@ -6,10 +6,8 @@ nb-card-body {
   padding: 7px !important;
 }
 
-#input-goal {
-  position: sticky;
-  top: nb-theme(header-height) - nb-theme(header-padding) + 1.5;
-  z-index: 1;
+textarea {
+  resize: vertical;
 }
 
 .header-main {

@@ -25,7 +25,7 @@ export class InterviewComponent implements OnInit {
   facCrit$: Observable<FacCrit>;
   interview$: Observable<Interview>;
 
-  goal$ = new Subject<string>();
+  note$ = new Subject<string>();
 
   facCritId: number;
   interviewId: number;
@@ -54,13 +54,13 @@ export class InterviewComponent implements OnInit {
       });
 
     // Dispatch UpdateInterview after 1000ms of last input event
-    this.goal$.pipe(debounceTime(1000)).subscribe(goal => {
-      this.store.dispatch(new UpdateInterview(this.interviewId, { note: goal }));
+    this.note$.pipe(debounceTime(1000)).subscribe(note => {
+      this.store.dispatch(new UpdateInterview(this.interviewId, { note }));
     });
   }
 
   onGoalInput(value: string) {
-    this.goal$.next(value);
+    this.note$.next(value);
   }
 
   onNavigateForward(facCritId: number) {

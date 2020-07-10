@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/data/models/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
+import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 
 @Component({
   selector: 'app-answer-question-list',
@@ -14,6 +15,7 @@ import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
 })
 export class AnswerQuestionListComponent implements OnChanges {
   @Input() answers: Answer[];
+  @Input() facCrit: FacCrit;
   @Select(InterviewState.questions) questions$: Observable<Question[]>;
 
   formGroups: FormGroup[];
