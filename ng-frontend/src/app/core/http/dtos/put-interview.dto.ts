@@ -4,5 +4,5 @@ export interface PutInterviewDto {
   startDate: string;
   endDate: string;
   status: InterviewStatus;
-  goal: string;
+  note: string;
 }

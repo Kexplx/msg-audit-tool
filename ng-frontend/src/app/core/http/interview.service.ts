@@ -107,7 +107,7 @@ export class InterviewService {
 
     const postInterviewDto: PostInterviewDto = {
       auditId,
-      goal: '',
+      note: '',
       startDate: parseTimestamp(startDate),
       interviewScope: interviewScopeDto,
       interviewedContactPersons: interviewedContactPersonsDto,
@@ -139,7 +139,7 @@ export class InterviewService {
     const putInterviewDto: PutInterviewDto = {
       endDate: parseTimestamp(endDate),
       startDate: parseTimestamp(startDate),
-      note: note,
+      note,
       status,
     };
 
