@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundComponent } from './not-found.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from '../../shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;

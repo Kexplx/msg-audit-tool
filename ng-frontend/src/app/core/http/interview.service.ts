@@ -6,7 +6,7 @@ import { Interview } from '../data/models/interview.model';
 import { PostInterviewDto } from './dtos/post-interview.dto';
 import { FacCrit } from '../data/models/faccrit.model';
 import { PutInterviewDto } from './dtos/put-interview.dto';
-import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
+import { parseTimestamp } from 'src/app/core/data/helpers/date-helpers';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 

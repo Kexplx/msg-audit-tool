@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 import { PostAuditDto } from './dtos/post-audit.dto';
 import { Observable } from 'rxjs';
 import { PutAuditDto } from './dtos/put-audit.dto';
-import { parseTimestamp } from 'src/app/shared/helpers/date-helpers';
+import { parseTimestamp } from 'src/app/core/data/helpers/date-helpers';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
