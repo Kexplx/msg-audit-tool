@@ -58,7 +58,7 @@ public class FacCrit {
 
 
     @Basic
-    @Column(name = "goal", length = 256)
+    @Column(name = "goal", length = 2048)
     public String getGoal() {
         return goal;
     }
