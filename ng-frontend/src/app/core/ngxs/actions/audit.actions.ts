@@ -10,11 +10,6 @@ export class UpdateAudit {
   constructor(public id: number, public audit: Audit) {}
 }
 
-export class DeleteAudit {
-  static readonly type = '[AuditList] Delete Audit';
-  constructor(public id: number) {}
-}
-
 export class LoadFacCritsByInterviewId {
   static readonly type = '[Interview] Load all faccrits by interview id';
   constructor(public id: number) {}

@@ -11,6 +11,15 @@ export class FacCritService {
   constructor(private http: HttpClient) {}
 
   /**
+   * Builds an observable for making a GET request to get all facCrits.
+   *
+   * @returns An Observable of facCrits.
+   */
+  getFacCrits(): Observable<FacCrit[]> {
+    return this.http.get<FacCrit[]>(environment.baseUrl + 'faccrits');
+  }
+
+  /**
    * Builds an observable for making a GET request to get facCrits that belong to an interview.
    *
    * @param id The interview's id.
@@ -18,14 +27,5 @@ export class FacCritService {
    */
   getFacCritsByInterviewId(id: number): Observable<FacCrit[]> {
     return this.http.get<FacCrit[]>(environment.baseUrl + 'faccrits/interview/' + id);
-  }
-
-  /**
-   * Builds an observable for making a GET request to get all facCrits.
-   *
-   * @returns An Observable of facCrits.
-   */
-  getFacCrits(): Observable<FacCrit[]> {
-    return this.http.get<FacCrit[]>(environment.baseUrl + 'faccrits');
   }
 }

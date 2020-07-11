@@ -1,13 +1,8 @@
 import { Audit, AuditStatus } from '../data/models/audit.model';
 import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
-import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
+import { patch, updateItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
-import {
-  AddAudit,
-  DeleteAudit,
-  UpdateAudit,
-  LoadFacCritsByInterviewId,
-} from './actions/audit.actions';
+import { AddAudit, UpdateAudit, LoadFacCritsByInterviewId } from './actions/audit.actions';
 import { FacCrit } from '../data/models/faccrit.model';
 import { AuditService } from '../http/audit.service';
 import { FacCritService } from '../http/facCrit.service';
@@ -68,7 +63,7 @@ export class AuditState implements NgxsOnInit {
     });
   }
 
-  static criteriaByFactorId(id: number) {
+  static facCritByReferenceId(id: number) {
     return createSelector([AuditState], (state: AuditStateModel) => {
       return state.facCrits.filter(x => x.referenceId === id);
     });
@@ -98,19 +93,5 @@ export class AuditState implements NgxsOnInit {
         }),
       );
     });
-  }
-
-  @Action(DeleteAudit)
-  deleteAudit({ setState }: StateContext<AuditStateModel>, { id }: DeleteAudit) {
-    setState(
-      patch({
-        audits: removeItem<Audit>(x => x.id === id),
-      }),
-    );
-  }
-
-  @Action(LoadFacCritsByInterviewId)
-  loadFacCritsByInterviewId(ctx: StateContext<AuditStateModel>, { id }: LoadFacCritsByInterviewId) {
-    return this.facCritService.getFacCritsByInterviewId(id);
   }
 }
