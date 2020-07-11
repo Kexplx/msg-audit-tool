@@ -15,11 +15,7 @@
   position: relative;
 }
 
-.action-bar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 10px;
+header {
+  display: flex;
+  justify-content: space-between;
 }

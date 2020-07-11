@@ -2,11 +2,7 @@ import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } fro
 import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { ContactPerson } from '../data/models/contact-person.model';
-import {
-  AddContactPerson,
-  DeleteContactPerson,
-  UpdateContactPerson,
-} from './actions/contact-person.action';
+import { AddContactPerson, UpdateContactPerson } from './actions/contact-person.action';
 import { ContactPersonService } from '../http/contact-person.service';
 
 export interface ContactPersonStateModel {
@@ -74,17 +70,5 @@ export class ContactPersonState implements NgxsOnInit {
           }),
         );
       });
-  }
-
-  @Action(DeleteContactPerson)
-  deleteContactPerson(
-    { setState }: StateContext<ContactPersonStateModel>,
-    { id }: DeleteContactPerson,
-  ) {
-    setState(
-      patch({
-        contactPersons: removeItem<ContactPerson>(x => x.id === id),
-      }),
-    );
   }
 }

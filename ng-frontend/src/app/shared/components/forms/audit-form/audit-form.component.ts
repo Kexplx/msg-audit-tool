@@ -111,7 +111,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   }
 
   toggleCriteriaChecked(factorId: string, checked: true) {
-    this.store.select(AuditState.criteriaByFactorId(+factorId)).subscribe(x => {
+    this.store.select(AuditState.facCritByReferenceId(+factorId)).subscribe(x => {
       for (const crit of x) {
         this.formGroup.get(String(crit.id)).setValue(checked);
       }

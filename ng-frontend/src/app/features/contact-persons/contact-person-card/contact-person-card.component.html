@@ -1,7 +1,11 @@
-<p class="subtitle-2 mb-2" data-cy="contact-name">
-  {{ contactPerson.forename + ' ' + contactPerson.surname }}
-</p>
-
+<header>
+  <p class="subtitle-2 mb-2" data-cy="contact-name">
+    {{ contactPerson.forename + ' ' + contactPerson.surname }}
+  </p>
+  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" nbButton data-cy="edit-person-button">
+    <nb-icon icon="edit-outline"></nb-icon>
+  </a>
+</header>
 <div class="wrapper-contact-person-details">
   <div>
     <label class="label" data-cy="contact-companyname">Unternehmen</label>
@@ -22,13 +26,4 @@
   <ng-template #missing>
     <p class="subtitle-2" data-cy="missing">-</p>
   </ng-template>
-</div>
-
-<div class="action-bar">
-  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" status="primary" ghost nbButton data-cy="edit-person-button">
-    <nb-icon icon="edit-outline"></nb-icon>
-  </a>
-  <button (click)="onDelete()" nbPopover="Löschen" nbPopoverTrigger="hint" status="basic" ghost nbButton data-cy="delete-person-button">
-    <nb-icon icon="person-remove-outline"></nb-icon>
-  </button>
 </div>
