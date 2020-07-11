@@ -1,15 +1,5 @@
 @import '../../../../sass/utils';
 
-.wrapper-contact-person-details {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0 10px;
-
-  @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 :host {
   width: 100%;
   position: relative;
@@ -18,4 +8,14 @@
 header {
   display: flex;
   justify-content: space-between;
+}
+
+.wrapper-contact-person-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0 10px;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

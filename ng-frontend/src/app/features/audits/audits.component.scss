@@ -1,5 +1,9 @@
 @import '../../../sass/utils';
 
+a {
+  text-decoration: none;
+}
+
 .audit-cards {
   display: grid;
   gap: 10px;
@@ -14,8 +18,4 @@
 .content-active {
   padding-left: 0;
   padding-right: 0;
-}
-
-a {
-  text-decoration: none;
 }

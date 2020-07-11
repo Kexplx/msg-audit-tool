@@ -10,16 +10,18 @@ nb-card-header {
   background: #f7f9fc !important;
 }
 
-nb-accordion-item-header {
-  border-radius: 0.25rem !important;
-}
-
-nb-accordion-item.expanded nb-accordion-item-header {
-  border-radius: 0.25rem 0.25rem 0 0 !important;
-}
-
 textarea {
   resize: vertical;
+}
+
+#fac-crit-goal {
+  position: sticky !important;
+  top: 77px !important;
+  z-index: 1;
+
+  nb-accordion-item-header {
+    height: 40px !important;
+  }
 }
 
 .header-main {
@@ -34,10 +36,4 @@ textarea {
 
   justify-items: center;
   align-items: center;
-}
-
-#fac-crit-goal {
-  position: sticky !important;
-  top: 77px !important;
-  z-index: 1;
 }

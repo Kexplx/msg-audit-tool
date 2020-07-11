@@ -5,15 +5,6 @@ nb-accordion-item-header,
 nb-card-header {
   background: #f7f9fc !important;
 }
-
-nb-accordion-item-header {
-  border-radius: 0.25rem !important;
-}
-
-nb-accordion-item.expanded nb-accordion-item-header {
-  border-radius: 0.25rem 0.25rem 0 0 !important;
-}
-
 .header-container-1 {
   display: flex;
   justify-content: space-between;

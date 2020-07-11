@@ -59,7 +59,7 @@
       </nb-accordion-item>
     </nb-accordion>
   </ng-container>
-  <ng-container *ngIf="answers$ | async | answerByIds: interviewId:facCritId; let answers">
+  <ng-container *ngIf="answers$ | async | answersByIds: interviewId:facCritId; let answers">
     <ng-container *ngIf="facCrit$ | async; let facCrit">
       <app-answer-question-list [facCrit]="facCrit" [answers]="answers"></app-answer-question-list>
     </ng-container>

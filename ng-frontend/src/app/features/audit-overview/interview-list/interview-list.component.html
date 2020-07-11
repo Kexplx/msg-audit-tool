@@ -7,18 +7,21 @@
   </header>
   <div class="fac-crits" *ngIf="audit.scope.length > 0; else noFacrits">
     <nb-accordion [id]="factor.id" *ngFor="let factor of audit.scope | factors">
-      <nb-accordion-item [expanded]="!(interviews | interviewsByFacCritId: factor.id | allInterviewsFinished)" data-cy="factor-card">
+      <nb-accordion-item *ngIf="interviews | interviewsByFacCritId: factor.id; let interviews" [expanded]="!(interviews | allInterviewsFinished)" data-cy="factor-card">
         <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">
-          <ng-container [ngSwitch]="interviews | interviewsByFacCritId: factor.id | allInterviewsFinished">
+          <ng-container [ngSwitch]="interviews | allInterviewsFinished">
             <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="false" class="banner-status banner-status-in-action" data-cy="interview-status"></div>
             <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="true" class="banner-status banner-status-is-finished" data-cy="interview-status"></div>
           </ng-container>
           <span class="ml-1">
             {{ factor.name }}
           </span>
+          <p class="ml-1">
+            <span class="label">{{ interviews.length === 0 ? '' : interviews.length + ' Interview' + (interviews.length > 1 ? 's' : '') }}</span>
+          </p>
         </nb-accordion-item-header>
         <nb-accordion-item-body data-cy="faccrit-body">
-          <nb-list *ngIf="interviews | interviewsByFacCritId: factor.id as interviews; else noInterviews">
+          <nb-list *ngIf="interviews.length > 0; else noInterviews">
             <nb-list-item *ngFor="let interview of interviews">
               <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
             </nb-list-item>

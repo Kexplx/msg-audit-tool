@@ -1,5 +1,13 @@
 @import 'src/sass/utils';
 
+nb-checkbox {
+  display: block;
+}
+
+hr {
+  border-bottom: 3px dotted rgb(228, 233, 242);
+}
+
 nb-card-footer {
   display: flex;
   justify-content: space-between;
@@ -24,12 +32,4 @@ nb-card-footer {
   & .criteria {
     margin-left: 20px;
   }
-}
-
-nb-checkbox {
-  display: block;
-}
-
-hr {
-  border-bottom: 3px dotted rgb(228, 233, 242);
 }

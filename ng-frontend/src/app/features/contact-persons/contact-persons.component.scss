@@ -1,10 +1,11 @@
 @import '../../../sass/utils';
 
+nb-card-body {
+  padding: 0;
+}
+
 .hint-no-contact-persons {
   max-width: 900px;
   margin: 100px auto 0 auto;
   text-align: center;
-}
-nb-card-body {
-  padding: 0;
 }

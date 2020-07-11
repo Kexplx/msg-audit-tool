@@ -15,6 +15,10 @@ nb-card {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+}
+
 .banner-status {
   position: absolute;
   top: 0;
@@ -43,8 +47,4 @@ nb-card {
 
 .banner-status-is-canceled {
   background-color: nb-theme(color-danger-default);
-}
-
-a {
-  text-decoration: none;
 }

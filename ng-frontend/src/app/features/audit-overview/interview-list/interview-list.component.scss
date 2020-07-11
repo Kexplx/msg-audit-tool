@@ -42,11 +42,13 @@ nb-card-header {
   bottom: 0;
   height: 100%;
   width: 12px;
-  border-radius: 3px 0 0 0;
+  -webkit-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  -moz-box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
+  box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
 }
 
-nb-accordion-item.collapsed .banner-status {
-  border-radius: 3px 0 0 3px;
+nb-card-header .banner-status {
+  border-top-left-radius: 3px;
 }
 
 .banner-status-in-action {

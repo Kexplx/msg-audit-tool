@@ -1,5 +1,10 @@
 @import 'src/sass/utils';
 
+nb-accordion {
+  box-shadow: none;
+  border: 1px solid rgb(228, 233, 242);
+}
+
 nb-card-footer {
   display: flex;
   justify-content: space-between;
@@ -30,9 +35,4 @@ nb-card-footer {
       margin-left: 20px;
     }
   }
-}
-
-nb-accordion {
-  box-shadow: none;
-  border: 1px solid rgb(228, 233, 242);
 }

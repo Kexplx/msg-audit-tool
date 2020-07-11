@@ -11,6 +11,8 @@ export class AllInterviewsFinishedPipe implements PipeTransform {
    * @param interviews The interviews to check.
    */
   transform(interviews: Interview[]): boolean {
-    return interviews?.filter(i => i.status === InterviewStatus.Active).length === 0;
+    if (!interviews || interviews?.length === 0) return false;
+
+    return interviews.filter(i => i.status === InterviewStatus.Active).length === 0;
   }
 }

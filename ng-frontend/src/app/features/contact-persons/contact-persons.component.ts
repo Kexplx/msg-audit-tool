@@ -9,8 +9,6 @@ import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
   templateUrl: './contact-persons.component.html',
   styleUrls: ['./contact-persons.component.scss'],
 })
-export class ContactPersonsComponent implements OnInit {
+export class ContactPersonsComponent {
   @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
-
-  ngOnInit() {}
 }
