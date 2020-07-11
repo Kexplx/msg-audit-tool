@@ -10,5 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class SidebarComponent {
   @Select(AppRouterState.inInterview) inInterview$: Observable<boolean>;
-  @Select(AppRouterState.inAuditOverview) inAuditOverview$: Observable<boolean>;
+  @Select(AppRouterState.inInterviewsList) inInterviewsList$: Observable<boolean>;
+  @Select(AppRouterState.inAuditList) inAuditList$: Observable<boolean>;
+  @Select(AppRouterState.inContactPersonsList) inContactPersonsList$: Observable<boolean>;
 }

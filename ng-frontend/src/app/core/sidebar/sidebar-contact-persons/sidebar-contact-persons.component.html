@@ -1,0 +1,10 @@
+<ng-container *ngIf="contactPersons$ | async; let contactPersons">
+  <h6 style="margin: 0;">Kontaktpersonen</h6>
+  <nb-menu *ngIf="items.length > 0; else noContactPersons" style="padding-left: 5px;" [items]="items" autoCollapse> </nb-menu>
+
+  <ng-template #noContactPersons>
+    <div class="no-contact-persons-wrapper label">
+      Keine Kontaktpersonen registriert
+    </div>
+  </ng-template>
+</ng-container>

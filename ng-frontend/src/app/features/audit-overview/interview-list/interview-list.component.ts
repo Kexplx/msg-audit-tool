@@ -7,6 +7,7 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { Interview } from 'src/app/core/data/models/interview.model';
 import { InterviewState } from 'src/app/core/ngxs/interview.state';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-interview-list',
@@ -23,11 +24,13 @@ export class InterviewListComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
+    this.interviews = [];
     this.auditId$.subscribe(id => {
       this.store.select(AuditState.audit(id)).subscribe(a => (this.audit = a));
 
       this.store
         .select(InterviewState.interviewsByAuditId(id))
+        .pipe(filter(i => i != undefined))
         .subscribe(i => (this.interviews = i));
     });
   }

@@ -1,2 +1,4 @@
-<app-sidebar-interview-list *ngIf="inAuditOverview$ | async"></app-sidebar-interview-list>
+<app-sidebar-interview-list *ngIf="inInterviewsList$ | async"></app-sidebar-interview-list>
 <app-sidebar-interview *ngIf="inInterview$ | async"></app-sidebar-interview>
+<app-sidebar-audits *ngIf="inAuditList$ | async"></app-sidebar-audits>
+<app-sidebar-contact-persons *ngIf="inContactPersonsList$ | async"></app-sidebar-contact-persons>

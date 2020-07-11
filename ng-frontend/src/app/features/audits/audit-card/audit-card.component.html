@@ -5,7 +5,7 @@
     <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Finished" class="banner-status banner-status-is-finished" data-cy="audit-status"></div>
     <div nbPopoverPlacement="left" nbPopover="Abgebrochen" nbPopoverTrigger="hint" *ngSwitchCase="auditStatus.Cancelled" class="banner-status banner-status-is-canceled" data-cy="audit-status"></div>
   </ng-container>
-  <nb-card-header>
+  <nb-card-header [id]="audit.id">
     <div data-cy="audit-short-infos">
       {{ audit.name }}
       <span *ngIf="contactPerson">| {{ contactPerson.companyName }} </span>

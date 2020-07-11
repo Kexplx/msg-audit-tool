@@ -16,6 +16,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SidebarInterviewComponent } from './sidebar/sidebar-interview/sidebar-interview.component';
 import { SidebarInterviewListComponent } from './sidebar/sidebar-interview-list/sidebar-interview-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { SidebarAuditsComponent } from './sidebar/sidebar-audits/sidebar-audits.component';
+import { SidebarContactPersonsComponent } from './sidebar/sidebar-contact-persons/sidebar-contact-persons.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { SharedModule } from '../shared/shared.module';
     NotFoundComponent,
     SidebarInterviewComponent,
     SidebarInterviewListComponent,
+    SidebarAuditsComponent,
+    SidebarContactPersonsComponent,
   ],
   imports: [
     HttpClientModule,

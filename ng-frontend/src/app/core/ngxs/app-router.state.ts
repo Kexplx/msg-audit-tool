@@ -10,12 +10,10 @@ export interface AppRouterStateModel {
   contactPersonId: number;
   facCritId: number;
 
-  inAuditList: boolean;
-  inAuditListEdit: boolean;
-  inAuditOverview: boolean;
+  inAudits: boolean;
+  inInterviewsList: boolean;
   inInterview: boolean;
-  inContactPersonsList: boolean;
-  inContactPersonsListEdit: boolean;
+  inContactPersons: boolean;
 }
 
 /**
@@ -29,12 +27,10 @@ export interface AppRouterStateModel {
     facCritId: null,
     interviewId: null,
 
-    inAuditList: false,
-    inAuditListEdit: false,
-    inAuditOverview: false,
+    inAudits: false,
+    inInterviewsList: false,
     inInterview: false,
-    inContactPersonsList: false,
-    inContactPersonsListEdit: false,
+    inContactPersons: false,
   },
 })
 @Injectable()
@@ -47,9 +43,9 @@ export class AppRouterState implements NgxsOnInit {
    */
   ngxsOnInit({ patchState }: StateContext<AppRouterStateModel>) {
     const auditListRegex = /^\/audits$/;
-    const contactPersonsRegex = /^\/contact-persons$/;
     const auditListEditRegex = /^\/audits\/[^\/]*\/edit$/;
-    const contactPersonEdit = /^\/contact-persons\/[^\/]*\/edit$/;
+    const auditListNew = /^\/audits\/new$/;
+    const contactPersonsRegex = /^\/contact-persons/;
     const auditOverviewRegex = /^\/audits\/[^\/]*\/interviews(\/new){0,1}$/;
     const interviewRegex = /^\/audits\/[^\/]*\/interviews\/[^\/]*\/[^\/]*$/;
 
@@ -75,12 +71,11 @@ export class AppRouterState implements NgxsOnInit {
         }
 
         patchState({
-          inAuditList: auditListRegex.test(url),
-          inAuditListEdit: auditListEditRegex.test(url),
-          inAuditOverview: auditOverviewRegex.test(url),
+          inAudits:
+            auditListRegex.test(url) || auditListEditRegex.test(url) || auditListNew.test(url),
+          inInterviewsList: auditOverviewRegex.test(url),
           inInterview: interviewRegex.test(url),
-          inContactPersonsList: contactPersonsRegex.test(url),
-          inContactPersonsListEdit: contactPersonEdit.test(url),
+          inContactPersons: contactPersonsRegex.test(url),
         });
       });
   }
@@ -107,17 +102,12 @@ export class AppRouterState implements NgxsOnInit {
 
   @Selector()
   static inAuditList(state: AppRouterStateModel) {
-    return state.inAuditList;
+    return state.inAudits;
   }
 
   @Selector()
-  static inAuditListEdit(state: AppRouterStateModel) {
-    return state.inAuditListEdit;
-  }
-
-  @Selector()
-  static inAuditOverview(state: AppRouterStateModel) {
-    return state.inAuditOverview;
+  static inInterviewsList(state: AppRouterStateModel) {
+    return state.inInterviewsList;
   }
 
   @Selector()
@@ -127,12 +117,7 @@ export class AppRouterState implements NgxsOnInit {
 
   @Selector()
   static inContactPersonsList(state: AppRouterStateModel) {
-    return state.inContactPersonsList;
-  }
-
-  @Selector()
-  static inContactPersonsListEdit(state: AppRouterStateModel) {
-    return state.inContactPersonsListEdit;
+    return state.inContactPersons;
   }
 
   @Action(Navigate)
