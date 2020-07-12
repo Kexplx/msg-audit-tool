@@ -93,6 +93,16 @@ public class AnswerIntegrationTest {
     }
 
     @Test
+    public void getAllAnswersWithNoExistingAnswer(){
+        String url = "/answers";
+        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
+                });
+
+        Assert.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
     public void getAnswersByInterviewId() {
         Answer answer = new Answer();
         answer.setQuestionId(question.getId());
