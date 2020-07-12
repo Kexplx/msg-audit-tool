@@ -202,13 +202,21 @@ public class FacCritIntegrationTest {
     @Test
     public void getAllFaccritsOrderedByInterviewId(){
         int id = interview.getId();
-
         String url = "/faccrits/interview/"+String.valueOf(id);
-
         ResponseEntity<List<BasicFacCritResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
                 null, new ParameterizedTypeReference<List<BasicFacCritResponse>>() {
                 });
 
+        Assert.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
+    public void getAllFaccritsEmptyByNotExistingInterviewId(){
+        int id = interview.getId()*2;
+        String url = "/faccrits/interview/"+String.valueOf(id);
+        ResponseEntity<List<BasicFacCritResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<BasicFacCritResponse>>() {
+                });
 
         Assert.assertEquals(200, response.getStatusCodeValue());
     }
