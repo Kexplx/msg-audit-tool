@@ -11,7 +11,6 @@ import java.util.List;
  * Interface to access the question table in the database
  */
 public interface QuestionRepository extends JpaRepository<Question, Integer> {
-    @Modifying
     @Query("select a from Question a where a.faccritId=:faccritId")
     List<Question> getQuestionsByFaccritId(@Param("faccritId") int faccritId);
 }
