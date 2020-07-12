@@ -11,9 +11,7 @@ import java.util.List;
  */
 public interface FacCritRepository extends JpaRepository<FacCrit, Integer> {
 
-
     @Query("select f from FacCrit f where f.id in (select a.faccritId from Answer a where a.interviewId=:interviewId)")
     List<FacCrit> getFacCritsByInterviewId(@Param("interviewId") int interviewId);
-
 }
 
