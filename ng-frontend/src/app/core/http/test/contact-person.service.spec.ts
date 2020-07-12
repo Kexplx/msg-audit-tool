@@ -6,7 +6,7 @@ import { CONTACTPERSON_DTO_DUMMY } from './dummies/contact-persons';
 import { ContactPerson } from '../../data/models/contact-person.model';
 import { environment } from 'src/environments/environment';
 
-fdescribe('ContactPersonService', () => {
+describe('ContactPersonService', () => {
   let service: ContactPersonService;
   let httpMock: HttpTestingController;
 

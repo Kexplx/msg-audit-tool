@@ -17,28 +17,6 @@ export class InterviewService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Builds an observable for making a GET request to get an interview.
-   *
-   * @param id The interview's id.
-   * @returns An Observable of the interview.
-   */
-  getInterview(id: number): Observable<Interview> {
-    const url = environment.baseUrl + 'interviews/' + id;
-
-    return this.http.get<InterviewDto>(url).pipe(
-      map<InterviewDto, Interview>(interviewDto => {
-        const { endDate, startDate } = interviewDto;
-        return {
-          ...interviewDto,
-          contactPersons: interviewDto.interviewedContactPersons,
-          endDate: new Date(endDate).getTime(),
-          startDate: new Date(startDate).getTime(),
-        };
-      }),
-    );
-  }
-
-  /**
    * Builds an observable for making a GET request to get all interviews.
    *
    * @returns An Observable of the interviews.
@@ -81,6 +59,28 @@ export class InterviewService {
             startDate: new Date(startDate).getTime(),
           };
         });
+      }),
+    );
+  }
+
+  /**
+   * Builds an observable for making a GET request to get an interview.
+   *
+   * @param id The interview's id.
+   * @returns An Observable of the interview.
+   */
+  getInterview(id: number): Observable<Interview> {
+    const url = environment.baseUrl + 'interviews/' + id;
+
+    return this.http.get<InterviewDto>(url).pipe(
+      map<InterviewDto, Interview>(interviewDto => {
+        const { endDate, startDate } = interviewDto;
+        return {
+          ...interviewDto,
+          contactPersons: interviewDto.interviewedContactPersons,
+          endDate: new Date(endDate).getTime(),
+          startDate: new Date(startDate).getTime(),
+        };
       }),
     );
   }

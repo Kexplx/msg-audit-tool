@@ -10,7 +10,7 @@ import { FACCRITS_DUMMY } from '../../http/test/dummies/faccrits';
 import { AddAudit, UpdateAudit, LoadFacCritsByInterviewId } from '../actions/audit.actions';
 import { Audit, AuditStatus } from '../../data/models/audit.model';
 
-fdescribe('AuditState', () => {
+describe('AuditState', () => {
   let store: Store;
   let auditServiceSpy: jasmine.SpyObj<AuditService>;
   let facCritServiceSpy: jasmine.SpyObj<FacCritService>;

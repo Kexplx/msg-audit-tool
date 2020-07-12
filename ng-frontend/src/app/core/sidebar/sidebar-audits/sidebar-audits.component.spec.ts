@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarAuditsComponent } from './sidebar-audits.component';
+import { CoreModule } from '../../core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 describe('SidebarAuditsComponent', () => {
   let component: SidebarAuditsComponent;
@@ -8,9 +11,9 @@ describe('SidebarAuditsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidebarAuditsComponent ]
-    })
-    .compileComponents();
+      declarations: [SidebarAuditsComponent],
+      imports: [CoreModule, SharedModule, RouterModule.forRoot([])],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

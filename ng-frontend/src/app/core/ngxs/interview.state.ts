@@ -17,10 +17,10 @@ export interface InterviewStateModel {
 }
 
 /**
- * State for managing the interviews of the application.
+ * State for managing interviews with their answers and questions.
  *
- * Has: Action handlers to read, write, update and delete a contact person.
- * Static and dynamic selectors to select interviews.
+ * A AnswerState or QuestionState wasn't created since the answers and questions
+ * are contained in the response of every request to ../interviews.
  */
 @State<InterviewStateModel>({
   name: 'interviewState',
@@ -33,35 +33,48 @@ export class InterviewState implements NgxsOnInit {
     private answerService: AnswerService,
   ) {}
 
+  /**
+   * Calls #getInterviews to load all interviews.
+   * Calls #getQuestion for every distinct question id in the interviews answers.
+   * Patches the state with interviews, answers and questions.
+   */
   ngxsOnInit({ patchState }: StateContext<InterviewStateModel>) {
     this.interviewService.getInterviews().subscribe(interviews => {
+      // Turn [Answer[]] into Answer[].
       const answers: Answer[] = [].concat.apply(
         [],
         interviews.map(i => i.answers),
       );
 
-      const questions$ = [];
-      for (const answer of answers) {
-        questions$.push(this.questionService.getQuestion(answer.questionId));
+      // Get distinct question ids.
+      const distinctQuestionIds: number[] = [];
+      for (const id of answers.map(a => a.questionId)) {
+        const isDistinct = !distinctQuestionIds.find(q => q === id);
+        if (isDistinct) {
+          distinctQuestionIds.push(id);
+        }
       }
 
+      // Push observable of all distinct questions into array.
+      const questions$ = [];
+      for (const id of distinctQuestionIds) {
+        questions$.push(this.questionService.getQuestion(id));
+      }
+
+      // Wait until all questions emit and subscribe to result.
       forkJoin([...questions$]).subscribe((questions: Question[]) => {
-        const distinctQuestions: Question[] = [];
-
-        for (const question of questions) {
-          const included = distinctQuestions.find(q => q.id === question.id);
-          if (!included) {
-            distinctQuestions.push(question);
-          }
-        }
-
         patchState({
           interviews,
           answers,
-          questions: distinctQuestions,
+          questions,
         });
       });
     });
+  }
+
+  @Selector()
+  static interviews(state: InterviewStateModel) {
+    return state.interviews ?? [];
   }
 
   @Selector()
@@ -89,7 +102,7 @@ export class InterviewState implements NgxsOnInit {
 
   static interviewsByAuditId(auditId: number) {
     return createSelector([InterviewState], (state: InterviewStateModel) => {
-      return state.interviews.filter(x => x.auditId === auditId);
+      return state.interviews.filter(i => i.auditId === auditId);
     });
   }
 

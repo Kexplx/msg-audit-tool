@@ -3,10 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuditStatus, Audit } from '../../data/models/audit.model';
 import { AuditDto } from '../dtos/audit.dto';
-import * as karma from 'karma-jasmine';
-import { FacCrit } from '../../data/models/faccrit.model';
 import { AUDITS_DTO_DUMMY } from './dummies/audits';
-import { FACCRITS_DUMMY } from './dummies/faccrits';
 import { environment } from 'src/environments/environment';
 
 describe('AuditService', () => {

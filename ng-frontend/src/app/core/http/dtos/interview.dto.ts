@@ -7,7 +7,7 @@ export interface InterviewDto {
   auditId: number;
   startDate: string;
   endDate: string;
-  goal: string;
+  note: string;
   status: InterviewStatus;
   answers: Answer[];
   interviewedContactPersons: ContactPerson[];
