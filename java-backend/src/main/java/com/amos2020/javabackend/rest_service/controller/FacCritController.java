@@ -31,10 +31,10 @@ public class FacCritController {
     }
 
     /**
-     * get all Faccrits for a Interview
+     * get all Faccrits for an Interview
      *
      * @param interviewId
-     * @return
+     * @return List with Faccrits
      */
     public List<BasicFacCritResponse> getAllFacCritsByInterviewId(int interviewId){
         List<BasicFacCritResponse> responses = new ArrayList<>();
