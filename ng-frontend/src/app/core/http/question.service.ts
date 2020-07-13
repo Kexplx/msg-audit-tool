@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
 import { Question } from '../data/models/question.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -20,6 +19,6 @@ export class QuestionService {
   getQuestion(id: number): Observable<Question> {
     const url = environment.baseUrl + 'questions/' + id;
 
-    return this.http.get<Question>(url).pipe(tap(q => console.log(q)));
+    return this.http.get<Question>(url);
   }
 }
