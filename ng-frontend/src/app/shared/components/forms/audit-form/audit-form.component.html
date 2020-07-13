@@ -1,64 +1,79 @@
-<form [formGroup]="formGroup" data-cy="audit-data-form">
-  <nb-card>
-    <nb-card-header>Audit Daten</nb-card-header>
-    <nb-card-body>
-      <div class="mb-2">
-        <label class="label">Auditname</label>
-        <input [status]="name.invalid && name.touched ? 'danger' : 'basic'" formControlName="name" nbInput fullWidth data-cy="audit-name-input" />
-        <div *ngIf="name.invalid && name.touched">
-          <label class="label text-danger" data-cy="auditname-missing-label">Auditnamen eintragen</label>
-        </div>
-      </div>
-      <div class="grid-1-1 mb-2">
-        <div class="form-item">
-          <label class="label">Startdatum</label>
-          <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="audit-start-input" />
-          <nb-datepicker #datePickerStart></nb-datepicker>
-        </div>
-        <div class="form-item">
-          <label class="label">Enddatum</label>
-          <input [status]="formGroup.errors?.dateRangeValidator ? 'danger' : 'basic'" formControlName="endDate" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
-          <nb-datepicker #datePickerEnd></nb-datepicker>
-          <div *ngIf="formGroup.errors?.dateRangeValidator">
-            <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
+<ng-container *ngIf="facCrits$ | async">
+  <form [formGroup]="formGroup" data-cy="audit-data-form">
+    <nb-card>
+      <nb-card-header>Audit Daten</nb-card-header>
+      <nb-card-body>
+        <div class="mb-2">
+          <label class="label">Auditname</label>
+          <input [status]="name.invalid && name.touched ? 'danger' : 'basic'" formControlName="name" nbInput fullWidth data-cy="audit-name-input" />
+          <div *ngIf="name.invalid && name.touched">
+            <label class="label text-danger" data-cy="auditname-missing-label">Auditnamen eintragen</label>
           </div>
         </div>
-      </div>
-      <div class="mb-2">
-        <label class="label">Kontaktpersonen</label>
-        <nb-select formControlName="contactPersons" multiple fullWidth data-cy="audit-contacts">
-          <nb-option *ngFor="let contactPerson of contactPersons$ | async" [value]="contactPerson" data-cy="audit-contact">{{ contactPerson.forename + ' ' + contactPerson.surname }}</nb-option>
-        </nb-select>
-      </div>
-      <hr style="border-bottom: 3px dotted rgb(228, 233, 242);" />
-      <nb-accordion>
-        <nb-accordion-item>
-          <nb-accordion-item-header class="label" data-cy="audit-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
-          <nb-accordion-item-body>
-            <div class="wrapper-facCrits mt-2" data-cy="facCrits">
-              <div *ngFor="let factor of facCrits$ | async | factors">
-                <nb-checkbox [formControlName]="factor.id" (checkedChange)="toggleCriteriaChecked(factor.id, $event)" data-cy="factor-entry">{{ factor.name }}</nb-checkbox>
-                <nb-checkbox
-                  (checkedChange)="formGroup.get(factor.id).setValue(true)"
-                  [formControlName]="criteria.id"
-                  *ngFor="let criteria of facCrits$ | async | criterias: factor.id"
-                  data-cy="criteria-entry"
-                  >{{ criteria.name }}</nb-checkbox
-                >
-              </div>
+        <div class="grid-1-1 mb-2">
+          <div class="form-item">
+            <label class="label">Startdatum</label>
+            <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="audit-start-input" />
+            <nb-datepicker #datePickerStart></nb-datepicker>
+          </div>
+          <div class="form-item">
+            <label class="label">Enddatum</label>
+            <input [status]="formGroup.errors?.dateRangeValidator ? 'danger' : 'basic'" formControlName="endDate" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />
+            <nb-datepicker #datePickerEnd></nb-datepicker>
+            <div *ngIf="formGroup.errors?.dateRangeValidator">
+              <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>
             </div>
-          </nb-accordion-item-body>
-        </nb-accordion-item>
-      </nb-accordion>
-    </nb-card-body>
-    <nb-card-footer data-cy="audit-data-buttons">
-      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
-        abbrechen
-      </button>
-      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
-        {{ submitButtonName }}
-      </button>
-    </nb-card-footer>
-  </nb-card>
-</form>
-<!-- </ng-container> -->
+          </div>
+        </div>
+        <div class="mb-2">
+          <label class="label">Kontaktpersonen</label>
+          <input type="text" #contactPersonInput nbInput fullWidth [nbAutocomplete]="auto" (input)="filterOptions($event.target.value)" />
+          <nb-autocomplete (selectedChange)="onContactPersonSelected($event); contactPersonInput.value = ''" #auto>
+            <nb-option *ngFor="let option of filteredContactPersons$ | async" [value]="option">
+              <span
+                >{{ option.forename + ' ' + option.surname }} <span class="subtitle-2"> | {{ option.companyName }}</span></span
+              >
+            </nb-option>
+          </nb-autocomplete>
+          <nb-list class="mt-1">
+            <nb-list-item *ngFor="let cp of selectedContactPersons">
+              <div class="wrapper-selected-person">
+                <nb-user [name]="cp.name" [title]="cp.company"> </nb-user>
+                <button ghost (click)="onRemoveContactPerson(cp)" nbButton>
+                  <nb-icon icon="trash-outline"></nb-icon>
+                </button>
+              </div>
+            </nb-list-item>
+          </nb-list>
+        </div>
+        <nb-accordion>
+          <nb-accordion-item>
+            <nb-accordion-item-header class="label" data-cy="audit-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="wrapper-facCrits mt-2" data-cy="facCrits">
+                <div *ngFor="let factor of facCrits$ | async | factors">
+                  <nb-checkbox [formControlName]="factor.id" (checkedChange)="toggleCriteriaChecked(factor.id, $event)" data-cy="factor-entry">{{ factor.name }}</nb-checkbox>
+                  <nb-checkbox
+                    (checkedChange)="formGroup.get(factor.id).setValue(true)"
+                    [formControlName]="criteria.id"
+                    *ngFor="let criteria of facCrits$ | async | criterias: factor.id"
+                    data-cy="criteria-entry"
+                    >{{ criteria.name }}</nb-checkbox
+                  >
+                </div>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </nb-card-body>
+      <nb-card-footer data-cy="audit-data-buttons">
+        <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
+          abbrechen
+        </button>
+        <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
+          {{ submitButtonName }}
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</ng-container>

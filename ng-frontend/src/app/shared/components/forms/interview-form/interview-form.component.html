@@ -27,7 +27,6 @@
           </nb-accordion-item>
         </nb-accordion>
       </div>
-      <hr />
       <div class="mb-2">
         <label class="label">Startdatum</label>
         <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="interview-start-input" />
@@ -35,9 +34,24 @@
       </div>
       <div class="mb-2">
         <label class="label">Kontaktpersonen</label>
-        <nb-select formControlName="contactPersons" multiple fullWidth data-cy="interview-contacts">
-          <nb-option *ngFor="let contactPerson of contactPersons$ | async" [value]="contactPerson" data-cy="interview-contact">{{ contactPerson.forename + ' ' + contactPerson.surname }}</nb-option>
-        </nb-select>
+        <input type="text" #contactPersonInput nbInput fullWidth [nbAutocomplete]="auto" (input)="filterOptions($event.target.value)" />
+        <nb-autocomplete (selectedChange)="onContactPersonSelected($event); contactPersonInput.value = ''" #auto>
+          <nb-option *ngFor="let option of filteredContactPersons$ | async" [value]="option">
+            <span
+              >{{ option.forename + ' ' + option.surname }} <span class="subtitle-2"> | {{ option.companyName }}</span></span
+            >
+          </nb-option>
+        </nb-autocomplete>
+        <nb-list class="mt-1">
+          <nb-list-item *ngFor="let cp of selectedContactPersons">
+            <div class="wrapper-selected-person">
+              <nb-user [name]="cp.name" [title]="cp.company"> </nb-user>
+              <button ghost (click)="onRemoveContactPerson(cp)" nbButton>
+                <nb-icon icon="trash-outline"></nb-icon>
+              </button>
+            </div>
+          </nb-list-item>
+        </nb-list>
       </div>
     </nb-card-body>
     <nb-card-footer>

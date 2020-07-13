@@ -7,11 +7,18 @@ import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Select, Store } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
+import { map } from 'rxjs/operators';
 
 const defaultScopeComplement = [8, 14];
+
+interface SelectedContactPerson {
+  name: string;
+  company: string;
+  value: ContactPerson;
+}
 
 @Component({
   selector: 'app-audit-form',
@@ -24,6 +31,11 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
 
   @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
   @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
+
+  contactPersons: ContactPerson[];
+  filteredContactPersons$: Observable<ContactPerson[]>;
+
+  selectedContactPersons: SelectedContactPerson[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,12 +57,15 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     return this.formGroup.get('endDate');
   }
 
-  get contactPersonsControl() {
-    return this.formGroup.get('contactPersons');
-  }
-
   ngOnInit() {
-    const contactPersonsSnapshot = this.store.selectSnapshot(ContactPersonState.contactPersons);
+    this.contactPersons = this.store.selectSnapshot(ContactPersonState.contactPersons);
+    this.filteredContactPersons$ = of(this.contactPersons);
+    this.selectedContactPersons =
+      this.audit?.contactPersons.map(cp => ({
+        company: cp.companyName,
+        name: cp.forename + ' ' + cp.surname,
+        value: cp,
+      })) ?? [];
 
     const defaultStartDate = new Date();
     defaultStartDate.setHours(0, 0, 0, 0);
@@ -60,9 +75,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
         name: [this.audit?.name, Validators.required],
         startDate: [this.audit?.startDate ?? defaultStartDate, Validators.required],
         endDate: [this.audit?.endDate],
-        contactPersons: [
-          contactPersonsSnapshot?.filter(x => this.audit?.contactPersons.find(f => f.id === x.id)),
-        ],
       },
       { validator: dateRangeValidator('startDate', 'endDate') },
     );
@@ -87,7 +99,7 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
       endDate: this.endDate.value,
       startDate: this.startDate.value,
       status: this.audit?.status ?? AuditStatus.Planned,
-      contactPersons: this.contactPersonsControl.value,
+      contactPersons: this.selectedContactPersons.map(cp => cp.value),
       scope: this.checkedFacCrits(),
     };
 
@@ -116,5 +128,26 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
         this.formGroup.get(String(crit.id)).setValue(checked);
       }
     });
+  }
+
+  filterOptions(input: string) {
+    this.filteredContactPersons$ = of(this.contactPersons).pipe(
+      map(options => options.filter(o => o.forename.toLowerCase().startsWith(input.toLowerCase()))),
+    );
+  }
+
+  onContactPersonSelected(cp: ContactPerson) {
+    if (this.selectedContactPersons.map(x => x.value).find(y => y.id === cp.id)) return;
+
+    this.selectedContactPersons.push({
+      company: cp.companyName,
+      name: cp.forename + ' ' + cp.surname,
+      value: cp,
+    });
+  }
+
+  onRemoveContactPerson(cp: SelectedContactPerson) {
+    const indexOf = this.selectedContactPersons.indexOf(cp);
+    this.selectedContactPersons.splice(indexOf, 1);
   }
 }

@@ -2,13 +2,20 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { AbstractFormComponent } from '../abstract-form-component';
 import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
+import { map } from 'rxjs/operators';
+
+interface SelectedContactPerson {
+  name: string;
+  company: string;
+  value: ContactPerson;
+}
 
 @Component({
   selector: 'app-interview-form',
@@ -25,7 +32,15 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
 
   facCritSelected = false;
 
-  constructor(private fb: FormBuilder, protected dialogService: NbDialogService) {
+  contactPersons: ContactPerson[];
+  filteredContactPersons$: Observable<ContactPerson[]>;
+  selectedContactPersons: SelectedContactPerson[] = [];
+
+  constructor(
+    private fb: FormBuilder,
+    protected dialogService: NbDialogService,
+    private store: Store,
+  ) {
     super(dialogService);
   }
 
@@ -37,14 +52,18 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     return this.formGroup.get('facCrit');
   }
 
-  get contactPersons() {
-    return this.formGroup.get('contactPersons');
-  }
-
   ngOnInit() {
+    this.contactPersons = this.store.selectSnapshot(ContactPersonState.contactPersons);
+    this.filteredContactPersons$ = of(this.contactPersons);
+    this.selectedContactPersons =
+      this.interview?.contactPersons?.map(cp => ({
+        company: cp.companyName,
+        name: cp.forename + ' ' + cp.surname,
+        value: cp,
+      })) ?? [];
+
     this.formGroup = this.fb.group({
       startDate: [this.interview?.startDate ?? new Date()],
-      contactPersons: [this.interview?.contactPersons, Validators.required],
     });
 
     for (const facCrit of this.scope) {
@@ -80,7 +99,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     const interview: Interview = {
       startDate: this.startDate.value,
       status: InterviewStatus.Active,
-      contactPersons: this.contactPersons.value,
+      contactPersons: this.selectedContactPersons.map(cp => cp.value),
     };
     this.formSubmitted.emit({ interview, scope: this.checkedFacCrits() });
   }
@@ -91,5 +110,26 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     for (const crit of criteria) {
       this.formGroup.get(String(crit.id))?.setValue(checked);
     }
+  }
+
+  filterOptions(input: string) {
+    this.filteredContactPersons$ = of(this.contactPersons).pipe(
+      map(options => options.filter(o => o.forename.toLowerCase().startsWith(input.toLowerCase()))),
+    );
+  }
+
+  onContactPersonSelected(cp: ContactPerson) {
+    if (this.selectedContactPersons.map(x => x.value).find(y => y.id === cp.id)) return;
+
+    this.selectedContactPersons.push({
+      company: cp.companyName,
+      name: cp.forename + ' ' + cp.surname,
+      value: cp,
+    });
+  }
+
+  onRemoveContactPerson(cp: SelectedContactPerson) {
+    const indexOf = this.selectedContactPersons.indexOf(cp);
+    this.selectedContactPersons.splice(indexOf, 1);
   }
 }
