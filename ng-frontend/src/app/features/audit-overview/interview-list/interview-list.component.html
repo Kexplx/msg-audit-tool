@@ -7,7 +7,11 @@
   </header>
   <div class="fac-crits" *ngIf="audit.scope.length > 0; else noFacrits">
     <nb-accordion [id]="factor.id" *ngFor="let factor of audit.scope | factors">
-      <nb-accordion-item *ngIf="interviews | interviewsByFacCritId: factor.id; let factorInterviews" [expanded]="!(factorInterviews | allInterviewsFinished)" data-cy="factor-card">
+      <nb-accordion-item
+        *ngIf="interviews | interviewsByFacCritId: factor.id; let factorInterviews"
+        [expanded]="factorInterviews.length > 0 || (interviews | interviewsInCriteria: (audit.scope | criteriaByFactorId: factor.id)) == true"
+        data-cy="factor-card"
+      >
         <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">
           <ng-container [ngSwitch]="factorInterviews | allInterviewsFinished">
             <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="false" class="banner-status banner-status-in-action" data-cy="interview-status"></div>
