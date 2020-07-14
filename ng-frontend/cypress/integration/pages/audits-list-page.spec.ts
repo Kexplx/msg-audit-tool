@@ -2,6 +2,7 @@ describe('AuditsListPage', () => {
   let auditsUrl = Cypress.config().baseUrl + '/audits';
 
   beforeEach(() => {
+    cy.injectBackendMocks();
     cy.visit(auditsUrl);
   });
 
@@ -16,6 +17,15 @@ describe('AuditsListPage', () => {
   });
 
   context('When focussing on the defaults it...', () => {
+    beforeEach(() => {
+      cy.route({
+        method: 'GET',
+        url: '/audits',
+        response: [],
+      });
+      cy.visit(auditsUrl);
+    });
+
     it('shows empty message in active audit view when clicked on active tab', () => {
       cy.get('[data-cy=no-active-audits]').should('exist');
     });
@@ -201,25 +211,14 @@ describe('AuditsListPage', () => {
       cy.get('[data-cy=audit-dates]').first().should('contain.text', 'TBD');
     });
 
-    it('shows a button to see further options to do with the audit', () => {
-      cy.get('[data-cy=audit-options]').first().should('exist');
-    });
-
     it('redirects to an audit edit dialog when clicking on the edit button', () => {
-      cy.get('[data-cy=audit-options]').first().click();
-      cy.get('body').contains('Bearbeiten').click();
+      cy.get('[data-cy=edit-audit]').first().click();
       cy.url().should('be', `${auditsUrl}/${audit.id}/edit`);
     });
 
     it('redirects to audit page when clicking on an audit', () => {
       cy.get('[data-cy=audit-short-infos]').first().click();
       cy.url().should('be', `${auditsUrl}/${audit.id}/interviews`);
-    });
-
-    it('removes an audit by clicking on an audit delete button', () => {
-      cy.get('[data-cy=audit-options]').first().click();
-      cy.get('body').contains('Löschen').click();
-      cy.get('[data-cy=audit-card]').should('not.exist');
     });
   });
 
