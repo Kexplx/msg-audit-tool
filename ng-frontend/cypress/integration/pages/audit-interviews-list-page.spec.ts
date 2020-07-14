@@ -1,3 +1,5 @@
+import { toLength } from 'cypress/types/lodash';
+
 describe('AuditInterviewsListPage', () => {
   let interviewsUrl = Cypress.config().baseUrl + '/audits';
   let audit;
@@ -98,14 +100,6 @@ describe('AuditInterviewsListPage', () => {
         }
       });
     });
-
-    it('has expanded accoredeons by default', () => {
-      cy.get('[data-cy=factor-card]').each(factor => {
-        cy.wrap(factor).should('have.attr', 'expanded');
-      });
-    });
-
-    it('collapses when all interviews have been conducted and their status is finished');
 
     it('displays an interview with more than one faccrit in all of their chosen faccrit cards', () => {
       cy.fixture('backend-mock-data/interviews.json').then(interviews => {
@@ -239,16 +233,6 @@ describe('AuditInterviewsListPage', () => {
     it('opens sidebar on click', () => {
       cy.get('[data-cy=toggle-sidebar]').should('not.have.class', 'collapsed');
       cy.get('[data-cy=toggle-sidebar]').click();
-    });
-
-    it('scrolls to the selected question when clicked', () => {
-      cy.get('.menu-title').each(item => {
-        let questionLabel = item.text();
-        cy.wrap(item).click();
-        cy.get('[data-cy=factor-card]:visible')
-          .filter(`:contains("${questionLabel.slice(0, textLength)}")`)
-          .should('have.length', 1);
-      });
     });
 
     it('cuts a faccrit label off when size > 25 and " ..." is appended', () => {
