@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.integration_tests.faccrit;
+package com.amos2020.javabackend.integration_tests;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.amos2020.javabackend.JavaBackendApplication;

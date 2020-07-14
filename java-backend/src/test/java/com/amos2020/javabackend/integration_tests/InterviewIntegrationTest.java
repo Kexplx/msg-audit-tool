@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.integration_tests.interview;
+package com.amos2020.javabackend.integration_tests;
 
 import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.*;
@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         classes = JavaBackendApplication.class
 )
 @AutoConfigureMockMvc
-public class InterviewRestServiceIntegrationTest {
+public class InterviewIntegrationTest {
 
     private static final String VALID_NAME = "TestAuditName";
     private static final String NULL_STRING = null;

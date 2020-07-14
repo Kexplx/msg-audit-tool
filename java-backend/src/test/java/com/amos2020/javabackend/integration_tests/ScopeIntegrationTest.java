@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.integration_tests.scope;
+package com.amos2020.javabackend.integration_tests;
 
 import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.rest_service.request.scope.AddScopeRequest;
@@ -30,7 +30,7 @@ import static org.junit.Assert.assertNull;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = JavaBackendApplication.class
 )
-public class ScopeRestServiceIntegrationTest {
+public class ScopeIntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

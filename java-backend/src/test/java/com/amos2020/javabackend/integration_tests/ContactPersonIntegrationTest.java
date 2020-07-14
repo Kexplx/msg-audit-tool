@@ -1,4 +1,4 @@
-package com.amos2020.javabackend.integration_tests.contactperson;
+package com.amos2020.javabackend.integration_tests;
 
 import com.amos2020.javabackend.JavaBackendApplication;
 import com.amos2020.javabackend.entity.Salutation;
@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = JavaBackendApplication.class
 )
-public class ContactPersonRestServiceIntegrationTest {
+public class ContactPersonIntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
