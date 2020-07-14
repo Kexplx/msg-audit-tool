@@ -13,7 +13,7 @@
       <span class="label" data-cy="audit-dates"> &nbsp;{{ audit.startDate | date: 'dd.MM.yyyy' }} - {{ audit.endDate ? (audit.endDate | date: 'dd.MM.yyyy') : 'TBD' }}</span>
     </div>
     <div></div>
-    <button [routerLink]="[audit.id + '/edit']" (click)="$event.stopPropagation()" nbButton>
+    <button [routerLink]="[audit.id + '/edit']" (click)="$event.stopPropagation()" nbButton data-cy="edit-audit">
       <nb-icon icon="edit-outline"></nb-icon>
     </button>
   </nb-card-header>

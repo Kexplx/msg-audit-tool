@@ -41,7 +41,7 @@
   </nb-card>
   <ng-container *ngIf="facCrit$ | async; let facCrit">
     <nb-accordion multi class="mt-1" id="fac-crit-goal">
-      <nb-accordion-item expanded>
+      <nb-accordion-item expanded data-cy="faccrit-goal">
         <nb-accordion-item-header class="subtitle-2">
           Befragungsziel des {{ facCrit.referenceId ? 'Kriteriums' : 'Faktors' }} &nbsp; <span class="subtitle">{{ facCrit.name }}</span>
         </nb-accordion-item-header>
@@ -49,7 +49,7 @@
           {{ facCrit.goal }}
         </nb-accordion-item-body>
       </nb-accordion-item>
-      <nb-accordion-item>
+      <nb-accordion-item data-cy="faccrit-notes">
         <nb-accordion-item-header class="subtitle-2">
           Notizen des Interviews
         </nb-accordion-item-header>

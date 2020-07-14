@@ -27,19 +27,19 @@
         </div>
         <div class="mb-2">
           <label class="label">Kontaktpersonen</label>
-          <input type="text" #contactPersonInput nbInput fullWidth [nbAutocomplete]="auto" (input)="filterOptions($event.target.value)" />
+          <input type="text" #contactPersonInput nbInput fullWidth [nbAutocomplete]="auto" (input)="filterOptions($event.target.value)" data-cy="interview-contacts" />
           <nb-autocomplete (selectedChange)="onContactPersonSelected($event); contactPersonInput.value = ''" #auto>
-            <nb-option *ngFor="let option of filteredContactPersons$ | async" [value]="option">
+            <nb-option *ngFor="let option of filteredContactPersons$ | async" [value]="option" data-cy="contact-option">
               <span
                 >{{ option.forename + ' ' + option.surname }} <span class="subtitle-2"> | {{ option.companyName }}</span></span
               >
             </nb-option>
           </nb-autocomplete>
           <nb-list class="mt-1">
-            <nb-list-item *ngFor="let cp of selectedContactPersons">
+            <nb-list-item *ngFor="let cp of selectedContactPersons" data-cy="contact-chosen">
               <div class="wrapper-selected-person">
                 <nb-user [name]="cp.name" [title]="cp.company"> </nb-user>
-                <button ghost (click)="onRemoveContactPerson(cp)" nbButton>
+                <button ghost (click)="onRemoveContactPerson(cp)" nbButton data-cy="contact-delete">
                   <nb-icon icon="trash-outline"></nb-icon>
                 </button>
               </div>
