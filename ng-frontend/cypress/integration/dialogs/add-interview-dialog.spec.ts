@@ -89,42 +89,82 @@ describe('AddInterviewDialog', () => {
   });
 
   context('When focussing on the contact persons it...', () => {
-    it('leaves all contact persons unchecked by default');
-
-    it('can select one contact person', () => {
+    it('shows contact person suggestions when typed in and adds it on click', () => {
       cy.get('[data-cy=interview-contacts]')
+        .clear()
+        .type(contactPersons[0].forename)
+        .get('[data-cy=contact-option]')
+        .first()
+        .should('contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
         .click()
-        .get('[data-cy=interview-contact]')
+        .get('[data-cy=contact-chosen]')
+        .should('contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
+        .should('contain', contactPersons[0].companyName);
+    });
+
+    it('can add and remove multiple contact persons', () => {
+      cy.get('[data-cy=interview-contacts]')
+        .clear()
+        .type(contactPersons[0].forename)
+        .get('[data-cy=contact-option]')
+        .first()
+        .should('contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
+        .click()
+        .get('[data-cy=contact-chosen]')
+        .first()
+        .should('contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
+        .should('contain', contactPersons[0].companyName);
+
+      cy.get('[data-cy=interview-contacts]')
+        .clear()
+        .type(contactPersons[1].forename)
+        .get('[data-cy=contact-option]')
+        .first()
+        .should('contain', contactPersons[1].forename + ' ' + contactPersons[1].surname)
+        .click()
+        .get('[data-cy=contact-chosen]')
         .last()
-        .click();
+        .should('contain', contactPersons[1].forename + ' ' + contactPersons[1].surname)
+        .should('contain', contactPersons[1].companyName);
+
+      cy.get('[data-cy=contact-delete]')
+        .first()
+        .click()
+        .get('[data-cy=contact-chosen]')
+        .first()
+        .should('not.contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
+        .should('contain', contactPersons[1].forename + ' ' + contactPersons[1].surname)
+        .should('contain', contactPersons[1].companyName);
+
+      cy.get('[data-cy=contact-delete]')
+        .first()
+        .click()
+        .get('[data-cy=contact-chosen]')
+        .should('not.exist');
     });
 
-    it('can add and remove multiple contact persons with their roles', () => {
+    it('disallows adding the same contact twice', () => {
       cy.get('[data-cy=interview-contacts]')
+        .clear()
+        .type(contactPersons[0].forename)
+        .get('[data-cy=contact-option]')
+        .first()
+        .should('contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
         .click()
-        .get('[data-cy=interview-contact]')
-        .each(contact => {
-          cy.wrap(contact).click();
-        })
-        .get('[data-cy=interview-contacts]')
-        .click();
-      cy.get('[data-cy=interview-contacts]')
-        .click()
-        .get('[data-cy=interview-contact]')
-        .each(contact => {
-          cy.wrap(contact).click();
-        })
-        .get('[data-cy=interview-contacts]')
-        .click();
-    });
+        .get('[data-cy=contact-chosen]')
+        .its('length')
+        .should('be', 1);
 
-    it('shows the correct contact person(s)', () => {
-      cy.get('[data-cy=interview-contacts]').click();
-      cy.get('[data-cy=interview-contact]').each((contact, i) => {
-        cy.wrap(contact)
-          .should('contain', contactPersons[i].forename)
-          .should('contain', contactPersons[i].surname);
-      });
+      cy.get('[data-cy=interview-contacts]')
+        .clear()
+        .type(contactPersons[0].forename)
+        .get('[data-cy=contact-option]')
+        .first()
+        .should('contain', contactPersons[0].forename + ' ' + contactPersons[0].surname)
+        .click()
+        .get('[data-cy=contact-chosen]')
+        .its('length')
+        .should('be', 1);
     });
   });
 
