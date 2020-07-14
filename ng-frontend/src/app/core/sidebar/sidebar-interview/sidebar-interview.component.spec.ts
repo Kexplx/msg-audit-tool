@@ -4,6 +4,18 @@ import { SidebarInterviewComponent } from './sidebar-interview.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
+import { ContactPersonService } from '../../http/contact-person.service';
+import {
+  contactPersonServiceSpy,
+  interviewServiceSpy,
+  questionServiceSpy,
+  facCritServiceSpy,
+  auditServiceSpy,
+} from '../../ngxs/test/service-spies';
+import { InterviewService } from '../../http/interview.service';
+import { QuestionService } from '../../http/question.service';
+import { FacCritService } from '../../http/facCrit.service';
+import { AuditService } from '../../http/audit.service';
 
 describe('SidebarInterviewComponent', () => {
   let component: SidebarInterviewComponent;
@@ -13,6 +25,13 @@ describe('SidebarInterviewComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SidebarInterviewComponent],
       imports: [CoreModule, RouterModule.forRoot([]), SharedModule],
+      providers: [
+        { provide: ContactPersonService, useValue: contactPersonServiceSpy },
+        { provide: InterviewService, useValue: interviewServiceSpy },
+        { provide: QuestionService, useValue: questionServiceSpy },
+        { provide: FacCritService, useValue: facCritServiceSpy },
+        { provide: AuditService, useValue: auditServiceSpy },
+      ],
     }).compileComponents();
   }));
 
