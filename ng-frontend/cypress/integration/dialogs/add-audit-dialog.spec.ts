@@ -38,11 +38,7 @@ describe('AddAuditDialog', () => {
   beforeEach(() => {
     cy.clearLocalStorage();
     cy.injectBackendMocks();
-    cy.visit(auditsUrl).visit(auditsUrl + '/new');
-    cy.wait('@getFacCrits').its('status').should('eq', 200);
-    cy.wait('@getAudits').its('status').should('eq', 200);
-    cy.wait('@getContactPersons').its('status').should('eq', 200);
-    cy.wait('@getInterviews').its('status').should('eq', 200);
+    cy.visit(auditsUrl).get('[data-cy=new-audit]').click();
   });
 
   it('opens a form to input audit information when routing to audits/new', () => {

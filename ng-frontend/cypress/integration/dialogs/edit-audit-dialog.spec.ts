@@ -34,11 +34,7 @@ describe('EditAuditDialog', () => {
 
     beforeEach(() => {
       audit = audits[0];
-      cy.visit(auditsUrl).visit(`${auditsUrl}/${audit.id}/edit`);
-      cy.wait('@getFacCrits').its('status').should('eq', 200);
-      cy.wait('@getAudits').its('status').should('eq', 200);
-      cy.wait('@getContactPersons').its('status').should('eq', 200);
-      cy.wait('@getInterviews').its('status').should('eq', 200);
+      cy.visit(auditsUrl).get('[data-cy=edit-audit]').click();
     });
 
     it('shows the correct audit name', () => {
@@ -164,11 +160,7 @@ describe('EditAuditDialog', () => {
 
     beforeEach(() => {
       audit = audits[0];
-      cy.visit(auditsUrl).visit(`${auditsUrl}/${audit.id}/edit`);
-      cy.wait('@getFacCrits').its('status').should('eq', 200);
-      cy.wait('@getAudits').its('status').should('eq', 200);
-      cy.wait('@getContactPersons').its('status').should('eq', 200);
-      cy.wait('@getInterviews').its('status').should('eq', 200);
+      cy.visit(auditsUrl).get('[data-cy=edit-audit]').click();
     });
 
     it('builds a valid post request as form', () => {
