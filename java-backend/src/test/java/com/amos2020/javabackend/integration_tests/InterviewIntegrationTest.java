@@ -203,7 +203,7 @@ public class InterviewIntegrationTest {
 
     @Test
     public void createInterviewWithAuditDoesNotExist_returns404() throws Exception {
-        CreateInterviewRequest request = getCreateInterviewRequest(100, VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
+        CreateInterviewRequest request = getCreateInterviewRequest(10000, VALID_START_DATE, VALID_END_DATE, VALID_NOTE, interviewedPeople, facCritIds);
         String requestAsJson = buildJson(request);
 
         mvc.perform(post("/interviews")
