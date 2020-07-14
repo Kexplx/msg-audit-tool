@@ -1,22 +1,10 @@
 describe('InterviewQuestionsListPage', () => {
-  // let baseUrl = Cypress.config().baseUrl;
-  // let testAudit;
-  // let testInterview;
   let audit;
-  // let interviewsUrl;
-  // let interviewDialogUrl;
   let questionsUrl;
   let interview;
   let questions = [];
 
   before(() => {
-    //   // import testAudit that does not contain startdate nor enddate
-    //   cy.fixture('user-input-data/example-audit').then(json => {
-    //     testAudit = json;
-    //   });
-    //   cy.fixture('user-input-data/example-interview').then(f => {
-    //     testInterview = f;
-    //   });
     cy.fixture('backend-mock-data/interviews.json').then(interviews => {
       interview = interviews[0];
     });
@@ -43,7 +31,7 @@ describe('InterviewQuestionsListPage', () => {
   });
 
   it('shows "Interview" and startdate as heading', () => {
-    const testDate = new Date(Date.now()).toLocaleDateString('de-DE', {
+    const testDate = new Date(interview.startDate).toLocaleDateString('de-DE', {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -62,6 +50,7 @@ describe('InterviewQuestionsListPage', () => {
 
   it('shows a notes textfield that sticks on top when scrolled', () => {
     const dummyText = 'Dummy Goal';
+    cy.get('[data-cy=faccrit-notes]').click();
     cy.get('[data-cy=notes]').should('be.visible').clear().type(dummyText);
     cy.scrollTo('center');
     cy.get('[data-cy=notes]').should('be.visible').should('have.value', dummyText);
@@ -74,6 +63,8 @@ describe('InterviewQuestionsListPage', () => {
       .clear()
       .should('not.have.value', dummyText);
   });
+
+  it('shows a goal that sticks on top when scrolled');
 
   context('When focussing on the questions ...', () => {
     it('shows the questions given from the backend', () => {
