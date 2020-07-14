@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -130,6 +130,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#contactPersons$">contactPersons$</a>
+                            </li>
+                            <li>
                                 <a href="#dialog">dialog</a>
                             </li>
                             <li>
@@ -179,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -272,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:28</a></div>
                 </td>
             </tr>
 
@@ -311,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:42</a></div>
                 </td>
             </tr>
 
@@ -350,8 +353,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="38"
+                            class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:38</a></div>
                 </td>
             </tr>
 
@@ -408,6 +411,42 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="contactPersons$"></a>
+                        <span class="name">
+                            <b>
+                            contactPersons$</b>
+                            <a href="#contactPersons$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/ContactPerson.html" target="_self" >Observable&lt;ContactPerson[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(ContactPersonState.contactPersons)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:19</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="dialog"></a>
                         <span class="name">
                             <b>
@@ -433,7 +472,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -460,7 +499,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -475,12 +514,14 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ViewChild, TemplateRef, AfterViewInit } from &#x27;@angular/core&#x27;;
 import { NbDialogRef, NbDialogService } from &#x27;@nebular/theme&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
-import { Store } from &#x27;@ngxs/store&#x27;;
+import { Store, Select } from &#x27;@ngxs/store&#x27;;
 import { defaultDialogOptions } from &#x27;../default-dialog-options&#x27;;
 import { Audit } from &#x27;src/app/core/data/models/audit.model&#x27;;
-import { AddAudit } from &#x27;src/app/core/ngxs/audit.actions&#x27;;
+import { AddAudit } from &#x27;src/app/core/ngxs/actions/audit.actions&#x27;;
 import { Location } from &#x27;@angular/common&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { ContactPerson } from &#x27;src/app/core/data/models/contact-person.model&#x27;;
+import { ContactPersonState } from &#x27;src/app/core/ngxs/contact-person.state&#x27;;
 
 @Component({
   selector: &#x27;app-add-audit-dialog&#x27;,
@@ -489,6 +530,7 @@ import { Location } from &#x27;@angular/common&#x27;;
 })
 export class AddAuditDialogComponent implements AfterViewInit {
   @ViewChild(&#x27;dialog&#x27;) dialog: TemplateRef&lt;any&gt;;
+  @Select(ContactPersonState.contactPersons) contactPersons$: Observable&lt;ContactPerson[]&gt;;
   dialogRef: NbDialogRef&lt;any&gt;;
 
   constructor(
@@ -521,7 +563,7 @@ export class AddAuditDialogComponent implements AfterViewInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;ng-template #dialog let-data let-ref&#x3D;&quot;dialogRef&quot;&gt;
   &lt;div class&#x3D;&quot;scrollable-container&quot;&gt;
-    &lt;app-audit-data-form (cancelled)&#x3D;&quot;onCancel()&quot; (formSubmitted)&#x3D;&quot;onSubmit($event)&quot; [audit]&#x3D;&quot;null&quot; [submitButtonName]&#x3D;&quot;&#x27;hinzufügen&#x27;&quot; cancelButtonName&#x3D;&quot;abbrechen&quot;&gt; &lt;/app-audit-data-form&gt;
+    &lt;app-audit-form (cancelled)&#x3D;&quot;onCancel()&quot; (formSubmitted)&#x3D;&quot;onSubmit($event)&quot; [audit]&#x3D;&quot;null&quot; [submitButtonName]&#x3D;&quot;&#x27;hinzufügen&#x27;&quot; cancelButtonName&#x3D;&quot;abbrechen&quot;&gt; &lt;/app-audit-form&gt;
   &lt;/div&gt;
 &lt;/ng-template&gt;
 </code></pre>
@@ -566,8 +608,8 @@ export class AddAuditDialogComponent implements AfterViewInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ng-template #dialog let-data let-ref="dialogRef">  <div class="scrollable-container">    <app-audit-data-form (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" [audit]="null" [submitButtonName]="\'hinzufügen\'" cancelButtonName="abbrechen"> </app-audit-data-form>  </div></ng-template></div>'
-    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditDataFormComponent', 'selector': 'app-audit-data-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditListComponent', 'selector': 'app-audit-list'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPeopleListComponent', 'selector': 'app-contact-people-list'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NavbarComponent', 'selector': 'app-navbar'},{'name': 'NewInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'}];
+        var COMPONENT_TEMPLATE = '<div><ng-template #dialog let-data let-ref="dialogRef">  <div class="scrollable-container">    <app-audit-form (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" [audit]="null" [submitButtonName]="\'hinzufügen\'" cancelButtonName="abbrechen"> </app-audit-form>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
     var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
     var ACTUAL_COMPONENT = {'name': 'AddAuditDialogComponent'};
 </script>

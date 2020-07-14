@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="./" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="./" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -73,43 +73,19 @@
             <td>AppComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
+                <span class="coverage-count">(0/4)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#audits">src/app/core/data/examples/audits.ts</a>
+                <a href="./interfaces/Answer.html">src/app/core/data/models/answer.model.ts</a>
             </td>
-            <td>variable</td>
-            <td>audits</td>
+            <td>interface</td>
+            <td>Answer</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#contactPeople">src/app/core/data/examples/contact-people.ts</a>
-            </td>
-            <td>variable</td>
-            <td>contactPeople</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./miscellaneous/variables.html#FACCRITS">src/app/core/data/examples/fac-crits.ts</a>
-            </td>
-            <td>variable</td>
-            <td>FACCRITS</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/1)</span>
+                <span class="coverage-count">(0/11)</span>
             </td>
         </tr>
         <tr class="low">
@@ -121,7 +97,7 @@
             <td>Audit</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/10)</span>
+                <span class="coverage-count">(0/9)</span>
             </td>
         </tr>
         <tr class="low">
@@ -157,37 +133,241 @@
             <td>Interview</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/9)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./injectables/AuditRegistryState.html">src/app/core/ngxs/audit-registry.state.ts</a>
-            </td>
-            <td>injectable</td>
-            <td>AuditRegistryState</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/10)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./interfaces/AuditRegistryStateModel.html">src/app/core/ngxs/audit-registry.state.ts</a>
+                <a href="./interfaces/Question.html">src/app/core/data/models/question.model.ts</a>
             </td>
             <td>interface</td>
-            <td>AuditRegistryStateModel</td>
+            <td>Question</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AnswerService.html">src/app/core/http/answer.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AnswerService</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(2/4)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AuditService.html">src/app/core/http/audit.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AuditService</td>
+            <td align="right" data-sort="71">
+                <span class="coverage-percent">71 %</span>
+                <span class="coverage-count">(5/7)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ContactPersonService.html">src/app/core/http/contact-person.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ContactPersonService</td>
+            <td align="right" data-sort="66">
+                <span class="coverage-percent">66 %</span>
+                <span class="coverage-count">(4/6)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/AddAudit.html">src/app/core/ngxs/audit.actions.ts</a>
+                <a href="./interfaces/AuditDto.html">src/app/core/http/dtos/audit.dto.ts</a>
+            </td>
+            <td>interface</td>
+            <td>AuditDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/12)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/InterviewDto.html">src/app/core/http/dtos/interview.dto.ts</a>
+            </td>
+            <td>interface</td>
+            <td>InterviewDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PostAuditDto.html">src/app/core/http/dtos/post-audit.dto.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PostAuditDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PostInterviewDto.html">src/app/core/http/dtos/post-interview.dto.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PostInterviewDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/6)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PutAuditDto.html">src/app/core/http/dtos/put-audit.dto.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PutAuditDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/PutInterviewDto.html">src/app/core/http/dtos/put-interview.dto.ts</a>
+            </td>
+            <td>interface</td>
+            <td>PutInterviewDto</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/FacCritService.html">src/app/core/http/facCrit.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>FacCritService</td>
+            <td align="right" data-sort="50">
+                <span class="coverage-percent">50 %</span>
+                <span class="coverage-count">(2/4)</span>
+            </td>
+        </tr>
+        <tr class="good">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/InterviewService.html">src/app/core/http/interview.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>InterviewService</td>
+            <td align="right" data-sort="71">
+                <span class="coverage-percent">71 %</span>
+                <span class="coverage-count">(5/7)</span>
+            </td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/QuestionService.html">src/app/core/http/question.service.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>QuestionService</td>
+            <td align="right" data-sort="33">
+                <span class="coverage-percent">33 %</span>
+                <span class="coverage-count">(1/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#ANSWERS_DTO_DUMMY">src/app/core/http/test/dummies/answers.ts</a>
+            </td>
+            <td>variable</td>
+            <td>ANSWERS_DTO_DUMMY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#AUDITS_DTO_DUMMY">src/app/core/http/test/dummies/audits.ts</a>
+            </td>
+            <td>variable</td>
+            <td>AUDITS_DTO_DUMMY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#CONTACTPERSON_DTO_DUMMY">src/app/core/http/test/dummies/contact-persons.ts</a>
+            </td>
+            <td>variable</td>
+            <td>CONTACTPERSON_DTO_DUMMY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#FACCRITS_DUMMY">src/app/core/http/test/dummies/faccrits.ts</a>
+            </td>
+            <td>variable</td>
+            <td>FACCRITS_DUMMY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#INTERVIEWS_DTO_DUMMY">src/app/core/http/test/dummies/interviews.ts</a>
+            </td>
+            <td>variable</td>
+            <td>INTERVIEWS_DTO_DUMMY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#QUESTIONS_DTO_DUMMY">src/app/core/http/test/dummies/questions.ts</a>
+            </td>
+            <td>variable</td>
+            <td>QUESTIONS_DTO_DUMMY</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/AddAudit.html">src/app/core/ngxs/actions/audit.actions.ts</a>
             </td>
             <td>class</td>
             <td>AddAudit</td>
@@ -199,31 +379,7 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/AddContactPerson.html">src/app/core/ngxs/audit.actions.ts</a>
-            </td>
-            <td>class</td>
-            <td>AddContactPerson</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./classes/AddInterview.html">src/app/core/ngxs/audit.actions.ts</a>
-            </td>
-            <td>class</td>
-            <td>AddInterview</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./classes/DeleteAudit.html">src/app/core/ngxs/audit.actions.ts</a>
+                <a href="./classes/DeleteAudit.html">src/app/core/ngxs/actions/audit.actions.ts</a>
             </td>
             <td>class</td>
             <td>DeleteAudit</td>
@@ -235,7 +391,19 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./classes/UpdateAudit.html">src/app/core/ngxs/audit.actions.ts</a>
+                <a href="./classes/LoadFacCritsByInterviewId.html">src/app/core/ngxs/actions/audit.actions.ts</a>
+            </td>
+            <td>class</td>
+            <td>LoadFacCritsByInterviewId</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateAudit.html">src/app/core/ngxs/actions/audit.actions.ts</a>
             </td>
             <td>class</td>
             <td>UpdateAudit</td>
@@ -247,7 +415,271 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/AuditCardComponent.html">src/app/features/audit-list/components/audit-card/audit-card.component.ts</a>
+                <a href="./classes/AddContactPerson.html">src/app/core/ngxs/actions/contact-person.action.ts</a>
+            </td>
+            <td>class</td>
+            <td>AddContactPerson</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/DeleteContactPerson.html">src/app/core/ngxs/actions/contact-person.action.ts</a>
+            </td>
+            <td>class</td>
+            <td>DeleteContactPerson</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateContactPerson.html">src/app/core/ngxs/actions/contact-person.action.ts</a>
+            </td>
+            <td>class</td>
+            <td>UpdateContactPerson</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/AddInterview.html">src/app/core/ngxs/actions/inteview.actions.ts</a>
+            </td>
+            <td>class</td>
+            <td>AddInterview</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateAnswer.html">src/app/core/ngxs/actions/inteview.actions.ts</a>
+            </td>
+            <td>class</td>
+            <td>UpdateAnswer</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/UpdateInterview.html">src/app/core/ngxs/actions/inteview.actions.ts</a>
+            </td>
+            <td>class</td>
+            <td>UpdateInterview</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/Navigate.html">src/app/core/ngxs/actions/router.actions.ts</a>
+            </td>
+            <td>class</td>
+            <td>Navigate</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AppRouterState.html">src/app/core/ngxs/app-router.state.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AppRouterState</td>
+            <td align="right" data-sort="14">
+                <span class="coverage-percent">14 %</span>
+                <span class="coverage-count">(2/14)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/AppRouterStateModel.html">src/app/core/ngxs/app-router.state.ts</a>
+            </td>
+            <td>interface</td>
+            <td>AppRouterStateModel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/AuditState.html">src/app/core/ngxs/audit.state.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>AuditState</td>
+            <td align="right" data-sort="7">
+                <span class="coverage-percent">7 %</span>
+                <span class="coverage-count">(1/13)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/AuditStateModel.html">src/app/core/ngxs/audit.state.ts</a>
+            </td>
+            <td>interface</td>
+            <td>AuditStateModel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/ContactPersonState.html">src/app/core/ngxs/contact-person.state.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>ContactPersonState</td>
+            <td align="right" data-sort="12">
+                <span class="coverage-percent">12 %</span>
+                <span class="coverage-count">(1/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/ContactPersonStateModel.html">src/app/core/ngxs/contact-person.state.ts</a>
+            </td>
+            <td>interface</td>
+            <td>ContactPersonStateModel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/2)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./injectables/InterviewState.html">src/app/core/ngxs/interview.state.ts</a>
+            </td>
+            <td>injectable</td>
+            <td>InterviewState</td>
+            <td align="right" data-sort="9">
+                <span class="coverage-percent">9 %</span>
+                <span class="coverage-count">(1/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./interfaces/InterviewStateModel.html">src/app/core/ngxs/interview.state.ts</a>
+            </td>
+            <td>interface</td>
+            <td>InterviewStateModel</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AuditContactPersonCardComponent.html">src/app/features/audit-overview/audit-info/audit-contact-person-card/contact-person-card.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AuditContactPersonCardComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AuditInfoComponent.html">src/app/features/audit-overview/audit-info/audit-info.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AuditInfoComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/5)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AuditOverviewComponent.html">src/app/features/audit-overview/audit-overview.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AuditOverviewComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./pipes/CriteriaByFactorIdPipe.html">src/app/features/audit-overview/interview-list/criteria-by-factor-id.pipe.ts</a>
+            </td>
+            <td>pipe</td>
+            <td>CriteriaByFactorIdPipe</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/InterviewCardComponent.html">src/app/features/audit-overview/interview-list/interview-card/interview-card.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>InterviewCardComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/InterviewListComponent.html">src/app/features/audit-overview/interview-list/interview-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>InterviewListComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./pipes/InterviewsByFacCritIdPipe.html">src/app/features/audit-overview/interview-list/interviews-by-fac-crit-id.pipe.ts</a>
+            </td>
+            <td>pipe</td>
+            <td>InterviewsByFacCritIdPipe</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AuditCardComponent.html">src/app/features/audits/audit-card/audit-card.component.ts</a>
             </td>
             <td>component</td>
             <td>AuditCardComponent</td>
@@ -259,10 +691,10 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/AuditListComponent.html">src/app/features/audit-list/components/audit-list/audit-list.component.ts</a>
+                <a href="./components/AuditsComponent.html">src/app/features/audits/audits.component.ts</a>
             </td>
             <td>component</td>
-            <td>AuditListComponent</td>
+            <td>AuditsComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/4)</span>
@@ -271,34 +703,10 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/AuditInfoComponent.html">src/app/features/audit-overview/components/audit-overview/audit-info/audit-info.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>AuditInfoComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/AuditOverviewComponent.html">src/app/features/audit-overview/components/audit-overview/audit-overview.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>AuditOverviewComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./pipes/FilterInterviewsPipe.html">src/app/features/audit-overview/components/audit-overview/interview-list/filter-interviews.pipe.ts</a>
+                <a href="./pipes/SortAuditPipe.html">src/app/features/audits/sort-audit.pipe.ts</a>
             </td>
             <td>pipe</td>
-            <td>FilterInterviewsPipe</td>
+            <td>SortAuditPipe</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>
@@ -307,67 +715,7 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/InterviewCardComponent.html">src/app/features/audit-overview/components/audit-overview/interview-list/interview-card/interview-card.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>InterviewCardComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/5)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/InterviewFormComponent.html">src/app/features/audit-overview/components/audit-overview/interview-list/interview-form/interview-form.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>InterviewFormComponent</td>
-            <td align="right" data-sort="23">
-                <span class="coverage-percent">23 %</span>
-                <span class="coverage-count">(3/13)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/InterviewListComponent.html">src/app/features/audit-overview/components/audit-overview/interview-list/interview-list.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>InterviewListComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/4)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/NewInterviewDialogComponent.html">src/app/features/audit-overview/components/audit-overview/interview-list/new-interview-dialog/new-interview-dialog.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>NewInterviewDialogComponent</td>
-            <td align="right" data-sort="22">
-                <span class="coverage-percent">22 %</span>
-                <span class="coverage-count">(2/9)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/ContactPeopleListComponent.html">src/app/features/contact-people/components/contact-people-list/contact-people-list.component.ts</a>
-            </td>
-            <td>component</td>
-            <td>ContactPeopleListComponent</td>
-            <td align="right" data-sort="0">
-                <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
-            </td>
-        </tr>
-        <tr class="low">
-            <td>
-                <!-- miscellaneous -->
-                <a href="./components/ContactPersonCardComponent.html">src/app/features/contact-people/components/contact-people-list/contact-person-card/contact-person-card.component.ts</a>
+                <a href="./components/ContactPersonCardComponent.html">src/app/features/contact-persons/contact-person-card/contact-person-card.component.ts</a>
             </td>
             <td>component</td>
             <td>ContactPersonCardComponent</td>
@@ -379,13 +727,73 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
+                <a href="./components/ContactPersonsComponent.html">src/app/features/contact-persons/contact-persons.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>ContactPersonsComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AnswerQuestionListComponent.html">src/app/features/interview/answer-question-list/answer-question-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AnswerQuestionListComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/8)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./pipes/QuestionByIdPipe.html">src/app/features/interview/answer-question-list/questions-by-id.pipe.ts</a>
+            </td>
+            <td>pipe</td>
+            <td>QuestionByIdPipe</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./pipes/AnswersByIdsPipe.html">src/app/features/interview/answers-by-ids.pipe.ts</a>
+            </td>
+            <td>pipe</td>
+            <td>AnswersByIdsPipe</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/InterviewComponent.html">src/app/features/interview/interview.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>InterviewComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/17)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./components/AddAuditDialogComponent.html">src/app/shared/components/dialogs/add-audit-dialog/add-audit-dialog.component.ts</a>
             </td>
             <td>component</td>
             <td>AddAuditDialogComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/7)</span>
+                <span class="coverage-count">(0/8)</span>
             </td>
         </tr>
         <tr class="low">
@@ -398,6 +806,18 @@
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AddInterviewDialogComponent.html">src/app/shared/components/dialogs/add-interview-dialog/add-interview-dialog.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AddInterviewDialogComponent</td>
+            <td align="right" data-sort="9">
+                <span class="coverage-percent">9 %</span>
+                <span class="coverage-count">(1/11)</span>
             </td>
         </tr>
         <tr class="low">
@@ -433,19 +853,55 @@
             <td>EditAuditDialogComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/10)</span>
+                <span class="coverage-count">(0/12)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/AuditDataFormComponent.html">src/app/shared/components/forms/audit-data/audit-data-form.component.ts</a>
+                <a href="./components/EditContactPersonDialogComponent.html">src/app/shared/components/dialogs/edit-contact-person-dialog/edit-contact-person-dialog.component.ts</a>
             </td>
             <td>component</td>
-            <td>AuditDataFormComponent</td>
-            <td align="right" data-sort="7">
-                <span class="coverage-percent">7 %</span>
-                <span class="coverage-count">(1/13)</span>
+            <td>EditContactPersonDialogComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/11)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./classes/AbstractFormComponent.html">src/app/shared/components/forms/abstract-form-component.ts</a>
+            </td>
+            <td>class</td>
+            <td>AbstractFormComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/4)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/AuditFormComponent.html">src/app/shared/components/forms/audit-form/audit-form.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>AuditFormComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/15)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./miscellaneous/variables.html#defaultScopeComplement">src/app/shared/components/forms/audit-form/audit-form.component.ts</a>
+            </td>
+            <td>variable</td>
+            <td>defaultScopeComplement</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
             </td>
         </tr>
         <tr class="low">
@@ -457,19 +913,19 @@
             <td>ContactPersonFormComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/10)</span>
+                <span class="coverage-count">(0/12)</span>
             </td>
         </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./components/NavbarComponent.html">src/app/shared/components/navbar/navbar.component.ts</a>
+                <a href="./components/InterviewFormComponent.html">src/app/shared/components/forms/interview-form/interview-form.component.ts</a>
             </td>
             <td>component</td>
-            <td>NavbarComponent</td>
+            <td>InterviewFormComponent</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
-                <span class="coverage-count">(0/3)</span>
+                <span class="coverage-count">(0/17)</span>
             </td>
         </tr>
         <tr class="low">
@@ -487,6 +943,42 @@
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
+                <a href="./components/SidebarInterviewListComponent.html">src/app/shared/components/sidebar/sidebar-interview-list/sidebar-interview-list.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SidebarInterviewListComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/7)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SidebarInterviewComponent.html">src/app/shared/components/sidebar/sidebar-interview/sidebar-interview.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SidebarInterviewComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/9)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./components/SidebarComponent.html">src/app/shared/components/sidebar/sidebar.component.ts</a>
+            </td>
+            <td>component</td>
+            <td>SidebarComponent</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/3)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
                 <a href="./directives/ActionListenerDirective.html">src/app/shared/directives/action-listener.directive.ts</a>
             </td>
             <td>directive</td>
@@ -496,13 +988,49 @@
                 <span class="coverage-count">(1/4)</span>
             </td>
         </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href=".//functions.html#parseTimestamp">src/app/shared/helpers/date-helpers.ts</a>
+            </td>
+            <td>function</td>
+            <td>parseTimestamp</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
+        <tr class="very-good">
+            <td>
+                <!-- miscellaneous -->
+                <a href=".//functions.html#dateRangeValidator">src/app/shared/helpers/form-helpers.ts</a>
+            </td>
+            <td>function</td>
+            <td>dateRangeValidator</td>
+            <td align="right" data-sort="100">
+                <span class="coverage-percent">100 %</span>
+                <span class="coverage-count">(1/1)</span>
+            </td>
+        </tr>
         <tr class="low">
             <td>
                 <!-- miscellaneous -->
-                <a href="./pipes/SortAuditPipe.html">src/app/shared/pipes/sort-audit.pipe.ts</a>
+                <a href="./pipes/CriteriasPipe.html">src/app/shared/pipes/criterias.pipe.ts</a>
             </td>
             <td>pipe</td>
-            <td>SortAuditPipe</td>
+            <td>CriteriasPipe</td>
+            <td align="right" data-sort="0">
+                <span class="coverage-percent">0 %</span>
+                <span class="coverage-count">(0/1)</span>
+            </td>
+        </tr>
+        <tr class="low">
+            <td>
+                <!-- miscellaneous -->
+                <a href="./pipes/FactorsPipe.html">src/app/shared/pipes/factors.pipe.ts</a>
+            </td>
+            <td>pipe</td>
+            <td>FactorsPipe</td>
             <td align="right" data-sort="0">
                 <span class="coverage-percent">0 %</span>
                 <span class="coverage-count">(0/1)</span>

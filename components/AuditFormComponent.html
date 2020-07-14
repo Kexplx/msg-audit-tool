@@ -1,0 +1,1242 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>.msg Audit Tool Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>AuditFormComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/shared/components/forms/audit-form/audit-form.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-audit-form</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./audit-form.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./audit-form.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#contactPersons$">contactPersons$</a>
+                            </li>
+                            <li>
+                                <a href="#facCrits$">facCrits$</a>
+                            </li>
+                            <li>
+                                <a href="#formGroup">formGroup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#checkedFacCrits">checkedFacCrits</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onSubmit">onSubmit</a>
+                            </li>
+                            <li>
+                                <a href="#toggleCriteriaChecked">toggleCriteriaChecked</a>
+                            </li>
+                            <li>
+                                <a href="#onCancel">onCancel</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#audit">audit</a>
+                            </li>
+                            <li>
+                                <a href="#cancelButtonName">cancelButtonName</a>
+                            </li>
+                            <li>
+                                <a href="#submitButtonName">submitButtonName</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formSubmitted">formSubmitted</a>
+                            </li>
+                            <li>
+                                <a href="#cancelled">cancelled</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#name">name</a>
+                                </li>
+                                <li>
+                                    <a href="#startDate">startDate</a>
+                                </li>
+                                <li>
+                                    <a href="#endDate">endDate</a>
+                                </li>
+                                <li>
+                                    <a href="#contactPersonsControl">contactPersonsControl</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(formBuilder: <a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a>, dialogService: NbDialogService, store: Store)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>formBuilder</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/forms/FormBuilder" target="_blank" >FormBuilder</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>dialogService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NbDialogService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                    <code>Store</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="audit"></a>
+                        <b>audit</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Audit.html" target="_self" >Audit</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:22</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelButtonName"></a>
+                        <b>cancelButtonName</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:8</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="submitButtonName"></a>
+                        <b>submitButtonName</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:7</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formSubmitted"></a>
+                        <b>formSubmitted</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:23</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="cancelled"></a>
+                        <b>cancelled</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:9</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkedFacCrits"></a>
+                    <span class="name">
+                        <b>
+                            checkedFacCrits
+                        </b>
+                        <a href="#checkedFacCrits"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkedFacCrits()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:52</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSubmit"></a>
+                    <span class="name">
+                        <b>
+                            onSubmit
+                        </b>
+                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSubmit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:84</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleCriteriaChecked"></a>
+                    <span class="name">
+                        <b>
+                            toggleCriteriaChecked
+                        </b>
+                        <a href="#toggleCriteriaChecked"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleCriteriaChecked(factorId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, checked)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="113"
+                            class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:113</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>factorId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>checked</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCancel"></a>
+                    <span class="name">
+                        <b>
+                            onCancel
+                        </b>
+                        <a href="#onCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onCancel()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:15</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactPersons$"></a>
+                        <span class="name">
+                            <b>
+                            contactPersons$</b>
+                            <a href="#contactPersons$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/ContactPerson.html" target="_self" >Observable&lt;ContactPerson[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(ContactPersonState.contactPersons)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:25</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="facCrits$"></a>
+                        <span class="name">
+                            <b>
+                            facCrits$</b>
+                            <a href="#facCrits$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/FacCrit.html" target="_self" >Observable&lt;FacCrit[]&gt;</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @Select(AuditState.facCrits)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formGroup"></a>
+                        <span class="name">
+                            <b>
+                            formGroup</b>
+                            <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../classes/AbstractFormComponent.html" target="_self" >AbstractFormComponent</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../classes/AbstractFormComponent.html#source" target="_self" >AbstractFormComponent:11</a></code>
+</div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="name"></a>
+                        <span class="name"><b>name</b><a href="#name"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>name()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:36</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="startDate"></a>
+                        <span class="name"><b>startDate</b><a href="#startDate"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>startDate()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:40</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="endDate"></a>
+                        <span class="name"><b>endDate</b><a href="#endDate"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>endDate()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:44</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactPersonsControl"></a>
+                        <span class="name"><b>contactPersonsControl</b><a href="#contactPersonsControl"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>contactPersonsControl()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/shared/components/forms/audit-form/audit-form.component.ts:48</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit, Input, Output, EventEmitter } from &#x27;@angular/core&#x27;;
+import { Validators, FormBuilder, FormControl } from &#x27;@angular/forms&#x27;;
+import { Audit, AuditStatus } from &#x27;src/app/core/data/models/audit.model&#x27;;
+import { NbDialogService } from &#x27;@nebular/theme&#x27;;
+import { dateRangeValidator } from &#x27;src/app/shared/helpers/form-helpers&#x27;;
+import { ContactPerson } from &#x27;src/app/core/data/models/contact-person.model&#x27;;
+import { FacCrit } from &#x27;src/app/core/data/models/faccrit.model&#x27;;
+import { Select, Store } from &#x27;@ngxs/store&#x27;;
+import { AuditState } from &#x27;src/app/core/ngxs/audit.state&#x27;;
+import { Observable } from &#x27;rxjs&#x27;;
+import { AbstractFormComponent } from &#x27;../abstract-form-component&#x27;;
+import { ContactPersonState } from &#x27;src/app/core/ngxs/contact-person.state&#x27;;
+
+const defaultScopeComplement &#x3D; [8, 14];
+
+@Component({
+  selector: &#x27;app-audit-form&#x27;,
+  templateUrl: &#x27;./audit-form.component.html&#x27;,
+  styleUrls: [&#x27;./audit-form.component.scss&#x27;],
+})
+export class AuditFormComponent extends AbstractFormComponent implements OnInit {
+  @Input() audit: Audit;
+  @Output() formSubmitted &#x3D; new EventEmitter&lt;Partial&lt;Audit&gt;&gt;();
+
+  @Select(ContactPersonState.contactPersons) contactPersons$: Observable&lt;ContactPerson[]&gt;;
+  @Select(AuditState.facCrits) facCrits$: Observable&lt;FacCrit[]&gt;;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    protected dialogService: NbDialogService,
+    private store: Store,
+  ) {
+    super(dialogService);
+  }
+
+  get name() {
+    return this.formGroup.get(&#x27;name&#x27;);
+  }
+
+  get startDate() {
+    return this.formGroup.get(&#x27;startDate&#x27;);
+  }
+
+  get endDate() {
+    return this.formGroup.get(&#x27;endDate&#x27;);
+  }
+
+  get contactPersonsControl() {
+    return this.formGroup.get(&#x27;contactPersons&#x27;);
+  }
+
+  ngOnInit() {
+    const contactPersonsSnapshot &#x3D; this.store.selectSnapshot(ContactPersonState.contactPersons);
+
+    const defaultStartDate &#x3D; new Date();
+    defaultStartDate.setHours(0, 0, 0, 0);
+
+    this.formGroup &#x3D; this.formBuilder.group(
+      {
+        name: [this.audit?.name, Validators.required],
+        startDate: [this.audit?.startDate ?? defaultStartDate, Validators.required],
+        endDate: [this.audit?.endDate],
+        contactPersons: [
+          contactPersonsSnapshot?.filter(x &#x3D;&gt; this.audit?.contactPersons.find(f &#x3D;&gt; f.id &#x3D;&#x3D;&#x3D; x.id)),
+        ],
+      },
+      { validator: dateRangeValidator(&#x27;startDate&#x27;, &#x27;endDate&#x27;) },
+    );
+
+    this.facCrits$.subscribe(facCrits &#x3D;&gt; {
+      for (const facCrit of facCrits) {
+        const inAudit &#x3D; this.audit
+          ? this.audit.scope.findIndex(x &#x3D;&gt; x.id &#x3D;&#x3D;&#x3D; facCrit.id) !&#x3D; -1
+          : defaultScopeComplement.includes(facCrit.id) ||
+            defaultScopeComplement.includes(facCrit.referenceId)
+          ? false
+          : true;
+
+        this.formGroup.addControl(String(facCrit.id), new FormControl(inAudit));
+      }
+    });
+  }
+
+  onSubmit() {
+    const audit: Partial&lt;Audit&gt; &#x3D; {
+      name: this.name.value,
+      endDate: this.endDate.value,
+      startDate: this.startDate.value,
+      status: this.audit?.status ?? AuditStatus.Planned,
+      contactPersons: this.contactPersonsControl.value,
+      scope: this.checkedFacCrits(),
+    };
+
+    this.formSubmitted.emit(audit);
+  }
+
+  checkedFacCrits() {
+    const result: FacCrit[] &#x3D; [];
+
+    this.facCrits$.subscribe(facCrits &#x3D;&gt; {
+      for (const crit of facCrits) {
+        const checked &#x3D; this.formGroup.get(String(crit.id)).value;
+
+        if (checked) {
+          result.push(crit);
+        }
+      }
+    });
+
+    return result;
+  }
+
+  toggleCriteriaChecked(factorId: string, checked: true) {
+    this.store.select(AuditState.criteriaByFactorId(+factorId)).subscribe(x &#x3D;&gt; {
+      for (const crit of x) {
+        this.formGroup.get(String(crit.id)).setValue(checked);
+      }
+    });
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;form [formGroup]&#x3D;&quot;formGroup&quot; data-cy&#x3D;&quot;audit-data-form&quot;&gt;
+  &lt;nb-card&gt;
+    &lt;nb-card-header&gt;Audit Daten&lt;/nb-card-header&gt;
+    &lt;nb-card-body&gt;
+      &lt;div class&#x3D;&quot;mb-2&quot;&gt;
+        &lt;label class&#x3D;&quot;label&quot;&gt;Auditname&lt;/label&gt;
+        &lt;input [status]&#x3D;&quot;name.invalid &amp;&amp; name.touched ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;name&quot; nbInput fullWidth data-cy&#x3D;&quot;audit-name-input&quot; /&gt;
+        &lt;div *ngIf&#x3D;&quot;name.invalid &amp;&amp; name.touched&quot;&gt;
+          &lt;label class&#x3D;&quot;label text-danger&quot; data-cy&#x3D;&quot;auditname-missing-label&quot;&gt;Auditnamen eintragen&lt;/label&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;grid-1-1 mb-2&quot;&gt;
+        &lt;div class&#x3D;&quot;form-item&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Startdatum&lt;/label&gt;
+          &lt;input formControlName&#x3D;&quot;startDate&quot; readonly nbInput fullWidth [nbDatepicker]&#x3D;&quot;datePickerStart&quot; data-cy&#x3D;&quot;audit-start-input&quot; /&gt;
+          &lt;nb-datepicker #datePickerStart&gt;&lt;/nb-datepicker&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-item&quot;&gt;
+          &lt;label class&#x3D;&quot;label&quot;&gt;Enddatum&lt;/label&gt;
+          &lt;input [status]&#x3D;&quot;formGroup.errors?.dateRangeValidator ? &#x27;danger&#x27; : &#x27;basic&#x27;&quot; formControlName&#x3D;&quot;endDate&quot; readonly nbInput fullWidth [nbDatepicker]&#x3D;&quot;datePickerEnd&quot; data-cy&#x3D;&quot;audit-end-input&quot; /&gt;
+          &lt;nb-datepicker #datePickerEnd&gt;&lt;/nb-datepicker&gt;
+          &lt;div *ngIf&#x3D;&quot;formGroup.errors?.dateRangeValidator&quot;&gt;
+            &lt;label class&#x3D;&quot;label text-danger&quot;&gt;Startdatum muss vor Enddatum liegen&lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class&#x3D;&quot;mb-2&quot;&gt;
+        &lt;label class&#x3D;&quot;label&quot;&gt;Kontaktpersonen&lt;/label&gt;
+        &lt;nb-select formControlName&#x3D;&quot;contactPersons&quot; multiple fullWidth data-cy&#x3D;&quot;audit-contacts&quot;&gt;
+          &lt;nb-option *ngFor&#x3D;&quot;let contactPerson of contactPersons$ | async&quot; [value]&#x3D;&quot;contactPerson&quot; data-cy&#x3D;&quot;audit-contact&quot;&gt;{{ contactPerson.forename + &#x27; &#x27; + contactPerson.surname }}&lt;/nb-option&gt;
+        &lt;/nb-select&gt;
+      &lt;/div&gt;
+      &lt;hr style&#x3D;&quot;border-bottom: 3px dotted rgb(228, 233, 242);&quot; /&gt;
+      &lt;nb-accordion&gt;
+        &lt;nb-accordion-item&gt;
+          &lt;nb-accordion-item-header class&#x3D;&quot;label&quot; data-cy&#x3D;&quot;audit-scope-header&quot;&gt;ISO/IEC 25010 Faktoren / Kriterien&lt;/nb-accordion-item-header&gt;
+          &lt;nb-accordion-item-body&gt;
+            &lt;div class&#x3D;&quot;wrapper-facCrits mt-2&quot; data-cy&#x3D;&quot;facCrits&quot;&gt;
+              &lt;div *ngFor&#x3D;&quot;let factor of facCrits$ | async | factors&quot;&gt;
+                &lt;nb-checkbox [formControlName]&#x3D;&quot;factor.id&quot; (checkedChange)&#x3D;&quot;toggleCriteriaChecked(factor.id, $event)&quot; data-cy&#x3D;&quot;factor-entry&quot;&gt;{{ factor.name }}&lt;/nb-checkbox&gt;
+                &lt;nb-checkbox
+                  (checkedChange)&#x3D;&quot;formGroup.get(factor.id).setValue(true)&quot;
+                  [formControlName]&#x3D;&quot;criteria.id&quot;
+                  *ngFor&#x3D;&quot;let criteria of facCrits$ | async | criterias: factor.id&quot;
+                  data-cy&#x3D;&quot;criteria-entry&quot;
+                  &gt;{{ criteria.name }}&lt;/nb-checkbox
+                &gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/nb-accordion-item-body&gt;
+        &lt;/nb-accordion-item&gt;
+      &lt;/nb-accordion&gt;
+    &lt;/nb-card-body&gt;
+    &lt;nb-card-footer data-cy&#x3D;&quot;audit-data-buttons&quot;&gt;
+      &lt;button (click)&#x3D;&quot;onCancel()&quot; hero nbButton data-cy&#x3D;&quot;cancel-audit-data-form&quot;&gt;
+        abbrechen
+      &lt;/button&gt;
+      &lt;button (click)&#x3D;&quot;onSubmit()&quot; [disabled]&#x3D;&quot;formGroup.invalid&quot; status&#x3D;&quot;primary&quot; hero nbButton data-cy&#x3D;&quot;submit-audit-data-form&quot;&gt;
+        {{ submitButtonName }}
+      &lt;/button&gt;
+    &lt;/nb-card-footer&gt;
+  &lt;/nb-card&gt;
+&lt;/form&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./audit-form.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">@import &#x27;src/sass/utils&#x27;;
+
+nb-card-footer {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0;
+  padding: 10px 20px 10px 20px;
+}
+
+.wrapper-facCrits {
+  max-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  @media screen and(max-width: 500px) {
+    grid-template-columns: 1fr;
+
+    nb-checkbox {
+      margin: 0px 10px 0px 0px;
+    }
+  }
+
+  &amp; &gt; div {
+    nb-checkbox {
+      display: block;
+    }
+
+    &amp; nb-checkbox:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+}
+
+nb-accordion {
+  box-shadow: none;
+  border: 1px solid rgb(228, 233, 242);
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><form [formGroup]="formGroup" data-cy="audit-data-form">  <nb-card>    <nb-card-header>Audit Daten</nb-card-header>    <nb-card-body>      <div class="mb-2">        <label class="label">Auditname</label>        <input [status]="name.invalid && name.touched ? \'danger\' : \'basic\'" formControlName="name" nbInput fullWidth data-cy="audit-name-input" />        <div *ngIf="name.invalid && name.touched">          <label class="label text-danger" data-cy="auditname-missing-label">Auditnamen eintragen</label>        </div>      </div>      <div class="grid-1-1 mb-2">        <div class="form-item">          <label class="label">Startdatum</label>          <input formControlName="startDate" readonly nbInput fullWidth [nbDatepicker]="datePickerStart" data-cy="audit-start-input" />          <nb-datepicker #datePickerStart></nb-datepicker>        </div>        <div class="form-item">          <label class="label">Enddatum</label>          <input [status]="formGroup.errors?.dateRangeValidator ? \'danger\' : \'basic\'" formControlName="endDate" readonly nbInput fullWidth [nbDatepicker]="datePickerEnd" data-cy="audit-end-input" />          <nb-datepicker #datePickerEnd></nb-datepicker>          <div *ngIf="formGroup.errors?.dateRangeValidator">            <label class="label text-danger">Startdatum muss vor Enddatum liegen</label>          </div>        </div>      </div>      <div class="mb-2">        <label class="label">Kontaktpersonen</label>        <nb-select formControlName="contactPersons" multiple fullWidth data-cy="audit-contacts">          <nb-option *ngFor="let contactPerson of contactPersons$ | async" [value]="contactPerson" data-cy="audit-contact">{{ contactPerson.forename + \' \' + contactPerson.surname }}</nb-option>        </nb-select>      </div>      <hr style="border-bottom: 3px dotted rgb(228, 233, 242);" />      <nb-accordion>        <nb-accordion-item>          <nb-accordion-item-header class="label" data-cy="audit-scope-header">ISO/IEC 25010 Faktoren / Kriterien</nb-accordion-item-header>          <nb-accordion-item-body>            <div class="wrapper-facCrits mt-2" data-cy="facCrits">              <div *ngFor="let factor of facCrits$ | async | factors">                <nb-checkbox [formControlName]="factor.id" (checkedChange)="toggleCriteriaChecked(factor.id, $event)" data-cy="factor-entry">{{ factor.name }}</nb-checkbox>                <nb-checkbox                  (checkedChange)="formGroup.get(factor.id).setValue(true)"                  [formControlName]="criteria.id"                  *ngFor="let criteria of facCrits$ | async | criterias: factor.id"                  data-cy="criteria-entry"                  >{{ criteria.name }}</nb-checkbox                >              </div>            </div>          </nb-accordion-item-body>        </nb-accordion-item>      </nb-accordion>    </nb-card-body>    <nb-card-footer data-cy="audit-data-buttons">      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">        abbrechen      </button>      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">        {{ submitButtonName }}      </button>    </nb-card-footer>  </nb-card></form></div>'
+    var COMPONENTS = [{'name': 'AddAuditDialogComponent', 'selector': 'app-add-audit-dialog'},{'name': 'AddContactPersonDialogComponent', 'selector': 'app-add-contact-person-dialog'},{'name': 'AddInterviewDialogComponent', 'selector': 'app-new-interview-dialog'},{'name': 'AnswerQuestionListComponent', 'selector': 'app-answer-question-list'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'AuditCardComponent', 'selector': 'app-audit-card'},{'name': 'AuditContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'AuditFormComponent', 'selector': 'app-audit-form'},{'name': 'AuditInfoComponent', 'selector': 'app-audit-info'},{'name': 'AuditOverviewComponent', 'selector': 'app-audit-overview'},{'name': 'AuditsComponent', 'selector': 'app-audit-list'},{'name': 'ConfirmDiscardDialogComponent', 'selector': 'app-confirm-discard-dialog'},{'name': 'ContactPersonCardComponent', 'selector': 'app-contact-person-card'},{'name': 'ContactPersonFormComponent', 'selector': 'app-contact-person-form'},{'name': 'ContactPersonsComponent', 'selector': 'app-contact-persons-list'},{'name': 'EditAuditDialogComponent', 'selector': 'app-edit-audit-dialog'},{'name': 'EditContactPersonDialogComponent', 'selector': 'app-edit-contact-person-dialog'},{'name': 'InterviewCardComponent', 'selector': 'app-interview-card'},{'name': 'InterviewComponent', 'selector': 'app-interview'},{'name': 'InterviewFormComponent', 'selector': 'app-interview-form'},{'name': 'InterviewListComponent', 'selector': 'app-interview-list'},{'name': 'NotFoundComponent', 'selector': 'app-not-found'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SidebarInterviewComponent', 'selector': 'app-sidebar-interview'},{'name': 'SidebarInterviewListComponent', 'selector': 'app-sidebar-interview-list'}];
+    var DIRECTIVES = [{'name': 'ActionListenerDirective', 'selector': '[appActionListener]'}];
+    var ACTUAL_COMPONENT = {'name': 'AuditFormComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuditFormComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

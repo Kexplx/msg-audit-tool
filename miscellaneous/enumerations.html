@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -64,7 +64,10 @@
                             <a href="#InterviewStatus" title="src/app/core/data/models/interview.model.ts"><b>InterviewStatus</b>&nbsp;&nbsp;&nbsp;(src/.../interview.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#MenuOptions" title="src/app/features/audit-list/components/audit-card/audit-card.component.ts"><b>MenuOptions</b>&nbsp;&nbsp;&nbsp;(src/.../audit-card.component.ts)</a>
+                            <a href="#MenuOptions" title="src/app/features/audits/audit-card/audit-card.component.ts"><b>MenuOptions</b>&nbsp;&nbsp;&nbsp;(src/.../audit-card.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#Salutation" title="src/app/core/data/models/contact-person.model.ts"><b>Salutation</b>&nbsp;&nbsp;&nbsp;(src/.../contact-person.model.ts)</a>
                         </li>
                     </ul>
                 </td>
@@ -90,7 +93,17 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;InAction
+                                <i>Value : </i><code>OPEN</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;Active
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>ACTIVE</code>
                             </td>
                         </tr>
                         <tr>
@@ -100,7 +113,17 @@
                         </tr>
                         <tr>
                             <td class="col-md-4">
+                                <i>Value : </i><code>FINISHED</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
                                 &nbsp;Cancelled
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>CANCELLED</code>
                             </td>
                         </tr>
             </tbody>
@@ -118,7 +141,12 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;InAction
+                                &nbsp;Active
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>ACTIVE</code>
                             </td>
                         </tr>
                         <tr>
@@ -126,10 +154,15 @@
                                 &nbsp;Finished
                             </td>
                         </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>FINISHED</code>
+                            </td>
+                        </tr>
             </tbody>
         </table>
 </section>
-    <h3>src/app/features/audit-list/components/audit-card/audit-card.component.ts</h3>
+    <h3>src/app/features/audits/audit-card/audit-card.component.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -149,9 +182,47 @@
                                 &nbsp;Delete
                             </td>
                         </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/core/data/models/contact-person.model.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Salutation"></a>
+                        <span class="name"><b>Salutation</b><a href="#Salutation"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;Reactivate
+                                &nbsp;Frau
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>FRAU</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;Herr
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>HERR</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;Divers
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>DIVERS</code>
                             </td>
                         </tr>
             </tbody>

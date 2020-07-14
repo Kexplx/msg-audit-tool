@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>MSG Audit Tool Documentation</title>
+        <title>.msg Audit Tool Documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,7 +13,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top visible-xs">
-            <a href="../" class="navbar-brand">MSG Audit Tool Documentation</a>
+            <a href="../" class="navbar-brand">.msg Audit Tool Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -72,16 +72,23 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule, Optional, SkipSelf } from &#x27;@angular/core&#x27;;
 import { NgxsModule } from &#x27;@ngxs/store&#x27;;
-import { AuditRegistryState } from &#x27;./ngxs/audit-registry.state&#x27;;
+import { AuditState } from &#x27;./ngxs/audit.state&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
 import { NgxsReduxDevtoolsPluginModule } from &#x27;@ngxs/devtools-plugin&#x27;;
 import { NgxsLoggerPluginModule } from &#x27;@ngxs/logger-plugin&#x27;;
+import { ContactPersonState } from &#x27;./ngxs/contact-person.state&#x27;;
+import { AppRouterState } from &#x27;./ngxs/app-router.state&#x27;;
+import { InterviewState } from &#x27;./ngxs/interview.state&#x27;;
+import { HttpClientModule } from &#x27;@angular/common/http&#x27;;
 
 @NgModule({
   imports: [
+    HttpClientModule,
     NgxsLoggerPluginModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
-    NgxsModule.forRoot([AuditRegistryState], { developmentMode: !environment.production }),
+    NgxsModule.forRoot([AuditState, InterviewState, ContactPersonState, AppRouterState], {
+      developmentMode: !environment.production,
+    }),
   ],
   exports: [NgxsModule],
 })
