@@ -47,8 +47,9 @@ nb-card-header {
   box-shadow: 3px 0px 3px 0px rgba(44, 51, 73, 0.1);
 }
 
-nb-card-header .banner-status {
-  border-top-left-radius: 3px;
+nb-card,
+nb-card-header {
+  border: none !important;
 }
 
 .banner-status-in-action {

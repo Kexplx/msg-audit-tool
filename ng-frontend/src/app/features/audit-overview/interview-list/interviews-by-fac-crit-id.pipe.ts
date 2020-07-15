@@ -10,6 +10,6 @@ export class InterviewsByFacCritIdPipe implements PipeTransform {
       interview => interview.answers.findIndex(answer => answer.faccritId === facCritId) != -1,
     );
 
-    return result ? result : [];
+    return result ? (result.length > 0 ? result : null) : null;
   }
 }

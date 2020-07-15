@@ -1,75 +1,51 @@
 <ng-container *ngIf="audit && interviews">
   <header>
-    <button [disabled]="audit.scope?.length === 0" [routerLink]="['new']" nbButton status="primary" hero data-cy="new-interview">
+    <button [disabled]="!audit.scope?.length" routerLink="new" nbButton status="primary" hero data-cy="new-interview">
       <nb-icon icon="plus"></nb-icon>
       Neues Interview
     </button>
   </header>
-  <div class="fac-crits" *ngIf="audit.scope.length > 0; else noFacrits">
+  <div class="fac-crits" *ngIf="audit.scope.length; else noFacrits">
     <nb-accordion [id]="factor.id" *ngFor="let factor of audit.scope | factors">
-      <nb-accordion-item
-        *ngIf="interviews | interviewsByFacCritId: factor.id; let factorInterviews"
-        [expanded]="factorInterviews.length > 0 || (interviews | interviewsInCriteria: (audit.scope | criteriaByFactorId: factor.id)) == true"
-        data-cy="factor-card"
-      >
+      <nb-accordion-item [expanded]="hasUnfinishedInterviews(interviewsByFactorId(factor.id))" data-cy="factor-card">
         <nb-accordion-item-header class="subtitle-2" data-cy="factor-header">
-          <ng-container [ngSwitch]="factorInterviews | allInterviewsFinished">
-            <div nbPopoverPlacement="left" nbPopover="In Bearbeitung" nbPopoverTrigger="hint" *ngSwitchCase="false" class="banner-status banner-status-in-action" data-cy="interview-status"></div>
-            <div nbPopoverPlacement="left" nbPopover="Abgeschlossen" nbPopoverTrigger="hint" *ngSwitchCase="true" class="banner-status banner-status-is-finished" data-cy="interview-status"></div>
-          </ng-container>
-          <span class="ml-1">
+          <div style="display: grid;">
             {{ factor.name }}
-          </span>
+            <ng-container *ngIf="interviewsByFactorId(factor.id); let interviewsInFactor">
+              <ng-container *ngIf="interviewsInFactor.length; else noInterviews">
+                <p
+                  [ngClass]="{
+                    'text-success': (interviewsInFactor | finishedInterviewsCount) === interviewsInFactor.length,
+                    'text-warning': (interviewsInFactor | finishedInterviewsCount) !== interviewsInFactor.length
+                  }"
+                  class="label"
+                >
+                  {{ (interviewsInFactor | finishedInterviewsCount) + '/' + interviewsInFactor.length + ' Interviews abgeschlossen' }}
+                </p>
+              </ng-container>
+              <ng-template #noInterviews>
+                <p class="label">
+                  Noch keine Interviews angelegt
+                </p>
+              </ng-template>
+            </ng-container>
+          </div>
         </nb-accordion-item-header>
         <nb-accordion-item-body data-cy="faccrit-body">
-          <nb-list *ngIf="factorInterviews.length > 0; else noInterviews">
+          <nb-list *ngIf="interviews | interviewsByFacCritId: factor.id; let factorInterviews">
             <nb-list-item *ngFor="let interview of factorInterviews">
               <app-interview-card [interview]="interview" [facCritId]="factor.id" data-cy="interview"></app-interview-card>
             </nb-list-item>
           </nb-list>
-          <ng-template #noInterviews>
-            <div class="hint-no-interviews label" data-cy="noInterviews">
-              Keine Interviews vorhanden
-            </div>
-          </ng-template>
           <nb-card [id]="criteria.id" class="mt-2" *ngFor="let criteria of audit.scope | criteriaByFactorId: factor.id">
-            <ng-container *ngIf="interviews | interviewsByFacCritId: criteria.id; let criteriaInterviews">
-              <nb-card-header class="subtitle-2" data-cy="criteria-header">
-                <ng-container [ngSwitch]="criteriaInterviews | allInterviewsFinished">
-                  <div
-                    nbPopoverPlacement="left"
-                    nbPopover="In Bearbeitung"
-                    nbPopoverTrigger="hint"
-                    *ngSwitchCase="false"
-                    class="banner-status banner-status-in-action"
-                    data-cy="interview-status"
-                  ></div>
-                  <div
-                    nbPopoverPlacement="left"
-                    nbPopover="Abgeschlossen"
-                    nbPopoverTrigger="hint"
-                    *ngSwitchCase="true"
-                    class="banner-status banner-status-is-finished"
-                    data-cy="interview-status"
-                  ></div>
-                </ng-container>
-                <span class="ml-1">
-                  {{ criteria.name }}
-                </span>
-              </nb-card-header>
-              <nb-card-body>
-                <nb-list *ngIf="criteriaInterviews.length > 0; else noInterviews">
-                  <nb-list-item *ngFor="let interview of criteriaInterviews">
-                    <app-interview-card [interview]="interview" [facCritId]="criteria.id" data-cy="interview"></app-interview-card>
-                  </nb-list-item>
-                </nb-list>
-                <ng-template #noInterviews>
-                  <div class="hint-no-interviews label">
-                    Keine Interviews vorhanden
-                  </div>
-                </ng-template>
-              </nb-card-body>
-            </ng-container>
+            <nb-card-header class="subtitle-2" data-cy="criteria-header">
+              {{ criteria.name }}
+            </nb-card-header>
+            <nb-list *ngIf="interviews | interviewsByFacCritId: criteria.id; let criteriaInterviews">
+              <nb-list-item *ngFor="let interview of criteriaInterviews">
+                <app-interview-card [interview]="interview" [facCritId]="criteria.id" data-cy="interview"></app-interview-card>
+              </nb-list-item>
+            </nb-list>
           </nb-card>
         </nb-accordion-item-body>
       </nb-accordion-item>
