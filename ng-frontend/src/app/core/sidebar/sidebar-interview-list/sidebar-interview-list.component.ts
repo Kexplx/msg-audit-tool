@@ -5,7 +5,7 @@ import { Observable, timer } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
-
+import { first, filter } from 'rxjs/operators';
 @Component({
   selector: 'app-sidebar-interview-list',
   templateUrl: './sidebar-interview-list.component.html',
@@ -30,28 +30,33 @@ export class SidebarInterviewListComponent implements OnInit {
     });
 
     this.items = [];
-    this.audit$.subscribe(audit => {
-      if (!audit) return;
+    this.audit$
+      .pipe(
+        filter(audit => audit != undefined),
+        first(),
+      )
+      .subscribe(audit => {
+        for (const factor of audit.scope.filter(fc => !fc.referenceId)) {
+          const criterias = audit.scope.filter(
+            fc => fc.referenceId && fc.referenceId === factor.id,
+          );
 
-      for (const factor of audit.scope.filter(fc => !fc.referenceId)) {
-        const criterias = audit.scope.filter(fc => fc.referenceId && fc.referenceId === factor.id);
+          const menuItem: NbMenuItem = {
+            title: factor.name,
+            data: factor.id,
+          };
 
-        const menuItem: NbMenuItem = {
-          title: factor.name,
-          data: factor.id,
-        };
+          if (criterias.length > 0) {
+            menuItem.children = criterias.map(c => {
+              return { title: c.name, data: c.id };
+            });
+          }
 
-        if (criterias.length > 0) {
-          menuItem.children = criterias.map(c => {
-            return { title: c.name, data: c.id };
-          });
+          this.items.push(menuItem);
+
+          timer(50).subscribe(() => this.cropMenuItemTitles());
         }
-
-        this.items.push(menuItem);
-
-        timer(50).subscribe(() => this.cropMenuItemTitles());
-      }
-    });
+      });
   }
 
   /**

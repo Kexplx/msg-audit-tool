@@ -1,32 +1,32 @@
-<br />
-<nb-card fullWidth>
-  <nb-card-header>
-    <div class="wrapper-header">
-      Kontaktpersonen
-      <button [routerLink]="['edit']" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" ghost nbButton data-cy="audit-options">
-        <nb-icon icon="edit-outline"></nb-icon>
-      </button>
-    </div>
-  </nb-card-header>
-  <div *ngIf="(audit$ | async).contactPersons as contactPersons; else noContacts">
-    <nb-card-body>
-      <nb-list>
-        <nb-list-item *ngFor="let contactPerson of contactPersons">
-          <app-contact-person-card [contactPerson]="contactPerson" data-cy="contact-person-card"></app-contact-person-card>
-        </nb-list-item>
-      </nb-list>
-    </nb-card-body>
-  </div>
-  <ng-template #noContacts>
-    <nb-card-body>
-      <div class="hint-no-contacts">
-        <h6 class="text-hint mb-1">Keine Kontakte</h6>
-        <p class="label">Fügen Sie dem Audit Kontaktpersonen hinzu</p>
+<ng-container *ngIf="audit$ | async; let audit">
+  <nb-card fullWidth class="mt-2">
+    <nb-card-header>
+      <div class="wrapper-header">
+        Kontaktpersonen
+        <button [disabled]="audit.status !== 'ACTIVE'" [routerLink]="['edit']" nbContextMenuPlacement="left" nbContextMenuTrigger="focus" ghost nbButton data-cy="audit-options">
+          <nb-icon icon="edit-outline"></nb-icon>
+        </button>
       </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="(audit$ | async).contactPersons as contactPersons; else noContacts">
+        <nb-list>
+          <nb-list-item *ngFor="let contactPerson of contactPersons">
+            <app-contact-person-card [contactPerson]="contactPerson" data-cy="contact-person-card"></app-contact-person-card>
+          </nb-list-item>
+        </nb-list>
+      </div>
+      <ng-template #noContacts>
+        <nb-card-body>
+          <div class="hint-no-contacts">
+            <h6 class="text-hint mb-1">Keine Kontakte</h6>
+            <p class="label">Fügen Sie dem Audit Kontaktpersonen hinzu</p>
+          </div>
+        </nb-card-body>
+      </ng-template>
     </nb-card-body>
-  </ng-template>
-</nb-card>
-
-<nb-layout>
-  <router-outlet></router-outlet>
-</nb-layout>
+  </nb-card>
+  <nb-layout>
+    <router-outlet></router-outlet>
+  </nb-layout>
+</ng-container>

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, Select } from '@ngxs/store';
-import { Audit } from 'src/app/core/data/models/audit.model';
+import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
+import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-audit-overview',
@@ -13,7 +15,10 @@ import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 export class AuditOverviewComponent implements OnInit {
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
+  auditStatuses = AuditStatus;
+  selectedAuditStatus: AuditStatus;
   audit: Audit;
+
   tabs: any[] = [
     {
       title: 'Interviews',
@@ -34,7 +39,19 @@ export class AuditOverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.auditId$.subscribe(id => {
-      this.store.select(AuditState.audit(id)).subscribe(a => (this.audit = a));
+      this.store
+        .select(AuditState.audit(id))
+        .pipe(filter(audit => audit != undefined))
+        .subscribe(a => {
+          this.audit = a;
+          this.selectedAuditStatus = a.status;
+        });
     });
+  }
+
+  onStatusChange() {
+    this.store.dispatch(
+      new UpdateAudit(this.audit.id, { ...this.audit, status: this.selectedAuditStatus }),
+    );
   }
 }

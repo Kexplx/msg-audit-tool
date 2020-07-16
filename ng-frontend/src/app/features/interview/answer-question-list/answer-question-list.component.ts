@@ -7,6 +7,7 @@ import { Question } from 'src/app/core/data/models/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
+import { Audit } from 'src/app/core/data/models/audit.model';
 
 @Component({
   selector: 'app-answer-question-list',
@@ -16,6 +17,7 @@ import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 export class AnswerQuestionListComponent implements OnChanges {
   @Input() answers: Answer[];
   @Input() facCrit: FacCrit;
+  @Input() audit: Audit;
   @Select(InterviewState.questions) questions$: Observable<Question[]>;
 
   formGroups: FormGroup[];

@@ -1,12 +1,25 @@
 <ng-container *ngIf="audit">
-  <header class="grid-1 mb-2" data-cy="audit-short-infos">
-    <h4 data-cy="heading">
-      {{ audit.name }}
-    </h4>
-    <p class="label" *ngIf="audit.startDate" data-cy="subheading">
-      {{ audit.startDate | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.endDate; else tbd">{{ audit.endDate | date: 'dd.MM.yyyy' }}</span>
-      <ng-template #tbd>TBD</ng-template>
-    </p>
+  <header class="header-audit mb-2" data-cy="audit-short-infos">
+    <div class="header-audit-audit-infos">
+      <h4 data-cy="heading">
+        {{ audit.name }}
+      </h4>
+      <p class="label" *ngIf="audit.startDate" data-cy="subheading">
+        {{ audit.startDate | date: 'dd.MM.yyyy' }} - <span *ngIf="audit.endDate; else tbd">{{ audit.endDate | date: 'dd.MM.yyyy' }}</span>
+        <ng-template #tbd>TBD</ng-template>
+      </p>
+    </div>
+    <nb-select
+      [status]="audit.status === auditStatuses.Active ? 'warning' : audit.status === auditStatuses.Finished ? 'success' : audit.status === auditStatuses.Cancelled ? 'danger' : 'basic'"
+      [(selected)]="selectedAuditStatus"
+      (selectedChange)="onStatusChange()"
+      placeholder="Placeholder"
+    >
+      <nb-option [value]="auditStatuses.Planned">Geplant</nb-option>
+      <nb-option [value]="auditStatuses.Active">Aktiv</nb-option>
+      <nb-option [value]="auditStatuses.Finished">Abgeschlossen</nb-option>
+      <nb-option [value]="auditStatuses.Cancelled">Abgebrochen</nb-option>
+    </nb-select>
   </header>
   <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
 </ng-container>

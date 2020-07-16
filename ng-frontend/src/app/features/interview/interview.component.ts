@@ -11,6 +11,7 @@ import { FacCritService } from 'src/app/core/http/facCrit.service';
 import { filter, debounceTime } from 'rxjs/operators';
 import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
+import { Audit } from 'src/app/core/data/models/audit.model';
 
 @Component({
   selector: 'app-interview',
@@ -20,12 +21,13 @@ import { UpdateInterview } from 'src/app/core/ngxs/actions/inteview.actions';
 export class InterviewComponent implements OnInit {
   @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
   @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
+  @Select(AppRouterState.auditId) auditId$: Observable<number>;
   @Select(InterviewState.answers) answers$: Observable<Answer[]>;
-
-  facCrit$: Observable<FacCrit>;
-  interview$: Observable<Interview>;
-
   note$ = new Subject<string>();
+
+  facCrit: FacCrit;
+  interview: Interview;
+  audit: Audit;
 
   facCritId: number;
   interviewId: number;
@@ -39,14 +41,21 @@ export class InterviewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    combineLatest(this.interviewId$, this.facCritId$)
+    combineLatest(this.interviewId$, this.facCritId$, this.auditId$)
       .pipe(filter(ids => ids[0] != null && ids[1] != null))
       .subscribe(ids => {
         this.interviewId = ids[0];
         this.facCritId = ids[1];
 
-        this.interview$ = this.store.select(InterviewState.interview(ids[0]));
-        this.facCrit$ = this.store.select(AuditState.facCrit(ids[1]));
+        const interview$ = this.store.select(InterviewState.interview(ids[0]));
+        const facCrit$ = this.store.select(AuditState.facCrit(ids[1]));
+        const audit$ = this.store.select(AuditState.audit(ids[2]));
+
+        combineLatest(interview$, facCrit$, audit$).subscribe(entities => {
+          this.interview = entities[0];
+          this.facCrit = entities[1];
+          this.audit = entities[2];
+        });
 
         this.facCritService.getFacCritsByInterviewId(ids[0]).subscribe((facCrits: FacCrit[]) => {
           this.facCritIds = this.facCritIds = facCrits.map(f => f.id);

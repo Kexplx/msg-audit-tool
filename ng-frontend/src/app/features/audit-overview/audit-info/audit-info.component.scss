@@ -7,18 +7,6 @@
 .audit-params {
   margin-top: 7px;
 }
-.content-active {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.factor-container {
-  margin-bottom: 20px;
-
-  &:last-child {
-    margin-bottom: 0px;
-  }
-}
 
 .wrapper-header {
   display: flex;
@@ -29,8 +17,4 @@
   margin: 0 auto;
   text-align: center;
   padding: 40px;
-}
-
-nb-card-body {
-  padding: 0;
 }
