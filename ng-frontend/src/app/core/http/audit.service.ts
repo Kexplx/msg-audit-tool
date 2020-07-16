@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FacCrit } from '../data/models/faccrit.model';
 import { Audit } from '../data/models/audit.model';
 import { AuditDto } from './dtos/audit.dto';
 import { map } from 'rxjs/operators';
@@ -9,6 +8,7 @@ import { Observable } from 'rxjs';
 import { PutAuditDto } from './dtos/put-audit.dto';
 import { parseTimestamp } from 'src/app/core/data/helpers/date-helpers';
 import { environment } from 'src/environments/environment';
+import { AuditScopeChangeDto } from './dtos/audit-scope-change.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -108,32 +108,32 @@ export class AuditService {
    * @param audit The updated audit.
    * @returns An Observable of the updated audit.
    */
-  putAudit(oldAudit: Audit, currentAudit: Audit): Observable<Audit> {
-    this.putAuditContactPersons(oldAudit, currentAudit);
+  putAudit(oldAudit: Audit, newAudit: Audit): Observable<Audit> {
+    this.putAuditScope(oldAudit, newAudit);
+    this.putAuditContactPersons(oldAudit, newAudit);
+
     const putAuditDto: PutAuditDto = {
-      name: currentAudit.name,
-      endDate: parseTimestamp(currentAudit.endDate),
-      startDate: parseTimestamp(currentAudit.startDate),
+      name: newAudit.name,
+      endDate: parseTimestamp(newAudit.endDate),
+      startDate: parseTimestamp(newAudit.startDate),
     };
 
-    return this.http
-      .put<Audit>(environment.baseUrl + 'audits/' + currentAudit.id, putAuditDto)
-      .pipe(
-        map(auditDto => {
-          const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
+    return this.http.put<Audit>(environment.baseUrl + 'audits/' + newAudit.id, putAuditDto).pipe(
+      map(auditDto => {
+        const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
-          return {
-            id: auditDto.id,
-            name: auditDto.name,
-            creationDate: new Date(auditDto.creationDate).getTime(),
-            startDate: new Date(auditDto.startDate).getTime(),
-            endDate,
-            scope: auditDto.scope,
-            status: auditDto.status,
-            contactPersons: auditDto.contactPersons,
-          };
-        }),
-      );
+        return {
+          id: auditDto.id,
+          name: auditDto.name,
+          creationDate: new Date(auditDto.creationDate).getTime(),
+          startDate: new Date(auditDto.startDate).getTime(),
+          endDate,
+          scope: newAudit.scope,
+          status: auditDto.status,
+          contactPersons: newAudit.contactPersons,
+        };
+      }),
+    );
   }
 
   /**
@@ -142,13 +142,13 @@ export class AuditService {
    * the contact persons of the audit accordingly.
    *
    * @param oldAudit The old audit.
-   * @param currentAudit The updated audit.
+   * @param newAudit The updated audit.
    */
-  private putAuditContactPersons(oldAudit: Audit, currentAudit: Audit): void {
-    const url = environment.baseUrl + 'audits/' + currentAudit.id + '/contactpersons/';
+  private putAuditContactPersons(oldAudit: Audit, newAudit: Audit): void {
+    const url = environment.baseUrl + 'audits/' + newAudit.id + '/contactpersons/';
 
     const oldContactPersons = oldAudit.contactPersons;
-    const newContactPersons = currentAudit.contactPersons;
+    const newContactPersons = newAudit.contactPersons;
 
     for (const contactPerson of newContactPersons) {
       const existsInOld = oldAudit.contactPersons.find(x => x.id === contactPerson.id);
@@ -158,9 +158,44 @@ export class AuditService {
     }
 
     for (const contactPerson of oldContactPersons) {
-      const existsInUpdated = currentAudit.contactPersons.find(x => x.id === contactPerson.id);
+      const existsInUpdated = newAudit.contactPersons.find(x => x.id === contactPerson.id);
       if (!existsInUpdated) {
         this.http.delete(url + contactPerson.id, {}).subscribe(() => {});
+      }
+    }
+  }
+
+  private putAuditScope(oldAudit: Audit, newAudit: Audit): void {
+    const url = environment.baseUrl + 'audits/' + newAudit.id + '/scope';
+
+    const oldScope = oldAudit.scope;
+    const newScope = newAudit.scope;
+
+    for (const facCrit of newScope) {
+      const existsInOld = oldAudit.scope.find(x => x.id === facCrit.id);
+      if (!existsInOld) {
+        const auditScopeChange: AuditScopeChangeDto = {
+          facCritId: facCrit.id,
+          changeNote: 'Change note for a scope item',
+          note: 'Note for a scope item',
+          removed: false,
+        };
+
+        this.http.put(url, auditScopeChange).subscribe(() => {});
+      }
+    }
+
+    for (const facCrit of oldScope) {
+      const existsInNew = newAudit.scope.find(x => x.id === facCrit.id);
+      if (!existsInNew) {
+        const auditScopeChange: AuditScopeChangeDto = {
+          facCritId: facCrit.id,
+          changeNote: 'Change note for a scope item',
+          note: 'Note for a scope item',
+          removed: true,
+        };
+        console.log(facCrit.id);
+        this.http.put(url, auditScopeChange).subscribe(() => {});
       }
     }
   }
