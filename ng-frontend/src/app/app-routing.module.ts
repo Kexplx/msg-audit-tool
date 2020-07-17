@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './core/not-found/not-found.component';
-import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'audits' },
@@ -29,7 +28,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes), SharedModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRouterModule {}

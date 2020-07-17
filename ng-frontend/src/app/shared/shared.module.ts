@@ -30,6 +30,6 @@ import { AddInterviewDialogComponent } from './components/dialogs/add-interview-
     CriteriasPipe,
   ],
   imports: [CommonModule, RouterModule, NebularModule, ReactiveFormsModule],
-  exports: [NebularModule, FactorsPipe],
+  exports: [NebularModule, FactorsPipe, CommonModule],
 })
 export class SharedModule {}

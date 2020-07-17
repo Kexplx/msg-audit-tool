@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AuditOverviewRoutingModule } from './audit-overview-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -24,12 +23,6 @@ import { FinishedInterviewsCountPipe } from './interview-list/finished-interview
     CriteriaByFactorIdPipe,
     InterviewsByFacCritIdPipe,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    AuditOverviewRoutingModule,
-    SharedModule,
-  ],
+  imports: [ReactiveFormsModule, FormsModule, AuditOverviewRoutingModule, SharedModule],
 })
 export class AuditOverviewModule {}

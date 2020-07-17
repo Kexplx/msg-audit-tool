@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { InterviewRoutingModule } from './interview-routing.module';
 import { InterviewComponent } from './interview.component';
@@ -16,6 +15,6 @@ import { AnswersByIdsPipe } from './answers-by-ids.pipe';
     QuestionByIdPipe,
     AnswersByIdsPipe,
   ],
-  imports: [CommonModule, ReactiveFormsModule, SharedModule, InterviewRoutingModule],
+  imports: [ReactiveFormsModule, SharedModule, InterviewRoutingModule],
 })
 export class InterviewModule {}
