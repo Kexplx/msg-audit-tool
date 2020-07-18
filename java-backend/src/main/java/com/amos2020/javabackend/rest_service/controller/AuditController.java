@@ -34,10 +34,10 @@ public class AuditController {
     /**
      * Create a new Audit
      *
-     * @param auditName     String
-     * @param startDate     Date
-     * @param endDate       Date
-     * @param scope         List<Integer>
+     * @param auditName      String
+     * @param startDate      Date
+     * @param endDate        Date
+     * @param scope          List<Integer>
      * @param contactPersons List<Integer>
      * @return Created Audit
      * @throws NotFoundException If a facCrit id or a contactPerson id is invalid and can not be found
@@ -60,15 +60,17 @@ public class AuditController {
      * @param auditName String
      * @param startDate Date
      * @param endDate   Date
+     * @param status    AuditStatus
      * @return Updated Audit
      * @throws NotFoundException If the audit id is invalid and can not be found
      */
-    public BasicAuditResponse updateAudit(int auditId, String auditName, Date startDate, Date endDate) throws NotFoundException {
+    public BasicAuditResponse updateAudit(int auditId, String auditName, Date startDate, Date endDate, AuditStatus status) throws NotFoundException {
         // check if audit exists
         Audit audit = auditService.getAuditById(auditId);
         audit.setName(auditName);
         audit.setStartDate(startDate);
         audit.setEndDate(endDate);
+        audit.setStatus(status);
         audit = auditService.updateAudit(audit);
 
         return buildBasicResponse(audit);
