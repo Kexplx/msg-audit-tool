@@ -82,7 +82,7 @@ public class AuditRestService {
         try {
             // Validate parameters for updating audit
             request.isValid();
-            response = auditController.updateAudit(auditId, request.getName(), request.getStartDate(), request.getEndDate());
+            response = auditController.updateAudit(auditId, request.getName(), request.getStartDate(), request.getEndDate(), request.getStatus());
         } catch (NotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (IllegalArgumentException e) {
