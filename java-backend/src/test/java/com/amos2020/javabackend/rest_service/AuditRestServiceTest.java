@@ -444,12 +444,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithValidRequest_returnsOk() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -461,12 +462,13 @@ public class AuditRestServiceTest {
 
     @Test
     public void updateAuditByIdWithAuditNotExisting_returnsNotFound() throws Exception {
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willThrow(NotFoundException.class);
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willThrow(NotFoundException.class);
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -479,12 +481,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsNull_returns400() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -497,12 +500,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsBlank_returns400() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("   ");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -515,12 +519,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsMaximum_returnsIsOk() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName(StringUtils.repeat("*", 256));
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -533,12 +538,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsTooLong_returns400() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName(StringUtils.repeat("*", 257));
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -551,12 +557,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsMinimum_returnsIsOk() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("*");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -569,12 +576,13 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithNameIsTooShort_returns400() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -587,11 +595,12 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithStartDateIsNull_returns400() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("New Test Name");
         request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(AuditStatus.ACTIVE);
 
         String requestAsJson = buildJson(request);
 
@@ -604,12 +613,32 @@ public class AuditRestServiceTest {
     @Test
     public void updateAuditByIdWithEndDateIsBeforeStartDate_returns400() throws Exception {
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName("New Test Name");
         request.setStartDate(Date.valueOf("2000-01-02"));
         request.setEndDate(Date.valueOf("2000-01-01"));
+        request.setStatus(AuditStatus.ACTIVE);
+
+        String requestAsJson = buildJson(request);
+
+        restService.perform(put("/audits/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void updateAuditByIdWithAuditStatusIsNull_returns400() throws Exception {
+        Audit audit = new Audit();
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+
+        UpdateAuditRequest request = new UpdateAuditRequest();
+        request.setName("New Test Name");
+        request.setStartDate(Date.valueOf("2000-01-02"));
+        request.setEndDate(Date.valueOf("2000-01-02"));
+        request.setStatus(null);
 
         String requestAsJson = buildJson(request);
 
