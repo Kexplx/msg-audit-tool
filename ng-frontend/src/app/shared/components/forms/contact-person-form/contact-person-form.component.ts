@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
@@ -9,7 +9,7 @@ import { AbstractFormComponent } from '../abstract-form-component';
   templateUrl: './contact-person-form.component.html',
   styleUrls: ['./contact-person-form.component.scss'],
 })
-export class ContactPersonFormComponent extends AbstractFormComponent implements OnInit {
+export class ContactPersonFormComponent extends AbstractFormComponent implements OnChanges {
   @Input() contactPerson: ContactPerson;
   @Input() submitButtonName: string;
 
@@ -55,7 +55,7 @@ export class ContactPersonFormComponent extends AbstractFormComponent implements
     return this.formGroup.get('contactInformation');
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.formGroup = this.formBuilder.group({
       forename: [this.contactPerson?.forename, Validators.required],
       surname: [this.contactPerson?.surname, Validators.required],
@@ -71,6 +71,7 @@ export class ContactPersonFormComponent extends AbstractFormComponent implements
 
   onSubmit() {
     const contactPerson: Partial<ContactPerson> = {
+      id: this.contactPerson?.id,
       forename: this.forename.value,
       surname: this.surname.value,
       salutation: this.salutation.value,

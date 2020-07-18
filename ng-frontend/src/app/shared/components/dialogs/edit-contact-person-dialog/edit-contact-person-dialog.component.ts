@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { Store, Select } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
-import { UpdateContactPerson } from 'src/app/core/ngxs/actions/contact-person.action';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
+import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-new.service';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-contact-person-dialog',
@@ -20,32 +20,32 @@ export class EditContactPersonDialogComponent implements OnInit {
   contactPerson$: Observable<ContactPerson>;
 
   dialogRef: NbDialogRef<any>;
-  contactPersonId: number;
 
   constructor(
     private location: Location,
-    private store: Store,
+    private contactPersonService: ContactPersonNewService,
     private dialogService: NbDialogService,
   ) {}
+
   ngOnInit() {
     this.contactPersonId$.subscribe(id => {
-      this.contactPersonId = id;
-      this.contactPerson$ = this.store.select(ContactPersonState.contactPerson(id));
+      this.contactPerson$ = this.contactPersonService.contactPersons$.pipe(
+        filter(contactPersons => contactPersons != null),
+        map(contactPersons => contactPersons.find(cp => cp.id === id)),
+      );
     });
   }
 
   ngAfterViewInit() {
     this.dialogRef = this.dialogService.open(this.dialog, defaultDialogOptions);
-
     this.dialogRef.onClose.subscribe(() => {
       this.location.back();
     });
   }
 
-  onSubmit(contactPereson: ContactPerson) {
-    this.store
-      .dispatch(new UpdateContactPerson(this.contactPersonId, contactPereson))
-      .subscribe(() => this.dialogRef.close());
+  onSubmit(contactPerson: ContactPerson) {
+    this.contactPersonService.putContactPerson(contactPerson);
+    this.dialogRef.close();
   }
 
   onCancel() {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Audit } from '../data/models/audit.model';
+import { Audit, AuditStatus } from '../data/models/audit.model';
 import { AuditDto } from './dtos/audit.dto';
 import { map } from 'rxjs/operators';
 import { PostAuditDto } from './dtos/post-audit.dto';
@@ -115,6 +115,7 @@ export class AuditService {
     const putAuditDto: PutAuditDto = {
       name: newAudit.name,
       endDate: parseTimestamp(newAudit.endDate),
+      status: AuditStatus.Active,
       startDate: parseTimestamp(newAudit.startDate),
     };
 

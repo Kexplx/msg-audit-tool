@@ -1,10 +1,9 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { Store } from '@ngxs/store';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { AddContactPerson } from 'src/app/core/ngxs/actions/contact-person.action';
+import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-new.service';
 
 @Component({
   selector: 'app-add-contact-person-dialog',
@@ -17,7 +16,7 @@ export class AddContactPersonDialogComponent {
 
   constructor(
     private dialogService: NbDialogService,
-    private store: Store,
+    private contactPersonService: ContactPersonNewService,
     private location: Location,
   ) {}
 
@@ -29,9 +28,8 @@ export class AddContactPersonDialogComponent {
   }
 
   onSubmit(contactPerson: ContactPerson) {
-    this.store
-      .dispatch(new AddContactPerson(contactPerson))
-      .subscribe(() => this.dialogRef.close());
+    this.contactPersonService.postContactPerson(contactPerson);
+    this.dialogRef.close();
   }
 
   onCancel() {

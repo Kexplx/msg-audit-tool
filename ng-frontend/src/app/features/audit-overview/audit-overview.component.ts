@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store, Select } from '@ngxs/store';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
+import { Select } from '@ngxs/store';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
-import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
+import { AudtiNewService } from 'src/app/core/http_new/audit-new.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-audit-overview',
   templateUrl: './audit-overview.component.html',
   styleUrls: ['./audit-overview.component.scss'],
 })
-export class AuditOverviewComponent implements OnInit {
+export class AuditOverviewComponent implements OnInit, OnDestroy {
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
+
+  private readonly subSink = new SubSink();
 
   auditStatuses = AuditStatus;
   selectedAuditStatus: AuditStatus;
@@ -35,23 +37,30 @@ export class AuditOverviewComponent implements OnInit {
     },
   ];
 
-  constructor(private store: Store) {}
+  constructor(private auditService: AudtiNewService) {}
 
   ngOnInit(): void {
-    this.auditId$.subscribe(id => {
-      this.store
-        .select(AuditState.audit(id))
-        .pipe(filter(audit => audit != undefined))
-        .subscribe(a => {
-          this.audit = a;
-          this.selectedAuditStatus = a.status;
+    const sub = this.auditId$.subscribe(id => {
+      this.auditService.audits$
+        .pipe(
+          filter(audits => audits != null),
+          map(audits => audits.find(a => a.id === id)),
+        )
+        .subscribe(audit => {
+          this.audit = audit;
+          this.selectedAuditStatus = audit.status;
         });
     });
+
+    this.subSink.add(sub);
+    this.auditService.getAudits();
+  }
+
+  ngOnDestroy() {
+    this.subSink.unsubscribe();
   }
 
   onStatusChange() {
-    this.store.dispatch(
-      new UpdateAudit(this.audit.id, { ...this.audit, status: this.selectedAuditStatus }),
-    );
+    this.auditService.putAudit({ ...this.audit, status: this.selectedAuditStatus });
   }
 }

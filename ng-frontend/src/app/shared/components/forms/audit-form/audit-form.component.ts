@@ -5,11 +5,8 @@ import { NbDialogService } from '@nebular/theme';
 import { dateRangeValidator } from 'src/app/shared/components/forms/form-helpers';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { Select, Store } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable, of } from 'rxjs';
 import { AbstractFormComponent } from '../abstract-form-component';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 import { map } from 'rxjs/operators';
 
 const defaultScopeComplement = [8, 14];
@@ -27,21 +24,15 @@ interface SelectedContactPerson {
 })
 export class AuditFormComponent extends AbstractFormComponent implements OnInit {
   @Input() audit: Audit;
+  @Input() contactPersons: ContactPerson[];
+  @Input() facCrits: FacCrit[];
+
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
 
-  @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
-  @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
-
-  contactPersons: ContactPerson[];
   filteredContactPersons$: Observable<ContactPerson[]>;
-
   selectedContactPersons: SelectedContactPerson[] = [];
 
-  constructor(
-    private formBuilder: FormBuilder,
-    protected dialogService: NbDialogService,
-    private store: Store,
-  ) {
+  constructor(private formBuilder: FormBuilder, protected dialogService: NbDialogService) {
     super(dialogService);
   }
 
@@ -58,15 +49,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
   }
 
   ngOnInit() {
-    this.contactPersons = this.store.selectSnapshot(ContactPersonState.contactPersons);
-    this.filteredContactPersons$ = of(this.contactPersons);
-    this.selectedContactPersons =
-      this.audit?.contactPersons.map(cp => ({
-        company: cp.companyName,
-        name: cp.forename + ' ' + cp.surname,
-        value: cp,
-      })) ?? [];
-
     const defaultStartDate = new Date();
     defaultStartDate.setHours(0, 0, 0, 0);
 
@@ -79,22 +61,29 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
       { validator: dateRangeValidator('startDate', 'endDate') },
     );
 
-    this.facCrits$.subscribe(facCrits => {
-      for (const facCrit of facCrits) {
-        const inAudit = this.audit
-          ? this.audit.scope.findIndex(x => x.id === facCrit.id) != -1
-          : defaultScopeComplement.includes(facCrit.id) ||
-            defaultScopeComplement.includes(facCrit.referenceId)
-          ? false
-          : true;
+    this.filteredContactPersons$ = of(this.contactPersons);
+    this.selectedContactPersons =
+      this.audit?.contactPersons.map(cp => ({
+        company: cp.companyName,
+        name: cp.forename + ' ' + cp.surname,
+        value: cp,
+      })) ?? [];
 
-        this.formGroup.addControl(String(facCrit.id), new FormControl(inAudit));
-      }
-    });
+    for (const facCrit of this.facCrits) {
+      const inAudit = this.audit
+        ? this.audit.scope.findIndex(x => x.id === facCrit.id) != -1
+        : defaultScopeComplement.includes(facCrit.id) ||
+          defaultScopeComplement.includes(facCrit.referenceId)
+        ? false
+        : true;
+
+      this.formGroup.addControl(String(facCrit.id), new FormControl(inAudit));
+    }
   }
 
   onSubmit() {
     const audit: Partial<Audit> = {
+      id: this.audit?.id,
       name: this.name.value,
       endDate: this.endDate.value,
       startDate: this.startDate.value,
@@ -108,29 +97,27 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
 
   checkedFacCrits() {
     const result: FacCrit[] = [];
+    for (const crit of this.facCrits) {
+      const checked = this.formGroup.get(String(crit.id)).value;
 
-    this.facCrits$.subscribe(facCrits => {
-      for (const crit of facCrits) {
-        const checked = this.formGroup.get(String(crit.id)).value;
-
-        if (checked) {
-          result.push(crit);
-        }
+      if (checked) {
+        result.push(crit);
       }
-    });
+    }
 
     return result;
   }
 
-  toggleCriteriaChecked(factorId: string, checked: true) {
-    this.store.select(AuditState.facCritByReferenceId(+factorId)).subscribe(x => {
-      for (const crit of x) {
-        this.formGroup.get(String(crit.id)).setValue(checked);
-      }
-    });
+  /**
+   * Checks or unchecks all criterias of a factor.
+   */
+  toggleCriterias(factorId: string, checked: boolean) {
+    for (const facCrit of this.facCrits.filter(x => x.referenceId === +factorId)) {
+      this.formGroup.get(String(facCrit.id)).setValue(checked);
+    }
   }
 
-  filterOptions(input: string) {
+  filterContactPersonOptions(input: string) {
     this.filteredContactPersons$ = of(this.contactPersons).pipe(
       map(options => options.filter(o => o.forename.toLowerCase().startsWith(input.toLowerCase()))),
     );

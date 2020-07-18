@@ -1,48 +1,36 @@
 <ng-container *ngIf="activeAudits && archivedAudits">
   <header class="grid-1-auto-auto">
     <h4 data-cy="heading">Audits</h4>
-    <a routerLink="new" hero size="medium" nbButton status="primary" data-cy="new-audit">
-      <div class="min-500">
-        <nb-icon icon="plus"></nb-icon>
-        Neuer Audit
-      </div>
-      <div class="max-500">
-        <nb-icon icon="plus"></nb-icon>
-      </div>
-    </a>
-    <button size="medium" nbButton hero data-cy="export-audits">
-      <div class="min-500">
-        <nb-icon icon="download"></nb-icon>
-        (4) Exportieren
-      </div>
-      <div class="max-500">
-        <nb-icon icon="download"></nb-icon>
-      </div>
+    <button routerLink="new" ghost size="medium" nbButton status="primary" data-cy="new-audit">
+      <nb-icon icon="plus"></nb-icon>
+      Neuer Audit
     </button>
   </header>
-  <nb-tabset data-cy="audits-list">
-    <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
-      <div *ngIf="activeAudits.length > 0; else noActiveAudits">
-        <app-audit-card *ngFor="let audit of activeAudits | sortAudit" [audit]="audit"></app-audit-card>
-      </div>
-      <ng-template #noActiveAudits>
-        <div class="hint-no-audits" data-cy="no-active-audits">
-          <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
-          <p class="label">Legen sie einen Audit <a class="text-primary" routerLink="new">hier</a> an</p>
-        </div>
-      </ng-template>
-    </nb-tab>
-    <nb-tab responsive tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
-      <div *ngIf="archivedAudits.length > 0; else noArchivedAudits">
-        <app-audit-card *ngFor="let audit of archivedAudits | sortAudit" [audit]="audit"></app-audit-card>
-      </div>
-      <ng-template #noArchivedAudits>
-        <div class="hint-no-audits" data-cy="no-archived-audits">
-          <h6 class="text-hint">Keine archivierten Audits vorhanden</h6>
-        </div>
-      </ng-template>
-    </nb-tab>
-  </nb-tabset>
+  <ng-container *ngIf="audits$ | async; let audits">
+    <nb-tabset data-cy="audits-list">
+      <nb-tab responsive tabTitle="Aktiv" tabIcon="activity-outline" data-cy="active-audits">
+        <ng-container *ngIf="audits | activeAudits; let activeAudits; else: noActiveAudits">
+          <app-audit-card *ngFor="let audit of activeAudits | sortAudit" [audit]="audit"></app-audit-card>
+        </ng-container>
+        <ng-template #noActiveAudits>
+          <div class="hint-no-audits" data-cy="no-active-audits">
+            <h6 class="text-hint">Keine aktiven Audits vorhanden</h6>
+            <p class="label">Legen sie einen Audit <a class="text-primary" routerLink="new">hier</a> an</p>
+          </div>
+        </ng-template>
+      </nb-tab>
+      <nb-tab responsive tabTitle="Archiv" tabIcon="archive-outline" data-cy="archived-audits">
+        <ng-container *ngIf="audits | archivedAudits; let archivedAudits; else: noArchivedAudits">
+          <app-audit-card *ngFor="let audit of archivedAudits | sortAudit" [audit]="audit"></app-audit-card>
+        </ng-container>
+        <ng-template #noArchivedAudits>
+          <div class="hint-no-audits" data-cy="no-archived-audits">
+            <h6 class="text-hint">Keine archivierten Audits vorhanden</h6>
+          </div>
+        </ng-template>
+      </nb-tab>
+    </nb-tabset>
+  </ng-container>
   <nb-layout>
     <router-outlet></router-outlet>
   </nb-layout>

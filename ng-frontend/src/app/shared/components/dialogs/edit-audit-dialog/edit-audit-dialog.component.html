@@ -1,5 +1,19 @@
 <ng-template #dialog let-data let-ref="dialogRef">
   <div class="scrollable-container">
-    <app-audit-form (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" [audit]="audit$ | async" [submitButtonName]="'speichern'" cancelButtonName="abbrechen"> </app-audit-form>
+    <ng-container *ngIf="audit$ | async; let audit">
+      <ng-container *ngIf="contactPersons$ | async; let contactPersons">
+        <ng-container *ngIf="facCrits$ | async; let facCrits">
+          <app-audit-form
+            [facCrits]="facCrits"
+            [contactPersons]="contactPersons"
+            [audit]="audit"
+            submitButtonName="speichern"
+            cancelButtonName="abbrechen"
+            (cancelled)="onCancel()"
+            (formSubmitted)="onSubmit($event)">
+          </app-audit-form>
+        </ng-container>
+      </ng-container>
+    </ng-container>
   </div>
 </ng-template>

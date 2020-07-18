@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Observable } from 'rxjs';
-import { Store, Select } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { FacCrit } from 'src/app/core/data/models/faccrit.model';
+import { Select } from '@ngxs/store';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
-import { InterviewState } from 'src/app/core/ngxs/interview.state';
-import { filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { InterviewNewService } from 'src/app/core/http_new/interview-new.service';
+import { AudtiNewService } from 'src/app/core/http_new/audit-new.service';
 
 @Component({
   selector: 'app-interview-list',
@@ -15,24 +14,31 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./interview-list.component.scss'],
 })
 export class InterviewListComponent implements OnInit {
-  @Select(AuditState.facCrits) facCrits$: Observable<FacCrit[]>;
   @Select(AppRouterState.auditId) auditId$: Observable<number>;
 
   audit: Audit;
   interviews: Interview[];
 
-  constructor(private store: Store) {}
+  constructor(
+    private auditService: AudtiNewService,
+    private interviewService: InterviewNewService,
+  ) {}
 
   ngOnInit() {
-    this.interviews = [];
     this.auditId$.subscribe(id => {
-      this.store.select(AuditState.audit(id)).subscribe(a => (this.audit = a));
+      this.auditService.audits$
+        .pipe(map(audits => audits?.find(a => a.id === id)))
+        .subscribe(audit => (this.audit = audit));
 
-      this.store
-        .select(InterviewState.interviewsByAuditId(id))
-        .pipe(filter(i => i != undefined))
-        .subscribe(i => (this.interviews = i));
+      this.interviewService.interviews$
+        .pipe(map(interviews => interviews?.filter(i => i.auditId === id)))
+        .subscribe(interviews => {
+          this.interviews = interviews;
+        });
     });
+
+    this.interviewService.getInterviews();
+    this.auditService.getAudits();
   }
 
   /**
