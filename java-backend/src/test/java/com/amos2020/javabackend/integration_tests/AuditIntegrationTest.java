@@ -58,6 +58,7 @@ public class AuditIntegrationTest {
     private static final String UPDATED_NAME = "Update Name";
     private static final Date UPDATED_START_DATE = Date.valueOf("2000-01-01");
     private static final Date UPDATED_END_DATE = Date.valueOf("2000-02-02");
+    private static final AuditStatus UPDATED_AUDIT_STATUS = AuditStatus.ACTIVE;
     private static final Salutation TEST_SALUTATION = Salutation.HERR;
     private static final String TEST_TITLE = "TestTitle";
     private static final String TEST_INFORMATION = "0123456789, valid@email.com";
@@ -309,7 +310,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithValidRequest_returnsOk() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -319,7 +320,7 @@ public class AuditIntegrationTest {
                 .andExpect(jsonPath("$.name").value(UPDATED_NAME))
                 .andExpect(jsonPath("$.startDate").value(UPDATED_START_DATE.toString()))
                 .andExpect(jsonPath("$.endDate").value(UPDATED_END_DATE.toString()))
-                .andExpect(jsonPath("$.status").value(AuditStatus.OPEN.toString()))
+                .andExpect(jsonPath("$.status").value(UPDATED_AUDIT_STATUS.toString()))
                 .andExpect(jsonPath("$.scope", hasSize(1)))
                 .andExpect(jsonPath("$.scope[*].id", containsInAnyOrder(facCrits.get(0).getId())))
                 .andExpect(jsonPath("$.scope[*].referenceId", containsInAnyOrder(facCrits.get(0).getReferenceId())))
@@ -340,7 +341,7 @@ public class AuditIntegrationTest {
 
     @Test
     public void updateAuditByIdWithAuditNotExisting_returnsNotFound() throws Exception {
-        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/100")
@@ -353,7 +354,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithNameIsNull_returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(NULL_STRING, UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(NULL_STRING, UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -366,7 +367,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithNameIsBlank_returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(BLANK_STRING, UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(BLANK_STRING, UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -380,7 +381,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithNameIsMaximum_returnsIsOk() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(STRING_256, UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(STRING_256, UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -394,7 +395,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithNameIsTooLong_returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(STRING_257, UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(STRING_257, UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -407,7 +408,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithNameIsMinimum_returnsIsOk() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest("*", UPDATED_START_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest("*", UPDATED_START_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -421,7 +422,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithStartDateIsNull_returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, NULL_DATE, UPDATED_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, NULL_DATE, UPDATED_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -434,7 +435,7 @@ public class AuditIntegrationTest {
     public void updateAuditByIdWithEndDateIsBeforeStartDate_returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, VALID_START_DATE, INVALID_END_DATE);
+        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, VALID_START_DATE, INVALID_END_DATE, UPDATED_AUDIT_STATUS);
         String requestAsJson = buildJson(request);
 
         mvc.perform(put("/audits/" + auditId)
@@ -442,6 +443,20 @@ public class AuditIntegrationTest {
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void updateAuditByIdWithAuditStatusIsNull_returns400() throws Exception {
+        String auditId = setupNewAudit();
+
+        UpdateAuditRequest request = getUpdateAuditRequest(UPDATED_NAME, UPDATED_START_DATE, UPDATED_END_DATE, null);
+        String requestAsJson = buildJson(request);
+
+        mvc.perform(put("/audits/" + auditId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(requestAsJson))
+                .andExpect(status().isBadRequest());
+    }
+
 
     @Test
     public void addContactPersonToAuditWithValidIds_returns200() throws Exception {
@@ -724,7 +739,7 @@ public class AuditIntegrationTest {
     public void deleteAuditContactPersonNotExisting_returns400() throws Exception {
         String auditId = setupNewAudit();
 
-        DeleteAuditRequest request = getDeleteAuditRequest(100, Date.valueOf("2020-06-22"), "reason");
+        DeleteAuditRequest request = getDeleteAuditRequest(1000, Date.valueOf("2020-06-22"), "reason");
         String requestAsJson = buildJson(request);
 
         mvc.perform(delete("/audits/" + auditId)
@@ -793,11 +808,12 @@ public class AuditIntegrationTest {
         return request;
     }
 
-    private UpdateAuditRequest getUpdateAuditRequest(String auditName, Date startDate, Date endDate) {
+    private UpdateAuditRequest getUpdateAuditRequest(String auditName, Date startDate, Date endDate, AuditStatus status) {
         UpdateAuditRequest request = new UpdateAuditRequest();
         request.setName(auditName);
         request.setStartDate(startDate);
         request.setEndDate(endDate);
+        request.setStatus(status);
         return request;
     }
 
