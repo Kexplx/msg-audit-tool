@@ -99,9 +99,9 @@ export class AudtiNewService {
 
     const putAuditDto: PutAuditDto = {
       name: audit.name,
+      status: audit.status,
       endDate: parseTimestamp(audit.endDate),
       startDate: parseTimestamp(audit.startDate),
-      status: 'ACTIVE',
     };
 
     this.http
