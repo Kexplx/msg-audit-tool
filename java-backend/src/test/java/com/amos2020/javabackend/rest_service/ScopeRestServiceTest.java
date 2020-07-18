@@ -51,7 +51,7 @@ public class ScopeRestServiceTest {
         request.setScope(scope);
         String requestAsJson = buildJson(request);
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
         restService.perform(post("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -84,7 +84,7 @@ public class ScopeRestServiceTest {
         request.setScope(scope);
         String requestAsJson = buildJson(request);
         Audit audit = new Audit();
-        given(auditController.updateAudit(anyInt(), anyString(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
+        given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
 
         restService.perform(post("/audits/1/scope")
