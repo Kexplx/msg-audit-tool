@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.rest_service.request.audit;
 
+import com.amos2020.javabackend.entity.AuditStatus;
 import com.amos2020.javabackend.rest_service.Constants;
 import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+
 /**
  * Request object for updating an existing audit
  */
@@ -30,6 +32,11 @@ public class UpdateAuditRequest extends BasicRequest {
     @Setter
     @Schema(type = "string", name = "endDate", format = "date")
     private Date endDate;
+    @Getter
+    @Setter
+    @NotNull
+    @Schema(type = "String", name = "status", example = "ACTIVE", required = true)
+    private AuditStatus status;
 
     /**
      * Checks if provided startDate is before endDate
