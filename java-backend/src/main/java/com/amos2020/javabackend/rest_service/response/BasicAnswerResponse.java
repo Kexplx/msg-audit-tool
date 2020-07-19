@@ -13,6 +13,10 @@ public class BasicAnswerResponse {
     private int questionId;
     @Getter
     @Setter
+    @Schema(type = "String", name = "questionText", example = "Existiert eine Planung, um das Qualitätskriterium in der Anwendung zu steigern?")
+    private String questionText;
+    @Getter
+    @Setter
     @Schema(type = "Integer", name = "interviewId", example = "123456")
     private int interviewId;
     @Getter
@@ -50,6 +54,7 @@ public class BasicAnswerResponse {
 
     public BasicAnswerResponse(Answer answer) {
         this.questionId = answer.getQuestionId();
+        this.questionText = answer.getQuestionByQuestionId().getTextDe();
         this.interviewId = answer.getInterviewId();
         this.faccritId = answer.getFaccritId();
         this.result = answer.getResult();
