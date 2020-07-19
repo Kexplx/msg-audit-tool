@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable, timer } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
-import { first, filter } from 'rxjs/operators';
+import { filter, map, first } from 'rxjs/operators';
+import { AuditStore } from '../../stores/audit.store';
 @Component({
   selector: 'app-sidebar-interview-list',
   templateUrl: './sidebar-interview-list.component.html',
@@ -17,7 +17,7 @@ export class SidebarInterviewListComponent implements OnInit {
   audit$: Observable<Audit>;
   items: NbMenuItem[];
 
-  constructor(private store: Store, private menuService: NbMenuService) {}
+  constructor(private auditStore: AuditStore, private menuService: NbMenuService) {}
 
   ngOnInit() {
     this.menuService.onItemClick().subscribe(x => {
@@ -26,37 +26,35 @@ export class SidebarInterviewListComponent implements OnInit {
     });
 
     this.auditId$.subscribe(id => {
-      this.audit$ = this.store.select(AuditState.audit(id));
-    });
+      this.auditStore.audits$
+        .pipe(
+          filter(audits => audits != null),
+          first(),
+          map(audits => audits.find(a => a.id === id)),
+        )
+        .subscribe(audit => {
+          this.items = [];
+          for (const factor of audit.scope.filter(fc => !fc.referenceId)) {
+            const criterias = audit.scope.filter(
+              fc => fc.referenceId && fc.referenceId === factor.id,
+            );
 
-    this.items = [];
-    this.audit$
-      .pipe(
-        filter(audit => audit != undefined),
-        first(),
-      )
-      .subscribe(audit => {
-        for (const factor of audit.scope.filter(fc => !fc.referenceId)) {
-          const criterias = audit.scope.filter(
-            fc => fc.referenceId && fc.referenceId === factor.id,
-          );
+            const menuItem: NbMenuItem = {
+              title: factor.name,
+              data: factor.id,
+            };
 
-          const menuItem: NbMenuItem = {
-            title: factor.name,
-            data: factor.id,
-          };
+            if (criterias.length > 0) {
+              menuItem.children = criterias.map(c => {
+                return { title: c.name, data: c.id };
+              });
+            }
 
-          if (criterias.length > 0) {
-            menuItem.children = criterias.map(c => {
-              return { title: c.name, data: c.id };
-            });
+            this.items.push(menuItem);
+            timer(0).subscribe(() => this.cropMenuItemTitles());
           }
-
-          this.items.push(menuItem);
-
-          timer(50).subscribe(() => this.cropMenuItemTitles());
-        }
-      });
+        });
+    });
   }
 
   /**
