@@ -1,5 +1,6 @@
 <ng-template #dialog let-data let-ref="dialogRef">
   <div class="scrollable-container">
-    <app-contact-person-form [contactPerson]="contactPerson$ | async" (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" submitButtonName="speichern"> </app-contact-person-form>
+    <app-contact-person-form *ngIf="contactPerson$ | async; let contactPerson" [contactPerson]="contactPerson" (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)" submitButtonName="speichern">
+    </app-contact-person-form>
   </div>
 </ng-template>

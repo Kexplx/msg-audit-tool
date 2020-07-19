@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import * as karma from 'karma-jasmine';
 import { ContactPersonService } from '../contact-person.service';
 import { CONTACTPERSON_DTO_DUMMY } from './dummies/contact-persons';
 import { ContactPerson } from '../../data/models/contact-person.model';

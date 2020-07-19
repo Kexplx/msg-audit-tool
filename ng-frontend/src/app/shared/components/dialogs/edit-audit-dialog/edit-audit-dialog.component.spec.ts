@@ -3,11 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditAuditDialogComponent } from './edit-audit-dialog.component';
 import { of } from 'rxjs';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { RouterTestingModule } from '@angular/router/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
-import { Router, RouterModule } from '@angular/router';
-import { CONTACTPERSON_DTO_DUMMY } from 'src/app/core/http/test/dummies/contact-persons';
+import { RouterModule } from '@angular/router';
 import { ContactPersonService } from 'src/app/core/http/contact-person.service';
 import {
   interviewServiceSpy,

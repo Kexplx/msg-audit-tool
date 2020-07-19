@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
 import { Select, Store } from '@ngxs/store';
 import { AuditState } from 'src/app/core/ngxs/audit.state';

@@ -1,20 +1,17 @@
 import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { Store, Select } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Location } from '@angular/common';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
-import { UpdateAudit } from 'src/app/core/ngxs/actions/audit.actions';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { AudtiNewService } from 'src/app/core/http_new/audit-new.service';
-import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-new.service';
-import { FacCritNewService } from 'src/app/core/http_new/faccrit-new.service';
 import { map } from 'rxjs/operators';
+import { AuditStore } from 'src/app/core/stores/audit.store';
+import { FacCritStore } from 'src/app/core/stores/faccrit.store';
+import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
 
 @Component({
   selector: 'app-edit-audit-dialog',
@@ -34,10 +31,9 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
 
   constructor(
     private dialogService: NbDialogService,
-    private auditService: AudtiNewService,
-    private contactPersonService: ContactPersonNewService,
-    private facCritService: FacCritNewService,
-    private store: Store,
+    private auditStore: AuditStore,
+    private contactPersonStore: ContactPersonStore,
+    private facCritStore: FacCritStore,
     private location: Location,
   ) {}
 
@@ -45,12 +41,12 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
     this.auditId$.subscribe(id => {
       this.auditId = id;
 
-      this.contactPersons$ = this.contactPersonService.contactPersons$;
-      this.facCrits$ = this.facCritService.facCrits$;
-      this.audit$ = this.auditService.audits$.pipe(map(audits => audits.find(a => a.id === id)));
+      this.contactPersons$ = this.contactPersonStore.contactPersons$;
+      this.facCrits$ = this.facCritStore.facCrits$;
+      this.audit$ = this.auditStore.audits$.pipe(map(audits => audits.find(a => a.id === id)));
 
-      this.contactPersonService.getContactPersons();
-      this.facCritService.getFacCrits();
+      this.contactPersonStore.loadContactPersons();
+      this.facCritStore.loadFacCrits();
     });
   }
 
@@ -65,7 +61,7 @@ export class EditAuditDialogComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(audit: Audit) {
-    this.auditService.putAudit(audit);
+    this.auditStore.updateAudit(audit);
     this.dialogRef.close();
   }
 

@@ -1,5 +1,5 @@
 import { State, Selector, Action, StateContext, createSelector, NgxsOnInit } from '@ngxs/store';
-import { patch, updateItem, removeItem, append } from '@ngxs/store/operators';
+import { patch, updateItem, append } from '@ngxs/store/operators';
 import { Injectable } from '@angular/core';
 import { ContactPerson } from '../data/models/contact-person.model';
 import { AddContactPerson, UpdateContactPerson } from './actions/contact-person.action';

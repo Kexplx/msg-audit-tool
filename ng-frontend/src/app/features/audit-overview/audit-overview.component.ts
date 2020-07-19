@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscriber } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Select } from '@ngxs/store';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { filter, map } from 'rxjs/operators';
-import { AudtiNewService } from 'src/app/core/http_new/audit-new.service';
 import { SubSink } from 'subsink';
+import { AuditStore } from 'src/app/core/stores/audit.store';
 
 @Component({
   selector: 'app-audit-overview',
@@ -37,11 +37,11 @@ export class AuditOverviewComponent implements OnInit, OnDestroy {
     },
   ];
 
-  constructor(private auditService: AudtiNewService) {}
+  constructor(private auditStore: AuditStore) {}
 
   ngOnInit(): void {
     const sub = this.auditId$.subscribe(id => {
-      this.auditService.audits$
+      this.auditStore.audits$
         .pipe(
           filter(audits => audits != null),
           map(audits => audits.find(a => a.id === id)),
@@ -53,7 +53,7 @@ export class AuditOverviewComponent implements OnInit, OnDestroy {
     });
 
     this.subSink.add(sub);
-    this.auditService.getAudits();
+    this.auditStore.loadAudits();
   }
 
   ngOnDestroy() {
@@ -61,6 +61,6 @@ export class AuditOverviewComponent implements OnInit, OnDestroy {
   }
 
   onStatusChange() {
-    this.auditService.putAudit({ ...this.audit, status: this.selectedAuditStatus });
+    this.auditStore.updateAudit({ ...this.audit, status: this.selectedAuditStatus });
   }
 }

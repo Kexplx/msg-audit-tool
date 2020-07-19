@@ -3,7 +3,7 @@ import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-new.service';
+import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
 
 @Component({
   selector: 'app-add-contact-person-dialog',
@@ -16,7 +16,7 @@ export class AddContactPersonDialogComponent {
 
   constructor(
     private dialogService: NbDialogService,
-    private contactPersonService: ContactPersonNewService,
+    private contactPersonStore: ContactPersonStore,
     private location: Location,
   ) {}
 
@@ -28,7 +28,7 @@ export class AddContactPersonDialogComponent {
   }
 
   onSubmit(contactPerson: ContactPerson) {
-    this.contactPersonService.postContactPerson(contactPerson);
+    this.contactPersonStore.addContactPerson(contactPerson);
     this.dialogRef.close();
   }
 

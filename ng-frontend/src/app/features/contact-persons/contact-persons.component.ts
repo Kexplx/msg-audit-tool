@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-new.service';
+import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
 
 @Component({
   selector: 'app-contact-persons-list',
@@ -11,10 +11,10 @@ import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-ne
 export class ContactPersonsComponent implements OnInit {
   contactPersons$: Observable<ContactPerson[]>;
 
-  constructor(private contactPersonService: ContactPersonNewService) {}
+  constructor(private contactPersonStore: ContactPersonStore) {}
 
   ngOnInit() {
-    this.contactPersons$ = this.contactPersonService.contactPersons$;
-    this.contactPersonService.getContactPersons();
+    this.contactPersons$ = this.contactPersonStore.contactPersons$;
+    this.contactPersonStore.loadContactPersons();
   }
 }

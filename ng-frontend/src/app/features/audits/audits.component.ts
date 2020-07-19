@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { AuditStatus, Audit } from 'src/app/core/data/models/audit.model';
 import { filter } from 'rxjs/operators';
-import { AudtiNewService } from 'src/app/core/http_new/audit-new.service';
+import { AuditStore } from 'src/app/core/stores/audit.store';
 
 @Component({
   selector: 'app-audit-list',
@@ -14,14 +12,14 @@ import { AudtiNewService } from 'src/app/core/http_new/audit-new.service';
 export class AuditsComponent implements OnInit {
   audits$: Observable<Audit[]>;
 
-  constructor(private auditService: AudtiNewService) {}
+  constructor(private auditStore: AuditStore) {}
 
   activeAudits: Audit[];
   archivedAudits: Audit[];
 
   ngOnInit() {
-    this.audits$ = this.auditService.audits$;
-    this.auditService.getAudits();
+    this.audits$ = this.auditStore.audits$;
+    this.auditStore.loadAudits();
 
     this.audits$.pipe(filter(audits => audits != undefined)).subscribe(audits => {
       this.activeAudits = audits.filter(

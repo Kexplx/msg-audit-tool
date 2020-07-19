@@ -7,7 +7,7 @@ import { AUDITS_DUMMY } from './dummies/audits';
 import { HttpClientModule } from '@angular/common/http';
 import { FacCritService } from '../../http/facCrit.service';
 import { FACCRITS_DUMMY } from '../../http/test/dummies/faccrits';
-import { AddAudit, UpdateAudit, LoadFacCritsByInterviewId } from '../actions/audit.actions';
+import { AddAudit, UpdateAudit } from '../actions/audit.actions';
 import { Audit, AuditStatus } from '../../data/models/audit.model';
 
 describe('AuditState', () => {

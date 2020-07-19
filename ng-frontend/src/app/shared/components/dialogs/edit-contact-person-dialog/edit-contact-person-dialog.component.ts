@@ -6,8 +6,8 @@ import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
-import { ContactPersonNewService } from 'src/app/core/http_new/contact-person-new.service';
 import { map, filter } from 'rxjs/operators';
+import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
 
 @Component({
   selector: 'app-edit-contact-person-dialog',
@@ -23,13 +23,13 @@ export class EditContactPersonDialogComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private contactPersonService: ContactPersonNewService,
+    private contactPersonStore: ContactPersonStore,
     private dialogService: NbDialogService,
   ) {}
 
   ngOnInit() {
     this.contactPersonId$.subscribe(id => {
-      this.contactPerson$ = this.contactPersonService.contactPersons$.pipe(
+      this.contactPerson$ = this.contactPersonStore.contactPersons$.pipe(
         filter(contactPersons => contactPersons != null),
         map(contactPersons => contactPersons.find(cp => cp.id === id)),
       );
@@ -44,7 +44,7 @@ export class EditContactPersonDialogComponent implements OnInit {
   }
 
   onSubmit(contactPerson: ContactPerson) {
-    this.contactPersonService.putContactPerson(contactPerson);
+    this.contactPersonStore.updateContactPerson(contactPerson);
     this.dialogRef.close();
   }
 

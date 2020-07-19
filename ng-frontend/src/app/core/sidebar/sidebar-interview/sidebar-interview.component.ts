@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, combineLatest } from 'rxjs';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { Question } from 'src/app/core/data/models/question.model';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';

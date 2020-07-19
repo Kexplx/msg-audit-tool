@@ -1,36 +1,48 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Answer } from 'src/app/core/data/models/answer.model';
-import { Select, Store } from '@ngxs/store';
-import { InterviewState } from 'src/app/core/ngxs/interview.state';
-import { Observable } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { Observable, combineLatest } from 'rxjs';
 import { Question } from 'src/app/core/data/models/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { UpdateAnswer } from 'src/app/core/ngxs/actions/inteview.actions';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Audit } from 'src/app/core/data/models/audit.model';
+import { QuestionService } from 'src/app/core/http/question.service';
+import { AnswerService } from 'src/app/core/http/answer.service';
+import { map } from 'rxjs/operators';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-answer-question-list',
   templateUrl: './answer-question-list.component.html',
   styleUrls: ['./answer-question-list.component.scss'],
 })
-export class AnswerQuestionListComponent implements OnChanges {
-  @Input() answers: Answer[];
+export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
   @Input() facCrit: FacCrit;
   @Input() audit: Audit;
-  @Select(InterviewState.questions) questions$: Observable<Question[]>;
+  @Input() interviewId: number;
 
-  formGroups: FormGroup[];
+  answers: Answer[];
+  questions: Question[];
 
-  constructor(public store: Store, private fb: FormBuilder) {}
+  formGroups: FormGroup[] = [];
+
+  private readonly subSink = new SubSink();
+
+  constructor(
+    public store: Store,
+    private fb: FormBuilder,
+    private questionService: QuestionService,
+    private answerService: AnswerService,
+  ) {}
 
   ngOnChanges() {
-    this.formGroups = [];
-
-    for (const answer of this.answers) {
-      if (this.formGroups)
-        this.formGroups.push(
-          this.fb.group({
+    const answerSub = this.answerService
+      .getAnswersByInterviewId(this.interviewId)
+      .pipe(map(answers => answers.filter(a => a.faccritId === this.facCrit.id)))
+      .subscribe(answers => {
+        this.answers = answers;
+        for (const [i, answer] of this.answers.entries()) {
+          this.formGroups[i] = this.fb.group({
             result: [answer?.result],
             responsible: [answer?.responsible],
             documentation: [answer?.documentation],
@@ -38,9 +50,28 @@ export class AnswerQuestionListComponent implements OnChanges {
             reason: [answer?.reason],
             proof: [answer?.proof],
             annotation: [answer?.annotation],
-          }),
-        );
-    }
+          });
+        }
+
+        // Here we get each question by it's id that is contained in the answers
+        const questionObservable$: Observable<Question>[] = [];
+        const questionIds = answers.map(a => a.questionId);
+        for (const id of questionIds) {
+          questionObservable$.push(this.questionService.getQuestion(id));
+        }
+
+        const questionSub = combineLatest(questionObservable$).subscribe(questions => {
+          this.questions = questions;
+        });
+
+        this.subSink.add(questionSub);
+      });
+
+    this.subSink.add(answerSub);
+  }
+
+  ngOnDestroy() {
+    this.subSink.unsubscribe();
   }
 
   onSave() {
@@ -57,7 +88,7 @@ export class AnswerQuestionListComponent implements OnChanges {
         responsible: formGroup.get('responsible').value,
       };
 
-      this.store.dispatch(new UpdateAnswer(answer));
+      this.answerService.putAnswer(answer).subscribe(() => {});
     }
   }
 }

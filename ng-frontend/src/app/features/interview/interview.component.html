@@ -1,4 +1,4 @@
-<ng-container *ngIf="interview && audit && facCrit">
+<ng-container *ngIf="interview && facCrit">
   <header class="header-main">
     <div class="header-main-info">
       <h4 data-cy="heading">
@@ -29,7 +29,7 @@
         </nb-actions>
         <p class="subtitle-2">
           {{ facCrit.name }}
-          <span *ngIf="facCritIds" class="text-hint">{{ getFacCritPosition(facCrit.id) }}</span>
+          <span *ngIf="facCritGroupedIds" class="text-hint">{{ getFacCritPosition(facCrit.id) }}</span>
         </p>
         <nb-actions size="small">
           <nb-action icon="arrow-ios-forward-outline" (click)="onNavigateForward(facCrit.id)" data-cy="stepper-forward"></nb-action>
@@ -52,7 +52,7 @@
       </nb-accordion-item-header>
       <nb-accordion-item-body>
         <textarea
-          [disabled]="audit.status !== 'ACTIVE'"
+          [disabled]="audit?.status !== 'ACTIVE'"
           spellcheck="false"
           [value]="interview.note"
           (input)="onNoteInput($event.target.value)"
@@ -65,7 +65,5 @@
       </nb-accordion-item-body>
     </nb-accordion-item>
   </nb-accordion>
-  <ng-container *ngIf="answers$ | async | answersByIds: interviewId:facCritId; let answers">
-    <app-answer-question-list [audit]="audit" [facCrit]="facCrit" [answers]="answers"></app-answer-question-list>
-  </ng-container>
+  <app-answer-question-list [interviewId]="interview.id" [facCrit]="facCrit" [audit]="audit"></app-answer-question-list>
 </ng-container>

@@ -36,6 +36,7 @@ export class AnswerService {
    * @returns An Observable of the answers.
    */
   putAnswer(answer: Answer): Observable<Answer> {
+    console.log(answer);
     const url =
       environment.baseUrl +
       'answers/' +

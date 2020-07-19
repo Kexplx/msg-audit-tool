@@ -6,14 +6,14 @@ import { AnswerQuestionListComponent } from './answer-question-list/answer-quest
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { QuestionByIdPipe } from './answer-question-list/questions-by-id.pipe';
-import { AnswersByIdsPipe } from './answers-by-ids.pipe';
+import { AnswersByFacCritId } from './answers-by-faccrit-id.pipe';
 
 @NgModule({
   declarations: [
     InterviewComponent,
     AnswerQuestionListComponent,
     QuestionByIdPipe,
-    AnswersByIdsPipe,
+    AnswersByFacCritId,
   ],
   imports: [ReactiveFormsModule, SharedModule, InterviewRoutingModule],
 })
