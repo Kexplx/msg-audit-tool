@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.service;
 
 import com.amos2020.javabackend.entity.Answer;
+import com.amos2020.javabackend.entity.Question;
 import com.amos2020.javabackend.repository.AnswerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,16 +20,15 @@ public class AnswerService {
     /**
      * Creates and stores an Answer
      *
-     * @param questionId  int
      * @param interviewId int
-     * @param faccritId   int
+     * @param question    Question
      * @return Answer
      */
-    public Answer createAnswer(int questionId, int interviewId, int faccritId) {
+    public Answer createAnswer(int interviewId, Question question) {
         Answer answer = new Answer();
-        answer.setQuestionId(questionId);
+        answer.setQuestionId(question.getId());
         answer.setInterviewId(interviewId);
-        answer.setFaccritId(faccritId);
+        answer.setFaccritId(question.getFaccritId());
         answer.setResult(false);
         answer.setResponsible(false);
         answer.setDocumentation(false);
@@ -36,6 +36,7 @@ public class AnswerService {
         answer.setReason("");
         answer.setProof("");
         answer.setAnnotation("");
+        answer.setQuestionByQuestionId(question);
         return repository.save(answer);
     }
 
