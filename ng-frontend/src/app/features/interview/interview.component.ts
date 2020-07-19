@@ -65,7 +65,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
           this.interview = observables[1];
           this.facCrit = observables[2];
 
-          this.answerStore.setAnswers(this.interview.answers);
+          this.answerStore.loadAnswersByInterviewId(observables[1].id);
           this.groupedFacCritIds();
         });
       });
