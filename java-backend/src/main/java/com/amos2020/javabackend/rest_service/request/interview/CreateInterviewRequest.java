@@ -4,16 +4,14 @@ import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
+
 /**
  * Request object for creating a new interview.
  */
@@ -43,6 +41,7 @@ public class CreateInterviewRequest extends BasicRequest {
     private String note;
     @Getter
     @Setter
+    @NotNull
     @Schema(type = "Array", name = "interviewedContactPersons", example = "[\n" +
             "        {\n" +
             "            \"id\": 1,\n" +
@@ -52,6 +51,7 @@ public class CreateInterviewRequest extends BasicRequest {
     private List<@Valid InterviewPerson> interviewedContactPersons;
     @Getter
     @Setter
+    @NotNull
     @Schema(type = "Array", name = "interviewScope", example = "[1]", required = true)
     private List<@Min(1) Integer> interviewScope;
 
