@@ -14,21 +14,8 @@ export class AuditsComponent implements OnInit {
 
   constructor(private auditStore: AuditStore) {}
 
-  activeAudits: Audit[];
-  archivedAudits: Audit[];
-
   ngOnInit() {
-    this.audits$ = this.auditStore.audits$;
+    this.audits$ = this.auditStore.audits$.pipe(filter(audits => audits != null));
     this.auditStore.loadAudits();
-
-    this.audits$.pipe(filter(audits => audits != undefined)).subscribe(audits => {
-      this.activeAudits = audits.filter(
-        a => a.status === AuditStatus.Active || a.status === AuditStatus.Planned,
-      );
-
-      this.archivedAudits = audits.filter(
-        a => a.status === AuditStatus.Finished || a.status === AuditStatus.Cancelled,
-      );
-    });
   }
 }
