@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuditStatus, Audit } from 'src/app/core/data/models/audit.model';
+import { Audit } from 'src/app/core/data/models/audit.model';
 import { filter } from 'rxjs/operators';
 import { AuditStore } from 'src/app/core/stores/audit.store';
 
