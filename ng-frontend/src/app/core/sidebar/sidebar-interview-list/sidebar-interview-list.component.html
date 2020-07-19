@@ -1,8 +1,10 @@
-<h6 style="margin: 0;">Faktoren & Kriterien</h6>
-<nb-menu *ngIf="items.length > 0; else noScope" style="padding-left: 5px;" [items]="items" autoCollapse> </nb-menu>
+<ng-container *ngIf="items">
+  <h6 style="margin: 0;">Faktoren & Kriterien</h6>
+  <nb-menu *ngIf="items.length > 0; else noScope" style="padding-left: 5px;" [items]="items" autoCollapse> </nb-menu>
 
-<ng-template #noScope>
-  <div class="no-scope-wrapper label">
-    Leerer Scope
-  </div>
-</ng-template>
+  <ng-template #noScope>
+    <div class="no-scope-wrapper label">
+      Leerer Scope
+    </div>
+  </ng-template>
+</ng-container>

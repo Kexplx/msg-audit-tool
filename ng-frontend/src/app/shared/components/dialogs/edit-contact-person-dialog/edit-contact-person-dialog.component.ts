@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { Select } from '@ngxs/store';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../default-dialog-options';
 import { Location } from '@angular/common';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { map, filter } from 'rxjs/operators';
 import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-contact-person-dialog',
@@ -16,7 +15,6 @@ import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
 })
 export class EditContactPersonDialogComponent implements OnInit {
   @ViewChild('dialog') dialog: TemplateRef<any>;
-  @Select(AppRouterState.contactPersonId) contactPersonId$: Observable<number>;
   contactPerson$: Observable<ContactPerson>;
 
   dialogRef: NbDialogRef<any>;
@@ -25,15 +23,15 @@ export class EditContactPersonDialogComponent implements OnInit {
     private location: Location,
     private contactPersonStore: ContactPersonStore,
     private dialogService: NbDialogService,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    this.contactPersonId$.subscribe(id => {
-      this.contactPerson$ = this.contactPersonStore.contactPersons$.pipe(
-        filter(contactPersons => contactPersons != null),
-        map(contactPersons => contactPersons.find(cp => cp.id === id)),
-      );
-    });
+    const contactPersonId: number = +this.activatedRoute.snapshot.params.id;
+    this.contactPerson$ = this.contactPersonStore.contactPersons$.pipe(
+      filter(contactPersons => contactPersons != null),
+      map(contactPersons => contactPersons.find(cp => cp.id === contactPersonId)),
+    );
   }
 
   ngAfterViewInit() {

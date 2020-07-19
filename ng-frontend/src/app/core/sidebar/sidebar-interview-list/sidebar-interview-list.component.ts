@@ -1,23 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { NbMenuItem, NbMenuService } from '@nebular/theme';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { filter, map, first } from 'rxjs/operators';
 import { AuditStore } from '../../stores/audit.store';
+import { IdService } from '../../id.service';
+import { SubSink } from 'subsink';
 @Component({
   selector: 'app-sidebar-interview-list',
   templateUrl: './sidebar-interview-list.component.html',
   styleUrls: ['./sidebar-interview-list.component.scss'],
 })
-export class SidebarInterviewListComponent implements OnInit {
-  @Select(AppRouterState.auditId) auditId$: Observable<number>;
-
+export class SidebarInterviewListComponent implements OnInit, OnDestroy {
   audit$: Observable<Audit>;
   items: NbMenuItem[];
 
-  constructor(private auditStore: AuditStore, private menuService: NbMenuService) {}
+  private readonly subSink = new SubSink();
+
+  constructor(
+    private auditStore: AuditStore,
+    private routeService: IdService,
+    private menuService: NbMenuService,
+  ) {}
 
   ngOnInit() {
     this.menuService.onItemClick().subscribe(x => {
@@ -25,12 +29,13 @@ export class SidebarInterviewListComponent implements OnInit {
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    this.auditId$.subscribe(id => {
-      this.auditStore.audits$
+    const idSub = this.routeService.auditId$.subscribe(id => {
+      const auditSub = this.auditStore.audits$
         .pipe(
           filter(audits => audits != null),
           first(),
           map(audits => audits.find(a => a.id === id)),
+          filter(audit => audit != undefined),
         )
         .subscribe(audit => {
           this.items = [];
@@ -54,7 +59,15 @@ export class SidebarInterviewListComponent implements OnInit {
             timer(0).subscribe(() => this.cropMenuItemTitles());
           }
         });
+
+      this.subSink.add(auditSub);
     });
+
+    this.subSink.add(idSub);
+  }
+
+  ngOnDestroy() {
+    this.subSink.unsubscribe();
   }
 
   /**
@@ -68,15 +81,7 @@ export class SidebarInterviewListComponent implements OnInit {
   }
 
   /**
-   * Crops a string after n characters and appens "..." onto it.
-   *
-   * @example
-   * cropString('Hello World', 5);
-   * // Will return "Hello..."
-   *
-   *
-   * @param s The string to crop.
-   * @param n The length after which to crop.
+   * Crops a string after n characters and appends "..." onto it.
    */
   private cropString(s: string, n: number): string {
     if (s.length < n) return s;

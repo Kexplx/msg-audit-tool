@@ -5,6 +5,7 @@ import { NbMenuService, NbMenuItem } from '@nebular/theme';
 import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { map, filter } from 'rxjs/operators';
 import { AnswerStore } from '../../stores/answer.store';
+import { IdService } from '../../id.service';
 
 @Component({
   selector: 'app-sidebar-interview',
@@ -12,14 +13,12 @@ import { AnswerStore } from '../../stores/answer.store';
   styleUrls: ['./sidebar-interview.component.scss'],
 })
 export class SidebarInterviewComponent {
-  @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
-  @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
-
   items: NbMenuItem[];
-
-  questionIds: number[];
-
-  constructor(private menuService: NbMenuService, private answerStore: AnswerStore) {}
+  constructor(
+    private menuService: NbMenuService,
+    private answerStore: AnswerStore,
+    private routesService: IdService,
+  ) {}
 
   ngOnInit() {
     this.items = [];
@@ -28,7 +27,7 @@ export class SidebarInterviewComponent {
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    this.facCritId$.subscribe(id => {
+    this.routesService.facCritId$.subscribe(id => {
       this.answerStore.answers$
         .pipe(
           filter(answers => answers != null),

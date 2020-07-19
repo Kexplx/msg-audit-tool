@@ -16,6 +16,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SidebarInterviewComponent } from './sidebar/sidebar-interview/sidebar-interview.component';
 import { SidebarInterviewListComponent } from './sidebar/sidebar-interview-list/sidebar-interview-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { IdService } from './id.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ export class CoreModule {
   /**
    * Throws an error if a second instance of CoreModule is created
    */
-  constructor(@Optional() @SkipSelf() coreModule: CoreModule) {
+  constructor(@Optional() @SkipSelf() coreModule: CoreModule, private r: IdService) {
     if (coreModule) {
       throw new Error('CoreModule is already loaded. Import it in the AppModule only');
     }

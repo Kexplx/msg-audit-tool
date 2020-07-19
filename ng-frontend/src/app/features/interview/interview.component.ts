@@ -1,7 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Select } from '@ngxs/store';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
-import { Observable, Subject, combineLatest } from 'rxjs';
+import { Subject, combineLatest } from 'rxjs';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,18 +17,18 @@ import { AnswerStore } from 'src/app/core/stores/answer.store';
   styleUrls: ['./interview.component.scss'],
 })
 export class InterviewComponent implements OnInit, OnDestroy {
-  @Select(AppRouterState.interviewId) interviewId$: Observable<number>;
-  @Select(AppRouterState.facCritId) facCritId$: Observable<number>;
-  @Select(AppRouterState.auditId) auditId$: Observable<number>;
   note$ = new Subject<string>();
-
-  private readonly subSink = new SubSink();
 
   facCrit: FacCrit;
   interview: Interview;
   audit: Audit;
-
   facCritGroupedIds: number[];
+
+  private auditId: number;
+  private interviewId: number;
+  private facCritId: number;
+
+  private readonly subSink = new SubSink();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -42,36 +40,37 @@ export class InterviewComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    const sub = combineLatest(this.auditId$, this.interviewId$, this.facCritId$)
-      .pipe(filter(ids => ids[0] != null && ids[1] != null && ids[2] != null))
-      .subscribe(ids => {
-        const auditSub = this.auditService.audits$.pipe(
-          filter(audits => audits != null),
-          map(audits => audits.find(i => i.id === ids[0])),
-        );
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      this.auditId = +paramMap.get('auditId');
+      this.facCritId = +paramMap.get('facCritId');
+      this.interviewId = +paramMap.get('interviewId');
 
-        const interviewSub = this.interviewService.interviews$.pipe(
-          filter(interviews => interviews != null),
-          map(interviews => interviews.find(i => i.id === ids[1])),
-        );
+      const audit$ = this.auditService.audits$.pipe(
+        filter(audits => audits != null),
+        map(audits => audits.find(i => i.id === this.auditId)),
+      );
 
-        const facCritSub = this.facCritService.facCrits$.pipe(
-          filter(facCrits => facCrits != null),
-          map(facCrits => facCrits.find(a => a.id === ids[2])),
-        );
+      const interview$ = this.interviewService.interviews$.pipe(
+        filter(interviews => interviews != null),
+        map(interviews => interviews.find(i => i.id === this.interviewId)),
+      );
 
-        combineLatest(auditSub, interviewSub, facCritSub).subscribe(observables => {
+      const facCrit$ = this.facCritService.facCrits$.pipe(
+        filter(facCrits => facCrits != null),
+        map(facCrits => facCrits.find(a => a.id === this.facCritId)),
+      );
+
+      this.subSink.add(
+        combineLatest(audit$, interview$, facCrit$).subscribe(observables => {
           this.audit = observables[0];
           this.interview = observables[1];
           this.facCrit = observables[2];
 
           this.answerStore.loadAnswersByInterviewId(observables[1].id);
-          this.groupedFacCritIds();
-        });
-      });
-
-    this.subSink.add(sub);
-
+          this.getGroupedFacCritIds();
+        }),
+      );
+    });
     this.auditService.loadAudits();
     this.interviewService.loadInterviews();
     this.facCritService.loadFacCrits();
@@ -86,7 +85,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
     this.subSink.unsubscribe();
   }
 
-  groupedFacCritIds() {
+  getGroupedFacCritIds() {
     const facCritIds = this.interview.answers.map(a => a.faccritId);
     this.facCritGroupedIds = this.facCritService.groupedFacCrits(facCritIds).map(fc => fc.id);
   }
@@ -96,10 +95,8 @@ export class InterviewComponent implements OnInit, OnDestroy {
   }
 
   onNavigateForward(facCritId: number) {
-    const { auditId, interviewId } = this.activatedRoute.snapshot.params;
     const indexOfFacCrit = this.facCritGroupedIds.indexOf(facCritId);
-
-    const url = `audits/${auditId}/interviews/${interviewId}/${
+    const url = `audits/${this.auditId}/interviews/${this.interviewId}/${
       this.facCritGroupedIds[indexOfFacCrit + 1]
     }`;
 
@@ -109,10 +106,9 @@ export class InterviewComponent implements OnInit, OnDestroy {
   }
 
   onNaviagteBack(facCritId: number) {
-    const { auditId, interviewId } = this.activatedRoute.snapshot.params;
     const indexOfFacCrit = this.facCritGroupedIds.indexOf(facCritId);
 
-    const url = `audits/${auditId}/interviews/${interviewId}/${
+    const url = `audits/${this.auditId}/interviews/${this.interviewId}/${
       this.facCritGroupedIds[indexOfFacCrit - 1]
     }`;
     if (indexOfFacCrit > 0) {

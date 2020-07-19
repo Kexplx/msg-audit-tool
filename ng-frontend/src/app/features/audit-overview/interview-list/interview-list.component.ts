@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { InterviewStore } from 'src/app/core/stores/interview.store';
 import { SubSink } from 'subsink';
 import { AuditStore } from 'src/app/core/stores/audit.store';
+import { IdService } from 'src/app/core/id.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-interview-list',
@@ -15,17 +17,19 @@ import { AuditStore } from 'src/app/core/stores/audit.store';
   styleUrls: ['./interview-list.component.scss'],
 })
 export class InterviewListComponent implements OnInit, OnDestroy {
-  @Select(AppRouterState.auditId) auditId$: Observable<number>;
-
   audit: Audit;
   interviews: Interview[];
 
   private readonly subSink = new SubSink();
 
-  constructor(private auditStore: AuditStore, private interviewStore: InterviewStore) {}
+  constructor(
+    private auditStore: AuditStore,
+    private routesService: IdService,
+    private interviewStore: InterviewStore,
+  ) {}
 
   ngOnInit() {
-    const idSub = this.auditId$.subscribe(id => {
+    const idSub = this.routesService.auditId$.subscribe(id => {
       const auditSub = this.auditStore.audits$
         .pipe(map(audits => audits?.find(a => a.id === id)))
         .subscribe(audit => (this.audit = audit));

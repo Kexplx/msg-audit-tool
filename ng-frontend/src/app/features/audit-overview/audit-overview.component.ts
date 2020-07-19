@@ -1,11 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Select } from '@ngxs/store';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { filter, map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
 import { AuditStore } from 'src/app/core/stores/audit.store';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-audit-overview',
@@ -13,8 +11,6 @@ import { AuditStore } from 'src/app/core/stores/audit.store';
   styleUrls: ['./audit-overview.component.scss'],
 })
 export class AuditOverviewComponent implements OnInit, OnDestroy {
-  @Select(AppRouterState.auditId) auditId$: Observable<number>;
-
   private readonly subSink = new SubSink();
 
   auditStatuses = AuditStatus;
@@ -37,22 +33,21 @@ export class AuditOverviewComponent implements OnInit, OnDestroy {
     },
   ];
 
-  constructor(private auditStore: AuditStore) {}
+  constructor(private auditStore: AuditStore, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const sub = this.auditId$.subscribe(id => {
-      this.auditStore.audits$
-        .pipe(
-          filter(audits => audits != null),
-          map(audits => audits.find(a => a.id === id)),
-        )
-        .subscribe(audit => {
-          this.audit = audit;
-          this.selectedAuditStatus = audit.status;
-        });
-    });
+    const auditId: number = +this.activatedRoute.snapshot.params.auditId;
+    const auditSub = this.auditStore.audits$
+      .pipe(
+        filter(audits => audits != null),
+        map(audits => audits.find(a => a.id === auditId)),
+      )
+      .subscribe(audit => {
+        this.audit = audit;
+        this.selectedAuditStatus = audit.status;
+      });
 
-    this.subSink.add(sub);
+    this.subSink.add(auditSub);
     this.auditStore.loadAudits();
   }
 
