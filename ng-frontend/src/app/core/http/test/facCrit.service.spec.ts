@@ -4,6 +4,7 @@ import { FacCrit } from '../../data/models/faccrit.model';
 import { FACCRITS_DUMMY } from './dummies/faccrits';
 import { environment } from 'src/environments/environment';
 import { FacCritService } from '../facCrit.service';
+import * as jasmine from 'karma-jasmine';
 
 describe('FacCritService', () => {
   let service: FacCritService;

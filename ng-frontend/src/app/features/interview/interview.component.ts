@@ -11,6 +11,7 @@ import { AuditStore } from 'src/app/core/stores/audit.store';
 import { InterviewStore } from 'src/app/core/stores/interview.store';
 import { FacCritStore } from 'src/app/core/stores/faccrit.store';
 import { SubSink } from 'subsink';
+import { AnswerStore } from 'src/app/core/stores/answer.store';
 
 @Component({
   selector: 'app-interview',
@@ -36,6 +37,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
     private auditService: AuditStore,
     private interviewService: InterviewStore,
     private facCritService: FacCritStore,
+    private answerStore: AnswerStore,
     private router: Router,
   ) {}
 
@@ -63,6 +65,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
           this.interview = observables[1];
           this.facCrit = observables[2];
 
+          this.answerStore.setAnswers(this.interview.answers);
           this.groupedFacCritIds();
         });
       });
