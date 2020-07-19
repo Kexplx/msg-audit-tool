@@ -102,7 +102,7 @@ public class InterviewController {
         for (int facCritId : interviewScope) {
             List<Question> questions = questionService.getQuestionsByFacCritId(facCritId);
             for (Question question : questions) {
-                answerService.createAnswer(question.getId(), interview.getId(), question.getFaccritId());
+                answerService.createAnswer(interview.getId(), question);
             }
         }
         interview.setAnswersById(answerService.getAnswersByInterviewId(interview.getId()));

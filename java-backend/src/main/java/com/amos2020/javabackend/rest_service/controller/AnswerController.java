@@ -81,7 +81,7 @@ public class AnswerController {
         interviewService.getInterviewById(interviewId);
         Question question = questionService.getQuestionById(questionId);
         //create Answer
-        Answer answer = answerService.createAnswer(questionId, interviewId, question.getFaccritId());
+        Answer answer = answerService.createAnswer(interviewId, question);
         return new BasicAnswerResponse(answer);
     }
 
