@@ -1,6 +1,7 @@
 package com.amos2020.javabackend.rest_service;
 
 import com.amos2020.javabackend.entity.Answer;
+import com.amos2020.javabackend.entity.Question;
 import com.amos2020.javabackend.rest_service.controller.AnswerController;
 import com.amos2020.javabackend.rest_service.request.answer.CreateAnswerRequest;
 import com.amos2020.javabackend.rest_service.request.answer.UpdateAnswerRequest;
@@ -39,6 +40,7 @@ public class AnswerRestServiceTest {
         Answer answer = new Answer();
         answer.setInterviewId(1);
         answer.setQuestionId(1);
+        answer.setQuestionByQuestionId(new Question());
         given(answerController.getAnswerByIds(1, 1)).willReturn(new BasicAnswerResponse(answer));
 
         restService.perform(get("/answers/interview/1/question/1")).andExpect(status().isOk());
@@ -56,7 +58,9 @@ public class AnswerRestServiceTest {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setInterviewId(1);
         request.setQuestionId(1);
-        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
+        Answer answer = new Answer();
+        answer.setQuestionByQuestionId(new Question());
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(answer));
 
         String requestAsJson = buildJson(request);
         restService.perform(post("/answers")
@@ -69,8 +73,9 @@ public class AnswerRestServiceTest {
     public void createAnswerByInvalidQuestionId_return400() throws Exception {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setInterviewId(1);
-
-        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
+        Answer answer = new Answer();
+        answer.setQuestionByQuestionId(new Question());
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(answer));
 
         String requestAsJson = buildJson(request);
         restService.perform(post("/answers")
@@ -83,7 +88,9 @@ public class AnswerRestServiceTest {
     public void createAnswerByInvalidInterviewId_return400() throws Exception {
         CreateAnswerRequest request = new CreateAnswerRequest();
         request.setQuestionId(1);
-        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(new Answer()));
+        Answer answer = new Answer();
+        answer.setQuestionByQuestionId(new Question());
+        given(answerController.createAnswer(request.getQuestionId(), request.getInterviewId())).willReturn(new BasicAnswerResponse(answer));
         String requestAsJson = buildJson(request);
 
         restService.perform(post("/answers")
@@ -114,10 +121,13 @@ public class AnswerRestServiceTest {
         request.setAnnotation("test");
         request.setProof("test");
         request.setReason("test");
+        Answer answer = new Answer();
+        answer.setQuestionByQuestionId(new Question());
+
         given(answerController.updateAnswer(request.getInterviewId(), request.getQuestionId(),
                 request.getResult(), request.getResponsible(),
                 request.getDocumentation(), request.getProcedure(), request.getReason(),
-                request.getProof(), request.getAnnotation())).willReturn(new BasicAnswerResponse(new Answer()));
+                request.getProof(), request.getAnnotation())).willReturn(new BasicAnswerResponse(answer));
         String requestAsJson = buildJson(request);
 
         restService.perform(put("/answers/interview/1/question/1")
