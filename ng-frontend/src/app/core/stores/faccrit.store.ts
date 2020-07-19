@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { FacCrit } from '../data/models/faccrit.model';
-import { environment } from 'src/environments/environment';
+import { FacCritService } from '../http/facCrit.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FacCritNewService {
+export class FacCritStore {
   private _facCrits$ = new BehaviorSubject<FacCrit[]>(null);
 
   public get facCrits$(): Observable<FacCrit[]> {
     return this._facCrits$.asObservable();
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private facCritService: FacCritService) {}
 
-  getFacCrits(): void {
-    this.http.get<FacCrit[]>(environment.baseUrl + 'faccrits').subscribe(facCrits => {
+  loadFacCrits(): void {
+    this.facCritService.getFacCrits().subscribe(facCrits => {
       this._facCrits$.next(facCrits);
     });
   }
