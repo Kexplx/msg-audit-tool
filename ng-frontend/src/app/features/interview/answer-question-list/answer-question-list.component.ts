@@ -1,14 +1,14 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { Store } from '@ngxs/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Question } from 'src/app/core/data/models/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { QuestionService } from 'src/app/core/http/question.service';
 import { SubSink } from 'subsink';
 import { AnswerStore } from 'src/app/core/stores/answer.store';
+import { map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-answer-question-list',
@@ -21,46 +21,36 @@ export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
   @Input() interviewId: number;
 
   answers: Answer[];
-  questions: Question[];
 
   formGroups: FormGroup[] = [];
 
   private readonly subSink = new SubSink();
 
-  constructor(
-    public store: Store,
-    private fb: FormBuilder,
-    private questionService: QuestionService,
-    private answerStore: AnswerStore,
-  ) {}
+  constructor(public store: Store, private fb: FormBuilder, private answerStore: AnswerStore) {}
 
   ngOnChanges() {
-    this.answers = this.answerStore.answers;
+    const answersSub = this.answerStore.answers$
+      .pipe(
+        filter(answers => answers != null),
+        map(answers => answers.filter(a => a.faccritId === this.facCrit.id)),
+      )
+      .subscribe(answers => {
+        this.answers = answers;
 
-    for (const [i, answer] of this.answers.entries()) {
-      this.formGroups[i] = this.fb.group({
-        result: [answer?.result],
-        responsible: [answer?.responsible],
-        documentation: [answer?.documentation],
-        procedure: [answer?.procedure],
-        reason: [answer?.reason],
-        proof: [answer?.proof],
-        annotation: [answer?.annotation],
+        for (const [i, answer] of this.answers.entries()) {
+          this.formGroups[i] = this.fb.group({
+            result: [answer?.result],
+            responsible: [answer?.responsible],
+            documentation: [answer?.documentation],
+            procedure: [answer?.procedure],
+            reason: [answer?.reason],
+            proof: [answer?.proof],
+            annotation: [answer?.annotation],
+          });
+        }
       });
-    }
 
-    // Here we get each question by it's id that is contained in the answers
-    const questionObservable$: Observable<Question>[] = [];
-    const questionIds = this.answers.map(a => a.questionId);
-    for (const id of questionIds) {
-      questionObservable$.push(this.questionService.getQuestion(id));
-    }
-
-    const questionSub = combineLatest(questionObservable$).subscribe(questions => {
-      this.questions = questions;
-    });
-
-    this.subSink.add(questionSub);
+    this.subSink.add(answersSub);
   }
 
   ngOnDestroy() {
