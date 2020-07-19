@@ -3,6 +3,7 @@ export interface Answer {
   faccritId: number;
   questionId: number;
 
+  questionText?: string;
   result?: boolean;
   responsible?: boolean;
   documentation?: boolean;
