@@ -64,7 +64,6 @@ public class FacCritIntegrationTest {
     private Answer answer4;
     private Answer answer5;
     private Answer answer6;
-    private Answer answer7;
 
     @Before
     public void setUp() {
@@ -200,7 +199,16 @@ public class FacCritIntegrationTest {
     }
 
     @Test
-    public void getAllFaccritsOrderedByInterviewId(){
+    public void getAllFaccrits(){
+        String url = "/faccrits";
+        ResponseEntity<List<BasicFacCritResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<BasicFacCritResponse>>() {
+                });
+        Assert.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
+    public void getAllFaccritsByInterviewId(){
         int id = interview.getId();
         String url = "/faccrits/interview/"+String.valueOf(id);
         ResponseEntity<List<BasicFacCritResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
