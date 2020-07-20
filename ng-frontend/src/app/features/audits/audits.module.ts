@@ -6,6 +6,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { SortAuditPipe } from './sort-audit.pipe';
 import { ActiveAuditsPipe } from './active-audits.pipe';
 import { ArchivedAuditsPipe } from './archived-audits.pipe';
+import { AddAuditDialogComponent } from './add-audit-dialog/add-audit-dialog.component';
+import { EditAuditDialogComponent } from './edit-audit-dialog/edit-audit-dialog.component';
+import { AuditFormComponent } from './audit-form/audit-form.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +16,9 @@ import { ArchivedAuditsPipe } from './archived-audits.pipe';
     ActiveAuditsPipe,
     ArchivedAuditsPipe,
     SortAuditPipe,
+    AddAuditDialogComponent,
+    EditAuditDialogComponent,
+    AuditFormComponent,
     AuditsComponent,
   ],
   imports: [AuditsRoutingModule, SharedModule],

@@ -1,6 +1,6 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit, OnInit } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { defaultDialogOptions } from '../default-dialog-options';
+import { defaultDialogOptions } from '../../../shared/components/dialogs/default-dialog-options';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -33,9 +33,6 @@ export class AddAuditDialogComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.contactPersons$ = this.contactPersonStore.contactPersons$;
     this.facCrits$ = this.facCritStore.facCrits$;
-
-    this.facCritStore.loadFacCrits();
-    this.contactPersonStore.loadContactPersons();
   }
 
   ngAfterViewInit() {

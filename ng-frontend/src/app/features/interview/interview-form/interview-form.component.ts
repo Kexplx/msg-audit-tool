@@ -2,14 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
-import { Select, Store } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { Observable, of } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { AbstractFormComponent } from '../abstract-form-component';
-import { ContactPersonState } from 'src/app/core/ngxs/contact-person.state';
-import { map } from 'rxjs/operators';
+import { AbstractFormComponent } from '../../../shared/components/forms/abstract-form-component';
+import { map, filter } from 'rxjs/operators';
+import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
 
 interface SelectedContactPerson {
   name: string;
@@ -27,9 +25,6 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   @Input() scope: FacCrit[];
   @Output() formSubmitted = new EventEmitter<{ interview: Interview; scope: FacCrit[] }>();
 
-  @Select(AuditState.facCrits) allFacCrits$: Observable<FacCrit[]>;
-  @Select(ContactPersonState.contactPersons) contactPersons$: Observable<ContactPerson[]>;
-
   facCritSelected = false;
 
   contactPersons: ContactPerson[];
@@ -39,7 +34,7 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   constructor(
     private fb: FormBuilder,
     protected dialogService: NbDialogService,
-    private store: Store,
+    private contactPersonStore: ContactPersonStore,
   ) {
     super(dialogService);
   }
@@ -53,14 +48,19 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   }
 
   ngOnInit() {
-    this.contactPersons = this.store.selectSnapshot(ContactPersonState.contactPersons);
-    this.filteredContactPersons$ = of(this.contactPersons);
-    this.selectedContactPersons =
-      this.interview?.contactPersons?.map(cp => ({
-        company: cp.companyName,
-        name: cp.forename + ' ' + cp.surname,
-        value: cp,
-      })) ?? [];
+    this.contactPersonStore.contactPersons$
+      .pipe(filter(contactPersons => contactPersons != null))
+      .subscribe(contactPersons => {
+        this.contactPersons = contactPersons;
+        this.filteredContactPersons$ = of(contactPersons);
+
+        this.selectedContactPersons =
+          this.interview?.contactPersons?.map(cp => ({
+            company: cp.companyName,
+            name: cp.forename + ' ' + cp.surname,
+            value: cp,
+          })) ?? [];
+      });
 
     this.formGroup = this.fb.group({
       startDate: [this.interview?.startDate ?? new Date()],

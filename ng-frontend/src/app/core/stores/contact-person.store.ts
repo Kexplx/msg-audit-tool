@@ -7,7 +7,7 @@ import { ContactPersonService } from '../http/contact-person.service';
   providedIn: 'root',
 })
 export class ContactPersonStore {
-  private _contactPersons$ = new BehaviorSubject<ContactPerson[]>([]);
+  private _contactPersons$ = new BehaviorSubject<ContactPerson[]>(null);
 
   get contactPersons$() {
     return this._contactPersons$.asObservable();

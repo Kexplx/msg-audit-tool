@@ -71,9 +71,7 @@ export class InterviewComponent implements OnInit, OnDestroy {
         }),
       );
     });
-    this.auditService.loadAudits();
     this.interviewService.loadInterviews();
-    this.facCritService.loadFacCrits();
 
     // Dispatch UpdateInterview after 1000ms of last input event
     this.note$.pipe(debounceTime(1000)).subscribe(note => {

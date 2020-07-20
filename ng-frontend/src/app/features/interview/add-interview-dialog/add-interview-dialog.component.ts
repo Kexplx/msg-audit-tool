@@ -1,16 +1,15 @@
 import { Component, ViewChild, TemplateRef, AfterViewInit, OnInit } from '@angular/core';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
-import { Select } from '@ngxs/store';
 import { Location } from '@angular/common';
 import { defaultDialogOptions } from 'src/app/shared/components/dialogs/default-dialog-options';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { filter, map } from 'rxjs/operators';
 import { InterviewStore } from 'src/app/core/stores/interview.store';
 import { AuditStore } from 'src/app/core/stores/audit.store';
+import { IdService } from 'src/app/core/id.service';
 
 @Component({
   selector: 'app-new-interview-dialog',
@@ -18,7 +17,6 @@ import { AuditStore } from 'src/app/core/stores/audit.store';
   styleUrls: ['./add-interview-dialog.component.scss'],
 })
 export class AddInterviewDialogComponent implements AfterViewInit, OnInit {
-  @Select(AppRouterState.auditId) auditId$: Observable<number>;
   @ViewChild('dialog') dialog: TemplateRef<any>;
   dialogRef: NbDialogRef<any>;
 
@@ -28,12 +26,13 @@ export class AddInterviewDialogComponent implements AfterViewInit, OnInit {
   constructor(
     private dialogService: NbDialogService,
     private interviewStore: InterviewStore,
+    private idService: IdService,
     private auditService: AuditStore,
     private location: Location,
   ) {}
 
   ngOnInit() {
-    this.auditId$.subscribe(id => {
+    this.idService.auditId$.subscribe(id => {
       this.auditId = id;
 
       this.audit$ = this.auditService.audits$.pipe(

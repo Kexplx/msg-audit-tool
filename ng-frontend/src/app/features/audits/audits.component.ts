@@ -16,6 +16,5 @@ export class AuditsComponent implements OnInit {
 
   ngOnInit() {
     this.audits$ = this.auditStore.audits$.pipe(filter(audits => audits != null));
-    this.auditStore.loadAudits();
   }
 }

@@ -6,7 +6,7 @@ import { dateRangeValidator } from 'src/app/shared/components/forms/form-helpers
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Observable, of } from 'rxjs';
-import { AbstractFormComponent } from '../abstract-form-component';
+import { AbstractFormComponent } from '../../../shared/components/forms/abstract-form-component';
 import { map } from 'rxjs/operators';
 
 const defaultScopeComplement = [8, 14];

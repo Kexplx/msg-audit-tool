@@ -2,7 +2,7 @@
   <nb-layout-header fixed>
     <nb-actions size="small">
       <nb-action (click)="toggleSidebar()" icon="menu-2-outline" data-cy="toggle-sidebar">Hello</nb-action>
-      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async) ? (audits$ | async).length : '0'" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>
+      <nb-action badgeStatus="primary" [badgeText]="(audits$ | async)?.length" routerLink="/audits" icon="home-outline" data-cy="home"></nb-action>
       <nb-action routerLink="/contact-persons" icon="people-outline" data-cy="contacts"></nb-action>
     </nb-actions>
   </nb-layout-header>
@@ -17,5 +17,3 @@
     <router-outlet></router-outlet>
   </nb-layout-column>
 </nb-layout>
-
-<ng-container appActionListener></ng-container>

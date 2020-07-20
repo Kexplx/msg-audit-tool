@@ -7,6 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { QuestionByIdPipe } from './answer-question-list/questions-by-id.pipe';
 import { AnswersByFacCritId } from './answers-by-faccrit-id.pipe';
+import { AddInterviewDialogComponent } from './add-interview-dialog/add-interview-dialog.component';
+import { InterviewFormComponent } from './interview-form/interview-form.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { AnswersByFacCritId } from './answers-by-faccrit-id.pipe';
     AnswerQuestionListComponent,
     QuestionByIdPipe,
     AnswersByFacCritId,
+    InterviewFormComponent,
+    AddInterviewDialogComponent,
   ],
   imports: [ReactiveFormsModule, SharedModule, InterviewRoutingModule],
 })

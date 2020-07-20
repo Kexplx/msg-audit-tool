@@ -48,7 +48,6 @@ export class AuditOverviewComponent implements OnInit, OnDestroy {
       });
 
     this.subSink.add(auditSub);
-    this.auditStore.loadAudits();
   }
 
   ngOnDestroy() {

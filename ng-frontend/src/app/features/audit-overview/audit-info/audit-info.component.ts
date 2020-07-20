@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { Store } from '@ngxs/store';
-import { AuditState } from 'src/app/core/ngxs/audit.state';
 import { IdService } from 'src/app/core/id.service';
+import { AuditStore } from 'src/app/core/stores/audit.store';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-audit-info',
@@ -12,11 +12,14 @@ import { IdService } from 'src/app/core/id.service';
 })
 export class AuditInfoComponent implements OnInit {
   audit$: Observable<Audit>;
-  constructor(private store: Store, private routesService: IdService) {}
+  constructor(private auditStore: AuditStore, private routesService: IdService) {}
 
   ngOnInit() {
-    this.routesService.auditId$.subscribe(
-      id => (this.audit$ = this.store.select(AuditState.audit(id))),
-    );
+    this.routesService.auditId$.subscribe(id => {
+      this.audit$ = this.auditStore.audits$.pipe(
+        filter(audits => audits != null),
+        map(audits => audits.find(a => a.id === id)),
+      );
+    });
   }
 }

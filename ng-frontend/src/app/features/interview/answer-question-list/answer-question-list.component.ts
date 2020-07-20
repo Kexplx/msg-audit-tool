@@ -1,8 +1,5 @@
 import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Answer } from 'src/app/core/data/models/answer.model';
-import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { Question } from 'src/app/core/data/models/question.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Audit } from 'src/app/core/data/models/audit.model';
@@ -26,7 +23,7 @@ export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
 
   private readonly subSink = new SubSink();
 
-  constructor(public store: Store, private fb: FormBuilder, private answerStore: AnswerStore) {}
+  constructor(private fb: FormBuilder, private answerStore: AnswerStore) {}
 
   ngOnChanges() {
     const answersSub = this.answerStore.answers$

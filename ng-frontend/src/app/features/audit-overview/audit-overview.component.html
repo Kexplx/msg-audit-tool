@@ -9,12 +9,7 @@
         <ng-template #tbd>TBD</ng-template>
       </p>
     </div>
-    <nb-select
-      [status]="audit.status === auditStatuses.Active ? 'warning' : audit.status === auditStatuses.Finished ? 'success' : audit.status === auditStatuses.Cancelled ? 'danger' : 'basic'"
-      [(selected)]="selectedAuditStatus"
-      (selectedChange)="onStatusChange()"
-      placeholder="Placeholder"
-    >
+    <nb-select [(selected)]="selectedAuditStatus" (selectedChange)="onStatusChange()" placeholder="Placeholder">
       <nb-option [value]="auditStatuses.Planned">Geplant</nb-option>
       <nb-option [value]="auditStatuses.Active">Aktiv</nb-option>
       <nb-option [value]="auditStatuses.Finished">Abgeschlossen</nb-option>

@@ -1,15 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { Observable } from 'rxjs';
-import { Select } from '@ngxs/store';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { map } from 'rxjs/operators';
 import { InterviewStore } from 'src/app/core/stores/interview.store';
 import { SubSink } from 'subsink';
 import { AuditStore } from 'src/app/core/stores/audit.store';
 import { IdService } from 'src/app/core/id.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-interview-list',
@@ -24,12 +20,12 @@ export class InterviewListComponent implements OnInit, OnDestroy {
 
   constructor(
     private auditStore: AuditStore,
-    private routesService: IdService,
+    private idService: IdService,
     private interviewStore: InterviewStore,
   ) {}
 
   ngOnInit() {
-    const idSub = this.routesService.auditId$.subscribe(id => {
+    const idSub = this.idService.auditId$.subscribe(id => {
       const auditSub = this.auditStore.audits$
         .pipe(map(audits => audits?.find(a => a.id === id)))
         .subscribe(audit => (this.audit = audit));
@@ -45,7 +41,6 @@ export class InterviewListComponent implements OnInit, OnDestroy {
     });
 
     this.subSink.add(idSub);
-    this.auditStore.loadAudits();
   }
 
   ngOnDestroy() {

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
-import { defaultDialogOptions } from '../default-dialog-options';
+import { defaultDialogOptions } from '../../../shared/components/dialogs/default-dialog-options';
 import { Location } from '@angular/common';
 import { map, filter } from 'rxjs/operators';
 import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';

@@ -1,6 +1,6 @@
 import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
-import { defaultDialogOptions } from '../default-dialog-options';
+import { defaultDialogOptions } from '../../../shared/components/dialogs/default-dialog-options';
 import { Location } from '@angular/common';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';

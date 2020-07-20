@@ -15,6 +15,5 @@ export class ContactPersonsComponent implements OnInit {
 
   ngOnInit() {
     this.contactPersons$ = this.contactPersonStore.contactPersons$;
-    this.contactPersonStore.loadContactPersons();
   }
 }

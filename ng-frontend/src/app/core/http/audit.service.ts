@@ -115,7 +115,7 @@ export class AuditService {
     const putAuditDto: PutAuditDto = {
       name: newAudit.name,
       endDate: parseTimestamp(newAudit.endDate),
-      status: AuditStatus.Active,
+      status: newAudit.status,
       startDate: parseTimestamp(newAudit.startDate),
     };
 

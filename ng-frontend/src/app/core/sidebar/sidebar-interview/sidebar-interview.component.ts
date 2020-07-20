@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Select } from '@ngxs/store';
 import { NbMenuService, NbMenuItem } from '@nebular/theme';
-import { AppRouterState } from 'src/app/core/ngxs/app-router.state';
 import { map, filter } from 'rxjs/operators';
 import { AnswerStore } from '../../stores/answer.store';
 import { IdService } from '../../id.service';

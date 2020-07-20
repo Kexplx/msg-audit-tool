@@ -1,8 +1,7 @@
-@import 'src/sass/utils';
+@import '../../../../sass/utils';
 
-nb-accordion {
-  box-shadow: none;
-  border: 1px solid rgb(228, 233, 242);
+nb-checkbox {
+  display: block;
 }
 
 nb-card-footer {
@@ -16,7 +15,7 @@ nb-card-footer {
   max-width: 600px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 10px 20px;
 
   @media screen and(max-width: 500px) {
     grid-template-columns: 1fr;
@@ -26,14 +25,8 @@ nb-card-footer {
     }
   }
 
-  & > div {
-    nb-checkbox {
-      display: block;
-    }
-
-    & nb-checkbox:not(:first-child) {
-      margin-left: 20px;
-    }
+  & .criteria {
+    margin-left: 20px;
   }
 }
 

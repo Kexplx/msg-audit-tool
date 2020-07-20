@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NbDialogService } from '@nebular/theme';
-import { AbstractFormComponent } from '../abstract-form-component';
+import { AbstractFormComponent } from '../../../shared/components/forms/abstract-form-component';
 
 @Component({
   selector: 'app-contact-person-form',

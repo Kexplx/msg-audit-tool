@@ -12,11 +12,9 @@ export class IdService {
   interviewId$ = new BehaviorSubject<number>(null);
   contactPersonId$ = new BehaviorSubject<number>(null);
 
-  constructor(private router: Router) {
-    this.listenToNaviagtion();
-  }
+  constructor(private router: Router) {}
 
-  private listenToNaviagtion(): void {
+  listenToNaviagtion(): void {
     this.router.events
       ?.pipe(filter(obj => obj instanceof NavigationEnd))
       .subscribe(({ url }: NavigationEnd) => {
