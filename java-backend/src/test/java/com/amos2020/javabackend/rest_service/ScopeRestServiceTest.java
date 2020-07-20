@@ -36,11 +36,8 @@ public class ScopeRestServiceTest {
 
     @Autowired
     MockMvc restService;
-
     @MockBean
     private ScopeController scopeController;
-
-
     @MockBean
     private AuditController auditController;
 
@@ -57,7 +54,6 @@ public class ScopeRestServiceTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isOk());
-
     }
 
     @Test
@@ -69,13 +65,11 @@ public class ScopeRestServiceTest {
 
         given(scopeController.addScope(anyInt(), anyList())).willThrow(NotFoundException.class);
 
-
         restService.perform(post("/audits/1000/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
     }
-
 
     @Test
     public void addInvalidScope_returns400() throws Exception {
@@ -86,14 +80,11 @@ public class ScopeRestServiceTest {
         Audit audit = new Audit();
         given(auditController.updateAudit(anyInt(), anyString(), any(), any(), any())).willReturn(new BasicAuditResponse(audit, new ArrayList<>(), new ArrayList<>()));
 
-
         restService.perform(post("/audits/1/scope")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
-
     }
-
 
     @Test
     public void updateValid_returnsOK() throws Exception {
@@ -109,7 +100,6 @@ public class ScopeRestServiceTest {
                 .andExpect(status().isOk());
     }
 
-
     @Test
     public void updateWithInvalidAuditId_returnsNotFound() throws Exception {
         UpdateScopeRequest request = new UpdateScopeRequest();
@@ -118,16 +108,13 @@ public class ScopeRestServiceTest {
         request.setNote("Test");
         String requestAsJson = buildJson(request);
 
-
         given(scopeController.updateScope(anyInt(), anyInt(), anyBoolean(), anyString(), anyString())).willThrow(NotFoundException.class);
-
 
         restService.perform(put("/audits/100/scope/5")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isNotFound());
     }
-
 
     @Test
     public void updateWithInvalidFacCritId_returnsNotFound() throws Exception {
@@ -136,7 +123,6 @@ public class ScopeRestServiceTest {
         request.setChange_note("");
         request.setNote("Test");
         String requestAsJson = buildJson(request);
-
 
         given(scopeController.updateScope(anyInt(), anyInt(), anyBoolean(), anyString(), anyString())).willThrow(NotFoundException.class);
 
