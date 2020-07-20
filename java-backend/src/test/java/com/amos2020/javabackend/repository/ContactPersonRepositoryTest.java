@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
@@ -28,6 +29,7 @@ public class ContactPersonRepositoryTest {
     private static final String TEST_DEPARTMENT = "testDepartment";
     private static final String TEST_SECTOR = "testSector";
     private static final String TEST_CORPORATE_DIVISION = "testDivision";
+    private static String TOO_LONG = new String(new char[20000]).replace('\0', 'H');
     @Autowired
     private ContactPersonRepository repository;
     private ContactPerson toTest;
@@ -70,7 +72,6 @@ public class ContactPersonRepositoryTest {
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
 
-
         ContactPerson entity = repository.save(toTest);
 
         Assert.assertTrue(repository.exists((Example.of(toTest))));
@@ -83,7 +84,6 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity.getSector(), toTest.getSector());
         Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
         Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
-
     }
 
     @Test
@@ -110,8 +110,6 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity.getSector(), toTest.getSector());
         Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
         Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
-
-
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -170,7 +168,6 @@ public class ContactPersonRepositoryTest {
         toTest.setCompanyName(TEST_COMPANY);
         toTest.setSector(TEST_SECTOR);
         toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
-
 
         ContactPerson entity = repository.save(toTest);
 
@@ -328,6 +325,22 @@ public class ContactPersonRepositoryTest {
         Assert.assertEquals(entity.getSector(), toTest.getSector());
         Assert.assertEquals(entity.getCompanyName(), toTest.getCompanyName());
         Assert.assertEquals(entity.getCorporateDivision(), toTest.getCorporateDivision());
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertContactPersonWithDepartmentTooLong_throwsException() {
+        toTest = new ContactPerson();
+        toTest.setSalutation(TEST_SALUTATION);
+        toTest.setTitle(TEST_TITLE);
+        toTest.setContactInformation(TEST_INFORMATION);
+        toTest.setForename(TEST_FORENAME);
+        toTest.setSurname(TEST_SURNAME);
+        toTest.setCompanyName(TEST_COMPANY);
+        toTest.setDepartment(TOO_LONG);
+        toTest.setSector(TEST_SECTOR);
+        toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
+
+        repository.save(toTest);
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -549,8 +562,6 @@ public class ContactPersonRepositoryTest {
         entity.setSalutation(null);
         ContactPerson updatedEntity = repository.save(entity);
         Assert.assertEquals(entity, updatedEntity);
-
-
     }
 
     @Test
@@ -795,6 +806,25 @@ public class ContactPersonRepositoryTest {
         entity.setSector("  ");
         ContactPerson updatedEntity = repository.save(entity);
         Assert.assertEquals(entity, updatedEntity);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void updateContactPersonWithSectorTooLong_throwsException() {
+        toTest = new ContactPerson();
+        toTest.setSalutation(TEST_SALUTATION);
+        toTest.setTitle(TEST_TITLE);
+        toTest.setContactInformation(TEST_INFORMATION);
+        toTest.setForename(TEST_FORENAME);
+        toTest.setSurname(TEST_SURNAME);
+        toTest.setCompanyName(TEST_COMPANY);
+        toTest.setDepartment(TEST_DEPARTMENT);
+        toTest.setSector(TEST_SECTOR);
+        toTest.setCorporateDivision(TEST_CORPORATE_DIVISION);
+        ContactPerson entity = repository.save(toTest);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+
+        entity.setSector(TOO_LONG);
+        repository.save(entity);
     }
 
     @Test
