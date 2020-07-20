@@ -36,7 +36,6 @@ describe('AddAuditDialog', () => {
   });
 
   beforeEach(() => {
-    cy.clearLocalStorage();
     cy.injectBackendMocks();
     cy.visit(auditsUrl).get('[data-cy=new-audit]').click();
   });
@@ -51,8 +50,11 @@ describe('AddAuditDialog', () => {
     });
 
     it('gives an inputable element for audit name', () => {
-      cy.get('[data-cy=audit-name-input]').should('exist').should('have.value', testAudit.name);
-      cy.get('[data-cy=submit-audit-data-form]').should('not.be.disabled');
+      cy.get('[data-cy=audit-name-input]')
+        .should('exist')
+        .should('have.value', testAudit.name)
+        .get('[data-cy=submit-audit-data-form]')
+        .should('not.be.disabled');
     });
 
     it('gives a possibility to set start and end date', () => {

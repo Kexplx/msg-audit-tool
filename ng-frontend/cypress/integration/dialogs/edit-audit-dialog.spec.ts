@@ -17,7 +17,6 @@ describe('EditAuditDialog', () => {
   });
 
   beforeEach(() => {
-    cy.clearLocalStorage();
     cy.injectBackendMocks();
   });
 

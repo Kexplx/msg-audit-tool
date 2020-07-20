@@ -1,22 +1,10 @@
 describe('AddInterviewDialog', () => {
-  let audits;
-  let testAudit;
-  let testInterview;
   let interviewsUrl;
-  let interviewDialogUrl;
   let contactPersons;
 
   before(() => {
-    cy.fixture('user-input-data/example-audit').then(json => {
-      testAudit = json;
-    });
-    cy.fixture('user-input-data/example-interview').then(json => {
-      testInterview = json;
-    });
-    cy.fixture('backend-mock-data/audits.json').then(json => {
-      audits = json;
+    cy.fixture('backend-mock-data/audits.json').then(audits => {
       interviewsUrl = `${Cypress.config().baseUrl}/audits/${audits[0].id}/interviews`;
-      interviewDialogUrl = interviewsUrl + '/new';
     });
     cy.fixture('backend-mock-data/contactPersons').then(json => {
       contactPersons = json;
@@ -190,9 +178,5 @@ describe('AddInterviewDialog', () => {
         .click();
       cy.get('[data-cy=submit-interview-data-form]').should('be.enabled');
     });
-  });
-
-  context('When focussing on the network requests it ...', () => {
-    it('builds a valid post request as form', () => {});
   });
 });

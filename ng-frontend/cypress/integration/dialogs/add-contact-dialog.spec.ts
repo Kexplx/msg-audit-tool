@@ -105,7 +105,36 @@ describe('AddPersonDialog', () => {
     it('builds a valid post request as form', () => {
       cy.injectBackendMocks();
       cy.visit(contactsUrl);
-      cy.addPerson(testPerson);
+      cy.get('[data-cy=contacts]').click();
+      cy.get('[data-cy=new-contact]').click();
+      cy.get('[data-cy=company-name-input]')
+        .filter(':visible')
+        .clear()
+        .type(testPerson.companyName);
+      cy.get('[data-cy=company-department-input]')
+        .filter(':visible')
+        .clear()
+        .type(testPerson.department);
+      cy.get('[data-cy=company-division-input]')
+        .filter(':visible')
+        .clear()
+        .type(testPerson.corporateDivision);
+      cy.get('[data-cy=company-sector-input]').filter(':visible').clear().type(testPerson.sector);
+      cy.get('[data-cy=contact-salutation-input]').click();
+      cy.get('[data-cy=salutation-option]').contains(testPerson.salutation).click();
+      cy.get('[data-cy=contact-title-input]').filter(':visible').clear().type(testPerson.title);
+      cy.get('[data-cy=contact-forename-input]')
+        .filter(':visible')
+        .clear()
+        .type(testPerson.firstName);
+      cy.get('[data-cy=contact-surname-input]')
+        .filter(':visible')
+        .clear()
+        .type(testPerson.lastName);
+      if (testPerson.information) {
+        cy.get('[data-cy=contact-info-input]').clear().type(testPerson.information);
+      }
+      cy.get('[data-cy=submit-data-form]').click();
       cy.wait('@postContacts').then(xhr => {
         assert.deepEqual(xhr.request.body, {
           companyName: testPerson.companyName,
