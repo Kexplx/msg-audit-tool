@@ -28,7 +28,6 @@ public class InterviewRepositoryTest {
     private InterviewRepository repository;
     @Autowired
     private AuditRepository auditRepository;
-
     private Audit audit;
     private Interview interview;
 
@@ -209,5 +208,4 @@ public class InterviewRepositoryTest {
         repository.delete(interview);
         auditRepository.delete(audit);
     }
-
 }
