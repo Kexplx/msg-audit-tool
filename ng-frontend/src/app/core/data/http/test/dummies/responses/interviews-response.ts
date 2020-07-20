@@ -1,8 +1,8 @@
-import { InterviewDto } from '../../../dtos/interview.dto';
+import { InterviewResponse } from '../../../response-models/interview.response';
 import { InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { Salutation } from 'src/app/core/data/models/contact-person.model';
 
-export const INTERVIEWS_RESPONSE: InterviewDto[] = [
+export const INTERVIEWS_RESPONSE: InterviewResponse[] = [
   {
     id: 1,
     auditId: 3,

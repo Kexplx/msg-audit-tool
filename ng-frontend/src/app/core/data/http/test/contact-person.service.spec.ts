@@ -20,56 +20,56 @@ describe('ContactPersonService', () => {
   });
 
   it('#getContactPersons should return an observable of contact persons', () => {
-    const contactPersonsDto = CONTACTPERSONS;
+    const contactPersonsResponse = CONTACTPERSONS;
     service.getContactPersons().subscribe(contactPersons => {
       for (const [i, contactPerson] of contactPersons.entries()) {
-        verifyContactPerson(contactPerson, contactPersonsDto[i]);
+        verifyContactPerson(contactPerson, contactPersonsResponse[i]);
       }
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'contactpersons');
     expect(req.request.method).toEqual('GET');
 
-    req.flush(contactPersonsDto);
+    req.flush(contactPersonsResponse);
     httpMock.verify();
   });
 
   it('#getContactPerson should return an observable of a contact person', () => {
-    const contactPersonDto = CONTACTPERSONS[0];
+    const contactPersonResponse = CONTACTPERSONS[0];
     service.getContactPerson(1).subscribe(contactPerson => {
-      verifyContactPerson(contactPerson, contactPersonDto);
+      verifyContactPerson(contactPerson, contactPersonResponse);
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'contactpersons/' + 1);
     expect(req.request.method).toEqual('GET');
 
-    req.flush(contactPersonDto);
+    req.flush(contactPersonResponse);
     httpMock.verify();
   });
 
   it('#postContactPerson should return an observable of a contact person', () => {
-    const contactPersonDto = CONTACTPERSONS[0];
+    const contactPersonResponse = CONTACTPERSONS[0];
     service.postContactPerson({} as ContactPerson).subscribe(contactPerson => {
-      verifyContactPerson(contactPerson, contactPersonDto);
+      verifyContactPerson(contactPerson, contactPersonResponse);
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'contactpersons');
     expect(req.request.method).toEqual('POST');
 
-    req.flush(contactPersonDto);
+    req.flush(contactPersonResponse);
     httpMock.verify();
   });
 
   it('#putContactPerson should return an observable of a contact person', () => {
-    const contactPersonDto = CONTACTPERSONS[0];
+    const contactPersonResponse = CONTACTPERSONS[0];
     service.putContactPerson({ id: 1 } as ContactPerson).subscribe(contactPerson => {
-      verifyContactPerson(contactPerson, contactPersonDto);
+      verifyContactPerson(contactPerson, contactPersonResponse);
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'contactpersons/' + 1);
     expect(req.request.method).toEqual('PUT');
 
-    req.flush(contactPersonDto);
+    req.flush(contactPersonResponse);
     httpMock.verify();
   });
 

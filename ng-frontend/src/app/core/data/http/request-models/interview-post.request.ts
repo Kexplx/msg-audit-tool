@@ -1,4 +1,4 @@
-export interface PostInterviewDto {
+export interface InterviewPostRequest {
   auditId: number;
   startDate: string;
   note: string;

@@ -2,7 +2,7 @@ import { FacCrit } from '../../models/faccrit.model';
 import { ContactPerson } from '../../models/contact-person.model';
 import { AuditStatus } from '../../models/audit.model';
 
-export interface AuditDto {
+export interface AuditResponse {
   id: number;
   name: string;
   startDate: string;

@@ -1,4 +1,4 @@
-export interface PostAuditDto {
+export interface AuditPostRequest {
   name: string;
   startDate: string;
   endDate: string;

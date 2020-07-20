@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Audit, AuditStatus } from '../models/audit.model';
-import { AuditDto } from './dtos/audit.dto';
+import { Audit } from '../models/audit.model';
+import { AuditResponse } from './response-models/audit.response';
 import { map } from 'rxjs/operators';
-import { PostAuditDto } from './dtos/post-audit.dto';
+import { AuditPostRequest } from './request-models/audit-post.request';
 import { Observable } from 'rxjs';
-import { PutAuditDto } from './dtos/put-audit.dto';
+import { AuditPutRequest } from './request-models/audit-put.request';
 import { parseTimestamp } from 'src/app/core/data/helpers/date-helpers';
 import { environment } from 'src/environments/environment';
-import { AuditScopeChangeDto } from './dtos/audit-scope-change.dto';
+import { AuditScopePutRequest } from './request-models/audit-scope-put.request';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class AuditService {
    */
   getAudits(): Observable<Audit[]> {
     return this.http.get(environment.baseUrl + 'audits').pipe(
-      map((audits: AuditDto[]) => {
+      map((audits: AuditResponse[]) => {
         const result = audits.map<Audit>(auditDto => {
           const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
@@ -50,8 +50,8 @@ export class AuditService {
    * @returns An Observable of the audit.
    */
   getAudit(id: number): Observable<Audit> {
-    return this.http.get<AuditDto>(environment.baseUrl + 'audits/' + id).pipe(
-      map<AuditDto, Audit>(auditDto => {
+    return this.http.get<AuditResponse>(environment.baseUrl + 'audits/' + id).pipe(
+      map<AuditResponse, Audit>(auditDto => {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
         return {
@@ -75,7 +75,7 @@ export class AuditService {
    * @returns An Observable of the created audit.
    */
   postAudit(audit: Audit): Observable<Audit> {
-    const auditDto: PostAuditDto = {
+    const auditDto: AuditPostRequest = {
       name: audit.name,
       endDate: parseTimestamp(audit.endDate),
       contactPersons: audit.contactPersons?.map(x => x.id) ?? [],
@@ -84,7 +84,7 @@ export class AuditService {
     };
 
     return this.http.post(environment.baseUrl + 'audits', auditDto).pipe(
-      map((auditDto: AuditDto) => {
+      map((auditDto: AuditResponse) => {
         const endDate = auditDto.endDate ? new Date(auditDto.startDate).getTime() : null;
 
         return {
@@ -112,7 +112,7 @@ export class AuditService {
     this.putAuditScope(oldAudit, newAudit);
     this.putAuditContactPersons(oldAudit, newAudit);
 
-    const putAuditDto: PutAuditDto = {
+    const putAuditDto: AuditPutRequest = {
       name: newAudit.name,
       endDate: parseTimestamp(newAudit.endDate),
       status: newAudit.status,
@@ -175,7 +175,7 @@ export class AuditService {
     for (const facCrit of newScope) {
       const existsInOld = oldAudit.scope.find(x => x.id === facCrit.id);
       if (!existsInOld) {
-        const auditScopeChange: AuditScopeChangeDto = {
+        const auditScopeChange: AuditScopePutRequest = {
           facCritId: facCrit.id,
           changeNote: 'Change note for a scope item',
           note: 'Note for a scope item',
@@ -189,7 +189,7 @@ export class AuditService {
     for (const facCrit of oldScope) {
       const existsInNew = newAudit.scope.find(x => x.id === facCrit.id);
       if (!existsInNew) {
-        const auditScopeChange: AuditScopeChangeDto = {
+        const auditScopeChange: AuditScopePutRequest = {
           facCritId: facCrit.id,
           changeNote: 'Change note for a scope item',
           note: 'Note for a scope item',

@@ -1,8 +1,8 @@
-import { AuditDto } from '../../../dtos/audit.dto';
+import { AuditResponse } from '../../../response-models/audit.response';
 import { AuditStatus } from '../../../../models/audit.model';
 import { Salutation } from '../../../../models/contact-person.model';
 
-export const AUDITS_RESPONSE: AuditDto[] = [
+export const AUDITS_RESPONSE: AuditResponse[] = [
   {
     id: 1,
     name: 'MSG project audit',

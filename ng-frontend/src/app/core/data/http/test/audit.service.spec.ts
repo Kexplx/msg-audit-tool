@@ -2,7 +2,7 @@ import { AuditService } from '../audit.service';
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuditStatus, Audit } from '../../models/audit.model';
-import { AuditDto } from '../dtos/audit.dto';
+import { AuditResponse } from '../response-models/audit.response';
 import { AUDITS_RESPONSE } from './dummies/responses/audits-response';
 import { environment } from 'src/environments/environment';
 
@@ -21,83 +21,83 @@ describe('AuditService', () => {
   });
 
   it('#getAudits should return a piped array of auditDtos', () => {
-    const auditDto0 = AUDITS_RESPONSE[0];
-    const auditDto1 = AUDITS_RESPONSE[1];
+    const auditResponse0 = AUDITS_RESPONSE[0];
+    const auditResponse1 = AUDITS_RESPONSE[1];
 
     service.getAudits().subscribe(audits => {
-      verifyAuditContent(audits[0], auditDto0);
-      verifyAuditContent(audits[1], auditDto1);
+      verifyAuditContent(audits[0], auditResponse0);
+      verifyAuditContent(audits[1], auditResponse1);
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'audits');
     expect(req.request.method).toEqual('GET');
 
-    req.flush([auditDto0, auditDto1]);
+    req.flush([auditResponse0, auditResponse1]);
 
     httpMock.verify();
   });
 
   it('#getAudit should return a piped auditDto', () => {
-    const auditDto = AUDITS_RESPONSE[0];
+    const auditResponse = AUDITS_RESPONSE[0];
 
-    service.getAudit(auditDto.id).subscribe(audit => {
-      verifyAuditContent(audit, auditDto);
+    service.getAudit(auditResponse.id).subscribe(audit => {
+      verifyAuditContent(audit, auditResponse);
     });
 
-    const req = httpMock.expectOne(environment.baseUrl + 'audits/' + auditDto.id);
+    const req = httpMock.expectOne(environment.baseUrl + 'audits/' + auditResponse.id);
     expect(req.request.method).toEqual('GET');
 
-    req.flush(auditDto);
+    req.flush(auditResponse);
 
     httpMock.verify();
   });
 
   it('#postAudit should return a newly created audit', () => {
-    const auditDto: AuditDto = AUDITS_RESPONSE[0];
-    const auditPost: Audit = {
+    const auditResponse: AuditResponse = AUDITS_RESPONSE[0];
+    const auditPostRequest: Audit = {
       name: 'Test',
       status: AuditStatus.Active,
-      scope: auditDto.scope,
-      startDate: new Date(auditDto.startDate).getTime(),
-      endDate: new Date(auditDto.startDate).getTime(),
-      contactPersons: auditDto.contactPersons,
+      scope: auditResponse.scope,
+      startDate: new Date(auditResponse.startDate).getTime(),
+      endDate: new Date(auditResponse.startDate).getTime(),
+      contactPersons: auditResponse.contactPersons,
     };
 
-    service.postAudit(auditPost).subscribe(audit => {
-      verifyAuditContent(audit, auditDto);
+    service.postAudit(auditPostRequest).subscribe(audit => {
+      verifyAuditContent(audit, auditResponse);
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'audits');
     expect(req.request.method).toEqual('POST');
 
-    req.flush(auditDto);
+    req.flush(auditResponse);
 
     httpMock.verify();
   });
 
   it('#putAudit should return an updated audit', () => {
-    const auditDto: AuditDto = AUDITS_RESPONSE[0];
-    const auditPut: Audit = {
+    const auditResponse: AuditResponse = AUDITS_RESPONSE[0];
+    const auditPutRequest: Audit = {
       name: 'Test',
       status: AuditStatus.Active,
-      scope: auditDto.scope,
-      startDate: new Date(auditDto.startDate).getTime(),
-      endDate: new Date(auditDto.startDate).getTime(),
-      contactPersons: auditDto.contactPersons,
+      scope: auditResponse.scope,
+      startDate: new Date(auditResponse.startDate).getTime(),
+      endDate: new Date(auditResponse.startDate).getTime(),
+      contactPersons: auditResponse.contactPersons,
     };
 
-    service.putAudit(auditPut, auditPut).subscribe(audit => {
-      verifyAuditContent(audit, auditDto);
+    service.putAudit(auditPutRequest, auditPutRequest).subscribe(audit => {
+      verifyAuditContent(audit, auditResponse);
     });
 
-    const req = httpMock.expectOne(environment.baseUrl + 'audits/' + auditPut.id);
+    const req = httpMock.expectOne(environment.baseUrl + 'audits/' + auditPutRequest.id);
     expect(req.request.method).toEqual('PUT');
 
-    req.flush(auditDto);
+    req.flush(auditResponse);
     httpMock.verify();
   });
 
-  function verifyAuditContent(audit: Audit, auditDto: AuditDto) {
+  function verifyAuditContent(audit: Audit, auditDto: AuditResponse) {
     const { id, status, endDate, startDate, contactPersons, creationDate, scope } = audit;
     expect(id).toEqual(auditDto.id);
     expect(creationDate).toEqual(new Date(auditDto.creationDate).getTime());

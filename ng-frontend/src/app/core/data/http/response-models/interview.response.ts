@@ -2,7 +2,7 @@ import { InterviewStatus } from '../../models/interview.model';
 import { Answer } from '../../models/answer.model';
 import { ContactPerson } from '../../models/contact-person.model';
 
-export interface InterviewDto {
+export interface InterviewResponse {
   id?: number;
   auditId: number;
   startDate: string;

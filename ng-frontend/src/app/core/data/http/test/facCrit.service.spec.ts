@@ -21,38 +21,38 @@ describe('FacCritService', () => {
   });
 
   it('#getFacCrits should return facCrits', () => {
-    const facCritsDto: FacCrit[] = FACCRITS;
+    const facCritsResponse: FacCrit[] = FACCRITS;
 
     service.getFacCrits().subscribe(facCrits => {
-      expect(facCrits.length).toBe(facCritsDto.length);
+      expect(facCrits.length).toBe(facCritsResponse.length);
 
       for (const [i, facCrit] of facCrits.entries()) {
-        expect(facCrit).toEqual(facCritsDto[i]);
+        expect(facCrit).toEqual(facCritsResponse[i]);
       }
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'faccrits');
     expect(req.request.method).toEqual('GET');
 
-    req.flush(facCritsDto);
+    req.flush(facCritsResponse);
     httpMock.verify();
   });
 
   it('#getFacCritsByInterviewId should return facCrits', () => {
-    const facCritsDto: FacCrit[] = FACCRITS.slice(0, 20);
+    const facCritsResponse: FacCrit[] = FACCRITS.slice(0, 20);
 
     service.getFacCritsByInterviewId(21).subscribe(facCrits => {
-      expect(facCrits.length).toBe(facCritsDto.length);
+      expect(facCrits.length).toBe(facCritsResponse.length);
 
       for (const [i, facCrit] of facCrits.entries()) {
-        expect(facCrit).toEqual(facCritsDto[i]);
+        expect(facCrit).toEqual(facCritsResponse[i]);
       }
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'faccrits/interview/' + 21);
     expect(req.request.method).toEqual('GET');
 
-    req.flush(facCritsDto);
+    req.flush(facCritsResponse);
     httpMock.verify();
   });
 });

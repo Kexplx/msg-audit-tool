@@ -1,4 +1,4 @@
-export interface AuditScopeChangeDto {
+export interface AuditScopePutRequest {
   facCritId: number;
   changeNote: string;
   note: string;

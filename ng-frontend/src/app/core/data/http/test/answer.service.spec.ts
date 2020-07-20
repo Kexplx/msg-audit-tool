@@ -20,41 +20,41 @@ describe('AnswerService', () => {
   });
 
   it('#getAnswers should return an observable of answers', () => {
-    const response: Answer[] = ANSWERS;
-    service.getAnswers().subscribe(answers => {
-      expect(answers).toEqual(response);
-    });
-
-    const req = httpMock.expectOne(environment.baseUrl + 'answers');
-    expect(req.request.method).toEqual('GET');
-
-    req.flush(response);
-    httpMock.verify();
-  });
-
-  it('#getAnswersByInterviewId should return an observable of answers', () => {
     const answerResponse: Answer[] = ANSWERS;
-    service.getAnswersByInterviewId(1).subscribe(answers => {
+    service.getAnswers().subscribe(answers => {
       expect(answers).toEqual(answerResponse);
     });
 
-    const req = httpMock.expectOne(environment.baseUrl + 'answers/interview/1');
+    const req = httpMock.expectOne(environment.baseUrl + 'answers');
     expect(req.request.method).toEqual('GET');
 
     req.flush(answerResponse);
     httpMock.verify();
   });
 
+  it('#getAnswersByInterviewId should return an observable of answers', () => {
+    const answersResponse: Answer[] = ANSWERS;
+    service.getAnswersByInterviewId(1).subscribe(answers => {
+      expect(answers).toEqual(answersResponse);
+    });
+
+    const req = httpMock.expectOne(environment.baseUrl + 'answers/interview/1');
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(answersResponse);
+    httpMock.verify();
+  });
+
   it('#putAnswer should return an answers', () => {
-    const response: Answer = ANSWERS[0];
+    const answerResponse: Answer = ANSWERS[0];
     service.putAnswer({ interviewId: 1, questionId: 2 } as Answer).subscribe(answer => {
-      expect(answer).toEqual(response);
+      expect(answer).toEqual(answerResponse);
     });
 
     const req = httpMock.expectOne(environment.baseUrl + 'answers/interview/1/question/2');
     expect(req.request.method).toEqual('PUT');
 
-    req.flush(response);
+    req.flush(answerResponse);
     httpMock.verify();
   });
 });

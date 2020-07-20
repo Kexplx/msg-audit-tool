@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { InterviewDto } from './dtos/interview.dto';
+import { InterviewResponse } from './response-models/interview.response';
 import { map } from 'rxjs/operators';
 import { Interview } from '../models/interview.model';
-import { PostInterviewDto } from './dtos/post-interview.dto';
+import { InterviewPostRequest } from './request-models/interview-post.request';
 import { FacCrit } from '../models/faccrit.model';
-import { PutInterviewDto } from './dtos/put-interview.dto';
+import { InterviewPutRequest } from './request-models/interview-put.request';
 import { parseTimestamp } from 'src/app/core/data/helpers/date-helpers';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -24,8 +24,8 @@ export class InterviewService {
   getInterviews(): Observable<Interview[]> {
     const url = environment.baseUrl + 'interviews';
 
-    return this.http.get<InterviewDto[]>(url).pipe(
-      map<InterviewDto[], Interview[]>(interviewDtos => {
+    return this.http.get<InterviewResponse[]>(url).pipe(
+      map<InterviewResponse[], Interview[]>(interviewDtos => {
         return interviewDtos.map(interviewDto => {
           const { endDate, startDate } = interviewDto;
           return {
@@ -48,8 +48,8 @@ export class InterviewService {
   getInterviewsByAuditId(auditId: number): Observable<Interview[]> {
     const url = environment.baseUrl + 'audits/' + auditId + '/interviews';
 
-    return this.http.get<InterviewDto[]>(url).pipe(
-      map<InterviewDto[], Interview[]>(interviewDtos => {
+    return this.http.get<InterviewResponse[]>(url).pipe(
+      map<InterviewResponse[], Interview[]>(interviewDtos => {
         return interviewDtos.map(interviewDto => {
           const { endDate, startDate } = interviewDto;
           return {
@@ -72,8 +72,8 @@ export class InterviewService {
   getInterview(id: number): Observable<Interview> {
     const url = environment.baseUrl + 'interviews/' + id;
 
-    return this.http.get<InterviewDto>(url).pipe(
-      map<InterviewDto, Interview>(interviewDto => {
+    return this.http.get<InterviewResponse>(url).pipe(
+      map<InterviewResponse, Interview>(interviewDto => {
         const { endDate, startDate } = interviewDto;
         return {
           ...interviewDto,
@@ -105,7 +105,7 @@ export class InterviewService {
 
     const interviewScopeDto = interviewScope?.map(facCrit => facCrit.id);
 
-    const postInterviewDto: PostInterviewDto = {
+    const postInterviewDto: InterviewPostRequest = {
       auditId,
       note: '',
       startDate: parseTimestamp(startDate),
@@ -113,8 +113,8 @@ export class InterviewService {
       interviewedContactPersons: interviewedContactPersonsDto,
     };
 
-    return this.http.post<InterviewDto>(url, postInterviewDto).pipe(
-      map<InterviewDto, Interview>(interviewDto => {
+    return this.http.post<InterviewResponse>(url, postInterviewDto).pipe(
+      map<InterviewResponse, Interview>(interviewDto => {
         const { endDate, startDate } = interviewDto;
 
         return {
@@ -136,15 +136,15 @@ export class InterviewService {
   putInterview({ startDate, endDate, status, note, id }: Interview): Observable<Interview> {
     const url = environment.baseUrl + 'interviews/' + id;
 
-    const putInterviewDto: PutInterviewDto = {
+    const putInterviewDto: InterviewPutRequest = {
       endDate: parseTimestamp(endDate),
       startDate: parseTimestamp(startDate),
       note,
       status,
     };
 
-    return this.http.put<InterviewDto>(url, putInterviewDto).pipe(
-      map<InterviewDto, Interview>(interviewDto => {
+    return this.http.put<InterviewResponse>(url, putInterviewDto).pipe(
+      map<InterviewResponse, Interview>(interviewDto => {
         const { endDate, startDate } = interviewDto;
 
         return {

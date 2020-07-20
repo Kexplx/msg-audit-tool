@@ -1,6 +1,6 @@
 import { AuditStatus } from '../../models/audit.model';
 
-export interface PutAuditDto {
+export interface AuditPutRequest {
   name: string;
   startDate: string;
   endDate: string;
