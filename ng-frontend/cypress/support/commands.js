@@ -55,6 +55,11 @@ function injectBackendMocks() {
     url: '/audits/*',
     response: [],
   }).as('putAudits');
+  cy.route({
+    method: 'PUT',
+    url: '/interviews/*',
+    response: [],
+  }).as('putInterviews');
 }
 
 function addAudit(testAudit) {
@@ -130,37 +135,6 @@ function inputInterview(testInterview) {
   cy.get('[data-cy=submit-interview-data-form]').click({ force: true });
 }
 
-function testAuditInfoPage(testAudit) {
-  // cy.get('[data-cy=audit-name]').should('contain.text', testAudit.name);
-  // if (!testAudit.end) {
-  //   cy.get('[data-cy=audit-timeframe]').contains('TBD');
-  // }
-  // cy.get('[data-cy=audit-customer-name]').should('contain.text', testAudit.customerData.name);
-  // cy.get('[data-cy=audit-customer-department]').should(
-  //   'contain.text',
-  //   testAudit.customerData.department,
-  // );
-  // cy.get('[data-cy=audit-customer-division]').should(
-  //   'contain.text',
-  //   testAudit.customerData.corporateDivision,
-  // );
-  // cy.get('[data-cy=audit-customer-sector]').should('contain.text', testAudit.customerData.sector);
-  // cy.get('[data-cy=audit-contact-person]').should(
-  //   'contain.text',
-  //   testAudit.contactPerson.firstName,
-  // );
-  // cy.get('[data-cy=audit-contact-person]').should('contain.text', testAudit.contactPerson.lastName);
-  // cy.get('[data-cy=audit-contact-person]').should(
-  //   'contain.text',
-  //   testAudit.contactPerson.salutation,
-  // );
-  // cy.get('[data-cy=audit-contact-person]').should('contain.text', testAudit.contactPerson.title);
-  // cy.get('[data-cy=audit-contact-info]').should(
-  //   'contain.text',
-  //   testAudit.contactPerson.information,
-  // );
-}
-
 function testInterviewListEntry(testInterview) {
   cy.get('[data-cy=interview]')
     .contains(testInterview.name)
@@ -188,6 +162,5 @@ Cypress.Commands.add('addPerson', addPerson);
 Cypress.Commands.add('inputAudit', inputAudit);
 Cypress.Commands.add('addInterview', addInterview);
 Cypress.Commands.add('inputInterview', inputInterview);
-Cypress.Commands.add('testAuditInfoPage', testAuditInfoPage);
 Cypress.Commands.add('testInterviewListEntry', testInterviewListEntry);
 Cypress.Commands.add('injectBackendMocks', injectBackendMocks);

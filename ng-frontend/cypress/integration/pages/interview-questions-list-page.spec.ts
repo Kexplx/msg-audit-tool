@@ -49,7 +49,7 @@ describe('InterviewQuestionsListPage', () => {
   });
 
   it('shows a notes textfield that sticks on top when scrolled', () => {
-    const dummyText = 'Dummy Goal';
+    const dummyText = 'Dummy Note';
     cy.get('[data-cy=faccrit-notes]').click();
     cy.get('[data-cy=notes]').should('be.visible').clear().type(dummyText);
     cy.scrollTo('center');
@@ -64,7 +64,15 @@ describe('InterviewQuestionsListPage', () => {
       .should('not.have.value', dummyText);
   });
 
-  it('shows a goal that sticks on top when scrolled');
+  it('shows a goal that sticks on top when scrolled', () => {
+    cy.get('[data-cy=faccrit-goal]').should('be.visible');
+    cy.scrollTo('center');
+    cy.get('[data-cy=faccrit-goal]').should('be.visible');
+    cy.scrollTo('bottom');
+    cy.get('[data-cy=faccrit-goal]').should('be.visible');
+    cy.scrollTo('top');
+    cy.get('[data-cy=faccrit-goal]').should('be.visible');
+  });
 
   context('When focussing on the questions ...', () => {
     it('shows the questions given from the backend', () => {
@@ -99,7 +107,12 @@ describe('InterviewQuestionsListPage', () => {
   });
 
   context('When focussing on the events it ...', () => {
-    it('gives stepper which shows the current faccrit and can skip to the next');
+    it('gives stepper which shows the current faccrit and can skip to the next', () => {
+      cy.get('[data-cy=stepper]').should('exist');
+      cy.url().then(url => {
+        cy.get('[data-cy=stepper-forward]').click().url().should('not.be', url);
+      });
+    });
 
     it('saves inputs in question card when clicking on save', () => {
       const dummyText = 'Dummy';
@@ -152,8 +165,21 @@ describe('InterviewQuestionsListPage', () => {
         });
       });
     });
-    it('sets the status to finished and saves the input when clicking on finish button');
-    it('returns to the interview view when clicking on the "Interviews" button');
+
+    it('sets the status to finished and saves the input when clicking on finish button', () => {
+      cy.get('[data-cy=finish-interview]').click();
+      cy.wait('@putInterviews').then(xhr => {
+        assert.equal(xhr.request.body.status, 'FINISHED');
+      });
+    });
+
+    it('returns to the interview view when clicking on the "Interviews" button', () => {
+      cy.get('[data-cy=back-to-interviews]')
+        .should('exist')
+        .click()
+        .url()
+        .should('be', `${Cypress.config().baseUrl}/audits/${audit.id}/interviews/`);
+    });
   });
 
   context('When focussing on the sidebar it', () => {
@@ -166,6 +192,9 @@ describe('InterviewQuestionsListPage', () => {
       cy.get('[data-cy=toggle-sidebar]').click();
     });
 
-    it('scrolls to the selected question when clicked');
+    it('shows all questions in sidebar', () => {
+      cy.get('.menu-title').should('contain', questions[0].textDe);
+      cy.get('.menu-title').should('contain', questions[1].textDe);
+    });
   });
 });

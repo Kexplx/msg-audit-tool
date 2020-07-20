@@ -11,28 +11,28 @@
       </span>
     </div>
     <div>
-      <button class="mr-1" hero [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton>
+      <button class="mr-1" hero [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton data-cy="back-to-interviews">
         <nb-icon icon="arrow-back-outline"></nb-icon>
         Interviews
       </button>
-      <button [disabled]="audit.status !== 'ACTIVE'" (click)="onFinishClick()" status="primary" hero nbButton>
+      <button [disabled]="audit.status !== 'ACTIVE'" (click)="onFinishClick()" status="primary" hero nbButton data-cy="finish-interview">
         <nb-icon icon="checkmark-square-outline"></nb-icon>
         Abschließen
       </button>
     </div>
   </header>
   <nb-card class="mt-1 mb-1">
-    <nb-card-body>
+    <nb-card-body data-cy="stepper">
       <div class="nb-card-header-navigation">
         <nb-actions size="small">
-          <nb-action icon="arrow-ios-back-outline" (click)="onNaviagteBack(facCrit.id)"></nb-action>
+          <nb-action icon="arrow-ios-back-outline" (click)="onNaviagteBack(facCrit.id)" data-cy="stepper-back"></nb-action>
         </nb-actions>
         <p class="subtitle-2">
           {{ facCrit.name }}
           <span *ngIf="facCritIds" class="text-hint">{{ getFacCritPosition(facCrit.id) }}</span>
         </p>
         <nb-actions size="small">
-          <nb-action icon="arrow-ios-forward-outline" (click)="onNavigateForward(facCrit.id)"></nb-action>
+          <nb-action icon="arrow-ios-forward-outline" (click)="onNavigateForward(facCrit.id)" data-cy="stepper-forward"></nb-action>
         </nb-actions>
       </div>
     </nb-card-body>

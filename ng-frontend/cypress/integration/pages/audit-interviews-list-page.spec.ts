@@ -1,5 +1,3 @@
-import { toLength } from 'cypress/types/lodash';
-
 describe('AuditInterviewsListPage', () => {
   let interviewsUrl = Cypress.config().baseUrl + '/audits';
   let audit;
@@ -221,10 +219,6 @@ describe('AuditInterviewsListPage', () => {
 
     beforeEach(() => {
       cy.get('[data-cy=toggle-sidebar]').click();
-    });
-
-    it('shows all faccrits of an audit (scope)', () => {
-      interview.answers.forEach(answer => {});
     });
 
     it('opens sidebar on click', () => {
