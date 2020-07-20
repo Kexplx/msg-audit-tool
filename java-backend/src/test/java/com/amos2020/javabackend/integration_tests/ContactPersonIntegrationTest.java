@@ -32,7 +32,6 @@ public class ContactPersonIntegrationTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-
     @Test
     public void getContactPersonById() {
         ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.getForEntity("/contactpersons/1001", BasicContactPersonResponse.class);
@@ -47,7 +46,6 @@ public class ContactPersonIntegrationTest {
         assertEquals("testDepartment", response.getBody().getDepartment());
         assertEquals("testDivision", response.getBody().getCorporateDivision());
     }
-
 
     @Test
     public void getContactPersonByIdNotExisting() {
@@ -105,7 +103,6 @@ public class ContactPersonIntegrationTest {
         assertEquals("FooBarDepartment", response.getBody().getDepartment());
         assertEquals("FooBarCorporateDivision", response.getBody().getCorporateDivision());
     }
-
 
     @Test
     public void updateContactPersonWithValidId() {
@@ -212,6 +209,4 @@ public class ContactPersonIntegrationTest {
         ResponseEntity<BasicContactPersonResponse> response = testRestTemplate.exchange("/contactpersons/1001", HttpMethod.PUT, request, BasicContactPersonResponse.class);
         assertEquals(400, response.getStatusCodeValue());
     }
-
-
 }
