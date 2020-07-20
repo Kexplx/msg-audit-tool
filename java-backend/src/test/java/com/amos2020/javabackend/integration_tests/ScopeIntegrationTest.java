@@ -35,7 +35,6 @@ public class ScopeIntegrationTest {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
-
     @Test
     public void getScopeById() {
         //ResponseEntity<BasicScopeResponse> response = testRestTemplate.getForEntity("/audits/1/scope", BasicScopeResponse.class);
@@ -69,15 +68,12 @@ public class ScopeIntegrationTest {
         assertEquals(2, response.getBody().size());
     }
 
-
     @Test
     public void getAllScopesByAuditId_AuditIdNotExisting() {
         ResponseEntity<List> response = testRestTemplate.getForEntity("/audits/1000/scope", List.class);
 
         assertEquals(400, response.getStatusCodeValue());
-
     }
-
 
     @Test
     public void addScope() {
@@ -92,7 +88,6 @@ public class ScopeIntegrationTest {
         assertEquals(200, response.getStatusCodeValue());
         assertEquals(4, response.getBody().size());
     }
-
 
     @Test
     public void addScopeAlreadyExisting() {
@@ -120,7 +115,6 @@ public class ScopeIntegrationTest {
         assertEquals(404, response.getStatusCodeValue());
     }
 
-
     @Test
     public void addScopeFacCritIdNotExisting() {
         AddScopeRequest addScopeRequest = new AddScopeRequest();
@@ -132,7 +126,6 @@ public class ScopeIntegrationTest {
         ResponseEntity<List> response = testRestTemplate.postForEntity("/audits/1/scope", request, List.class);
         assertEquals(404, response.getStatusCodeValue());
     }
-
 
     @Test
     public void addScopeFacCritIdNegative() {
@@ -190,7 +183,6 @@ public class ScopeIntegrationTest {
         assertEquals(400, response.getStatusCodeValue());
     }
 
-
     @Test
     public void changeScopeFacCritIdNotExisting() {
         UpdateScopeRequest updateScopeRequest = new UpdateScopeRequest();
@@ -203,7 +195,6 @@ public class ScopeIntegrationTest {
         ResponseEntity<BasicScopeResponse> response = testRestTemplate.exchange("/audits/1/scope/1000", HttpMethod.PUT, request, BasicScopeResponse.class);
         assertEquals(404, response.getStatusCodeValue());
     }
-
 
     @Test
     public void changeScopeAuditIdNotExisting() {
