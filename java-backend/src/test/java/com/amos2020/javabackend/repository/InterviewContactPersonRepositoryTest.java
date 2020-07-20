@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -45,7 +46,6 @@ public class InterviewContactPersonRepositoryTest {
 
     @Before
     public void before() {
-
         audit = new Audit();
         audit.setName(TEST_NAME);
         audit.setStartDate(TEST_START_DATE);
@@ -54,7 +54,6 @@ public class InterviewContactPersonRepositoryTest {
         audit.setCreationDate(Timestamp.from(Instant.now()));
         auditRepository.save(audit);
         Assert.assertTrue(auditRepository.exists((Example.of(audit))));
-
 
         contactPerson = new ContactPerson();
         contactPerson.setSalutation(TEST_SALUTATION);
@@ -76,12 +75,10 @@ public class InterviewContactPersonRepositoryTest {
         interview.setStatus(InterviewStatus.ACTIVE);
         interviewRepository.save(interview);
         Assert.assertTrue(interviewRepository.exists((Example.of(interview))));
-
     }
 
     @Test
     public void insertValid() {
-
         InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
         interviewContactPerson.setContactPersonId(contactPerson.getId());
         interviewContactPerson.setInterviewId(interview.getId());
@@ -89,9 +86,7 @@ public class InterviewContactPersonRepositoryTest {
 
         repository.save(interviewContactPerson);
         Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
-
     }
-
 
     @Test(expected = DataIntegrityViolationException.class)
     public void insertInvalidInterview() {
@@ -152,12 +147,10 @@ public class InterviewContactPersonRepositoryTest {
 
         tmp.setInterviewId(9999);
         repository.save(tmp);
-
     }
 
     @Test
     public void changeValidInterview() {
-
         Interview interview_new = new Interview();
         interview_new.setAuditId(audit.getId());
         interview_new.setStartDate(Date.valueOf("2020-05-20"));
@@ -177,7 +170,6 @@ public class InterviewContactPersonRepositoryTest {
         tmp.setInterviewId(interview_new.getId());
         repository.save(tmp);
         Assert.assertTrue(repository.exists((Example.of(tmp))));
-
     }
 
     @Test(expected = DataIntegrityViolationException.class)
@@ -191,7 +183,19 @@ public class InterviewContactPersonRepositoryTest {
 
         tmp.setInterviewId(9999);
         repository.save(tmp);
+    }
 
+    @Test
+    @Transactional
+    public void deleteInterviewContactPersonByIds(){
+        InterviewContactPerson interviewContactPerson = new InterviewContactPerson();
+        interviewContactPerson.setContactPersonId(contactPerson.getId());
+        interviewContactPerson.setInterviewId(interview.getId());
+        interviewContactPerson.setRole("TESTROLE");
+        repository.save(interviewContactPerson);
+        Assert.assertTrue(repository.exists((Example.of(interviewContactPerson))));
 
+        repository.deleteByInterviewIdAndContactPersonId(interview.getId(),contactPerson.getId());
+        Assert.assertFalse(repository.exists((Example.of(interviewContactPerson))));
     }
 }
