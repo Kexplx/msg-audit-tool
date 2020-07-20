@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
@@ -90,6 +91,18 @@ public class AuditRepositoryTest {
     public void insertAuditWithNameIsEmpty_throwsException() {
         toTest = new Audit();
         toTest.setName("");
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setStatus(AuditStatus.ACTIVE);
+        toTest.setCreationDate(Timestamp.from(Instant.now()));
+        repository.save(toTest);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAuditWithNameIsTooLong_throwsException() {
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        toTest = new Audit();
+        toTest.setName(tooLong);
         toTest.setStartDate(TEST_START_DATE);
         toTest.setEndDate(TEST_END_DATE);
         toTest.setStatus(AuditStatus.ACTIVE);
@@ -198,6 +211,22 @@ public class AuditRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(toTest))));
 
         AuditEntity.setName("  ");
+        repository.save(AuditEntity);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void updateAuditWithNameTooLong_throwsException() {
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        toTest = new Audit();
+        toTest.setName(TEST_NAME);
+        toTest.setStartDate(TEST_START_DATE);
+        toTest.setEndDate(TEST_END_DATE);
+        toTest.setStatus(AuditStatus.ACTIVE);
+        toTest.setCreationDate(Timestamp.from(Instant.now()));
+        Audit AuditEntity = repository.save(toTest);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+
+        AuditEntity.setName(tooLong);
         repository.save(AuditEntity);
     }
 
