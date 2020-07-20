@@ -116,6 +116,17 @@ describe('AuditsListPage', () => {
     });
 
     it('shows "Geplant" in popover when status is "OPEN"', () => {
+      cy.fixture('backend-mock-data/audits.json').then(audits => {
+        audit = audits[0];
+        audit.status = 'OPEN';
+        cy.route({
+          method: 'GET',
+          url: '/audits',
+          response: [audit],
+        });
+        cy.visit(auditsUrl);
+      });
+      cy.get('body').contains('Archiv').click();
       cy.get('[data-cy=audit-status]').first().should('have.attr', 'nbPopover');
       cy.get('[data-cy=audit-status]')
         .first()

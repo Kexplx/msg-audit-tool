@@ -76,15 +76,15 @@ describe('AuditInterviewsListPage', () => {
       });
     });
 
-    it('shows message that no interview exists on creation', () => {
+    it('shows message that interview exists on creation', () => {
       cy.route({
         method: 'GET',
         url: '/interviews',
         response: [],
       }).as('getInterviews');
       cy.visit(interviewsUrl);
-      cy.get('[data-cy=faccrit-body]').each(body => {
-        cy.wrap(body).should('contain', 'Keine Interviews vorhanden');
+      cy.get('[data-cy=no-interviews]').each(body => {
+        cy.wrap(body).should('contain', 'Noch keine Interviews angelegt');
       });
     });
 
@@ -142,7 +142,7 @@ describe('AuditInterviewsListPage', () => {
       });
     });
 
-    it('shows a contact name, "(+)" and startdate if there are more than one contact person', () => {
+    it('shows a contact name, "+ 1" and startdate if there are more than one contact person', () => {
       assert(interview.interviewedContactPersons.length >= 2);
       const startDate = new Date(interview.startDate).toLocaleDateString('de-DE', {
         year: 'numeric',
@@ -153,7 +153,7 @@ describe('AuditInterviewsListPage', () => {
         .first()
         .should('contain', interview.interviewedContactPersons[0].forename)
         .should('contain', interview.interviewedContactPersons[0].surname)
-        .should('contain', '(+)')
+        .should('contain', '+ 1')
         .should('contain', startDate);
     });
 
