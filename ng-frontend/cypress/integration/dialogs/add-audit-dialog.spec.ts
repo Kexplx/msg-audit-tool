@@ -328,7 +328,5 @@ describe('AddAuditDialog', () => {
           });
         });
     });
-    it('shows error message when malformed request received');
-    it('shows error message when the network connection/requests failed');
   });
 });

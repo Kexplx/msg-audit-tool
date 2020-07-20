@@ -173,7 +173,5 @@ describe('EditAuditDialog', () => {
         });
       });
     });
-
-    it('shows error message when the network connection/requests failed');
   });
 });

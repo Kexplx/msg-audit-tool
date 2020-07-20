@@ -221,9 +221,4 @@ describe('AuditsListPage', () => {
       cy.url().should('be', `${auditsUrl}/${audit.id}/interviews`);
     });
   });
-
-  context('When focussing on the network request it ...', () => {
-    it('shows error message when malformed request received');
-    it('shows error message when the network connection/requests failed');
-  });
 });

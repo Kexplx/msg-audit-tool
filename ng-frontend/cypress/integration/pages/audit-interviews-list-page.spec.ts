@@ -59,9 +59,6 @@ describe('AuditInterviewsListPage', () => {
       cy.get('[data-cy=add-interview-form]').should('exist');
       cy.get('[data-cy=cancel-interview-data-form]').click();
     });
-
-    it('shows audit contacts list when clicking on contacts tab');
-    it('shows audit contacts list when clicking on contacts tab');
   });
 
   context('When focussing on the faccrits/interview list ...', () => {
@@ -240,10 +237,5 @@ describe('AuditInterviewsListPage', () => {
         assert(item.text().length <= textLength + 4);
       });
     });
-  });
-
-  context('When focussing on the network request it ...', () => {
-    it('shows error message when malformed request received');
-    it('shows error message when the network connection/requests failed');
   });
 });

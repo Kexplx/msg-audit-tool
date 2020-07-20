@@ -105,8 +105,6 @@ describe('ContactsListPage', () => {
       cy.get('[data-cy=edit-person-button]').first().click();
       cy.get('[data-cy=contact-data-form]').should('be.visible');
     });
-
-    it('removes an contact by clicking on an delete button');
   });
 
   context('When focussing on the contacts it...', () => {
@@ -133,10 +131,5 @@ describe('ContactsListPage', () => {
     it('shows number of contacts', () => {
       cy.get('nb-card-header').should('contain', 'Registrierte Kontaktpersonen (3)');
     });
-  });
-
-  context('When focussing on the network request it ...', () => {
-    it('shows error message when malformed request received');
-    it('shows error message when the network connection/requests failed');
   });
 });

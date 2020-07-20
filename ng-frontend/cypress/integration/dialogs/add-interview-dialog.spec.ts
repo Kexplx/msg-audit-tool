@@ -45,8 +45,6 @@ describe('AddInterviewDialog', () => {
         .should('not.be.visible');
     });
 
-    it('shows all factors and criteria given of an audit');
-
     it('leaves all checkboxes unchecked by default', () => {
       cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
         cy.wrap(el).should('not.have.class', 'checked');
@@ -64,6 +62,7 @@ describe('AddInterviewDialog', () => {
         cy.wrap(el).should('not.have.class', 'checked');
       });
     });
+
     it('is possible to select criteria without selecting the factor', () => {
       cy.get('[data-cy=interview-scope-criteria] > .label > .custom-checkbox').each((el, index) => {
         cy.wrap(el).should('not.have.class', 'checked').click().should('have.class', 'checked');
@@ -84,8 +83,6 @@ describe('AddInterviewDialog', () => {
         cy.wrap(el).should('have.class', 'checked');
       });
     });
-
-    // it('unchecking a criteria should uncheck radio button', () => {});
   });
 
   context('When focussing on the contact persons it...', () => {
@@ -197,7 +194,5 @@ describe('AddInterviewDialog', () => {
 
   context('When focussing on the network requests it ...', () => {
     it('builds a valid post request as form', () => {});
-    it('shows error message when malformed request received');
-    it('shows error message when the network connection/requests failed');
   });
 });
