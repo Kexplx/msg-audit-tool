@@ -17,8 +17,8 @@ public class FacCritRepositoryTest {
 
     @Autowired
     private FacCritRepository repository;
-
     private FacCrit factor, criteria;
+    private static String TOO_LONG = new String(new char[20000]).replace('\0', 'H');
 
     @Test
     public void insertFactor() {
@@ -28,6 +28,15 @@ public class FacCritRepositoryTest {
         factor.setReferenceId(null);
         repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertFactorWithNameTooLong() {
+        factor = new FacCrit();
+        factor.setName(TOO_LONG);
+        factor.setGoal("TestZiel");
+        factor.setReferenceId(null);
+        repository.save(factor);
     }
 
     @Test
@@ -44,7 +53,6 @@ public class FacCritRepositoryTest {
         criteria.setReferenceId(factor.getId());
         repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
-
     }
 
     @Test(expected = TransactionSystemException.class)
@@ -72,9 +80,7 @@ public class FacCritRepositoryTest {
         criteria.setReferenceId(9999);
         repository.save(criteria);
         Assert.assertTrue(repository.exists((Example.of(criteria))));
-
     }
-
 
     @Test
     public void changeValidName() {
@@ -89,7 +95,6 @@ public class FacCritRepositoryTest {
         Assert.assertEquals(tmp.getName(), factor.getName());
     }
 
-
     @Test(expected = TransactionSystemException.class)
     public void changeNameNull() {
         factor = new FacCrit();
@@ -98,6 +103,17 @@ public class FacCritRepositoryTest {
         FacCrit tmp = repository.save(factor);
         Assert.assertTrue(repository.exists((Example.of(factor))));
         tmp.setName(null);
+        repository.save(tmp);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeNameTooLong() {
+        factor = new FacCrit();
+        factor.setName("TestName");
+        factor.setGoal("TestZiel");
+        FacCrit tmp = repository.save(factor);
+        Assert.assertTrue(repository.exists((Example.of(factor))));
+        tmp.setName(TOO_LONG);
         repository.save(tmp);
     }
 
@@ -114,7 +130,6 @@ public class FacCritRepositoryTest {
         Assert.assertEquals(tmp.getName(), factor.getName());
     }
 
-
     @Test
     public void changeGoalNull() {
         factor = new FacCrit();
@@ -127,7 +142,6 @@ public class FacCritRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(tmp))));
         Assert.assertEquals(tmp.getGoal(), factor.getGoal());
     }
-
 
     @Test
     public void changeValidReference() {
@@ -161,6 +175,5 @@ public class FacCritRepositoryTest {
         Assert.assertTrue(repository.exists((Example.of(criteria))));
         tmp.setReferenceId(9999);
         repository.save(tmp);
-
     }
 }
