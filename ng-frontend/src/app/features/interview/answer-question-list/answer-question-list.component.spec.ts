@@ -37,7 +37,6 @@ describe('AnswerQuestionListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AnswerQuestionListComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
