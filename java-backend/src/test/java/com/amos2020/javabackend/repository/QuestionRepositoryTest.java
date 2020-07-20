@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionSystemException;
@@ -16,13 +17,13 @@ import org.springframework.transaction.TransactionSystemException;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class QuestionRepositoryTest {
 
+    private static String TOO_LONG = new String(new char[20000]).replace('\0', 'H');
     @Autowired
     FacCritRepository facCritRepository;
     @Autowired
     private QuestionRepository repository;
     private Question question;
     private FacCrit facCrit;
-
 
     @Before
     public void setup() {
@@ -41,6 +42,14 @@ public class QuestionRepositoryTest {
         Assert.assertTrue(repository.exists(Example.of(question)));
     }
 
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertTextTooLong() {
+        question = new Question();
+        question.setTextDe(TOO_LONG);
+        question.setFaccritId(facCrit.getId());
+        repository.save(question);
+    }
+
     @Test(expected = TransactionSystemException.class)
     public void insertTextNull() {
         question = new Question();
@@ -49,7 +58,6 @@ public class QuestionRepositoryTest {
         repository.save(question);
         Assert.assertTrue(repository.exists(Example.of(question)));
     }
-
 
     @Test
     public void changeTextValid() {
@@ -66,7 +74,6 @@ public class QuestionRepositoryTest {
 
     @Test(expected = TransactionSystemException.class)
     public void changeTextNull() {
-
         question = new Question();
         question.setTextDe("TestFrage?");
         question.setFaccritId(facCrit.getId());
@@ -76,6 +83,16 @@ public class QuestionRepositoryTest {
         repository.save(tmp);
         Assert.assertTrue(repository.exists(Example.of(tmp)));
         Assert.assertNull(question.getTextDe());
+    }
 
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeTextTooLong() {
+        question = new Question();
+        question.setTextDe("TestFrage?");
+        question.setFaccritId(facCrit.getId());
+        Question tmp = repository.save(question);
+        Assert.assertTrue(repository.exists(Example.of(question)));
+        tmp.setTextDe(TOO_LONG);
+        repository.save(tmp);
     }
 }
