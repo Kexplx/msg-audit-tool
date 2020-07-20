@@ -91,10 +91,10 @@
       <textarea spellcheck="false" nbInput formControlName="contactInformation" placeholder="Erreichbar unter..." fullWidth data-cy="contact-info-input"></textarea>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="onCancel()" hero nbButton data-cy="cancel-data-form">
+      <button (click)="onCancel()" ghost nbButton data-cy="cancel-data-form">
         abbrechen
       </button>
-      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-data-form">
+      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" ghost nbButton data-cy="submit-data-form">
         {{ submitButtonName }}
       </button>
     </nb-card-footer>

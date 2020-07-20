@@ -1,6 +1,6 @@
 <ng-container *ngIf="audit && interviews">
   <header>
-    <button [disabled]="audit.status !== 'ACTIVE' || !audit.scope?.length" routerLink="new" nbButton status="primary" hero data-cy="new-interview">
+    <button ghost [disabled]="audit.status !== 'ACTIVE' || !audit.scope?.length" routerLink="new" nbButton status="primary" data-cy="new-interview">
       <nb-icon icon="plus"></nb-icon>
       Neues Interview
     </button>

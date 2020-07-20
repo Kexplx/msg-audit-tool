@@ -11,11 +11,11 @@
       </span>
     </div>
     <div>
-      <button class="mr-1" hero [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton data-cy="back-to-interviews">
+      <button class="mr-1" ghost [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton data-cy="back-to-interviews">
         <nb-icon icon="arrow-back-outline"></nb-icon>
         Interviews
       </button>
-      <button [disabled]="audit.status !== 'ACTIVE'" (click)="onFinishClick()" status="primary" hero nbButton data-cy="finish-interview">
+      <button [disabled]="audit?.status !== 'ACTIVE'" (click)="onFinishClick()" status="primary" ghost nbButton data-cy="finish-interview">
         <nb-icon icon="checkmark-square-outline"></nb-icon>
         Abschließen
       </button>

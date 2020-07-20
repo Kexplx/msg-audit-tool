@@ -55,10 +55,10 @@
       </div>
     </nb-card-body>
     <nb-card-footer>
-      <button (click)="onCancel()" hero nbButton data-cy="cancel-interview-data-form">
+      <button (click)="onCancel()" ghost nbButton data-cy="cancel-interview-data-form">
         abbrechen
       </button>
-      <button [disabled]="!facCritSelected" (click)="onSubmit()" status="primary" hero nbButton data-cy="submit-interview-data-form">
+      <button [disabled]="!facCritSelected" (click)="onSubmit()" status="primary" ghost nbButton data-cy="submit-interview-data-form">
         Hinzufügen
       </button>
     </nb-card-footer>

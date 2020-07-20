@@ -66,10 +66,10 @@
       </nb-accordion>
     </nb-card-body>
     <nb-card-footer data-cy="audit-data-buttons">
-      <button (click)="onCancel()" hero nbButton data-cy="cancel-audit-data-form">
+      <button (click)="onCancel()" ghost nbButton data-cy="cancel-audit-data-form">
         abbrechen
       </button>
-      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" hero nbButton data-cy="submit-audit-data-form">
+      <button (click)="onSubmit()" [disabled]="formGroup.invalid" status="primary" ghost nbButton data-cy="submit-audit-data-form">
         {{ submitButtonName }}
       </button>
     </nb-card-footer>

@@ -3,7 +3,7 @@
     <h5 data-cy="faccrit">
       Basisfragen
     </h5>
-    <button [disabled]="audit.status !== 'ACTIVE'" status="primary" hero (click)="onSave()" nbButton data-cy="save">
+    <button [disabled]="audit.status !== 'ACTIVE'" status="primary" ghost (click)="onSave()" nbButton data-cy="save">
       <nb-icon icon="save-outline"></nb-icon>
       speichern
     </button>

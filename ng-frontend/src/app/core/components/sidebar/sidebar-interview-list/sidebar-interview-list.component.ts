@@ -29,13 +29,11 @@ export class SidebarInterviewListComponent implements OnInit, OnDestroy {
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
 
-    const idSub = this.routeService.auditId$.subscribe(id => {
+    const idSub = this.routeService.auditId$.pipe(first()).subscribe(id => {
       const auditSub = this.auditStore.audits$
         .pipe(
           filter(audits => audits != null),
-          first(),
           map(audits => audits.find(a => a.id === id)),
-          filter(audit => audit != undefined),
         )
         .subscribe(audit => {
           this.items = [];
