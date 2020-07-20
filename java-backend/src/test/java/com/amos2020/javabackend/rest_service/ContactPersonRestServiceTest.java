@@ -25,9 +25,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(ContactPersonRestService.class)
 public class ContactPersonRestServiceTest {
+
     @Autowired
     MockMvc restService;
-
     @MockBean
     private ContactPersonController contactPersonController;
 
@@ -53,7 +53,6 @@ public class ContactPersonRestServiceTest {
         cp.setDepartment("Test");
         cp.setCorporateDivision("Test");
         cp.setSector("Test");
-
 
         given(contactPersonController.createContactPerson(request.getSalutation(), request.getTitle(), request.getForename(), request.getSurname(), request.getCompanyName(), request.getDepartment(), request.getSector(), request.getCorporateDivision())).willReturn(new BasicContactPersonResponse(cp));
 
@@ -82,7 +81,6 @@ public class ContactPersonRestServiceTest {
                 .andExpect(status().isBadRequest());
     }
 
-
     @Test
     public void createContactPersonWithForenameNull_returns400() throws Exception {
         CreateContactPersonRequest request = new CreateContactPersonRequest();
@@ -95,13 +93,11 @@ public class ContactPersonRestServiceTest {
         request.setSector("Test");
         String requestAsJson = buildJson(request);
 
-
         restService.perform(post("/contactpersons")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestAsJson))
                 .andExpect(status().isBadRequest());
     }
-
 
     @Test
     public void createContactPersonWithSurnameBlank_returns400() throws Exception {
