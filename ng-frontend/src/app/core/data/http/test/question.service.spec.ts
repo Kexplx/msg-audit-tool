@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { QuestionService } from '../question.service';
 import { Question } from '../../models/question.model';
-import { QUESTIONS_DTO_DUMMY } from './dummies/questions';
+import { QUESTIONS } from './dummies/app-models/questions';
 
 describe('QuestionService', () => {
   let service: QuestionService;
@@ -20,7 +20,7 @@ describe('QuestionService', () => {
   });
 
   it('#getQuestion should return an observable of a question', () => {
-    const questionDto: Question = QUESTIONS_DTO_DUMMY[0];
+    const questionDto: Question = QUESTIONS[0];
     service.getQuestion(1).subscribe(question => {
       expect(question).toEqual(questionDto);
     });

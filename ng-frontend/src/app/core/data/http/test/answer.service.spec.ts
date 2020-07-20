@@ -3,7 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { environment } from 'src/environments/environment';
 import { AnswerService } from '../answer.service';
 import { Answer } from '../../models/answer.model';
-import { ANSWERS_DTO_DUMMY } from './dummies/answers';
+import { ANSWERS } from './dummies/app-models/answers';
 
 describe('AnswerService', () => {
   let service: AnswerService;
@@ -20,7 +20,7 @@ describe('AnswerService', () => {
   });
 
   it('#getAnswers should return an observable of answers', () => {
-    const response: Answer[] = ANSWERS_DTO_DUMMY;
+    const response: Answer[] = ANSWERS;
     service.getAnswers().subscribe(answers => {
       expect(answers).toEqual(response);
     });
@@ -33,7 +33,7 @@ describe('AnswerService', () => {
   });
 
   it('#getAnswersByInterviewId should return an observable of answers', () => {
-    const answerResponse: Answer[] = ANSWERS_DTO_DUMMY;
+    const answerResponse: Answer[] = ANSWERS;
     service.getAnswersByInterviewId(1).subscribe(answers => {
       expect(answers).toEqual(answerResponse);
     });
@@ -46,7 +46,7 @@ describe('AnswerService', () => {
   });
 
   it('#putAnswer should return an answers', () => {
-    const response: Answer = ANSWERS_DTO_DUMMY[0];
+    const response: Answer = ANSWERS[0];
     service.putAnswer({ interviewId: 1, questionId: 2 } as Answer).subscribe(answer => {
       expect(answer).toEqual(response);
     });

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { AuditStatus, Audit } from '../../models/audit.model';
 import { AuditDto } from '../dtos/audit.dto';
-import { AUDITS_DTO_DUMMY } from './dummies/audits';
+import { AUDITS_RESPONSE } from './dummies/responses/audits-response';
 import { environment } from 'src/environments/environment';
 
 describe('AuditService', () => {
@@ -21,8 +21,8 @@ describe('AuditService', () => {
   });
 
   it('#getAudits should return a piped array of auditDtos', () => {
-    const auditDto0 = AUDITS_DTO_DUMMY[0];
-    const auditDto1 = AUDITS_DTO_DUMMY[1];
+    const auditDto0 = AUDITS_RESPONSE[0];
+    const auditDto1 = AUDITS_RESPONSE[1];
 
     service.getAudits().subscribe(audits => {
       verifyAuditContent(audits[0], auditDto0);
@@ -38,7 +38,7 @@ describe('AuditService', () => {
   });
 
   it('#getAudit should return a piped auditDto', () => {
-    const auditDto = AUDITS_DTO_DUMMY[0];
+    const auditDto = AUDITS_RESPONSE[0];
 
     service.getAudit(auditDto.id).subscribe(audit => {
       verifyAuditContent(audit, auditDto);
@@ -53,7 +53,7 @@ describe('AuditService', () => {
   });
 
   it('#postAudit should return a newly created audit', () => {
-    const auditDto: AuditDto = AUDITS_DTO_DUMMY[0];
+    const auditDto: AuditDto = AUDITS_RESPONSE[0];
     const auditPost: Audit = {
       name: 'Test',
       status: AuditStatus.Active,
@@ -76,7 +76,7 @@ describe('AuditService', () => {
   });
 
   it('#putAudit should return an updated audit', () => {
-    const auditDto: AuditDto = AUDITS_DTO_DUMMY[0];
+    const auditDto: AuditDto = AUDITS_RESPONSE[0];
     const auditPut: Audit = {
       name: 'Test',
       status: AuditStatus.Active,

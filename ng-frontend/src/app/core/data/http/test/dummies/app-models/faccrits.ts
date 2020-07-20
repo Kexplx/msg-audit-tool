@@ -1,6 +1,6 @@
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 
-export const FACCRITS_DUMMY: FacCrit[] = [
+export const FACCRITS: FacCrit[] = [
   {
     id: 1,
     goal: 'FacCrit Goal!',

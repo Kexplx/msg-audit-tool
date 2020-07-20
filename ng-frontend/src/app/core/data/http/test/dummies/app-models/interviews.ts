@@ -1,7 +1,7 @@
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { Salutation } from 'src/app/core/data/models/contact-person.model';
 
-export const INTERVIEWS_DUMMY: Interview[] = [
+export const INTERVIEWS: Interview[] = [
   {
     id: 1,
     auditId: 123456,

@@ -1,6 +1,6 @@
 import { ContactPerson, Salutation } from 'src/app/core/data/models/contact-person.model';
 
-export const CONTACTPERSON_DTO_DUMMY: ContactPerson[] = [
+export const CONTACTPERSONS: ContactPerson[] = [
   {
     id: 1,
     role: 'Default Role',

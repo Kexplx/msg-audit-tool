@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { InterviewService } from '../interview.service';
 import { InterviewDto } from '../dtos/interview.dto';
-import { INTERVIEWS_DTO_DUMMY } from './dummies/interviews_dto';
+import { INTERVIEWS_RESPONSE } from './dummies/responses/interviews-response';
 import { Interview } from '../../models/interview.model';
 import { environment } from 'src/environments/environment';
-import { FACCRITS_DUMMY } from './dummies/faccrits';
-import { INTERVIEWS_DUMMY } from './dummies/interviews';
+import { FACCRITS } from './dummies/app-models/faccrits';
+import { INTERVIEWS } from './dummies/app-models/interviews';
 
 describe('InterviewService', () => {
   let service: InterviewService;
@@ -23,7 +23,7 @@ describe('InterviewService', () => {
   });
 
   it('#getInterviews should return an observable interviews', () => {
-    const response: InterviewDto[] = INTERVIEWS_DTO_DUMMY;
+    const response: InterviewDto[] = INTERVIEWS_RESPONSE;
 
     service.getInterviews().subscribe(interviews => {
       for (const [i, interview] of interviews.entries()) {
@@ -39,7 +39,7 @@ describe('InterviewService', () => {
   });
 
   it('#getInterview should return an observable of an interview', () => {
-    const response: InterviewDto = INTERVIEWS_DTO_DUMMY[0];
+    const response: InterviewDto = INTERVIEWS_RESPONSE[0];
 
     service.getInterview(1).subscribe(interview => {
       verifyInterviewContent(interview, response);
@@ -53,9 +53,9 @@ describe('InterviewService', () => {
   });
 
   it('#postInterview should return an observable of an interview', () => {
-    const response: InterviewDto = INTERVIEWS_DTO_DUMMY[0];
+    const response: InterviewDto = INTERVIEWS_RESPONSE[0];
 
-    service.postInterview(INTERVIEWS_DUMMY[0], FACCRITS_DUMMY).subscribe(interview => {
+    service.postInterview(INTERVIEWS[0], FACCRITS).subscribe(interview => {
       verifyInterviewContent(interview, response);
     });
 
@@ -67,13 +67,13 @@ describe('InterviewService', () => {
   });
 
   it('#putInterview should return an observable of an interview', () => {
-    const response: InterviewDto = INTERVIEWS_DTO_DUMMY[0];
+    const response: InterviewDto = INTERVIEWS_RESPONSE[0];
 
-    service.putInterview(INTERVIEWS_DUMMY[0]).subscribe(interview => {
+    service.putInterview(INTERVIEWS[0]).subscribe(interview => {
       verifyInterviewContent(interview, response);
     });
 
-    const req = httpMock.expectOne(environment.baseUrl + 'interviews/' + INTERVIEWS_DUMMY[0].id);
+    const req = httpMock.expectOne(environment.baseUrl + 'interviews/' + INTERVIEWS[0].id);
     expect(req.request.method).toEqual('PUT');
 
     req.flush(response);

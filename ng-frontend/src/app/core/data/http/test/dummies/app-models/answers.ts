@@ -1,6 +1,6 @@
 import { Answer } from 'src/app/core/data/models/answer.model';
 
-export const ANSWERS_DTO_DUMMY: Answer[] = [
+export const ANSWERS: Answer[] = [
   {
     questionId: 1,
     interviewId: 2,

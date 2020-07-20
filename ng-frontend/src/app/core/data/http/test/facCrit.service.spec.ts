@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { FacCrit } from '../../models/faccrit.model';
-import { FACCRITS_DUMMY } from './dummies/faccrits';
+import { FACCRITS } from './dummies/app-models/faccrits';
 import { environment } from 'src/environments/environment';
 import { FacCritService } from '../facCrit.service';
 import * as jasmine from 'karma-jasmine';
@@ -21,7 +21,7 @@ describe('FacCritService', () => {
   });
 
   it('#getFacCrits should return facCrits', () => {
-    const facCritsDto: FacCrit[] = FACCRITS_DUMMY;
+    const facCritsDto: FacCrit[] = FACCRITS;
 
     service.getFacCrits().subscribe(facCrits => {
       expect(facCrits.length).toBe(facCritsDto.length);
@@ -39,7 +39,7 @@ describe('FacCritService', () => {
   });
 
   it('#getFacCritsByInterviewId should return facCrits', () => {
-    const facCritsDto: FacCrit[] = FACCRITS_DUMMY.slice(0, 20);
+    const facCritsDto: FacCrit[] = FACCRITS.slice(0, 20);
 
     service.getFacCritsByInterviewId(21).subscribe(facCrits => {
       expect(facCrits.length).toBe(facCritsDto.length);

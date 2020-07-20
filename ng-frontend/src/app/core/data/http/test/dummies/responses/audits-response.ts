@@ -1,8 +1,8 @@
-import { AuditDto } from '../../dtos/audit.dto';
-import { AuditStatus } from '../../../models/audit.model';
-import { Salutation } from '../../../models/contact-person.model';
+import { AuditDto } from '../../../dtos/audit.dto';
+import { AuditStatus } from '../../../../models/audit.model';
+import { Salutation } from '../../../../models/contact-person.model';
 
-export const AUDITS_DTO_DUMMY: AuditDto[] = [
+export const AUDITS_RESPONSE: AuditDto[] = [
   {
     id: 1,
     name: 'MSG project audit',

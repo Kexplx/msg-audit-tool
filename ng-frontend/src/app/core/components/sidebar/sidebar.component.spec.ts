@@ -6,16 +6,12 @@ import { RouterModule } from '@angular/router';
 import { CoreModule } from '../../core.module';
 import { ContactPersonService } from '../../data/http/contact-person.service';
 import { InterviewService } from '../../data/http/interview.service';
-import {
-  contactPersonServiceSpy,
-  interviewServiceSpy,
-  questionServiceSpy,
-  facCritServiceSpy,
-  auditServiceSpy,
-} from '../ngxs/test/service-spies';
-import { QuestionService } from '../../data/http/question.service';
 import { FacCritService } from '../../data/http/facCrit.service';
 import { AuditService } from '../../data/http/audit.service';
+import { contactPersonServiceSpy } from '../../data/http/test/spies/contact-person.service.spy';
+import { interviewServiceSpy } from '../../data/http/test/spies/interview.service.spy';
+import { facCritServiceSpy } from '../../data/http/test/spies/faccrit.service.spy';
+import { auditServiceSpy } from '../../data/http/test/spies/audit.service.spy';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -28,7 +24,6 @@ describe('SidebarComponent', () => {
       providers: [
         { provide: ContactPersonService, useValue: contactPersonServiceSpy },
         { provide: InterviewService, useValue: interviewServiceSpy },
-        { provide: QuestionService, useValue: questionServiceSpy },
         { provide: FacCritService, useValue: facCritServiceSpy },
         { provide: AuditService, useValue: auditServiceSpy },
       ],
