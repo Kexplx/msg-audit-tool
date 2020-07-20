@@ -255,6 +255,60 @@ public class AnswerRepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithReasonTooLong(){
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason(tooLong);
+        answer.setProof("TestProof");
+        answer.setAnnotation("TestAnno");
+        repository.save(answer);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithProofTooLong(){
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("Reason");
+        answer.setProof(tooLong);
+        answer.setAnnotation("TestAnno");
+        repository.save(answer);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void insertAnswerWithAnnotationTooLong(){
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("Reason");
+        answer.setProof("TestProof");
+        answer.setAnnotation(tooLong);
+        repository.save(answer);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
     public void changeAnswerWithQuestionIdInvalid() {
         answer = new Answer();
         answer.setQuestionId(question.getId());
@@ -456,6 +510,66 @@ public class AnswerRepositoryTest {
         Answer toTest = repository.save(answer1);
 
         Assert.assertTrue(repository.exists(Example.of(toTest)));
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithReasonTooLong() {
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("TestReason");
+        answer.setProof("TestProof");
+        answer.setAnnotation("TestAnno");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setReason(tooLong);
+        repository.save(answer1);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithProofTooLong() {
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("TestReason");
+        answer.setProof("TestProof");
+        answer.setAnnotation("TestAnno");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setProof(tooLong);
+        repository.save(answer1);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void changeAnswerWithAnnotationTooLong() {
+        String tooLong = new String(new char[20000]).replace('\0', 'H');
+        answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setResult(true);
+        answer.setResponsible(true);
+        answer.setDocumentation(true);
+        answer.setProcedure(true);
+        answer.setReason("TestReason");
+        answer.setProof("TestProof");
+        answer.setAnnotation("TestAnno");
+        Answer answer1 = repository.save(answer);
+
+        answer1.setAnnotation(tooLong);
+        repository.save(answer1);
     }
 
     @Test
