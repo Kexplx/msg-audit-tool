@@ -3,7 +3,7 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { AppModule } from 'src/app/app.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { ContactPersonService } from 'src/app/core/http/contact-person.service';
+import { ContactPersonService } from 'src/app/core/data/http/contact-person.service';
 import {
   contactPersonServiceSpy,
   interviewServiceSpy,
@@ -11,10 +11,10 @@ import {
   facCritServiceSpy,
   auditServiceSpy,
 } from 'src/app/core/ngxs/test/service-spies';
-import { InterviewService } from 'src/app/core/http/interview.service';
-import { QuestionService } from 'src/app/core/http/question.service';
-import { FacCritService } from 'src/app/core/http/facCrit.service';
-import { AuditService } from 'src/app/core/http/audit.service';
+import { InterviewService } from 'src/app/core/data/http/interview.service';
+import { QuestionService } from 'src/app/core/data/http/question.service';
+import { FacCritService } from 'src/app/core/data/http/facCrit.service';
+import { AuditService } from 'src/app/core/data/http/audit.service';
 
 describe('AuditListComponent', () => {
   let component: AuditsComponent;

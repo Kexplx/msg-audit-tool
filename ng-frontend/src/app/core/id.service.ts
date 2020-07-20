@@ -43,5 +43,3 @@ export class IdService {
     return ids;
   }
 }
-
-// unsub in sidebar

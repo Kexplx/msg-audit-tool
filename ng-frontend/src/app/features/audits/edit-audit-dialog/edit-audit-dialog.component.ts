@@ -7,9 +7,9 @@ import { Audit } from 'src/app/core/data/models/audit.model';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { map } from 'rxjs/operators';
-import { AuditStore } from 'src/app/core/stores/audit.store';
-import { FacCritStore } from 'src/app/core/stores/faccrit.store';
-import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
+import { FacCritStore } from 'src/app/core/data/stores/faccrit.store';
+import { ContactPersonStore } from 'src/app/core/data/stores/contact-person.store';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

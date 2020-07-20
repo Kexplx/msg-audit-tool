@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { SubSink } from 'subsink';
-import { AnswerStore } from 'src/app/core/stores/answer.store';
+import { AnswerStore } from 'src/app/core/data/stores/answer.store';
 import { map, filter } from 'rxjs/operators';
 
 @Component({

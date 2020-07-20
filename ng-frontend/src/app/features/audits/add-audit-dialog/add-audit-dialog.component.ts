@@ -6,9 +6,9 @@ import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { AuditStore } from 'src/app/core/stores/audit.store';
-import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
-import { FacCritStore } from 'src/app/core/stores/faccrit.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
+import { ContactPersonStore } from 'src/app/core/data/stores/contact-person.store';
+import { FacCritStore } from 'src/app/core/data/stores/faccrit.store';
 
 @Component({
   selector: 'app-add-audit-dialog',

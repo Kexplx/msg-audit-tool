@@ -4,7 +4,7 @@ import { AddInterviewDialogComponent } from './add-interview-dialog.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { Router } from '@angular/router';
-import { ContactPersonService } from 'src/app/core/http/contact-person.service';
+import { ContactPersonService } from 'src/app/core/data/http/contact-person.service';
 import {
   contactPersonServiceSpy,
   interviewServiceSpy,
@@ -12,10 +12,10 @@ import {
   facCritServiceSpy,
   auditServiceSpy,
 } from 'src/app/core/ngxs/test/service-spies';
-import { InterviewService } from 'src/app/core/http/interview.service';
-import { QuestionService } from 'src/app/core/http/question.service';
-import { FacCritService } from 'src/app/core/http/facCrit.service';
-import { AuditService } from 'src/app/core/http/audit.service';
+import { InterviewService } from 'src/app/core/data/http/interview.service';
+import { QuestionService } from 'src/app/core/data/http/question.service';
+import { FacCritService } from 'src/app/core/data/http/facCrit.service';
+import { AuditService } from 'src/app/core/data/http/audit.service';
 
 describe('AddInterviewDialogComponent', () => {
   let component: AddInterviewDialogComponent;

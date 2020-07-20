@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
-import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
+import { ContactPersonStore } from 'src/app/core/data/stores/contact-person.store';
 
 @Component({
   selector: 'app-contact-persons-list',

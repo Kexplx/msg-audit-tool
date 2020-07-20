@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NbSidebarService } from '@nebular/theme';
 import { Observable } from 'rxjs';
 import { Audit } from './core/data/models/audit.model';
-import { AuditStore } from './core/stores/audit.store';
+import { AuditStore } from './core/data/stores/audit.store';
 import { IdService } from './core/id.service';
-import { ContactPersonStore } from './core/stores/contact-person.store';
-import { FacCritStore } from './core/stores/faccrit.store';
+import { ContactPersonStore } from './core/data/stores/contact-person.store';
+import { FacCritStore } from './core/data/stores/faccrit.store';
 
 @Component({
   selector: 'app-root',

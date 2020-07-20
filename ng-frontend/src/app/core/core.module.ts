@@ -2,11 +2,11 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { SidebarInterviewComponent } from './sidebar/sidebar-interview/sidebar-interview.component';
-import { SidebarInterviewListComponent } from './sidebar/sidebar-interview-list/sidebar-interview-list.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { SidebarInterviewComponent } from './components/sidebar/sidebar-interview/sidebar-interview.component';
+import { SidebarInterviewListComponent } from './components/sidebar/sidebar-interview-list/sidebar-interview-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [

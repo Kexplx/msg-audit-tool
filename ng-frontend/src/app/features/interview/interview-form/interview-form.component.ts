@@ -7,7 +7,7 @@ import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { AbstractFormComponent } from '../../../shared/components/forms/abstract-form-component';
 import { map, filter } from 'rxjs/operators';
-import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
+import { ContactPersonStore } from 'src/app/core/data/stores/contact-person.store';
 
 interface SelectedContactPerson {
   name: string;

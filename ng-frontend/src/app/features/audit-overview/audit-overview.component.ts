@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Audit, AuditStatus } from 'src/app/core/data/models/audit.model';
 import { filter, map } from 'rxjs/operators';
 import { SubSink } from 'subsink';
-import { AuditStore } from 'src/app/core/stores/audit.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

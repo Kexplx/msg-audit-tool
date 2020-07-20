@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.model';
 import { map } from 'rxjs/operators';
-import { InterviewStore } from 'src/app/core/stores/interview.store';
+import { InterviewStore } from 'src/app/core/data/stores/interview.store';
 import { SubSink } from 'subsink';
-import { AuditStore } from 'src/app/core/stores/audit.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
 import { IdService } from 'src/app/core/id.service';
 
 @Component({

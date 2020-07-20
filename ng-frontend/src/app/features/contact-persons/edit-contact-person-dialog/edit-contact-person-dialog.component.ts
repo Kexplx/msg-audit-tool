@@ -5,7 +5,7 @@ import { NbDialogService, NbDialogRef } from '@nebular/theme';
 import { defaultDialogOptions } from '../../../shared/components/dialogs/default-dialog-options';
 import { Location } from '@angular/common';
 import { map, filter } from 'rxjs/operators';
-import { ContactPersonStore } from 'src/app/core/stores/contact-person.store';
+import { ContactPersonStore } from 'src/app/core/data/stores/contact-person.store';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

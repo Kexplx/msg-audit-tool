@@ -7,8 +7,8 @@ import { Audit } from 'src/app/core/data/models/audit.model';
 import { Interview } from 'src/app/core/data/models/interview.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
 import { filter, map } from 'rxjs/operators';
-import { InterviewStore } from 'src/app/core/stores/interview.store';
-import { AuditStore } from 'src/app/core/stores/audit.store';
+import { InterviewStore } from 'src/app/core/data/stores/interview.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
 import { IdService } from 'src/app/core/id.service';
 
 @Component({

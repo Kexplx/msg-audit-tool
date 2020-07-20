@@ -2,7 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactPersonsComponent } from './contact-persons.component';
-import { ContactPersonService } from 'src/app/core/http/contact-person.service';
+import { ContactPersonService } from 'src/app/core/data/http/contact-person.service';
 import {
   contactPersonServiceSpy,
   interviewServiceSpy,
@@ -10,10 +10,10 @@ import {
   facCritServiceSpy,
   auditServiceSpy,
 } from 'src/app/core/ngxs/test/service-spies';
-import { InterviewService } from 'src/app/core/http/interview.service';
-import { QuestionService } from 'src/app/core/http/question.service';
-import { FacCritService } from 'src/app/core/http/facCrit.service';
-import { AuditService } from 'src/app/core/http/audit.service';
+import { InterviewService } from 'src/app/core/data/http/interview.service';
+import { QuestionService } from 'src/app/core/data/http/question.service';
+import { FacCritService } from 'src/app/core/data/http/facCrit.service';
+import { AuditService } from 'src/app/core/data/http/audit.service';
 
 describe('ContactPersonsListComponent', () => {
   let component: ContactPersonsComponent;

@@ -5,11 +5,11 @@ import { Interview, InterviewStatus } from 'src/app/core/data/models/interview.m
 import { ActivatedRoute, Router } from '@angular/router';
 import { filter, debounceTime, map } from 'rxjs/operators';
 import { Audit } from 'src/app/core/data/models/audit.model';
-import { AuditStore } from 'src/app/core/stores/audit.store';
-import { InterviewStore } from 'src/app/core/stores/interview.store';
-import { FacCritStore } from 'src/app/core/stores/faccrit.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
+import { InterviewStore } from 'src/app/core/data/stores/interview.store';
+import { FacCritStore } from 'src/app/core/data/stores/faccrit.store';
 import { SubSink } from 'subsink';
-import { AnswerStore } from 'src/app/core/stores/answer.store';
+import { AnswerStore } from 'src/app/core/data/stores/answer.store';
 
 @Component({
   selector: 'app-interview',

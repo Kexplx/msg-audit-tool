@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Audit } from 'src/app/core/data/models/audit.model';
 import { IdService } from 'src/app/core/id.service';
-import { AuditStore } from 'src/app/core/stores/audit.store';
+import { AuditStore } from 'src/app/core/data/stores/audit.store';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
