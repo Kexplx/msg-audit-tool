@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Example;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.TransactionSystemException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -19,10 +21,10 @@ import java.time.Instant;
 /**
  * Test class for the AuditContactPersonRepository
  */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AuditContactPersonRepositoryTest {
-
     private static final String TEST_NAME = "TestName";
     private static final Date TEST_START_DATE = Date.valueOf("2019-10-10");
     private static final Date TEST_END_DATE = Date.valueOf("2020-02-08");
@@ -134,6 +136,32 @@ public class AuditContactPersonRepositoryTest {
 
         repository.delete(toTest);
         Assert.assertFalse(repository.exists((Example.of(toTest))));
+    }
+
+    @Test
+    @Transactional
+    public void deleteAuditContactPersonsByIds(){
+        toTest = new AuditContactPerson();
+        toTest.setAuditId(audit.getId());
+        toTest.setContactPersonId(contactPerson.getId());
+        repository.save(toTest);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+
+        repository.deleteByAuditIdAndContactPersonId(audit.getId(), contactPerson.getId());
+        Assert.assertFalse(repository.exists((Example.of(toTest))));
+    }
+
+    @Test
+    @Transactional
+    public void deleteAuditContactPersonsByInvalidId(){
+        toTest = new AuditContactPerson();
+        toTest.setAuditId(audit.getId());
+        toTest.setContactPersonId(contactPerson.getId());
+        repository.save(toTest);
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
+
+        repository.deleteByAuditIdAndContactPersonId(audit.getId()*2, contactPerson.getId());
+        Assert.assertTrue(repository.exists((Example.of(toTest))));
     }
 
     @After
