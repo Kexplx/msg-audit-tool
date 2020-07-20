@@ -75,34 +75,6 @@ public class AnswerIntegrationTest {
     }
 
     @Test
-    public void getAllAnswers(){
-        Answer answer = new Answer();
-        answer.setQuestionId(question.getId());
-        answer.setInterviewId(interview.getId());
-        answer.setFaccritId(question.getFaccritId());
-        answer.setReason("ReasonBefore");
-        answerRepository.save(answer);
-
-        String url = "/answers";
-
-        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
-                });
-
-        Assert.assertEquals(200, response.getStatusCodeValue());
-    }
-
-    @Test
-    public void getAllAnswersWithNoExistingAnswer(){
-        String url = "/answers";
-        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
-                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
-                });
-
-        Assert.assertEquals(200, response.getStatusCodeValue());
-    }
-
-    @Test
     public void getAnswersByInterviewId() {
         Answer answer = new Answer();
         answer.setQuestionId(question.getId());
@@ -185,7 +157,7 @@ public class AnswerIntegrationTest {
 
         Assert.assertEquals(answerRequest.getInterviewId(), response.getBody().getInterviewId());
         Assert.assertEquals(answerRequest.getQuestionId(), response.getBody().getQuestionId());
-        Assert.assertNotNull(response.getBody().getFaccritId());
+        Assert.assertNotEquals(0,response.getBody().getFaccritId());
     }
 
     @Test
@@ -282,5 +254,33 @@ public class AnswerIntegrationTest {
 
         Assert.assertEquals(400, response.getStatusCodeValue());
         Assert.assertEquals(400, response2.getStatusCodeValue());
+    }
+
+    @Test
+    public void getAllAnswers(){
+        Answer answer = new Answer();
+        answer.setQuestionId(question.getId());
+        answer.setInterviewId(interview.getId());
+        answer.setFaccritId(question.getFaccritId());
+        answer.setReason("ReasonBefore");
+        answerRepository.save(answer);
+
+        String url = "/answers";
+
+        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
+                });
+
+        Assert.assertEquals(200, response.getStatusCodeValue());
+    }
+
+    @Test
+    public void getAllAnswersWithNoExistingAnswer(){
+        String url = "/answers";
+        ResponseEntity<List<BasicAnswerResponse>> response = testRestTemplate.exchange(url, HttpMethod.GET,
+                null, new ParameterizedTypeReference<List<BasicAnswerResponse>>() {
+                });
+
+        Assert.assertEquals(200, response.getStatusCodeValue());
     }
 }
