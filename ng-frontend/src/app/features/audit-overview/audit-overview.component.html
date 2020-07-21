@@ -10,10 +10,10 @@
       </p>
     </div>
     <nb-select [(selected)]="selectedAuditStatus" (selectedChange)="onStatusChange()" placeholder="Placeholder">
-      <nb-option [value]="auditStatuses.Planned">Geplant</nb-option>
-      <nb-option [value]="auditStatuses.Active">Aktiv</nb-option>
-      <nb-option [value]="auditStatuses.Finished">Abgeschlossen</nb-option>
-      <nb-option [value]="auditStatuses.Cancelled">Abgebrochen</nb-option>
+      <nb-option [disabled]="audit.status == auditStatuses.Planned" [value]="auditStatuses.Planned">Geplant</nb-option>
+      <nb-option [disabled]="audit.status == auditStatuses.Active" [value]="auditStatuses.Active">Aktiv</nb-option>
+      <nb-option [disabled]="audit.status == auditStatuses.Finished || audit.status == auditStatuses.Cancelled" [value]="auditStatuses.Finished">Abgeschlossen</nb-option>
+      <nb-option [disabled]="audit.status == auditStatuses.Finished || audit.status == auditStatuses.Cancelled" [value]="auditStatuses.Cancelled">Abgebrochen</nb-option>
     </nb-select>
   </header>
   <nb-route-tabset [tabs]="tabs"></nb-route-tabset>
