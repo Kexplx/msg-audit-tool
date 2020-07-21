@@ -4,8 +4,8 @@
 <a href="https://badges.mit-license.org/" alt="MIT Licence">
     <img src="https://img.shields.io/badge/license-MIT-0677b7" />
 </a>
-<a href="https://github.com/Kexplx/msg-audit-tool/releases/tag/sprint_03_release"  alt="Sprint Release Link">
-    <img src="https://img.shields.io/badge/release-sprint_3-1abc9c" />
+<a href="https://github.com/Kexplx/msg-audit-tool/releases/tag/sprint_14_release"  alt="Sprint Release Link">
+<img src="https://img.shields.io/badge/version 1.0-1abc9c" />
 </a>
 
 <a href="https://kexplx.github.io/msg-audit-tool/"  alt="Documentation Link">
@@ -118,6 +118,7 @@ To start the server while developing you can use Eclipse or another IDE and run 
 This will generate the database structure.
 
 To populate the database with the specific factors, criteria and interview questions from the ISO/IEC 25010 specification use the scripts in `java-backend/src/main/resources/faccrit_insert_script.sql` and `java-backend/src/main/resources/question_insert_script.sql`:
+
 ```
 mysql -u amos -p < java-backend/src/main/resources/faccrit_insert_script.sql
 mysql -u amos -p < java-backend/src/main/resources/question_insert_script.sql
