@@ -1,0 +1,13 @@
+com.amos2020.javabackend
+com.amos2020.javabackend.entity
+com.amos2020.javabackend.repository
+com.amos2020.javabackend.rest_service
+com.amos2020.javabackend.rest_service.controller
+com.amos2020.javabackend.rest_service.request
+com.amos2020.javabackend.rest_service.request.answer
+com.amos2020.javabackend.rest_service.request.audit
+com.amos2020.javabackend.rest_service.request.contactPerson
+com.amos2020.javabackend.rest_service.request.interview
+com.amos2020.javabackend.rest_service.request.scope
+com.amos2020.javabackend.rest_service.response
+com.amos2020.javabackend.service
