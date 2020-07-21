@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -99,7 +100,7 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "reason")
+    @Column(name = "reason", length = Constants.NOTE_LENGTH)
     public String getReason() {
         return reason;
     }
@@ -109,7 +110,7 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "proof")
+    @Column(name = "proof", length = Constants.NOTE_LENGTH)
     public String getProof() {
         return proof;
     }
@@ -119,7 +120,7 @@ public class Answer {
     }
 
     @Basic
-    @Column(name = "annotation")
+    @Column(name = "annotation", length = Constants.NOTE_LENGTH)
     public String getAnnotation() {
         return annotation;
     }

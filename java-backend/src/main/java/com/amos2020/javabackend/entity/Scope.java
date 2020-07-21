@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -42,7 +43,7 @@ public class Scope {
     }
 
     @Basic
-    @Column(name = "change_note", length = 1024)
+    @Column(name = "change_note", length = Constants.NOTE_LENGTH)
     public String getChangeNote() {
         return changeNote;
     }
@@ -63,7 +64,7 @@ public class Scope {
     }
 
     @Basic
-    @Column(name = "note", length = 8096)
+    @Column(name = "note", length = Constants.TEXT_LENGTH)
     public String getNote() {
         return note;
     }

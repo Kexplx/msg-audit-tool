@@ -1,6 +1,6 @@
 package com.amos2020.javabackend.rest_service.request.answer;
 
-import com.amos2020.javabackend.rest_service.Constants;
+import com.amos2020.javabackend.Constants;
 import com.amos2020.javabackend.rest_service.request.BasicRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

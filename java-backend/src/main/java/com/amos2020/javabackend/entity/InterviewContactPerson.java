@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
@@ -36,7 +38,7 @@ public class InterviewContactPerson {
 
     @Basic
     @NotNull
-    @Column(name = "role", length = 256)
+    @Column(name = "role", length = Constants.NAME_LENGTH)
     public String getRole() {
         return role;
     }

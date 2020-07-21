@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -80,7 +81,7 @@ public class Interview {
     }
 
     @Basic
-    @Column(name = "note", length = 1024)
+    @Column(name = "note", length = Constants.NOTE_LENGTH)
     public String getNote() {
         return note;
     }

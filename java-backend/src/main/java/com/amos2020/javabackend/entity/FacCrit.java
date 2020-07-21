@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -47,7 +48,7 @@ public class FacCrit {
 
     @Basic
     @NotBlank
-    @Column(name = "name")
+    @Column(name = "name", length = Constants.NAME_LENGTH)
     public String getName() {
         return name;
     }
@@ -58,7 +59,7 @@ public class FacCrit {
 
 
     @Basic
-    @Column(name = "goal", length = 2048)
+    @Column(name = "goal", length = Constants.GOAL_LENGTH)
     public String getGoal() {
         return goal;
     }

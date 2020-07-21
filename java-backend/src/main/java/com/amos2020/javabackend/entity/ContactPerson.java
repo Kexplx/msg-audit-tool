@@ -1,5 +1,6 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -51,7 +52,7 @@ public class ContactPerson {
     }
 
     @Basic
-    @Column(name = "title")
+    @Column(name = "title", length = Constants.NAME_LENGTH)
     public String getTitle() {
         return title;
     }
@@ -62,7 +63,7 @@ public class ContactPerson {
 
     @Basic
     @NotBlank
-    @Column(name = "forename")
+    @Column(name = "forename", length = Constants.NAME_LENGTH)
     public String getForename() {
         return forename;
     }
@@ -73,7 +74,7 @@ public class ContactPerson {
 
     @Basic
     @NotBlank
-    @Column(name = "surname")
+    @Column(name = "surname", length = Constants.NAME_LENGTH)
     public String getSurname() {
         return surname;
     }
@@ -83,7 +84,7 @@ public class ContactPerson {
     }
 
     @Basic
-    @Column(name = "contact_information")
+    @Column(name = "contact_information", length = Constants.NAME_LENGTH)
     public String getContactInformation() {
         return contactInformation;
     }
@@ -94,7 +95,7 @@ public class ContactPerson {
 
     @Basic
     @NotBlank
-    @Column(name = "company_name")
+    @Column(name = "company_name", length = Constants.NAME_LENGTH)
     public String getCompanyName() {
         return companyName;
     }
@@ -104,7 +105,7 @@ public class ContactPerson {
     }
 
     @Basic
-    @Column(name = "department")
+    @Column(name = "department", length = Constants.NAME_LENGTH)
     public String getDepartment() {
         return department;
     }
@@ -114,7 +115,7 @@ public class ContactPerson {
     }
 
     @Basic
-    @Column(name = "sector")
+    @Column(name = "sector", length = Constants.NAME_LENGTH)
     public String getSector() {
         return sector;
     }
@@ -125,7 +126,7 @@ public class ContactPerson {
 
     @Basic
     @NotBlank
-    @Column(name = "corporate_division")
+    @Column(name = "corporate_division", length = Constants.NAME_LENGTH)
     public String getCorporateDivision() {
         return corporateDivision;
     }

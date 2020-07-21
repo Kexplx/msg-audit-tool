@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
@@ -38,7 +40,7 @@ public class Question {
 
     @Basic
     @NotNull
-    @Column(name = "text_de")
+    @Column(name = "text_de", length = Constants.NAME_LENGTH)
     public String getTextDe() {
         return textDe;
     }

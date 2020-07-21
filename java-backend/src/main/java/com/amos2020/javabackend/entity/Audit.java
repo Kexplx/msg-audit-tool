@@ -1,5 +1,7 @@
 package com.amos2020.javabackend.entity;
 
+import com.amos2020.javabackend.Constants;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -39,7 +41,7 @@ public class Audit {
 
     @Basic
     @NotBlank
-    @Column(name = "name", length = 256)
+    @Column(name = "name", length = Constants.NAME_LENGTH)
     public String getName() {
         return name;
     }
@@ -80,7 +82,7 @@ public class Audit {
     }
 
     @Basic
-    @Column(name = "cancellation_reason", length = 256)
+    @Column(name = "cancellation_reason", length = Constants.NAME_LENGTH)
     public String getCancellationReason() {
         return cancellationReason;
     }
