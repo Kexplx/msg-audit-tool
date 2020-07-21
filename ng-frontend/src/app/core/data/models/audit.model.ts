@@ -5,7 +5,7 @@ export enum AuditStatus {
   Planned = 'OPEN',
   Active = 'ACTIVE',
   Finished = 'FINISHED',
-  Cancelled = 'CANCELLED',
+  Cancelled = 'CANCELED',
 }
 
 export interface Audit {
