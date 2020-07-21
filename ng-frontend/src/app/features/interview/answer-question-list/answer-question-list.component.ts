@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Answer } from 'src/app/core/data/models/answer.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
@@ -12,7 +12,7 @@ import { map, filter } from 'rxjs/operators';
   templateUrl: './answer-question-list.component.html',
   styleUrls: ['./answer-question-list.component.scss'],
 })
-export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
+export class AnswerQuestionListComponent implements OnInit, OnDestroy {
   @Input() facCrit: FacCrit;
   @Input() audit: Audit;
   @Input() interviewId: number;
@@ -25,7 +25,7 @@ export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
 
   constructor(private fb: FormBuilder, private answerStore: AnswerStore) {}
 
-  ngOnChanges() {
+  ngOnInit() {
     const answersSub = this.answerStore.answers$
       .pipe(
         filter(answers => answers != null),
