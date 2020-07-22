@@ -115,14 +115,9 @@ The Java-Backend uses the Spring Boot Framework and MySQL.
 ### Run
 
 To start the server while developing you can use Eclipse or another IDE and run `com.amos2020.javabackend.JavaBackendApplication` as Java Application.
-This will generate the database structure.
+This will generate the database structure and fill the database with the specific factors, criteria and interview questions from the ISO/IEC 25010 specification.
 
-To populate the database with the specific factors, criteria and interview questions from the ISO/IEC 25010 specification use the scripts in `java-backend/src/main/resources/faccrit_insert_script.sql` and `java-backend/src/main/resources/question_insert_script.sql`:
-
-```
-mysql -u amos -p < java-backend/src/main/resources/faccrit_insert_script.sql
-mysql -u amos -p < java-backend/src/main/resources/question_insert_script.sql
-```
+With the initial configuration the database is dropped, recreated and filled with every build. In order to change that the value `spring.datasource.initialization-mode` has to be changed from `always` to `never` after the database was initalized.
 
 ### Package and run
 
