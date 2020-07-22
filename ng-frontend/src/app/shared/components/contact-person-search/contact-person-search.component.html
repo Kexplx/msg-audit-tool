@@ -1,0 +1,8 @@
+<input type="text" #contactPersonInput nbInput fullWidth [nbAutocomplete]="auto" (input)="onInput($event.target.value)" data-cy="interview-contacts" />
+<nb-autocomplete (selectedChange)="onContactPersonSelect($event); contactPersonInput.value = ''" #auto>
+  <nb-option *ngFor="let contactPerson of filteredContactPersons$ | async" [value]="contactPerson" data-cy="contact-option">
+    <span
+      >{{ contactPerson.forename + ' ' + contactPerson.surname }} <span class="subtitle-2"> | {{ contactPerson.companyName }}</span></span
+    >
+  </nb-option>
+</nb-autocomplete>
