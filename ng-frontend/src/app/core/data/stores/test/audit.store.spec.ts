@@ -1,28 +1,37 @@
 import { AuditService } from '../../http/audit.service';
 import { AUDITS } from '../../http/test/dummies/app-models/audits';
-import { of } from 'rxjs';
+import { of, timer } from 'rxjs';
 import { AuditStore } from '../audit.store';
 import { filter, first } from 'rxjs/operators';
 import { Audit } from '../../models/audit.model';
+import { StoreActionService, StoreActionType } from '../store-action.service';
 
 /**
  * Unit tests for AuditStore.
  *
  * Dummy Data importet from ../../http/test/dummies/app-models/audits.
  */
-describe('AuditStore', () => {
+fdescribe('AuditStore', () => {
   let auditStore: AuditStore;
   let auditServiceSpy: jasmine.SpyObj<AuditService>;
+  let storeActionServiceSpy: jasmine.SpyObj<StoreActionService>;
 
   beforeEach(() => {
     auditServiceSpy = jasmine.createSpyObj<AuditService>(['getAudits', 'postAudit', 'putAudit']);
+    storeActionServiceSpy = jasmine.createSpyObj<StoreActionService>(['notify']);
 
-    auditStore = new AuditStore(auditServiceSpy);
+    auditStore = new AuditStore(auditServiceSpy, storeActionServiceSpy);
   });
 
   describe('#loadAudits', () => {
     beforeEach(() => {
       auditServiceSpy.getAudits.and.returnValue(of(AUDITS));
+    });
+
+    it('should call #notify once', () => {
+      auditStore.loadAudits();
+
+      expect(storeActionServiceSpy.notify.calls.count()).toEqual(1);
     });
 
     it('should call #getAudits once', () => {
@@ -46,6 +55,12 @@ describe('AuditStore', () => {
     beforeEach(() => {
       postAuditResponse = AUDITS[0];
       auditServiceSpy.postAudit.and.returnValue(of(postAuditResponse));
+    });
+
+    it('should call #notify once', () => {
+      auditStore.addAudit({} as Audit);
+
+      expect(storeActionServiceSpy.notify.calls.count()).toEqual(1);
     });
 
     it('should call #postAudit', () => {
@@ -73,7 +88,7 @@ describe('AuditStore', () => {
       auditServiceSpy.putAudit.and.returnValue(of(putAuditResponse));
     });
 
-    it('should call #putAudit', () => {
+    it('should call #putAudit and #notify', () => {
       auditStore.audits$
         .pipe(
           filter(audits => audits != null),
@@ -84,6 +99,7 @@ describe('AuditStore', () => {
           auditStore.updateAudit(auditToUpdate);
 
           expect(auditServiceSpy.putAudit.calls.count()).toEqual(1);
+          expect(storeActionServiceSpy.notify.calls.count()).toEqual(1);
         });
       auditStore.loadAudits(); // load some audits into _audits.value.
     });
