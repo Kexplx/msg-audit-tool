@@ -2,7 +2,7 @@
   <p class="subtitle-2 mb-2" data-cy="contact-name">
     {{ contactPerson.forename + ' ' + contactPerson.surname }}
   </p>
-  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" nbPopoverTrigger="hint" nbButton data-cy="edit-person-button">
+  <a [routerLink]="contactPerson.id + '/edit'" nbPopover="Bearbeiten" ghost nbPopoverTrigger="hint" nbButton data-cy="edit-person-button">
     <nb-icon icon="edit-outline"></nb-icon>
   </a>
 </header>
