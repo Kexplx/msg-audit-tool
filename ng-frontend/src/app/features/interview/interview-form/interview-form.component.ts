@@ -28,14 +28,9 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   facCritSelected = false;
 
   contactPersons: ContactPerson[];
-  filteredContactPersons$: Observable<ContactPerson[]>;
   selectedContactPersons: SelectedContactPerson[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    protected dialogService: NbDialogService,
-    private contactPersonStore: ContactPersonStore,
-  ) {
+  constructor(private fb: FormBuilder, protected dialogService: NbDialogService) {
     super(dialogService);
   }
 
@@ -48,19 +43,12 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
   }
 
   ngOnInit() {
-    this.contactPersonStore.contactPersons$
-      .pipe(filter(contactPersons => contactPersons != null))
-      .subscribe(contactPersons => {
-        this.contactPersons = contactPersons;
-        this.filteredContactPersons$ = of(contactPersons);
-
-        this.selectedContactPersons =
-          this.interview?.contactPersons?.map(cp => ({
-            company: cp.companyName,
-            name: cp.forename + ' ' + cp.surname,
-            value: cp,
-          })) ?? [];
-      });
+    this.selectedContactPersons =
+      this.interview?.contactPersons?.map(cp => ({
+        company: cp.companyName,
+        name: cp.forename + ' ' + cp.surname,
+        value: cp,
+      })) ?? [];
 
     this.formGroup = this.fb.group({
       startDate: [this.interview?.startDate ?? new Date()],
@@ -110,12 +98,6 @@ export class InterviewFormComponent extends AbstractFormComponent implements OnI
     for (const crit of criteria) {
       this.formGroup.get(String(crit.id))?.setValue(checked);
     }
-  }
-
-  filterOptions(input: string) {
-    this.filteredContactPersons$ = of(this.contactPersons).pipe(
-      map(options => options.filter(o => o.forename.toLowerCase().startsWith(input.toLowerCase()))),
-    );
   }
 
   onContactPersonSelected(cp: ContactPerson) {

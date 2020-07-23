@@ -9,11 +9,17 @@ import { ConfirmDiscardDialogComponent } from './components/dialogs/confirm-disc
 import { ContactPersonSearchComponent } from './components/contact-person-search/contact-person-search.component';
 
 @NgModule({
-  declarations: [FactorsPipe, CriteriasPipe, ConfirmDiscardDialogComponent, ContactPersonSearchComponent],
+  declarations: [
+    FactorsPipe,
+    CriteriasPipe,
+    ConfirmDiscardDialogComponent,
+    ContactPersonSearchComponent,
+  ],
   imports: [CommonModule, RouterModule, NebularModule],
   exports: [
     NebularModule,
     CriteriasPipe,
+    ContactPersonSearchComponent,
     FactorsPipe,
     ReactiveFormsModule,
     FormsModule,

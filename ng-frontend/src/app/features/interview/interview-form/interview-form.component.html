@@ -34,14 +34,7 @@
       </div>
       <div class="mb-2">
         <label class="label">Kontaktpersonen</label>
-        <input type="text" #contactPersonInput nbInput fullWidth [nbAutocomplete]="auto" (input)="filterOptions($event.target.value)" data-cy="interview-contacts" />
-        <nb-autocomplete (selectedChange)="onContactPersonSelected($event); contactPersonInput.value = ''" #auto>
-          <nb-option *ngFor="let option of filteredContactPersons$ | async" [value]="option" data-cy="contact-option">
-            <span
-              >{{ option.forename + ' ' + option.surname }} <span class="subtitle-2"> | {{ option.companyName }}</span></span
-            >
-          </nb-option>
-        </nb-autocomplete>
+        <app-contact-person-search (contactPersonSelected)="onContactPersonSelected($event)"></app-contact-person-search>
         <nb-list class="mt-1">
           <nb-list-item *ngFor="let cp of selectedContactPersons" data-cy="contact-chosen">
             <div class="wrapper-selected-person">

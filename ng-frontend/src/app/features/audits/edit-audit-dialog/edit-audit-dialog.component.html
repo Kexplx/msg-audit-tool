@@ -3,15 +3,7 @@
     <ng-container *ngIf="audit$ | async; let audit">
       <ng-container *ngIf="contactPersons$ | async; let contactPersons">
         <ng-container *ngIf="facCrits$ | async; let facCrits">
-          <app-audit-form
-            [facCrits]="facCrits"
-            [contactPersons]="contactPersons"
-            [audit]="audit"
-            submitButtonName="speichern"
-            cancelButtonName="abbrechen"
-            (cancelled)="onCancel()"
-            (formSubmitted)="onSubmit($event)">
-          </app-audit-form>
+          <app-audit-form [facCrits]="facCrits" [audit]="audit" submitButtonName="speichern" cancelButtonName="abbrechen" (cancelled)="onCancel()" (formSubmitted)="onSubmit($event)"> </app-audit-form>
         </ng-container>
       </ng-container>
     </ng-container>

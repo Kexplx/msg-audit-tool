@@ -24,14 +24,12 @@ export class AddAuditDialogComponent implements AfterViewInit, OnInit {
 
   constructor(
     private dialogService: NbDialogService,
-    private contactPersonStore: ContactPersonStore,
     private auditStore: AuditStore,
     private facCritStore: FacCritStore,
     private location: Location,
   ) {}
 
   ngOnInit() {
-    this.contactPersons$ = this.contactPersonStore.contactPersons$;
     this.facCrits$ = this.facCritStore.facCrits$;
   }
 

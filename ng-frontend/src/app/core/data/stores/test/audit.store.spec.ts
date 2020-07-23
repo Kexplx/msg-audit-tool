@@ -10,7 +10,7 @@ import { Audit } from '../../models/audit.model';
  *
  * Dummy Data importet from ../../http/test/dummies/app-models/audits.
  */
-fdescribe('AuditStore', () => {
+describe('AuditStore', () => {
   let auditStore: AuditStore;
   let auditServiceSpy: jasmine.SpyObj<AuditService>;
 

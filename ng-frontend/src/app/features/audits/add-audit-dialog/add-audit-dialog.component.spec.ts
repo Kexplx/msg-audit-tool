@@ -9,7 +9,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreModule } from 'src/app/core/core.module';
 import { ContactPersonService } from 'src/app/core/data/http/contact-person.service';
 import { InterviewService } from 'src/app/core/data/http/interview.service';
-import { QuestionService } from 'src/app/core/data/http/question.service';
 import { FacCritService } from 'src/app/core/data/http/facCrit.service';
 import { AuditService } from 'src/app/core/data/http/audit.service';
 import { contactPersonServiceSpy } from 'src/app/core/data/http/test/spies/contact-person.service.spy';

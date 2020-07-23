@@ -5,9 +5,7 @@ import { NbDialogService } from '@nebular/theme';
 import { dateRangeValidator } from 'src/app/shared/components/forms/form-helpers';
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { FacCrit } from 'src/app/core/data/models/faccrit.model';
-import { Observable, of } from 'rxjs';
 import { AbstractFormComponent } from '../../../shared/components/forms/abstract-form-component';
-import { map } from 'rxjs/operators';
 
 const defaultScopeComplement = [8, 14];
 
@@ -24,12 +22,10 @@ interface SelectedContactPerson {
 })
 export class AuditFormComponent extends AbstractFormComponent implements OnInit {
   @Input() audit: Audit;
-  @Input() contactPersons: ContactPerson[];
   @Input() facCrits: FacCrit[];
 
   @Output() formSubmitted = new EventEmitter<Partial<Audit>>();
 
-  filteredContactPersons$: Observable<ContactPerson[]>;
   selectedContactPersons: SelectedContactPerson[] = [];
 
   constructor(private formBuilder: FormBuilder, protected dialogService: NbDialogService) {
@@ -61,7 +57,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
       { validator: dateRangeValidator('startDate', 'endDate') },
     );
 
-    this.filteredContactPersons$ = of(this.contactPersons);
     this.selectedContactPersons =
       this.audit?.contactPersons.map(cp => ({
         company: cp.companyName,
@@ -115,12 +110,6 @@ export class AuditFormComponent extends AbstractFormComponent implements OnInit 
     for (const facCrit of this.facCrits.filter(x => x.referenceId === +factorId)) {
       this.formGroup.get(String(facCrit.id)).setValue(checked);
     }
-  }
-
-  filterContactPersonOptions(input: string) {
-    this.filteredContactPersons$ = of(this.contactPersons).pipe(
-      map(options => options.filter(o => o.forename.toLowerCase().startsWith(input.toLowerCase()))),
-    );
   }
 
   onContactPersonSelected(cp: ContactPerson) {
