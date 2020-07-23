@@ -6,6 +6,7 @@ import { AuditStore } from './core/data/stores/audit.store';
 import { IdService } from './core/id.service';
 import { ContactPersonStore } from './core/data/stores/contact-person.store';
 import { FacCritStore } from './core/data/stores/faccrit.store';
+import { RoutesService } from './core/routes.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
     private sidebarService: NbSidebarService,
     private auditStore: AuditStore,
     private idService: IdService,
+    private routesService: RoutesService,
     private contactPersonStore: ContactPersonStore,
     private facCritStore: FacCritStore,
   ) {}
@@ -26,12 +28,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.audits$ = this.auditStore.audits$;
 
-    // Load initial data and listen to router navigations.
+    // Load initial data
     this.auditStore.loadAudits();
     this.contactPersonStore.loadContactPersons();
     this.facCritStore.loadFacCrits();
 
-    this.idService.listenToNaviagtion();
+    //  Subscribe to router navigation.
+    this.idService.subscribeToNavigation();
+    this.routesService.subscribeToNavigation();
   }
 
   toggleSidebar() {

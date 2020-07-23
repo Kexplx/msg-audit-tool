@@ -10,11 +10,9 @@ export class RoutesService {
   inInterviewsList$ = new Subject<boolean>();
   inInterview$ = new Subject<boolean>();
 
-  constructor(private router: Router) {
-    this.listenToNaviagtion();
-  }
+  constructor(private router: Router) {}
 
-  private listenToNaviagtion(): void {
+  subscribeToNavigation(): void {
     const inInterviewListRegex = /^\/audits\/[^\/]*\/interviews(\/new){0,1}$/;
     const inInterviewRegex = /^\/audits\/[^\/]*\/interviews\/[^\/]*\/[^\/]*$/;
 

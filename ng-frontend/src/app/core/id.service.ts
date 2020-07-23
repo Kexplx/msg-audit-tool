@@ -14,7 +14,7 @@ export class IdService {
 
   constructor(private router: Router) {}
 
-  listenToNaviagtion(): void {
+  subscribeToNavigation(): void {
     this.router.events
       ?.pipe(filter(obj => obj instanceof NavigationEnd))
       .subscribe(({ url }: NavigationEnd) => {
