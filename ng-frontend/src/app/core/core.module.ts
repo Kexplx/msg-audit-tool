@@ -7,6 +7,7 @@ import { SidebarInterviewComponent } from './components/sidebar/sidebar-intervie
 import { SidebarInterviewListComponent } from './components/sidebar/sidebar-interview-list/sidebar-interview-list.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { StoreActionSubscriberDirective } from './store-action-subscriber.directive';
 
 @NgModule({
   declarations: [
@@ -14,9 +15,10 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     NotFoundComponent,
     SidebarInterviewComponent,
     SidebarInterviewListComponent,
+    StoreActionSubscriberDirective,
   ],
   imports: [HttpClientModule, BrowserModule, SharedModule, BrowserAnimationsModule],
-  exports: [NotFoundComponent, SidebarComponent],
+  exports: [NotFoundComponent, SidebarComponent, StoreActionSubscriberDirective],
 })
 export class CoreModule {
   /**
