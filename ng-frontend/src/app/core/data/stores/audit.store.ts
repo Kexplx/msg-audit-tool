@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Audit } from '../models/audit.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AuditService } from '../http/audit.service';
+import { StoreActionService, StoreActionType } from './store-action.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,22 +13,33 @@ export class AuditStore {
     return this._audits$.asObservable();
   }
 
-  constructor(private auditService: AuditService) {}
+  constructor(private auditService: AuditService, private storeActionService: StoreActionService) {}
 
   loadAudits(): void {
     this.auditService.getAudits().subscribe(audits => {
       this._audits$.next(audits);
+
+      this.storeActionService.notify({
+        message: 'Audits wurden geladen.',
+        type: StoreActionType.Load,
+      });
     });
   }
 
   addAudit(audit: Audit): void {
     this.auditService.postAudit(audit).subscribe(audit => {
       const audits = this._audits$.value;
+
+      this.storeActionService.notify({
+        message: 'Audit wurde erstellt.',
+        type: StoreActionType.Add,
+      });
+
       if (!audits) {
         return this._audits$.next([audit]);
       }
 
-      return this._audits$.next([...audits, audit]);
+      this._audits$.next([...audits, audit]);
     });
   }
 
@@ -47,6 +59,11 @@ export class AuditStore {
         audit,
         ...audits.slice(indexOfUpdatedAudit + 1),
       ]);
+
+      this.storeActionService.notify({
+        message: 'Audit wurde aktualisiert.',
+        type: StoreActionType.Edit,
+      });
     });
   }
 }
