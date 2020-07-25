@@ -25,4 +25,16 @@ export class StoreActionService {
   notify(action: StoreAction) {
     this._storeAction$.next(action);
   }
+
+  notifyLoad(message: string) {
+    this._storeAction$.next({ type: StoreActionType.Load, message });
+  }
+
+  notifyAdd(message: string) {
+    this._storeAction$.next({ type: StoreActionType.Add, message });
+  }
+
+  notifyEdit(message: string) {
+    this._storeAction$.next({ type: StoreActionType.Edit, message });
+  }
 }
