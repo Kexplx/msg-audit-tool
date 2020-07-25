@@ -16,11 +16,6 @@ import { environment } from 'src/environments/environment';
 export class InterviewService {
   constructor(private http: HttpClient) {}
 
-  /**
-   * Builds an observable for making a GET request to get all interviews.
-   *
-   * @returns An Observable of the interviews.
-   */
   getInterviews(): Observable<Interview[]> {
     const url = environment.baseUrl + 'interviews';
 
@@ -39,12 +34,6 @@ export class InterviewService {
     );
   }
 
-  /**
-   * Builds an observable for making a GET request to get all interviews by an audit id.
-   *
-   * @param id The audit's id.
-   * @returns An Observable of the interviews.
-   */
   getInterviewsByAuditId(auditId: number): Observable<Interview[]> {
     const url = environment.baseUrl + 'audits/' + auditId + '/interviews';
 
@@ -63,12 +52,6 @@ export class InterviewService {
     );
   }
 
-  /**
-   * Builds an observable for making a GET request to get an interview.
-   *
-   * @param id The interview's id.
-   * @returns An Observable of the interview.
-   */
   getInterview(id: number): Observable<Interview> {
     const url = environment.baseUrl + 'interviews/' + id;
 
@@ -85,13 +68,6 @@ export class InterviewService {
     );
   }
 
-  /**
-   * Builds an observable for making a POST request to create an interview.
-   *
-   * @param interview The interview to create.
-   * @param interviewScope The interviews scope (List of assigned fac crits).
-   * @returns An Observable of the created interview.
-   */
   postInterview(
     { contactPersons, startDate, auditId }: Interview,
     interviewScope: FacCrit[],
@@ -127,12 +103,6 @@ export class InterviewService {
     );
   }
 
-  /**
-   * Builds an observable for making a PUT request to update an interview.
-   *
-   * @param interview The interview to update.
-   * @returns An Observable of the updated interview.
-   */
   putInterview({ startDate, endDate, status, note, id }: Interview): Observable<Interview> {
     const url = environment.baseUrl + 'interviews/' + id;
 

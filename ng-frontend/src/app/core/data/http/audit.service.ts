@@ -16,11 +16,6 @@ import { AuditScopePutRequest } from './request-models/audit-scope-put.request';
 export class AuditService {
   constructor(private http: HttpClient) {}
 
-  /**
-   * Builds an observable for making a GET request to get all audits.
-   *
-   * @returns An Observable of the audits.
-   */
   getAudits(): Observable<Audit[]> {
     return this.http.get(environment.baseUrl + 'audits').pipe(
       map((audits: AuditResponse[]) => {
@@ -43,12 +38,6 @@ export class AuditService {
     );
   }
 
-  /**
-   * Builds an observable for making a GET request to get an audit by id.
-   *
-   * @param id The audit's id.
-   * @returns An Observable of the audit.
-   */
   getAudit(id: number): Observable<Audit> {
     return this.http.get<AuditResponse>(environment.baseUrl + 'audits/' + id).pipe(
       map<AuditResponse, Audit>(auditDto => {
@@ -68,12 +57,6 @@ export class AuditService {
     );
   }
 
-  /**
-   * Builds an observable for making a POST request to creats an audit.
-   *
-   * @param audit The audit to create.
-   * @returns An Observable of the created audit.
-   */
   postAudit(audit: Audit): Observable<Audit> {
     const auditDto: AuditPostRequest = {
       name: audit.name,
@@ -101,13 +84,6 @@ export class AuditService {
     );
   }
 
-  /**
-   * Builds an observable for making a PUT request to update an audit.
-   *
-   * @param audit The old audit.
-   * @param audit The updated audit.
-   * @returns An Observable of the updated audit.
-   */
   putAudit(oldAudit: Audit, newAudit: Audit): Observable<Audit> {
     this.putAuditScope(oldAudit, newAudit);
     this.putAuditContactPersons(oldAudit, newAudit);
@@ -166,6 +142,15 @@ export class AuditService {
     }
   }
 
+  /**
+   * Updates the audits scope.
+   *
+   * Compares the old and new scope of an audit and
+   * calls the PUT endpoint with the removed flag set to
+   * true (FacCrit will be removed) or false (FacCrit will be added).
+   * @param oldAudit The old audit.
+   * @param newAudit The updated audit.
+   */
   private putAuditScope(oldAudit: Audit, newAudit: Audit): void {
     const url = environment.baseUrl + 'audits/' + newAudit.id + '/scope';
 
@@ -179,7 +164,7 @@ export class AuditService {
           facCritId: facCrit.id,
           changeNote: 'Change note for a scope item',
           note: 'Note for a scope item',
-          removed: false,
+          removed: false, // FacCrit will be addded to scope
         };
 
         this.http.put(url, auditScopeChange).subscribe(() => {});
@@ -193,9 +178,9 @@ export class AuditService {
           facCritId: facCrit.id,
           changeNote: 'Change note for a scope item',
           note: 'Note for a scope item',
-          removed: true,
+          removed: true, // FacCrit will be removed from scope
         };
-        console.log(facCrit.id);
+
         this.http.put(url, auditScopeChange).subscribe(() => {});
       }
     }
