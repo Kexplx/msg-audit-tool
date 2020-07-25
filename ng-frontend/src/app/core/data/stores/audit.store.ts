@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Audit } from '../models/audit.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { AuditService } from '../http/audit.service';
-import { StoreActionService, StoreActionType } from './store-action.service';
+import { StoreActionService } from './store-action.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +19,7 @@ export class AuditStore {
     this.auditService.getAudits().subscribe(audits => {
       this._audits$.next(audits);
 
-      this.storeActionService.notify({
-        message: 'Audits wurden geladen.',
-        type: StoreActionType.Load,
-      });
+      this.storeActionService.notifyLoad('Audits wurden geladen.');
     });
   }
 
@@ -30,25 +27,18 @@ export class AuditStore {
     this.auditService.postAudit(audit).subscribe(audit => {
       const audits = this._audits$.value;
 
-      this.storeActionService.notify({
-        message: 'Audit wurde erstellt.',
-        type: StoreActionType.Add,
-      });
-
       if (!audits) {
-        return this._audits$.next([audit]);
+        this._audits$.next([audit]);
+      } else {
+        this._audits$.next([...audits, audit]);
       }
 
-      this._audits$.next([...audits, audit]);
+      this.storeActionService.notifyAdd('Audit wurde erstellt.');
     });
   }
 
   updateAudit(audit: Audit): void {
     const oldAudit = this._audits$.value?.find(a => a.id === audit.id);
-
-    if (!oldAudit) {
-      throw new Error("Couldn't find audit to update");
-    }
 
     this.auditService.putAudit(oldAudit, audit).subscribe(audit => {
       const audits = this._audits$.value;
@@ -60,10 +50,7 @@ export class AuditStore {
         ...audits.slice(indexOfUpdatedAudit + 1),
       ]);
 
-      this.storeActionService.notify({
-        message: 'Audit wurde aktualisiert.',
-        type: StoreActionType.Edit,
-      });
+      this.storeActionService.notifyEdit('Audit wurde aktualisiert.');
     });
   }
 }
