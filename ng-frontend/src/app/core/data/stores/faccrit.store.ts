@@ -21,42 +21,16 @@ export class FacCritStore {
     });
   }
 
-  groupedFacCrits(facCritIds: number[]) {
-    const facCrits: FacCrit[] = this._facCrits$.value.filter(fc => facCritIds.includes(fc.id));
-    const result: FacCrit[] = [];
+  getGroupedFacCrits(facCritIds: number[]): FacCrit[] {
+    const facCrits = this._facCrits$.value.filter(fc => facCritIds.includes(fc.id));
 
-    for (const factor of facCrits.filter(fc => !fc.referenceId)) {
-      const criteriaOfFactor = facCrits
-        .filter(fc => fc.referenceId === factor.id)
-        .sort((a, b) => a.id - b.id);
-      result.push(factor, ...criteriaOfFactor);
-    }
-
-    for (const criteria of facCrits.filter(fc => fc.referenceId)) {
-      if (!result.find(fc => fc === criteria)) {
-        result.push(criteria);
-      }
-    }
-
-    result.sort((a, b) => {
-      if (a.referenceId && b.referenceId) return a.referenceId - b.referenceId;
-      if (!a.referenceId && b.referenceId) return a.id - b.referenceId;
-      if (a.referenceId && !b.referenceId) return a.referenceId - b.id;
-      if (!a.referenceId && !b.referenceId) return a.id - b.id;
-    });
-
-    return this.distinctFacCrits(result);
+    return facCrits.sort((a, b) => this.getNumberFromFacCrit(a) - this.getNumberFromFacCrit(b));
   }
 
-  private distinctFacCrits(facCrits: FacCrit[]) {
-    const distinctFacCrits: FacCrit[] = [];
+  private getNumberFromFacCrit(facCrit: FacCrit): number {
+    const numberRegex = /(\d)(.(\d))?/;
+    const execArray = numberRegex.exec(facCrit.name);
 
-    for (const facCrit of facCrits) {
-      if (!distinctFacCrits.find(fc => fc.id === facCrit.id)) {
-        distinctFacCrits.push(facCrit);
-      }
-    }
-
-    return distinctFacCrits;
+    return Number(execArray[1] + String(execArray[3] ? execArray[3] : '0'));
   }
 }
