@@ -1,6 +1,6 @@
-<ng-container *ngIf="audit$ | async | byId: auditId as audit">
-  <ng-container *ngIf="interview$ | async | byId: interviewId; let interview">
-    <ng-container *ngIf="facCrit$ | async | byId: facCritId; let facCrit">
+<ng-container *ngIf="audits$ | async | byId: auditId as audit">
+  <ng-container *ngIf="interview">
+    <ng-container *ngIf="facCrits$ | async | byId: facCritId; let facCrit">
       <header class="header-main">
         <div class="header-main-info">
           <h4 data-cy="heading">

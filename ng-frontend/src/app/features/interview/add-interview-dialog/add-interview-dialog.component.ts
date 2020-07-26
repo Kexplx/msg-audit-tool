@@ -50,11 +50,6 @@ export class AddInterviewDialogComponent implements AfterViewInit, OnInit {
     });
   }
 
-  /**
-   * Dispatches AddInterview action to add the submitted interview
-   *
-   * @param interview The interview filled out in the form
-   */
   onSubmit(interview: Interview, scope: FacCrit[]) {
     this.interviewStore.addInterview({ ...interview, auditId: this.auditId }, scope);
     this.dialogRef.close();

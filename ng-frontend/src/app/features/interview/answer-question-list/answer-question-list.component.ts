@@ -12,20 +12,19 @@ import { map, filter } from 'rxjs/operators';
   templateUrl: './answer-question-list.component.html',
   styleUrls: ['./answer-question-list.component.scss'],
 })
-export class AnswerQuestionListComponent implements OnInit, OnDestroy {
+export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
   @Input() facCrit: FacCrit;
   @Input() audit: Audit;
   @Input() interviewId: number;
 
   answers: Answer[];
-
   formGroups: FormGroup[] = [];
 
   private readonly subSink = new SubSink();
 
   constructor(private fb: FormBuilder, private answerStore: AnswerStore) {}
 
-  ngOnInit() {
+  ngOnChanges() {
     const answersSub = this.answerStore.answers$
       .pipe(
         filter(answers => answers != null),
