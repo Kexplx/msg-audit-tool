@@ -1,69 +1,73 @@
-<ng-container *ngIf="interview && facCrit">
-  <header class="header-main">
-    <div class="header-main-info">
-      <h4 data-cy="heading">
-        Interview
-        <span class="label">{{ interview.startDate | date: 'dd.MM.yyyy' }}</span>
-      </h4>
-      <span class="subtitle-2" *ngFor="let person of interview.contactPersons; let i = index" data-cy="subheading">
-        {{ person.forename + ' ' + person.surname }}
-        {{ i + 1 === interview.contactPersons.length ? '' : ', ' }}
-      </span>
-    </div>
-    <div>
-      <button class="mr-1" ghost [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton data-cy="back-to-interviews">
-        <nb-icon icon="arrow-back-outline"></nb-icon>
-        Interviews
-      </button>
-      <button [disabled]="audit?.status !== 'ACTIVE'" (click)="onFinishClick()" status="primary" ghost nbButton data-cy="finish-interview">
-        <nb-icon icon="checkmark-square-outline"></nb-icon>
-        Abschließen
-      </button>
-    </div>
-  </header>
-  <nb-card class="mt-1 mb-1">
-    <nb-card-body data-cy="stepper">
-      <div class="nb-card-header-navigation">
-        <nb-actions size="small">
-          <nb-action icon="arrow-ios-back-outline" (click)="onNaviagteBack(facCrit.id)" data-cy="stepper-back"></nb-action>
-        </nb-actions>
-        <p class="subtitle-2">
-          {{ facCrit.name }}
-          <span *ngIf="facCritGroupedIds" class="text-hint">{{ getFacCritPosition(facCrit.id) }}</span>
-        </p>
-        <nb-actions size="small">
-          <nb-action icon="arrow-ios-forward-outline" (click)="onNavigateForward(facCrit.id)" data-cy="stepper-forward"></nb-action>
-        </nb-actions>
-      </div>
-    </nb-card-body>
-  </nb-card>
-  <nb-accordion multi class="mt-1" id="fac-crit-goal">
-    <nb-accordion-item expanded data-cy="faccrit-goal">
-      <nb-accordion-item-header class="subtitle-2">
-        Befragungsziel des {{ facCrit.referenceId ? 'Kriteriums' : 'Faktors' }} &nbsp; <span class="subtitle">{{ facCrit.name }}</span>
-      </nb-accordion-item-header>
-      <nb-accordion-item-body style="font-size: 0.8rem;">
-        {{ facCrit.goal }}
-      </nb-accordion-item-body>
-    </nb-accordion-item>
-    <nb-accordion-item data-cy="faccrit-notes">
-      <nb-accordion-item-header class="subtitle-2">
-        Notizen des Interviews
-      </nb-accordion-item-header>
-      <nb-accordion-item-body>
-        <textarea
-          [disabled]="audit?.status !== 'ACTIVE'"
-          spellcheck="false"
-          [value]="interview.note"
-          (input)="onNoteInput($event.target.value)"
-          placeholder="Ihre Notizen..."
-          type="text"
-          fullWidth
-          nbInput
-          data-cy="notes"
-        ></textarea>
-      </nb-accordion-item-body>
-    </nb-accordion-item>
-  </nb-accordion>
-  <app-answer-question-list [interviewId]="interview.id" [facCrit]="facCrit" [audit]="audit"></app-answer-question-list>
+<ng-container *ngIf="audit$ | async | byId: auditId as audit">
+  <ng-container *ngIf="interview$ | async | byId: interviewId; let interview">
+    <ng-container *ngIf="facCrit$ | async | byId: facCritId; let facCrit">
+      <header class="header-main">
+        <div class="header-main-info">
+          <h4 data-cy="heading">
+            Interview
+            <span class="label">{{ interview.startDate | date: 'dd.MM.yyyy' }}</span>
+          </h4>
+          <span class="subtitle-2" *ngFor="let person of interview.contactPersons; let i = index" data-cy="subheading">
+            {{ person.forename + ' ' + person.surname }}
+            {{ i + 1 === interview.contactPersons.length ? '' : ', ' }}
+          </span>
+        </div>
+        <div>
+          <button class="mr-1" ghost [routerLink]="['/audits/' + interview.auditId + '/interviews']" nbButton data-cy="back-to-interviews">
+            <nb-icon icon="arrow-back-outline"></nb-icon>
+            Interviews
+          </button>
+          <button [disabled]="audit?.status !== 'ACTIVE'" (click)="onFinishClick()" status="primary" ghost nbButton data-cy="finish-interview">
+            <nb-icon icon="checkmark-square-outline"></nb-icon>
+            Abschließen
+          </button>
+        </div>
+      </header>
+      <nb-card class="mt-1 mb-1">
+        <nb-card-body data-cy="stepper">
+          <div class="nb-card-header-navigation">
+            <nb-actions size="small">
+              <nb-action icon="arrow-ios-back-outline" (click)="onNaviagteBack(facCrit.id)" data-cy="stepper-back"></nb-action>
+            </nb-actions>
+            <p class="subtitle-2">
+              {{ facCrit.name }}
+              <span *ngIf="facCritGroupedIds" class="text-hint">{{ getFacCritPosition(facCrit.id) }}</span>
+            </p>
+            <nb-actions size="small">
+              <nb-action icon="arrow-ios-forward-outline" (click)="onNavigateForward(facCrit.id)" data-cy="stepper-forward"></nb-action>
+            </nb-actions>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-accordion multi class="mt-1" id="fac-crit-goal">
+        <nb-accordion-item expanded data-cy="faccrit-goal">
+          <nb-accordion-item-header class="subtitle-2">
+            Befragungsziel des {{ facCrit.referenceId ? 'Kriteriums' : 'Faktors' }} &nbsp; <span class="subtitle">{{ facCrit.name }}</span>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body style="font-size: 0.8rem;">
+            {{ facCrit.goal }}
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+        <nb-accordion-item data-cy="faccrit-notes">
+          <nb-accordion-item-header class="subtitle-2">
+            Notizen des Interviews
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <textarea
+              [disabled]="audit?.status !== 'ACTIVE'"
+              spellcheck="false"
+              [value]="interview.note"
+              (input)="onNoteInput($event.target.value)"
+              placeholder="Ihre Notizen..."
+              type="text"
+              fullWidth
+              nbInput
+              data-cy="notes"
+            ></textarea>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+      <app-answer-question-list [interviewId]="interview.id" [facCrit]="facCrit" [audit]="audit"></app-answer-question-list>
+    </ng-container>
+  </ng-container>
 </ng-container>
