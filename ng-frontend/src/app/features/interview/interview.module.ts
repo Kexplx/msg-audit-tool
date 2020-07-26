@@ -9,6 +9,7 @@ import { QuestionByIdPipe } from './answer-question-list/questions-by-id.pipe';
 import { AnswersByFacCritId } from './answers-by-faccrit-id.pipe';
 import { AddInterviewDialogComponent } from './add-interview-dialog/add-interview-dialog.component';
 import { InterviewFormComponent } from './interview-form/interview-form.component';
+import { ByIdPipe } from './by-id.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InterviewFormComponent } from './interview-form/interview-form.componen
     AnswersByFacCritId,
     InterviewFormComponent,
     AddInterviewDialogComponent,
+    ByIdPipe,
   ],
   imports: [ReactiveFormsModule, SharedModule, InterviewRoutingModule],
 })
