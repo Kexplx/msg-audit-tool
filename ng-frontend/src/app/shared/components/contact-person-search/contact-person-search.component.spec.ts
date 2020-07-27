@@ -4,7 +4,7 @@ import { CONTACTPERSONS } from 'src/app/core/data/http/test/dummies/app-models/c
 import { ContactPerson } from 'src/app/core/data/models/contact-person.model';
 import { EventEmitter } from '@angular/core';
 
-fdescribe('ContactPersonSearchComponent', () => {
+describe('ContactPersonSearchComponent', () => {
   let component: ContactPersonSearchComponent;
   let contactPersons$Spy: jasmine.Spy;
   let contactPersonStoreMock: any;

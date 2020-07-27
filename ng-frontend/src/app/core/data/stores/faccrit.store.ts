@@ -21,9 +21,17 @@ export class FacCritStore {
     });
   }
 
+  /**
+   * Returns logically grouped facCrits.
+   *
+   * @example
+   * ['1 Factor', '2 Factor', '1.1 Criteria']
+   *
+   * // Will return
+   * ['1 Factor', '1.1 Criteria', '2 Factor']
+   */
   getGroupedFacCrits(facCritIds: number[]): FacCrit[] {
     const facCrits = this._facCrits$.value.filter(fc => facCritIds.includes(fc.id));
-
     return facCrits.sort((a, b) => this.getNumberFromFacCrit(a) - this.getNumberFromFacCrit(b));
   }
 

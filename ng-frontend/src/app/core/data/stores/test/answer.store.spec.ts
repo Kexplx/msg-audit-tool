@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { Answer } from '../../models/answer.model';
 import { StoreActionService } from '../store-action.service';
 
-fdescribe('AnswerStore', () => {
+describe('AnswerStore', () => {
   let answerStore: AnswerStore;
   let answerServiceSpy: jasmine.SpyObj<AnswerService>;
   let storeActionServiceSpy: jasmine.SpyObj<StoreActionService>;

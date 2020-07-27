@@ -3,6 +3,7 @@ import { Interview } from '../models/interview.model';
 import { FacCrit } from '../models/faccrit.model';
 import { BehaviorSubject } from 'rxjs';
 import { InterviewService } from '../http/interview.service';
+import { StoreActionService } from './store-action.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,24 +15,29 @@ export class InterviewStore {
     return this._interviews$.asObservable();
   }
 
-  constructor(private interviewService: InterviewService) {}
-
-  loadInterviews(): void {
-    this.interviewService.getInterviews().subscribe(interviews => {
-      this._interviews$.next(interviews);
-    });
-  }
+  constructor(
+    private interviewService: InterviewService,
+    private storeActionService: StoreActionService,
+  ) {}
 
   loadInterviewsByAuditId(auditId: number): void {
-    this.interviewService
-      .getInterviewsByAuditId(auditId)
-      .subscribe(interviews => this._interviews$.next(interviews));
+    this.interviewService.getInterviewsByAuditId(auditId).subscribe(interviews => {
+      this._interviews$.next(interviews);
+      this.storeActionService.notifyLoad('Interviews wurden geladen.');
+    });
   }
 
   addInterview(interview: Interview, interviewScope: FacCrit[]): void {
     this.interviewService.postInterview(interview, interviewScope).subscribe(interview => {
       const interviews = this._interviews$.value;
-      this._interviews$.next([...interviews, interview]);
+
+      if (!interviews) {
+        this._interviews$.next([interview]);
+      } else {
+        this._interviews$.next([...interviews, interview]);
+      }
+
+      this.storeActionService.notifyAdd('Interview wurde erstellt.');
     });
   }
 
@@ -45,6 +51,8 @@ export class InterviewStore {
         interview,
         ...interviews.slice(indexOfUpdatedInterview + 1),
       ]);
+
+      this.storeActionService.notifyEdit('Interview wurde aktualisiert.');
     });
   }
 }

@@ -94,8 +94,8 @@ describe('AuditStore', () => {
     });
 
     it("should update the audit's name at index 0", () => {
-      auditStore.audits$.pipe(skip(1)).subscribe(contactPersons => {
-        expect(contactPersons[0].name).not.toEqual('OLD VALUE');
+      auditStore.audits$.pipe(skip(1)).subscribe(audits => {
+        expect(audits[0].name).not.toEqual('OLD VALUE');
       });
 
       auditStore.updateAudit({} as Audit);
