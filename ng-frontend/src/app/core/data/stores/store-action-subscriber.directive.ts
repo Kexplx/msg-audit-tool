@@ -3,7 +3,7 @@ import {
   StoreActionService,
   StoreAction,
   StoreActionType,
-} from './data/stores/store-action.service';
+} from './store-action.service';
 import { NbToastrService } from '@nebular/theme';
 
 @Directive({
