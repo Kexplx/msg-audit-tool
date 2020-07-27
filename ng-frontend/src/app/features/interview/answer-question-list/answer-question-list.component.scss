@@ -1,6 +1,10 @@
 @import '../../../../sass/utils';
 @import 'src/sass/colors';
 
+textarea {
+  resize: vertical;
+}
+
 nb-accordion-item-header,
 nb-card-header {
   background: #f7f9fc !important;
