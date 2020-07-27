@@ -28,15 +28,15 @@ jobs:
         run: npm i -g @angular/cli
         working-directory: ${{env.working-directory}}
 
-      - name: Run e2e Tests
-        uses: cypress-io/github-action@v1
-        with:
-          working-directory: ${{env.working-directory}}
-          browser: chrome
-          headless: true
-          start: ng serve
-          wait-on: http://localhost:4200
-          wait-on-timeout: 300
+      # - name: Run e2e Tests
+      #   uses: cypress-io/github-action@v1
+      #   with:
+      #     working-directory: ${{env.working-directory}}
+      #     browser: chrome
+      #     headless: true
+      #     start: ng serve
+      #     wait-on: http://localhost:4200
+      #     wait-on-timeout: 300
 
       - name: Run Unit Tests
         run: ng test --watch=false --browsers=ChromeHeadless
