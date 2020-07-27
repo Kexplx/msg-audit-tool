@@ -20,11 +20,9 @@ export class ContactPersonStore {
   ) {}
 
   loadContactPersons(): void {
-    this.contactPersonService.getContactPersons().subscribe(contactPersons => {
-      this._contactPersons$.next(contactPersons);
-
-      this.storeActionService.notifyLoad('Kontaktpersonen wurden geladen.');
-    });
+    this.contactPersonService
+      .getContactPersons()
+      .subscribe(contactPersons => this._contactPersons$.next(contactPersons));
   }
 
   addContactPerson(contactPerson: ContactPerson): void {

@@ -40,12 +40,6 @@ describe('AuditStore', () => {
 
       auditStore.loadAudits();
     });
-
-    it('should call #notifyLoad once', () => {
-      auditStore.loadAudits();
-
-      expect(storeActionServiceSpy.notifyLoad.calls.count()).toEqual(1);
-    });
   });
 
   describe('#addAudit', () => {

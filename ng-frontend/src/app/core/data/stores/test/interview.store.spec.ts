@@ -44,12 +44,6 @@ describe('InterviewStore', () => {
 
       interviewStore.loadInterviewsByAuditId(1);
     });
-
-    it('should call #notifyLoad once', () => {
-      interviewStore.loadInterviewsByAuditId(1);
-
-      expect(storeActionServiceSpy.notifyLoad.calls.count()).toEqual(1);
-    });
   });
 
   describe('#addInterview', () => {

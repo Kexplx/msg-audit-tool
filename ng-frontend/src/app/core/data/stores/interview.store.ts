@@ -21,10 +21,9 @@ export class InterviewStore {
   ) {}
 
   loadInterviewsByAuditId(auditId: number): void {
-    this.interviewService.getInterviewsByAuditId(auditId).subscribe(interviews => {
-      this._interviews$.next(interviews);
-      this.storeActionService.notifyLoad('Interviews wurden geladen.');
-    });
+    this.interviewService
+      .getInterviewsByAuditId(auditId)
+      .subscribe(interviews => this._interviews$.next(interviews));
   }
 
   addInterview(interview: Interview, interviewScope: FacCrit[]): void {

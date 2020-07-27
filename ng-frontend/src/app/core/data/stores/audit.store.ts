@@ -16,11 +16,7 @@ export class AuditStore {
   constructor(private auditService: AuditService, private storeActionService: StoreActionService) {}
 
   loadAudits(): void {
-    this.auditService.getAudits().subscribe(audits => {
-      this._audits$.next(audits);
-
-      this.storeActionService.notifyLoad('Audits wurden geladen.');
-    });
+    this.auditService.getAudits().subscribe(audits => this._audits$.next(audits));
   }
 
   addAudit(audit: Audit): void {

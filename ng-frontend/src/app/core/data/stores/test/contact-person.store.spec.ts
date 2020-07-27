@@ -37,12 +37,6 @@ describe('ContactPersonStore', () => {
       expect(contactPersonServiceSpy.getContactPersons.calls.count()).toEqual(1);
     });
 
-    it('should call #notifyLoad once', () => {
-      contactPersonStore.loadContactPersons();
-
-      expect(storeActionServiceSpy.notifyLoad.calls.count()).toEqual(1);
-    });
-
     it('should set _contactPersons$.value to the response', () => {
       contactPersonStore.contactPersons$
         .pipe(filter(contactPersons => contactPersons != null))
