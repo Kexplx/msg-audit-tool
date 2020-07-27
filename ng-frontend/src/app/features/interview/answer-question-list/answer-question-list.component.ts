@@ -54,9 +54,11 @@ export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
   }
 
   onSave() {
+    const answers: Answer[] = [];
+
     for (const [i, a] of this.answers.entries()) {
       const formGroup = this.formGroups[i];
-      const answer: Answer = {
+      answers.push({
         ...a,
         proof: formGroup.get('proof').value,
         result: formGroup.get('result').value,
@@ -65,9 +67,9 @@ export class AnswerQuestionListComponent implements OnChanges, OnDestroy {
         reason: formGroup.get('reason').value,
         annotation: formGroup.get('annotation').value,
         responsible: formGroup.get('responsible').value,
-      };
-
-      this.answerStore.updateAnswer(answer);
+      });
     }
+
+    this.answerStore.updateAnswers(answers);
   }
 }
